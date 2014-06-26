@@ -1,0 +1,20 @@
+0. 제로보드를 새 계정에 옮기고 나서는 먼저 www/bbs/myZrCnf2019.php 파일안의 정보를 적절하게 수정해 준다. 두번째 줄은 DB 유저네임, 세번째 줄은 DB 유저 패스워드, 네번째 줄은 DB 이름이다. 리눅스에서 myZrCnf2019.php 파일의 chmod 속성은 604(-rw----r--)로 바꿔주세요.
+
+0.3 /index.php 파일 13, 14행 쯤, /m/index.php 파일 13, 14행 쯤 url 정보를 수정해 준다.
+
+0.5 lib.php 파일의 291행 쯤의 @mysql_set_charset('euckr',$connect); 에서 DB 캐릭터셋을 확인한다.
+0.6 lib.php 파일의 396행, 497행 쯤의 rss 주소를 확인한다.
+0.7 lib.php 파일의 395행, 496행 쯤의 이미지 파일 이름과 존재 유무를 확인한다.
+
+1. www와 /www/m 폴더 안의 main.php 파일 2번째 3번째 줄의 $_zb_url 과 $_zb_path 정보를 올바르게 수정해 준다.
+1.5 www와 /www/m 폴더 안의 main.php 파일 15, 16행 쯤의 url 정보를 수정해 준다.
+
+2. www/bbs/_head.php 파일의 13행 쯤 $_zb_path 정보를 올바르게 수정해 준다.
+
+3. www/bbs/view.php 파일 23행 쯤 urlencode 정보를 올바르게 수정해 준다.
+
+4. www/bbs/skin/f2plus_gallery_3_0/error.php 의 url 정보를 수정해 준다.
+
+5. www/rss/ 안의 index.php와 zero_rss.php의 url 정보와 www/main.php 의 rss 링크 url 정보를 수정해 준다.
+
+6. www/fr_right.htm www/m/favorite.htm의 채팅방 소스는 백업 호스트엔 적용되지 않는다.
