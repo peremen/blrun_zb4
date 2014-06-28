@@ -54,7 +54,8 @@
 		<table border=0 cellspacing=0 cellpadding=10 width=100% style=table-layout:fixed>
 		<tr>
 			<td>
-				<?=$memo?><BR>
+				<?=$memo?><BR><BR>
+				<? include "script/sns.php"; ?>
 				<table width=100% border=0>
 				<tr><td><BR>
 				<div align=right class=com5><?=$ip?></div>

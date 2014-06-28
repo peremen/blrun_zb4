@@ -53,7 +53,8 @@
 		<tr>
 			<td>
 				<!--여기부터 본문 내용 시작입니다-->
-				<?=$memo?><BR>
+				<?=$memo?><BR><BR>
+				<? include "script/sns.php"; ?>
 				<div align=right class=com5><?=$ip?></div><br>
 				<a href="http://www.ntzn.net/" target="_blank" style="color:blue;">http://www.ntzn.net/</a>
 				<!--여기까지 본문 내용 끝입니다-->
