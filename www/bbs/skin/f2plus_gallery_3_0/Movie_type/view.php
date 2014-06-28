@@ -119,14 +119,17 @@
 			</table>
 			
 		<? if (!$view_img2){
-			echo "</td></tr><tr><td><table width=100% border=0 cellspacing=0 cellpadding=0><tr><td height=4></td></tr><tr><td height=1 background=$dir/images/dot.gif></td></tr><tr><td height=4></td></tr></table><B>&nbsp;영화내용</B>(줄거리) :<BR><BR>".$_name1."</td></tr>";
+			echo "</td></tr><tr><td><table width=100% border=0 cellspacing=0 cellpadding=0><tr><td height=4></td></tr><tr><td height=1 background=$dir/images/dot.gif></td></tr><tr><td height=4></td></tr></table><B>&nbsp;영화내용</B>(줄거리) :<BR><BR>".$_name1."<BR><BR>";
+			include "script/sns.php";
+			echo "</td></tr>";
 		}else{?>
 		</td></tr>
 		<tr><td height=2 background=<?=$dir?>/images/main_bar_line.gif></td></tr>
 		<tr valign=top>
 			<td><BR>			
 			<?=$print_img2?><?=$view_img2?></A>
-			<B>&nbsp;· 영화내용</B>(줄거리) :<BR><BR><?=$_name1?>
+			<B>&nbsp;· 영화내용</B>(줄거리) :<BR><BR><?=$_name1?><BR><BR>
+			<? include "script/sns.php"; ?>
 			</td>
 		</tr>
 		<?}?><BR>

@@ -54,7 +54,8 @@
 		<table border=0 cellspacing=0 cellpadding=10 width=100% style=table-layout:fixed>
 		<tr>
 			<td>
-				<?=$memo?><BR>
+				<?=$memo?><BR><BR>
+				<? include "script/sns.php"; ?>
 				<div align=right class=com5><?=$ip?></div><br>
 				<a href="http://www.ntzn.net/" target="_blank" style="color:blue;">http://www.ntzn.net/</a>
 			</td>
