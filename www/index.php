@@ -14,7 +14,7 @@ if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_
 <link rel="alternate" type="application/rss+xml" title="네티즌 세상을 위하여..." href="http://blrun.net/rss/">
 <script type="text/javascript">
 var uAgent = navigator.userAgent;
-if(uAgent.match(/iphone|ipod|android|bada|blackberry|windows ce|symbian|nokia|webos|opera mini|sonyericsson|opera mobi|iemobile/i) != null)
+if(uAgent.match(/iphone|ipod|android|x11|bada|blackberry|windows ce|symbian|nokia|webos|opera mini|sonyericsson|opera mobi|iemobile/i) != null)
 {
 // 모바일 주소 표시줄 숨기기
   window.addEventListener('load', function(){ setTimeout(scrollTo, 0, 0, 1); }, false);

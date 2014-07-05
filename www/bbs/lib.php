@@ -162,8 +162,8 @@
 
 	// 모바일일 때와 PC일 때 처리
 	$browser=$HTTP_USER_AGENT; //echo $browser;
-	if(preg_match("/(iphone|ipod|android|bada|blackberry|windows ce|symbian|nokia|webos|opera mini|sonyericsson|opera mobi|iemobile)/i",$browser)) $browser="0"; else $browser="1";
-//	echo $browser;
+	if(preg_match("/(iphone|ipod|android|x11|bada|blackberry|windows ce|symbian|nokia|webos|opera mini|sonyericsson|opera mobi|iemobile)/i",$browser)) $browser="0"; else $browser="1";
+	//echo $browser;
 
 	// DB가 설정이 되었는지를 검사
 	if(!file_exists($config_dir."myZrCnf2019.php")&&!preg_match("/install/i",$PHP_SELF)) {
