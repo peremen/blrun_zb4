@@ -1,0 +1,98 @@
+<?
+ /* 간단한 답글 쓰기 표시
+
+  -- 간단한 답글 관련
+  <?=$hide_comment_start?> <?=$hide_comment_end?> : 간단한 답글 쓰기 보여주기/ 숨기기
+  <?=$hide_c_password_start?> <?=$hide_c_password_end?> : 간단한 답글시 비밀번호 입력 보여주기/ 숨기기;;
+
+  <?=$c_name?> : 코멘트시 이름 입력하는 곳;;
+
+  ** view.php 제일 아래쪽에 간답한 답글이 시작하는 <table>태그 시작부분이 있습니다.
+     그리고 간단한 답글이 있으면 view_comment_view.php 파일에서 출력을 합니다.
+
+ */
+?>
+<?
+	$a_preview = str_replace(">","><font class=view_title1>",$a_preview)."&nbsp;&nbsp;";
+	$a_imagebox = str_replace(">","><font class=view_title1>",$a_imagebox)."&nbsp;&nbsp;";
+	$a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbsp;";
+?>
+
+<!-- 간단한 답변글 쓰기 -->
+<form method=post name=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data>
+<input type=hidden name=page value=<?=$page?>>
+<input type=hidden name=id value=<?=$id?>>
+<input type=hidden name=no value=<?=$no?>>
+<input type=hidden name=select_arrange value=<?=$select_arrange?>>
+<input type=hidden name=desc value=<?=$desc?>>
+<input type=hidden name=page_num value=<?=$page_num?>>
+<input type=hidden name=keyword value="<?=$keyword?>">
+<input type=hidden name=category value="<?=$category?>">
+<input type=hidden name=sn value="<?=$sn?>">
+<input type=hidden name=ss value="<?=$ss?>">
+<input type=hidden name=sc value="<?=$sc?>">
+<input type=hidden name=sm value="<?=$sm?>">
+<input type=hidden name=mode value="modify">
+<input type=hidden name=c_no value=<?=$c_no?>>
+<input type=hidden name=antispam value="<?=$num1num2?>">
+
+<div align=center>
+<table width=<?=$width?> border=0 cellspacing=1 cellpadding=0 bgcolor=<?=$list_footer_bg_color?>>
+<tr>
+  <td bgcolor=<?=$list_header_back?>>
+	<table border=0 cellspacing=0 cellpadding=4>
+	<tr>
+      <td align=center style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br>Option</td>
+	  <td width=100% class=listnum>
+	    <?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>> HTML사용 <?=$hide_html_end?>
+	    <?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1> 비밀글 <?=$hide_secret_end?>
+	  </td>
+	  <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1>&nbsp;</td>
+	  <td>&nbsp;</td>
+	</tr>
+	<tr align=center>
+	  <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br>Name</td>
+	  <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;cursor:pointer; onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4">Memo ▼</td>
+	  <?=$hide_c_password_start?>
+	  <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br>Password</td>
+	  <?=$hide_c_password_end?>
+	  <td>&nbsp;</td>
+	</tr>
+	<tr align=center>
+	  <td nowrap><? $c_name=stripslashes($c_name); echo $c_name; ?></td>
+	  <td width=100% height=100%>
+	    <table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
+	    <tr><td width=100%>
+	      <textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea>
+	    </td></tr>
+	    </table>
+	  </td>
+	  <?=$hide_c_password_start?>
+	  <td><input type=password name=password <?=size(10)?> maxlength=20 class=input style="border-width:1px; border-style:solid;">&nbsp;&nbsp;</td>
+	  <?=$hide_c_password_end?>
+	  <td><input type=submit class=comment_submit value='수정하기' accesskey="s"></td>
+	</tr>
+	</table>
+	<table border=0 cellspacing=2 cellpadding=0 width=100% height=20>
+	<col width=6%></col><col width=44%></col><col width=6%></col><col width=44%>
+	<tr valign=top>
+	<?=$hide_pds_start?>
+	  <td width=52 align=right><font class=listnum>Upload #1</font></td>
+	  <td class=listnum><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name1?></td>
+	  <td width=52 align=right><font class=listnum>Upload #2</font></td>
+	  <td class=listnum><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
+	<?=$hide_pds_end?>
+	</tr>
+	</table>
+  </td>
+</tr>
+</table>
+<table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0>
+<tr>
+  <td width=200 height=40>
+    <?=$a_preview?>미리보기</a><?=$a_imagebox?>그림창고</a><?=$a_codebox?>코드삽입</a>
+  </td>
+</tr>
+</table>
+</form>
+</div>

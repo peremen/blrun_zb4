@@ -122,6 +122,10 @@ if($pass == "gg" || $member[no]) {
 // 회원로그인이 되어 있으면 코멘트 비밀번호를 안 나타나게;;
 	if($member[no]) {
 		$c_name=$member[name]; $hide_c_password_start="<!--"; $hide_c_password_end="-->"; 
+		$temp_name = get_private_icon($member[no], "2");
+		if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>";
+		$temp_name = get_private_icon($member[no], "1");
+		if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>".$c_name;
 	} else $c_name="<input type=text name=name size=8 maxlength=10 class=input value=\"".$name."\">";
 
 // 이미지 창고 버튼
