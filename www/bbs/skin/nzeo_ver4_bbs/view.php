@@ -8,7 +8,7 @@
 </tr>
 <tr class=list1>
 	<td height=180 valign=top bgcolor=white>
-		<table border=0 cellspacing=0 width=100% style=table-layout:fixed height=30 class=list0>
+		<table border=0 cellspacing=0 width=100% style=table-layout:fixed height=30 class=list0 style=table-layout:fixed>
 		<col width=></col><col width=249></col>
 		<tr>
 			<td nowrap='nowrap' style=padding-left:10px>

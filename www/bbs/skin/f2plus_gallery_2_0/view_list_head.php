@@ -14,6 +14,7 @@
 <input type=hidden name=sn value="<?=$sn?>">
 <input type=hidden name=ss value="<?=$ss?>">
 <input type=hidden name=sc value="<?=$sc?>">
+<input type=hidden name=sm value="<?=$sm?>">
 </td><td width=100%>
 </table>
 
