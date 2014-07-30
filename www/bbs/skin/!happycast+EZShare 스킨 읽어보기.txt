@@ -1,0 +1,7 @@
+소스 수정시 아래 파일 색깔 지정 부분만 다르고 나머지 파일은 다 똑같습니다.
+
+1. happycast 스킨에서 색깔 폴더별로 다른 파일
+value.php3, style.css
+
+2. EZshare 스킨에서 색깔 폴더별로 다른 파일
+ask_password.php, list_head.php, login.php, style.css, view_list_head.php, write.php
