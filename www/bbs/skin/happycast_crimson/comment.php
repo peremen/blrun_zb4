@@ -40,37 +40,39 @@
 <table width=<?=$width?> border=0 cellspacing=1 cellpadding=0 bgcolor=<?=$list_footer_bg_color?>>
 <tr>
   <td bgcolor=<?=$list_header_back?>>
-	<table border=0 cellspacing=0 cellpadding=4>
+	<table border=0 cellspacing=0 cellpadding=4 width=100% height=100>
+	<col width=80></col><col width=></col><col width=80></col>
 	<tr>
-      <td align=center style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br>Option</td>
-	  <td width=100% class=listnum>
+      <td align=center style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br><b>Option</b></td>
+	  <td class=listnum>
 	    <?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>> HTML사용 <?=$hide_html_end?>
 	    <?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1> 비밀글 <?=$hide_secret_end?>
 	  </td>
-	  <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1>&nbsp;</td>
-	  <td>&nbsp;</td>
+	  <td width=80>&nbsp;</td>
 	</tr>
 	<tr align=center>
-	  <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br>Name</td>
-	  <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;cursor:pointer; onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4">Memo ▼</td>
-	  <?=$hide_c_password_start?>
-	  <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br>Password</td>
-	  <?=$hide_c_password_end?>
+	  <td height=20 style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br><b>Name</b></td>
+	  <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;cursor:pointer; onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4"><b>Memo ▼</b></td>
 	  <td>&nbsp;</td>
 	</tr>
-	<tr align=center>
-	  <td nowrap><? $c_name=stripslashes($c_name); echo $c_name; ?></td>
-	  <td width=100% height=100%>
+	<tr align=center valign=top>
+	  <td nowrap height=80>
+	    <? $c_name=stripslashes($c_name); echo $c_name; ?>
+	    <?=$hide_c_password_start?>
+	    <br><img src=images/t.gif border=0 height=10><br>
+	    <font style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>Password</b></font><br>
+	    <img src=images/t.gif border=0 height=5><br>
+		<input type=password name=password <?=size(8)?> maxlength=20 class=input>
+	    <?=$hide_c_password_end?>
+	  </td>
+	  <td>
 	    <table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
-	    <tr><td width=100%>
+	    <tr><td width=100% valign=top>
 	      <textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea>
 	    </td></tr>
 	    </table>
 	  </td>
-	  <?=$hide_c_password_start?>
-	  <td><input type=password name=password <?=size(10)?> maxlength=20 class=input style="border-width:1px; border-style:solid;">&nbsp;&nbsp;</td>
-	  <?=$hide_c_password_end?>
-	  <td><input type=submit class=comment_submit value='수정하기' accesskey="s"></td>
+	  <td><input type=submit rows=5 class=comment_submit value='수정하기' accesskey="s"></td>
 	</tr>
 	</table>
 	<table border=0 cellspacing=2 cellpadding=0 width=100% height=20>
