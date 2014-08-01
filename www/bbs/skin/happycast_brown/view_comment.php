@@ -17,17 +17,25 @@
   else $show_comment_ip = "";
 ?>
 <tr>
-	<td width=78 nowrap valign=top>
+    <td width=100% bgcolor=dddddd><img src=images/t.gif height=1></td>
+</tr>
+<tr>
+	<td height=3><img src=images/t.gif border=0 hieght=3></td>
+</tr>
+<tr valign=top>
+	<td style='word-break:break-all;padding-left:10px;'>
 		<a name="<?=$c_data[no]?>">
 		<table border=0 cellspacing=0 cellpadding=0 width=100% style=table-layout:fixed>
 		<tr>
-			<td><img src=images/t.gif border=0 height=1 width=78><br><?=$c_face_image?> <?=$comment_name?></td>
+			<td width=><?=$c_face_image?> <?=$comment_name?> </b><font class=listnum color=888888>(<?=date("Y-m-d H:i:s",$c_data[reg_date])?>)</font> <?=$show_comment_ip?></td>
+			<td width=70 align=right style=font-family:verdana;font-size:9px;><?=$a_edit2?><img src=<?=$dir?>/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/edit.gif border=0 valign=absmiddle></a> <?=$a_del?><img src=<?=$dir?>/del.gif border=0 valign=absmiddle></a><img src=images/t.gif border=0 width=1 height=1>&nbsp;</td>
 		</tr>
 		</table>
 		</a>
-		<?=$show_comment_ip?>
 	</td>
-	<td width=100%>&nbsp;::: 
+</tr>
+<tr>
+	<td style='word-break:break-all;padding:2px;padding-left:10px;padding-top:5px;'>&nbsp;::: 
 		<?
 		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$member[level]>$setup[grant_view_secret])
 			echo "<span style='color:gray;font-size:10pt'>비밀 덧글입니다</span>";
@@ -38,5 +46,7 @@
 			<br><?if($c_data[is_secret]) echo "<img src=".$dir."/post_security.gif border=0>";?><?=$c_memo?>
 		<? } ?>
 	</td>
-	<td nowrap align=right valign=top><font class=listnum><?=date("Y-m-d",$c_data[reg_date])?><br><?=date("H:i:s",$c_data[reg_date])?></font><br><?=$a_edit2?><img src=<?=$dir?>/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/edit.gif border=0 valign=absmiddle></a> <?=$a_del?><img src=<?=$dir?>/secret_head.gif border=0></a></td>
+</tr>
+<tr>
+	<td height=3><img src=images/t.gif border=0 hieght=3></td>
 </tr>

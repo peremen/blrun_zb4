@@ -181,6 +181,5 @@
 
 <!-- 간단한 답글 시작하는 부분 -->
 <?=$hide_comment_start?> 
-<table border=0 cellspacing=0 cellpadding=3 width=<?=$width?> style=table-layout:fixed>
-<col width=78></col><col width=></col><col width=64></col>
+<table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> style=table-layout:fixed>
 <?=$hide_comment_end?>

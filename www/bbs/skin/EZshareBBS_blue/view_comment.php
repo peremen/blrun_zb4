@@ -14,7 +14,7 @@
 		<table border=0 cellspacing=0 cellpadding=0 width=100% class=zv3_header_inside style=table-layout:fixed>
 		<tr>
 			<td width=><?=$c_face_image?> <?=$comment_name?> </b><font class=zv3_small color=888888>(<?=date("Y-m-d H:i:s",$c_data[reg_date])?>)</font> <?=$show_comment_ip?></td>
-			<td width=70 align=right style=font-family:verdana;font-size:9px;><?=$a_edit2?><img src=<?=$dir?>/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/edit.gif border=0 valign=absmiddle></a> <?=$a_del?>X</a><img src=images/t.gif border=0 width=1 height=1>&nbsp;</td>
+			<td width=70 align=right style=font-family:verdana;font-size:9px;><?=$a_edit2?><img src=<?=$dir?>/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/edit.gif border=0 valign=absmiddle></a> <?=$a_del?><img src=<?=$dir?>/del.gif border=0 valign=absmiddle></a><img src=images/t.gif border=0 width=1 height=1>&nbsp;</td>
 		</tr>
 		</table>
 		</a>

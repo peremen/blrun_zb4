@@ -28,7 +28,7 @@
 			</td>
 		</tr>
 		<tr>	
-			<td class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</td>
+			<td class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</font></td>
 			<td width=100% height=100% class=list1>
 				<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
 				<col width=></col><col width=70></col>
@@ -37,6 +37,10 @@
 					<td width=70><input type=submit rows=5 class=submit value='수정하기' accesskey="s" style=height:100%></td>
 				</tr>
 				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 class=list1>
 				<table border=0 cellspacing=2 cellpadding=0 width=100% height=20>
 				<col width=5%></col><col width=45%></col><col width=5%></col><col width=45%>
 				<tr valign=top>
