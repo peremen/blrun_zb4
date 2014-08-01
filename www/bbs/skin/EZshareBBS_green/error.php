@@ -13,7 +13,7 @@
 ?>
 
   <br>
-  <center><a href=# onclick=history.back() onfocus=blur()><img src=<?=$dir?>/btn_writecancel.gif border=0></a>
+  <center><img src=<?=$dir?>/btn_writecancel.gif border=0 onclick=history.back() onfocus=blur() style=cursor:pointer></center>
 
 <?
   }
@@ -21,7 +21,7 @@
   {
 ?>
 	<br>
-  <div align=center><a href=# onclick=location.href="<?echo $url;?>" onfocus=blur()><img src=<?=$dir?>/btn_move.gif border=0></a>
+  <div align=center><img src=<?=$dir?>/btn_move.gif border=0 onclick=location.href="<?echo $url;?>" onfocus=blur() style=cursor:pointer></div>
 
 <?
   }

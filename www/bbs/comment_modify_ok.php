@@ -140,21 +140,25 @@ if($flag != ok) {
 			<col width=70 align=right style=padding-right:10px></col><col width=></col>
  			<?if(!$member['no']){?>
 			<tr>
-				<td class=list0><font class=list_eng><b>Name</b></td>
+				<td class=list0><font class=list_eng><b>Name</b></font></td>
 				<td class=list1><input type=text name=name <?=size(8)?> maxlength=20 class=input value="<?=trim(stripslashes($s_data[name]))?>"></td>
 			</tr>
 			<tr>
-				<td class=list0><font class=list_eng><b>Password</b></td>
+				<td class=list0><font class=list_eng><b>Password</b></font></td>
 				<td class=list1><input type=password name=password <?=size(8)?> maxlength=20 class=input value="<?=stripslashes($pass)?>"></td>
 			</tr>
 			<?}?>
 			<?=$hide_html_start?>
 			<tr>
-				<td class=list0>Option</td><td class=list_eng><input type=checkbox name=use_html2<?=$use_html2?>> HTML사용</td>
+				<td class=list0><font class=list_eng><b>Option</b></font></td>
+				<td class=list_eng>
+					<?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>> HTML사용 <?=$hide_html_end?>
+					<?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1> 비밀글 <?=$hide_secret_end?>
+				</td>
 			</tr>
 			<?=$hide_html_end?>
 			<tr>	
-				<td class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</td>
+				<td class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</font></td>
 				<td width=100% height=100% class=list1>
 					<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
 					<col width=></col><col width=70></col>
@@ -163,8 +167,12 @@ if($flag != ok) {
 						<td width=70><input type=submit rows=5 class=submit value='수정하기' accesskey="s" style=height:100%></td>
 					</tr>
 					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=2 class=list1>
 					<table border=0 cellspacing=2 cellpadding=0 width=100% height=20>
-					<col width=5%></col><col width=35%></col><col width=5%></col><col width=35%></col><col width=2%></col><col width=7%></col><col width=11%></col>
+					<col width=5%></col><col width=45%></col><col width=5%></col><col width=45%></col>
 					<tr valign=top>
 					<?=$hide_pds_start?>
 					  <td width=52 align=right><font class=list_eng>Upload #1</font></td>
@@ -172,7 +180,6 @@ if($flag != ok) {
 					  <td width=52 align=right><font class=list_eng>Upload #2</font></td>
 					  <td class=list_eng><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
 					<?=$hide_pds_end?>
-					  <td width=5 valign=middle class=list_eng><?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1></td><td width=40 align=left valign=middle class=list_eng>비밀글<?=$hide_secret_end?></td><td nowrap align=left valign=middle class=list_eng><?=$a_codebox?>코드삽입</a></td>
 					</tr>
 					</table>
 				</td>
@@ -182,17 +189,23 @@ if($flag != ok) {
 		</td>
 	</tr>
 	</table>
-	<div align="left"><?=$a_preview?>미리보기</a> <?=$a_imagebox?>그림창고</a></div>
+	<div align="left"><?=$a_preview?>미리보기</a> <?=$a_imagebox?>그림창고</a> <?=$a_codebox?>코드삽입</a></div>
 <?
 	foot();
 	include "_foot.php";
 }
 else {
 
-	if(isblank($memo)) Error("내용을 입력하셔야 합니다");
 	if(!$member[no]) {
+		if(isblank($name)) Error("이름을 입력하셔야 합니다");
 		if(isblank($password)) Error("비밀번호를 입력하셔야 합니다");
 	}
+
+	$memo = str_replace("ㅤ","",$memo);
+	$name = stripslashes($name);
+	$name = str_replace("ㅤ","",$name);
+
+	if(isblank($memo)) Error("내용을 입력하셔야 합니다");
 
 	// 필터링;; 관리자가 아닐때;;
 	if(!$is_admin&&$setup[use_filter]) {
@@ -286,7 +299,20 @@ else {
 	unset($s_data);
 	$s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
 
+	// 원본글을 이용한 비교
+	if(!$s_data[no]) Error("해당 덧글이 존재하지 않습니다!");
+
+	// 회원등록이 되어 있을때 이름등을 가져옴;;
+	if($member[no]) {
+		if($member[no]!=$s_data[ismember]) {
+			$name=$s_data[name];
+		} else {
+			$name=$member[name];
+		}
+	}
+
 	// 각종 변수의 addslashes 시킴;;
+	$name=trim(addslashes(del_html($name)));
 	$memo=trim(addslashes($memo));
 	if($use_html2<2) {
 		$memo=str_replace("  ","&nbsp;&nbsp;",$memo);

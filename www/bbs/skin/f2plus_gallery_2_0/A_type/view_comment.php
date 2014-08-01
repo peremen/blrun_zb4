@@ -29,9 +29,9 @@ else {
 <col width=10></col><col width=></col><col width=240></col><col width=10></col>
 <tr valign=bottom>
 	<td background=<?=$dir?>/cc_foot_bg1.gif height=45></td>
-	<td background=<?=$dir?>/cc_foot_bg2.gif align=left><?=$c_face_image?> <font class=thm7pt><?=$comment_name?>&nbsp;</font>
+	<td background=<?=$dir?>/cc_foot_bg2.gif valign=top><BR><img src=images/t.gif height=4><BR><?=$c_face_image?> <font class=thm7pt><?=$comment_name?>&nbsp;</font>
 	</td>
-	<td background=<?=$dir?>/cc_foot_bg2.gif align=right><font class=com5><?=$show_comment_ip?></font><BR><img src=<?=$dir?>/t.gif height=7 align=absmiddle><BR><font class=com3><img src=<?=$dir?>/c_date.gif border=0 align=absmiddle> <?=date("Y-m-d",$c_data[reg_date])?>&nbsp;<?=date("H:i:s",$c_data[reg_date])?>&nbsp;</font> <?=$a_edit2?><img src=<?=$dir?>/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/edit.gif border=0 valign=absmiddle></a> <font style=font-family:tahoma;color:f1f1f1;font-size:7pt><?=$a_del?><img src=<?=$dir?>/c_del.gif border=0 align=absmiddle></font></a></td>
+	<td background=<?=$dir?>/cc_foot_bg2.gif align=right><font class=com5><?=$show_comment_ip?></font><BR><img src=<?=$dir?>/t.gif height=7 align=absmiddle><BR><font class=com3><img src=<?=$dir?>/c_date.gif border=0 align=absmiddle> <?=date("Y-m-d",$c_data[reg_date])?>&nbsp;<?=date("H:i:s",$c_data[reg_date])?>&nbsp;</font> <?=$a_edit2?><img src=<?=$dir?>/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/edit.gif border=0 valign=absmiddle></a> <font style=font-family:tahoma;color:f1f1f1;font-size:7pt><?=$a_del?><img src=<?=$dir?>/c_del.gif border=0 align=top></font></a></td>
 	<td background=<?=$dir?>/cc_foot_bg3.gif align=left></td>
 </tr>
 </table>
