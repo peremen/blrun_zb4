@@ -14,7 +14,7 @@
 		$userno = $userno[0];
  }
 
- // 실제 검색부분
+// 실제 검색부분
  if($keyword)
  {
   $comment_search=1;
@@ -58,11 +58,11 @@
   <Table border=0>
 	<tr>
   	<td style=line-height:180% height=40 align=right>
-  		<input type=checkbox name=keykind[0] value="name" <?if($keykind[0]) echo"checked";?>> 이름 &nbsp;
-  		<input type=checkbox name=keykind[1] value="email" <?if($keykind[1]) echo"checked";?>> E-Mail &nbsp;
-  		<input type=checkbox name=keykind[2] value="subject" <?if($keykind[2]) echo"checked";?>> 제목 &nbsp;
-  		<input type=checkbox name=keykind[3] value="memo" <?if($keykind[3]) echo"checked";?>> 내용 &nbsp;
-  		<input type=checkbox name=keykind[4] value="ismember" <?if($keykind[4]) echo"checked";?>> 아이디 &nbsp;
+  		<input type=checkbox name=keykind[0] value="name" <?if($keykind[0]) echo "checked";?>> 이름 &nbsp;
+  		<input type=checkbox name=keykind[1] value="email" <?if($keykind[1]) echo "checked";?>> E-Mail &nbsp;
+  		<input type=checkbox name=keykind[2] value="subject" <?if($keykind[2]) echo "checked";?>> 제목 &nbsp;
+  		<input type=checkbox name=keykind[3] value="memo" <?if($keykind[3]) echo "checked";?>> 내용 &nbsp;
+  		<input type=checkbox name=keykind[4] value="ismember" <?if($keykind[4]) echo "checked";?>> 아이디 &nbsp;
   	</td>
   	<td><input type=text name=keyword value="<?=$s_keyword?>" size=20 class=input>&nbsp;</td>
   	<td><input type=image src=images/trace_search.gif border=0 valign=absmiddle></td>
@@ -80,8 +80,8 @@
 </div>
 
 <?
-if($keyword&&$s_que)
-{
+ if($keyword&&$s_que)
+ {
   while($table_data=mysql_fetch_array($table_name_result))
   {
    
@@ -99,7 +99,7 @@ if($keyword&&$s_que)
    while($data=mysql_fetch_array($result))
    {
     flush();
-		$data[subject] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html(stripslashes($data[subject])));
+	$data[subject] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html(stripslashes($data[subject])));
 ?>
 
 &nbsp;&nbsp; [<?=stripslashes($data[name])?>] &nbsp;
@@ -120,14 +120,14 @@ if($keyword&&$s_que)
     $result=mysql_query("select * from $t_comment"."_$table_name $s_que", $connect) or error(mysql_error());
 ?>
 
-<br><Br><br>
+<br><br><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>게시판</b> 의 간단한 답글</font></a>
 <br>
 <?
     while($data=mysql_fetch_array($result))
     {
      flush();
-		 $data[memo] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html(stripslashes($data[memo])));
+	 $data[memo] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html(stripslashes($data[memo])));
 ?>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <?=stripslashes($data[name])?> ]
 &nbsp;<a href=<?=$file?>?id=<?=$table_name?>&no=<?=$data[parent]?> target=_blank><? if($data[is_secret]) echo "<font color='gray'>비밀 덧글입니다</font>"; else echo $data[memo]; ?></a> &nbsp;&nbsp;
@@ -139,13 +139,13 @@ if($keyword&&$s_que)
    }
   }
 
-}
+ }
 
  mysql_close($connect);
  $connect="";
 ?>
 
-<br><Br><Br>
+<br><br><br>
 
 <?
  foot();

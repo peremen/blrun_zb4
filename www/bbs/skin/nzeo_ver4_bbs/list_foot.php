@@ -1,22 +1,23 @@
+
 </table>
 <?
-	if(!preg_match("/Zeroboard/i",$a_cart)) $a_cart = str_replace(">","><font class=list_eng>",$a_cart)."&nbsp;&nbsp;";
-	if(!preg_match("/Zeroboard/i",$delete_all)) $a_delete_all = str_replace(">","><font class=list_eng>",$a_delete_all)."&nbsp;&nbsp;";
-	if(!preg_match("/Zeroboard/i",$a_1_prev_page)) $a_1_prev_page = str_replace(">","><font class=list_eng>",$a_1_prev_page)."&nbsp;&nbsp;";
-	if(!preg_match("/Zeroboard/i",$a_1_next_page)) $a_1_next_page = str_replace(">","><font class=list_eng>",$a_1_next_page)."&nbsp;&nbsp;";
-	if(!preg_match("/Zeroboard/i",$a_write)) $a_write = str_replace(">","><font class=list_eng>",$a_write)."&nbsp;&nbsp;";
-	if(!preg_match("/Zeroboard/i",$a_prev_page)) $a_prev_page = str_replace(">","><font class=list_eng>",$a_prev_page)."&nbsp;&nbsp;";
-	if(!preg_match("/Zeroboard/i",$a_next_page)) $a_next_page = str_replace(">","><font class=list_eng>",$a_next_page)."&nbsp;&nbsp;";
-	$print_page = str_replace("<font style=font-size:8pt>","<font class=list_eng>",$print_page);
-	$print_page = str_replace("계속 검색","<font class=list_han>계속 검색",$print_page);
-	$print_page = str_replace("이전 검색","<font class=list_han>계속 검색",$print_page);
+if(!preg_match("/Zeroboard/i",$a_cart)) $a_cart = str_replace(">","><font class=list_eng>",$a_cart)."&nbsp;&nbsp;";
+if(!preg_match("/Zeroboard/i",$delete_all)) $a_delete_all = str_replace(">","><font class=list_eng>",$a_delete_all)."&nbsp;&nbsp;";
+if(!preg_match("/Zeroboard/i",$a_1_prev_page)) $a_1_prev_page = str_replace(">","><font class=list_eng>",$a_1_prev_page)."&nbsp;&nbsp;";
+if(!preg_match("/Zeroboard/i",$a_1_next_page)) $a_1_next_page = str_replace(">","><font class=list_eng>",$a_1_next_page)."&nbsp;&nbsp;";
+if(!preg_match("/Zeroboard/i",$a_write)) $a_write = str_replace(">","><font class=list_eng>",$a_write)."&nbsp;&nbsp;";
+if(!preg_match("/Zeroboard/i",$a_prev_page)) $a_prev_page = str_replace(">","><font class=list_eng>",$a_prev_page)."&nbsp;&nbsp;";
+if(!preg_match("/Zeroboard/i",$a_next_page)) $a_next_page = str_replace(">","><font class=list_eng>",$a_next_page)."&nbsp;&nbsp;";
+$print_page = str_replace("<font style=font-size:8pt>","<font class=list_eng>",$print_page);
+$print_page = str_replace("계속 검색","<font class=list_han>계속 검색",$print_page);
+$print_page = str_replace("이전 검색","<font class=list_han>계속 검색",$print_page);
 ?>
 <img src=<?=$dir?>/t.gif border=0 height=10><br>
-
 <table border=0 cellpadding=0 cellspacing=0 width=<?=$width?>>
 <tr valign=top>
 	<td>
 		<?=$hide_cart_start?><?=$a_cart?>카트보기</a><?=$hide_cart_end?>
+
 		<?=$a_delete_all?>관리자기능</a>
 		<?=$a_1_prev_page?>이전페이지</a>
 		<?=$a_1_next_page?>다음페이지</a>

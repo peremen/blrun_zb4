@@ -4,7 +4,7 @@ $pass = stripslashes($pass);
 /***************************************************************************
  * 공통 파일 include
  **************************************************************************/
-	include "_head.php";
+include "_head.php";
 
 if($pass == "gg" || $member[no]) {
 
@@ -15,7 +15,7 @@ if($pass == "gg" || $member[no]) {
  	if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
 
 	if(preg_match("/:\/\//i",$dir)) $dir=".";
-//스팸방지 보안 세션변수 설정과 Mode변수 로그인 유형별 넘겨받기 셋팅
+// 스팸방지 보안 세션변수 설정과 Mode변수 로그인 유형별 넘겨받기 셋팅
 	if($member[no]) {
 		$mode = $HTTP_GET_VARS[mode];
 		$WRT_SPM_PWD = "gg";
@@ -25,7 +25,7 @@ if($pass == "gg" || $member[no]) {
 	}
 	session_register("WRT_SPM_PWD");
 
-//랜덤한 두 숫자를 발생(1-8) 후 세션변수에 대입
+// 랜덤한 두 숫자를 발생(1-8) 후 세션변수에 대입
 	$wnum1 = rand(1,8);
 	$wnum2 = rand(1,8);
 	$wnum1num2 = $wnum1*10 + $wnum2;
@@ -61,7 +61,6 @@ if($pass == "gg" || $member[no]) {
 // 공지글에는 답글이 안 달리게 처리
 	if($mode=="reply"&&$data[headnum]<=-2000000000) Error("공지글에는 답글을 달수 없습니다");
 
-
 // 카테고리 데이타 가져옴;;
 	$category_result=mysql_query("select * from $t_category"."_$id order by no");
 
@@ -89,12 +88,14 @@ if($pass == "gg" || $member[no]) {
 /******************************************************************************************
  * 글쓰기 모드에 따른 내용 체크
  *****************************************************************************************/
-	$data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;","\t",$data[memo]);
-	$data[memo]=str_replace("&nbsp;&nbsp;","  ",$data[memo]);
+	if($data[use_html]<2) {
+		$data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;","\t",$data[memo]);
+		$data[memo]=str_replace("&nbsp;&nbsp;","  ",$data[memo]);
+	}
 
 	if($mode=="modify") {
 
-		//신택스하이라이트 헤더 처리 시작
+		// 신택스하이라이트 헤더 처리 시작
 		$codePattern = "#(<pre class\=\"brush\: [a-z]+[^>]*?>|<\/pre>)#si";
 		$memo = $data[memo];
 		$temp = preg_split($codePattern,$memo,-1,PREG_SPLIT_DELIM_CAPTURE);
@@ -126,7 +127,7 @@ if($pass == "gg" || $member[no]) {
 		for($i=0;$i<count($temp);$i++) {
 			$memo = $memo.$temp[$i];
 		}
-		//신택스하이라이트 헤더 처리 끝
+		// 신택스하이라이트 헤더 처리 끝
 
 		// 비밀글이고 패스워드가 틀리고 관리자가 아니면 리턴
 		if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$HTTP_SESSION_VARS[zb_s_check]!=$setup[no]."_".$no) error("정상적인 방법으로 수정하세요");
@@ -219,7 +220,6 @@ if($pass == "gg" || $member[no]) {
 // 미리보기 버튼
 	$a_preview="<a onfocus=blur() href='#' onclick='javascript:return view_preview();'>";
 
-
 // HTML 출력 
 
 	head(" onload=unlock() onunload=hideImageBox() ","script_write.php");
@@ -232,38 +232,41 @@ if($pass == "gg" || $member[no]) {
 
 } else {
 ?>
-	<html>
-	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
-	<title>암호입력 페이지</title>
-	<script language="javascript">
-	<!--
-	function sendit() {
-		//패스워드
-		if(document.myform.pwd.value=="") {
-			alert("패스워드를 입력해 주십시요");
-			return false;
-		}
-		document.myform.submit();
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta name="viewport" content="width=device-width">
+<title>암호입력 페이지</title>
+<script language="javascript">
+<!--
+function sendit() {
+	//패스워드
+	if(document.myform.pwd.value=="") {
+		alert("패스워드를 입력해 주십시요");
+		return false;
 	}
-	//-->
-	</script>
-	</head>
+	document.myform.submit();
+}
+//-->
+</script>
+</head>
 
-	<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
-	<form name="myform" method="post" action="write.php">
-	<input type=hidden name="page" value="<?=$page?>"><input type=hidden name="id" value="<?=$id?>"><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value="<?=$select_arrange?>"><input type=hidden name=desc value="<?=$desc?>"><input type=hidden name=page_num value="<?=$page_num?>"><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>">
-	<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" align="center">
-		<tr><td>
-			<table width="320" height="30" border="1" style="border-collapse:collapse;" bordercolor="black" bgcolor="#BEEBDD" cellpadding="1" align="center">
-				<tr><td height="35" align="center"><b><span style="font-size:11pt">스팸방지 비번(<font color="red">gg</font>)을 입력: </span></b><input type="password" name="pwd" size="20">
-				</td></tr>
-				<tr><td height="35" align="center"><input type="button" value="확인" onClick="javascript:sendit();">
-			</table>
-		</td></tr>
-	</table>
-	</form>
-	</body>
-	</html>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<form name="myform" method="post" action="write.php">
+<input type=hidden name="page" value="<?=$page?>"><input type=hidden name="id" value="<?=$id?>"><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value="<?=$select_arrange?>"><input type=hidden name=desc value="<?=$desc?>"><input type=hidden name=page_num value="<?=$page_num?>"><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>">
+<table width=<?=$width?> height="120" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" align="center">
+<tr>
+	<td>
+		<table width="320" height="70" border="1" style="border-collapse:collapse;" bordercolor="black" bgcolor="#BEEBDD" cellpadding="1" align="center">
+		<tr><td height="45" align="center"><b><span style="font-size:11pt">익명 글쓰기!!<br>스팸방지 비번(<font color="red">gg</font>)을 입력: </span></b><input type="password" name="pwd" size="20"></td>
+		</tr>
+		<tr><td height="25" align="center"><input type="button" value="확인" onClick="javascript:sendit();">
+		<tr>
+		</table>
+	</td>
+</tr>
+</table>
+</form>
+</body>
+</html>
 <? } ?>
-

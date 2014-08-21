@@ -1,6 +1,5 @@
 
 <!--====================[ sw_edit 파일명: ed_seting_edit.php ]====================-->
-
 <table width='100%' id='ed_toolbar' name='ed_toolbar' border='0' cellpadding='0' cellspacing='0'>
 <tr>
 <td>
@@ -8,13 +7,13 @@
 	<table width='100%' border='0' cellpadding='3' cellspacing='0' class='sw_bd_style_5'>
 	<tr>
 		<td>
-			<?
-				if($setup['use_html'] > 0) {
-					include("$dir/swe/ed_toolbar.php");
-				} else {
-					include("$dir/swe/ed_toolbar_no_grant.php");
-				}
-			?>
+<?
+if($setup['use_html'] > 0) {
+	include("$dir/swe/ed_toolbar.php");
+} else {
+	include("$dir/swe/ed_toolbar_no_grant.php");
+}
+?>
 		</td>
 	</tr>
 	</table>
@@ -40,3 +39,4 @@ if(sw_edit_use == "write") {
 	document.getElementById("ed_toolbar").style.display = "none";
 }
 </SCRIPT>
+<!--====================[ sw_edit 파일명: ed_seting_edit.php 끝]====================-->

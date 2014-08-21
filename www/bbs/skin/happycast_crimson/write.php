@@ -1,3 +1,4 @@
+
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function formresize(mode) {
@@ -58,13 +59,11 @@ function formresize(mode) {
   $a_imagebox = str_replace(">","><font class=view_title1>",$a_imagebox)."&nbsp;&nbsp;";
   $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbsp;";
 ?>
-
 <table width=<?=$width?> border=1 cellspacing=0 cellpadding=0 bgcolor=<?=$list_header_bg_color?> bordercolorlight=<?=$list_header_dark0?> bordercolordark=<?=$list_header_dark1?>>
 <tr>
-    <td color=<?=$list_header_dark0?>><img src=images/t.gif height=3></td>
+  <td color=<?=$list_header_dark0?>><img src=images/t.gif height=3></td>
 </tr>
 </table>
-
 <table border=0 cellspacing=1 cellpadding=0 width=<?=$width?> style=table-layout:fixed>
 <form method=post name=write id=write action=write_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=wantispam value="<?=$wnum1num2?>">
 <tr>
@@ -72,21 +71,21 @@ function formresize(mode) {
 </tr>
 <tr height=1><td colspan=2 bgcolor=<?=$list_divider?>><img src=images/t.gif height=1></td></tr>
 </table>
- 
 <table border=0 width=<?=$width?> cellspacing=1 cellpadding=0 bgcolor=<?=$view_left_header_color?>>
 <col width=80></col><col width=></col>
 <?=$hide_start?>
+
 <tr>
   <td colspan=2>
-     <table border=0 cellspacing=0 cellpadding=0 width=100%>
-     <col width=80></col><col width=></col><col width=80></col><col width=></col>
-     <tr>
-        <td width=80 align=right class=listnum><b>Name&nbsp;</b></td>
-        <td><img src=images/t.gif width=1 align=absmiddle><input type=text name=name value="<? $name=stripslashes($name); echo $name; ?>" <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>;border-style:solid;"></td>
-        <td width=80 align=right class=listnum><b>Password&nbsp;</b></td>
-        <td><input type=password name=password <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;"></td>
-     </tr>
-     </table>
+    <table border=0 cellspacing=0 cellpadding=0 width=100%>
+    <col width=80></col><col width=></col><col width=80></col><col width=></col>
+    <tr>
+      <td width=80 align=right class=listnum><b>Name&nbsp;</b></td>
+      <td><img src=images/t.gif width=1 align=absmiddle><input type=text name=name value="<? $name=stripslashes($name); echo $name; ?>" <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>;border-style:solid;"></td>
+      <td width=80 align=right class=listnum><b>Password&nbsp;</b></td>
+      <td><input type=password name=password <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;"></td>
+    </tr>
+    </table>
   </td>
 </tr>
 </tr>
@@ -106,15 +105,15 @@ function formresize(mode) {
 <tr>
   <td align=right class=listnum width=80><img src=images/t.gif border=0 width=80 height=1><br><b>Special&nbsp;</b></td>
   <td> 
-  <table border=0 cellpadding=0 cellspacing=0>
-  <tr>
-    <td><?=$category_kind?></td>
-    <td><?=$hide_notice_start?> <input type=checkbox name=notice <?=$notice?> value=1></td><td class=listnum>&nbsp;공지사항 &nbsp;&nbsp;<?=$hide_notice_end?></td>
-    <td><?=$hide_html_start?> <input type=checkbox name=use_html <?=$use_html?> value=1></td><td class=listnum>&nbsp;HTML &nbsp;&nbsp;<?=$hide_html_end?></td>
-    <td><input type=checkbox name=reply_mail <?=$reply_mail?> value=1></td><td class=listnum>&nbsp;답변메일 받기&nbsp;&nbsp;</td>  
-    <td><?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1></td><td class=listnum>&nbsp;비밀글&nbsp;&nbsp;<?=$hide_secret_end?></td>
-  </tr>
-  </table>
+    <table border=0 cellpadding=0 cellspacing=0>
+    <tr>
+      <td><?=$category_kind?></td>
+      <td><?=$hide_notice_start?> <input type=checkbox name=notice <?=$notice?> value=1></td><td class=listnum>공지사항<?=$hide_notice_end?></td>
+      <td><?=$hide_html_start?> <input type=checkbox name=use_html <?=$use_html?> value=1></td><td class=listnum>HTML<?=$hide_html_end?></td>
+      <td><input type=checkbox name=reply_mail <?=$reply_mail?> value=1></td><td class=listnum>답변메일 받기</td>  
+      <td><?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1></td><td class=listnum>비밀글<?=$hide_secret_end?></td>
+    </tr>
+    </table>
   </td>
 </tr>
 <tr><td bgcolor=#ffffff height=1 colspan=2><img src=images/t.gif height=1></td></tr>
@@ -126,13 +125,12 @@ function formresize(mode) {
 <tr>
   <td align=right class=listnum onclick=document.getElementById('memo').rows=document.getElementById('memo').rows+4 style=cursor:pointer><b>Contents&nbsp;</b></td>
   <td valign=top>
-  <textarea id=memo name=memo <?=size2(70)?> rows=20 class=textarea style=width:99% onkeydown='return doTab(event);'><?=$memo?></textarea>
+    <textarea id=memo name=memo <?=size2(70)?> rows=20 class=textarea style=width:99% onkeydown='return doTab(event);'><?=$memo?></textarea>
   </td>
 </tr>
-
 <tr><td bgcolor=#ffffff height=1 colspan=2><img src=images/t.gif height=1></td></tr>
-
 <?=$hide_sitelink1_start?>
+
 <tr>
   <td align=right class=listnum><b>Link &nbsp;</b></td>
   <td> <input type=text name=sitelink1 value="<?=$sitelink1?>" <?=size(60)?> maxlength=200 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;"></td>
@@ -141,14 +139,16 @@ function formresize(mode) {
 
 <tr><td bgcolor=#ffffff height=1 colspan=2><img src=images/t.gif height=1></td></tr>
 <?=$hide_sitelink2_start?>
+
 <tr>
   <td align=right class=listnum><b>Link &nbsp;</b></td>
   <td> <input type=text name=sitelink2 value="<?=$sitelink2?>" <?=size(60)?> maxlength=200 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;"> </td>
 </tr>
 <?=$hide_sitelink2_end?>
-<tr><td bgcolor=#ffffff height=1 colspan=2><img src=images/t.gif height=1></td></tr>
 
+<tr><td bgcolor=#ffffff height=1 colspan=2><img src=images/t.gif height=1></td></tr>
 <?=$hide_pds_start?>
+
 <tr>
   <td>&nbsp;</td>
   <td class=listnum><b>Maximum File size : <?=$upload_limit?></b></td>
@@ -163,10 +163,9 @@ function formresize(mode) {
   <td align=right class=listnum><b>File #2&nbsp;</b></td>
   <td> <input type=file name=file2 <?=size(50)?> maxlength=255 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;"> <?=$file_name2?></td>
 </tr>
-
 <?=$hide_pds_end?>
-<tr height=1><td colspan=2 bgcolor=<?=$list_footer_bg_color?>><img src=images/t.gif height=1></td></tr>
 
+<tr height=1><td colspan=2 bgcolor=<?=$list_footer_bg_color?>><img src=images/t.gif height=1></td></tr>
 </table>
 <img src=images/t.gif border=0 height=10><br>
 <table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0>
@@ -179,6 +178,7 @@ function formresize(mode) {
 	<td align=right>
 		<input type=image border=0 src="<?=$dir?>/i_write.gif" accesskey="s" onfocus=blur()> &nbsp;&nbsp;
 		<img src=<?=$dir?>/btn_back.gif border=0 onclick=history.back() style=cursor:pointer>
+	</td>
 </tr>
 </form>
 </table>

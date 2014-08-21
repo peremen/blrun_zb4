@@ -1,7 +1,6 @@
 <?  
+function str_to_emoticon($tmp_memo,$emoticon_url){
 
- function str_to_emoticon($tmp_memo,$emoticon_url){
-	
 	$tmp_memo=str_replace("emtp_001","<img src=$emoticon_url/1.gif width=18 height=18 border=0>",$tmp_memo);
 	$tmp_memo=str_replace("emtp_002","<img src=$emoticon_url/2.gif width=18 height=18 border=0>",$tmp_memo);
 	$tmp_memo=str_replace("emtp_003","<img src=$emoticon_url/3.gif width=18 height=18 border=0>",$tmp_memo);
@@ -46,7 +45,7 @@
 	$tmp_memo=str_replace("emtp_042","<img src=$emoticon_url/42.gif width=18 height=18 border=0>",$tmp_memo);
 	$tmp_memo=str_replace("emtp_043","<img src=$emoticon_url/43.gif width=18 height=18 border=0>",$tmp_memo);
 	$tmp_memo=str_replace("emtp_044","<img src=$emoticon_url/44.gif width=18 height=18 border=0>",$tmp_memo);
-	return $tmp_memo;
 
+	return $tmp_memo;
 }
 ?>

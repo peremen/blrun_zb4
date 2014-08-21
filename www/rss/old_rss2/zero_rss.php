@@ -49,7 +49,7 @@ $nos = "100";
 // 배너가 있으면 배너이미지주소를 적어주세요,
 // 적지 않으면 출력안됩니다.(옵션)
 // 예로 http://test.com/banner.gif
-$banner_images = "http://blrun.net/rss/banner1.gif";
+$banner_images = "http://www.blrun.net/rss/banner1.gif";
 // 배너의 가로사이즈
 $width_w = "300";
 // 배너의 세로사이즈 
@@ -111,10 +111,14 @@ $use_htmls[] = $data_board[use_html];
 $date1[] = $data_board[reg_date];
 $datetm[] = $data_board[reg_date];
 $date2[] = date('D, d M Y H:i:s',$data_board[reg_date]).' +0900';
+// html 이미지 리사이즈 시작
+$imagePattern = "#<img(.+?)src=([^>]*?)>#i";
+$data_board[memo]=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize\\1src=\\2></div>",$data_board[memo]);
+// html 이미지 리사이즈 끝
 $imageBoxPattern = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i";
 $imageBoxPattern2 = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/e";
 $data_board[memo]=preg_replace($imageBoxPattern2,"'[img:'.str_replace('%2F', '/', urlencode('\\1.\\2')).','",$data_board[memo]);
-$data_board[memo]=preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data_board[ismember]/\\1.\\2' align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$data_board[memo]);
+$data_board[memo]=preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data_board[ismember]/\\1.\\2' name=zb_target_resize align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$data_board[memo]);
 if($data_board[use_html]<2) $data_board[memo]=str_replace("\n","<br />",$data_board[memo]);
 $memo[] = stripslashes($data_board[memo]);
 $file_name1[] = $data_board[file_name1];

@@ -3,11 +3,11 @@
 <table border=0 width=100% cellspacing=0 cellpadding=0>
 <tr>
   <td>
-	<table width=100% border=1 cellspacing=0 cellpadding=0 bgcolor=<?=$list_header_bg_color?> bordercolorlight=<?=$list_header_dark0?> bordercolordark=<?=$list_header_dark1?>>
-	<tr>
-	    <td><img src=images/t.gif height=3></td>
-	</tr>
-	</table>
+    <table width=100% border=1 cellspacing=0 cellpadding=0 bgcolor=<?=$list_header_bg_color?> bordercolorlight=<?=$list_header_dark0?> bordercolordark=<?=$list_header_dark1?>>
+    <tr>
+      <td><img src=images/t.gif height=3></td>
+    </tr>
+    </table>
   </td>
 </tr>
 <tr>

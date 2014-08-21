@@ -1,27 +1,28 @@
+
 <table border=0 cellspacing=0 cellpadding=15 bgcolor=#efefef width=100% height=100%>
-<Tr>
-<td valign=top style=line-height:160%>
-<pre>
+<tr>
+	<td valign=top style=line-height:160%>
+		<pre>
 <b>제로보드 <?=$zb_version?> 관리자 페이지입니다.</b>
 공개형 무료 게시판 제로보드의 전체적인 관리를 할수 있는 관리자 페이지입니다.
 관리자 페이지에서는 그룹 추가, 설정, 게시판 관리, 회원관리를 할수 있습니다.
 다음은 간단한 설명입니다. (자세한 설명은 <a href=http://zeroboard.com target=_blank><b>http://zeroboard.com/CGI</b></a> 에서 확인하십시요)
-</pre>
-<table border=0 cellspacing=1 cellpadding=5 bgcolor=444444 width=100%>
-<col width=100></col><col width=></col>
-<tr>
-	<td bgcolor=aaaaaa align=center colspan=2><b>목 &nbsp;  &nbsp;  &nbsp; 차</b></td>
-</tr>
-<tr valign=top>
-	<td bgcolor=dddddd width=100 style=line-height:160% nowrap='nowrap'>
-		1. <a href=#help1>기본 설정</a><br>
-		2. <a href=#help2>회원 관리</a><br>
-		3. <a href=#help3>그룹 관리</a><br>
-		4. <a href=#help4>게시판 관리</a><br>
-		5. <a href=#help5>외부 로그인</a><br>
-	</td>
-	<td bgcolor=white>
-		<pre style=line-height:160%>
+		</pre>
+		<table border=0 cellspacing=1 cellpadding=5 bgcolor=444444 width=100%>
+		<col width=100></col><col width=></col>
+		<tr>
+			<td bgcolor=aaaaaa align=center colspan=2><b>목 &nbsp;  &nbsp;  &nbsp; 차</b></td>
+		</tr>
+		<tr valign=top>
+			<td bgcolor=dddddd width=100 style=line-height:160% nowrap='nowrap'>
+				1. <a href=#help1>기본 설정</a><br>
+				2. <a href=#help2>회원 관리</a><br>
+				3. <a href=#help3>그룹 관리</a><br>
+				4. <a href=#help4>게시판 관리</a><br>
+				5. <a href=#help5>외부 로그인</a><br>
+			</td>
+			<td bgcolor=white>
+				<pre style=line-height:160%>
 <a name=#help1><b>1. 기본 설정</b></a>
     기본 설정은 제로보드를 운영할때 가장 기본이 되는 설정을 의미합니다.
     기본 설정은 DB에 데이타가 저장되는 것이 아닌 제로보드 디렉토리 내의 setup.php 파일에 저장이 되어 있습니다.
@@ -96,11 +97,11 @@
     * 외부로그인에서 사용할수 있는 정보중 절대 경로는 다음과 같이 입력하세요.
     <font color=red>$_zb_path = "<?=$config_dir?>";</font>
 
-		</pre>
-	</td>
-</tr>
-</table>
+				</pre>
+			</td>
+		</tr>
+		</table>
 
-</td>
+	</td>
 </tr>
 </table>

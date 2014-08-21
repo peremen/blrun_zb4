@@ -1,10 +1,9 @@
 <?
-
-	if($_list_check_included) return;
-	$_list_check_included = true;
+if($_list_check_included) return;
+$_list_check_included = true;
 
 /*********************************************************************************************
- * 넘겨지는 데이타에 대한 일괄 정리
+* 넘겨지는 데이타에 대한 일괄 정리
  ********************************************************************************************/
 
 function list_check(&$data,$view_check=0) {
@@ -92,19 +91,47 @@ function list_check(&$data,$view_check=0) {
 		if($homepage) $homepage="<a href='$homepage' target=_blank>$homepage</a>";
 		$data[memo]=stripslashes($data[memo]);
 
+		// html 이미지 리사이즈
+		$imagePattern = "#<img(.+?)src=([^>]*?)>#i";
+		$data[memo]=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize\\1src=\\2></div>",$data[memo]);
+
 		// 이미지 박스 해석 및 리사이징, 확대보기를 위해서 정규표현식 사용
 		if($data[ismember]) {
-			$imageBoxPattern = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i";
-			$imageBoxPattern2 = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/e";
+
+			// 썸네일 이미지 관련 처리
+			$imagePattern="#\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,#i";
+			preg_match_all($imagePattern,$data[memo],$out3,PREG_SET_ORDER);
+			for($i=0;$i<count($out3);$i++) {
+				$iview_large="vXL_".$out3[$i][1].".jpg";
+				if(preg_match("#\.(jpg|jpeg|png)$#i",$out3[$i][1].".".$out3[$i][2])){
+					// 썸네일 디렉토리 내 각 회원별 디렉토리 생성
+					$error_check=0;
+					if(!is_dir($_zb_path."data/$id/thumbnail/".$data[ismember]."/")) {
+						if(!@mkdir($_zb_path."data/$id/thumbnail/".$data[ismember]."/",0777)) $error_check+=1;
+						if(!@chmod($_zb_path."data/$id/thumbnail/".$data[ismember]."/",0707)) $error_check+=2;
+					}
+					if($error_check==2) echo "<br> ".$_zb_path."data/$id/thumbnail/".$data[ismember]."/ 디렉토리의 권한을 707로 설정하세요<br><br>";
+					elseif($error_check==3) echo "<br> ".$_zb_path."data/$id/thumbnail/ 디렉토리 내에 ".$data[ismember]."번 회원 디렉토리 생성에 실패했습니다.<br> 해당경로에 디렉토리를 생성시켜 주시고 권한을 707로 설정하세요<br><br>";
+
+					$src_img="icon/member_image_box/".$data[ismember]."/".$out3[$i][1].".".$out3[$i][2];
+					if(file_exists($src_img) && !file_exists($_zb_path."data/$id/thumbnail/".$data[ismember]."/".$iview_large)){
+						thumbnail3(640,$src_img,$_zb_path."data/$id/thumbnail/".$data[ismember]."/".$iview_large);
+					}
+				}
+			}
+
+			$imageBoxPattern=array("/\[img\:(.+?)\.(jpg|jpeg|png)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i","/\[img\:(.+?)\.(gif|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i");
+			$imageBoxReplace=array("<img src='data/$id/thumbnail/$data[ismember]/vXL_\\1.jpg' name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$data[ismember]/\\1.\\2&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' vspace='\\6' hspace='\\7' border='\\8'>","<img src='icon/member_image_box/$data[ismember]/\\1.\\2' name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$data[ismember]/\\1.\\2&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>");
+			$imageBoxPattern2="/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/e";
 			$data[memo]=preg_replace($imageBoxPattern2,"'[img:'.str_replace('%2F', '/', urlencode('\\1.\\2')).','",$data[memo]);
-			$data[memo]=preg_replace($imageBoxPattern,"<img src='icon/member_image_box/$data[ismember]/\\1.\\2' name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: var IMG = new Image(); IMG.src = 'icon/member_image_box/$data[ismember]/\\1.\\2'; var w = IMG.width; var h = IMG.height; window.open('img_view.php?img=icon/member_image_box/$data[ismember]/\\1.\\2&width='+(w+10)+'&height='+(h+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$data[memo]);
+			$data[memo]=preg_replace($imageBoxPattern,$imageBoxReplace,$data[memo]);
 		}
 		$_zbResizeCheck = true;
 
 		if($data[use_html]<2) {
 			$memo=$data[memo]=nl2br($data[memo]);
 
-			//신택스하이라이트 처리 시작
+			// 신택스하이라이트 처리 시작
 			$codePattern = "#(<pre[^>]*?>|<\/pre>)#si";
 			$temp = preg_split($codePattern,$data[memo],-1,PREG_SPLIT_DELIM_CAPTURE);
 
@@ -121,14 +148,12 @@ function list_check(&$data,$view_check=0) {
 			for($i=0;$i<count($temp);$i++) {
 				$data[memo] = $data[memo].$temp[$i];
 			}
-			//신택스하이라이트 처리 끝
+			// 신택스하이라이트 처리 끝
 		}
 		$memo=$data[memo];
 
 		// 자동링크 거는 부분;;
 		if($setup[use_autolink]&&!preg_match("/url\(/i",$memo)) $memo=autolink($memo);
-
-		$memo .= "<!--\"<-->";
 
 		// 검색어가 있을경우 내용의 키워드를 변경
 		if($sc=="on" && $keyword) {
@@ -166,11 +191,21 @@ function list_check(&$data,$view_check=0) {
 		$file_name1_ = str_replace("%2F", "/", urlencode($data[file_name1]));
 		$file_name2_ = str_replace("%2F", "/", urlencode($data[file_name2]));
 
-		if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$file_name1)) $upload_image1="<img src=$file_name1_ border=0 name=zb_target_resize style=\"cursor:hand\" onclick=window.open(this.src)><br>";
+		if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$file_name1)) {
+			$img_info1=getimagesize($data[file_name1]); //폭과 높이 구하기
+			$img_info1[0]=$img_info1[0]+10;
+			$img_info1[1]=$img_info1[1]+55;
+			$upload_image1="<img src=$file_name1_ border=0 name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$data[file_name1]&width=$img_info1[0]&height=$img_info1[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
+		}
 		elseif(preg_match("#\.(swf|asf|asx|wma|wmv|wav|mid|avi|mpeg|mpg)$#i",$file_name1)) $upload_image1="<embed width=640 height=480 type=application/x-mplayer2 pluginspage=http://www.microsoft.com/windows/mediaplayer/download/default.asp src='$file_name1_' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true'><br>";
 		elseif(preg_match("#\.(mp3|mp4|ogg|oga|mov|flv|m4v|f4v|webm|aac|m4a|f4a)$#i",$file_name1)) $upload_image1="<script src='/bbs/jwplayer/jwplayer.js'></script><div id='jwplayer0'>Loading the player ...</div><script>jwplayer('jwplayer0').setup({flashplayer: '/bbs/jwplayer/player.swf', file: '$file_name1_', width: 640, height: 480});</script>";
 
-		if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$file_name2)) $upload_image2="<img src=$file_name2_ border=0 name=zb_target_resize style=\"cursor:hand\" onclick=window.open(this.src)><br>";
+		if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$file_name2)) {
+			$img_info2=getimagesize($data[file_name2]); //폭과 높이 구하기
+			$img_info2[0]=$img_info2[0]+10;
+			$img_info2[1]=$img_info2[1]+55;
+			$upload_image2="<img src=$file_name2_ border=0 name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$data[file_name2]&width=$img_info2[0]&height=$img_info2[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
+		}
 		elseif(preg_match("#\.(swf|asf|asx|wma|wmv|wav|mid|avi|mpeg|mpg)$#i",$file_name2)) $upload_image2="<embed width=640 height=480 type=application/x-mplayer2 pluginspage=http://www.microsoft.com/windows/mediaplayer/download/default.asp src='$file_name2_' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true'><br>";
 		elseif(preg_match("#\.(mp3|mp4|ogg|oga|mov|flv|m4v|f4v|webm|aac|m4a|f4a)$#i",$file_name2)) $upload_image2="<script src='/bbs/jwplayer/jwplayer.js'></script><div id='jwplayer1'>Loading the player ...</div><script>jwplayer('jwplayer1').setup({flashplayer: '/bbs/jwplayer/player.swf', file: '$file_name2_', width: 640, height: 480});</script>";
 	}

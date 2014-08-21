@@ -1,3 +1,4 @@
+
 <script language='JavaScript'>
 var select_obj;
 var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -129,9 +130,9 @@ function print_ZBlayer(name, homepage, mail, member_no, boardID, writer, traceID
 }
 
 function category_change(obj) {
-var myindex=obj.selectedIndex;
-document.search.category.value=obj.options[myindex].value;
-document.search.submit();
-return true;
+	var myindex=obj.selectedIndex;
+	document.search.category.value=obj.options[myindex].value;
+	document.search.submit();
+	return true;
 }
 </script>

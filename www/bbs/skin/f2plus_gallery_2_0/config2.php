@@ -32,10 +32,4 @@ $iNext_thumb_small2="ss_".$out2[1][1].".jpg";
 
 $iNext_thumb_large1="fl_".$out2[0][1].".jpg";
 $iNext_thumb_large2="sl_".$out2[1][1].".jpg";
-
-$imagePattern="#\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,#i";
-preg_match_all($imagePattern,$data[memo],$out3,PREG_SET_ORDER);
-
-$iview_large1="fXL_".$out3[0][1].".jpg";
-$iview_large2="sXL_".$out3[1][1].".jpg";
 ?>

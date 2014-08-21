@@ -1,18 +1,19 @@
 <?
-	set_time_limit (0);
+set_time_limit (0);
 
-	$_zb_path="../";
+$_zb_path="../";
 
-	include "../lib.php";
+include "../lib.php";
 
-	$connect=dbconn();
+$connect=dbconn();
 
-	$member=member_info();
+$member=member_info();
 
-	if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
+if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
 
-	head(" bgcolor=white");
+head(" bgcolor=white");
 ?>
+
 <div align=center>
 <br>
 <table border=0 cellspacing=0 cellpadding=0 width=98%>
@@ -34,87 +35,87 @@
 <pre>
 
 	DB Checking
-		<?
-	// DB 내의 파일 목록을 구함
-	$result = mysql_query("select name from $admin_table order by name desc") or die(mysql_error());
-	unset($dblist);
+<?
+// DB 내의 파일 목록을 구함
+$result = mysql_query("select name from $admin_table order by name desc") or die(mysql_error());
+unset($dblist);
 
-	while($bbs=mysql_fetch_array($result)) {
-		$id = $bbs[name];
+while($bbs=mysql_fetch_array($result)) {
+	$id = $bbs[name];
 
-		echo ".";
-		flush();
-		$nfiles1 = mysql_query("select file_name1 from $t_board"."_$id where file_name1 !=''") or die(mysql_error());
-		$nfiles2 = mysql_query("select file_name2 from $t_board"."_$id where file_name2 !=''") or die(mysql_error());
-		$nfiles3 = mysql_query("select file_name1 from $t_comment"."_$id where file_name1 !=''") or die(mysql_error());
-		$nfiles4 = mysql_query("select file_name2 from $t_comment"."_$id where file_name2 !=''") or die(mysql_error());
+	echo ".";
+	flush();
+	$nfiles1 = mysql_query("select file_name1 from $t_board"."_$id where file_name1 !=''") or die(mysql_error());
+	$nfiles2 = mysql_query("select file_name2 from $t_board"."_$id where file_name2 !=''") or die(mysql_error());
+	$nfiles3 = mysql_query("select file_name1 from $t_comment"."_$id where file_name1 !=''") or die(mysql_error());
+	$nfiles4 = mysql_query("select file_name2 from $t_comment"."_$id where file_name2 !=''") or die(mysql_error());
 
-		while($data=mysql_fetch_array($nfiles1)) {
-			$filename = $data['file_name1'];
-			if(file_exists("../".$filename)) $dblist[] = $filename;
-		}
-
-		while($data=mysql_fetch_array($nfiles2)) {
-			$filename = $data['file_name2'];
-			if(file_exists("../".$filename)) $dblist[] = $filename;
-		}
-
-		while($data=mysql_fetch_array($nfiles3)) {
-			$filename = $data['file_name1'];
-			if(file_exists("../".$filename)) $dblist[] = $filename;
-		}
-
-		while($data=mysql_fetch_array($nfiles4)) {
-			$filename = $data['file_name2'];
-			if(file_exists("../".$filename)) $dblist[] = $filename;
-		}
-
+	while($data=mysql_fetch_array($nfiles1)) {
+		$filename = $data['file_name1'];
+		if(file_exists("../".$filename)) $dblist[] = $filename;
 	}
 
-	$totaldblist = count($dblist);
+	while($data=mysql_fetch_array($nfiles2)) {
+		$filename = $data['file_name2'];
+		if(file_exists("../".$filename)) $dblist[] = $filename;
+	}
+
+	while($data=mysql_fetch_array($nfiles3)) {
+		$filename = $data['file_name1'];
+		if(file_exists("../".$filename)) $dblist[] = $filename;
+	}
+
+	while($data=mysql_fetch_array($nfiles4)) {
+		$filename = $data['file_name2'];
+		if(file_exists("../".$filename)) $dblist[] = $filename;
+	}
+
+}
+
+$totaldblist = count($dblist);
 ?>
 	
 	File list checking
-		<?
-	// 전체 파일 목록을 구함
-	unset($list);
-	$i = 0;
-	function getFileList($path) {
-		global $list;
-		global $i;
-		$directory = dir($path);
-		while($entry = $directory->read()) {
-			if ($entry != "." && $entry != "..") {
-				if (Is_Dir($path."/".$entry)&&!preg_match("/__zbSessionTMP/i",$path."/".$entry)&&!preg_match("/latest_thumb/i",$path."/".$entry)&&!preg_match("/thumbnail/i",$path."/".$entry)) {
-					getFileList($path."/".$entry);
-				} else {
-					if( !preg_match("/now_connect.php/i",$path."/".$entry) && !preg_match("/now_member_connect.php/i",$path."/".$entry) && !preg_match("/__zbSessionTMP/i",$path."/".$entry) && !preg_match("/latest_thumb/i",$path."/".$entry) && !preg_match("/thumbnail/i",$path."/".$entry) ) {
-						$list[] = str_replace("../","",$path."/".$entry);
-						echo ".";
-						$i++;
-						if($i>100) {
-							$i=0;
-							echo "\n		";
-						}
+<?
+// 전체 파일 목록을 구함
+unset($list);
+$i = 0;
+function getFileList($path) {
+	global $list;
+	global $i;
+	$directory = dir($path);
+	while($entry = $directory->read()) {
+		if ($entry != "." && $entry != "..") {
+			if (Is_Dir($path."/".$entry)&&!preg_match("/__zbSessionTMP/i",$path."/".$entry)&&!preg_match("/latest_thumb/i",$path."/".$entry)&&!preg_match("/thumbnail/i",$path."/".$entry)) {
+				getFileList($path."/".$entry);
+			} else {
+				if( !preg_match("/now_connect.php/i",$path."/".$entry) && !preg_match("/now_member_connect.php/i",$path."/".$entry) && !preg_match("/__zbSessionTMP/i",$path."/".$entry) && !preg_match("/latest_thumb/i",$path."/".$entry) && !preg_match("/thumbnail/i",$path."/".$entry) ) {
+					$list[] = str_replace("../","",$path."/".$entry);
+					echo ".";
+					$i++;
+					if($i>100) {
+						$i=0;
+						echo "\n		";
 					}
-					flush();
 				}
+				flush();
 			}
 		}
-		$directory->close();
 	}
+	$directory->close();
+}
 
-	getFileList("../data");
+getFileList("../data");
 
-	$totallist = count($list);
+$totallist = count($list);
 
 
-	// 서로 다른 내용을 정리
-	unset($difflist);
+// 서로 다른 내용을 정리
+unset($difflist);
 
-	$difflist = @array_diff($list, $dblist);
+$difflist = @array_diff($list, $dblist);
 
-	$totaldifflist = count($difflist);
+$totaldifflist = count($difflist);
 
 ?>
 
@@ -130,51 +131,49 @@
 
 
 	쓰레기 파일 삭제중
-		<?
-		$total = 0;
+<?
+$total = 0;
+$i=0;
+while(list($key,$filename)=@each($difflist)) {
+
+	//echo "	".$filename."\n";
+
+	$tmp = explode("/",$filename);
+
+	$last = count($tmp)-1;
+
+	$name = $tmp[$last];
+	$path = str_replace($name, "", $filename);
+
+	//echo "		".$path."		".$name."\n";
+
+	z_unlink("../".$filename);
+
+	@rmdir("../".$path);
+
+	echo ".";
+	$i++;
+	if($i>100) {
 		$i=0;
-		while(list($key,$filename)=@each($difflist)) {
+		echo "\n		";
+	}
 
-			//echo "	".$filename."\n";
-
-			$tmp = explode("/",$filename);
-
-			$last = count($tmp)-1;
-
-			$name = $tmp[$last];
-			$path = str_replace($name, "", $filename);
-
-			//echo "		".$path."		".$name."\n";
-
-			z_unlink("../".$filename);
-
-			@rmdir("../".$path);
-
-			echo ".";
-			$i++;
-			if($i>100) {
-				$i=0;
-				echo "\n		";
-			}
-
-			flush();
-		}
+	flush();
+}
 ?>
 
 
 	<font color=red><b>모든 정리가 끝났습니다.
 
-	확실한 처리를 위해서 다시 한번 실행해보시기 바랍니다.</font>
+	확실한 처리를 위해서 다시 한번 실행해보시기 바랍니다.</b></font>
 
 
 </pre>
 <?
- mysql_close($connect);
- $connect="";
+mysql_close($connect);
+$connect="";
 ?>
-
-<br><Br><Br>
-
+<br><br><br>
 <?
- foot();
+foot();
 ?>

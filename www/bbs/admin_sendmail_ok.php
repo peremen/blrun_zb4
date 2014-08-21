@@ -1,65 +1,65 @@
 <?
-	include "lib.php";
-	$connect=dbConn();
+include "lib.php";
+$connect=dbConn();
 
-	set_time_limit(0);
+set_time_limit(0);
 
-	function thisError($message) {
-		print("<script>\nalert('$message');\nwindow.close();\n</script>\n");
-		exit();
-	}
+function thisError($message) {
+	print("<script>\nalert('$message');\nwindow.close();\n</script>\n");
+	exit();
+}
 
-	$member=member_info();
-	if(!$member[no]) thisError("로그인후 사용하여주십시요");
+$member=member_info();
+if(!$member[no]) thisError("로그인후 사용하여주십시요");
 
-	if($member[is_admin]>3||$member[is_admin]<1) thisError("관리자페이지를 사용할수 있는 권한이 없습니다");
+if($member[is_admin]>3||$member[is_admin]<1) thisError("관리자페이지를 사용할수 있는 권한이 없습니다");
 
-	if($s_comment) $comment = $s_comment;
-	else $s_comment = $comment;
+if($s_comment) $comment = $s_comment;
+else $s_comment = $comment;
 
-	if(isblank($from)) thisError("보내는 이의 mail을 적어주십시요");
-	if(isblank($name)) thisError("보내시는 분의 이름을 적어주십시요");
-	if(isblank($subject)) thisError("제목을 적어주십시요");
-	if(isblank($comment)) thisError("내용을 적어주십시요");
+if(isblank($from)) thisError("보내는 이의 mail을 적어주십시요");
+if(isblank($name)) thisError("보내시는 분의 이름을 적어주십시요");
+if(isblank($subject)) thisError("제목을 적어주십시요");
+if(isblank($comment)) thisError("내용을 적어주십시요");
 
-	// 페이지 이동 할때 페이지를 구함
-	if(!$page) $page = 1; else $page++;
-	if(!$fault) $fault = 0;
-	if(!$true) $true = 0;
-	if(!$nomailing) $nomailing = 0;
-	if(!$sendnum) $sendnum = 100;
-    $group_no = (int)$group_no;
-    $s_que = '';
-	if(!$total_member_num) {
-		$temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where group_no='$group_no'",$connect));
-		$total_member_num=$temp[0];
-	}
+// 페이지 이동 할때 페이지를 구함
+if(!$page) $page = 1; else $page++;
+if(!$fault) $fault = 0;
+if(!$true) $true = 0;
+if(!$nomailing) $nomailing = 0;
+if(!$sendnum) $sendnum = 100;
+$group_no = (int)$group_no;
+$s_que = '';
+if(!$total_member_num) {
+	$temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where group_no='$group_no'",$connect));
+	$total_member_num=$temp[0];
+}
 
-	if($cart) {
-		$temp = explode("||",$cart);
-        for($i=0;$i<count($temp);$i++) $target_srls[] = (int)$temp[$i];
-        $s_que = sprintf(' and ( no in (%s) )', "'".implode("','", $target_srls)."'");
-	} else {
-		// 직접 선택이 없을때
-		$s_que=stripslashes($s_que);
-	}
+if($cart) {
+	$temp = explode("||",$cart);
+	for($i=0;$i<count($temp);$i++) $target_srls[] = (int)$temp[$i];
+	$s_que = sprintf(' and ( no in (%s) )', "'".implode("','", $target_srls)."'");
+} else {
+	// 직접 선택이 없을때
+	$s_que=stripslashes($s_que);
+}
 
-	$startnum = ($page-1)*$sendnum;
+$startnum = ($page-1)*$sendnum;
 
-	if(!$total_member) {
-		$temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where group_no='$group_no' $s_que",$connect));
-		$total_member=$temp[0];
-	}
+if(!$total_member) {
+	$temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where group_no='$group_no' $s_que",$connect));
+	$total_member=$temp[0];
+}
 
-	if(!$totalpage) $totalpage = (int)(($total_member-1)/$sendnum)+1;
+if(!$totalpage) $totalpage = (int)(($total_member-1)/$sendnum)+1;
 
-	if($total_member==0) thisError("메일을 보낼 회원이 없습니다");
+if($total_member==0) thisError("메일을 보낼 회원이 없습니다");
 
-	$result=mysql_query("select name, email, mailing from $member_table where group_no='$group_no' $s_que order by no limit $startnum, $sendnum",$connect) or thisError(addslashes(mysql_error()));
+$result=mysql_query("select name, email, mailing from $member_table where group_no='$group_no' $s_que order by no limit $startnum, $sendnum",$connect) or thisError(addslashes(mysql_error()));
 
-	mysql_close($connect);  
+mysql_close($connect);  
 
-	head( "onload=window.resizeTo(550,420); bgcolor=white");
+head( "onload=window.resizeTo(550,420); bgcolor=white");
 ?>
 
 <br>
@@ -78,27 +78,27 @@
 		메일 발송 페이지 : <?=$page?> / <?=$totalpage?><br>
 
 <?
-	$fault=0;
-	$i=1;
-	while($data=mysql_fetch_array($result)) {
-		if($data[mailing]) {
+$fault=0;
+$i=1;
+while($data=mysql_fetch_array($result)) {
+	if($data[mailing]) {
 
-			$temp=zb_sendmail($html, $data[email], $data[name], $from, $name, $subject, $comment);
+		$temp=zb_sendmail($html, $data[email], $data[name], $from, $name, $subject, $comment);
 
-			if(!$temp) $fault++;
-			else $true ++;
+		if(!$temp) $fault++;
+		else $true ++;
 
-			echo ".";
+		echo ".";
 
-		} else {
+	} else {
 
-			$nomailing ++;
-
-		}
-
-		flush();
+		$nomailing ++;
 
 	}
+
+	flush();
+
+}
 ?>
 
 		<img src=images/t.gif border=0 height=5><br>
@@ -108,15 +108,15 @@
 		<img src=images/t.gif border=0 height=5><br>
 		<center>
 <?
-	if($page==$totalpage) {
+if($page==$totalpage) {
 ?>
 		<input type=button value="메일링 발송 완료하였습니다" onclick=window.close() class=submit style=width:100%>
 <?
-	} else {
+} else {
 ?>
 		<input type=submit value="다음 <?=$sendnum?>명 에게 메일 발송" class=submit style=width:100%>
 <?
-	}
+}
 ?>
 		</center>
 		<textarea name="s_comment" cols=1 rows=1 style=width:1px;height:1px><?=stripslashes($s_comment)?></textarea>
@@ -140,5 +140,5 @@
 </form>
 </table>
 <?
-	foot();
+foot();
 ?>

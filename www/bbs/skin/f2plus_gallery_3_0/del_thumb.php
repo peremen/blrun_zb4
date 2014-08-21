@@ -48,15 +48,12 @@ function file_del($path) {
 $path=$zb_path."data/".$id."/thumbnail/";
 @file_del($path);
 
-
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
 <TITLE>썸네일 삭제</TITLE>
 </HEAD>
-
 <BODY onLoad='window.close();'>
-
 </BODY>
 </HTML>

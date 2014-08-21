@@ -3,18 +3,19 @@
 0.3 /index.php 파일 13, 14행 쯤, /m/index.php 파일 13, 14행 쯤 url 정보를 수정해 준다.
 
 0.5 lib.php 파일의 291행 쯤의 @mysql_set_charset('euckr',$connect); 에서 DB 캐릭터셋을 확인한다.
-0.6 lib.php 파일의 396행, 427행 쯤의 rss 주소를 확인한다.
-0.7 lib.php 파일의 395행, 426행 쯤의 이미지 파일 이름과 존재 유무를 확인한다.
+0.6 lib.php 파일의 396행, 428행 쯤의 rss 주소를 확인한다.
+0.7 lib.php 파일의 395행, 427행 쯤의 이미지 파일 이름과 존재 유무를 확인한다.
 
 1. www와 /www/m 폴더 안의 main.php 파일 2번째 3번째 줄의 $_zb_url 과 $_zb_path 정보를 올바르게 수정해 준다.
 1.5 www와 /www/m 폴더 안의 main.php 파일 15, 16행 쯤의 url 정보를 수정해 준다.
+1.6 www 폴더 안의 main.php 파일 64행과 /www/m 폴더 안의 main.php 파일 74행의 링크 정보를 수정해 준다.
 
 2. www/bbs/_head.php 파일의 13행 쯤 $_zb_path 정보를 올바르게 수정해 준다.
 
 3. www/bbs/view.php 파일 21행 쯤 urlencode 정보를 올바르게 수정해 준다.
 
-4. www/bbs/skin/f2plus_gallery_3_0/error.php 의 url 정보를 수정해 준다.
+4. www/bbs/skin/f2plus_gallery_3_0/error.php 의 2행쯤 url 정보를 수정해 준다.
 
-5. www/rss/ 안의 index.php와 zero_rss.php의 url 정보와 www/main.php 의 rss 링크 url 정보를 수정해 준다.
+5. www/rss/ 안의 index.php와 zero_rss.php의 url 정보를 수정해 준다.
 
 6. www/fr_right.htm www/m/favorite.htm의 채팅방 소스는 chatroom=blrun 부분을 자신의 고유 아이디로 바꾸어 사용합니다.

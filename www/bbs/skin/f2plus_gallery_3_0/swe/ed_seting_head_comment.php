@@ -7,19 +7,18 @@ if($chk_edit_use=="on")	를 if(true) 로 바꿉니다.
 -->
 
 <?	
-	if($emoticon_use=="on")			//<!-- 에디터 기능 사용유무 체크 -->
-	{
-		$sw_edit_yn = "Y";			//<!-- HTML Editer 사용여부 -->
-		$sw_edit_tag_yn = "N";		//<!-- HTML/Visual 모드 토글 -->
-	}else{
-		$sw_edit_yn = "N";
-		$sw_edit_tag_yn = "N";
-	};
+if($emoticon_use=="on")			//<!-- 에디터 기능 사용유무 체크 -->
+{
+	$sw_edit_yn = "Y";			//<!-- HTML Editer 사용여부 -->
+	$sw_edit_tag_yn = "N";		//<!-- HTML/Visual 모드 토글 -->
+}else{
+	$sw_edit_yn = "N";
+	$sw_edit_tag_yn = "N";
+};
 ?>
 <!--========================[ 에디터 기능 사용유무 체크 ]=========================-->
 
 <!--====================[ sw_edit 파일명: ed_seting_head_comment.php ]====================-->
-
 <input type='hidden' id='member_yn' name='member_yn' value='<? if(!$member['no']) { echo("Y"); }else{ echo("N"); } ?>'>
 <SCRIPT language="JavaScript" src="<?=$dir?>/swe/write_comment.js"></SCRIPT>
 
@@ -57,3 +56,4 @@ $a_codebox = str_replace("showCodeBox","sw_codebox",$a_codebox);
   	DocReloadInterval = setInterval("DocReload()", 300);
   //-->
 </SCRIPT>
+<!--====================[ sw_edit 파일명: ed_seting_head_comment.php 끝]====================-->

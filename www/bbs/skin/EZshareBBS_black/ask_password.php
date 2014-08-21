@@ -1,3 +1,4 @@
+
 <br><br><br>
 <form method=post name=delete action=<?=$target?>>
 <input type=hidden name=page value=<?=$page?>>
@@ -16,26 +17,25 @@
 <input type=hidden name=c_no value=<?=$c_no?>>
 <table border=0 width=250 class=zv3_writeform>
 <tr>
-   <td align=center bgcolor=#000000 style=padding:2px><b><font color="#FFFFFF"><?=$title?></font></b></td>
+  <td align=center bgcolor=#000000 style=padding:2px><b><font color="#FFFFFF"><?=$title?></font></b></td>
 </tr>
 <?
-	if(!$member[no]) {
+if(!$member[no]) {
 ?>
 <tr height=40>
-   <td align=center>
-     <img src=<?=$dir?>/w_password.gif border=0 valign=absmiddle><?=$input_password?> 
-   </td>
+  <td align=center>
+    <img src=<?=$dir?>/w_password.gif border=0 valign=absmiddle><?=$input_password?> 
+  </td>
 </tr>
 <?
-	}
+}
 ?>
 <tr bgcolor=white height=30>
-	<td align=center>
-	    <input type=image src=<?=$dir?>/btn_writeok.gif border=0 accesskey="s" onfocus=blur()>
-     	<?=$a_list?><img src=<?=$dir?>/btn_list.gif border=0></a>
-     	<a href=javascript:void(history.back()) onfocus=blur()><img src=<?=$dir?>/btn_writecancel.gif border=0></a>
-   </td>
+  <td align=center>
+    <input type=image src=<?=$dir?>/btn_writeok.gif border=0 accesskey="s" onfocus=blur()>
+    <?=$a_list?><img src=<?=$dir?>/btn_list.gif border=0></a>
+    <a href=javascript:void(history.back()) onfocus=blur()><img src=<?=$dir?>/btn_writecancel.gif border=0></a>
+  </td>
 </tr>
 </table>
 </form>
-

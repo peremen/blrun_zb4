@@ -1,3 +1,4 @@
+
 <form method='post' name='list' action='list_all.php'>
 <input type='hidden' name='page' value='<?=$page?>'>
 <input type='hidden' name='id' value='<?=$id?>'>
@@ -15,5 +16,4 @@
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> align=center>
 <tr><td>
 	<table border=0 cellspacing=0 cellpadding=3 width=100% align=center style=table-layout:fixed>
-		
 <?$counter=1;?>

@@ -1,42 +1,42 @@
 <?
 /***************************************************************************
- * 공통 파일 include
- **************************************************************************/
-	include "_head.php";
+* 공통 파일 include
+**************************************************************************/
+include "_head.php";
 
-	if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 수정하여 주시기 바랍니다.");
+if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 수정하여 주시기 바랍니다.");
 
-	//랜덤한 두 숫자를 발생(1-8) 후 세션변수에 대입
-	$num1 = rand(1,8);
-	$num2 = rand(1,8);
-	$num1num2 = $num1*10 + $num2;
-	session_register("num1num2");
-	//코멘트 보안을 위해 세션변수를 설정
-	$ZBRD_SS_VRS = $num1num2;
-	session_register("ZBRD_SS_VRS");
+//랜덤한 두 숫자를 발생(1-8) 후 세션변수에 대입
+$num1 = rand(1,8);
+$num2 = rand(1,8);
+$num1num2 = $num1*10 + $num2;
+session_register("num1num2");
+//코멘트 보안을 위해 세션변수를 설정
+$ZBRD_SS_VRS = $num1num2;
+session_register("ZBRD_SS_VRS");
 
 /***************************************************************************
- * 코멘트 수정 페이지 처리
- **************************************************************************/
+* 코멘트 수정 페이지 처리
+**************************************************************************/
 
 // 원본글을 가져옴
-	$s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
-	
-	if($s_data[ismember]||$is_admin||$member[level]<=$setup[grant_delete]) {
-		if(!$is_admin&&$s_data[ismember]!=$member[no]) Error("수정할 권한이 없습니다");
-		$title="글을 수정하시겠습니까?";
-	} else {
-		$title="글을 수정합니다.<br>비밀번호를 입력하여 주십시요";
-		$input_password="<input type=password name=password size=20 class=input>";
-	}
+$s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
 
-	$target="comment_modify_ok.php";
+if($s_data[ismember]||$is_admin||$member[level]<=$setup[grant_delete]) {
+	if(!$is_admin&&$s_data[ismember]!=$member[no]) Error("수정할 권한이 없습니다");
+	$title="글을 수정하시겠습니까?";
+} else {
+	$title="글을 수정합니다.<br>비밀번호를 입력하여 주십시요";
+	$input_password="<input type=password name=password size=20 class=input>";
+}
 
-	$a_list="<a href=zboard.php?$href$sort>";
-  
-	$a_view="<a href=view.php?$href$sort&no=$no>";
+$target="comment_modify_ok.php";
 
-	head();
+$a_list="<a href=zboard.php?$href$sort>";
+
+$a_view="<a href=view.php?$href$sort&no=$no>";
+
+head();
 ?>
 <br><br><br>
 <form method=post name=delete action=<?=$target?>>
@@ -57,30 +57,29 @@
 <input type=hidden name=antispam value=<?=$num1num2?>>
 <table border=0 width=250 cellspacing=1 cellpadding=0>
 <tr class=title>
-   <td align=center style="color:black"><b><?=$title?></b></td>
+	<td align=center style="color:black"><b><?=$title?></b></td>
 </tr>
 <?
-	if(!$member[no]) {
+if(!$member[no]) {
 ?>
 <tr height=60>
-   <td align=center class=list0>
-     <font class=list_eng><b>Password</b> :</font><?=$input_password?> 
-   </td>
+	<td align=center class=list0>
+		<font class=list_eng><b>Password</b> :</font><?=$input_password?> 
+	</td>
 </tr>
 <?
-	}
+}
 ?>
 <tr class=list0 height=30>
 	<td align=center>
-	    <input type=submit class=submit value=" 확  인 " border=0 accesskey="s">
-	    <input type=button class=button value="이전화면" onclick=history.back()>
-   </td>
+		<input type=submit class=submit value=" 확  인 " border=0 accesskey="s">
+		<input type=button class=button value="이전화면" onclick=history.back()>
+	</td>
 </tr>
 </table>
 </form>
 <?
+foot();
 
-	foot();
-
-	include "_foot.php";
+include "_foot.php";
 ?>

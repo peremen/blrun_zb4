@@ -1,37 +1,37 @@
 <?
 /***************************************************************************
- * 공통 파일 include
- **************************************************************************/
-	include "_head.php";
+* 공통 파일 include
+**************************************************************************/
+include "_head.php";
 
-	if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
+if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
 
 /***************************************************************************
- * 코멘트 삭제 페이지 처리
- **************************************************************************/
+* 코멘트 삭제 페이지 처리
+**************************************************************************/
 
 // 원본글을 가져옴
-	$s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
+$s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
 
-	if($s_data[ismember]||$is_admin||$member[level]<=$setup[grant_delete]) {
-		if(!$is_admin&&$s_data[ismember]!=$member[no]) Error("삭제할 권한이 없습니다");
-		$title="글을 삭제하시겠습니까?";
-	} else {
-		$title="글을 삭제합니다.<br>비밀번호를 입력하여 주십시요";
-		$input_password="<input type=password name=password size=20 class=input>";
-	}
+if($s_data[ismember]||$is_admin||$member[level]<=$setup[grant_delete]) {
+	if(!$is_admin&&$s_data[ismember]!=$member[no]) Error("삭제할 권한이 없습니다");
+	$title="글을 삭제하시겠습니까?";
+} else {
+	$title="글을 삭제합니다.<br>비밀번호를 입력하여 주십시요";
+	$input_password="<input type=password name=password size=20 class=input>";
+}
 
-	$target="del_comment_ok.php";
+$target="del_comment_ok.php";
 
-	$a_list="<a href=zboard.php?$href$sort>";
-	
-	$a_view="<a href=view.php?$href$sort&no=$no>";
+$a_list="<a href=zboard.php?$href$sort>";
 
-	head();
+$a_view="<a href=view.php?$href$sort&no=$no>";
 
-	include $dir."/ask_password.php";
+head();
 
-	foot();
+include $dir."/ask_password.php";
 
-	include "_foot.php";
+foot();
+
+include "_foot.php";
 ?>

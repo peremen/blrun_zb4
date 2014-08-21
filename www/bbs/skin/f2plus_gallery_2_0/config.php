@@ -5,10 +5,8 @@ $Thumbnail_small2="ss_".$data[reg_date].".jpg";
 $Thumbnail_large1="fl_".$data[reg_date].".jpg";
 $Thumbnail_large2="sl_".$data[reg_date].".jpg";
 
-//echo $data[memo];
-
 if($_view_included==true){
-	$imagePattern="#<img src\=\'icon\/member_image_box\/([^/]+?)\/(.+?)\.(jpg|jpeg|gif|png|bmp)\'#i";
+	$imagePattern="#<img src\=\'data\/\w+?\/thumbnail\/([^/]+?)\/vXL_(.+?)\.(jpg|jpeg|gif|png|bmp)\'#i";
 	preg_match_all($imagePattern,$data[memo],$out,PREG_SET_ORDER);
 
 	//넘겨주는 out 변수 통일

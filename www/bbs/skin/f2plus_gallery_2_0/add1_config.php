@@ -20,7 +20,7 @@ $type="A2_type";
 
 $table="";
 
-$img_show="off";
+$img_show="on";
 
 $num="5";
 
