@@ -1,6 +1,6 @@
 <?
-  require "lib.php";
-  head();
+require "lib.php";
+head();
 ?>
 <body bgcolor=#000000 text=#ffffff>
 <br><br><br>
@@ -12,7 +12,6 @@
 <tr>
   <td> 
     <br>
-
   </td>
 </tr>
 </table>
@@ -60,9 +59,7 @@
 <form name=write method=post action="install2_ok.php" onsubmit="return check_submit();">
 
 <tr>
-  <td colspan=2>
-  <img src=images/inst_step3.gif>
-  </td>
+  <td colspan=2><img src=images/inst_step3.gif></td>
 </tr>
 
 <tr>
@@ -86,12 +83,10 @@
 </tr>
 
 <tr>
-  <td align=center colspan=2><br>
-<br>      <input type=image src=images/inst_b_3.gif border=0 align=absmiddle>
-  </td>
+  <td align=center colspan=2><br><br><input type=image src=images/inst_b_3.gif border=0 align=absmiddle></td>
 </tr>
 </form>
 </table>
 <?
-  foot();
+foot();
 ?>

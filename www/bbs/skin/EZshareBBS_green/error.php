@@ -1,31 +1,29 @@
+
 <form>
 <br><br><br>
 <table border=0 width=250 class=zv3_writeform height=30>
 <tr>
-    <td align=center height=30 bgcolor=white>
-      <?echo $message;?>
-	</td>
+  <td align=center height=30 bgcolor=white>
+    <?echo $message;?>
+  </td>
 </tr>
 </table>
 <?
-  if(!$url)
-  {
+if(!$url)
+{
 ?>
-
-  <br>
-  <center><img src=<?=$dir?>/btn_writecancel.gif border=0 onclick=history.back() onfocus=blur() style=cursor:pointer></center>
-
+<br>
+<center><img src=<?=$dir?>/btn_writecancel.gif border=0 onclick=history.back() onfocus=blur() style=cursor:pointer></center>
 <?
-  }
-  else
-  {
+}
+else
+{
 ?>
-	<br>
-  <div align=center><img src=<?=$dir?>/btn_move.gif border=0 onclick=location.href="<?echo $url;?>" onfocus=blur() style=cursor:pointer></div>
-
+<br>
+<div align=center><img src=<?=$dir?>/btn_move.gif border=0 onclick=location.href="<?echo $url;?>" onfocus=blur() style=cursor:pointer></div>
 <?
-  }
+}
 ?>
-   <br><br>
+<br><br>
 </form>
 <br><br>

@@ -1,18 +1,16 @@
-
 <?
-	$input_password = str_replace("class=input","class='text'",$input_password);
-	$input_password = str_replace(">"," style='width:90;'>",$input_password);
+$input_password = str_replace("class=input","class='text'",$input_password);
+$input_password = str_replace(">"," style='width:90;'>",$input_password);
 
-	if($target=="del_comment_ok.php"){
-		$target=$dir."/del_comment_ok.php";
-	}else {
-		if($target=="delete_ok.php"){
-			$target=$dir."/delete_ok.php";
-		}
-	}	
+if($target=="del_comment_ok.php"){
+	$target=$dir."/del_comment_ok.php";
+}else {
+	if($target=="delete_ok.php"){
+		$target=$dir."/delete_ok.php";
+	}
+}	
 ?>
 <table width='<?=$setup['table_width']?>' border='0' cellpadding='0' cellspacing='0'>
-
 <form method=post name=delete action=<?=$target?>>
 <input type=hidden name=_zb_path value=<?=$_zb_path?>>
 <input type=hidden name=_zb_url value=<?=$_zb_url?>>
@@ -30,7 +28,6 @@
 <input type=hidden name=sm value="<?=$sm?>">
 <input type=hidden name=mode value="<?=$mode?>">
 <input type=hidden name=c_no value=<?=$c_no?>>
-
 <tr>
 	<td align='center' style='padding:50 0 50 0;'>
 		<table width='250' border='0' cellpadding='0' cellspacing='0' background='<?=$dir?>/images/sw_window_bgi.gif' style='word-break:break-all; background-repeat:repeat-y;'>
@@ -38,10 +35,10 @@
 		<tr>
 			<td align='center' style='padding:7 0 7 0;' class='sw_ft_style_0'><strong><?=$title?></strong></td>
 		</tr>
-		<? if(!$member['no']) { ?>
+<? if(!$member['no']) { ?>
 		<tr><td class='sw_bg_style_0'></td></tr>
 		<tr><td align='center' style='padding:7;' class='sw_ft_style_0'>비밀번호 <?=$input_password?></td></tr>
-		<? } ?>
+<? } ?>
 		<tr><td class='sw_bg_style_0'></td></tr>
 		<tr>
 			<td align='center' style='padding:7 0 7 0;'>

@@ -1,3 +1,4 @@
+
 <script language=JavaScript>
 function findObj(n, d) { //v4.0
   var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
@@ -11,7 +12,6 @@ function swapImage() {
    if ((x=findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
 }
 </script>
-
 <script language=JavaScript>
 var seq = "";
 function show(down){
@@ -32,20 +32,17 @@ function show(down){
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <?=$memo_on_sound?>
 <tr>
-<td height=10 colspan=3></td>
-</tr>
-
-<tr>
-<td valign=bottom align=left class=cub>&nbsp;<span class=top>* Beautiful ones</span></td>
-<td valign=bottom align=right class=cub><span class=v7><font title="회원가입"><?=$a_member_join?>*&nbsp;&nbsp;</font></a><font title="정보수정"><?=$a_member_modify?>*&nbsp;&nbsp;</font></a><font title="쪽지사용"><?=$a_member_memo?>*&nbsp;&nbsp;</font></a><font title="로그인"><?=$a_login?>*&nbsp;&nbsp;</font></a><font title="로그아웃"><?=$a_logout?>*&nbsp;&nbsp;</font></a><font title="관리자"><?=$a_setup?>*&nbsp;</font></a></span></td>
-</tr>
-
-<tr>
-<td colspan=10 class=line1 height=1></td>
+	<td height=10 colspan=3></td>
 </tr>
 <tr>
-<td colspan=10 class=line2 height=1></td>
+	<td valign=bottom align=left class=cub>&nbsp;<span class=top>* Beautiful ones</span></td>
+	<td valign=bottom align=right class=cub><span class=v7><font title="회원가입"><?=$a_member_join?>*&nbsp;&nbsp;</font></a><font title="정보수정"><?=$a_member_modify?>*&nbsp;&nbsp;</font></a><font title="쪽지사용"><?=$a_member_memo?>*&nbsp;&nbsp;</font></a><font title="로그인"><?=$a_login?>*&nbsp;&nbsp;</font></a><font title="로그아웃"><?=$a_logout?>*&nbsp;&nbsp;</font></a><font title="관리자"><?=$a_setup?>*&nbsp;</font></a></span></td>
+</tr>
+<tr>
+	<td colspan=10 class=line1 height=1></td>
+</tr>
+<tr>
+	<td colspan=10 class=line2 height=1></td>
 </tr>
 </table>
-
 <? include "include/write.php"; ?>

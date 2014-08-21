@@ -1,9 +1,9 @@
 <?
-	include $dir."/swe/ed_seting_head_comment.php";
+include $dir."/swe/ed_seting_head_comment.php";
 
-	$a_preview = str_replace(">","><font class=list_eng>",$a_preview)."&nbsp;&nbsp;";
-	$a_imagebox = str_replace(">","><font class=list_eng>",$a_imagebox)."&nbsp;&nbsp;";
-	$a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;";
+$a_preview = str_replace(">","><font class=list_eng>",$a_preview)."&nbsp;&nbsp;";
+$a_imagebox = str_replace(">","><font class=list_eng>",$a_imagebox)."&nbsp;&nbsp;";
+$a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;";
 ?>
 
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> align=center>
@@ -16,7 +16,9 @@
 </tr>
 <tr>
 	<td background=<?=$dir?>/images/cc_middle_bg1.gif></td>
-	<td ><? include $dir."/swe/ed_seting_option_comment.php"; ?><? include $dir."/swe/ed_seting_edit.php"; ?></td>
+	<td >
+	<? include $dir."/swe/ed_seting_option_comment.php"; ?><? include $dir."/swe/ed_seting_edit.php"; ?>
+	</td>
 	<td background=<?=$dir?>/images/cc_middle_bg2.gif></td>
 </tr>
 </table>
@@ -33,11 +35,13 @@
 <col width=5%></col><col width=45%></col><col width=5%></col><col width=45%>
 <tr valign=top>
 <?=$hide_pds_start?>
-  <td width=52 align=right><font class=list_eng>Upload #1</font></td>
-  <td class=list_eng><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name1?></td>
-  <td width=52 align=right><font class=list_eng>Upload #2</font></td>
-  <td class=list_eng><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
+
+	<td width=52 align=right><font class=list_eng>Upload #1</font></td>
+	<td class=list_eng><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name1?></td>
+	<td width=52 align=right><font class=list_eng>Upload #2</font></td>
+	<td class=list_eng><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
 <?=$hide_pds_end?>
+
 </tr>
 </form>
 </table>

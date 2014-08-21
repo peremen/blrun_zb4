@@ -49,7 +49,7 @@ function returnmain()
 <div align="center" style="padding: 5px;background-color: #009900;font-size:9pt;"> 
 <b><span style="color:#ffffff">우편번호를 검색합니다.</span></b></div>
 <div align="center" style="background-color: #007900;font-size:1pt;height: 3px;"></div>
-  <form name="w_form" method="post" action="<?=$PHP_SELF?>" onsubmit="return check_submit();" style="margin: 0px">
+<form name="w_form" method="post" action="<?=$PHP_SELF?>" onsubmit="return check_submit();" style="margin: 0px">
 <input name="num" type="hidden" value="<?=$num?>">
 <div align="center" style="padding: 14px;background-color: #f0f0f0;font-size:9pt;">
   찾고자 하는 읍/면/동의 이름을 입력하여 주십시오.<br />
@@ -57,7 +57,8 @@ function returnmain()
   <div style="padding-top: 4px"></div>
   <input name="dong" type="text" style="border:1px solid #e1e1e1;vertical-align: middle;background-color: #fff;" size="18" value="<?=$dong?>"<?=$address ? ' readonly' : ''?>> <input type="image" style="border: 0px;vertical-align: middle;width: 20px;height: 20px" src="../images/btn_search.gif"<?=$address ? " onclick=\"alert('여기에서는 사용할 수 없습니다.\\n\\n아래칸에 나머지 주소를 입력해주세요.');return false\"" : ''?>>
 </div>
-  </form>
-  <div align="center" style="background-color: <?=$list_begin ? 'background-color: #f0f0f0;' : '#E6E6E6;'?>font-size:1pt;height: 2px;"></div>
+</form>
+<div align="center" style="background-color: <?=$list_begin ? 'background-color: #f0f0f0;' : '#E6E6E6;'?>font-size:1pt;height: 2px;"></div>
 <?=$list_begin?>
+
 <table border="0" cellspacing="0" cellpadding="0" width="100%">

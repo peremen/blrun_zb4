@@ -1,3 +1,4 @@
+
 <script language="javascript">
 function unlock()
 {
@@ -169,12 +170,12 @@ function doTab(arg1){
 <form name=waiting_form>
 <tr bgcolor=white>
 	<td>
-	<table border=0 cellspacing=0 cellpadding=0 width=100%>
-	<tr>
-		<td><img src=images/waiting_left.gif border=0></td>
-		<td><img src=images/waiting_top.gif border=0><br><img src=images/waiting_text.gif></td>
-	</tr>
-	</table>
+		<table border=0 cellspacing=0 cellpadding=0 width=100%>
+		<tr>
+			<td><img src=images/waiting_left.gif border=0></td>
+			<td><img src=images/waiting_top.gif border=0><br><img src=images/waiting_text.gif></td>
+		</tr>
+		</table>
 	</td>
 </tr>
 </form>

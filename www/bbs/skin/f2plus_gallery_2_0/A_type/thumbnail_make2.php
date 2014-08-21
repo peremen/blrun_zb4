@@ -75,7 +75,7 @@ function thumbnail2($size,$source_file,$save_file){
 		$dstimg=ImageCreate($max_width,$max_height);
 		ImageColorAllocate($dstimg,255,255,255);
 		ImageCopyResized($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));
-		}else{ 
+	}else{ 
 		$dstimg=ImageCreateTrueColor($max_width,$max_height);
 		ImageColorAllocate($dstimg,255,255,255);
 		ImageCopyResampled($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));

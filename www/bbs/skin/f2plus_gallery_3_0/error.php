@@ -1,5 +1,5 @@
 <?
-	$dir="http://www.blrun.net/bbs/skin/f2plus_gallery_3_0/";
+$dir="http://www.blrun.net/bbs/skin/f2plus_gallery_3_0/";
 ?>
 <table width='<?=$setup['table_width']?>' border='0' cellpadding='0' cellspacing='0'>
 <tr>
@@ -14,11 +14,11 @@
 		<tr><td class='sw_bg_style_0'></td></tr>
 		<tr>
 			<td align='center' style='padding:7 0 7 0;'>
-				<? if(!$url) { ?>
+<? if(!$url) { ?>
 				<input type='button' class='button' value='이전 화면' onClick='history.back();'>
-				<? } else { ?>
+<? } else { ?>
 				<input type='button' class='button' value='페이지 이동' onClick=location.href="<?=$url?>">
-				<? } ?>
+<? } ?>
 			</td>
 		</tr>
 		<tr><td><img src='<?=$dir?>/images/sw_window_b.gif' border='0'></td></tr>

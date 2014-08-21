@@ -18,7 +18,6 @@
 <br><br><br>
 <div align=center>
 <table width=300 border=1 cellspacing=0 cellpadding=0 bgcolor=<?=$list_header_bg_color?> bordercolorlight=<?=$list_header_dark0?> bordercolordark=<?=$list_header_dark1?>><tr><td><img src=images/t.gif height=3></td></tr></table>
-
 <table border=0 width=300 cellpadding=0 cellspacing=0>
 <form method=post name=delete action=<?=$target?>>
 <input type=hidden name=page value=<?=$page?>>
@@ -40,10 +39,9 @@
 </tr>
 <tr height=1><td colspan=2 bgcolor=<?=$view_divider?>><img src=images/t.gif height=1></td></tr>
 <tr bgcolor=<?=$view_left_header_color?>>
-   <td align=center height=40><?=$input_password?></td></td>
+  <td align=center height=40><?=$input_password?></td></td>
 </tr>
 <tr height=1><td colspan=2 bgcolor=<?=$view_divider?>><img src=images/t.gif height=1></td></tr>
-
 <tr height=30>
   <td colspan=2 align=right>
     <input type=image border=0 src=<?=$dir?>/btn_confirm.gif onfocus=blur()> <?=$a_list?><img src=<?=$dir?>/i_list.gif border=0></a> <?=$a_view?><img src=<?=$dir?>/btn_back.gif border=0></a>

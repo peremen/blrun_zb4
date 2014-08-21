@@ -91,7 +91,4 @@ function thumbnail2($size,$source_file,$save_file){
    @ImageDestroy($dstimg);
    @ImageDestroy($srcimg);
 }
-
-
-
 ?>

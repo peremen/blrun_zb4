@@ -1,3 +1,4 @@
+
 <!--쌀리가 노가다 하다-->
 <script language=javascript>
 function showEmoticon(){
@@ -70,7 +71,8 @@ function insertSmiley(smiley){
 <td class=off onmousedown=this.className='down' onmouseup=this.className='up' onmouseover=this.className='on' onmouseout=this.className='off'><a onclick="insertSmiley('emtp_020','write')"><img class="curHand" SRC="<?=$emoticon_url?>/20.gif" width=18 height=18 border=0 align=absmiddle></a></td>
 <td class=off onmousedown=this.className='down' onmouseup=this.className='up' onmouseover=this.className='on' onmouseout=this.className='off'><a onclick="insertSmiley('emtp_021','write')"><img class="curHand" SRC="<?=$emoticon_url?>/21.gif" width=18 height=18 border=0 align=absmiddle></a></td>
 <td class=off onmousedown=this.className='down' onmouseup=this.className='up' onmouseover=this.className='on' onmouseout=this.className='off'><a onclick="insertSmiley('emtp_022','write')"><img class="curHand" SRC="<?=$emoticon_url?>/22.gif" width=18 height=18 border=0 align=absmiddle></a></td>
-</tr><tr>
+</tr>
+<tr>
 <td class=off onmousedown=this.className='down' onmouseup=this.className='up' onmouseover=this.className='on' onmouseout=this.className='off'><a onclick="insertSmiley('emtp_023','write')"><img class="curHand" SRC="<?=$emoticon_url?>/23.gif" width=18 height=18 border=0 align=absmiddle></a></td>
 <td class=off onmousedown=this.className='down' onmouseup=this.className='up' onmouseover=this.className='on' onmouseout=this.className='off'><a onclick="insertSmiley('emtp_024','write')"><img class="curHand" SRC="<?=$emoticon_url?>/24.gif" width=18 height=18 border=0 align=absmiddle></a></td>
 <td class=off onmousedown=this.className='down' onmouseup=this.className='up' onmouseover=this.className='on' onmouseout=this.className='off'><a onclick="insertSmiley('emtp_025','write')"><img class="curHand" SRC="<?=$emoticon_url?>/25.gif" width=18 height=18 border=0 align=absmiddle></a></td>

@@ -1,10 +1,11 @@
 <?
-	if($is_admin) $show_comment_ip = "<font class=list_eng>".$c_data['ip']."</font>";
-	else $show_comment_ip = "";
+if($is_admin) $show_comment_ip = "<font class=list_eng>".$c_data['ip']."</font>";
+else $show_comment_ip = "";
 ?>
+
 <table width=<?=$width?> border=0 cellspacing=0 cellpadding=0 style=table-layout:fixed>
 <tr>
-    <td width=100% bgcolor=#B4D2DE><img src=<?=$dir?>/t.gif height=1></td>
+	<td width=100% bgcolor=#B4D2DE><img src=<?=$dir?>/t.gif height=1></td>
 </tr>
 <tr>
 	<td height=3><img src=<?=$dir?>/t.gif border=0 hieght=3></td>
@@ -28,10 +29,13 @@
 			echo "<span style='color:gray;font-size:10pt'>비밀 덧글입니다</span>";
 		else {
 		?>
-			<?=$c_hide_download1_start?><br><font class=list_eng>- <b>Download #1</b> : <?=$c_file_link1?><?=$c_file_name1?> (<?=$c_file_size1?>)</a>, Download : <?=$c_file_download1?></font><br><?=$c_upload_image1?><?=$c_hide_download1_end?>
-			<?=$c_hide_download2_start?><br><font class=list_eng>- <b>Download #2</b> : <?=$c_file_link2?><?=$c_file_name2?> (<?=$c_file_size2?>)</a>, Download : <?=$c_file_download2?></font><br><?=$c_upload_image2?><?=$c_hide_download2_end?>
-			<br><?if($c_data[is_secret]) echo "<img src=".$dir."/post_security.gif border=0>";?><?=$c_memo?>
-		<? } ?>
+
+		<?=$c_hide_download1_start?><br><font class=list_eng>- <b>Download #1</b> : <?=$c_file_link1?><?=$c_file_name1?> (<?=$c_file_size1?>)</a>, Download : <?=$c_file_download1?></font><br><?=$c_upload_image1?><?=$c_hide_download1_end?>
+
+		<?=$c_hide_download2_start?><br><font class=list_eng>- <b>Download #2</b> : <?=$c_file_link2?><?=$c_file_name2?> (<?=$c_file_size2?>)</a>, Download : <?=$c_file_download2?></font><br><?=$c_upload_image2?><?=$c_hide_download2_end?>
+
+		<br><?if($c_data[is_secret]) echo "<img src=".$dir."/post_security.gif border=0>";?><?=$c_memo?><? } ?>
+
 	</td>
 </tr>
 <tr>

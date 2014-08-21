@@ -13,7 +13,7 @@ $file1_check=0;
 
 if($Thumbnail_use=="on"){
 	//썸네일 디렉토리 내 각 회원별 디렉토리 생성
-	if(!is_dir($zb_path."data/$id/thumbnail/".$data[ismember]."/")) { 
+	if(!is_dir($zb_path."data/$id/thumbnail/".$data[ismember]."/")) {
 		if(!@mkdir($zb_path."data/$id/thumbnail/".$data[ismember]."/",0777)) $error_check+=1;
 		if(!@chmod($zb_path."data/$id/thumbnail/".$data[ismember]."/",0707)) $error_check+=2;
 	}
@@ -29,7 +29,7 @@ if($Thumbnail_use=="on"){
 		}
 		$thumb_img1=$Thumbnail_url.$Thumbnail_large1;
 		$thumb_img12=$Thumbnail_url.$Thumbnail_small1;
-				
+
 	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$out[0][1].".".$out[0][2])) {
 
 		$src_img1="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
@@ -65,7 +65,7 @@ if($Thumbnail_use=="on"){
 	}
 
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name2])){
-		
+
 		$src_img2=$data[file_name2];
 		if(!file_exists($Thumbnail_path.$Thumbnail_small2) || !file_exists($Thumbnail_path.$Thumbnail_large2)){
 			$size=array($min_width_size,300);
@@ -138,26 +138,26 @@ if($Thumbnail_use=="on"){
 	$ran_img2=array($src_img1,$src_img2,$dir."/no_image.gif");
 	$ran_img3=array($thumb_img1,$thumb_img2);
 
-	if($thumb_img1&&$thumb_img2){                              
-		$img_tag=$ran_img3[$ran];   
+	if($thumb_img1&&$thumb_img2){
+		$img_tag=$ran_img3[$ran];
 		$thumb_img=$ran_img1[$ran];
 		$source_img=$ran_img2[$ran];
-	}elseif($thumb_img1&&!$thumb_img2){                
-		$img_tag=$ran_img3[0];           
+	}elseif($thumb_img1&&!$thumb_img2){
+		$img_tag=$ran_img3[0];
 		$thumb_img=$ran_img1[0];
 		$source_img=$ran_img2[0];
-	}elseif(!$thumb_img1&&$thumb_img2){  
-		$img_tag=$ran_img3[1];           
+	}elseif(!$thumb_img1&&$thumb_img2){
+		$img_tag=$ran_img3[1];
 		$thumb_img=$ran_img1[1];
 		$source_img=$ran_img2[1];
-	}else{                              
+	}else{
 		$img_tag=$ran_img2[2];
 		$thumb_img=$ran_img2[2];
 		$source_img=$ran_img2[2];
 	}
 
 	$img_info=getimagesize(urldecode($source_img));
-	
+
 	$full_img="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') onfocus=this.blur(); class=shadow style=cursor:pointer>";
 	if($img_show=="on"){
 		$view_img="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') onmouseover='transimg(\"image\",\"$img_tag\")' style='cursor:pointer'>";
@@ -189,9 +189,9 @@ if($Thumbnail_use=="on"){
 
 	$ran_img2=array($thumb_img1,$thumb_img2,$dir."/no_image.gif");
 
-	if($thumb_img1&&$thumb_img2){                              //업로드 이미지 파일이 둘다 있을때 
+	if($thumb_img1&&$thumb_img2){                              //업로드 이미지 파일이 둘다 있을때
 		$img_tag=$ran_img2[$ran];
-		$thumb_img=$ran_img2[$ran];           
+		$thumb_img=$ran_img2[$ran];
 	}                                                       //리스트 메인에서는 첫번째 파일의 썸네일만 보여짐
 	elseif($thumb_img1&&!$thumb_img2){                     //업로드 이미지 1번파일만 있을때
 		$img_tag=$ran_img2[0];               //하나만 있을땐 하나만 보여짐
@@ -207,14 +207,12 @@ if($Thumbnail_use=="on"){
 	}
 
 	$img_info=getimagesize(urldecode($thumb_img));
-	
-	$full_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') 'class=shadow' style='cursor:pointer'>";
+
+	$full_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";
 	if($img_show=="on"){
-		$view_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') onmouseover='transimg(\"image\",\"$img_tag\")' 'class=shadow' style='cursor:pointer'>";
+		$view_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') onmouseover='transimg(\"image\",\"$img_tag\")' class=shadow style='cursor:pointer'>";
 	}else {
 		$view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] onmouseover='transimg(\"image\",\"$img_tag\")' style='cursor:pointer'>";
 	}
-
 }
-   
 ?>

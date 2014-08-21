@@ -23,31 +23,30 @@
 
 <!-- 마무리 부분입니다 -->
 <tr>
-   <td colspan=10 bgcolor=<?=$list_footer_bg_color?>><img src=images/t.gif height=3></td></tr>
+  <td colspan=10 bgcolor=<?=$list_footer_bg_color?>><img src=images/t.gif height=3></td></tr>
 </table>
-
 <!-- 버튼 부분 -->
 <table border=0 cellspacing=1 cellpadding=1 width=<?=$width?>>
 <tr>
- <td width=40% height=20 nowrap> 
-  <?=$hide_cart_start?><?=$a_cart?><img src=<?=$dir?>/i_list.gif border=0 align=absmiddle></a><?=$hide_cart_end?>
-  <?=$a_delete_all?><img src=<?=$dir?>/i_admin.gif border=0 align=absmiddle></a>
-  <?=$a_1_prev_page?><img src=<?=$dir?>/i_prev.gif border=0 align=absmiddle></a>  
-  <?=$a_1_next_page?><img src=<?=$dir?>/i_next.gif border=0 align=absmiddle></a>
-</td>
- <td align=center colspan=2 class=listnum nowrap>
+  <td width=40% height=20 nowrap> 
+    <?=$hide_cart_start?><?=$a_cart?><img src=<?=$dir?>/i_list.gif border=0 align=absmiddle></a><?=$hide_cart_end?>
+
+    <?=$a_delete_all?><img src=<?=$dir?>/i_admin.gif border=0 align=absmiddle></a>
+    <?=$a_1_prev_page?><img src=<?=$dir?>/i_prev.gif border=0 align=absmiddle></a>  
+    <?=$a_1_next_page?><img src=<?=$dir?>/i_next.gif border=0 align=absmiddle></a>
+  </td>
+  <td align=center colspan=2 class=listnum nowrap>
 <!-- 페이지 출력 ---------------------->
-   <?=$a_prev_page?>[prev]</a>
-   <?=$print_page?>
-   <?=$a_next_page?>[next]</a>
- </td>
- <td align=right width=40%>
-  <?=$a_write?><img src=<?=$dir?>/i_write.gif border=0 align=absmiddle></a>
- </td>
+    <?=$a_prev_page?>[prev]</a>
+    <?=$print_page?>
+    <?=$a_next_page?>[next]</a>
+  </td>
+  <td align=right width=40%>
+    <?=$a_write?><img src=<?=$dir?>/i_write.gif border=0 align=absmiddle></a>
+  </td>
 </tr>
 </table>
 </form>
-
 <!-- 검색폼 부분 ---------------------->
 <!-- 폼태그 부분;; 수정하지 않는 것이 좋습니다 -->
 <form method=post name=search action="zboard.php">
@@ -64,14 +63,12 @@
 <input type=hidden name=sm value="<?=$sm?>">
 <input type=hidden name=category value="<?=$category?>">
 <!----------------------------------------------->
-
 <div align=center>
-  <a href="javascript:OnOff('sn')"><img src=<?=$dir?>/name_<?=$sn?>.gif border=0 name=sn></a>
-  <a href="javascript:OnOff('ss')"><img src=<?=$dir?>/subject_<?=$ss?>.gif border=0 name=ss></a>
-  <a href="javascript:OnOff('sc')"><img src=<?=$dir?>/content_<?=$sc?>.gif border=0 name=sc></a>
-  <a href="javascript:OnOff('sm')" onfocus=blur()><img src=<?=$dir?>/comment_<?=$sm?>.gif border=0 name=sm></a><img src=images/t.gif width=35 height=1>
+<a href="javascript:OnOff('sn')"><img src=<?=$dir?>/name_<?=$sn?>.gif border=0 name=sn></a>
+<a href="javascript:OnOff('ss')"><img src=<?=$dir?>/subject_<?=$ss?>.gif border=0 name=ss></a>
+<a href="javascript:OnOff('sc')"><img src=<?=$dir?>/content_<?=$sc?>.gif border=0 name=sc></a>
+<a href="javascript:OnOff('sm')" onfocus=blur()><img src=<?=$dir?>/comment_<?=$sm?>.gif border=0 name=sm></a><img src=images/t.gif width=35 height=1>
 <br>
-
 <table border=0 cellspacing=0 cellpadding=0>
 <tr>
   <td><img src=<?=$dir?>/search_left.gif></td>
@@ -81,11 +78,11 @@
 </tr>
 </table>
 </form>
-
 <?
- if($setup[use_category])
+if($setup[use_category])
 {
 ?>
+
   </td>
 </tr>
 </table>

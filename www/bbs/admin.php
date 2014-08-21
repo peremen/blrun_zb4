@@ -1,26 +1,26 @@
 <?
-	include "lib.php";
-	$connect=dbConn();
-	$member=member_info();
-	if(($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$member[board_name])) movepage("admin_setup_bac.php");
-	else {
-		if($member[no]) {
-			destroyZBSessionID($member[no]);
-			// 4.0x 侩 技记 贸府
-			$zb_logged_no='';
-			$zb_logged_time='';
-			$zb_logged_ip='';
-			$zb_secret='';
-			$zb_last_connect_check = '0';
-			session_register("zb_logged_no");
-			session_register("zb_logged_time");
-			session_register("zb_logged_ip");
-			session_register("zb_secret");
-			session_register("zb_last_connect_check");
-		}
+include "lib.php";
+$connect=dbConn();
+$member=member_info();
+if(($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$member[board_name])) movepage("admin_setup_bac.php");
+else {
+	if($member[no]) {
+		destroyZBSessionID($member[no]);
+		// 4.0x 侩 技记 贸府
+		$zb_logged_no='';
+		$zb_logged_time='';
+		$zb_logged_ip='';
+		$zb_secret='';
+		$zb_last_connect_check = '0';
+		session_register("zb_logged_no");
+		session_register("zb_logged_time");
+		session_register("zb_logged_ip");
+		session_register("zb_secret");
+		session_register("zb_last_connect_check");
 	}
+}
 
-	head("  bgcolor=444444  onload=write.user_id.focus()");
+head("  bgcolor=444444  onload=write.user_id.focus()");
 ?>
 
 <script>
@@ -66,6 +66,6 @@ function check_submit() {
 <form>
 
 <?
-	mysql_close($connect);
-	foot();
+mysql_close($connect);
+foot();
 ?>

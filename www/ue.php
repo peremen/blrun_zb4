@@ -3,20 +3,20 @@
 <?
 if($flag != ok) {
 ?>
-	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-	<HTML>
-	 <HEAD>
-	  <TITLE> Escape 문자 해독하기 </TITLE>
-	 </HEAD>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE> Escape 문자 해독하기 </TITLE>
+ </HEAD>
 
-	 <BODY>
-	  <h3> Escape 문자 해독하기 </h3>
-	  <FORM NAME="form1" METHOD="Post" ACTION="ue.php?flag=ok">
-		<INPUT NAME="str1" TYPE="Text" SIZE="44" MAXLENGTH="700">
-		<INPUT TYPE="Submit" VALUE="전송">
-	  </FORM>
-	 </BODY>
-	</HTML>
+ <BODY>
+  <h3> Escape 문자 해독하기 </h3>
+  <FORM NAME="form1" METHOD="Post" ACTION="ue.php?flag=ok">
+	<INPUT NAME="str1" TYPE="Text" SIZE="44" MAXLENGTH="700">
+	<INPUT TYPE="Submit" VALUE="전송">
+  </FORM>
+ </BODY>
+</HTML>
 <?
 } else {
 	function JsUnescape($str){

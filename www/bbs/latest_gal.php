@@ -1,4 +1,4 @@
-<?	$use_thumb=2; ?>
+<? $use_thumb=2; ?>
 
 <!-----------------이미지 미리보기-------------------->
 <div id="message" style="border-width:0px; border-style:none; width:0px; height:0px; position:absolute; left:0px; top:0px; z-index:1;" class=shadow></div> 
@@ -42,7 +42,6 @@ function latest_thumb_del($path,$file,$reg_date){
 	}
  }
 
-
 function thumbnail_make1($size,$source_file,$save_path,$small,$large,$ratio){
 
 	$img_info=@getimagesize($source_file);
@@ -50,7 +49,6 @@ function thumbnail_make1($size,$source_file,$save_path,$small,$large,$ratio){
 	if($img_info[2]==1) $srcimg=ImageCreateFromGIF($source_file);
 	 elseif($img_info[2]==2) $srcimg=ImageCreateFromJPEG($source_file);
 	   else                     $srcimg=ImageCreateFromPNG($source_file);
-	
 	
 	for($i=0; $i<=sizeof($size)-1;$i++){
 		if($size[$i]!=0){
@@ -109,7 +107,6 @@ function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
 	if($img_info[2]==1) $srcimg=ImageCreateFromGIF($source_file);
 	 elseif($img_info[2]==2) $srcimg=ImageCreateFromJPEG($source_file);
 	   else                     $srcimg=ImageCreateFromPNG($source_file);
-	
 	
 	for($i=0; $i<=sizeof($size)-1;$i++){
 		if($size[$i]!=0){
