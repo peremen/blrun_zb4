@@ -77,6 +77,22 @@ if($flag != ok) {
 	}
 	// 신택스하이라이트 헤더 처리 끝
 
+	// 계층 코멘트 표식 불러와 처리
+	if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$memo,$c_match)) {
+		$c_org = $c_match[1];
+		$c_depth = $c_match[2];
+		$memo = str_replace($c_match[0],"",$memo);
+	} else {
+		$c_org = 0;
+		$c_depth = 0;
+	}
+	unset($o_data);
+	if($c_org) {
+		$result2=@mysql_query("select * from $t_comment"."_$id where no='$c_org'") or error(mysql_error());
+		$o_data=mysql_fetch_array($result2);
+		if(!$o_data[no]) Error("원본 덧글이 존재하지 않습니다");
+	}
+
 	$memo=str_replace("&nbsp;","&amp;nbsp;",trim(stripslashes($memo)));
 
 	if($s_data[file_name1])$s_file_name1="<br>&nbsp;".$s_data[s_file_name1]."이 등록되어 있습니다.<br> <input type=checkbox name=del_file1 value=1> 삭제";
@@ -86,8 +102,11 @@ if($flag != ok) {
 	if(!$setup[use_pds]) { $hide_pds_start="<!--";$hide_pds_end="-->";}
 
 	if($s_data[use_html2]) $use_html2=" checked ";
-	if($s_data[is_secret]) $secret=" checked ";
-	
+	// 비밀글 체크박스 처리
+	if(!$o_data[is_secret]&&$s_data[is_secret])
+		$secret=" checked ";
+	elseif($o_data[is_secret])
+		$secret=" checked disabled";
 	// HTML사용 체크버튼 
 	if($setup[use_html]==0) {
 		if(!$is_admin&&$member[level]>$setup[grant_html]) { 
@@ -102,7 +121,7 @@ if($flag != ok) {
 	$use_html2 .= " value='$value_use_html2' onclick='check_use_html2(this)'><ZeroBoard";
 
 	// 비밀글 사용;;
-	if(!$setup[use_secret]) { $hide_secret_start="<!--"; $hide_secret_end="-->"; }
+	if(!$setup[use_secret]||$o_data[ismember]=="0") { $hide_secret_start="<!--"; $hide_secret_end="-->"; }
 
 	// 이미지 창고 버튼
 	if($member[no]&&$setup[grant_imagebox]>=$member[level]) $a_imagebox="<a onfocus=blur() href='javascript:showImageBox(\"$id\")'>"; else $a_imagebox="<Zeroboard ";
@@ -138,6 +157,8 @@ if($flag != ok) {
 		<input type=hidden name=sm value="<?=$sm?>">
 		<input type=hidden name=mode value="<?=$mode?>">
 		<input type=hidden name=c_no value=<?=$c_no?>>
+		<input type=hidden name=c_org value=<?=$c_org?>>
+		<input type=hidden name=c_depth value=<?=$c_depth?>>
 		<input type=hidden name=antispam value=<?=$antispam?>>
 		<col width=70 align=right style=padding-right:10px></col><col width=></col>
 <?if(!$member['no']){?>
@@ -154,7 +175,7 @@ if($flag != ok) {
 		<tr>
 			<td class=list0><font class=list_eng><b>Option</b></font></td>
 			<td class=list_eng>
-				<?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>> HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1> 비밀글<?=$hide_secret_end?>
+				<?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>> HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1> 비밀글<?=$hide_secret_end?>
 
 			</td>
 		</tr>
@@ -207,6 +228,9 @@ if($flag != ok) {
 	$name = str_replace("ㅤ","",$name);
 
 	if(isblank($memo)) Error("내용을 입력하셔야 합니다");
+
+	// 리플라이 덧글 관련 예약 문자열 검사
+	if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",trim($memo))) Error("예약된 문자열은 사용할 수 없습니다");
 
 	// 필터링;; 관리자가 아닐때;;
 	if(!$is_admin&&$setup[use_filter]) {
@@ -331,6 +355,10 @@ if($flag != ok) {
 	}
 
 	$reg_date=time(); // 현재의 시간구함
+
+	if($c_depth) {
+		$memo.="|||".$c_org."|".$c_depth;
+	}
 
 	/***************************************************************************
 	 * 업로드가 있을때

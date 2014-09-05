@@ -439,9 +439,9 @@ function head($body="",$scriptfile="") {
 }
 
 // 푸터 부분 출력
-function foot() {
+function foot($max_depth="") {
 
-	global $width, $group, $setup, $_startTime , $_queryTime , $_foot_executived, $_skinTime, $_sessionStart, $_sessionEnd, $_nowConnectStart, $_nowConnectEnd, $_dbTime, $_listCheckTime, $_zbResizeCheck;
+	global $width, $group, $setup, $_startTime , $_queryTime , $_foot_executived, $_skinTime, $_sessionStart, $_sessionEnd, $_nowConnectStart, $_nowConnectEnd, $_dbTime, $_listCheckTime, $_zbResizeCheck, $max_depth;
 
 	if($_foot_executived) return;
 	$_foot_executived = true;
@@ -468,7 +468,7 @@ function foot() {
 <!-- 이미지 리사이즈를 위해서 처리하는 부분 -->
 <script>
 	function zb_img_check(){
-		var zb_main_table_width = document.zb_get_table_width.width - 50;
+		var zb_main_table_width = document.zb_get_table_width.width*(100-5*<?=$max_depth?>-4)/100;
 		var zb_target_resize_num = document.zb_target_resize.length;
 		for(i=0;i<zb_target_resize_num;i++){ 
 			if(document.zb_target_resize[i].width > zb_main_table_width) {

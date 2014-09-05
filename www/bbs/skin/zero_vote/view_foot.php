@@ -1,3 +1,4 @@
+<?=$hide_comment_end?>
 
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <tr>

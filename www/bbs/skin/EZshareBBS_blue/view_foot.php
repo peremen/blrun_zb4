@@ -8,6 +8,7 @@ if(!preg_match("/Zeroboard/i",$a_home)) $a_home = str_replace(">","><font class=
 if(!preg_match("/Zeroboard/i",$a_bitly)) $a_bitly = str_replace(">","><font class=view_title1>",$a_bitly);
 if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font class=view_title1>",$a_keyword);
 ?>
+
 <table class=zv3_table width=<?=$width?> cellspacing=0 cellpadding=0>
 <tr>
 	<td colspan=2><img src=<?=$dir?>/t.gif height=1></td>

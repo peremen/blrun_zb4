@@ -90,5 +90,4 @@
 </table>
 <img src=<?=$dir?>/t.gif border=0 height=2><br>
 <!-- 간단한 답글 시작하는 부분 -->
-<?=$hide_comment_start?> 
-<table class=zv3_table width=<?=$width?> cellspacing=0 cellpadding=0 style=table-layout:fixed>
+<?=$hide_comment_start?>

@@ -205,7 +205,7 @@ if($setup[use_autolink]&&!preg_match("/url\(/i",$memo)) $memo=autolink($memo);
 <!-- 이미지 리사이즈를 위해서 처리하는 부분 -->
 <script>
 	function zb_img_check(){
-		var zb_main_table_width = document.zb_get_table_width.width - 50;
+		var zb_main_table_width = document.zb_get_table_width.width*(100-4)/100;
 		var zb_target_resize_num = document.zb_target_resize.length;
 		for(i=0;i<zb_target_resize_num;i++){ 
 			if(document.zb_target_resize[i].width > zb_main_table_width) {

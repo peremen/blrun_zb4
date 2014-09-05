@@ -1,16 +1,10 @@
 <?
 set_time_limit (0);
-
 $_zb_path="../";
-
 include "../lib.php";
-
 $connect=dbconn();
-
 $member=member_info();
-
 if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
-
 head(" bgcolor=white");
 ?>
 

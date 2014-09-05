@@ -8,7 +8,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 <tr>
 	<td bgcolor=white>
 		<table border=0 cellspacing=1 cellpadding=8 width=100% height=120 bgcolor=white>
-		<form method=post name=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name="page" value="<?=$page?>"><input type=hidden name="id" value="<?=$id?>"><input type=hidden name=no value="<?=$no?>"><input type=hidden name=select_arrange value="<?=$select_arrange?>"><input type=hidden name=desc value="<?=$desc?>"><input type=hidden name=page_num value="<?=$page_num?>"><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="modify"><input type=hidden name=c_no value=<?=$c_no?>><input type=hidden name=antispam value="<?=$num1num2?>">
+		<form method=post name=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name="page" value="<?=$page?>"><input type=hidden name="id" value="<?=$id?>"><input type=hidden name=no value="<?=$no?>"><input type=hidden name=select_arrange value="<?=$select_arrange?>"><input type=hidden name=desc value="<?=$desc?>"><input type=hidden name=page_num value="<?=$page_num?>"><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=c_no value=<?=$c_no?>><input type=hidden name=c_org value=<?=$c_org?>><input type=hidden name=c_depth value=<?=$c_depth?>><input type=hidden name=antispam value="<?=$num1num2?>">
 		<col width=70 align=right style=padding-right:10px></col><col width=></col>
 		<?=$hide_start?>
 
@@ -25,7 +25,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 		<tr>
 			<td class=list0><font class=list_eng><b>Option</b></font></td>
 			<td class=list_eng>
-				<?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>>HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?>
+				<?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>>HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?>
 			</td>
 		</tr>
 		<tr>	
@@ -35,7 +35,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 				<col width=></col><col width=70></col>
 				<tr>
 					<td width=100%><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea></td>
-					<td width=70><input type=submit rows=5 class=submit value='수정하기' accesskey="s" style=height:100%></td>
+					<td width=70><input type=submit rows=5 class=submit value='작성완료' accesskey="s" style=height:100%></td>
 				</tr>
 				</table>
 			</td>

@@ -55,6 +55,9 @@ if(!$member[no]) {
 	$password = $member[password];
 }
 
+// 리플라이 덧글 관련 예약 문자열 검사
+if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",trim($memo))) Error("예약된 문자열은 사용할 수 없습니다");
+
 // 필터링;; 관리자가 아닐때;;
 if(!$is_admin&&$setup[use_filter]) {
 	$filter=explode(",",$setup[filter]);
@@ -162,6 +165,8 @@ $s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no=
 // 원본글을 이용한 비교
 if($mode=="modify") {
 	if(!$s_data[no]) Error1("해당 덧글이 존재하지 않습니다");
+} elseif($mode=="reply") {
+	if(!$s_data[no]) Error1("원본 덧글이 존재하지 않습니다");
 }
 
 // 회원등록이 되어 있을때 이름등을 가져옴;;
@@ -185,7 +190,7 @@ if($use_html2<2) {
 $max_no=mysql_fetch_array(mysql_query("select max(no) from $t_comment"."_$id where parent='$no'"));
 
 // 같은 내용이 있는지 검사;;
-if(!$is_admin&&$mode=="write") {
+if(!$is_admin&&$mode!="modify") {
 	$temp=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where memo='$memo' and no='$max_no[0]'"));
 	if($temp[0]>0) Error1("같은 내용의 글은 등록할수가 없습니다");
 }
@@ -215,6 +220,12 @@ if($mode=="modify"&&$c_no) {
 	if($s_data[ismember]!=$member[no]&&!$is_admin) {
 		if($password!=$s_data[password]) Error1("비밀번호가 틀렸습니다");
 	}
+	if($c_depth) {
+		$memo.="|||".$c_org."|".$c_depth;
+	}
+}
+elseif($mode=="reply"&&$c_no) {
+	$memo.="|||".$c_no."|".($c_depth+1);
 }
 
 /***************************************************************************
@@ -350,7 +361,7 @@ if($mode=="modify"&&$c_no) {
 	mysql_query("update $t_comment"."_$id set name='$name',memo='$memo',use_html2='$use_html2',is_secret='$is_secret' $del_que1 $del_que2 where no='$c_no'") or error1(mysql_error());
 	if($type=="Movie_type") mysql_query("update $t_comment"."_$id"."_movie set point1='$_point1',point2='$_point2' where parent='$no' and reg_date='$c_date'") or error1(mysql_error());
 
-} elseif($mode=="write") {
+} elseif($mode=="write"||($mode=="reply"&&$c_no)) {
 	// 코멘트 입력
 	mysql_query("insert into $t_comment"."_$id (parent,ismember,name,password,memo,reg_date,ip,use_html2,is_secret,file_name1,file_name2,s_file_name1,s_file_name2) values ('$no','$member[no]','$name','$password','$memo','$reg_date','$REMOTE_ADDR','$use_html2','$is_secret','$file_name1','$file_name2','$s_file_name1','$s_file_name2')") or error1(mysql_error());
 	if($type=="Movie_type") mysql_query("insert into $t_comment"."_$id"."_movie (parent,reg_date,point1,point2) values ('$no','$reg_date','$_point1','$_point2')") or error1(mysql_error());

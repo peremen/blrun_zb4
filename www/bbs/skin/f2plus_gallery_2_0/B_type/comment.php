@@ -6,7 +6,7 @@ $emoticon_url=$dir."/emoticon";
 ?>
 
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> align=center>
-<form method=post name=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="modify"><input type=hidden name=c_no value=<?=$c_no?>><input type=hidden name=antispam value="<?=$num1num2?>">
+<form method=post name=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=c_no value=<?=$c_no?>><input type=hidden name=c_org value=<?=$c_org?>><input type=hidden name=c_depth value=<?=$c_depth?>><input type=hidden name=antispam value="<?=$num1num2?>">
 <col width=60 style=padding:0,3,0,5></col><col width=80 style=padding:0,3,0,3></col><col width=80 style=padding:0,3,0,3></col><col width=80 style=padding:0,3,0,3></col><col width=></col>
 <tr>
 <?=$hide_start?>
@@ -21,7 +21,7 @@ $emoticon_url=$dir."/emoticon";
 	<td height=1 colspan=5 background=<?=$dir?>/dot.gif></td>
 </tr>
 <tr>
-	<td colspan=5 align=right class=list_eng><?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>>HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?></td>
+	<td colspan=5 align=right class=list_eng><?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>>HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?></td>
 </tr>
 <tr>
 	<td bgcolor=white height=3 colspan=5></td>
@@ -39,7 +39,7 @@ $emoticon_url=$dir."/emoticon";
 				<col width=></col><col width=70></col>
 				<tr>
 					<td width=100% valign=top><textarea name=memo id=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea></td>
-					<td width=70><input type=submit rows=5 class=submit value='수정하기' accesskey="s" style=height:100%></td>
+					<td width=70><input type=submit rows=5 class=submit value='작성완료' accesskey="s" style=height:100%></td>
 				</tr>
 				</table>
 				<table border=0 cellspacing=2 cellpadding=0 width=100% height=20>

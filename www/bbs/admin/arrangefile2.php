@@ -1,16 +1,10 @@
 <?
 set_time_limit (0);
-
 $_zb_path="../";
-
 include "../lib.php";
-
 $connect=dbconn();
-
 $member=member_info();
-
 if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
-
 head(" bgcolor=white");
 ?>
 
@@ -104,19 +98,13 @@ function getFileList($path) {
 	}
 	$directory->close();
 }
-
 getFileList("../data");
-
 $totallist = count($list);
-
 
 // 서로 다른 내용을 정리
 unset($difflist);
-
 $difflist = @array_diff($list, $dblist);
-
 $totaldifflist = count($difflist);
-
 ?>
 
 
@@ -135,29 +123,20 @@ $totaldifflist = count($difflist);
 $total = 0;
 $i=0;
 while(list($key,$filename)=@each($difflist)) {
-
 	//echo "	".$filename."\n";
-
 	$tmp = explode("/",$filename);
-
 	$last = count($tmp)-1;
-
 	$name = $tmp[$last];
 	$path = str_replace($name, "", $filename);
-
 	//echo "		".$path."		".$name."\n";
-
 	z_unlink("../".$filename);
-
 	@rmdir("../".$path);
-
 	echo ".";
 	$i++;
 	if($i>100) {
 		$i=0;
 		echo "\n		";
 	}
-
 	flush();
 }
 ?>
