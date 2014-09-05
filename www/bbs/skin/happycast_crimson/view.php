@@ -173,4 +173,4 @@
 </table>
 
 <!-- 간단한 답글 시작하는 부분 -->
-<?=$hide_comment_start?><table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> style=table-layout:fixed><?=$hide_comment_end?>
+<?=$hide_comment_start?>

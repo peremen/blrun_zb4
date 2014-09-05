@@ -24,6 +24,7 @@
 
  */
 ?>
+<?=$hide_comment_end?>
 <?
 if(!preg_match("/Zeroboard/i",$a_preview)) $a_preview = str_replace(">","><font class=view_title1>",$a_preview)."&nbsp;&nbsp;";
 if(!preg_match("/Zeroboard/i",$a_imagebox)) $a_imagebox = str_replace(">","><font class=view_title1>",$a_imagebox)."&nbsp;&nbsp;";

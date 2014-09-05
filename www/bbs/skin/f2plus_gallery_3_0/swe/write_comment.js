@@ -59,17 +59,32 @@ function check_comment_submit()
 		}
 	}
 
+	var rPattern=/\|\|\|\d+\|\d+$/g;
+
 	if(edit_tag_yn == "Y") {
-		if(!memoiW.document.body.innerHTML||memoiW.document.body.innerHTML=="<P>&nbsp;</P>"||memoiW.document.body.innerHTML=="<br>")
+		var rStr=memoiW.document.body.innerHTML;
+		if(!rStr||rStr=="<P>&nbsp;</P>"||rStr=="<br>")
 		{
 			alert('덧글 내용을 입력하여 주세요.');
 			memoiW.focus();
 			return false;
 		}
+		if(rStr.match(rPattern)!= null){
+			alert('예약된 문자열은 사용할 수 없습니다.');
+			memoiW.focus();
+			return false;
+		}
+
 	} else {
-		if(!memoE.value||memoE.value=="<P>&nbsp;</P>"||memoE.value=="<br>")
+		var rStr=memoE.value;
+		if(!rStr||rStr=="<P>&nbsp;</P>"||rStr=="<br>")
 		{
-			alert('덧글 내용을 입력하여 주세요.');
+			alert('덧글 내용을 입력하여 주세요..');
+			document.write.memo.focus();
+			return false;
+		}
+		if(rStr.match(rPattern)!= null){
+			alert('예약된 문자열은 사용할 수 없습니다..');
 			document.write.memo.focus();
 			return false;
 		}
@@ -78,6 +93,8 @@ function check_comment_submit()
 	document.check_attack.check.value=1;
 	show_waiting();
 	hideImageBox();
+
+	document.getElementById('is_secret').disabled = false;
 
 	return true;
 }
@@ -133,18 +150,32 @@ function sw_preview()
 	} else {
 		document.getElementById("memo").value = memoE.value;
 	}
+
+	var rPattern=/\|\|\|\d+\|\d+$/g;
 	
 	if(edit_tag_yn == "Y") {
-		if(!memoiW.document.body.innerHTML||memoiW.document.body.innerHTML=="<P>&nbsp;</P>"||memoiW.document.body.innerHTML=="<br>")
+		var rStr=memoiW.document.body.innerHTML;
+		if(!rStr||rStr=="<P>&nbsp;</P>"||rStr=="<br>")
 		{
-			alert('덧글 내용을 입력하여 주세요..');
+			alert('덧글 내용을 입력하여 주세요.');
+			memoiW.focus();
+			return false;
+		}
+		if(rStr.match(rPattern)!= null){
+			alert('예약된 문자열은 사용할 수 없습니다.');
 			memoiW.focus();
 			return false;
 		}
 	} else {
-		if(!memoE.value||memoE.value=="<P>&nbsp;</P>"||memoE.value=="<br>")
+		var rStr=memoE.value;
+		if(!rStr||rStr=="<P>&nbsp;</P>"||rStr=="<br>")
 		{
 			alert('덧글 내용을 입력하여 주세요..');
+			document.write.memo.focus();
+			return false;
+		}
+		if(rStr.match(rPattern)!= null){
+			alert('예약된 문자열은 사용할 수 없습니다..');
 			document.write.memo.focus();
 			return false;
 		}
@@ -161,17 +192,31 @@ function preview_m()
 		document.getElementById("memo").value = memoE.value;
 	}
 	
+	var rPattern=/\|\|\|\d+\|\d+$/g;
+
 	if(edit_tag_yn == "Y") {
-		if(!memoiW.document.body.innerHTML||memoiW.document.body.innerHTML=="<P>&nbsp;</P>"||memoiW.document.body.innerHTML=="<br>")
+		var rStr=memoiW.document.body.innerHTML;
+		if(!rStr||rStr=="<P>&nbsp;</P>"||rStr=="<br>")
 		{
-			alert('덧글 내용을 입력하여 주세요..');
+			alert('덧글 내용을 입력하여 주세요.');
+			memoiW.focus();
+			return false;
+		}
+		if(rStr.match(rPattern)!= null){
+			alert('예약된 문자열은 사용할 수 없습니다.');
 			memoiW.focus();
 			return false;
 		}
 	} else {
-		if(!memoE.value||memoE.value=="<P>&nbsp;</P>"||memoE.value=="<br>")
+		var rStr=memoE.value;
+		if(!rStr||rStr=="<P>&nbsp;</P>"||rStr=="<br>")
 		{
 			alert('덧글 내용을 입력하여 주세요..');
+			document.write.memo.focus();
+			return false;
+		}
+		if(rStr.match(rPattern)!= null){
+			alert('예약된 문자열은 사용할 수 없습니다..');
 			document.write.memo.focus();
 			return false;
 		}

@@ -17,15 +17,11 @@
 <?
 if(!$url) {
 ?>
-
 		<center><input type=button value="   Move Back   " onclick=history.back() style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:23px;>
-
 <?
 } else {
 ?>
-
 		<div align=center><input type=button value='   Move Page   ' onclick=location.href="<?echo $url;?>" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:23px;>
-
 <?
 }
 ?>
@@ -35,9 +31,7 @@ if(!$url) {
 </tr>
 </form>
 </table>
-
 </div>
 <br>
 <br>
-
 <? @mysql_close($connect); ?>

@@ -1,9 +1,14 @@
 <? 
 $m_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id"."_movie where parent='$s_data[parent]' and reg_date='$s_data[reg_date]'"));
-$_point1=$m_data[point1];
-$_point2=$m_data[point2];
-$parent=$m_data[parent];
-$c_date=$m_data[reg_date];
+if($mode=="modify") {
+	$_point1=$m_data[point1];
+	$_point2=$m_data[point2];
+	$parent=$m_data[parent];
+	$c_date=$m_data[reg_date];
+} else {
+	$_point1=0;
+	$_point2=0;
+}
 
 $align="right";
 if($member[no]){
@@ -18,7 +23,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 ?>
 
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> align=center>
-<form method=post id=write name=write action=<?=$dir?>/comment_ok.php onsubmit="return check_comment_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="modify"><input type=hidden name=c_no value=<?=$c_no?>><input type=hidden name=parent value=<?=$parent?>><input type=hidden name=c_date value=<?=$c_date?>><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$zb_url?>"><input type=hidden name=antispam value="<?=$num1num2?>">
+<form method=post id=write name=write action=<?=$dir?>/comment_ok.php onsubmit="return check_comment_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=c_no value=<?=$c_no?>><input type=hidden name=c_org value=<?=$c_org?>><input type=hidden name=c_depth value=<?=$c_depth?>><input type=hidden name=parent value=<?=$parent?>><input type=hidden name=c_date value=<?=$c_date?>><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$zb_url?>"><input type=hidden name=antispam value="<?=$num1num2?>">
 <col width=10></col><col width=></col><col width=10></col>
 <tr valign=top>
 	<td height=9 background=<?=$dir?>/images/cc_head_bg1.gif></td>
@@ -48,7 +53,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 				<label for='use_html2'> <input type='checkbox' id='use_html2' name='use_html2' <?=$use_html2?>><font class='sw_ft_style_1'> HTML적용</font></label>
 <?=$hide_secret_start?>
 
-				<label for='is_secret'> <input type=checkbox name=is_secret <?=$secret?> value=1><font class='sw_ft_style_1'> 비밀글</font></label>
+				<label for='is_secret'> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1><font class='sw_ft_style_1'> 비밀글</font></label>
 <?=$hide_secret_end?>
 
 			</td>
@@ -81,7 +86,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 				</select></td>
 				<td valign=top>
 				<select name="_point2" value=<?=$_point2?>>
-<?$checked[$_point2]="selected"?>
+<? $checked=array("",""); $checked[$_point2]="selected"?>
 					<option value=0 style=background-color:#ffffff;color:555555 <?=$checked[0]?>>절반</option>
 					<option value=1 style=background-color:#ffffff;color:black <?=$checked[1]?>>☆</option>
 				</select></td>

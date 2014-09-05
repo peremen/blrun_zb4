@@ -19,7 +19,7 @@
 		<label for='htChk'> <input type='checkbox' id='htChk' name='htChk' style='cursor:pointer;' value=1 checked disabled><font class='sw_ft_style_1'>HTML</font></label>
 <? } ?>
 		<label for='use_html2'> <input type='checkbox' id='use_html2' name='use_html2' <?=$use_html2?>><font class='sw_ft_style_1'>HTML적용</font></label>
-		<?=$hide_secret_start?><label for='is_secret'> <input type=checkbox name=is_secret <?=$secret?> value=1><font class='sw_ft_style_1'>비밀글</font></label><?=$hide_secret_end?>
+		<?=$hide_secret_start?><label for='is_secret'> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1><font class='sw_ft_style_1'>비밀글</font></label><?=$hide_secret_end?>
 
 	</td>
 	<td align='right'>

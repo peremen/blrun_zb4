@@ -40,6 +40,5 @@ function exif_info($filename){
 
 	}
 	return $str;
-
 }
 ?>

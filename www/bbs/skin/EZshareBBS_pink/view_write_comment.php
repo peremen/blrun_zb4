@@ -1,6 +1,7 @@
 
-<tr>
 <!--가로점선 -->
+<table class=zv3_table width=<?=$width?> cellspacing=0 cellpadding=0 style=table-layout:fixed>
+<tr>
   <td colspan=2 height=1 background=<?=$dir?>/dot_line.gif></td>
 </tr>
 </table>
@@ -104,13 +105,13 @@ function sendit() {
 <img src=<?=$dir?>/t.gif border=0 height=4><br>
 <form name="myform" method="post" action=<?=$PHP_SELF?> enctype=multipart/form-data>
 <input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>">
-<table width=<?=$width?> height="120" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" align="center">
+<table width=<?=$width?> height="70" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" align="center">
 <tr>
 	<td>
-		<table width="320" height="70" border="1" style="border-collapse:collapse;" bordercolor="black" bgcolor="#BEEBDD" cellpadding="1" align="center">
-		<tr><td height="45" align="center"><b><span style="font-size:11pt">덧글 달기!!<br>스팸방지 비번(<font color="red">gg</font>)을 입력: </span></b><input type="password" name="pwd" size="20"></td>
+		<table width="320" height="100%" border="1" style="border-collapse:collapse;" bordercolor="black" bgcolor="#BEEBDD" cellpadding="1" align="center">
+		<tr><td align="center"><b><span style="font-size:11pt">덧글 달기!!<br>스팸방지 비번(<font color="red">gg</font>)을 입력: </span></b><input type="password" name="pwd" size="20"></td>
 		</tr>
-		<tr><td height="25" align="center"><input type="button" value="확인" onClick="javascript:sendit();">
+		<tr><td align="center"><input type="button" value="확인" onClick="javascript:sendit();">
 		<tr>
 		</table>
 	</td>

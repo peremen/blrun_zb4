@@ -24,7 +24,7 @@
 <input type=hidden name=sc value="on">
 <input type=hidden name=category value="<?=$category?>">
 <!-- Æû ÅÂ±× ³¡ --></td>
-<td width=100% align=right>
+<td width=100% align=right>
 <span id="down" style="display:none;width:300px">
 <table border=0 width=40% cellspcing=0 cellpadding=0><tr><td align=right><input type=text name=keyword value="<?=$keyword?>" <?=size(15)?> class=input2></td></tr></table>
 </span>

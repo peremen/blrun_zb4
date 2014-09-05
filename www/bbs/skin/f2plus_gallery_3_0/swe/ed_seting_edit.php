@@ -26,7 +26,7 @@ if($setup['use_html'] > 0) {
 <tr>
 <td align='center'>
 	<iframe id='memoi' name='memoi' style='width:100%; height:100%; display:none;' onbeforedeactivate='deactivate_handler()' scrolling='yes' frameborder='no' border='0' ALLOWTRANSPARENCY='true'></iframe>
-	<textarea id='memo' name='memo' style='width:100%; height:100%; display:block;' class='sw_bd_style_7' onkeydown='return doTab(event,this);'><?if($mode=="modify"||$mode=="reply"){ echo "$memo"; } ?></textarea>
+	<textarea id='memo' name='memo' style='width:100%; height:100%; display:block;' class='sw_bd_style_7' onkeydown='return doTab(event,this);'><?if($mode=="modify"||($mode=="reply"&&!$c_no)){ echo "$memo"; } ?></textarea>
 </td>
 </tr>
 </table>
