@@ -2,7 +2,7 @@
 include "lib.php";
 $connect=dbConn();
 $member=member_info();
-if((($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$member[board_name]))&&$_token2) movepage("admin_setup_bac.php");
+if((($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$member[board_name]))&&$_token2) movepage("admin_setup_bac.php?exec=$exec&no=$no&group_no=$group_no&exec2=$exec2");
 else {
 	if($member[no]) {
 		destroyZBSessionID($member[no]);
@@ -46,7 +46,10 @@ function check_submit() {
 <br><br><br>
 <form name=write method=post action=login_check2.php onsubmit="return check_submit();">
 <input type=hidden name=s_url value="<?=$REQUEST_URI?>">
-<input type=hidden name=exec value=login>
+<input type=hidden name=exec value=view_board>
+<input type=hidden name=no value=<?=$no?>>
+<input type=hidden name=group_no value=<?=$group_no?>>
+<input type=hidden name=exec2 value=modify>
 <div align=center>
 <table cellpadding=3 cellspacing=1 width=250 border=0 bgcolor="#000000">
 <tr>

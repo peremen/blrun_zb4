@@ -18,6 +18,13 @@ if($setup[group_no]&&!$group_no) $group_no=$setup[group_no];
 mysql_close($connect);
 
 destroyZBSessionID($member[no]);
+//토큰 초기화
+$_token='';
+session_register("_token");
+setCookie("token","",0,"/","");
+$_token2='';
+session_register("_token2");
+setCookie("token2","",0,"/","");
 
 // 4.0x 용 세션 처리
 $zb_logged_no='';

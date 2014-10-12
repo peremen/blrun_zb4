@@ -18,6 +18,49 @@ $member=member_info();
 
 if(!$member[no]) Error("회원 정보가 존재하지 않습니다","window.close");
 
+// 폼타켓을 member_modify.php로 설정
+$target="member_modify.php";
+
+// 패스워드가 틀리면 에러 표시
+if($password) {
+	if(!get_magic_quotes_gpc()) {
+		$password = addslashes($password);
+	}
+	$secret_check=mysql_fetch_array(mysql_query("select count(*) from $member_table where user_id='$member[user_id]' and password=password('$password')"));
+	if(!$secret_check[0]) error("비밀번호 오류! 회원정보를 수정할 권한이 없습니다");
+} else {
+	head();
+	$title="회원 비밀번호를 다시한번 입력하여 주십시요.";
+	$input_password="<input type=password name=password size=20 maxlength=20 class=input>";
+	if(preg_match("/:\/\//i",$dir)||preg_match("/\.\./i",$dir)) $dir="./";
+?>
+
+<br><br><br>
+<form method=post name=member_secret action=<?=$target?>>
+<input type=hidden name=id value=<?=$id?>>
+<table border=0 width=300 cellspacing=1 cellpadding=0 align=center>
+<tr class=title>
+	<td align=center class=title_han><b><?=$title?></b></td>
+</tr>
+<tr height=60>
+	<td align=center class=list0>
+		<font class=list_eng><b>Password</b> :</font><?=$input_password?> 
+	</td>
+</tr>
+<tr class=list0 height=30>
+	<td align=center>
+		<input type=submit class=submit value=" 확  인 " border=0 accesskey="s">
+	</td>
+</tr>
+</table>
+</form>
+
+<?
+
+	foot();
+	exit();
+}
+
 $member[name] = stripslashes($member[name]);
 $member[job] = stripslashes($member[job]);
 $member[email] = stripslashes($member[email]);

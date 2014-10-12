@@ -71,7 +71,7 @@ function formresize(mode) {
 </tr>
 <tr height=1><td colspan=2 bgcolor=<?=$list_divider?>><img src=images/t.gif height=1></td></tr>
 </table>
-<table border=0 width=<?=$width?> cellspacing=1 cellpadding=0 bgcolor=<?=$view_left_header_color?>>
+<table border=0 width=<?=$width?> cellspacing=1 cellpadding=0 bgcolor=<?=$view_left_header_color?> style=table-layout:fixed>
 <col width=80></col><col width=></col>
 <?=$hide_start?>
 
