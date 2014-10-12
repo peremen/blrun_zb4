@@ -92,7 +92,19 @@ if(!preg_match("/install/i",$PHP_SELF)&&file_exists($_zb_path."myZrCnf2019.php")
 	// 자동 로그인일때 제대로 된 자동 로그인인지 체크하는 부분
 	unset($autoLoginData);
 	$autoLoginData = getZBSessionID();
-	if($autoLoginData[no]) {
+
+	// 로그인 시간이 지정된 시간을 넘었거나 로그인 아이피가 현재 사용자의 아이피와 다를 경우 로그아웃 시킴
+	if(time()-$HTTP_SESSION_VARS["zb_logged_time"]>$_zbDefaultSetup["login_time"]||$HTTP_SESSION_VARS["zb_logged_ip"]!=$_SERVER['REMOTE_ADDR']) {
+		$zb_logged_no="";
+		$zb_logged_time="";
+		$zb_logged_ip="";
+		session_register("zb_logged_no");
+		session_register("zb_logged_ip");
+		session_register("zb_logged_time");
+		session_destroy();
+
+	} elseif($autoLoginData[no]) {
+		// 유효할 경우 로그인 시간을 다시 설정
 		$zb_logged_no=$autoLoginData[no];
 		$zb_logged_ip=$_SERVER['REMOTE_ADDR'];
 		$zb_logged_time=time();
@@ -103,25 +115,9 @@ if(!preg_match("/install/i",$PHP_SELF)&&file_exists($_zb_path."myZrCnf2019.php")
 
 	// 세션 값을 체크하여 로그인을 처리
 	} elseif($HTTP_SESSION_VARS["zb_logged_no"]) {
-
-		// 로그인 시간이 지정된 시간을 넘었거나 로그인 아이피가 현재 사용자의 아이피와 다를 경우 로그아웃 시킴
-		if(time()-$HTTP_SESSION_VARS["zb_logged_time"]>$_zbDefaultSetup["login_time"]||$HTTP_SESSION_VARS["zb_logged_ip"]!=$_SERVER['REMOTE_ADDR']) {
-
-			$zb_logged_no="";
-			$zb_logged_time="";
-			$zb_logged_ip="";
-			session_register("zb_logged_no");
-			session_register("zb_logged_ip");
-			session_register("zb_logged_time");
-			session_destroy();
-
 		// 유효할 경우 로그인 시간을 다시 설정
-		} else {
-			// 4.0x 용 세션 처리
-			$zb_logged_time=time();
-			session_register("zb_logged_time");
-		}
-
+		$zb_logged_time=time();
+		session_register("zb_logged_time");
 	} 
 	$_sessionEnd = getmicrotime();
 
@@ -864,7 +860,7 @@ function isHomepage( $str ) {
 // URL, Mail을 자동으로 체크하여 링크만듬
 function autolink($str) {
 	// URL 치환
-	$homepage_pattern = "/([^\"\'\=\>])(mms|http|HTTP|ftp|FTP|telnet|TELNET)\:\/\/(.[^ \n\<\"\']+)/";
+	$homepage_pattern = "/([^\"\'\=\>])(mms|http|HTTP|https|HTTPS|ftp|FTP|telnet|TELNET)\:\/\/(.[^ \n\<\"\']+)/";
 	$str = preg_replace($homepage_pattern,"\\1<a href=\\2://\\3 target=_blank>\\2://\\3</a>", " ".$str);
 
 	// 메일 치환

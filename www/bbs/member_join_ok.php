@@ -42,12 +42,12 @@ if($id) {
 $user_id = str_replace("ㅤ","",$user_id);
 $name = str_replace("ㅤ","",$name);
 
-	if(!get_magic_quotes_gpc()) {
-	  $user_id = addslashes($user_id);
-	  $password = addslashes($password);
-	  $password1 = addslashes($password1);
-	  $email = addslashes($email);
-	}
+if(!get_magic_quotes_gpc()) {
+	$user_id = addslashes($user_id);
+	$password = addslashes($password);
+	$password1 = addslashes($password1);
+	$email = addslashes($email);
+}
 
 $user_id=trim($user_id);
 preg_match('/[0-9a-zA-Z\_]+/',$user_id,$result); //특수문자가 들어갔는지 조사

@@ -60,6 +60,11 @@ for($i=0;$i<count($avoid_ip);$i++)
 // 현재 그룹이 폐쇄그룹이고 로그인한 멤버가 비멤버일때 에러표시
 if($group[is_open]==0&&!$is_admin&&$member[group_no]!=$setup[group_no]) Error("공개 되어 있지 않습니다");
 
+// 패스워드 addslashes
+if(!get_magic_quotes_gpc()) {
+	$password = addslashes($password);
+}
+
 //패스워드를 암호화
 if($password)
 {

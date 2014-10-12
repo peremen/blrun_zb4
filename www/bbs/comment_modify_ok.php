@@ -14,6 +14,10 @@ if($flag != ok) {
 	* 코멘트 수정 진행
 	**************************************************************************/
 
+	// 코멘트 보안을 위해 세션변수를 재설정(에러 방지)
+	$ZBRD_SS_VRS = $antispam;
+	session_register("ZBRD_SS_VRS");
+
 	// 패스워드 addslashes
 	if(!get_magic_quotes_gpc()) {
 		$password = addslashes($password);
