@@ -164,7 +164,7 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 
 	if($use_thumb>0){
 		if(!is_dir($_zb_path."data/latest_thumb/")){
-			if(!@mkdir($_zb_path."data/latest_thumb/",0777)) echo $_zb_path."data 폴더의 퍼미션이 707인지 확인하세요<BR>";
+			if(!@mkdir($_zb_path."data/latest_thumb/",0777,true)) echo $_zb_path."data 폴더의 퍼미션이 707인지 확인하세요<BR>";
 			if(!@chmod($_zb_path."data/latest_thumb/",0707)) echo $_zb_path."data/latest_thumb/ 폴더의 권한을 707로 수정하세요<BR>";
 		}
 		if(!is_dir($_zb_path."data/latest_thumb/$id/")){

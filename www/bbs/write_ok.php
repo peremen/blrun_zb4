@@ -301,7 +301,7 @@ if($file1_size>0&&$setup[use_pds]&&$file1) {
 
 		// 디렉토리를 검사함
 		if(!is_dir("data/".$id)) { 
-			@mkdir("data/".$id,0777);
+			@mkdir("data/".$id,0777,true);
 			@chmod("data/".$id,0707);
 		}
 
@@ -345,7 +345,7 @@ if($file2_size>0&&$setup[use_pds]&&$file2) {
 
 		// 디렉토리를 검사함
 		if(!is_dir("data/".$id)) {
-			mkdir("data/".$id,0777);
+			@mkdir("data/".$id,0777,true);
 			@chmod("data/".$id,0707);
 		}
 

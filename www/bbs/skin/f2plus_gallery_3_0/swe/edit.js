@@ -33,7 +33,7 @@ var baseY;
 
 function htClick()
 {
-	if (document.write.htChk.checked) {
+	if (document.getElementById('htChk').checked) {
 		ChangeEditMode('text');
 	} else {
 		ChangeEditMode('html');

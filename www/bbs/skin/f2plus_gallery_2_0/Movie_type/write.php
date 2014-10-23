@@ -3,7 +3,6 @@ if($mode=="reply") $title="답글 쓰기";
 elseif($mode=="modify") $title="글 수정하기";
 else $title="새로 글 쓰기";
 
-
 $m_memo = explode("|||",$memo);
 $_name1 = $m_memo[0];  
 $_name2 = $m_memo[1];  
@@ -29,15 +28,19 @@ function zb_formresize(obj) {
 }
 
 function check_submit_y() {
+	var rName=document.getElementById('name');
+	var rPass=document.getElementById('password');
+	var rSub=document.getElementById('subject');
+	var rStr=document.getElementById('memo');
 <? if(!$member[no]) { ?>
-	if(!document.write.name.value){
+	if(!rName.value){
 		alert('이름을 입력하여 주세요.');
-		document.write.name.focus();
+		rName.focus();
 		return false;
 	}
-	else if(!document.write.password.value){
+	else if(!rPass.value){
 		alert('암호를 입력하여 주세요.\n\n암호를 입력하셔야 수정/삭제를 할수 있습니다');
-		document.write.password.focus();
+		rPass.focus();
 		return false;
 	}
 <? } ?>
@@ -50,45 +53,52 @@ function check_submit_y() {
 		return false;
 	}
 <? } ?>
+	
+	var rName2=document.getElementById('_name2');
+	var rName3=document.getElementById('_name3');
+	var rName4=document.getElementById('_name4');
+	var rName5=document.getElementById('_name5');
+	var rName6=document.getElementById('_name6');
+	var rName8=document.getElementById('_name8');
 
-	if(document.getElementById("subject").value==""){
+	if(rSub.value==""){
 		alert("영화 제목을 입력하세요!");
-		document.getElementById("subject").focus();
+		rSub.focus();
 		return false;
 	}
-	else if(document.getElementById("memo").value==""){
+	else if(rStr.value==""){
 		alert("내용을 입력하세요!");
-		document.getElementById("memo").focus();
+		rStr.focus();
 		return false;
 	}
-	else if(document.write._name2.value==""){
+	else if(rName2.value==""){
 		alert("감독을 입력하세요!");
-		document.write._name2.focus();
+		rName2.focus();
 		return false;
 	}
-	else if(document.write._name3.value==""){
+	else if(rName3.value==""){
 		alert("개봉일을 입력하세요!");
-		document.write._name3.focus();
+		rName3.focus();
 		return false;
 	}
-	else if(document.write._name4.value==""){
+	else if(rName4.value==""){
 		alert("장르를 입력하세요!");
-		document.write._name4.focus();
+		rName4.focus();
 		return false;
 	}
-	else if(document.write._name5.value==""){
+	else if(rName5.value==""){
 		alert("주연을 입력하세요!");
-		document.write._name5.focus();
+		rName5.focus();
 		return false;
 	}
-	else if(document.write._name6.value=="0"){
+	else if(rName6.value=="0"){
 		alert("평점을 입력하세요!");
-		document.write._name6.focus();
+		rName6.focus();
 		return false;
 	}
-	else if(document.write._name8.value==""){
+	else if(rName8.value==""){
 		alert("상영시간을 입력하세요!");
-		document.write._name8.focus();
+		rName8.focus();
 		return false;
 	}
 
@@ -96,24 +106,27 @@ function check_submit_y() {
 }
 
 function preview_m() {
-	if(!document.write.subject.value)
+	var rSub=document.getElementById('subject');
+	var rStr=document.getElementById('memo');
+	if(!rSub.value)
 	{
 		alert('글쓰기 제목을 입력하여 주세요.');
-		document.write.subject.focus();
+		rSub.focus();
 		return false;
 	}
 
-	if(!document.write.memo.value)
+	if(!rStr.value)
 	{
 		alert('글쓰기 내용을 입력하여 주세요.');
-		document.write.memo.focus();
+		rStr.focus();
 		return false;
 	}
-	document.write.action = "view_preview.php";
-	document.write.target = "_blank";
-	document.write.submit();
-	document.write.action = "<?=$dir?>/write_ok.php";
-	document.write.target = "_self";
+	var rWrite=document.getElementById('write');
+	rWrite.action = "view_preview.php";
+	rWrite.target = "_blank";
+	rWrite.submit();
+	rWrite.action = "<?=$dir?>/write_ok.php";
+	rWrite.target = "_self";
 }
 //-->
 </SCRIPT><br>
@@ -124,20 +137,20 @@ function preview_m() {
 </tr>
 </table>
 <table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0 style=table-layout:fixed>
-<form id=write method=post name=write action=<?=$_url?> onsubmit="return check_submit_y();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=wantispam value="<?=$wnum1num2?>"><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$zb_url?>">
+<form method=post id=write name=write action=<?=$_url?> onsubmit="return check_submit_y();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=wantispam value="<?=$wnum1num2?>"><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$zb_url?>">
 <col width=80 align=right style=padding-right:10px;height:28px class=com2></col><col class=list1 style=padding-left:10px;height:28px width=></col>
 <?=$hide_start?>
 
 <tr>
   <td><font class=com2><b>이름</b></font></td>
-  <td><input type=text name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=input></td>
+  <td><input type=text id=name name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
   <td><font class=com2><b>암호</b></font></td>
-  <td><input type=password name=password <?=size(20)?> maxlength=20 class=input></td>
+  <td><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>
@@ -161,7 +174,7 @@ function preview_m() {
 <tr>
   <td><font class=com2>평점</font></td>
   <td>
-    <SELECT NAME=_name6 value=<?=$_name6?>>
+    <SELECT id=_name6 NAME=_name6 value=<?=$_name6?>>
 <? $checked=array("","","","","",""); $checked[$_name6]="selected"; ?>
     <option value=0 <?=$checked[0]?>>포인트</option>
     <option value=1 <?=$checked[1]?>>★</option>
@@ -182,35 +195,35 @@ function preview_m() {
 </tr>
 <tr>
   <td><font class=com2>감독</font></td>
-  <td><input type=text name=_name2 value="<?=$_name2?>" <?=size(20)?> maxlength=200 class=input></td>
+  <td><input type=text id=_name2 name=_name2 value="<?=$_name2?>" <?=size(20)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
   <td><font class=com2>개봉일</font></td>
-  <td><input type=text name=_name3 value="<?=$_name3?>" <?=size(20)?> maxlength=200 class=input></td>
+  <td><input type=text id=_name3 name=_name3 value="<?=$_name3?>" <?=size(20)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
   <td><font class=com2>상영시간</font></td>
-  <td><input type=text name=_name8 value="<?=$_name8?>" <?=size(10)?> maxlength=200 class=input>분</td>
+  <td><input type=text id=_name8 name=_name8 value="<?=$_name8?>" <?=size(10)?> maxlength=200 class=input>분</td>
 </tr>
 <tr>
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
   <td><font class=com2>장르</font></td>
-  <td><input type=text name=_name4 value="<?=$_name4?>" <?=size(10)?> maxlength=200 class=input></td>
+  <td><input type=text id=_name4 name=_name4 value="<?=$_name4?>" <?=size(10)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
   <td><font class=com2>주연</font></td>
-  <td><input type=text name=_name5 value="<?=$_name5?>" <?=size(50)?> maxlength=200 class=input></td>
+  <td><input type=text id=_name5 name=_name5 value="<?=$_name5?>" <?=size(50)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>

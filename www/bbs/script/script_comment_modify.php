@@ -122,7 +122,7 @@ function view_preview() {
 	rWrite.action = "view_preview2.php";
 	rWrite.target = "_blank";
 	rWrite.submit();
-	rWrite.action = "comment_ok.php";
+	rWrite.action = "comment_modify_ok.php?flag=ok";
 	rWrite.target = "_self";
 }
 

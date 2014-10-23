@@ -7,6 +7,11 @@ var subeva_yn = document.getElementById("subeva_yn").value;
 
 function check_submit_n()
 {
+	var rName=document.getElementById('name');
+	var rPass=document.getElementById('password');
+	var rSub=document.getElementById('subject');
+	var rStr=document.getElementById('memo');
+	var rCheck=document.getElementById('check');
 	if(document.check_attack.check.value==1)
 	{
 		alert('글쓰기 버튼을 여러번 누르시면 안됩니다.');
@@ -15,7 +20,7 @@ function check_submit_n()
 
 	if(edit_tag_yn == "Y")
 	{
-		document.getElementById("memo").value = memoi2memo(memoiW.document.body.innerHTML);
+		rStr.value = memoi2memo(memoiW.document.body.innerHTML);
 	}
 
 	if(use_category_yn == "Y")
@@ -31,25 +36,25 @@ function check_submit_n()
 
 	if(member_yn == "Y")
 	{
-		if(!document.write.password.value)
+		if(!rPass.value)
 		{
 			alert('암호를 입력하여 주세요.\n\n암호를 입력하셔야 수정/삭제를 할 수 있습니다.');
-			document.write.password.focus();
+			rPass.focus();
 			return false;
 		}
 
-		if(!document.write.name.value)
+		if(!rName.value)
 		{
 			alert('이름을 입력하여 주세요.');
-			document.write.name.focus();
+			rName.focus();
 			return false;
 		}
 	}
 
-	if(!document.write.subject.value)
+	if(!rSub.value)
 	{
 		alert('제목을 입력하여 주세요.');
-		document.write.subject.focus();
+		rSub.focus();
 		return false;
 	}
 
@@ -64,7 +69,7 @@ function check_submit_n()
 		if(!memoE.value||memoE.value=="<P>&nbsp;</P>"||memoE.value=="<br>")
 		{
 			alert('내용을 입력하여 주세요..');
-			document.write.memo.focus();
+			rStr.focus();
 			return false;
 		}
 	}		
@@ -73,15 +78,15 @@ function check_submit_n()
 	{
 		if(edit_tag_yn == "Y")
 		{
-			if(document.getElementById("subject").value && memoiW.document.body.innerHTML) { sub_val_ins(); }
+			if(rSub.value && memoiW.document.body.innerHTML) { sub_val_ins(); }
 		} else {
-			if(document.getElementById("subject").value && memoE.value) { sub_val_ins(); }
+			if(rSub.value && memoE.value) { sub_val_ins(); }
 		}
 	}
 
 	sw_mcpy();
 
-	document.check_attack.check.value=1;
+	rCheck.value=1;
 	show_waiting();
 	hideImageBox();
 
@@ -126,17 +131,19 @@ function sub_style_chg(obj)
 
 function sw_preview()
 {
+	var rSub=document.getElementById('subject');
+	var rStr=document.getElementById('memo');
 	if(edit_tag_yn == "Y")
 	{
-		document.getElementById("memo").value = memoi2memo(memoiW.document.body.innerHTML);
+		rStr.value = memoi2memo(memoiW.document.body.innerHTML);
 	} else {
-		document.getElementById("memo").value = memoE.value;
+		rStr.value = memoE.value;
 	}
 
-	if(!document.write.subject.value)
+	if(!rSub.value)
 	{
 		alert('제목을 입력하여 주세요.');
-		document.write.subject.focus();
+		rSub.focus();
 		return false;
 	}
 
@@ -151,7 +158,7 @@ function sw_preview()
 		if(!memoE.value||memoE.value=="<P>&nbsp;</P>"||memoE.value=="<br>")
 		{
 			alert('내용을 입력하여 주세요..');
-			document.write.memo.focus();
+			rStr.focus();
 			return false;
 		}
 	}
@@ -160,17 +167,19 @@ function sw_preview()
 
 function preview_m()
 {
+	var rSub=document.getElementById('subject');
+	var rStr=document.getElementById('memo');
 	if(edit_tag_yn == "Y")
 	{
-		document.getElementById("memo").value = memoi2memo(memoiW.document.body.innerHTML);
+		rStr.value = memoi2memo(memoiW.document.body.innerHTML);
 	} else {
-		document.getElementById("memo").value = memoE.value;
+		rStr.value = memoE.value;
 	}
 
-	if(!document.write.subject.value)
+	if(!rSub.value)
 	{
 		alert('제목을 입력하여 주세요.');
-		document.write.subject.focus();
+		rSub.focus();
 		return false;
 	}
 
@@ -185,15 +194,16 @@ function preview_m()
 		if(!memoE.value||memoE.value=="<P>&nbsp;</P>"||memoE.value=="<br>")
 		{
 			alert('내용을 입력하여 주세요..');
-			document.write.memo.focus();
+			rStr.focus();
 			return false;
 		}
 	}
-	document.write.action = "view_preview.php";
-	document.write.target = "_blank";
-	document.write.submit();
-	document.write.action = sw_d_zb_self_dir + sw_skins_dir + "/write_ok.php";
-	document.write.target = "_self";
+	var rWrite=document.getElementById('write');
+	rWrite.action = "view_preview.php";
+	rWrite.target = "_blank";
+	rWrite.submit();
+	rWrite.action = sw_d_zb_self_dir + sw_skins_dir + "/write_ok.php";
+	rWrite.target = "_self";
 }
 
 function sw_imagebox(id)

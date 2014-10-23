@@ -179,8 +179,8 @@ if($pass == "gg" || $member[no] || $password) {
 		if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>";
 		$temp_name = get_private_icon($member[no], "1");
 		if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>".$c_name;
-	} elseif($mode=="modify") $c_name="<input type=text name=name size=8 maxlength=10 class=input value=\"".$name."\">";
-	else $c_name="<input type=text name=name size=8 maxlength=10 class=input>";
+	} elseif($mode=="modify") $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input value=\"".$name."\">";
+	else $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input>";
 
 	// 이미지 창고 버튼
 	if($member[no]&&$setup[grant_imagebox]>=$member[level]) $a_imagebox="<a onfocus=blur() href='javascript:showImageBox(\"$id\")'>"; else $a_imagebox="<Zeroboard ";

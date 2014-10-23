@@ -7,7 +7,7 @@ unset($img_info);
 if($Thumbnail_use=="on"){
 	//썸네일 디렉토리 내 각 회원별 디렉토리 생성
 	if(!is_dir($zb_path."data/$id/thumbnail/".$data[ismember]."/")) {
-		if(!@mkdir($zb_path."data/$id/thumbnail/".$data[ismember]."/",0777)) $error_check+=1;
+		if(!@mkdir($zb_path."data/$id/thumbnail/".$data[ismember]."/",0777,true)) $error_check+=1;
 		if(!@chmod($zb_path."data/$id/thumbnail/".$data[ismember]."/",0707)) $error_check+=2;
 	}
 	if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$data[ismember]."/ 디렉토리의 권한을 707로 설정하세요<br><br>";

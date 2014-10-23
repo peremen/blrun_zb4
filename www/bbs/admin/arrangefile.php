@@ -66,7 +66,7 @@ while($bbs = mysql_fetch_array($result)) {
 
 	// 디렉토리 검사
 	if(!is_dir("../data/$id")) {
-		mkdir("../data/$id",0777);
+		mkdir("../data/$id",0777,true);
 	}
 
 	if(!is_dir("../data/$id")) die("../data/$id 디렉토리를 생성할수가 없습니다");

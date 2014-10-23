@@ -33,7 +33,7 @@ function zb_formresize(obj) {
 </tr>
 <tr>
 	<td><font class=com2><b>이름</b></font></td>
-	<td><input type=text name=name value="<?=$name?>" <?=size(18)?> maxlength=20 class=input><font class=com2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>암호</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><input type=password name=password <?=size(11)?> maxlength=20 class=input></td>
+	<td><input type=text id=name name=name value="<?=$name?>" <?=size(18)?> maxlength=20 class=input><font class=com2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>암호</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><input type=password id=password name=password <?=size(11)?> maxlength=20 class=input></td>
 </tr>
 <tr>
 	<td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>

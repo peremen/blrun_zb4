@@ -4,7 +4,7 @@ $a_imagebox = str_replace(">","><font class=view_title1>",$a_imagebox)."&nbsp;&n
 $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbsp;";
 ?>
 
-<form method=post name=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data>
+<form method=post id=write name=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data>
 <input type=hidden name=page value=<?=$page?>>
 <input type=hidden name=id value=<?=$id?>>
 <input type=hidden name=no value=<?=$no?>>
@@ -43,7 +43,7 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
     </tr>
     <tr align=center valign=top>
       <td nowrap height=80>
-        <? $c_name=stripslashes($c_name); echo $c_name; ?><?=$hide_c_password_start?><br><img src=images/t.gif border=0 height=10><br><font style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>패스워드</b></font><br><img src=images/t.gif border=0 height=5><br><input type=password name=password <?=size(8)?> maxlength=20 class=zv3_input><?=$hide_c_password_end?></td>
+        <? $c_name=stripslashes($c_name); echo $c_name; ?><?=$hide_c_password_start?><br><img src=images/t.gif border=0 height=10><br><font style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>패스워드</b></font><br><img src=images/t.gif border=0 height=5><br><input type=password id=password name=password <?=size(8)?> maxlength=20 class=zv3_input><?=$hide_c_password_end?></td>
       <td>
         <table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
         <tr>

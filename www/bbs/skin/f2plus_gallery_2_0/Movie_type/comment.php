@@ -27,20 +27,22 @@ function zb_formresize(obj) {
 }
 
 function check_submit_y() {
+	var rName=document.getElementById('name');
+	var rPass=document.getElementById('password');
 <? if(!$member[no]) { ?>
-	if(!document.write.name.value){
+	if(!rName.value){
 		alert('이름을 입력하여 주세요.');
-		document.write.name.focus();
+		rName.focus();
 		return false;
 	}
-	else if(!document.write.password.value){
+	else if(!rPass.value){
 		alert('암호를 입력하여 주세요.\n\n암호를 입력하셔야 수정/삭제를 할수 있습니다');
-		document.write.password.focus();
+		rPass.focus();
 		return false;
 	}
 
-	var nStr=document.write.name.value;
-	var pStr=document.write.password.value;
+	var nStr=rName.value;
+	var pStr=rPass.value;
 
 	var nLen=nStr.length;
 	var pLen=pStr.length;
@@ -51,7 +53,7 @@ function check_submit_y() {
 	}
 	if(cnt>0){
 		alert("이름에 \" 문자가 들어가 있습니다.");
-		document.write.name.focus();
+		rName.focus();
 		return false;
 	}
 
@@ -61,24 +63,24 @@ function check_submit_y() {
 	}
 	if(cnt>0){
 		alert('패스워드에 \" 문자가 들어가 있습니다.');
-		document.write.password.focus();
+		rPass.focus();
 		return false;
 	}
 <? } ?>
 
 	var rPattern=/\|\|\|\d+\|\d+$/g;
-	var rStr=document.write.memo.value;
+	var rStr=document.getElementById('memo');
 
-	if(!rStr)
+	if(!rStr.value)
 	{
 		alert('덧글 내용을 입력하여 주세요.');
-		document.write.memo.focus();
+		rStr.focus();
 		return false;
 	}
 
-	if(rStr.match(rPattern)!= null){
+	if(rStr.value.match(rPattern)!= null){
 		alert('예약된 문자열은 사용할 수 없습니다.');
-		document.write.memo.focus();
+		rStr.focus();
 		return false;
 	}
 
@@ -89,35 +91,36 @@ function check_submit_y() {
 
 function preview_m() {
 	var rPattern=/\|\|\|\d+\|\d+$/g;
-	var rStr=document.write.memo.value;
+	var rStr=document.getElementById('memo');
 
-	if(!rStr)
+	if(!rStr.value)
 	{
 		alert('덧글 내용을 입력하여 주세요..');
-		document.write.memo.focus();
+		rStr.focus();
 		return false;
 	}
 
-	if(rStr.match(rPattern)!= null){
+	if(rStr.value.match(rPattern)!= null){
 		alert('예약된 문자열은 사용할 수 없습니다..');
-		document.write.memo.focus();
+		rStr.focus();
 		return false;
 	}
-	document.write.action = "view_preview2.php";
-	document.write.target = "_blank";
-	document.write.submit();
-	document.write.action = "<?=$dir?>/comment_ok.php";
-	document.write.target = "_self";
+	var rWrite=document.getElementById('write');
+	rWrite.action = "view_preview2.php";
+	rWrite.target = "_blank";
+	rWrite.submit();
+	rWrite.action = "<?=$dir?>/comment_ok.php";
+	rWrite.target = "_self";
 }
 //-->
 </SCRIPT><br>
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> align=center>
-<form method=post name=write action=<?=$dir?>/comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=c_no value=<?=$c_no?>><input type=hidden name=c_org value=<?=$c_org?>><input type=hidden name=c_depth value=<?=$c_depth?>><input type=hidden name=parent value=<?=$parent?>><input type=hidden name=c_date value=<?=$c_date?>><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$zb_url?>"><input type=hidden name=antispam value="<?=$num1num2?>">
+<form method=post id=write name=write action=<?=$dir?>/comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=c_no value=<?=$c_no?>><input type=hidden name=c_org value=<?=$c_org?>><input type=hidden name=c_depth value=<?=$c_depth?>><input type=hidden name=parent value=<?=$parent?>><input type=hidden name=c_date value=<?=$c_date?>><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$zb_url?>"><input type=hidden name=antispam value="<?=$num1num2?>">
 <col width=80 style=padding:0,3,0,5></col><col width=80 style=padding:0,3,0,3></col><col width=80 style=padding:0,3,0,3></col><col width=80 style=padding:0,3,0,3></col><col width=></col>
 <tr>
 <?=$hide_start?>
-	<td class=list_eng><b>Name</b></td><td class=list_han><input type=text name=name value="<?=$name?>" <?=size(8)?> maxlength=20 class=input></td>
-	<td class=list_eng><b>Password</b></td><td class=list_han><input type=password name=password <?=size(8)?> maxlength=20 class=input></td>
+	<td class=list_eng><b>Name</b></td><td class=list_han><input type=text id=name name=name value="<?=$name?>" <?=size(8)?> maxlength=20 class=input></td>
+	<td class=list_eng><b>Password</b></td><td class=list_han><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input></td>
 <?=$hide_end?>
 	<td width="100%"><div align=<?=$align?>><?if ($emoticon_use=="on"){?><input onclick='showEmoticon()' type=checkbox name=Emoticons value='yes'><img src=<?=$dir?>/use_emo.gif></div><?}?></td>
 <?if($s_data[ismember]){?>
@@ -171,7 +174,7 @@ function preview_m() {
 			<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
 			<col width=></col><col width=90></col>
 			<tr>
-				<td width=100% valign=top><textarea name=memo id=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea></td>
+				<td width=100% valign=top><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea></td>
 				<td width=90><input type=submit rows=5 class=submit value='영화평쓰기' accesskey="s" style=height:100%></td>
 			</tr>
 			</table>

@@ -57,7 +57,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		//썸네일 디렉토리 내 각 회원별 디렉토리 생성
 		$error_check=0;
 		if(!is_dir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/")) {
-			if(!@mkdir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0777)) $error_check+=1;
+			if(!@mkdir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0777,true)) $error_check+=1;
 			if(!@chmod($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0707)) $error_check+=2;
 		}
 		if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$prev_data[ismember]."/ 디렉토리의 권한을 707로 설정하세요<br><br>";
@@ -85,7 +85,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		//썸네일 디렉토리 내 각 회원별 디렉토리 생성
 		$error_check=0;
 		if(!is_dir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/")) {
-			if(!@mkdir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0777)) $error_check+=1;
+			if(!@mkdir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0777,true)) $error_check+=1;
 			if(!@chmod($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0707)) $error_check+=2;
 		}
 		if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$prev_data[ismember]."/ 디렉토리의 권한을 707로 설정하세요<br><br>";
@@ -126,7 +126,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		//썸네일 디렉토리 내 각 회원별 디렉토리 생성
 		$error_check=0;
 		if(!is_dir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/")) {
-			if(!@mkdir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0777)) $error_check+=1;
+			if(!@mkdir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0777,true)) $error_check+=1;
 			if(!@chmod($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0707)) $error_check+=2;
 		}
 		if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$next_data[ismember]."/ 디렉토리의 권한을 707로 설정하세요<br><br>";
@@ -153,7 +153,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		//썸네일 디렉토리 내 각 회원별 디렉토리 생성
 		$error_check=0;
 		if(!is_dir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/")) {
-			if(!@mkdir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0777)) $error_check+=1;
+			if(!@mkdir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0777,true)) $error_check+=1;
 			if(!@chmod($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0707)) $error_check+=2;
 		}
 		if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$next_data[ismember]."/ 디렉토리의 권한을 707로 설정하세요<br><br>";

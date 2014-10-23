@@ -266,7 +266,7 @@ if($member[no]) {
 	if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>";
 	$temp_name = get_private_icon($member[no], "1");
 	if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>".$c_name;
-} else $c_name="<input type=text name=name size=8 maxlength=10 class=input value=\"".$HTTP_SESSION_VARS["zb_writer_name"]."\">";
+} else $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input value=\"".$HTTP_SESSION_VARS["zb_writer_name"]."\">";
 
 /****************************************************************************************
 * 실제 출력 부분
@@ -297,7 +297,9 @@ if($setup[use_comment]) {
 
 		// html 이미지 리사이즈
 		$imagePattern = "#<img(.+?)src=([^>]*?)>#i";
+		$imagePattern2 = "#<div align=left><img name=zb_target_resize src=\"skin\/f2plus_gallery_3_0\/images\/emoticon\/([^>]*?)><\/div>#i";
 		$c_data[memo]=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize\\1src=\\2></div>",$c_data[memo]);
+		$c_data[memo]=preg_replace($imagePattern2,"<img src=\"skin/f2plus_gallery_3_0/images/emoticon/\\1>",$c_data[memo]);
 
 		// 이미지 박스 해석 및 리사이징, 확대보기를 위해서 정규표현식 사용
 		if($c_data[ismember]) {
@@ -310,7 +312,7 @@ if($setup[use_comment]) {
 					// 썸네일 디렉토리 내 각 회원별 디렉토리 생성
 					$error_check=0;
 					if(!is_dir($_zb_path."data/$id/thumbnail/".$c_data[ismember]."/")) {
-						if(!@mkdir($_zb_path."data/$id/thumbnail/".$c_data[ismember]."/",0777)) $error_check+=1;
+						if(!@mkdir($_zb_path."data/$id/thumbnail/".$c_data[ismember]."/",0777,true)) $error_check+=1;
 						if(!@chmod($_zb_path."data/$id/thumbnail/".$c_data[ismember]."/",0707)) $error_check+=2;
 					}
 					if($error_check==2) echo "<br> ".$_zb_path."data/$id/thumbnail/".$c_data[ismember]."/ 디렉토리의 권한을 707로 설정하세요<br><br>";

@@ -192,7 +192,7 @@ if($exec2=="modify_member_ok") {
 		// icon 디렉토리에 member_image_box 디렉토리가 없을경우 디렉토리 생성
 		$path = "icon/member_image_box";
 		if(!is_dir($path)) {
-			@mkdir($path,0707);
+			@mkdir($path,0707,true);
 			@chmod($path,0707);
 		}
 
@@ -211,7 +211,7 @@ if($exec2=="modify_member_ok") {
 	// 이름앞에 붙는 아이콘 업로드시 처리
 	if(@filesize($private_icon)) {
 		if(!is_dir("icon/private_icon")) {
-			@mkdir("icon/private_icon",0707);
+			@mkdir("icon/private_icon",0707,true);
 			@chmod("icon/private_icon",0707);
 		}
 
@@ -241,7 +241,7 @@ if($exec2=="modify_member_ok") {
 	}
 	if(@filesize($private_name)) {
 		if(!is_dir("icon/private_name")) {
-			@mkdir("icon/private_name",0707);
+			@mkdir("icon/private_name",0707,true);
 			@chmod("icon/private_name",0707);
 		}
 

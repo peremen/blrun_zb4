@@ -20,7 +20,7 @@
 		<tr>
 		<td width=1>
 			<!-- 폼태그 부분;; 수정하지 않는 것이 좋습니다 -->
-			<form method=post name=write id=write action=write_ok.php onsubmit="return check_submit();" enctype=multipart/form-data>
+			<form method=post id=write name=write action=write_ok.php onsubmit="return check_submit();" enctype=multipart/form-data>
 			<input type=hidden name=page value=<?=$page?>>
 			<input type=hidden name=id value=<?=$id?>>
 			<input type=hidden name=no value=<?=$no?>>
@@ -61,17 +61,17 @@
 
 				<tr>
 					<td>설문조사 제목</td>
-					<td> <input type=text name=subject <?=size(70)?> value="<?=$subject?>" maxlength=200 class=input> </td>
+					<td> <input type=text id=subject name=subject <?=size(70)?> value="<?=$subject?>" maxlength=200 class=input> </td>
 				</tr>
 				<?=$hide_start?>
 
 				<tr>
 					<td>비밀번호 입력</td>
-					<td> <input type=password name=password <?=size(10)?> maxlength=20 class=input> </td>
+					<td> <input type=password id=password name=password <?=size(10)?> maxlength=20 class=input> </td>
 				</tr>
 				<tr>
 					<td width=60 align=center>설문 작성인</td> 
-					<td> <input type=text name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input> </td>
+					<td> <input type=text id=name name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input> </td>
 				</tr>
 				<?=$hide_end?>
 

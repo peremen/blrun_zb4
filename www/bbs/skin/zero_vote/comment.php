@@ -19,7 +19,7 @@
 <table border=0 width=100% cellspacing=0 cellpadding=0 height=30>
 <tr>
 <td width=0>
-	<form method=post name=write action=comment_ok.php onsubmit="return check_submit();">
+	<form method=post id=write name=write action=comment_ok.php onsubmit="return check_submit();">
 	<input type=hidden name=page value=<?=$page?>>
 	<input type=hidden name=id value=<?=$id?>>
 	<input type=hidden name=no value=<?=$no?>>
@@ -41,11 +41,11 @@
 <td align=center>
 <?=$hide_start?>
 
-	<font color=444444 >이름 : </b></font><input type=text name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input> &nbsp; 
-	<font color=444444 >비밀번호 : </b></font>  <input type=password name=password <?=size(10)?> maxlength=20 class=input>
+	<font color=444444 >이름 : </b></font><input type=text id=name name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input> &nbsp; 
+	<font color=444444 >비밀번호 : </b></font><input type=password id=password name=password <?=size(10)?> maxlength=20 class=input>
 <?=$hide_end?>
 
-	<font color=444444 >의견 : </b></font> <input type=text id=memo name=memo value="<?=$memo?>" <?=size(40)?> maxlength=100 class=input>
+	<font color=444444 >의견 : </b></font><input type=text id=memo name=memo value="<?=$memo?>" <?=size(40)?> maxlength=100 class=input>
 	<?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1> 비밀글 <?=$hide_secret_end?>
 	<input type=submit value="입력" class=submit>
 </td>
