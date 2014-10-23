@@ -19,7 +19,7 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
 ?>
 
 <!-- 간단한 답변글 쓰기 -->
-<form method=post name=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data>
+<form method=post id=write name=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data>
 <input type=hidden name=page value=<?=$page?>>
 <input type=hidden name=id value=<?=$id?>>
 <input type=hidden name=no value=<?=$no?>>
@@ -64,7 +64,7 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
         <br><img src=images/t.gif border=0 height=10><br>
         <font style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>Password</b></font><br>
         <img src=images/t.gif border=0 height=5><br>
-        <input type=password name=password <?=size(8)?> maxlength=20 class=input>
+        <input type=password id=password name=password <?=size(8)?> maxlength=20 class=input>
         <?=$hide_c_password_end?>
 
       </td>

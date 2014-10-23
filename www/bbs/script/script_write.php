@@ -2,12 +2,16 @@
 <script language="javascript">
 function unlock()
 {
-	check_attack.check.value=0;
+	document.getElementById('check').value=0;
 }
 
 function check_submit()
 {
-	if(document.check_attack.check.value==1)
+	var rName=document.getElementById('name');
+	var rPass=document.getElementById('password');
+	var rSub=document.getElementById('subject');
+	var rCheck=document.getElementById('check');
+	if(rCheck.value==1)
 	{
 		alert('글쓰기 버튼을 여러번 누르시면 안됩니다');
 		return false;
@@ -22,36 +26,36 @@ function check_submit()
 <? } ?>
 
 <? if(!$member[no]) { ?>
-	if(!document.write.name.value)
+	if(!rName.value)
 	{
 		alert('이름을 입력하여 주세요.');
-		document.write.name.focus();
+		rName.focus();
 		return false;
 	}
 
-	if(!document.write.password.value)
+	if(!rPass.value)
 	{
 		alert('암호를 입력하여 주세요.\n\n암호를 입력하셔야 수정/삭제를 할수 있습니다');
-		document.write.password.focus();
+		rPass.focus();
 		return false;
 	}
 <? } ?>
 
-	if(!document.write.subject.value)
+	if(!rSub.value)
 	{
 		alert('제목을 입력하여 주세요.');
-		document.write.subject.focus();
+		rSub.focus();
 		return false;
 	}
-
-	if(!document.write.memo.value)
+	var rStr=document.getElementById('memo');
+	if(!rStr.value)
 	{
 		alert('내용을 입력하여 주세요.');
-		document.write.memo.focus();
+		rStr.focus();
 		return false;
 	}
 
-	document.check_attack.check.value=1;
+	rCheck.value=1;
 	show_waiting();
 	hideImageBox();
 
@@ -77,24 +81,28 @@ function showCodeBox() {
 }
 
 function view_preview() {
-	if(!document.write.subject.value)
+	var rSub=document.getElementById('subject');
+	var rStr=document.getElementById('memo');
+
+	if(!rSub.value)
 	{
 		alert('글쓰기 제목을 입력하여 주세요.');
-		document.write.subject.focus();
+		rSub.focus();
 		return false;
 	}
 
-	if(!document.write.memo.value)
+	if(!rStr.value)
 	{
 		alert('글쓰기 내용을 입력하여 주세요.');
-		document.write.memo.focus();
+		rStr.focus();
 		return false;
 	}
-	document.write.action = "view_preview.php";
-	document.write.target = "_blank";
-	document.write.submit();
-	document.write.action = "write_ok.php";
-	document.write.target = "_self";
+	var rWrite=document.getElementById('write');
+	rWrite.action = "view_preview.php";
+	rWrite.target = "_blank";
+	rWrite.submit();
+	rWrite.action = "write_ok.php";
+	rWrite.target = "_self";
 }
 
 function check_use_html(obj) {
@@ -164,7 +172,7 @@ function doTab(arg1){
 	return true;
 }
 </script>
-<form name=check_attack><input type=hidden name=check value=0></form>
+<form name=check_attack><input type=hidden id=check name=check value=0></form>
 <div id='zb_waiting' style='position:absolute; left:50px; top:120px; width:292; height: 91; z-index:1; visibility: hidden'>
 <table border=0 width=98% cellspacing=1 cellpadding=0 bgcolor=black>
 <form name=waiting_form>

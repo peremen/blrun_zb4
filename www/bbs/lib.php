@@ -61,7 +61,7 @@ if(!preg_match("/install/i",$PHP_SELF)&&file_exists($_zb_path."myZrCnf2019.php")
 
 	//세션 처리 (세션은 3일동안 유효하게 설정)
 	if(!is_dir($_zb_path.$_zbDefaultSetup[session_path])) {
-		mkdir($_zb_path.$_zbDefaultSetup[session_path], 0777);
+		mkdir($_zb_path.$_zbDefaultSetup[session_path], 0777, true);
 		chmod($_zb_path.$_zbDefaultSetup[session_path], 0777);
 	}
 
@@ -423,7 +423,7 @@ function head($body="",$scriptfile="") {
 <link rel="image_src" href="/blrun2_fb.jpg">
 <link rel="alternate" type="application/rss+xml" title="네티즌 세상을 위하여..." href="http://blrun.net/rss/">
 <link rel=StyleSheet HREF=style.css type=text/css title=style>
-<?=$script?>
+<? if($scriptfile) include "script/".$scriptfile; ?>
 
 </head>
 <body topmargin='0' leftmargin='0' marginwidth='0' marginheight='0' <?=$body?>>

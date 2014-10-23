@@ -126,7 +126,9 @@ if($use_html2<2) {
 
 // html 이미지 리사이즈
 $imagePattern = "#<img(.+?)src=([^>]*?)>#i";
+$imagePattern2 = "#<div align=left><img name=zb_target_resize src=\"skin\/f2plus_gallery_3_0\/images\/emoticon\/([^>]*?)><\/div>#i";
 $memo=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize\\1src=\\2></div>",$memo);
+$memo=preg_replace($imagePattern2,"<img src=\"skin/f2plus_gallery_3_0/images/emoticon/\\1>",$memo);
 
 // 이미지 박스 해석 및 리사이징, 확대보기를 위해서 정규표현식 사용
 if($ismember) {
@@ -139,7 +141,7 @@ if($ismember) {
 			// 썸네일 디렉토리 내 각 회원별 디렉토리 생성
 			$error_check=0;
 			if(!is_dir($_zb_path."data/$id/thumbnail/".$ismember."/")) {
-				if(!@mkdir($_zb_path."data/$id/thumbnail/".$ismember."/",0777)) $error_check+=1;
+				if(!@mkdir($_zb_path."data/$id/thumbnail/".$ismember."/",0777,true)) $error_check+=1;
 				if(!@chmod($_zb_path."data/$id/thumbnail/".$ismember."/",0707)) $error_check+=2;
 			}
 			if($error_check==2) echo "<br> ".$_zb_path."data/$id/thumbnail/".$ismember."/ 디렉토리의 권한을 707로 설정하세요<br><br>";

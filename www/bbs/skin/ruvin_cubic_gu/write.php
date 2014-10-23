@@ -60,7 +60,7 @@ function sendit() {
 <tr>
 <td width=1>
 	<!-- 폼태그 부분;; 수정하지 않는 것이 좋습니다 -->
-	<form method=post name=write action=write_ok.php enctype=multipart/form-data>
+	<form method=post id=write name=write action=write_ok.php enctype=multipart/form-data>
 	<input type=hidden name=page value=<?=$page?>>
 	<input type=hidden name=id value=<?=$id?>>
 	<input type=hidden name=no value=<?=$no?>>
@@ -89,11 +89,11 @@ function sendit() {
 
 	<tr>
 		<td width=70 align=right><span class=cu><span class=v7><b>N</b>ame&nbsp;</span></span></td>
-		<td align=left><input type=text name=name value="<? $name=stripslashes($name); echo $name; ?>" <?=size(16)?> maxlength=20 class=input2></td>
+		<td align=left><input type=text id=name name=name value="<? $name=stripslashes($name); echo $name; ?>" <?=size(16)?> maxlength=20 class=input2></td>
 	</tr>
 	<tr>
 	<td width=70 align=right><span class=cu><span class=v7><b>P</b>assword&nbsp;</span></span></td>
-	<td><input type=password name=password <?=size(16)?> maxlength=20 class=input2></td>
+	<td><input type=password id=password name=password <?=size(16)?> maxlength=20 class=input2></td>
 	</tr>
 	<tr>
 		<td width=70 align=right><span class=cu><span class=v7><b>E</b>-mail&nbsp;</span></span></td>

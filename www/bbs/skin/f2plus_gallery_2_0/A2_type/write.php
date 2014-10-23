@@ -32,14 +32,14 @@ function zb_formresize(obj) {
 
 <tr>
   <td><font class=com2><b>Password</b></font></td>
-  <td><input type=password name=password <?=size(20)?> maxlength=20 class=input></td>
+  <td><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
   <td><font class=com2><b>Name</b></font></td>
-  <td><input type=text name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=input></td>
+  <td><input type=text id=name name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>
@@ -74,7 +74,7 @@ function zb_formresize(obj) {
 </tr>
 <tr valign=top>
   <td><font class=com2><b>Subject</b></font></td>
-  <td><input type=text name=subject value="<?=$subject?>" <?=size(60)?> maxlength=200 style=width:99% class=input></td>
+  <td><input type=text id=subject name=subject value="<?=$subject?>" <?=size(60)?> maxlength=200 style=width:99% class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>

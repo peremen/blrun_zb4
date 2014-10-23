@@ -14,10 +14,6 @@ if($flag != ok) {
 	* 코멘트 수정 진행
 	**************************************************************************/
 
-	// 코멘트 보안을 위해 세션변수를 재설정(에러 방지)
-	$ZBRD_SS_VRS = $antispam;
-	session_register("ZBRD_SS_VRS");
-
 	// 패스워드 addslashes
 	if(!get_magic_quotes_gpc()) {
 		$password = addslashes($password);
@@ -27,7 +23,7 @@ if($flag != ok) {
 	// 패스워드를 암호화
 	if($password) {
 		$temp=mysql_fetch_array(mysql_query("select password('$password')"));
-		$password=$temp[0];   
+		$password=$temp[0];
 	}
 
 	// 원본글을 가져옴
@@ -140,13 +136,13 @@ if($flag != ok) {
 	$a_list="<a href=zboard.php?$href$sort>";
 	$a_view="<a href=view.php?$href$sort&no=$no>";
 
-	head(" onload=unlock() onunload=hideImageBox() ","script_comment.php");
+	head(" onload=unlock() onunload=hideImageBox() ","script_comment_modify.php");
 ?>
 <table border=0 cellspacing=1 cellpadding=1 class=line1 width=<?=$width?>>
 <tr>
 	<td bgcolor=white>
 		<table border=0 cellspacing=1 cellpadding=8 width=100% height=120 bgcolor=white>
-		<form method=post action="comment_modify_ok.php?flag=ok" onsubmit="return check_submit()" name=write enctype=multipart/form-data>
+		<form method=post action="comment_modify_ok.php?flag=ok" onsubmit="return check_submit()" id=write name=write enctype=multipart/form-data>
 		<input type=hidden name=page value=<?=$page?>>
 		<input type=hidden name=id value=<?=$id?>>
 		<input type=hidden name=no value=<?=$no?>>
@@ -168,11 +164,11 @@ if($flag != ok) {
 <?if(!$member['no']){?>
 		<tr>
 			<td class=list0><font class=list_eng><b>Name</b></font></td>
-			<td class=list1><input type=text name=name <?=size(8)?> maxlength=20 class=input value="<?=trim(stripslashes($s_data[name]))?>"></td>
+			<td class=list1><input type=text id=name name=name <?=size(8)?> maxlength=20 class=input value="<?=trim(stripslashes($s_data[name]))?>"></td>
 		</tr>
 		<tr>
 			<td class=list0><font class=list_eng><b>Password</b></font></td>
-			<td class=list1><input type=password name=password <?=size(8)?> maxlength=20 class=input value="<?=stripslashes($pass)?>"></td>
+			<td class=list1><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input value="<?=stripslashes($pass)?>"></td>
 		</tr>
 		<?}?>
 <?=$hide_html_start?>
@@ -423,7 +419,7 @@ if($flag != ok) {
 
 			// 디렉토리를 검사함
 			if(!is_dir("data/".$id)) { 
-				@mkdir("data/".$id,0777);
+				@mkdir("data/".$id,0777,true);
 				@chmod("data/".$id,0707);
 			}
 
@@ -467,7 +463,7 @@ if($flag != ok) {
 
 			// 디렉토리를 검사함
 			if(!is_dir("data/".$id)) {
-				mkdir("data/".$id,0777);
+				@mkdir("data/".$id,0777,true);
 				@chmod("data/".$id,0707);
 			}
 

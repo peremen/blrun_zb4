@@ -204,7 +204,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 			while($data=mysql_fetch_array($result)) {
 
 				if(!is_dir("./data/$board_name")) {
-					@mkdir("./data/$board_name",0777);
+					@mkdir("./data/$board_name",0777,true);
 				}
 
 				// 업로드된 파일이 있을경우 처리 #1		
