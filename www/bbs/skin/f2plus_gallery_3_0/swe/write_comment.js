@@ -237,7 +237,7 @@ function preview_m()
 
 function sw_imagebox(id)
 {
-	if (document.write.htChk.checked) {
+	if (document.getElementById('htChk').checked) {
 		showImageBox(id);					
 	} else {		
 		alert('HTML 체크후 사용하세요.');	
@@ -246,7 +246,7 @@ function sw_imagebox(id)
 
 function sw_codebox(id)
 {
-	if (document.write.htChk.checked) {
+	if (document.getElementById('htChk').checked) {
 		showCodeBox(id);					
 	} else {		
 		alert('HTML 체크후 사용하세요.');	

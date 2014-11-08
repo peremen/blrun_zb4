@@ -24,7 +24,7 @@ $_m = explode("\n",strip_tags($data['memo']));
 for($i=0;$i<count($_m);$i++) 
 if(trim($_m[$i])) $line[] = $_m[$i];
 $tmp_memo=$line[0]."".$line[1]."".$line[2]."".$line[3]."".$line[4]."".$line[5]."".$line[6]."".$line[7]."".$line[8]."".$line[9]."".$line[10];// 이부분이 미리나오는 내용 입니다. 라인 1,2,3 적용	if($line[11]) $tmp_memo.="..."; 
-$_name1=explode("||",$tmp_memo);
+$_name1=explode("|||",$tmp_memo);
 $_name1[0] = love_convert($_name1[0]);
 
 $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no=$data[ismember]",$connect));
@@ -55,7 +55,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 
 			</tr>
 			<tr valign=bottom>
-				<td align=left style=padding-top:10px><div style="overflow:hidden"><nobr><font style=color:8D8D8D>&nbsp;&nbsp;&nbsp;<? if(!$data[is_secret]) echo substr(stripslashes($_name1[0]),0,400); else echo "비밀글입니다"; ?></font></nobr></div></td>
+				<td align=left style=padding-top:10px><div style="overflow:hidden"><nobr><font style=color:8D8D8D>&nbsp;&nbsp;&nbsp;<? if(!$data[is_secret]) echo substr(strip_tags(stripslashes($_name1[0])),0,400); else echo "비밀글입니다"; ?></font></nobr></div></td>
 				<?if($hide_name!="on"){?><? if($browser=="1"){ ?><td align=center class=com8 style=padding-bottom:2px><div style="overflow:hidden"><img src=<?=$dir?>/images/point.gif align=absmiddle>&nbsp;<?=($m_data[point1]*10+$m_data[point2])?></div></td><? } ?><?}?>
 
 				<?if($hide_date!="on"){?><? if($browser=="1"){ ?><td align=center style=padding-top:8px><font class=com8 color=aaaaaa><?=date("H:i:s",$data[reg_date])?></font></td><? } ?><?}?>

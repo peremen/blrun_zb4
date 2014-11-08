@@ -289,7 +289,7 @@ if($flag != ok) {
 	}
 
 	// 신택스하이라이트 처리 시작
-	$codePattern = "#(\[[a-z]+\_code\:[0-9]+\{[^}]*?\}\]|\[\/[a-z]+\_code\])#si";
+	$codePattern = "#(\[[a-z]+[0-9]?\_code\:[0-9]+\{[^}]*?\}\]|[\/[a-z]+[0-9]?\_code\])#si";
 	$temp = preg_split($codePattern,$memo,-1,PREG_SPLIT_DELIM_CAPTURE);
 
 	for($i=0;$i<count($temp);$i++) {
