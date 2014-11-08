@@ -14,6 +14,8 @@
 
 3. www/bbs/view.php 파일 21행 쯤 urlencode 정보를 올바르게 수정해 준다.
 
+3.5 www/bbs/script/sns.php 파일 12행에서 data-via="blrun" 부분을 자신의 아이디로 바꿔준다.
+
 4. www/bbs/skin/f2plus_gallery_3_0/error.php 의 2행쯤 url 정보를 수정해 준다.
 
 5. www/rss/ 안의 index.php와 zero_rss.php의 url 정보를 수정해 준다.
