@@ -16,17 +16,19 @@ $no=stripslashes($no);
 $no=addslashes($no);
 
 // 현재글의 Vote수 올림;;
-if(!preg_match("/".$setup[no]."_".$no."/",$HTTP_SESSION_VARS["zb_vote"])) {
-	mysql_query("update $t_board"."_$id set vote=vote+1 where no='$no'");
-	$vote_str =  "," . $setup[no]."_".$no;
+if($setup[skinname]!="zero_vote") {
+	if(!preg_match("/".$setup[no]."_".$no."/",$HTTP_SESSION_VARS["zb_vote"])) {
+		mysql_query("update $t_board"."_$id set vote=vote+1 where no='$no'");
+		$vote_str =  "," . $setup[no]."_".$no;
 
-	// 기존 세션 처리 (4.0x용 세션 처리로 인하여 주석 처리)	
-	//$HTTP_SESSION_VARS["zb_vote"] = $HTTP_SESSION_VARS["zb_vote"] . $vote_str;
+		// 기존 세션 처리 (4.0x용 세션 처리로 인하여 주석 처리)	
+		//$HTTP_SESSION_VARS["zb_vote"] = $HTTP_SESSION_VARS["zb_vote"] . $vote_str;
 
-	// 4.0x 용 세션 처리
-	$zb_vote = $HTTP_SESSION_VARS["zb_vote"] . $vote_str;
-	session_register("zb_vote");
-}
+		// 4.0x 용 세션 처리
+		$zb_vote = $HTTP_SESSION_VARS["zb_vote"] . $vote_str;
+		session_register("zb_vote");
+	}
+} else Error("정상적인 투표를 하지 않으셨습니다..");
 
 // MySQL 닫기 
 

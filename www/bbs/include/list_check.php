@@ -199,8 +199,8 @@ function list_check(&$data,$view_check=0) {
 			$img_info1[1]=$img_info1[1]+55;
 			$upload_image1="<img src=$file_name1_ border=0 name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$data[file_name1]&width=$img_info1[0]&height=$img_info1[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
 		}
-		elseif(preg_match("#\.(swf|asf|asx|wma|wmv|wav|mid|avi|mpeg|mpg)$#i",$file_name1)) $upload_image1="<embed width=640 height=480 type=application/x-mplayer2 pluginspage=http://www.microsoft.com/windows/mediaplayer/download/default.asp src='$file_name1_' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true'><br>";
-		elseif(preg_match("#\.(mp3|mp4|ogg|oga|mov|flv|m4v|f4v|webm|aac|m4a|f4a)$#i",$file_name1)) $upload_image1="<script src='/bbs/jwplayer/jwplayer.js'></script><div id='jwplayer0'>Loading the player ...</div><script>jwplayer('jwplayer0').setup({flashplayer: '/bbs/jwplayer/player.swf', file: '$file_name1_', width: 640, height: 480});</script>";
+		elseif(preg_match("#\.(swf|asf|asx|wma|wmv|wav|mid|avi|mpeg|mpg)$#i",$file_name1)) $upload_image1="<embed width=640 height=480 type=application/x-mplayer2 pluginspage=http://www.microsoft.com/windows/mediaplayer/download/default.asp src='$file_name1_' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true'><br>";
+		elseif(preg_match("#\.(mp3|mp4|ogg|oga|mov|flv|m4v|f4v|webm|aac|m4a|f4a)$#i",$file_name1)) $upload_image1="<script src='/bbs/jwplayer/jwplayer.js'></script><div id='jwplayer0'>Loading the player ...</div><script>jwplayer('jwplayer0').setup({flashplayer: '/bbs/jwplayer/player.swf', file: '$file_name1_', volume: 40, width: 640, height: 480});</script>";
 
 		if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$file_name2)) {
 			$img_info2=getimagesize($data[file_name2]); //폭과 높이 구하기
@@ -208,8 +208,8 @@ function list_check(&$data,$view_check=0) {
 			$img_info2[1]=$img_info2[1]+55;
 			$upload_image2="<img src=$file_name2_ border=0 name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$data[file_name2]&width=$img_info2[0]&height=$img_info2[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
 		}
-		elseif(preg_match("#\.(swf|asf|asx|wma|wmv|wav|mid|avi|mpeg|mpg)$#i",$file_name2)) $upload_image2="<embed width=640 height=480 type=application/x-mplayer2 pluginspage=http://www.microsoft.com/windows/mediaplayer/download/default.asp src='$file_name2_' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true'><br>";
-		elseif(preg_match("#\.(mp3|mp4|ogg|oga|mov|flv|m4v|f4v|webm|aac|m4a|f4a)$#i",$file_name2)) $upload_image2="<script src='/bbs/jwplayer/jwplayer.js'></script><div id='jwplayer1'>Loading the player ...</div><script>jwplayer('jwplayer1').setup({flashplayer: '/bbs/jwplayer/player.swf', file: '$file_name2_', width: 640, height: 480});</script>";
+		elseif(preg_match("#\.(swf|asf|asx|wma|wmv|wav|mid|avi|mpeg|mpg)$#i",$file_name2)) $upload_image2="<embed width=640 height=480 type=application/x-mplayer2 pluginspage=http://www.microsoft.com/windows/mediaplayer/download/default.asp src='$file_name2_' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true'><br>";
+		elseif(preg_match("#\.(mp3|mp4|ogg|oga|mov|flv|m4v|f4v|webm|aac|m4a|f4a)$#i",$file_name2)) $upload_image2="<script src='/bbs/jwplayer/jwplayer.js'></script><div id='jwplayer1'>Loading the player ...</div><script>jwplayer('jwplayer1').setup({flashplayer: '/bbs/jwplayer/player.swf', file: '$file_name2_', volume: 40, width: 640, height: 480});</script>";
 	}
 
 	// 카테고리의 이름을 구함

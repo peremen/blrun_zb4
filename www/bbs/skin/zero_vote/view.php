@@ -1,4 +1,6 @@
-
+<?
+$data2=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where headnum='$data[headnum]' and depth=0"));
+?>
 <table border=0 width=<?=$width?> cellspacing=0 cellpadding=0>
 <col width=13></col> <col width=></col> <col width=13></col>
 <tr>
@@ -12,7 +14,7 @@
 		<table border=0 cellspacing=0 cellpadding=0 width=100% height=25>
 		<tr>
 			<td width=70>Subject</td>
-			<td style='word-break:break-all;'><img src=images/t.gif border=0 height=1><br><?=$subject?><font size=1 color=444444>(<?=$vote?> voted)</td>
+			<td style='word-break:break-all;'><img src=images/t.gif border=0 height=1><br><?=stripslashes($data2[subject])?><font size=1 color=444444>(<?=$data2[vote]?> voted)</td>
 		</tr>
 		</table>
 <?
@@ -26,7 +28,7 @@ include "include/vote_check.php";
 </tr>
 <tr>
 	<td background=<?=$dir?>/4.gif><img src=<?=$dir?>/4.gif border=0></td>
-	<td><font color="blue">투표합계 검증: </font>개별투표수와 전체 투표수가 <? if(($data[vote]==1&&$hop_vote==0)||$data[vote]==$hop_vote) echo "일치함"; else echo "<font color='red'>일치하지 않음!</font>"; ?></td>
+	<td><font color="blue">투표합계 검증: </font>개별투표수와 전체 투표수가 <? if(($data2[vote]==1&&$hop_vote==0)||$data2[vote]==$hop_vote) echo "일치함"; else echo "<font color='red'>일치하지 않음!</font>"; ?></td>
 	<td background=<?=$dir?>/6.gif><img src=<?=$dir?>/6.gif border=0></td>
 </tr>
 <tr>

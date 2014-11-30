@@ -23,8 +23,12 @@ if($member[is_admin]==1&&$exec=="db_dump") {
 	set_time_limit(0);
 	include "admin/dbDump.php";
 	$dbData = file("myZrCnf2019.php");
+	$host = trim($dbData[1]);
+	$user = trim($dbData[2]);
+	$password = trim($dbData[3]);
 	$dbname = trim($dbData[4]);
 	$filename = $dbname."_".date("Ymd").".sql";
+	all_Backup($host,$user,$password,$dbname,$filename);
 	zbDB_Header($filename);
 	zbDB_All_down($dbname);
 	exit();

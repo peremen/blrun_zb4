@@ -31,7 +31,7 @@ if($member[no]){
 	<col width=></col><col width=150></col><?if($member[no]){?><col width=70></col><?}?>
 
 	<tr valign=top>
-		<td style='word-break:break-all;' align=left><font color=F2955C class=com4>&nbsp;<B><?=++$count?>.</B>&nbsp;&nbsp;<?if($hide_name=="off"){?><?=$c_face_image?></font><font class=thm7pt><?=$comment_name?>&nbsp;</font><?}?><?=$a_comm_r?><img src=<?=$dir?>/reply.gif border=0 valign=absmiddle></a></td>
+		<td style='word-break:break-all;' align=left><font color=F2955C class=com4>&nbsp;<B><?=++$count?>.</B>&nbsp;&nbsp;<?if($hide_name=="off"){?><?=$c_face_image?></font><font class=thm7pt><?=$comment_name?>&nbsp;</font><?}?><?=$a_comm_r?><img src=<?=$dir?>/reply.gif border=0 align=absmiddle></a></td>
 		<td valign=top align=right><font style=font-family:tahoma;color:cc9999;font-size:8pt;font-weight:bold>Point :</font> <?=$_point?>&nbsp;<font style=font-family:tahoma;color:cc9999;font-size:8pt;font-weight:bold>[<?=$c_vote?>]</font></td>
 		<?if($member[no]){?>
 
