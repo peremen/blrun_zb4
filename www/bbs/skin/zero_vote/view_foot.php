@@ -10,7 +10,7 @@
 		<?=$a_write?><img src=<?=$dir?>/write.gif border=0></a>
 	</td>
 	<td align=right>
-		<a href="/" target="_parent" style="color:blue;">[HOME]<a>&nbsp;<?=$subject2?>
+		<a href="/" target="_parent" style="color:blue;">[HOME]<a>
 		<?=$a_reply?><img src=<?=$dir?>/reply.gif border=0></a>
 		<?=$a_modify?><img src=<?=$dir?>/modify.gif border=0></a>
 		<?=$a_delete?><img src=<?=$dir?>/delete.gif border=0></a>
