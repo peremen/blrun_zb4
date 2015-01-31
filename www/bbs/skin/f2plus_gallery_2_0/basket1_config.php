@@ -24,7 +24,7 @@ $img_show="on";
 
 $num="5";
 
-$max_hit="500";
+$max_hit="1000";
 
 $min_width_size="120";
 

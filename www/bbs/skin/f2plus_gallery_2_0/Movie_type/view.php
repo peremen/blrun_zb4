@@ -63,7 +63,7 @@ if($total_comment[0]>0){
 	<tr valign=top>
 		<td style=padding-left:10px><?=$print_img1?><?=$view_img1?></a>
 			<table border=0 cellpadding=0 cellspacing=0>
-			<tr><td nowrap width=50><img src=<?=$dir?>/bolddot.gif border=0 align=absmiddle><B>&nbsp;力格</B> :&nbsp;</td><td nowrap width=100%><?=$subject?></td>
+			<tr><td nowrap width=55><img src=<?=$dir?>/bolddot.gif border=0 align=absmiddle><B>&nbsp;力格</B> :&nbsp;</td><td nowrap width=100%><?=$subject?></td>
 			</tr>
 			</table>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>

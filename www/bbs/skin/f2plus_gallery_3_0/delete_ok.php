@@ -110,6 +110,21 @@ if(!$s_data[child]) // 답글이 없을때;;
 
 	}
 
+	// 기존 외부 html 썸네일 삭제
+	$Thumbnail_small1="fs_".$s_data[reg_date].".jpg";
+	$Thumbnail_small2="ss_".$s_data[reg_date].".jpg";
+
+	$Thumbnail_large1="fl_".$s_data[reg_date].".jpg";
+	$Thumbnail_large2="sl_".$s_data[reg_date].".jpg";
+	if(file_exists($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_small1)){
+		@z_unlink($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_small1);
+		@z_unlink($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_large1);
+	}
+	if(file_exists($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_small2)){
+		@z_unlink($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_small2);
+		@z_unlink($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_large2);
+	}
+
 	@z_unlink($_zb_path."/".$s_data[file_name1]);
 	@z_unlink($_zb_path."/".$s_data[file_name2]);
 	//빈 파일 폴더 삭제

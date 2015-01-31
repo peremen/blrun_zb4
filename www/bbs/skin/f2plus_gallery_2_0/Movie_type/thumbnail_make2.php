@@ -3,9 +3,9 @@ function thumbnail($size,$source_file,$save_path,$small,$ratio){
 
 	$img_info=@getimagesize($source_file);
 
-	if($img_info[2]==1) $srcimg=ImageCreateFromGIF($source_file);
-	elseif($img_info[2]==2) $srcimg=ImageCreateFromJPEG($source_file);
-	else                     $srcimg=ImageCreateFromPNG($source_file);
+	if($img_info[2]==1) $srcimg=@ImageCreateFromGIF($source_file);
+	elseif($img_info[2]==2) $srcimg=@ImageCreateFromJPEG($source_file);
+	else                     $srcimg=@ImageCreateFromPNG($source_file);
 
 	$max_width=$size;
 	$max_height=intval($size*$ratio);
@@ -30,27 +30,27 @@ function thumbnail($size,$source_file,$save_path,$small,$ratio){
 	$srcy=(int)($max_height-$new_height)/2;
 	
 	if($img_info[2]==1){ 
-		$dstimg=ImageCreate($max_width,$max_height);
-		ImageColorAllocate($dstimg,255,255,255);
-		ImageCopyResized($dstimg, $srcimg,$srcx,$srcy,0,0,$new_width,$new_height,ImageSX($srcimg),ImageSY($srcimg));
+		$dstimg=@ImageCreate($max_width,$max_height);
+		@ImageColorAllocate($dstimg,255,255,255);
+		@ImageCopyResized($dstimg, $srcimg,$srcx,$srcy,0,0,$new_width,$new_height,ImageSX($srcimg),ImageSY($srcimg));
 	}else{ 
-		$dstimg=ImageCreateTrueColor($max_width,$max_height);
-		ImageColorAllocate($dstimg,255,255,255);
-		ImageCopyResampled($dstimg, $srcimg,$srcx,$srcy,0,0,$new_width,$new_height,ImageSX($srcimg),ImageSY($srcimg));
+		$dstimg=@ImageCreateTrueColor($max_width,$max_height);
+		@ImageColorAllocate($dstimg,255,255,255);
+		@ImageCopyResampled($dstimg, $srcimg,$srcx,$srcy,0,0,$new_width,$new_height,ImageSX($srcimg),ImageSY($srcimg));
 	}
 	
-	ImageJPEG($dstimg,$save_path.$small,85);
-	ImageDestroy($dstimg);
-	ImageDestroy($srcimg);
+	@ImageJPEG($dstimg,$save_path.$small,85);
+	@ImageDestroy($dstimg);
+	@ImageDestroy($srcimg);
 }
 
 function thumbnail2($size,$source_file,$save_file){
 
 	$img_info=@getimagesize($source_file);
 
-	if($img_info[2]==1) $srcimg=ImageCreateFromGIF($source_file);
-	elseif($img_info[2]==2) $srcimg=ImageCreateFromJPEG($source_file);
-	else                     $srcimg=ImageCreateFromPNG($source_file);
+	if($img_info[2]==1) $srcimg=@ImageCreateFromGIF($source_file);
+	elseif($img_info[2]==2) $srcimg=@ImageCreateFromJPEG($source_file);
+	else                     $srcimg=@ImageCreateFromPNG($source_file);
 
 	if($img_info[0]>=$size){
 		$max_width=$size;
@@ -61,16 +61,16 @@ function thumbnail2($size,$source_file,$save_file){
 	}
 
 	if($img_info[2]==1){ 
-		$dstimg=ImageCreate($max_width,$max_height);
-		ImageColorAllocate($dstimg,255,255,255);
-		ImageCopyResized($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));
+		$dstimg=@ImageCreate($max_width,$max_height);
+		@ImageColorAllocate($dstimg,255,255,255);
+		@ImageCopyResized($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));
 	}else{ 
-		$dstimg=ImageCreateTrueColor($max_width,$max_height);
-		ImageColorAllocate($dstimg,255,255,255);
-		ImageCopyResampled($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));
+		$dstimg=@ImageCreateTrueColor($max_width,$max_height);
+		@ImageColorAllocate($dstimg,255,255,255);
+		@ImageCopyResampled($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));
 	}
 
-	ImageJPEG($dstimg,$save_file,85);
+	@ImageJPEG($dstimg,$save_file,85);
 
 	@ImageDestroy($dstimg);
 	@ImageDestroy($srcimg);

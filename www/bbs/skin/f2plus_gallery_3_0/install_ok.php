@@ -6,8 +6,8 @@ include $zbpath."lib.php";
 
 function file_del($path) {
 
-	$handle=@opendir($path);
-	while($info = readdir($handle)) {
+	$handle= dir($path);
+	while(false !== ($info = $handle->read())) {
 		if($info != "." && $info != "..") {
 			if(preg_match("#([^.]+?)\.(jpg)#i",$info))
 				@z_unlink($path.$info);
@@ -15,7 +15,7 @@ function file_del($path) {
 				@zRmDir($path.$info);
 		}
 	}
-	closedir($handle);
+	$handle->close();
 }
 
 $path=$zbpath."data/".$board_id."/thumbnail/";

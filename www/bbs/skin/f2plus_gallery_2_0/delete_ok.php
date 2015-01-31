@@ -4,6 +4,10 @@
 // 라이브러리 함수 파일 인크루드
 require $_zb_path."lib.php";
 
+if(file_exists($id."_config.php")){ 
+	include $id."_config.php";
+}
+
 function error1($message, $url="") {
 	global $setup, $connect, $dir, $_zb_path, $_zb_url;
 
@@ -104,6 +108,21 @@ if(!$s_data[child]) // 답글이 없을때;;
 		@z_unlink($_zb_path."data/".$id."/thumbnail/sl_".$s_data[reg_date].".jpg");
 		@z_unlink($_zb_path."data/".$id."/thumbnail/sXL_".$s_data[reg_date].".jpg");
 
+	}
+
+	// 기존 외부 html 썸네일 삭제
+	$Thumbnail_small1="fs_".$s_data[reg_date].".jpg";
+	$Thumbnail_small2="ss_".$s_data[reg_date].".jpg";
+
+	$Thumbnail_large1="fl_".$s_data[reg_date].".jpg";
+	$Thumbnail_large2="sl_".$s_data[reg_date].".jpg";
+	if(file_exists($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_small1)){
+		@z_unlink($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_small1);
+		@z_unlink($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_large1);
+	}
+	if(file_exists($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_small2)){
+		@z_unlink($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_small2);
+		@z_unlink($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_large2);
 	}
 
 	@z_unlink($_zb_path."/".$s_data[file_name1]);
