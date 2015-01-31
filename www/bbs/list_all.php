@@ -69,7 +69,18 @@ if($exec=="view_all") {
 	}
 
 	foot();
-
+?>
+<!-- 브라우저 로딩시간 구하기 스크립트 출력 -->
+<script>
+function Result() {
+	var nEnd =  new Date().getTime();
+	var nDiff = nEnd - <?=$nStart?>;
+	document.getElementById('print').innerHTML = '카트 목록 전체 페이지를 로딩하는데 ' + nDiff + 'ms(' + nDiff/1000 + '초) 시간이 걸렸습니다!';
+}
+window.onload = Result;
+</script>
+<div id="print"></div>
+<?
 }
 
 /**********************************************************************************
@@ -110,7 +121,16 @@ elseif($exec=="delete_all") {
 				@z_unlink("./"."data/".$id."/thumbnail/ss_".$temp[reg_date].".jpg");
 				@z_unlink("./"."data/".$id."/thumbnail/sl_".$temp[reg_date].".jpg");
 				@z_unlink("./"."data/".$id."/thumbnail/sXL_".$temp[reg_date].".jpg");
-		  
+			}
+
+			// 기존 외부 html 썸네일 삭제
+			if(file_exists("./"."data/".$id."/thumbnail/".$temp[ismember]."/fs_".$temp[reg_date].".jpg")){ 
+				@z_unlink("./"."data/".$id."/thumbnail/".$temp[ismember]."/fs_".$temp[reg_date].".jpg");
+				@z_unlink("./"."data/".$id."/thumbnail/".$temp[ismember]."/fl_".$temp[reg_date].".jpg");
+			}
+			if(file_exists("./"."data/".$id."/thumbnail/".$temp[ismember]."/ss_".$temp[reg_date].".jpg")){ 
+				@z_unlink("./"."data/".$id."/thumbnail/".$temp[ismember]."/ss_".$temp[reg_date].".jpg");
+				@z_unlink("./"."data/".$id."/thumbnail/".$temp[ismember]."/sl_".$temp[reg_date].".jpg");
 			}
 
 			// Divison 정리

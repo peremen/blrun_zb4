@@ -18,13 +18,8 @@ function rmdirAll($dir) {
 }
 
 function delete_file($filename) {
-	@chmod($filename,0777);
-	if(preg_match("#\/([^.]+?)\.(jpg)$#i",$filename))
-		$handle = @unlink($filename);
-	else
-		@rmdirAll($filename);
 	if(@file_exists($filename)) {
-		@chmod($filename,0775);
+		@chmod($filename,0777);
 		if(preg_match("#\/([^.]+?)\.(jpg)$#i",$filename))
 			$handle = @unlink($filename);
 		else
@@ -35,14 +30,13 @@ function delete_file($filename) {
 
 function file_del($path) {
 
-	$handle=@opendir($path);
-	while($info = readdir($handle)) {
+	$handle= dir($path);
+	while(false !== ($info = $handle->read())) {
 		if($info != "." && $info != "..") {
-			$dir[] = $info;
-		@delete_file($path.$info);
+			@delete_file($path.$info);
 		}
 	}
-	closedir($handle);
+	$handle->close();
 }
 
 $path=$zb_path."data/".$id."/thumbnail/";

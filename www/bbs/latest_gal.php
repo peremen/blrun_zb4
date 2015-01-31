@@ -53,7 +53,14 @@ function thumbnail_make1($size,$source_file,$save_path,$small,$large,$ratio){
 	for($i=0; $i<=sizeof($size)-1;$i++){
 		if($size[$i]!=0){
 		 	
-			if($i==sizeof($size)-1) $ratio=$img_info[1]/$img_info[0];
+			if($i==sizeof($size)-1) {
+				//$ratio가 0으로 나누어지는 것 방지
+				if($img_info[0]==""){
+					$img_info[1]=3;
+					$img_info[0]=4;
+				}
+				$ratio=$img_info[1]/$img_info[0];
+			}
 
 			$max_width=$size[$i];
 			$max_height=intval($size[$i]*$ratio);
@@ -111,7 +118,14 @@ function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
 	for($i=0; $i<=sizeof($size)-1;$i++){
 		if($size[$i]!=0){
 		 	
-			if($i==sizeof($size)-1) $ratio=$img_info[1]/$img_info[0];
+			if($i==sizeof($size)-1) {
+				//$ratio가 0으로 나누어지는 것 방지
+				if($img_info[0]==""){
+					$img_info[1]=3;
+					$img_info[0]=4;
+				}
+				$ratio=$img_info[1]/$img_info[0];
+			}
 
 			$max_width=$size[$i];
 			$max_height=intval($size[$i]*$ratio);
@@ -175,7 +189,7 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 
 	$setup = mysql_fetch_array(mysql_query("select use_alllist from zetyx_admin_table where name='$id'"));
 	if($setup[use_alllist]) $target = "zboard.php?id=".$id;
-		else $target = "view.php?id=".$id;
+	else $target = "view.php?id=".$id;
 	
 	$result = mysql_query("select * from zetyx_board"."_$id order by no desc limit $num", $connect) or die(mysql_error());
 	
@@ -203,6 +217,13 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 		preg_match_all($imagePattern,$data[memo],$out,PREG_SET_ORDER);
 		$src_img="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
 
+		// 외부 html <img> 태그 src url 추출
+		$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?(http[s]?:\/\/[^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
+		preg_match_all($imagePattern,$data[memo],$img,PREG_SET_ORDER);
+		for($i=0;$i<1;$i++)
+			if(($mypos=strrpos($img[$i][1],"http://"))||($mypos=strrpos($img[$i][1],"https://")))
+				$img[$i][1]=substr($img[$i][1],$mypos);
+
 		if($use_thumb>0){
 			if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name1])){
 				$reg_date[]=$data[reg_date];
@@ -228,6 +249,17 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 					$filename1=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 					$filename2=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 				}
+			}elseif(($src_img1=stripslashes($img[0][1])) && !preg_match("#\.(gif|bmp)$#i",$src_img1)){
+				$reg_date[]=$data[reg_date];
+				if($src_img1 && (!file_exists($_zb_path.$img1)||!file_exists($_zb_path.$img2))){
+					$size=array(52,200);
+					if($use_thumb==2) thumbnail_make1($size,$src_img1,$_zb_path,$img1,$img2,3/4);
+					else thumbnail_make2($size,$src_img1,$_zb_path,$img1,$img2,3/4);
+				}elseif(!$src_img1){
+					$filename1=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
+					$filename2=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
+				}
+
 			}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name1])){
 				$filename1=$_zb_url.str_replace("%2F", "/", urlencode($data[file_name1]));
 				$filename2=$_zb_url.str_replace("%2F", "/", urlencode($data[file_name1]));
@@ -242,13 +274,15 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 					$filename1=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
 					$filename2=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
 				}
+			}elseif(($src_img1=stripslashes($img[0][1])) && preg_match("#\.(gif|bmp)$#i",$src_img1)){
+				$filename1=$src_img1;
+				$filename2=$src_img1;
 			}else{
 				$filename1=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 				$filename2=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 			}
-		}
-		
-		else{
+
+		}else{
 			if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name1])){
 					$filename1=$_zb_url.str_replace("%2F", "/", urlencode($data[file_name1]));
 					$filename2=$_zb_url.str_replace("%2F", "/", urlencode($data[file_name1]));
@@ -263,6 +297,9 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 					$filename1=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
 					$filename2=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
 				}
+			}elseif(($src_img1=stripslashes($img[0][1])) && preg_match("#\.(gif|bmp)$#i",$src_img1)){
+				$filename1=$src_img1;
+				$filename2=$src_img1;
 			}else{
 				$filename1=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 				$filename2=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";

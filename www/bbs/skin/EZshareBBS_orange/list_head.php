@@ -1,6 +1,7 @@
 
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> style=table-layout:fixed>
 <form method=post name=list action=list_all.php>
+<input type=hidden id=nStart name=nStart>
 <input type=hidden name=page value=<?=$page?>>
 <input type=hidden name=id value=<?=$id?>>
 <input type=hidden name=select_arrange value=<?=$select_arrange?>>

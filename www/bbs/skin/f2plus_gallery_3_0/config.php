@@ -6,7 +6,7 @@ $Thumbnail_large1="fl_".$data[reg_date].".jpg";
 $Thumbnail_large2="sl_".$data[reg_date].".jpg";
 
 if($_view_included==true){
-	$imagePattern="#<img src\=\'data\/\w+?\/thumbnail\/([^/]+?)\/vXL_(.+?)\.(jpg|jpeg|gif|png|bmp)\'#i";
+	$imagePattern="#<img src\=\'data\/\w+?\/thumbnail\/([^/]+?)\/vXL_(.+?)\.(jpg|jpeg|png)\.(jpg)\'#i";
 	preg_match_all($imagePattern,$data[memo],$out,PREG_SET_ORDER);
 
 	//넘겨주는 out 변수 통일
@@ -30,4 +30,11 @@ if($_view_included==true){
 	$iThumbnail_large1="fl_".$out[0][1].".jpg";
 	$iThumbnail_large2="sl_".$out[1][1].".jpg";
 }
+
+// 외부 html <img> 태그 src url 추출
+$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?(http[s]?:\/\/[^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
+preg_match_all($imagePattern,$data[memo],$img,PREG_SET_ORDER);
+for($i=0;$i<2;$i++)
+	if(($mypos=strrpos($img[$i][1],"http://"))||($mypos=strrpos($img[$i][1],"https://")))
+		$img[$i][1]=substr($img[$i][1],$mypos);
 ?>

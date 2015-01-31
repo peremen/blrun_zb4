@@ -66,6 +66,14 @@ if($Thumbnail_use=="on"){
 			$thumb_img12=$Thumbnail_url.$data[ismember]."/".str_replace("%2F", "/", urlencode($iThumbnail_small1));
 		}
 
+	}elseif(($src_img1=stripslashes($img[0][1])) && !preg_match("#\.(gif|bmp)$#i",$src_img1)){
+		if(!file_exists($Thumbnail_path.$data[ismember]."/".$Thumbnail_small1) || !file_exists($Thumbnail_path.$data[ismember]."/".$Thumbnail_large1)){
+			$size=array($min_width_size,$max_width_size);
+			thumbnail($size,$src_img1,$Thumbnail_path.$data[ismember]."/",$Thumbnail_small1,$Thumbnail_large1,3/4);
+		}
+		$thumb_img1=$Thumbnail_url.$data[ismember]."/".str_replace("%2F", "/", urlencode($Thumbnail_large1));
+		$thumb_img12=$Thumbnail_url.$data[ismember]."/".str_replace("%2F", "/", urlencode($Thumbnail_small1));
+
 	}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name1])){
 		$file1_check=1;
 		$src_img1=str_replace("%2F", "/", urlencode($data[file_name1]));
@@ -81,6 +89,9 @@ if($Thumbnail_use=="on"){
 			$thumb_img1=str_replace("%2F", "/", urlencode($src_img1));
 			$thumb_img12=str_replace("%2F", "/", urlencode($src_img1));
 		}
+	}elseif(($src_img1=stripslashes($img[0][1])) && preg_match("#\.(gif|bmp)$#i",$src_img1)){
+		$thumb_img1=$src_img1;
+		$thumb_img12=$src_img1;
 	}
 
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name2])){
@@ -126,6 +137,21 @@ if($Thumbnail_use=="on"){
 			$thumb_img22=$Thumbnail_url.$data[ismember]."/".str_replace("%2F", "/", urlencode($iThumbnail_small2));
 		}
 
+	}elseif($file1_check==1 && ($src_img2=stripslashes($img[0][1])) && !preg_match("#\.(gif|bmp)$#i",$src_img2)){
+		if(!file_exists($Thumbnail_path.$data[ismember]."/".$Thumbnail_small2) || !file_exists($Thumbnail_path.$data[ismember]."/".$Thumbnail_large2)){
+			$size=array($min_width_size,$max_width_size);
+			thumbnail($size,$src_img2,$Thumbnail_path.$data[ismember]."/",$Thumbnail_small2,$Thumbnail_large2,3/4);
+		}
+		$thumb_img2=$Thumbnail_url.$data[ismember]."/".str_replace("%2F", "/", urlencode($Thumbnail_large2));
+		$thumb_img22=$Thumbnail_url.$data[ismember]."/".str_replace("%2F", "/", urlencode($Thumbnail_small2));
+
+	}elseif(($src_img2=stripslashes($img[1][1])) && !preg_match("#\.(gif|bmp)$#i",$src_img2)){
+		if(!file_exists($Thumbnail_path.$data[ismember]."/".$Thumbnail_small2) || !file_exists($Thumbnail_path.$data[ismember]."/".$Thumbnail_large2)){
+			$size=array($min_width_size,$max_width_size);
+			thumbnail($size,$src_img2,$Thumbnail_path.$data[ismember]."/",$Thumbnail_small2,$Thumbnail_large2,3/4);
+		}
+		$thumb_img2=$Thumbnail_url.$data[ismember]."/".str_replace("%2F", "/", urlencode($Thumbnail_large2));
+		$thumb_img22=$Thumbnail_url.$data[ismember]."/".str_replace("%2F", "/", urlencode($Thumbnail_small2));
 	}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name2])){
 		$src_img2=str_replace("%2F", "/", urlencode($data[file_name2]));
 		$thumb_img2=$src_img2;
@@ -150,6 +176,12 @@ if($Thumbnail_use=="on"){
 			$thumb_img2=str_replace("%2F", "/", urlencode($src_img2));
 			$thumb_img22=str_replace("%2F", "/", urlencode($src_img2));
 		}
+	}elseif($file1_check==1 && ($src_img2=stripslashes($img[0][1])) && preg_match("#\.(gif|bmp)$#i",$src_img2)){
+		$thumb_img2=$src_img2;
+		$thumb_img22=$src_img2;
+	}elseif(($src_img2=stripslashes($img[1][1])) && preg_match("#\.(gif|bmp)$#i",$src_img2)){
+		$thumb_img2=$src_img2;
+		$thumb_img22=$src_img2;
 	}
 
 	$ran_img1=array($thumb_img12,$thumb_img22);
@@ -177,7 +209,7 @@ if($Thumbnail_use=="on"){
 		$source_img=$ran_img2[2];
 	}
 
-    $img_info=getimagesize(urldecode($source_img));
+    $img_info=@getimagesize(urldecode($source_img));
 	$img_info[0]=$img_info[0]+10;
 	$img_info[1]=$img_info[1]+55;
 
@@ -188,23 +220,30 @@ if($Thumbnail_use=="on"){
 	if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name1])){
 		$file1_check=1;
 		$thumb_img1=$data[file_name1];
+		$thumb_img1=str_replace("%2F", "/", urlencode($thumb_img1));
 	}elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$out[0][1].".".$out[0][2])){
 		$thumb_img1="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
 		if(!file_exists($thumb_img1)) $thumb_img1="";
-	}
+		else $thumb_img1=str_replace("%2F", "/", urlencode($thumb_img1));
+	}elseif($src_img1=stripslashes($img[0][1]))
+		$thumb_img1=$src_img1;
 
-	if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name2]))
+	if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name2])){
 		$thumb_img2=$data[file_name2];
+		$thumb_img2=str_replace("%2F", "/", urlencode($thumb_img2));
+	}
 	elseif($file1_check==1&&preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$out[0][1].".".$out[0][2])){
 		$thumb_img2="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
 		if(!file_exists($thumb_img2)) $thumb_img2="";
+		else $thumb_img2=str_replace("%2F", "/", urlencode($thumb_img2));
 	}elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$out[1][1].".".$out[1][2])){
 		$thumb_img2="icon/member_image_box/".$data[ismember]."/".$out[1][1].".".$out[1][2];
 		if(!file_exists($thumb_img2)) $thumb_img2="";
-	}
-
-	$thumb_img1=str_replace("%2F", "/", urlencode($thumb_img1));
-	$thumb_img2=str_replace("%2F", "/", urlencode($thumb_img2));
+		else $thumb_img2=str_replace("%2F", "/", urlencode($thumb_img2));
+	}elseif($file1_check==1 && $src_img2=stripslashes($img[0][1]))
+		$thumb_img2=$src_img2;
+	elseif($src_img2=stripslashes($img[1][1]))
+		$thumb_img2=$src_img2;
 
 	$ran_img2=array($thumb_img1,$thumb_img2,$dir."/images/no_image.gif");
 
@@ -225,7 +264,7 @@ if($Thumbnail_use=="on"){
 		$thumb_img=$ran_img2[2];     //없을경우 미리 지정된 이미지 파일 사용.변경하셔두 됩니다.
 	}
 
-	$img_info=getimagesize(urldecode($thumb_img));
+	$img_info=@getimagesize(urldecode($thumb_img));
 	$img_info[0]=$img_info[0]+10;
 	$img_info[1]=$img_info[1]+55;
 
