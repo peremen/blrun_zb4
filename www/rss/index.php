@@ -102,7 +102,7 @@ $result = mysql_query($query);
 while ($data_board = mysql_fetch_array($result)) 
 {
 $bbs_tmp[] = $bbss[$i];
-$subject[] = htmlspecialchars(stripslashes($data_board[subject]));
+$subject[] = stripslashes($data_board[subject]);
 $name[] = htmlspecialchars(stripslashes($data_board[name]));
 
 $category_name[] = htmlspecialchars(stripslashes($data_board[category_name]));

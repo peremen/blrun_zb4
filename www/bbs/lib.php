@@ -639,7 +639,7 @@ function getNowConnector($filename,$div) {
 	$_str = trim(zReadFile($filename));
 	$num = 0;
 	if($_str) {
-		$_str = str_replace("<? die('Access Denied');/*","",$_str);
+		$_str = str_replace("<?php die('Access Denied');/*","",$_str);
 		$_str = str_replace("*/?>","",$_str);
 		$_connector = explode(":",$_str);
 		$_sizeConnector = count($_connector);
@@ -657,7 +657,7 @@ function getNowConnector($filename,$div) {
 		}
 	}
 	$_realNowConnector.=$_nowtime.$div;
-	zWriteFile($filename, "<? die('Access Denied');/*".$_realNowConnector."*/?>");
+	zWriteFile($filename, "<?php die('Access Denied');/*".$_realNowConnector."*/?>");
 	return $num;
 }
 
@@ -667,7 +667,7 @@ function getNowConnector_num($filename, $FLAG=FALSE) {
 	$_str = trim(zReadFile($filename));
 	$num = 0;
 	if($_str) {
-		$_str = str_replace("<? die('Access Denied');/*","",$_str);
+		$_str = str_replace("<?php die('Access Denied');/*","",$_str);
 		$_str = str_replace("*/?>","",$_str);
 		$_connector = explode(":",$_str);
 		$_sizeConnector = count($_connector);
@@ -685,73 +685,82 @@ function getNowConnector_num($filename, $FLAG=FALSE) {
 		}
 	}
 	if($FLAG) {
-		zWriteFile($filename, "<? die('Access Denied');/*".$_realNowConnector."*/?>");
+		zWriteFile($filename, "<?php die('Access Denied');/*".$_realNowConnector."*/?>");
 	}
 	return $num;
 }
 
 // 제로보드 자동 로그인 세션값이 있는지 판단해서 있으면 해당 값을 리턴
 function getZBSessionID() {
-	global $HTTP_COOKIE_VARS, $_zb_path, $_zbDefaultSetup;
+	global $_zb_path, $_zbDefaultSetup;
 
-	$zbSessionID = $HTTP_COOKIE_VARS[ZBSESSIONID];
+	$zbSessionID = $_COOKIE['ZBSESSIONID'];
 
-	if(!$zbSessionID) return "";
-	$str = zReadFile($_zb_path.$_zbDefaultSetup[session_path]."/zbSessionID_".$zbSessionID.".php");
+	if(!$_zb_path || !$_zbDefaultSetup || !$zbSessionID || !preg_match('/^[0-9a-f]+$/', $zbSessionID)) {
+		return array();
+	}
+	$str = zReadFile($_zb_path.$_zbDefaultSetup['session_path'].'/zbSessionID_'.$zbSessionID.'.php');
 
 	if(!$str) {
-		@setcookie("ZBSESSIONID", "", time()+60*60*24*365, "/");
-		return "";
+		@setcookie('ZBSESSIONID', '', time()+60*60*24*365, '/');
+		@setcookie('ZB_AUTOLOGIN_TOKEN', '', time()+60*60*24*365, '/');
+		return array();
 	}
 
 	$str = explode("\n",$str);
 
-	$data[no] = trim($str[1]);
-	$data[time] = trim($str[2]);
+	$data = array();
+	$data['no'] = trim($str[1]);
+	$data['token'] = trim($str[2]);
 
-	$newZBSessionID = md5($data[no]."-^A-".$data[time]);
-
-	if($newZBSessionID != $zbSessionID) {
-		@setcookie("ZBSESSIONID", "", time()+60*60*24*365, "/");
-		return "";
+	if(!$_COOKIE['ZB_AUTOLOGIN_TOKEN'] || $_COOKIE['ZB_AUTOLOGIN_TOKEN'] != $data['token']) {
+		@setcookie('ZBSESSIONID', '', time()+60*60*24*365, '/');
+		@setcookie('ZB_AUTOLOGIN_TOKEN', '', time()+60*60*24*365, '/');
+		return array();
 	}
 
-	if(!$_zb_path) {
-		z_unlink($_zb_path.$_zbDefaultSetup[session_path]."/zbSessionID_".$zbSessionID.".php");
-		makeZBSessionID($data[no]);
-	}
+	destroyZBSessionID($data['no'], $zbSessionID, false);
+	makeZBSessionID($data['no']);
 
 	return $data;
 }
 
 // 제로보드 자동 로그인 세션값을 만드는 함수
 function makeZBSessionID($no) {
-	global $HTTP_COOKIE_VARS, $_zb_path, $_zbDefaultSetup;
-	$no = (int)$no;
+	global $_zb_path, $_zbDefaultSetup;
 
-	$zbSessionID = md5($no."-^A-".time());
+	$zbSessionID = hash('sha512', (string)microtime(true));
+	$token = uniqid('', true);
 
-	$newStr = "<?/*\n$no\n".time()."\n*/?>";
+	$newStr = "<?php /*\n$no\n$token\n*/ ?>";
 
-	zWriteFile($_zb_path.$_zbDefaultSetup[session_path]."/zbSessionID_".$zbSessionID.".php", $newStr);
+	zWriteFile($_zb_path.$_zbDefaultSetup['session_path'].'/zbSessionID_'.$zbSessionID.'.php', $newStr);
 
-	@setcookie("ZBSESSIONID", $zbSessionID, time()+60*60*24*365, "/");
+	@setcookie('ZBSESSIONID', $zbSessionID, time()+60*60*24*365, '/');
+	@setcookie('ZB_AUTOLOGIN_TOKEN', $token, time()+60*60*24*365, '/');
 }
 
 // 제로보드 자동 로그인 세션값 파기시키는 함수
-function destroyZBSessionID($no) {
-	global $HTTP_COOKIE_VARS, $_zb_path, $_zbDefaultSetup;
-	$zbSessionID = $HTTP_COOKIE_VARS[ZBSESSIONID];
-	z_unlink($_zb_path.$_zbDefaultSetup[session_path]."/zbSessionID_".$zbSessionID.".php");
-	@setcookie("ZBSESSIONID", "", time()+60*60*24*365, "/");
+function destroyZBSessionID($no, $zbSessionID='', $reset_cookie=true) {
+	global $_zb_path, $_zbDefaultSetup;
+	if(!$zbSessionID) {
+		$zbSessionID = $_COOKIE['ZBSESSIONID'];
+	}
+	if(preg_match('/^[0-9a-f]+$/', $zbSessionID)) {
+		z_unlink($_zb_path.$_zbDefaultSetup['session_path'].'/zbSessionID_'.$zbSessionID.'.php');
+	}
+	if($reset_cookie) {
+		@setcookie('ZBSESSIONID', '', time()+60*60*24*365, '/');
+		@setcookie('ZB_AUTOLOGIN_TOKEN', '', time()+60*60*24*365, '/');
+	}
 }
 
 // 제로보드의 기본 설정 파일을 읽어오는 함수
 function getDefaultSetup() {
 	global $_zb_path;
 	$data = zReadFile($_zb_path."setup.php");
-	$data = str_replace("<?/*","",$data);	
-	$data = str_replace("*/?>","",$data);	
+	$data = str_replace("<?php /*","",$data);	
+	$data = str_replace("*/ ?>","",$data);	
 	$data = explode("\n",$data);
 	$_c = count($data);
 	unset($defaultSetup);
@@ -1036,9 +1045,9 @@ function thumbnail3($size,$source_file,$save_file){
 
 	$img_info=@getimagesize($source_file);
 
-	if($img_info[2]==1) $srcimg=ImageCreateFromGIF($source_file);
-	elseif($img_info[2]==2) $srcimg=ImageCreateFromJPEG($source_file);
-	else                     $srcimg=ImageCreateFromPNG($source_file);
+	if($img_info[2]==1) $srcimg=@ImageCreateFromGIF($source_file);
+	elseif($img_info[2]==2) $srcimg=@ImageCreateFromJPEG($source_file);
+	else                     $srcimg=@ImageCreateFromPNG($source_file);
 
 	if($img_info[0]>=$size){
 		$max_width=$size;
@@ -1049,16 +1058,16 @@ function thumbnail3($size,$source_file,$save_file){
 	}
 
 	if($img_info[2]==1){ 
-		$dstimg=ImageCreate($max_width,$max_height);
-		ImageColorAllocate($dstimg,255,255,255);
-		ImageCopyResized($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));
+		$dstimg=@ImageCreate($max_width,$max_height);
+		@ImageColorAllocate($dstimg,255,255,255);
+		@ImageCopyResized($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));
 	}else{ 
-		$dstimg=ImageCreateTrueColor($max_width,$max_height);
-		ImageColorAllocate($dstimg,255,255,255);
-		ImageCopyResampled($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));
+		$dstimg=@ImageCreateTrueColor($max_width,$max_height);
+		@ImageColorAllocate($dstimg,255,255,255);
+		@ImageCopyResampled($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));
 	}
 
-	ImageJPEG($dstimg,$save_file,85);
+	@ImageJPEG($dstimg,$save_file,85);
 
 	@ImageDestroy($dstimg);
 	@ImageDestroy($srcimg);
