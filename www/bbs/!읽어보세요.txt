@@ -22,4 +22,6 @@
 
 5. www/rss/ 안의 index.php와 zero_rss.php의 url 정보를 수정해 준다.
 
+5.5 www/bbs/setup.php 파일 12행 쯤 url 정보를 수정해 준다.
+
 6. www/fr_right.htm www/m/favorite.htm의 채팅방 소스는 chatroom=blrun 부분을 자신의 고유 아이디로 바꾸어 사용합니다.
