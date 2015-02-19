@@ -8,7 +8,7 @@
 <tr><td height=3 colspan=2></td></tr>
 <tr height=25>
 	<td align=right width=50><span class=cub><span class=v7>I D&nbsp;&nbsp;</span></span></td>
-	<td align=left><input type=text name=user_id size=18 maxlength=20 class=input></td>
+	<td align=left><input type=text name=user_id size=18 maxlength=20 class=input> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="보안접속 설정/해제"></td>
 </tr>
 <tr height=25>
 	<td align=right  width=50><span class=cub><span class=v7>PASS&nbsp;&nbsp;</span></span></td>

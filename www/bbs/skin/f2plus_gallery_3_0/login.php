@@ -13,7 +13,7 @@
 				<table border='0' cellpadding='0' cellspacing='0'>
 				<tr height='25'>
 					<td align='right' class='sw_ft_style_0'>아이디</td>
-					<td align='left' style='padding:0 0 0 5;'><input type='text' name='user_id' maxlength='20' class='text' style='width:90;'></td>
+					<td align='left' style='padding:0 0 0 5;'><input type='text' name='user_id' maxlength='20' class='text' style='width:90;'> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="보안접속 설정/해제"></td>
 				</tr>
 				<tr height='25'>
 					<td align='right' class='sw_ft_style_0'>비밀번호</td>

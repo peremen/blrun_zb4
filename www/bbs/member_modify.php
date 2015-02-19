@@ -28,15 +28,44 @@ if($password) {
 	}
 	$secret_check=mysql_fetch_array(mysql_query("select count(*) from $member_table where user_id='$member[user_id]' and password=password('$password')"));
 	if(!$secret_check[0]) error("비밀번호 오류! 회원정보를 수정할 권한이 없습니다");
+	$target2="https://www.blrun.net:47006/bbs/member_modify_ok.php";
 } else {
 	head();
 	$title="회원 비밀번호를 다시한번 입력하여 주십시요.";
 	$input_password="<input type=password name=password size=20 maxlength=20 class=input>";
+	$target="https://www.blrun.net:47006/bbs/member_modify.php";
 	if(preg_match("/:\/\//i",$dir)||preg_match("/\.\./i",$dir)) $dir="./";
 ?>
 
+<script>
+ function check_submit()
+ {
+  if(!member_secret.password.value) { alert("패스워드를 입력하세요"); member_secret.password.focus(); return false; }
+
+  var f = document.forms["member_secret"];
+  //액션
+  if ( f.SSL_Login.checked ) { //보안접속 체크 판별
+	//보안접속을 체크했을 때의 액션
+	f.action = "https://www.blrun.net:47006/bbs/member_modify.php";
+  } else {
+	f.action = "http://www.blrun.net/bbs/member_modify.php";
+  }
+
+  return true;
+ }
+
+ function check_SSL_Login() { 
+  if (document.member_secret.SSL_Login.checked==true) {
+   alert("SSL 암호화 보안접속을 설정합니다");
+  } else {
+   alert("SSL 암호화 보안접속을 해제합니다");
+  }
+ }
+
+</script>
+
 <br><br><br>
-<form method=post name=member_secret action=<?=$target?>>
+<form method=post name=member_secret action=<?=$target?> onsubmit="return check_submit();">
 <input type=hidden name=id value=<?=$id?>>
 <table border=0 width=300 cellspacing=1 cellpadding=0 align=center>
 <tr class=title>
@@ -44,7 +73,7 @@ if($password) {
 </tr>
 <tr height=60>
 	<td align=center class=list0>
-		<font class=list_eng><b>Password</b> :</font><?=$input_password?> 
+		<font class=list_eng><b>Password</b> :</font><?=$input_password?> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="보안접속 설정/해제">
 	</td>
 </tr>
 <tr class=list0 height=30>
@@ -110,6 +139,15 @@ head();
   if(write.password.value!=write.password1.value) {alert("패스워드가 일치하지 않습니다.");write.password.value="";write.password1.value=""; write.password.focus(); return false;}
   if(!write.name.value) { alert("이름을 입력하세요"); write.name.focus(); return false; }
 
+  var f = document.forms["write"];
+  //액션
+  if ( f.SSL_Login.checked ) { //보안접속 체크 판별
+	//보안접속을 체크했을 때의 액션
+	f.action = "https://www.blrun.net:47006/bbs/member_modify_ok.php";
+  } else {
+	f.action = "http://www.blrun.net/bbs/member_modify_ok.php";
+  }
+
 <? 
 if($group_data[use_birth]) { 
 ?>
@@ -140,10 +178,18 @@ if($group_data[use_birth]) {
   return true;
  }
 
+ function check_SSL_Login() { 
+  if (document.write.SSL_Login.checked==true) {
+   alert("SSL 암호화 보안접속을 설정합니다");
+  } else {
+   alert("SSL 암호화 보안접속을 해제합니다");
+  }
+ }
+
 </script>
 <div align=center><br>
 <table border=0 cellspacing=1 cellpadding=0 width=540>
-<form name=write method=post action=member_modify_ok.php enctype=multipart/form-data onsubmit="return check_submit();">
+<form name=write method=post action=<?=$target2?> enctype=multipart/form-data onsubmit="return check_submit();">
 <input type=hidden name=one_page value="<?=$HTTP_REFERER?>">
 <input type=hidden name=page value=<?=$page?>>
 <input type=hidden name=id value=<?=$id?>>
@@ -166,7 +212,7 @@ if($group_data[use_birth]) {
 </tr>
 <tr height=28 align=right>
   <td width=28% style=font-family:Tahoma;font-size:8pt;><b>ID&nbsp;</td>
-  <td align=left>&nbsp;<?=$member[user_id]?> &nbsp;(<?=date("Y년 m월 d일 H시 i분",$member[reg_date])?>에 가입)</td>
+  <td align=left>&nbsp;<?=$member[user_id]?> &nbsp;(<?=date("Y년 m월 d일 H시 i분",$member[reg_date])?>에 가입) <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="보안접속 설정/해제"></td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
