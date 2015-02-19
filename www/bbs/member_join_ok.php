@@ -3,6 +3,9 @@
 include "lib.php";
 $group_no=(int)$group_no;
 
+// $HTTP_HOST 에서 포트번호 빼고 도메인 추출
+if($mypos=strrpos($HTTP_HOST,":")) // 마지막 : 위치 찾아 제거
+	$HTTP_HOST=substr($HTTP_HOST,0,$mypos);
 if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 작성하여 주시기 바랍니다.");
 if(!preg_match("/member_join.php/i",$HTTP_REFERER)) Error("정상적으로 작성하여 주시기 바랍니다","");
 if(getenv("REQUEST_METHOD") == 'GET' ) Error("정상적으로 글을 쓰시기 바랍니다","");
@@ -182,6 +185,6 @@ mysql_close($connect);
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <script>
 	alert("회원가입이 정상적으로 처리 되었습니다\n\n회원이 되신것을 진심으로 축하드립니다.");
-	opener.window.history.go(0);
+	//opener.window.history.go(0);
 	window.close();
 </script>

@@ -123,6 +123,13 @@ if($_zbDefaultSetup[enable_hangul_id]=="false") {
   if(write.password.value!=write.password1.value) {alert("패스워드가 일치하지 않습니다.");write.password.value="";write.password1.value=""; write.password.focus(); return false;}
   if(!write.name.value) { alert("이름을 입력하세요"); write.name.focus(); return false; }
 
+  var f = document.forms["write"];
+  //액션
+  if ( f.SSL_Login.checked ) { //보안접속 체크 판별
+	//보안접속을 체크했을 때의 액션
+	f.action = "https://www.blrun.net:47006/bbs/member_join_ok.php";
+  }
+
 <? if($group[use_birth]) { ?>
 
     if ( write.birth_1.value < 1000 || write.birth_1.value <= 0 )  {
@@ -170,6 +177,14 @@ if($_zbDefaultSetup[enable_hangul_id]=="false") {
 	return confirm("위의 가입 약관을 모두 보았으며, 동의하십니까?");
   }
 
+  function check_SSL_Login() { 
+	if (document.write.SSL_Login.checked==true) {
+	  alert("SSL 암호화 보안접속을 설정합니다");
+	} else {
+	  alert("SSL 암호화 보안접속을 해제합니다");
+	}
+  }
+
 </script>
 <div align=center><br>
 <table border=0 cellspacing=1 cellpadding=0 width=540>
@@ -206,7 +221,7 @@ if(file_exists("./join_license.txt")) {
 </tr>
 <tr align=right>
   <td width=25% style=font-family:Tahoma;font-size:8pt;><b>ID&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=user_id size=20 maxlength=20 style=border-color:#d8b3b3 class=input> <input type=button value='Check ID' style=color:#000000;border-color:#dfb8b8;background-color:#f0f0f0;font-size:8pt;font-family:Tahoma;height:20px; onclick=check_id(write.user_id.value)><br><img src=images/t.gif border=0 height=4><? if($_zbDefaultSetup[enable_hangul_id]=="false") {?><br>&nbsp;(영문,숫자,_로만 아이디를 작성하세요)<? } ?></td>
+  <td align=left>&nbsp;<input type=text name=user_id size=20 maxlength=20 style=border-color:#d8b3b3 class=input> <input type=button value='Check ID' style=color:#000000;border-color:#dfb8b8;background-color:#f0f0f0;font-size:8pt;font-family:Tahoma;height:20px; onclick=check_id(write.user_id.value)> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="보안접속 설정/해제"><br><img src=images/t.gif border=0 height=4><? if($_zbDefaultSetup[enable_hangul_id]=="false") {?><br>&nbsp;(영문,숫자,_로만 아이디를 작성하세요)<? } ?></td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>

@@ -59,6 +59,6 @@ mysql_close($connect);
 ?>
 <script>
 alert("정상적으로 탈퇴가 되었습니다.");
-opener.window.history.go(0);
+//opener.window.history.go(0);
 window.close();
 </script>

@@ -8,14 +8,16 @@
 
 <tr>
 	<td align=right><font style=font-family:tahoma;font-size:8pt><B>ID:</b></font></td>
-	<td> <input type=text name=user_id value='' size=9 class=input> </td>
+	<td><input type=text name=user_id value='' size=9 class=input>
+		<input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="보안접속 설정/해제">
+	</td>
 </tr>
 
 <tr>
 	<td align=right><font style=font-family:tahoma;font-size:8pt><B>PW:</b></font></td>
 	<td> 
 		<input type=password name=password value='' size=9 class=input> 
-		<input type=checkbox name=auto_login value=1 onclick=check_autologin()>
+		<input type=checkbox name=auto_login value=1 onclick=check_autologin() title="자동로그인 설정/해제">
 	</td>
 </tr>
 

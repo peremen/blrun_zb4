@@ -1,4 +1,7 @@
 <?
+// 자동으로 www 붙여준다. 
+if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI); 
+
 include "lib.php";
 
 if(!$id&&!$group_no) Error("게시판 이름이나 그룹번호를 지정하여 주셔야 합니다.<br><br>(login.php?id=게시판이름   또는  login.php?group_no=번호)","");
@@ -27,24 +30,36 @@ head();
 ?>
 
 <script>
- function check_submit()
- {
-  if(!login.user_id.value)
-  {
-   alert("아이디를 입력하여 주세요");
-   login.user_id.focus();
-   return false;
-  }
-  if(!login.password.value)
-  {
-   alert("비밀번호를 입력하여 주세요");
-   login.password.focus();
-   return false;
-  }
-  check=confirm("자동 로그인 기능을 사용하시겠습니까?\n\n자동 로그인 사용시 다음 접속부터는 로그인을 하실필요가 없습니다.\n\n단, 게임방, 학교등 공공장소에서 이용시 개인정보가 유출될수 있으니 조심하여 주십시요");
-  if(check) {login.auto_login.value=1;}
-  return true;
- }
+function check_submit()
+{
+	if(!login.user_id.value) {
+		alert("아이디를 입력하여 주세요");
+		login.user_id.focus();
+		return false;
+	}
+	if(!login.password.value) {
+		alert("비밀번호를 입력하여 주세요");
+		login.password.focus();
+		return false;
+	}
+	var f = document.forms["login"];
+	//액션
+	if ( f.SSL_Login.checked ) { //보안접속 체크 판별
+		//보안접속을 체크했을 때의 액션
+		f.action = "https://www.blrun.net:47006/bbs/login_check.php";
+	}
+	check=confirm("자동 로그인 기능을 사용하시겠습니까?\n\n자동 로그인 사용시 다음 접속부터는 로그인을 하실필요가 없습니다.\n\n단, 게임방, 학교등 공공장소에서 이용시 개인정보가 유출될수 있으니 조심하여 주십시요");
+	if(check) {login.auto_login.value=1;}
+	return true;
+}
+
+function check_SSL_Login() { 
+	if (document.login.SSL_Login.checked==true) {
+		alert("SSL 암호화 보안접속을 설정합니다");
+	} else {
+		alert("SSL 암호화 보안접속을 해제합니다");
+	}
+} 
 </script>
 
 <form method=post action=login_check.php onsubmit="return check_submit();" name=login>

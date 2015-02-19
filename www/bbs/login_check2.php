@@ -67,10 +67,11 @@ if($member_data[no]) {
 	session_register("zb_last_connect_check");
 
 	// 로그인 후 페이지 이동
-	$s_url=urldecode($s_url);
-	if(!$s_url&&$id) $s_url="zboard.php?id=$id";
+	if($mypos=strrpos($_zb_url,"/bbs/")) // 마지막 슬래쉬 위치 찾아 제거
+		$s_url=substr($_zb_url,0,$mypos).urldecode($s_url);
+	if(!$s_url&&$id) $s_url=$_zb_url."zboard.php?id=$id";
 	if($s_url) movepage($s_url);
-	elseif($id) movepage("zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&category=$category&no=$no");
+	elseif($id) movepage($_zb_url."zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&category=$category&no=$no");
 	elseif($group[join_return_url]) movepage($group[join_return_url]);
 	elseif($referer) movepage($referer);
 	else echo "<script>history.go(-2);</script>";

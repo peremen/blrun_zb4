@@ -2,13 +2,14 @@
 
 0.3 /index.php 파일 13, 14행 쯤, /m/index.php 파일 13, 14행 쯤 url 정보를 수정해 준다.
 
-0.5 lib.php 파일의 287행 쯤의 @mysql_set_charset('euckr',$connect); 에서 DB 캐릭터셋을 확인한다.
-0.6 lib.php 파일의 392행, 424행 쯤의 rss 주소를 확인한다.
-0.7 lib.php 파일의 391행, 423행 쯤의 이미지 파일 이름과 존재 유무를 확인한다.
+0.5 lib.php 파일의 289행 쯤의 @mysql_set_charset('euckr',$connect); 에서 DB 캐릭터셋을 확인한다.
+0.6 lib.php 파일의 394행, 426행 쯤의 rss 주소를 확인한다.
+0.7 lib.php 파일의 393행, 425행 쯤의 이미지 파일 이름과 존재 유무를 확인한다.
+0.8 lib.php 파일의 56행, 57행의 URL 주소를 확인한다.
 
-1. www와 /www/m 폴더 안의 main.php 파일 2번째 3번째 줄의 $_zb_url 과 $_zb_path 정보를 올바르게 수정해 준다.
-1.5 www와 /www/m 폴더 안의 main.php 파일 15, 16행 쯤의 url 정보를 수정해 준다.
-1.6 www 폴더 안의 main.php 파일 64행과 /www/m 폴더 안의 main.php 파일 74행의 링크 정보를 수정해 준다.
+1. www와 /www/m 폴더 안의 main.php 파일 5번째 6번째 줄의 $_zb_url 과 $_zb_path 정보를 올바르게 수정해 준다.
+1.5 www와 /www/m 폴더 안의 main.php 파일 18, 19행 쯤의 url 정보를 수정해 준다.
+1.6 www 폴더 안의 main.php 파일 67행과 /www/m 폴더 안의 main.php 파일 77행의 링크 정보를 수정해 준다.
 
 2. www/bbs/_head.php 파일의 13행 쯤 $_zb_path 정보를 올바르게 수정해 준다.
 
@@ -25,3 +26,13 @@
 5.5 www/bbs/setup.php 파일 12행 쯤 url 정보를 수정해 준다.
 
 6. www/fr_right.htm www/m/favorite.htm의 채팅방 소스는 chatroom=blrun 부분을 자신의 고유 아이디로 바꾸어 사용합니다.
+
+7. www/bbs/admin.php, admin2.php 46행의 보안서버 URL과 포트를 확인한다.
+
+8. www/bbs/login.php 파일 49행의 보안서버 URL과 포트를 확인한다.
+
+9. www/bbs/member_join.php 파일 130행의 보안서버 URL과 포트를 확인한다.
+
+10. www/bbs/member_modify.php 파일 31행, 36행, 49행, 51행, 146행, 148행의 URL을 확인한다.
+
+11. www/script/outlogin_script.php 파일 18행의 보안서버 URL과 포트를 확인한다.
