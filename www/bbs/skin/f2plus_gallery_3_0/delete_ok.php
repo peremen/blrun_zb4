@@ -9,16 +9,15 @@ if(file_exists($id."_config.php")){
 function Error1($message, $url="") {
 	global $setup, $connect, $dir, $_zb_path, $_zb_url;
 
-	$dir=$_zb_url."skin/".$setup[skinname];
-		$message=str_replace("<br>","\\n",$message);
-		$message=str_replace("\"","\\\"",$message);
+	$message=str_replace("<br>","\\n",$message);
+	$message=str_replace("\"","\\\"",$message);
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <script>
-	<!--
-	alert("<?=$message?>");
-	history.back();
-	//-->
+<!--
+alert("<?=$message?>");
+history.back();
+//-->
 </script>
 <?
 	if($connect) @mysql_close($connect);
@@ -159,7 +158,7 @@ if(!$s_data[child]) // 답글이 없을때;;
 	   if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name2],$out))
 			if(is_dir($_zb_path."/data/".$out[1]."/".$out[2])) @rmdir($_zb_path."/data/".$out[1]."/".$out[2]);
 	}
-	if($type=="Movie_type"||$type=="Sell_type") mysql_query("delete from $t_comment"."_$id"."_movie where parent='$no'") or error1(mysql_error());
+	if($type=="Movie_type"||$type=="Sell_type") mysql_query("delete from $t_comment"."_$id"."_movie where parent='$no'") or Error1(mysql_error());
 
 	$total=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id "));
 	mysql_query("update $admin_table set total_article='$total[0]' where name='$id'");
@@ -168,12 +167,12 @@ if(!$s_data[child]) // 답글이 없을때;;
 	mysql_query("update $t_category"."_$id set num=num-1 where no='$s_data[category]'",$connect);
 
 	// 회원일 경우 해당 해원의 점수 주기
-	if($member[no]==$s_data[ismember]) @mysql_query("update $member_table set point1=point1-1 where no='$member[no]'",$connect) or error1(mysql_error());
+	if($member[no]==$s_data[ismember]) @mysql_query("update $member_table set point1=point1-1 where no='$member[no]'",$connect) or Error1(mysql_error());
 }
 
 //////// MySQL 닫기 ///////////////////////////////////////////////
 if($connect) mysql_close($connect);
 $query_time=getmicrotime();
 
-movepage($_zb_url."/"."zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&sn1=$sn1&divpage=$divpage");
+movepage($_zb_url."/zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&sn1=$sn1&divpage=$divpage");
 ?>

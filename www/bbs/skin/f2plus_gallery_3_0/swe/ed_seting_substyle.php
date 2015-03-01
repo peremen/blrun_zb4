@@ -1,6 +1,5 @@
 
 <!--====================[ sw_edit ÆÄÀÏ¸í: ed_seting_substyle.php ]====================-->
-
 <? if($mode == "write" && $is_admin && $sw_edit_yn == "Y") { ?>
 <input type='hidden' id='sub_style_S' name='sub_style_S' value="">
 <input type='hidden' id='sub_style_E' name='sub_style_E' value="</font>">

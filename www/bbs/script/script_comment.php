@@ -124,6 +124,8 @@ function view_preview() {
 	rWrite.submit();
 	rWrite.action = "comment_ok.php";
 	rWrite.target = "_self";
+
+	return true;
 }
 
 function check_use_html2(obj) {

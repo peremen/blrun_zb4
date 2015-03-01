@@ -8,21 +8,23 @@ if(file_exists($id."_config.php")){
 	include $id."_config.php";
 }
 
-function error1($message, $url="") {
+function Error1($message, $url="") {
 	global $setup, $connect, $dir, $_zb_path, $_zb_url;
 
-	$dir=$_zb_url."skin/".$setup[skinname];
-		$message=str_replace("<br>","\\n",$message);
-		$message=str_replace("\"","\\\"",$message);
-		?>
-		<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
-		<script>
-			<!--
-			alert("<?=$message?>");
-			history.back();
-			//-->
-		</script>
-	<?
+	$message=str_replace("<br>","\\n",$message);
+	$message=str_replace("\"","\\\"",$message);
+?>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta name="viewport" content="width=device-width">
+<script>
+<!--
+alert("<?=$message?>");
+history.back();
+//-->
+</script>
+<?
+	if($connect) @mysql_close($connect);
+	exit;
 }
 
 if(!eregi($HTTP_HOST,$HTTP_REFERER)) Error1("정상적으로 글을 삭제하여 주시기 바랍니다.");
@@ -176,5 +178,5 @@ if(!$s_data[child]) // 답글이 없을때;;
 if($connect) mysql_close($connect);
 $query_time=getmicrotime();
 
-movepage($_zb_url."/"."zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&sn1=$sn1&divpage=$divpage");
+movepage($_zb_url."/zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&sn1=$sn1&divpage=$divpage");
 ?>

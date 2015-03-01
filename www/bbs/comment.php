@@ -64,11 +64,10 @@ if($pass == "gg" || $member[no] || $password) {
 		}
 	}
 
-	// 랜덤한 두 숫자를 발생(1-8) 후 세션변수에 대입
+	// 랜덤한 두 숫자를 발생(1-8) 후 변수에 대입
 	$num1 = rand(1,8);
 	$num2 = rand(1,8);
 	$num1num2 = $num1*10 + $num2;
-	session_register("num1num2");
 	//글쓰기 보안을 위해 세션변수를 설정
 	$ZBRD_SS_VRS = $num1num2;
 	session_register("ZBRD_SS_VRS");
@@ -204,38 +203,38 @@ if($pass == "gg" || $member[no] || $password) {
 
 } else {
 ?>
-	<html>
-	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
-	<meta name="viewport" content="width=device-width">
-	<title>암호입력 페이지</title>
-	<script language="javascript">
-	<!--
-	function sendit() {
-		//패스워드
-		if(document.myform.pwd.value=="") {
-			alert("패스워드를 입력해 주십시요");
-			return false;
-		}
-		document.myform.submit();
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta name="viewport" content="width=device-width">
+<title>암호입력 페이지</title>
+<script language="javascript">
+<!--
+function sendit() {
+	//패스워드
+	if(document.myform.pwd.value=="") {
+		alert("패스워드를 입력해 주십시요");
+		return false;
 	}
-	//-->
-	</script>
-	</head>
+	document.myform.submit();
+}
+//-->
+</script>
+</head>
 
-	<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
-	<form name="myform" method="post" action="comment.php">
-	<input type=hidden name="page" value="<?=$page?>"><input type=hidden name="id" value="<?=$id?>"><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value="<?=$select_arrange?>"><input type=hidden name=desc value="<?=$desc?>"><input type=hidden name=page_num value="<?=$page_num?>"><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=c_no value=<?=$c_no?>>
-	<table width="100%" height="70" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" align="center">
-		<tr><td>
-			<table width="320" height="100%" border="1" style="border-collapse:collapse;" bordercolor="black" bgcolor="#BEEBDD" cellpadding="1" align="center">
-				<tr><td align="center"><b><span style="font-size:11pt">스팸방지 비번(<font color="red">gg</font>)을 입력: </span></b><input type="password" name="pwd" size="20">
-				</td></tr>
-				<tr><td align="center"><input type="button" value="확인" onClick="javascript:sendit();">
-			</table>
-		</td></tr>
-	</table>
-	</form>
-	</body>
-	</html>
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<form name="myform" method="post" action="comment.php">
+<input type=hidden name="page" value="<?=$page?>"><input type=hidden name="id" value="<?=$id?>"><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value="<?=$select_arrange?>"><input type=hidden name=desc value="<?=$desc?>"><input type=hidden name=page_num value="<?=$page_num?>"><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=c_no value=<?=$c_no?>>
+<table width="100%" height="70" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" align="center">
+	<tr><td>
+		<table width="320" height="100%" border="1" style="border-collapse:collapse;" bordercolor="black" bgcolor="#BEEBDD" cellpadding="1" align="center">
+			<tr><td align="center"><b><span style="font-size:11pt">스팸방지 비번(<font color="red">gg</font>)을 입력: </span></b><input type="password" name="pwd" size="20">
+			</td></tr>
+			<tr><td align="center"><input type="button" value="확인" onClick="javascript:sendit();">
+		</table>
+	</td></tr>
+</table>
+</form>
+</body>
+</html>
 <? } ?>

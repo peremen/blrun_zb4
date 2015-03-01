@@ -350,7 +350,6 @@ mysql_query("update $t_board"."_$id set total_comment='$total[0]' where no='$no'
 
 // 보안을 위해 세션변수 삭제
 session_unregister("ZBRD_SS_VRS");
-session_unregister("num1num2");
 
 // 페이지 이동
 movepage("$view_file_link?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&category=$category");

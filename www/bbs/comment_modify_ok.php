@@ -170,8 +170,7 @@ if($flag != ok) {
 			<td class=list0><font class=list_eng><b>Password</b></font></td>
 			<td class=list1><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input value="<?=stripslashes($pass)?>"></td>
 		</tr>
-		<?}?>
-<?=$hide_html_start?>
+<?}?>
 		<tr>
 			<td class=list0><font class=list_eng><b>Option</b></font></td>
 			<td class=list_eng>
@@ -179,7 +178,6 @@ if($flag != ok) {
 
 			</td>
 		</tr>
-<?=$hide_html_end?>
 		<tr>	
 			<td class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</font></td>
 			<td width=100% height=100% class=list1>
@@ -216,6 +214,11 @@ if($flag != ok) {
 <?
 	foot();
 	include "_foot.php";
+
+	// 세션이 초기화되는 버그 때문에 세션변수를 재설정
+	$ZBRD_SS_VRS = $antispam;
+	session_register("ZBRD_SS_VRS");
+
 } else {
 
 	if(!$member[no]) {
@@ -505,7 +508,6 @@ if($flag != ok) {
 	if($result) {
 		// 보안을 위해 세션변수 삭제
 		session_unregister("ZBRD_SS_VRS");
-		session_unregister("num1num2");
 		// 페이지 이동
 		if($setup[use_alllist]) movepage("zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no");
 		else movepage("view.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no");
@@ -514,7 +516,6 @@ if($flag != ok) {
 	else {
 		echo "<script>alert('코멘트 수정실패');</script>";
 		session_unregister("ZBRD_SS_VRS");
-		session_unregister("num1num2");
 		exit;
 	}
 }

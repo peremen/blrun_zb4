@@ -24,7 +24,7 @@ function head1($body="",$scriptfile="") {
 
 	print "<!--\n".$license."\n-->\n";
 
-	if(!eregi("member_",$PHP_SELF)) $stylefile=$_zb_url."skin/$setup[skinname]/style.css"; else $stylefile=$_zb_url."style.css";
+	if(!eregi("member_",$PHP_SELF)) $stylefile=$_zb_url."/skin/$setup[skinname]/style.css"; else $stylefile=$_zb_url."/style.css";
 
 	if($setup[use_formmail]) {
 		$f = fopen($_zb_path."script/script_zbLayer.php","r");
@@ -39,6 +39,7 @@ function head1($body="",$scriptfile="") {
 <head>
 <title>Delete</title>
 <meta http-equiv=Content-Type content=text/html; charset=EUC-KR>
+<meta name="viewport" content="width=device-width">
 <link rel=StyleSheet HREF=<?=$stylefile?> type=text/css title=style>
 <?if($setup[use_formmail]) echo $zbLayerScript;?>
 <?if($scriptfile) include $_zb_path."script/".$scriptfile;?>
@@ -64,6 +65,7 @@ if($setup[header]) echo stripslashes($setup[header]);
 <html>
 <head>
 <meta http-equiv=Content-Type content=text/html; charset=EUC-KR>
+<meta name="viewport" content="width=device-width">
 <link rel=StyleSheet HREF=style.css type=text/css title=style>
 <?=$script?>
 

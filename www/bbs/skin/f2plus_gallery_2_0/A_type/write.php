@@ -4,6 +4,7 @@ if($mode=="reply") $title="답글 쓰기";
 elseif($mode=="modify") $title="글 수정하기";
 else $title="새로 글 쓰기";
 
+$a_preview = str_replace("view_preview()","preview_m()",$a_preview);
 $a_preview = str_replace(">","><font class=com2>",$a_preview)."";
 $a_imagebox = str_replace(">","><font class=com2>",$a_imagebox)."";
 $a_codebox = str_replace(">","><font class=com2>",$a_codebox)."";
