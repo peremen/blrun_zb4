@@ -19,7 +19,7 @@ if($type=="Movie_type"||$type=="Sell_type"){
 	$memo=$memo."|||".$_name2."|||".$_name3."|||".$_name4."|||".$_name5."|||".$_name6."|||".$_name7."|||".$_name8."|||".$_name9."|||".$_name10;
 }
 
-function error1($message, $url="") {
+function Error1($message, $url="") {
 	global $setup, $connect, $dir, $_zb_path, $_zb_url;
 
 	$dir=$_zb_url."/skin/".$setup[skinname];
@@ -667,7 +667,6 @@ if($connect) {
 
 // 보안을 위해 세션변수 삭제
 session_unregister("WRT_SS_VRS");
-session_unregister("wnum1num2");
 session_unregister("WRT_SPM_PWD");
 
 // 페이지 이동

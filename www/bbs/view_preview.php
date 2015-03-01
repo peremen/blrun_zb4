@@ -189,8 +189,8 @@ if($use_html<2) {
 if($setup[use_autolink]&&!preg_match("/url\(/i",$memo)) $memo=autolink($memo);
 
 // 제목 제작
-if(($is_admin||$member[level]<=$setup[use_html])&&$use_html) $data[subject]=$subject;
-else $data[subject]=del_html($subject);
+if(($is_admin||$member[level]<=$setup[use_html])&&$use_html) $data[subject]=stripslashes($subject);
+else $data[subject]=del_html(stripslashes($subject));
 
 ?>
 <html>
@@ -257,5 +257,10 @@ else $data[subject]=del_html($subject);
 </html>
 
 <?
+// 세션이 초기화되는 버그 때문에 세션변수를 재설정
+$WRT_SS_VRS = $wantispam;
+@session_register("WRT_SS_VRS");
+$WRT_SPM_PWD = "gg";
+@session_register("WRT_SPM_PWD");
 @mysql_close($connect);
 ?>

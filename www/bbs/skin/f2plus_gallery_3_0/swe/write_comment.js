@@ -186,6 +186,7 @@ function sw_preview()
 		}
 	}
 	view_preview();
+	return true;
 }
 
 function preview_m()
@@ -233,6 +234,8 @@ function preview_m()
 	rWrite.submit();
 	rWrite.action = sw_d_zb_self_dir + sw_skins_dir + "/comment_ok.php";
 	rWrite.target = "_self";
+
+	return true;
 }
 
 function sw_imagebox(id)

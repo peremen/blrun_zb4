@@ -20,18 +20,17 @@ if(!eregi($HTTP_HOST,$HTTP_REFERER)) Error("정상적으로 글을 삭제하여 주시기 바랍
 function Error1($message, $url="") {
 	global $setup, $connect, $dir, $_zb_path, $_zb_url;
 
-	$dir=$_zb_url."skin/".$setup[skinname];
-		$message=str_replace("<br>","\\n",$message);
-		$message=str_replace("\"","\\\"",$message);
-		?>
-		<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
-		<script>
-			<!--
-			alert("<?=$message?>");
-			history.back();
-			//-->
-		</script>
-	<?
+	$message=str_replace("<br>","\\n",$message);
+	$message=str_replace("\"","\\\"",$message);
+?>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<script>
+<!--
+alert("<?=$message?>");
+history.back();
+//-->
+</script>
+<?
 	if($connect) @mysql_close($connect);
 	exit;
 }
@@ -60,8 +59,8 @@ if(!$is_admin&&$member[level]>$setup[grant_delete]) {
 }
 
 // 코멘트 삭제
-mysql_query("delete from $t_comment"."_$id where no='$c_no'") or error1(mysql_error());
-if($type=="Movie_type"||$type=="Sell_type") mysql_query("delete from $t_comment"."_$id"."_movie where parent='$no' and reg_date='$s_data[reg_date]'") or error1(mysql_error());
+mysql_query("delete from $t_comment"."_$id where no='$c_no'") or Error1(mysql_error());
+if($type=="Movie_type"||$type=="Sell_type") mysql_query("delete from $t_comment"."_$id"."_movie where parent='$no' and reg_date='$s_data[reg_date]'") or Error1(mysql_error());
 
 // 파일삭제
 @z_unlink($_zb_path."/".$s_data[file_name1]);
@@ -74,10 +73,10 @@ if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$s_data[file_name2],
 
 // 코멘트 갯수 정리
 $total=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where parent='$no'"));
-mysql_query("update $t_board"."_$id set total_comment='$total[0]' where no='$no'")  or error1(mysql_error()); 
+mysql_query("update $t_board"."_$id set total_comment='$total[0]' where no='$no'")  or Error1(mysql_error()); 
 
 // 회원일 경우 해당 해원의 점수 주기
-if($member[no]==$s_data[ismember]) @mysql_query("update $member_table set point2=point2-1 where no='$member[no]'",$connect) or error1(mysql_error());
+if($member[no]==$s_data[ismember]) @mysql_query("update $member_table set point2=point2-1 where no='$member[no]'",$connect) or Error1(mysql_error());
 
 @mysql_close($connect);
 

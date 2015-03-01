@@ -129,42 +129,6 @@ function sub_style_chg(obj)
 	document.getElementById("sub_style_S").value = "<font color="+obj+">";
 }
 
-function sw_preview()
-{
-	var rSub=document.getElementById('subject');
-	var rStr=document.getElementById('memo');
-	if(edit_tag_yn == "Y")
-	{
-		rStr.value = memoi2memo(memoiW.document.body.innerHTML);
-	} else {
-		rStr.value = memoE.value;
-	}
-
-	if(!rSub.value)
-	{
-		alert('제목을 입력하여 주세요.');
-		rSub.focus();
-		return false;
-	}
-
-	if(edit_tag_yn == "Y") {
-		if(!memoiW.document.body.innerHTML||memoiW.document.body.innerHTML=="<P>&nbsp;</P>"||memoiW.document.body.innerHTML=="<br>")
-		{
-			alert('내용을 입력하여 주세요.');
-			memoiW.focus();
-			return false;
-		}
-	} else {
-		if(!memoE.value||memoE.value=="<P>&nbsp;</P>"||memoE.value=="<br>")
-		{
-			alert('내용을 입력하여 주세요..');
-			rStr.focus();
-			return false;
-		}
-	}
-	view_preview();
-}
-
 function preview_m()
 {
 	var rSub=document.getElementById('subject');
@@ -204,6 +168,8 @@ function preview_m()
 	rWrite.submit();
 	rWrite.action = sw_d_zb_self_dir + sw_skins_dir + "/write_ok.php";
 	rWrite.target = "_self";
+
+	return true;
 }
 
 function sw_imagebox(id)

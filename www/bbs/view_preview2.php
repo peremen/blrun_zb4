@@ -239,7 +239,7 @@ if($setup[use_autolink]&&!preg_match("/url\(/i",$memo)) $memo=autolink($memo);
 <table border=0 cellspacing=0 cellpadding=10 width=100% height=100% bgcolor=black style=table-layout:fixed>
 <tr bgcolor=white valign=top>
 	<td height=40 class=title2_han>
-		<b>제목: [<?=$setup[title]?>]의 "<?=$data[subject]?>" 게시글의 덧글</b><br>
+		<b>제목: [<?=$setup[title]?>]의 "<?=stripslashes($data[subject])?>" 게시글의 덧글</b><br>
 	</td>
 </tr>
 <tr bgcolor=white valign=top>
@@ -252,5 +252,8 @@ if($setup[use_autolink]&&!preg_match("/url\(/i",$memo)) $memo=autolink($memo);
 </html>
 
 <?
+// 세션이 초기화되는 버그 때문에 세션변수를 재설정
+$ZBRD_SS_VRS = $antispam;
+@session_register("ZBRD_SS_VRS");
 @mysql_close($connect);
 ?>

@@ -38,6 +38,7 @@ include "$dir/value.php3";
 <input type=hidden name=sm value="<?=$sm?>">
 <input type=hidden name=mode value="<?=$mode?>">
 <input type=hidden name=c_no value=<?=$c_no?>>
+<input type=hidden name=zb_check value="<?=$zb_check?>">
 <tr>
 	<td colspan=2 height=30>&nbsp;&nbsp;<span style="font-family:Arial;font-size:8pt;font-weight:bold;"><font color=#333333>Enter</font> <span style=font-size:15px;letter-spacing:-1px;>Password</span></span></td>
 </tr>

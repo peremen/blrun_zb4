@@ -588,7 +588,6 @@ if($connect) {
 
 // 보안을 위해 세션변수 삭제
 session_unregister("WRT_SS_VRS");
-session_unregister("wnum1num2");
 session_unregister("WRT_SPM_PWD");
 
 // 페이지 이동

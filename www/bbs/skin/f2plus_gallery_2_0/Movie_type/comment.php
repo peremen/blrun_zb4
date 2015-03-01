@@ -111,6 +111,8 @@ function preview_m() {
 	rWrite.submit();
 	rWrite.action = "<?=$dir?>/comment_ok.php";
 	rWrite.target = "_self";
+
+	return true;
 }
 //-->
 </SCRIPT><br>

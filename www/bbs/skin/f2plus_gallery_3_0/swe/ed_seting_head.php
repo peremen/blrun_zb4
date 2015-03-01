@@ -52,10 +52,7 @@ if($sw_edit_yn == "Y") {
 	}
 }
 
-if($type=="Movie_type"||$type=="Sell_type")
-	$a_preview = str_replace("view_preview()","preview_m()",$a_preview);
-else
-	$a_preview = str_replace("view_preview()","sw_preview()",$a_preview);
+$a_preview = str_replace("view_preview()","preview_m()",$a_preview);
 
 $a_imagebox = str_replace("showImageBox","sw_imagebox",$a_imagebox);
 $a_codebox = str_replace("showCodeBox","sw_codebox",$a_codebox);
