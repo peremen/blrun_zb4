@@ -59,7 +59,7 @@ $number=$total-($page-1)*$page_num;
 <tr height=1><td bgcolor=#000000 style=padding:0px; colspan=10><img src=images/t.gif height=1></td>
 </tr>
 <tr bgcolor=bbbbbb>
-  <td align=right colspan=10 height=25 colspan=2 style=font-family:Tahoma;font-size:8pt;>
+  <td align=right colspan=10 height=25 colspan=2 style=font-family:Tahoma;font-size:9pt;>
     그룹이름 : <b><?=$group_data[name]?></b> , 전체 회원수 : <b><?echo $total_member;?></b> , <b><?echo $total;?></b> 개 검색&nbsp;&nbsp;&nbsp;</td>
 </tr>
 <!-- 모두삭제하는 거랑, 변한변경, 그룹이동 버튼 표시 -->
@@ -169,15 +169,15 @@ $number=$total-($page-1)*$page_num;
 </script>
 
 <tr align=center height=25 bgcolor=#a0a0a0>
-  <td style=font-family:Tahoma;font-size:8pt;font-weight:bold;>번호</td>
-  <td style=font-family:Tahoma;font-size:8pt;font-weight:bold;><a href=javascript: onclick="return select();">선택</a></td>
-  <td style=font-family:Tahoma;font-size:8pt;font-weight:bold;>유저명</td>
-  <td style=font-family:Tahoma;font-size:8pt;font-weight:bold;>이름</td>
-  <td style=font-family:Tahoma;font-size:8pt;font-weight:bold;>레벨</td>
-  <td style=font-family:Tahoma;font-size:8pt;font-weight:bold;>점수</td>
-  <td style=font-family:Tahoma;font-size:8pt;font-weight:bold;>가입일자</td>
-  <td style=font-family:Tahoma;font-size:8pt;font-weight:bold;>수정</td>
-  <td style=font-family:Tahoma;font-size:8pt;font-weight:bold;>삭제</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>번호</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;><a href=javascript: onclick="return select();">선택</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>유저명</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>이름</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>레벨</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>점수</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>가입일자</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>수정</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>삭제</td>
 </tr>
 
 <form method=post action=<?=$PHP_SELF?> name=write>
@@ -201,13 +201,13 @@ while($data=mysql_fetch_array($result))
 <tr align=center height=23 bgcolor=#e0e0e0>
   <td style=font-family:Tahoma;font-size:7pt;>$number</td>
   <td><input type=checkbox name=cart[] value=$data[no]></td>
-  <td style=font-family:Tahoma;font-size:8pt;>$data[user_id]</td>
+  <td style=font-family:Tahoma;font-size:9pt;>$data[user_id]</td>
   <td><img src=images/t.gif height=3><br>$data[name]&nbsp;</td>
-  <td style=font-family:Tahoma;font-size:8pt;>$grant_color$data[level]</td>
-  <td style=font-family:Tahoma;font-size:8pt;>".($data[point1]*10+$data[point2])." <font style=font-size:7pt;>(".$data[point1]."/".$data[point2].")</font></td>
-  <td style=font-family:Tahoma;font-size:8pt;>".date("Y-m-d",$data[reg_date])."</td>
-  <td style=font-family:Tahoma;font-size:8pt;><a href=$PHP_SELF?exec=$exec&group_no=$group_no&exec2=modify&page=$page&no=$data[no]&keyword=$keyword&keykind=$keykind&like=$like&page_num=$page_num>Modify</a></td>
-  <td style=font-family:Tahoma;font-size:8pt;>";
+  <td style=font-family:Tahoma;font-size:9pt;>$grant_color$data[level]</td>
+  <td style=font-family:Tahoma;font-size:9pt;>".($data[point1]*10+$data[point2])." <font style=font-size:7pt;>(".$data[point1]."/".$data[point2].")</font></td>
+  <td style=font-family:Tahoma;font-size:9pt;>".date("Y-m-d",$data[reg_date])."</td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=$exec&group_no=$group_no&exec2=modify&page=$page&no=$data[no]&keyword=$keyword&keykind=$keykind&like=$like&page_num=$page_num>Modify</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;>";
 	if($data[no]>1) echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&exec2=del&keyword=$keyword&page=$page&no=$data[no]$href onclick=\"return confirm('삭제하시겠습니까?')\">Delete</a>"; else echo "&nbsp;";
 	echo "</td>
 </tr>
@@ -233,8 +233,8 @@ echo "
 
         </select>
       </td>
-      <td><input type=button value='레벨변경' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:20px; onclick=move_all()></td>
-      <td><input type=button value='선택된 회원 삭제' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:20px; onclick=delete_all()></td>
+      <td><input type=button value='레벨변경' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=move_all()></td>
+      <td><input type=button value='선택된 회원 삭제' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=delete_all()></td>
 <?
 if($member[is_admin]==1)
 {
@@ -256,7 +256,7 @@ if($member[is_admin]==1)
 
         </select>
       </td>
-      <td><input type=button value='그룹 변경' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:20px; onclick=move_group()>&nbsp;</td>
+      <td><input type=button value='그룹 변경' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=move_group()>&nbsp;</td>
 <?
 }
 ?>
@@ -278,8 +278,8 @@ if($member[is_admin]==1)
   <input type=hidden name=cart value=''>
   <tr>
     <td rowspan=2 align=left>
-      <input type=button value="메일링 리스트 발송" style=line-height:150%;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:50px; onclick="sendmail();">&nbsp;
-      <input type=button value="회원 추가" style=line-height:150%;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:50px; onclick="window.open('member_join.php?mode=admin&group_no=<?=$group_no?>','zbMemberJoin','width=560,height=590,toolbars=no,resizable=yes,scrollbars=yes')">&nbsp;
+      <input type=button value="메일링 리스트 발송" style=line-height:150%;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:50px; onclick="sendmail();">&nbsp;
+      <input type=button value="회원 추가" style=line-height:150%;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:50px; onclick="window.open('member_join.php?mode=admin&group_no=<?=$group_no?>','zbMemberJoin','width=560,height=590,toolbars=no,resizable=yes,scrollbars=yes')">&nbsp;
     </td>
     <td align=right height=30 nowrap='nowrap'>
       <img src=images/t.gif height=2><br>
@@ -300,13 +300,13 @@ for($i=1;$i<=10;$i++) echo "<option value=$i $check[$i]>$i Level</option>";
       <option value="comment" <?if($keykind=="comment") echo "selected";?>>Comment</option>
       </select>
       <input type=text name=keyword value='<?echo $keyword;?>'>
-      <input type=checkbox name=like value=1 <?if($like) echo "checked";?> onclick='alert("Include 체크시 검색어를 포함하는 대상을 검색합니다.\n\n체크시 : *검색어*\n\n체크를 하지 않을경우 완전한 대상을 검색하며 더 빠릅니다\n\nComment를 제외하고는 체크하지 않는 것을 권해드립니다")'> <font style=color:#ffffff;font-size:8pt;font-family:Tahoma;>Include</font> &nbsp;
-      <input type=submit value=' 검색 '  style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:20px; >
-      <input type=button value=' 처음으로 ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:20px; onclick=location.href="<?=$PHP_SELF?>?exec=<?=$exec?>&group_no=<?=$group_no?>">
+      <input type=checkbox name=like value=1 <?if($like) echo "checked";?> onclick='alert("Include 체크시 검색어를 포함하는 대상을 검색합니다.\n\n체크시 : *검색어*\n\n체크를 하지 않을경우 완전한 대상을 검색하며 더 빠릅니다\n\nComment를 제외하고는 체크하지 않는 것을 권해드립니다")'> <font style=color:#ffffff;font-size:9pt;font-family:Tahoma;>Include</font> &nbsp;
+      <input type=submit value=' 검색 '  style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; >
+      <input type=button value=' 처음으로 ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=location.href="<?=$PHP_SELF?>?exec=<?=$exec?>&group_no=<?=$group_no?>">
     </td>
   </tr>
   <tr>
-    <td style=font-family:Tahoma;font-size:8pt;font-weight:bold; align=right>
+    <td style=font-family:Tahoma;font-size:9pt;font-weight:bold; align=right>
       한 페이지당 표시될 회원수   
       <input type=text name=page_num value='<?echo $page_num;?>' style=width:30px;>
     </td>
@@ -317,7 +317,7 @@ for($i=1;$i<=10;$i++) echo "<option value=$i $check[$i]>$i Level</option>";
 </tr>
 </table>
 <br>
-<font color=#ffffff style=font-size:8pt;font-family:Tahoma;>
+<font color=#ffffff style=font-size:9pt;font-family:Tahoma;>
 <?
 //페이지 나타내는 부분
 	$show_page_num=10;

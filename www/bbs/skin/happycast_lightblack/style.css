@@ -13,10 +13,10 @@ A:hover  {color:gray;text-decoration:none;}
 
 .comment_submit {font-family:Verdaba;font-size:9pt;border:solid 1;border-color:black;background-color:white;width:100%;height:100%}
 
-.setup {font-family:Tahoma;font-size:6pt;font-weight:bold;color:gray;}
+.setup {font-family:Tahoma;font-size:8pt;font-weight:bold;color:gray;}
 .list_header {font-family:Matchworks,Tahoma;font-size:9pt;color:gray}
-.listnum {font-family:Tahoma;font-size:8pt}
-.commentnum {font-family:Tahoma;font-size:8pt;}
+.listnum {font-family:Tahoma;font-size:9pt}
+.commentnum {font-family:Tahoma;font-size:9pt;}
 
 .view_title1 {font-family:Arial;font-size:9pt;font-weight:bold;color=#333333}
 .view_title2 {font-family:Arial;font-size:15px;letter-spacing:-1px;font-weight:bold;color=#333333}

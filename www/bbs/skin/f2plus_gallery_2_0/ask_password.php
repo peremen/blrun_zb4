@@ -1,5 +1,6 @@
 
 <br><br><br>
+<table width=100% border=0 cellspacing=0 cellpadding=0>
 <form method=post name=delete action=<?=$target?>>
 <input type=hidden name=_zb_path value=<?=$_zb_path?>>
 <input type=hidden name=_zb_url value=<?=$_zb_url?>>
@@ -18,7 +19,6 @@
 <input type=hidden name=mode value="<?=$mode?>">
 <input type=hidden name=c_no value=<?=$c_no?>>
 <input type=hidden name=zb_check value="<?=$zb_check?>">
-<table border=0 width=250 cellspacing=1 cellpadding=0 align=center>
 <tr class=title>
 	<td align=center class=title_han2><b><?=$title?></b></td>
 </tr>
@@ -39,5 +39,5 @@ if(!$member[no]) {
 		<input type=button class=button value="이전화면" onclick=history.back()>
 	</td>
 </tr>
-</table>
 </form>
+</table>

@@ -124,7 +124,7 @@ if($exec=="delete"&&strlen($no)&&$id) {
 			@z_unlink("./"."data/".$table_name."/thumbnail/".$member[no]."/ss_".$out[1].".jpg");
 			@z_unlink("./"."data/".$table_name."/thumbnail/".$member[no]."/sl_".$out[1].".jpg");
 			@z_unlink("./"."data/".$table_name."/thumbnail/".$member[no]."/sXL_".$out[1].".jpg");
-			@z_unlink("./"."data/".$table_name."/thumbnail/".$member[no]."/vXL_".$out[1].".jpg");
+			@z_unlink("./"."data/".$table_name."/thumbnail/".$member[no]."/vXL_".$out[1].".".$out[2].".jpg");
 			@z_unlink("./".$path."/thumbnail/"."iXS_".$out[1].".jpg");
 		}
 	}

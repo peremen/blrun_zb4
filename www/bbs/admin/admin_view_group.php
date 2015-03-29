@@ -19,32 +19,32 @@ $data=mysql_fetch_array($result);
 <tr>
   <td style=padding:0px;>
     <table border=0 cellspacing=1 cellpadding=3 width=100% bgcolor=#b0b0b0>
-    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:8pt;font-weight:bold; width=40%>그룹 이름&nbsp;&nbsp;</font></td><td align=left width=80%><img src=images/t.gif height=3><br>&nbsp;<?=$data[name]?></td>
+    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold; width=40%>그룹 이름&nbsp;&nbsp;</font></td><td align=left width=80%><img src=images/t.gif height=3><br>&nbsp;<?=$data[name]?></td>
     </tr>
-    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:8pt;font-weight:bold;>그룹 공개 여부&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:8pt;>&nbsp;<?if($data[is_open]==1) echo "공개"; else echo "비공개";?></td>
+    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>그룹 공개 여부&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;>&nbsp;<?if($data[is_open]==1) echo "공개"; else echo "비공개";?></td>
     </tr>
-    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:8pt;font-weight:bold;>회원가입 허용&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:8pt;>&nbsp;<?if($data[use_join]) echo "허용"; else echo "금지";?></td>
+    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>회원가입 허용&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;>&nbsp;<?if($data[use_join]) echo "허용"; else echo "금지";?></td>
     </tr>
-    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:8pt;font-weight:bold;>그룹 아이콘&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:8pt;>&nbsp;<?if($data[icon]) echo "<img src=icon/$data[icon] border=0 align=absmiddle>";?></td>
+    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>그룹 아이콘&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;>&nbsp;<?if($data[icon]) echo "<img src=icon/$data[icon] border=0 align=absmiddle>";?></td>
     </tr>
-    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:8pt;font-weight:bold;>회원 구분형식&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:8pt;>&nbsp;<?if($data[use_icon]==1) echo "진한이름"; elseif($data[use_icon]==2) echo "구분없음"; else echo "레벨별 아이콘으로 구분";?></td>
+    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>회원 구분형식&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;>&nbsp;<?if($data[use_icon]==1) echo "진한이름"; elseif($data[use_icon]==2) echo "구분없음"; else echo "레벨별 아이콘으로 구분";?></td>
     </tr>
     <tr align=right bgcolor=#e0e0e0>
-      <td height=25 style=font-family:Tahoma;font-size:8pt;font-weight:bold;>
+      <td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>
         회원가입후 이동할 페이지&nbsp;&nbsp;</td>
-      <td align=left style=font-family:Tahoma;font-size:8pt;>
+      <td align=left style=font-family:Tahoma;font-size:9pt;>
         &nbsp;<?if($data[join_return_url]) echo "<a href=$data[join_return_url] target=_blank>$data[join_return_url]</a>";?></td>
     </tr>
     <tr align=right bgcolor=#e0e0e0>
-      <td height=25 style=font-family:Tahoma;font-size:8pt;font-weight:bold;>
+      <td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>
         회원수&nbsp;&nbsp;</td>
-      <td align=left style=font-family:Tahoma;font-size:8pt;>
+      <td align=left style=font-family:Tahoma;font-size:9pt;>
       &nbsp;<b><?=$data[member_num]?></b> 명</td>
     </tr>
     <tr align=right bgcolor=#e0e0e0>
-      <td height=25 style=font-family:Tahoma;font-size:8pt;font-weight:bold;>
+      <td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>
         생성된 게시판수&nbsp;&nbsp;</td>
-      <td align=left style=font-family:Tahoma;font-size:8pt;>
+      <td align=left style=font-family:Tahoma;font-size:9pt;>
         &nbsp;<b><?=$data[board_num]?></b></td>
     </tr>
     </table>

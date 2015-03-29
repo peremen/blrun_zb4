@@ -145,7 +145,7 @@ if($now_data[no]) {
     <tr>
       <td width="50" align="right"><img src="images/sm_to.gif"></td>
       <td><img src="images/t.gif" width="10" height="3"><br>
-        <a href=javascript:void(window.open('view_info.php?member_no=<?=$now_data[member_to]?>','view_info','width=400,height=510,toolbar=no,scrollbars=yes'))><?=stripslashes($now_data[name])?></a> <font style=font-size:8pt;>(<b>ID</b> : <?=$now_data['member_to']?>)
+        <a href=javascript:void(window.open('view_info.php?member_no=<?=$now_data[member_to]?>','view_info','width=400,height=510,toolbar=no,scrollbars=yes'))><?=stripslashes($now_data[name])?></a> <font style=font-size:9pt;>(<b>ID</b> : <?=$now_data['member_to']?>)
       </td>
     </tr>
     <tr>
@@ -243,8 +243,8 @@ while($data=mysql_fetch_array($result)) {
           <td style='word-break:break-all;' style=cursor:hand; onclick=location.href="<?="$PHP_SELF?exec=view&no=$data[no]&page=$page"?>"><img src="images/t.gif" width="10" height="3"><br>
             <a href=<?="$PHP_SELF?exec=view&no=$data[no]&page=$page"?>><?=$data[subject]?></a></td>
           <td width="80" align="center"><img src="images/t.gif" width="10" height="3"><br>
-            <a href=javascript:void(window.open('view_info.php?member_no=<?=$data[member_to]?>','view_info','width=400,height=510,toolbar=no,scrollbars=yes'))><?=$data[name]?></a><br><font style=font-size:8pt;color:999999>(<?=$data['user_id']?>)</td>
-          <td width="60" align="center"><font style=font-family:Tahoma;font-size:8pt;><span title='<?=$reg_date?>'><? echo "".date("m/d",$data[reg_date])."" ?></span></font></td>
+            <a href=javascript:void(window.open('view_info.php?member_no=<?=$data[member_to]?>','view_info','width=400,height=510,toolbar=no,scrollbars=yes'))><?=$data[name]?></a><br><font style=font-size:9pt;color:999999>(<?=$data['user_id']?>)</td>
+          <td width="60" align="center"><font style=font-family:Tahoma;font-size:9pt;><span title='<?=$reg_date?>'><? echo "".date("m/d",$data[reg_date])."" ?></span></font></td>
         </tr>
 <?
 	$loop_number--;
@@ -264,7 +264,7 @@ while($data=mysql_fetch_array($result)) {
     </table>
     <table width="100%" border="0" cellspacing="0" cellpadding="5">
     <tr>
-      <td>&nbsp;&nbsp;&nbsp;<font style=font-family:Tahoma;font-size:7pt;color:#cc0000><?=$print_page?></font></td>
+      <td>&nbsp;&nbsp;&nbsp;<font style=font-family:Tahoma;font-size:8pt;color:#cc0000><?=$print_page?></font></td>
       <td align="right"><input type=image src="images/memo_delete.gif" width="69" height="25" border="0">
         <a href=JavaScript:window.close()><img src="images/memo_close.gif" width="69" height="25" border="0"></a>
       </td>

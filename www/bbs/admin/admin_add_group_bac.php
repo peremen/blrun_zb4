@@ -16,41 +16,41 @@ return true;
 </tr>
 <tr height=1><td bgcolor=#000000 style=padding:0px; colspan=2><img src=images/t.gif height=1></td>
 </tr>
-<tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:8pt;> <font color=red>*</font> <b>그룹 이름</b>&nbsp;&nbsp;</td><td align=left>&nbsp;<input type=text name=name size=20 maxlength=20 class=input style=border-color:#b0b0b0> 그룹이름을 입력하세요</td>
+<tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:9pt;> <font color=red>*</font> <b>그룹 이름</b>&nbsp;&nbsp;</td><td align=left>&nbsp;<input type=text name=name size=20 maxlength=20 class=input style=border-color:#b0b0b0> 그룹이름을 입력하세요</td>
 </tr>
-<tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:8pt;> <b>그룹 공개 여부</b>&nbsp;&nbsp;</td><td align=left><table border=0 cellpadding=0 cellspacing=0><tr><td><input type=radio name=is_open checked value=1></td><td style=font-family:Tahoma;font-size:8pt;> Yes &nbsp;&nbsp;</td><td><input type=radio name=is_open value=0></td><td style=font-family:Tahoma;font-size:8pt;> No &nbsp; 공개그룹이면 Yes, 아니면 No를 선택하세요</td></tr></table></td>
+<tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:9pt;> <b>그룹 공개 여부</b>&nbsp;&nbsp;</td><td align=left><table border=0 cellpadding=0 cellspacing=0><tr><td><input type=radio name=is_open checked value=1></td><td style=font-family:Tahoma;font-size:9pt;> Yes &nbsp;&nbsp;</td><td><input type=radio name=is_open value=0></td><td style=font-family:Tahoma;font-size:9pt;> No &nbsp; 공개그룹이면 Yes, 아니면 No를 선택하세요</td></tr></table></td>
 </tr>
-<tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:8pt;><b>회원 가입 허용</b>&nbsp;&nbsp;</td><td align=left><table border=0 cellpadding=0 cellspacing=0><tr><td><input type=radio name=use_join checked value=1></td><td style=font-family:Tahoma;font-size:8pt;> Yes &nbsp;&nbsp;</td><td><input type=radio name=use_join value=0></td><td style=font-family:Tahoma;font-size:8pt;> No &nbsp; 회원가입을 허용할거면 Yes, 아니면 No를 선택하세요</td></tr></table></td>
+<tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:9pt;><b>회원 가입 허용</b>&nbsp;&nbsp;</td><td align=left><table border=0 cellpadding=0 cellspacing=0><tr><td><input type=radio name=use_join checked value=1></td><td style=font-family:Tahoma;font-size:9pt;> Yes &nbsp;&nbsp;</td><td><input type=radio name=use_join value=0></td><td style=font-family:Tahoma;font-size:9pt;> No &nbsp; 회원가입을 허용할거면 Yes, 아니면 No를 선택하세요</td></tr></table></td>
 </tr>
-<tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:8pt; valign=top><img src=images/t.gif height=3><br><b>그룹 아이콘</b>&nbsp;&nbsp;</td><td align=left height=60 style=font-family:Tahoma;font-size:8pt;line-height:160%>&nbsp;<input type=file name=icon size=40 class=input style=border-color:#b0b0b0;font-family:Tahoma;font-size:8pt;> &nbsp; <br>&nbsp; 일반멤버들의 아이콘을 지정하세요.<br>&nbsp;(Under Width,Height 24pixel JPG/JEPG/GIF/PNG/BMP File format)</td>
+<tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:9pt; valign=top><img src=images/t.gif height=3><br><b>그룹 아이콘</b>&nbsp;&nbsp;</td><td align=left height=60 style=font-family:Tahoma;font-size:9pt;line-height:160%>&nbsp;<input type=file name=icon size=40 class=input style=border-color:#b0b0b0;font-family:Tahoma;font-size:9pt;> &nbsp; <br>&nbsp; 일반멤버들의 아이콘을 지정하세요.<br>&nbsp;(Under Width,Height 24pixel JPG/JEPG/GIF/PNG/BMP File format)</td>
 </tr>
-<tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:8pt;><b>회원 표시 방법</b>&nbsp;&nbsp;</td><td align=left><table border=0 cellpadding=0 cellspacing=0><tr><td><input type=radio name=use_icon value=0 ></td><td style=font-family:Tahoma;font-size:8pt;> 아이콘 사용 &nbsp&nbsp;</td><td><input type=radio name=use_icon checked value=1></td><td style=font-family:Tahoma;font-size:8pt;> 진한 글자 &nbsp;&nbsp;</td><td><input type=radio name=use_icon value=2></td><td style=font-family:Tahoma;font-size:8pt;> 구분 하지 않음&nbsp; </td><tr><td colspan=4 height=20>&nbsp;회원표시 방법을 선택하세요</td></tr></table></td>
+<tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:9pt;><b>회원 표시 방법</b>&nbsp;&nbsp;</td><td align=left><table border=0 cellpadding=0 cellspacing=0><tr><td><input type=radio name=use_icon value=0 ></td><td style=font-family:Tahoma;font-size:9pt;> 아이콘 사용 &nbsp&nbsp;</td><td><input type=radio name=use_icon checked value=1></td><td style=font-family:Tahoma;font-size:9pt;> 진한 글자 &nbsp;&nbsp;</td><td><input type=radio name=use_icon value=2></td><td style=font-family:Tahoma;font-size:9pt;> 구분 하지 않음&nbsp; </td><tr><td colspan=4 height=20>&nbsp;회원표시 방법을 선택하세요</td></tr></table></td>
 </tr>
-<tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:8pt; valign=top><img src=images/t.gif height=3><br><b>회원가입후 이동할 페이지</b>&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:8pt;><input type=text name=join_return_url size=40 maxlength=255 class=input style=border-color:#b0b0b0><br><img src=images/t.gif border=0 height=4><br>&nbsp;게시판이 아닌곳에서의 회원가입, 로그인시 이동할 URL을 입력하세요</td>
+<tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:9pt; valign=top><img src=images/t.gif height=3><br><b>회원가입후 이동할 페이지</b>&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;><input type=text name=join_return_url size=40 maxlength=255 class=input style=border-color:#b0b0b0><br><img src=images/t.gif border=0 height=4><br>&nbsp;게시판이 아닌곳에서의 회원가입, 로그인시 이동할 URL을 입력하세요</td>
 </tr>
 <!-- 헤더, 푸터  -->
-<tr height=25 bgcolor=bbbbbb><td colspan=2  align=center  style=font-family:Tahoma;font-size:8pt;><b>게시판 상, 하단에 출력할 내용Footer</td>
+<tr height=25 bgcolor=bbbbbb><td colspan=2  align=center  style=font-family:Tahoma;font-size:9pt;><b>게시판 상, 하단에 출력할 내용Footer</td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:8pt;><b>게시판 상단에 불러올 파일&nbsp;</td>
+  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>게시판 상단에 불러올 파일&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=text  name=header_url value='<?echo stripslashes($data[header_url]);?>' size=40 maxlength=255 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:8pt;><b>게시판 상단에 출력될 내용&nbsp;</td>
+  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>게시판 상단에 출력될 내용&nbsp;</td>
   <td >&nbsp;&nbsp;
     <textarea name=header cols=70 rows=10 class=textarea style=border-color:b0b0b0><?echo stripslashes($data[header]);?></textarea>
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:8pt;><b>게시판 하단에 불러올 파일&nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 하단에 불러올 파일&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=text  name=footer_url value='<?echo stripslashes($data[footer_url]);?>' size=40 maxlength=255 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:8pt;><b>게시판 하단에 출력될 내용&nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 하단에 출력될 내용&nbsp;</td>
   <td >&nbsp;&nbsp;
     <textarea name=footer cols=70 rows=10 class=textarea style=border-color:#b0b0b0><?echo stripslashes($data[footer]);?></textarea>
   </td>

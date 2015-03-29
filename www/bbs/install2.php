@@ -63,23 +63,23 @@ head();
 </tr>
 
 <tr>
-  <td width=150 align=right style=font-family:Tahoma;font-size:8pt>ID&nbsp;</td>
-  <td width=450> <input type=test name=user_id size=20 maxlength=20 style=font-family:Tahoma;font-size:8pt;></td>
+  <td width=150 align=right style=font-family:Tahoma;font-size:9pt>ID&nbsp;</td>
+  <td width=450> <input type=test name=user_id size=20 maxlength=20 style=font-family:Tahoma;font-size:9pt;></td>
 </tr>
 
 <tr>
-  <td  align=right style=font-family:Tahoma;font-size:8pt>Password&nbsp;</td>
-  <td > <input type=password name=password1 size=20 maxlength=20 style=font-family:Tahoma;font-size:8pt></td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt>Password&nbsp;</td>
+  <td > <input type=password name=password1 size=20 maxlength=20 style=font-family:Tahoma;font-size:9pt></td>
 </tr>
 
 <tr>
-  <td  align=right style=font-family:Tahoma;font-size:8pt>Confirm Password&nbsp;</td>
-  <td > <input type=password name=password2 size=20 maxlength=20 style=font-family:Tahoma;font-size:8pt></td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt>Confirm Password&nbsp;</td>
+  <td > <input type=password name=password2 size=20 maxlength=20 style=font-family:Tahoma;font-size:9pt></td>
 </tr>
 
 <tr>
-  <td  align=right style=font-family:Tahoma;font-size:8pt>Name&nbsp;</td>
-  <td > <input type=text name=name size=20 value='<?echo $data[name];?>' maxlength=20 style=font-family:Tahoma;font-size:8pt></td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt>Name&nbsp;</td>
+  <td > <input type=text name=name size=20 value='<?echo $data[name];?>' maxlength=20 style=font-family:Tahoma;font-size:9pt></td>
 </tr>
 
 <tr>

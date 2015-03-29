@@ -10,6 +10,9 @@ function thumbnail($size,$source_file,$save_file){
 	if($img_info[0]>=$size){
 		$max_width=$size;
 		$max_height=ceil($img_info[1]*$size/$img_info[0]);
+	}elseif($img_info[0]==""){
+		$max_width=$size;
+		$max_height=ceil($size*3/4);
 	}else{
 		$max_width=$img_info[0];
 		$max_height=$img_info[1];
@@ -23,5 +26,7 @@ function thumbnail($size,$source_file,$save_file){
 
 	@ImageDestroy($dstimg);
 	@ImageDestroy($srcimg);
+
+	return $img_info[0];
 }
 ?>

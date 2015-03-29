@@ -397,7 +397,7 @@ function head($body="",$scriptfile="") {
 <!-- SyntaxHighlighter 관련 헤더 -->
 <link rel="stylesheet" type="text/css" href="syntaxhighlighter/styles/shThemeDefault.css" />
 <link rel="stylesheet" type="text/css" href="syntaxhighlighter/styles/shCore.css" />
-<SCRIPT type="text/javascript" src="syntaxhighlighter/scripts/jquery-1.4.2.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="syntaxhighlighter/scripts/jquery-1.7.1.min.js"></SCRIPT>
 <script type="text/javascript" src="syntaxhighlighter/scripts/shCore.js"></script>
 <script type="text/javascript" src="syntaxhighlighter/scripts/shAutoloader.js"></script>
 <SCRIPT type="text/javascript" src="syntaxhighlighter/scripts/jQuery.js"></SCRIPT>
@@ -1040,7 +1040,7 @@ function zRmDir($path) {
 }
 
 /*********************************************************************************************
-* 모든 스킨의 이미지 박스 이미지 썸네일 생성
+ * 모든 스킨의 이미지 박스 이미지 썸네일 생성
  ********************************************************************************************/
 
 function thumbnail3($size,$source_file,$save_file){
