@@ -196,9 +196,6 @@ if((!preg_match("/http:\/\//i",$homepage))&&$homepage) $homepage="http://".$home
 $ip=$REMOTE_ADDR; // 아이피값 구함;;
 $reg_date=time(); // 현재의 시간구함;;
 
-$x = $zx;
-$y = $zy;
-
 // 도배인지 아닌지 검사;; 우선 같은 아이피대에 30초이내의 글은 도배로 간주;;
 if(!$is_admin&&$mode!="modify") {
 	$max_no=mysql_fetch_array(mysql_query("select max(no) from $t_board"."_$id"));
@@ -368,6 +365,12 @@ if($file2_size>0&&$setup[use_pds]&&$file2) {
 * 수정글일때
 **************************************************************************/
 if($mode=="modify"&&$no) {
+	// 메인페이지 최근 갤러리 썸네일 삭제
+	if(file_exists("data/latest_thumb/".$id."/".$s_data[reg_date]."_small.jpg")){
+		@z_unlink("./data/latest_thumb/".$id."/".$s_data[reg_date]."_small.jpg");
+		@z_unlink("./data/latest_thumb/".$id."/".$s_data[reg_date]."_large.jpg");
+	}
+
 	// 파일등록
 	if($file_name1) {$del_que1=",file_name1='$file_name1',s_file_name1='$s_file_name1'";}
 	if($file_name2) {$del_que2=",file_name2='$file_name2',s_file_name2='$s_file_name2'";}
@@ -477,7 +480,7 @@ if($mode=="modify"&&$no) {
 	plus_division($s_data[division]);
 
 	// 답글 데이타 입력;;
-	mysql_query("insert into $t_board"."_$id (division,headnum,arrangenum,depth,prev_no,next_no,father,child,ismember,memo,ip,password,name,homepage,email,subject,use_html,reply_mail,category,is_secret,sitelink1,sitelink2,file_name1,file_name2,s_file_name1,s_file_name2,x,y,reg_date,islevel) values ('$division','$headnum','$arrangenum','$depth','$prev_no','$next_no','$father','$child','$member[no]','$memo','$ip','$password','$name','$homepage','$email','$subject','$use_html','$reply_mail','$category','$is_secret','$sitelink1','$sitelink2','$file_name1','$file_name2','$s_file_name1','$s_file_name2','$x','$y','$reg_date','$member[is_admin]')") or error(mysql_error());    
+	mysql_query("insert into $t_board"."_$id (division,headnum,arrangenum,depth,prev_no,next_no,father,child,ismember,memo,ip,password,name,homepage,email,subject,use_html,reply_mail,category,is_secret,sitelink1,sitelink2,file_name1,file_name2,s_file_name1,s_file_name2,reg_date,islevel) values ('$division','$headnum','$arrangenum','$depth','$prev_no','$next_no','$father','$child','$member[no]','$memo','$ip','$password','$name','$homepage','$email','$subject','$use_html','$reply_mail','$category','$is_secret','$sitelink1','$sitelink2','$file_name1','$file_name2','$s_file_name1','$s_file_name2','$reg_date','$member[is_admin]')") or error(mysql_error());    
 
 	// 원본글과 원본글의 아래글의 속성 변경;;
 	$no=mysql_insert_id();
@@ -555,7 +558,7 @@ if($mode=="modify"&&$no) {
 	$father="0";
 	$division=add_division();
 
-	mysql_query("insert into $t_board"."_$id (division,headnum,arrangenum,depth,prev_no,next_no,father,child,ismember,memo,ip,password,name,homepage,email,subject,use_html,reply_mail,category,is_secret,sitelink1,sitelink2,file_name1,file_name2,s_file_name1,s_file_name2,x,y,reg_date,islevel) values ('$division','$headnum','$arrangenum','$depth','$prev_no','$next_no','$father','$child','$member[no]','$memo','$ip','$password','$name','$homepage','$email','$subject','$use_html','$reply_mail','$category','$is_secret','$sitelink1','$sitelink2','$file_name1','$file_name2','$s_file_name1','$s_file_name2','$x','$y','$reg_date','$member[is_admin]')") or error(mysql_error());
+	mysql_query("insert into $t_board"."_$id (division,headnum,arrangenum,depth,prev_no,next_no,father,child,ismember,memo,ip,password,name,homepage,email,subject,use_html,reply_mail,category,is_secret,sitelink1,sitelink2,file_name1,file_name2,s_file_name1,s_file_name2,reg_date,islevel) values ('$division','$headnum','$arrangenum','$depth','$prev_no','$next_no','$father','$child','$member[no]','$memo','$ip','$password','$name','$homepage','$email','$subject','$use_html','$reply_mail','$category','$is_secret','$sitelink1','$sitelink2','$file_name1','$file_name2','$s_file_name1','$s_file_name2','$reg_date','$member[is_admin]')") or error(mysql_error());
 	$no=mysql_insert_id();
 
 	// 현재글의 조회수를 올릴수 없게 세션 등록

@@ -7,7 +7,9 @@ $Thumbnail_large2="sl_".$data[reg_date].".jpg";
 
 if($_view_included==true){
 	$imagePattern="#<img src\=\'data\/\w+?\/thumbnail\/([^/]+?)\/vXL_(.+?)\.(jpg|jpeg|png)\.(jpg)\'#i";
-	preg_match_all($imagePattern,$data[memo],$out,PREG_SET_ORDER);
+	$imagePattern2="#<img src\=\'icon\/member_image_box\/([^/]+?)\/(.+?)\.(gif|bmp)\'#i";
+	if(preg_match_all($imagePattern,$data[memo],$out,PREG_SET_ORDER));
+	else preg_match_all($imagePattern2,$data[memo],$out,PREG_SET_ORDER);
 
 	//넘겨주는 out 변수 통일
 	$out[0][1]=urldecode($out[0][2]);

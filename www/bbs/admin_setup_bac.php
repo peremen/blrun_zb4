@@ -71,18 +71,18 @@ head(" bgcolor=444444 ");
         <table border="0" cellspacing="0" cellpadding="0">
         <tr> 
           <td><img src="images/adminid.gif" width="100" height="24"></td>
-          <td nowrap='nowrap' style="font-family:Tahoma;font-size:8pt;"><font color="#FFFFFF"><b><?=$member[user_id]?></b></font></td>
+          <td nowrap='nowrap' style="font-family:Tahoma;font-size:9pt;"><font color="#FFFFFF"><b><?=$member[user_id]?></b></font></td>
           <td><img src="images/adminlevel.gif" width="49" height="24"></td>
-          <td nowrap='nowrap' style="font-family:Tahoma;font-size:8pt;">
+          <td nowrap='nowrap' style="font-family:Tahoma;font-size:9pt;">
 
 <?
 // 최고관리자일때
 if($member[is_admin]==1) 
-	echo "<b><font color=#ffffff>Super Administrator</font></b> <a href=$PHP_SELF?exec=view_member&exec2=modify&no=$member[no]><font color=#ffffff style=font-family:Tahoma;font-size:8pt;>(Edit information)</font></a>";
+	echo "<b><font color=#ffffff>Super Administrator</font></b> <a href=$PHP_SELF?exec=view_member&exec2=modify&no=$member[no]><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
 
 // 그룹관리자일때
 elseif($member[is_admin]==2) 
-	echo "<b><font color=#ffffff>Group Administrator</font></b> <a href=$PHP_SELF?exec=view_member&group_no=$member[group_no]&exec2=modify&no=$member[no]><font color=#ffffff style=font-family:Tahoma;font-size:8pt;>(Edit information)</font></a>";
+	echo "<b><font color=#ffffff>Group Administrator</font></b> <a href=$PHP_SELF?exec=view_member&group_no=$member[group_no]&exec2=modify&no=$member[no]><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
 
 // 게시판 관리자일때
 elseif($member[board_name])
@@ -90,7 +90,7 @@ elseif($member[board_name])
 
 // 기타일때;; -_-;;
 else
-	echo "<b><font color=#ffffff>Normal Member</font></b> <a href=$PHP_SELF?exec=view_member&group_no=$member[group_no]&exec2=modify&no=$member[no]><font color=#ffffff style=font-family:Tahoma;font-size:8pt;>(Edit information)</font></a>";
+	echo "<b><font color=#ffffff>Normal Member</font></b> <a href=$PHP_SELF?exec=view_member&group_no=$member[group_no]&exec2=modify&no=$member[no]><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
 ?>
               		&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href=logout.php?s_url=admin.php><font color=white style=font-size:9pt><b>Log Out</b></font></a>&nbsp;&nbsp;
           </td>
@@ -149,7 +149,7 @@ if($member[is_admin]==1) {
 		if($group_no==$group_data[no]) {
 ?>
     <tr> 
-      <td bgcolor=#868686 style=font-family:Tahoma;font-size:8pt;padding:3px><img src=images/g_top.gif width=38 height=14><br>
+      <td bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><img src=images/g_top.gif width=38 height=14><br>
         <a href=<?=$PHP_SELF?>?group_no=<?=$group_data[no]?>&exec=modify_group><img src=images/g_properties.gif border=0 alt="그룹 설정"></a>
 <?
 			if($member[is_admin]==1) 
@@ -199,7 +199,7 @@ else {
 	if($member[is_admin]==2) {
 ?>
     <tr>
-      <td bgcolor=#868686 style=font-family:Tahoma;font-size:8pt;padding:3px><img src=images/g_top.gif width=38 height=14><br>
+      <td bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><img src=images/g_top.gif width=38 height=14><br>
         <a href=<?=$PHP_SELF?>?group_no=<?=$group_data[no]?>&exec=modify_group><img src=images/g_properties.gif width=60 height=12 border=0 alt="그룹 설정"></a><br>
         <img src=images/t.gif width=10 height=5><br>
         <img src=images/m_top1.gif width=51 height=14 align=absmiddle><b><font color=#FFFFFF><?=$group_data[member_num]?></font></b><img src=images/m_top2.gif width=6 height=14 align=absmiddle><br>

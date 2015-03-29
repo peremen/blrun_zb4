@@ -99,13 +99,13 @@ function list_check(&$data,$view_check=0) {
 
 		// 이미지 박스 해석 및 리사이징, 확대보기를 위해서 정규표현식 사용
 		if($data[ismember]) {
-
 			// 썸네일 이미지 관련 처리
-			$imagePattern="#\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,#i";
+			$imagePattern="#\[img\:(.+?)\.(jpg|jpeg|png)\,#i";
 			preg_match_all($imagePattern,$data[memo],$out3,PREG_SET_ORDER);
 			for($i=0;$i<count($out3);$i++) {
 				$iview_large="vXL_".$out3[$i][1].".".$out3[$i][2].".jpg";
-				if(preg_match("#\.(jpg|jpeg|png)$#i",$out3[$i][1].".".$out3[$i][2])){
+				$src_img="icon/member_image_box/".$data[ismember]."/".$out3[$i][1].".".$out3[$i][2];
+				if(file_exists($src_img) && !file_exists($_zb_path."data/$id/thumbnail/".$data[ismember]."/".$iview_large)){
 					// 썸네일 디렉토리 내 각 회원별 디렉토리 생성
 					$error_check=0;
 					if(!is_dir($_zb_path."data/$id/thumbnail/".$data[ismember]."/")) {
@@ -115,10 +115,7 @@ function list_check(&$data,$view_check=0) {
 					if($error_check==2) echo "<br> ".$_zb_path."data/$id/thumbnail/".$data[ismember]."/ 디렉토리의 권한을 707로 설정하세요<br><br>";
 					elseif($error_check==3) echo "<br> ".$_zb_path."data/$id/thumbnail/ 디렉토리 내에 ".$data[ismember]."번 회원 디렉토리 생성에 실패했습니다.<br> 해당경로에 디렉토리를 생성시켜 주시고 권한을 707로 설정하세요<br><br>";
 
-					$src_img="icon/member_image_box/".$data[ismember]."/".$out3[$i][1].".".$out3[$i][2];
-					if(file_exists($src_img) && !file_exists($_zb_path."data/$id/thumbnail/".$data[ismember]."/".$iview_large)){
-						thumbnail3(640,$src_img,$_zb_path."data/$id/thumbnail/".$data[ismember]."/".$iview_large);
-					}
+					thumbnail3(640,$src_img,$_zb_path."data/$id/thumbnail/".$data[ismember]."/".$iview_large);
 				}
 			}
 

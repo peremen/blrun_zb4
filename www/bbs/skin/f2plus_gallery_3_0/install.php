@@ -25,15 +25,15 @@ if($result[0]==1){
 <style>
 BODY,TD {font-size:9pt;font-family:굴림;color:ffffff;line-height:160%}
 
-.thm7pt {font-family:tahoma;font-size:7pt}
+.thm7pt {font-family:tahoma;font-size:8pt}
 
-.com {font-family:tahoma;font-size:8pt;color:ffffff}
+.com {font-family:tahoma;font-size:9pt;color:ffffff}
 .com2 {font-family:tahoma;font-size:7pt;color:666666}
 .com3 {font-family:tahoma;font-size:7pt;color:ff9966}
-.han {font-family:tahoma;font-size:8pt;color:00ff00}
-.han2 {font-family:tahoma;font-size:8pt;color:aaaaaa}
-.han3 {font-family:tahoma;font-size:8pt;color:ff6600}
-.han4 {font-family:tahoma;font-size:8pt;color:ffcccc}
+.han {font-family:tahoma;font-size:9pt;color:00ff00}
+.han2 {font-family:tahoma;font-size:9pt;color:aaaaaa}
+.han3 {font-family:tahoma;font-size:9pt;color:ff6600}
+.han4 {font-family:tahoma;font-size:9pt;color:ffcccc}
 
 .border {border:solid 1;border-color:595959}
 .border2 {border:solid 1;border-color:cccccc}
@@ -182,7 +182,7 @@ if($gd_use==0) $select1="checked"; elseif($gd_use==1) $select2="checked"; else $
 				<tr valign=top>
 					<td>
 						<table border="0" cellpadding="1" cellspacing="0" width="95%" align=center>
-						<col width=80></col><col align=left width=></col>
+						<col width=90></col><col align=left width=></col>
 						<tr valign=top><td class=han2>1. A_type :</td><td class=han2>게시판형</td></tr>
 						<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
 						<tr valign=top><td class=han2>2. A2_type :</td><td class=han2>게시판형(Graphical)</td></tr>
