@@ -1,0 +1,79 @@
+body {  font: 14px;
+		background-color: #F3F3F3;
+		background-image: url(./images/bg_pattern01.gif);
+/*		margin:1; */
+/*			padding:1;*/
+}
+a {
+		text-decoration:none;
+		color:#aa1100;
+		padding:0.5em 0;
+		/*color:#e63;
+		*/
+}
+ a:hover {
+		color:#9b4;
+}
+
+.topRecordMenu{
+	font: 9px Tahoma;
+	color: #3366cc;
+	text-align: right;
+}
+
+.installTable{
+
+	background-color: #FFFFFF;
+}
+
+.bottomApplication{
+	font: 9px Tahoma;
+	text-align: right;
+}
+
+
+
+.installMessage{
+	font: 11px Tahoma;
+	color: #3366cc;
+	text-align: center;
+	font-weight: bold;
+}
+
+.installSubMessage{
+	font: 11px Tahoma;
+	color: #000000;
+	text-align: left;
+
+}
+.installTermsMessage{
+	font: 11px Tahoma;
+	color: #3366cc;
+	text-align: left;
+
+}
+
+.installForms{
+	font: 13px Tahoma;
+	text-align: center;
+	font-weight: bold;
+}
+
+
+.installInputForms{
+	width:140;
+}
+.installInputTitles{
+	font: 11px Tahoma;
+	color: #3366cc;
+	text-align: center;
+	font-weight: bold;
+}
+
+
+.installErrorMessage{
+	font: 12px Tahoma;
+	color: #FF0000;
+	font-weight: bold;
+	text-align: center;
+}
