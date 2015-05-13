@@ -183,7 +183,7 @@ $name=trim(addslashes(del_html($name)));
 $memo=trim(addslashes($memo));
 if($use_html2<2) {
 	$memo=str_replace("  ","&nbsp;&nbsp;",$memo);
-	$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
+	$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
 }
 
 // 코멘트의 최고 Number 값을 구함 (중복 체크를 위해서)

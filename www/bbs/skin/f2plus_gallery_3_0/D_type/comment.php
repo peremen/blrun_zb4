@@ -16,7 +16,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 </tr>
 <tr>
 	<td background=<?=$dir?>/images/cc_middle_bg1.gif></td>
-	<td >
+	<td>
 	<? include $dir."/swe/ed_seting_option_comment.php"; ?><? include $dir."/swe/ed_seting_edit.php"; ?>
 	</td>
 	<td background=<?=$dir?>/images/cc_middle_bg2.gif></td>

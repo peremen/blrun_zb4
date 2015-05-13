@@ -45,7 +45,7 @@ function zbDB_getSchema($tableName) {
 	$key = zbDB_getKeys($tableName);
 	$schema = $fields."\n".$key;
 	$schema = substr($schema,0,strlen($schema)-2);
-	$schema = "\nCREATE TABLE $tableName ( \n".$schema." \n) TYPE=MyISAM; ";
+	$schema = "\nCREATE TABLE $tableName ( \n".$schema." \n) ENGINE=MyISAM; ";
 	echo $schema;
 	flush();
 }
@@ -127,11 +127,6 @@ function all_Backup($host,$user,$password,$dbname,$filename) {
 
 	$connect=mysql_connect($myhost,$myid,$mypw) or die("sql erroe");
 	mysql_select_db($mydb,$connect);
-
-	header("Content-disposition: filename=$filename");
-	header("Content-type: application/octetstream");
-	header("Pragma: no-cache");
-	header("Expires: 0");
 
 	$pResult=mysql_query("show variables");
 

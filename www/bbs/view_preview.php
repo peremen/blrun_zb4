@@ -122,7 +122,7 @@ $memo=trim($memo);
 
 if($use_html<2) {
 	$memo=str_replace("  ","&nbsp;&nbsp;",$memo);
-	$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
+	$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
 }
 
 // html 이미지 리사이즈

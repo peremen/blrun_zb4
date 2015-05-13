@@ -5,6 +5,7 @@ body,td,div {
 	letter-spacing:normal;
 	line-height:140%;
 }
+p {margin-top:0px; margin-bottom:0px;}
 
 img {border:0px;}
 select,option {font-size:9pt;font-family:tahoma;color:black;background-color:white;}
