@@ -1,91 +1,110 @@
 <?
+$pass = $_POST["pwd"];
+$pass = stripslashes($pass);
+
 // 라이브러리 함수 파일 인크루드
 include "lib.php";
 
-// DB 연결
-if(!$connect) $connect=dbConn();
-
-// 그룹 번호 체크
-$group_no=(int)$group_no;
-if(!$group_no) {
-	list($group_no) = mysql_fetch_row(mysql_query("select `no` from `$group_table` order by `no` limit 1;"));
-}
-
-// 멤버 정보 구해오기;;; 멤버가 있을때
-$member=member_info();
-
-if($mode=="admin"&&($member[is_admin]==1||($member[is_admin]==2&&$member[group_no]==$group_no))) $mode = "admin";
-else $mode = "";
-
-if($member[no]&&!$mode) Error("이미 가입이 되어 있습니다.","window.close");
-
-
-// 게시판과 그룹설정에 따라서 회원 가입 설정
-if($id) {
-	// 현재 게시판 설정 읽어 오기
-	$setup=get_table_attrib($id);
-
-	// 설정되지 않은 게시판일때 에러 표시
-	if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성후 사용하십시요","window.close");
-
-	// 현재 게시판의 그룹의 설정 읽어 오기
-	$group=group_info($setup[group_no]);
-	if(!$group[use_join]&&!$mode) Error("현재 지정된 그룹은 추가 회원을 모집하지 않습니다","window.close");
-
-} else {
-
-	if($group_name){
-		$group_name=mysql_real_escape_string($group_name);
-		$group=mysql_fetch_assoc(mysql_query("select * from $group_table where name='$group_name' limit 1;"));
-	}elseif($group_no) $group=mysql_fetch_assoc(mysql_query("select * from $group_table where no='$group_no' limit 1;"));
-	if(!$group[no]) Error("지정된 그룹이 존재하지 않습니다");
-	if(!$group[use_join]&&!$mode) Error("현재 지정된 그룹은 추가 회원을 모집하지 않습니다");
-
-}
-
-$check[1]="checked";
-
-if(!$referer) $referer=$HTTP_REFERER;
-
-$setup[header]="";
-$setup[footer]="";
-$setup[header_url]="";
-$setup[footer_url]="";
-$group[header]="";
-$group[footer]="";
-$group[header_url]="";
-$group[footer_url]="";
-$setup[skinname]="";
-
+// HTML 출력
 head();
+
+if($pass == "gg") {
+
+ 	if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
+
+	// 스팸방지 보안 세션변수 설정
+	$WRT_SPM_PWD = $pass;
+	session_register("WRT_SPM_PWD");
+
+	// 랜덤한 두 숫자를 발생(1-8) 후 변수에 대입
+	$wnum1 = rand(1,8);
+	$wnum2 = rand(1,8);
+	$wnum1num2 = $wnum1*10 + $wnum2;
+	//글쓰기 보안을 위해 세션변수를 설정
+	$WRT_SS_VRS = $wnum1num2;
+	session_register("WRT_SS_VRS");
+
+	// DB 연결
+	if(!$connect) $connect=dbConn();
+
+	// 그룹 번호 체크
+	$group_no=(int)$group_no;
+	if(!$group_no) {
+		list($group_no) = mysql_fetch_row(mysql_query("select `no` from `$group_table` order by `no` limit 1;"));
+	}
+
+	// 멤버 정보 구해오기;;; 멤버가 있을때
+	$member=member_info();
+
+	if($mode=="admin"&&($member[is_admin]==1||($member[is_admin]==2&&$member[group_no]==$group_no))) $mode = "admin";
+	else $mode = "";
+
+	if($member[no]&&!$mode) Error("이미 가입이 되어 있습니다.","window.close");
+
+
+	// 게시판과 그룹설정에 따라서 회원 가입 설정
+	if($id) {
+		// 현재 게시판 설정 읽어 오기
+		$setup=get_table_attrib($id);
+
+		// 설정되지 않은 게시판일때 에러 표시
+		if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성후 사용하십시요","window.close");
+
+		// 현재 게시판의 그룹의 설정 읽어 오기
+		$group=group_info($setup[group_no]);
+		if(!$group[use_join]&&!$mode) Error("현재 지정된 그룹은 추가 회원을 모집하지 않습니다","window.close");
+
+	} else {
+
+		if($group_name){
+			$group_name=mysql_real_escape_string($group_name);
+			$group=mysql_fetch_assoc(mysql_query("select * from $group_table where name='$group_name' limit 1;"));
+		}elseif($group_no) $group=mysql_fetch_assoc(mysql_query("select * from $group_table where no='$group_no' limit 1;"));
+		if(!$group[no]) Error("지정된 그룹이 존재하지 않습니다");
+		if(!$group[use_join]&&!$mode) Error("현재 지정된 그룹은 추가 회원을 모집하지 않습니다");
+
+	}
+
+	$check[1]="checked";
+
+	if(!$referer) $referer=$HTTP_REFERER;
+
+	$setup[header]="";
+	$setup[footer]="";
+	$setup[header_url]="";
+	$setup[footer_url]="";
+	$group[header]="";
+	$group[footer]="";
+	$group[header_url]="";
+	$group[footer_url]="";
+	$setup[skinname]="";
+
 ?>
 
 <script>
- function address_popup(num)
- {
+function address_popup(num)
+{
   window.open('zipcode/search_zipcode.php?num='+num,'searchaddress','width=440,height=230,scrollbars=yes');
- }
+}
 
- function check_submit()
- {
+function check_submit()
+{
 
 <?
-if(file_exists("./join_license.txt")) {
+	if(file_exists("./join_license.txt")) {
 ?>
 
   if(!write.accept.checked) {
-	alert("가입약관에 동의하셔야 회원가입을 할수 있습니다");
-	return false;
+    alert("가입약관에 동의하셔야 회원가입을 할수 있습니다");
+    return false;
   }
 
 <?
-}
+	}
 ?>
-
   if(!write.user_id.value) {alert("아이디를 입력하여 주십시요.");write.user_id.focus(); return false;}
-
 <?
-if($_zbDefaultSetup[enable_hangul_id]=="false") {
+	if($_zbDefaultSetup[enable_hangul_id]=="false") {
 ?>
 
   // ID Check
@@ -109,13 +128,13 @@ if($_zbDefaultSetup[enable_hangul_id]=="false") {
     temp = "" + write.user_id.value.substring(i, i+1); 
     if (valid.indexOf(temp) == "-1") { 
       alert("아이디는 영문과 숫자, _ 로만 이루어질수 있습니다.");
-      write.user_id.value = ""; 
+      write.user_id.value = "";
       write.user_id.focus(); 
       return false;
     }
   } 
 <?
-}
+	}
 ?>
 
   if(!write.password.value) {alert("비밀번호를 입력하여 주십시요.");write.password.focus(); return false;}
@@ -126,66 +145,66 @@ if($_zbDefaultSetup[enable_hangul_id]=="false") {
   var f = document.forms["write"];
   //액션
   if ( f.SSL_Login.checked ) { //보안접속 체크 판별
-	//보안접속을 체크했을 때의 액션
-	f.action = "https://www.blrun.net:47006/bbs/member_join_ok.php";
+    //보안접속을 체크했을 때의 액션
+    f.action = "https://www.blrun.net:47006/bbs/member_join_ok.php";
   }
 
 <? if($group[use_birth]) { ?>
-
-    if ( write.birth_1.value < 1000 || write.birth_1.value <= 0 )  {
-        alert('생년이 잘못입력되었습니다.');
-        write.birth_1.value='';
-        write.birth_1.focus();
-        return false;
-    }
-    if ( write.birth_2.value > 12 || write.birth_2.value <= 0 ) {
-        alert('생월이 잘못입력되었습니다.');
-        write.birth_2.value='';
-        write.birth_2.focus();
-        return false;
-    }
-    if ( write.birth_3.value > 31 || write.birth_3.value <= 0 )  {
-        alert('생일이 잘못입력되었습니다.');
-        write.birth_3.value='';
-        write.birth_3.focus();
-        return false;
-    }
+  if ( write.birth_1.value < 1000 || write.birth_1.value <= 0 )  {
+    alert('생년이 잘못입력되었습니다.');
+    write.birth_1.value='';
+    write.birth_1.focus();
+    return false;
+  }
+  if ( write.birth_2.value > 12 || write.birth_2.value <= 0 ) {
+    alert('생월이 잘못입력되었습니다.');
+    write.birth_2.value='';
+    write.birth_2.focus();
+    return false;
+  }
+  if ( write.birth_3.value > 31 || write.birth_3.value <= 0 )  {
+    alert('생일이 잘못입력되었습니다.');
+    write.birth_3.value='';
+    write.birth_3.focus();
+    return false;
+  }
 <? } ?>
+
   if(!write.email.value) {alert("E-Mail을 입력하여 주십시요.");write.email.focus(); return false;}
 
 <? if($group[use_jumin]&&!$mode) { ?>
-   if(!write.jumin1.value) {alert("주민등록번호를 입력하여 주십시요");write.jumin1.focus(); return false;}
-   if(!write.jumin2.value) {alert("주민등록번호를 입력하여 주십시요");write.jumin2.focus(); return false;}
-<?}?>
+  if(!write.jumin1.value) {alert("주민등록번호를 입력하여 주십시요");write.jumin1.focus(); return false;}
+  if(!write.jumin2.value) {alert("주민등록번호를 입력하여 주십시요");write.jumin2.focus(); return false;}
+<? } ?>
 
-   return true;
-  }
+  return true;
+}
 
-  function check_id(id)
+function check_id(id)
+{
+  if(!id)
   {
-   if(!id)
-   {
     alert('아이디를 입력하여 주십시요');
-   }
-   else
-   {
+  }
+  else
+  {
     window.open('check_user_id.php?user_id='+id,'check_user_id','width=200,height=100,toolbar=no,status=no,resizable=no');
-   }
   }
+}
 
-  function check_accept() {
-	return confirm("위의 가입 약관을 모두 보았으며, 동의하십니까?");
+function check_accept() {
+  return confirm("위의 가입 약관을 모두 보았으며, 동의하십니까?");
+}
+
+function check_SSL_Login() { 
+  if (document.write.SSL_Login.checked==true) {
+    alert("SSL 암호화 보안접속을 설정합니다");
+  } else {
+    alert("SSL 암호화 보안접속을 해제합니다");
   }
-
-  function check_SSL_Login() { 
-	if (document.write.SSL_Login.checked==true) {
-	  alert("SSL 암호화 보안접속을 설정합니다");
-	} else {
-	  alert("SSL 암호화 보안접속을 해제합니다");
-	}
-  }
-
+}
 </script>
+
 <div align=center><br>
 <table border=0 cellspacing=1 cellpadding=0 width=540>
 <form name=write method=post action=member_join_ok.php enctype=multipart/form-data onsubmit="return check_submit();">
@@ -193,15 +212,16 @@ if($_zbDefaultSetup[enable_hangul_id]=="false") {
 <input type=hidden name=referer value="<?=$referer?>">
 <input type=hidden name=group_no value="<?=$group[no]?>">
 <input type=hidden name=mode value="<?=$mode?>">
+<input type=hidden name=wantispam value="<?=$wnum1num2?>">
 
 <tr><td colspan=2><img src=images/member_joinin.gif><br><br></td>
 </tr>
 
 <?
-if(file_exists("./join_license.txt")) {
-	$f=fopen("join_license.txt",r);
-	$join_license = fread($f,filesize("join_license.txt"));
-	fclose($f);
+	if(file_exists("./join_license.txt")) {
+		$f=fopen("join_license.txt",r);
+		$join_license = fread($f,filesize("join_license.txt"));
+		fclose($f);
 ?>
 <tr><td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="3"></td>
 </tr>
@@ -214,7 +234,7 @@ if(file_exists("./join_license.txt")) {
   <td colspan=2>&nbsp;&nbsp;&nbsp;<input type=checkbox name=accept value=1 onclick="return check_accept()"> 위의 가입 약관에 동의합니다</td>
 </tr>
 <?
-}
+	}
 ?>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="3"></td>
@@ -431,6 +451,47 @@ if(file_exists("./join_license.txt")) {
 </div>
 
 <?
-@mysql_close($connect);
+	// 세션이 초기화되는 버그 때문에 세션변수를 재설정
+	$WRT_SPM_PWD = "gg";
+	session_register("WRT_SPM_PWD");
+
+	@mysql_close($connect);
+
+} else {
+?>
+<script language="javascript">
+<!--
+function sendit() {
+	//패스워드
+	if(document.myform.pwd.value=="") {
+		alert("패스워드를 입력해 주십시요");
+		return false;
+	}
+	document.myform.submit();
+}
+//-->
+</script>
+<table width=100% height=100% border=0 cellpadding=0 cellspacing=0>
+<tr><td>
+	<form name="myform" method="post" action="member_join.php">
+	<input type=hidden name=group_no value=<?=$group_no?>>
+	<table width=320 height=100 border=0 cellpadding=1 cellspacing=0 bgcolor=#FFFFFF align=center>
+	<tr>
+		<td>
+			<table width=100% height=100% border=1 style="border-collapse:collapse" bordercolor=gray cellpadding=2 cellspacing=0 align=center>
+			<tr class=list0><td align=center><b>회원 가입!!<br>스팸방지 비번(<font color=red>gg</font>)을 입력: </span></b><br><input type=password name=pwd size=20 class=input></td>
+			</tr>
+			<tr class=list0><td align=center><input type=button value=" 확 인 " onClick="javascript:sendit()"></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	</form>
+</td></tr>
+</table>
+
+<? 
+}
 foot();
 ?>

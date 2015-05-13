@@ -49,13 +49,17 @@ else $target="zboard.php";
 // 비밀글이고 패스워드가 틀리고 관리자가 아니면 에러 표시
 if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$setup[grant_view_secret]) {
 	if($member[no]) {
+		$_dbTimeStart = getmicrotime();
 		$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where headnum='$data[headnum]' and ismember='$member[no]'"));
+		$_dbTime += getmicrotime()-$_dbTimeStart;
 		if(!$secret_check[0]) error("비밀글을 열람할 권한이 없습니다");
 	} else {
 		if(!get_magic_quotes_gpc()) {
 			$password = addslashes($password);
 		}
+		$_dbTimeStart = getmicrotime();
 		$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where headnum='$data[headnum]' and password=password('$password')"));
+		$_dbTime += getmicrotime()-$_dbTimeStart;
 		if(!$secret_check[0]) {
 			head();
 			$a_list="<a onfocus=blur() href='zboard.php?$href$sort'>";    
@@ -366,8 +370,10 @@ if($setup[use_comment]) {
 		}
 		unset($o_data);
 		if($c_org) {
+			$_dbTimeStart = getmicrotime();
 			$result2=@mysql_query("select * from $t_comment"."_$id where no='$c_org'") or error(mysql_error());
 			$o_data=mysql_fetch_array($result2);
+			$_dbTime += getmicrotime()-$_dbTimeStart;
 		}
 
 		// 자동링크 거는 부분;;
@@ -491,7 +497,7 @@ if($setup[use_comment]) {
 	
 	if($exec!="view_all"&&$member[level]<=$setup[grant_comment]) {
 		$_skinTimeStart = getmicrotime();
-		include "$dir/view_write_comment.php";
+		include "view_write_comment.php";
 		$_skinTime += getmicrotime()-$_skinTimeStart;
 	}
 }

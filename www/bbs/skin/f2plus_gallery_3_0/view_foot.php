@@ -45,7 +45,7 @@ if(!preg_match("/Zeroboard/i",$a_delete)) $a_delete=str_replace("delete.php?","d
 </table>
 <table border=0	cellspacing=0 cellpadding=0 width=<?=$width?> height=2>
 <tr>
-  <td height=2 class=line2><img src=<?=$dir?>/t.gif border=0 height=2></td>
+  <td height=2 class=line2><img src=<?=$dir?>/images/t.gif border=0 height=2></td>
 </tr>
 </table>
 <br>
