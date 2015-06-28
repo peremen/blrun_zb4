@@ -20,7 +20,7 @@
 		</table>
 		<table border=0 cellspacing=0 cellpadding=10 width=100% padding=8 style=table-layout:fixed>
 		<tr>
-			<td class=list_han>
+			<td class=memo>
 				<?=$hide_sitelink1_start?><font class=list_eng>- <b>SiteLink #1</b> : <?=$sitelink1?></font><br><?=$hide_sitelink1_end?>
 
 				<?=$hide_sitelink2_start?><font class=list_eng>- <b>SiteLink #2</b> : <?=$sitelink2?></font><br><?=$hide_sitelink2_end?>
