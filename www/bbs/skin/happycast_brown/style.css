@@ -9,6 +9,8 @@ A:visited {color:black;text-decoration:none;}
 A:active  {color:black;text-decoration:none;}
 A:hover  {color:gray;text-decoration:none;}
 
+.memo {word-wrap:break-word; word-break:break-word; word-break:keep-all;}
+
 .input {border:solid 1;background-color:white;border-color:160F25;font-size:9pt}
 .submit {border:solid 1 white;font-family:±¼¸²;font-size:9pt;color:white;background-color:160F25; height=18px}
 

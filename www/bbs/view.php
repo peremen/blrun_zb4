@@ -346,6 +346,9 @@ if($setup[use_comment]) {
 				if(preg_match($pattern1,$temp[$i])) {
 					$temp[$i+1]=preg_replace("#<br \/>|<br>#si","",$temp[$i+1]);
 					$i+=1;
+				} else {
+					// 자동링크 거는 부분;;
+					if($setup[use_autolink]&&!preg_match("/url\(/i",$temp[$i])) $temp[$i]=autolink($temp[$i]);
 				}
 			}
 
@@ -375,9 +378,6 @@ if($setup[use_comment]) {
 			$o_data=mysql_fetch_array($result2);
 			$_dbTime += getmicrotime()-$_dbTimeStart;
 		}
-
-		// 자동링크 거는 부분;;
-		if($setup[use_autolink]&&!preg_match("/url\(/i",$c_memo)) $c_memo=autolink($c_memo);
 
 		// 검색어에 해당하는 글자를 빨간색으로 바꾸어줌;;
 		if($keyword) {

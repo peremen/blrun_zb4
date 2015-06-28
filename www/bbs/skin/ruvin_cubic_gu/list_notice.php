@@ -8,7 +8,7 @@
 			<td align=right class=cu style=padding-right:6;padding-top:6><span class=v7><font title="수정"><?=$a_modify?>*&nbsp;</font></a><font title="삭제"><?=$a_delete?>*</font></a></span></td>
 		</tr>
 		<tr>
-			<td valign=top colspan=2 class=cu style='word-break:break-all;padding:0 6 6 6'><?=$memo?></td>
+			<td class=memo valign=top colspan=2 class=cu style='word-break:break-all;padding:0 6 6 6'><?=$memo?></td>
 		</tr>
 		</table>
 	</td>

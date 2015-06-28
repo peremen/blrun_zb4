@@ -139,6 +139,9 @@ function list_check(&$data,$view_check=0) {
 				if(preg_match($pattern1,$temp[$i])) {
 					$temp[$i+1]=preg_replace("#<br \/>|<br>#si","",$temp[$i+1]);
 					$i+=1;
+				} else {
+					// 자동링크 거는 부분;;
+					if($setup[use_autolink]&&!preg_match("/url\(/i",$temp[$i])) $temp[$i]=autolink($temp[$i]);
 				}
 			}
 
@@ -150,9 +153,6 @@ function list_check(&$data,$view_check=0) {
 			// 신택스하이라이트 처리 끝
 		}
 		$memo=$data[memo];
-
-		// 자동링크 거는 부분;;
-		if($setup[use_autolink]&&!preg_match("/url\(/i",$memo)) $memo=autolink($memo);
 
 		// 검색어가 있을경우 내용의 키워드를 변경
 		if($sc=="on" && $keyword) {

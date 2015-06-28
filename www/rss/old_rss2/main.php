@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width">
 <title>XML - 네티즌 세상을 위하여...</title>
 <style type="text/css">
+	p {margin-top:0px; margin-bottom:0px;}
 	.title {background-color:#9ECFCF; ;margin:10px; padding:5px;}
-	.memo {background-color:white; margin:10px; padding:5px;}
-	.memo2 {background-color:white; margin:10px; padding:10px;}
+	.memo {background-color:white; margin:10px; padding:5px; word-wrap:break-word; word-break:break-word; word-break:keep-all;}
+	.memo2 {background-color:white; margin:10px; padding:10px; word-wrap:break-word; word-break:break-word; word-break:keep-all;}
 	.item-name {font-weight:bold;}
 	.item-foot {background-color:white; color:#993300; font-size:10pt;}
 </style>

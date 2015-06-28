@@ -1,4 +1,4 @@
-<? if(preg_match("/MSIE ([1-6]{1}[\.0-9]{0,})/i",$HTTP_USER_AGENT)) {
+<? if(preg_match("/MSIE ([1-8]{1}[\.0-9]{0,})/i",$HTTP_USER_AGENT)) {
 	;
 } else {
 ?>

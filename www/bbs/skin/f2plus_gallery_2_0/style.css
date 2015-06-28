@@ -25,6 +25,8 @@ A:visited {color:red;text-decoration:none;}
 A:active  {color:red;text-decoration:none;}
 A:hover  {color:F2955C;text-decoration:underline}
 
+.memo {word-wrap:break-word; word-break:break-word; word-break:keep-all;}
+
 .textarea {border:solid 1;border-color:cccccc;font-size:10pt;color:302404;background-color:ffffff;background-image: url(textarea_bgline.gif); background-repeat-y;}
 .input {border:solid 1;border-color:C4C4C4;font-size:9pt;color:301B04;background-color:white;height:19px}
 .submit {border:solid 1;border-color:595959;font-size:9pt;color:white;background-color:878787;height:19px}
@@ -77,7 +79,7 @@ A:hover  {color:F2955C;text-decoration:underline}
 .com6 {font-size:8pt;color:084D82;font-family:tahoma}
 .com7 {font-size:8pt;color:ffffff;font-family:tahoma}
 .com8 {font-size:8pt;color:3E3E3E;font-family:tahoma}
-.com9 {font-size:10pt;color:f1f1f1;background-color:424242;font-family:tahoma}
+.com9 {font-size:10pt;color:f1f1f1;background-color:424242;font-family:tahoma;word-wrap:break-word;word-break:break-word;word-break:keep-all;}
 
 
 .title_font {font-size:8pt;color:ffffff;font-family:tahoma}

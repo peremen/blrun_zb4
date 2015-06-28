@@ -38,7 +38,7 @@ if($member[no]){
 	</tr>
 	<tr><td height=1 background=<?=$dir?>/images/dot3.gif colspan=<?=$c_colspan?>></td></tr>
 	<tr>
-		<td valign=top bgcolor=eeeeee colspan=<?=$c_colspan?>>&nbsp;::: 
+		<td valign=top bgcolor=eeeeee colspan=<?=$c_colspan?> class=memo>&nbsp;::: 
 		<?
 		if($o_data[ismember]=="") $ismember0="0"; else $ismember0=$o_data[ismember];
 		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$ismember0!=$member[no]&&$member[level]>$setup[grant_view_secret])
