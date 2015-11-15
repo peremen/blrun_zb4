@@ -125,11 +125,9 @@ if($Thumbnail_use=="on"){
 	}
 
 	$img_tag=str_replace("%2F", "/", urlencode($img_tag));
-	$img_info[0]=$img_info[0]+10;
-	$img_info[1]=$img_info[1]+55;
 
 	if($img_show=="on"){
-		$view_img="<a onclick=window.open('$dir/img_view.php?img=$img_tag&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";
+		$view_img="<a onclick=window.open('$dir/img_view.php?img=$img_tag&width=".($img_info[0]+10)."&height=".($img_info[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";
 	}else{
 		$view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] class=shadow style='cursor:pointer'>";
 	}
@@ -167,11 +165,9 @@ if($Thumbnail_use=="on"){
 		$thumb_img=$dir."/no_image.gif";     //없을경우 미리 지정된 이미지 파일 사용.변경하셔두 됩니다.
 		$img_info=@getImageSize($thumb_img);
 	}
-	$img_info[0]=$img_info[0]+10;
-	$img_info[1]=$img_info[1]+55;
 
 	if($img_show=="on"){
-		$view_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";
+		$view_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=".($img_info[0]+10)."&height=".($img_info[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";
 	}else{
 		$view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] class=shadow style='cursor:pointer'>";
 	}

@@ -1,5 +1,4 @@
-/* jQuery 부분  */ 
-jQuery.noConflict();  // 다른 라이브러리와 충돌을 방지한다.
+/* jQuery 부분  */
 jQuery(document).ready(function(){  // 문서가 모두 읽힌 후에 다음을 실행
     jQuery("blockquote").each( function() {  //blokquote를 사용한 태그
         var class_attr = jQuery(this).attr('class');

@@ -12,7 +12,7 @@ if(!preg_match("/Zeroboard/i",$a_codebox))	$a_codebox = str_replace(">","><font 
 if(!preg_match("/Zeroboard/i",$a_home)) $a_home = str_replace(">","><font class=list_eng>",$a_home)."&nbsp;&nbsp;";
 if(!preg_match("/Zeroboard/i",$a_bitly)) $a_bitly = str_replace(">","><font class=list_eng>",$a_bitly)."&nbsp;&nbsp;";
 if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font class=list_eng>",$a_keyword)."&nbsp;&nbsp;";
-if(!preg_match("/Zeroboard/i",$a_delete)) $a_delete=str_replace("delete.php?","$dir/delete.php?_zb_path=$config_dir&_zb_url=$zb_url&",$a_delete)."";
+if(!preg_match("/Zeroboard/i",$a_delete)) $a_delete=str_replace("delete.php?","$dir/delete.php?_zb_path=$config_dir&_zb_url=$_zb_url&",$a_delete)."";
 ?>
 
 <table border=0 cellspacing=0 cellpadding=0 height=1 width=<?=$width?> align=center>

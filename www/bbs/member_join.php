@@ -81,6 +81,7 @@ if($pass == "gg") {
 
 ?>
 
+<script src="script/get_url.php" type="text/javascript"></script>
 <script>
 function address_popup(num)
 {
@@ -146,7 +147,7 @@ function check_submit()
   //액션
   if ( f.SSL_Login.checked ) { //보안접속 체크 판별
     //보안접속을 체크했을 때의 액션
-    f.action = "https://www.blrun.net:47006/bbs/member_join_ok.php";
+    f.action = sslUrl()+"member_join_ok.php";
   }
 
 <? if($group[use_birth]) { ?>
@@ -180,8 +181,9 @@ function check_submit()
   return true;
 }
 
-function check_id(id)
+function check_id()
 {
+  var id = document.getElementById("user_id").value;
   if(!id)
   {
     alert('아이디를 입력하여 주십시요');
@@ -241,7 +243,7 @@ function check_SSL_Login() {
 </tr>
 <tr align=right>
   <td width=25% style=font-family:Tahoma;font-size:9pt;><b>ID&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=user_id size=20 maxlength=20 style=border-color:#d8b3b3 class=input> <input type=button value='Check ID' style=color:#000000;border-color:#dfb8b8;background-color:#f0f0f0;font-size:9pt;font-family:Tahoma;height:20px; onclick=check_id(write.user_id.value)> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="보안접속 설정/해제"><br><img src=images/t.gif border=0 height=4><? if($_zbDefaultSetup[enable_hangul_id]=="false") {?><br>&nbsp;(영문,숫자,_로만 아이디를 작성하세요)<? } ?></td>
+  <td align=left>&nbsp;<input type=text name=user_id id=user_id size=20 maxlength=20 style=border-color:#d8b3b3 class=input> <input type=button value='Check ID' style=color:#000000;border-color:#dfb8b8;background-color:#f0f0f0;font-size:9pt;font-family:Tahoma;height:20px; onclick=check_id()> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="보안접속 설정/해제"><br><img src=images/t.gif border=0 height=4><? if($_zbDefaultSetup[enable_hangul_id]=="false") {?><br>&nbsp;(영문,숫자,_로만 아이디를 작성하세요)<? } ?></td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -255,7 +257,7 @@ function check_SSL_Login() {
 </tr>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;><b>Name&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=name size=20 maxlength=20 value="<?=$member[name]?>" style=border-color:#d8b3b3 class=input></td>
+  <td align=left>&nbsp;<input type=text name=name size=20 maxlength=20 style=border-color:#d8b3b3 class=input></td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -276,14 +278,14 @@ function check_SSL_Login() {
 
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;><b>E-mail&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=email size=50 maxlength=255 value="<?=$member[email]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_email checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=email size=50 maxlength=255 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_email checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
 </tr>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Homepage&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=homepage size=50 maxlength=255 value="<?=$member[homepage]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_homepage checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=homepage size=50 maxlength=255 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_homepage checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -292,7 +294,7 @@ function check_SSL_Login() {
 <? if($group[use_icq]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>ICQ&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=icq size=20 maxlength=20 value="<?=$member[icq]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_icq checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=icq size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_icq checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -302,7 +304,7 @@ function check_SSL_Login() {
 <? if($group[use_aol]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>AIM&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=aol size=20 maxlength=20 value="<?=$member[aol]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_aol checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=aol size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_aol checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -312,7 +314,7 @@ function check_SSL_Login() {
 <? if($group[use_msn]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>MSN&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=msn size=20 maxlength=250 value="<?=$member[msn]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_msn checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=msn size=20 maxlength=250 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_msn checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -332,7 +334,7 @@ function check_SSL_Login() {
 <? if($group[use_hobby]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Hobby&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=hobby size=50 maxlength=50 value="<?=$member[hobby]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_hobby checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=hobby size=50 maxlength=50 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_hobby checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -342,7 +344,7 @@ function check_SSL_Login() {
 <? if($group[use_job]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Occupation(Job)&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=job size=20 maxlength=20 value="<?=$member[job]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_job checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=job size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_job checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -352,7 +354,7 @@ function check_SSL_Login() {
 <? if($group[use_home_address]) { ?> 
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Home Address&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=home_address size=40 maxlength=255 value="<?=$member[home_address]?>" style=border-color:#d8b3b3 class=input><input type=button value='검색' class=input style=border-color:#d8b3b3 onclick=address_popup(1)><input type=checkbox value=1 name=open_home_address checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=home_address size=40 maxlength=255 style=border-color:#d8b3b3 class=input><input type=button value='검색' class=input style=border-color:#d8b3b3 onclick=address_popup(1)><input type=checkbox value=1 name=open_home_address checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -362,7 +364,7 @@ function check_SSL_Login() {
 <? if($group[use_home_tel]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Home Phone&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=home_tel size=20 maxlength=20 value="<?=$member[home_tel]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_home_tel checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=home_tel size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_home_tel checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -372,7 +374,7 @@ function check_SSL_Login() {
 <? if($group[use_office_address]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Office Address&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=office_address size=40 maxlength=255 value="<?=$member[office_address]?>" style=border-color:#d8b3b3 class=input><input type=button value='검색' class=input style=border-color:#d8b3b3 onclick=address_popup(2)><input type=checkbox value=1 name=open_office_address checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=office_address size=40 maxlength=255 style=border-color:#d8b3b3 class=input><input type=button value='검색' class=input style=border-color:#d8b3b3 onclick=address_popup(2)><input type=checkbox value=1 name=open_office_address checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -382,7 +384,7 @@ function check_SSL_Login() {
 <? if($group[use_office_tel]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Office Phone&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=office_tel size=20 maxlength=20 value="<?=$member[office_tel]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_office_tel checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=office_tel size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_office_tel checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -392,7 +394,7 @@ function check_SSL_Login() {
 <? if($group[use_handphone]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Cellular&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=handphone size=20 maxlength=20 value="<?=$member[handphone]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_handphone checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=handphone size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_handphone checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -412,8 +414,7 @@ function check_SSL_Login() {
 <? if($group[use_picture]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Photo&nbsp;</td>
-  <td align=left>&nbsp;<input type=file name=picture size=35 maxlength=255 style=border-color:#d8b3b3 class=input>
-    <? if($member[picture]) echo "<br>&nbsp;<img src='$member[picture]' border=0>"; ?><input type=checkbox value=1 name=open_picture checked> 공개 (480X480 이하)
+  <td align=left>&nbsp;<input type=file name=picture size=35 maxlength=255 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_picture checked> 공개 (480X480 이하)
   </td>
 </tr>
 <tr>
@@ -424,7 +425,7 @@ function check_SSL_Login() {
 <? if($group[use_comment]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>자기 소개서</td>
-  <td align=left>&nbsp;<textarea cols=50 rows=4 name=comment style=border-color:#d8b3b3 class=textarea><?=$member[comment]?></textarea><br>&nbsp;<input type=checkbox value=1 name=open_comment checked> 공개</td>
+  <td align=left>&nbsp;<textarea cols=50 rows=4 name=comment style=border-color:#d8b3b3 class=textarea></textarea><br>&nbsp;<input type=checkbox value=1 name=open_comment checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -475,6 +476,7 @@ function sendit() {
 <tr><td>
 	<form name="myform" method="post" action="member_join.php">
 	<input type=hidden name=group_no value=<?=$group_no?>>
+	<input type=hidden name=mode value=<?=$mode?>>
 	<table width=320 height=100 border=0 cellpadding=1 cellspacing=0 bgcolor=#FFFFFF align=center>
 	<tr>
 		<td>

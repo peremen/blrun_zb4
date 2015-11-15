@@ -67,6 +67,11 @@ if(file_exists("myZrCnf2019.php")) error("이미 myZrCnf2019.php가 생성되어 있습니
 		<td>Mysql DB의 Name을 입력하세요</font></td>
 	</tr>
 	<tr>
+		<td align=right style=font-family:Tahoma;font-size:9pt;>보안서버 URL</td>
+		<td><input type=text name=sslurl style=font-family:Tahoma;font-size:9pt;></td>
+		<td>제로보드 SSL 보안서버 포트URL을 입력..<br>예) https://www.blrun.net:47006/bbs/ (끝에 / 붙음)</font></td>
+	</tr>
+	<tr>
 		<td colspan=3 align=center><br><br><input type=image src=images/inst_b_2.gif border=0 align=absmiddle></td>
 	</tr>
 	</form>

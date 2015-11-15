@@ -7,7 +7,7 @@ $memo = stripslashes($memo);
 **************************************************************************/
 include $_zb_path."_head.php";
 
-if(file_exists($id."_config.php")){ 
+if(file_exists($id."_config.php")){
 	include $id."_config.php";
 }
 
@@ -22,15 +22,15 @@ function Error1($message, $url="") {
 	global $setup, $connect, $dir, $_zb_path, $_zb_url;
 
 	$dir=$_zb_url."skin/".$setup[skinname];
-		$message=str_replace("<br>","\\n",$message);
-		$message=str_replace("\"","\\\"",$message);
+	$message=str_replace("<br>","\\n",$message);
+	$message=str_replace("\"","\\\"",$message);
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <script>
-	<!--
-	alert("<?=$message?>");
-	history.back();
-	//-->
+<!--
+alert("<?=$message?>");
+history.back();
+//-->
 </script>
 <?
 	if($connect) @mysql_close($connect);
@@ -63,10 +63,10 @@ if(!$is_admin&&$setup[use_filter]) {
 	$filter=explode(",",$setup[filter]);
 	$f_memo=eregi_replace("([\_\-\./~@?=%&! ]+)","",strip_tags($memo));
 	$f_name=eregi_replace("([\_\-\./~@?=%&! ]+)","",strip_tags($name));
-	for($i=0;$i<count($filter);$i++) 
+	for($i=0;$i<count($filter);$i++)
 	if(!isblank($filter[$i])) {
-		if(eregi($filter[$i],$f_memo)) Error1("<b>$filter[$i]</b> 은(는) 등록하기에 적합한 단어가 아닙니다");
-		if(eregi($filter[$i],$f_name)) Error1("<b>$filter[$i]</b> 은(는) 등록하기에 적합한 단어가 아닙니다");
+		if(eregi($filter[$i],$f_memo)) Error1("'$filter[$i]' 은(는) 등록하기에 적합한 단어가 아닙니다");
+		if(eregi($filter[$i],$f_name)) Error1("'$filter[$i]' 은(는) 등록하기에 적합한 단어가 아닙니다");
 	}
 }
 
@@ -78,7 +78,7 @@ if(!get_magic_quotes_gpc()) {
 // 패스워드를 암호화
 if(strlen($password)) {
 	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
-	$password=$temp[0];   
+	$password=$temp[0];
 }
 
 // &lt,&gt를 신택스하이라이트에서 사용하기 위해 임시 치환
@@ -96,10 +96,10 @@ if(!$is_admin&&$setup[grant_html]<$member[level]) {
 		$memo=str_replace("<","&lt;",$memo);
 		$tag=explode(",",$setup[avoid_tag]);
 		for($i=0;$i<count($tag);$i++) {
-			if(!isblank($tag[$i])) { 
-				$memo=eregi_replace("&lt;".$tag[$i]." ","<".$tag[$i]." ",$memo); 
-				$memo=eregi_replace("&lt;".$tag[$i].">","<".$tag[$i].">",$memo); 
-				$memo=eregi_replace("&lt;/".$tag[$i],"</".$tag[$i],$memo); 
+			if(!isblank($tag[$i])) {
+				$memo=eregi_replace("&lt;".$tag[$i]." ","<".$tag[$i]." ",$memo);
+				$memo=eregi_replace("&lt;".$tag[$i].">","<".$tag[$i].">",$memo);
+				$memo=eregi_replace("&lt;/".$tag[$i],"</".$tag[$i],$memo);
 			}
 		}
 		// XSS 해킹 이벤트 핸들러 제거
@@ -249,7 +249,7 @@ if($del_file1==1) {
 	// 빈 파일 폴더 삭제
 	if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$s_data[file_name1],$out))
 		if(is_dir($_zb_path."data/".$out[1]."/".$out[2])) @rmdir($_zb_path."data/".$out[1]."/".$out[2]);
-} 
+}
 if($del_file2==1) {
 	@z_unlink($_zb_path.$s_data[file_name2]);
 	$del_que2=",file_name2='',s_file_name2=''";
@@ -280,18 +280,18 @@ if($file1_size>0&&$setup[use_pds]&&$file1) {
 			$upload_check=$temp[$s_point];
 			if(!preg_match("/".$upload_check."/i",$setup[pds_ext1])||!$upload_check) Error1("첫번째 업로드는 $setup[pds_ext1] 확장자만 가능합니다");
 		}
-		
+
 		$file1=eregi_replace("\\\\","\\",$file1);
 		$s_file_name1=str_replace(" ","_",$s_file_name1);
 		$s_file_name1=str_replace("-","_",$s_file_name1);
 
 		// 디렉토리를 검사함
-		if(!is_dir($_zb_path."data/".$id)) { 
+		if(!is_dir($_zb_path."data/".$id)) {
 			@mkdir($_zb_path."data/".$id,0777);
-			@chmod($_zb_path."data/".$id,0707);	
+			@chmod($_zb_path."data/".$id,0707);
 		}
-		
-		// 중복파일이 있을때;; 
+
+		// 중복파일이 있을때;;
 		if(file_exists($_zb_path."data/$id/".$s_file_name1)) {
 			@mkdir($_zb_path."data/$id/".$reg_date,0777);
 			if(!move_uploaded_file($file1,$_zb_path."data/$id/".$reg_date."/".$s_file_name1)) Error1("파일업로드가 제대로 되지 않았습니다");
@@ -300,7 +300,7 @@ if($file1_size>0&&$setup[use_pds]&&$file1) {
 			@chmod($_zb_path."data/$id/".$reg_date,0707);
 		} else {
 			if(!move_uploaded_file($file1,$_zb_path."data/$id/".$s_file_name1)) Error1("파일업로드가 제대로 되지 않았습니다");
-			$file_name1="data/$id/".$s_file_name1;   
+			$file_name1="data/$id/".$s_file_name1;
 			@chmod($_zb_path.$file_name1,0706);
 		}
 	}
@@ -324,7 +324,7 @@ if($file2_size>0&&$setup[use_pds]&&$file2) {
 			$upload_check=$temp[$s_point];
 			if(!preg_match("/".$upload_check."/i",$setup[pds_ext2])||!$upload_check) Error1("업로드는 $setup[pds_ext2] 확장자만 가능합니다");
 		}
-		
+
 		$file2=eregi_replace("\\\\","\\",$file2);
 		$s_file_name2=str_replace(" ","_",$s_file_name2);
 		$s_file_name2=str_replace("-","_",$s_file_name2);
@@ -335,7 +335,7 @@ if($file2_size>0&&$setup[use_pds]&&$file2) {
 			@chmod($_zb_path."data/".$id,0707);
 		}
 
-		// 중복파일이 있을때;; 
+		// 중복파일이 있을때;;
 		if(file_exists($_zb_path."data/$id/".$s_file_name2)) {
 			@mkdir($_zb_path."data/$id/".$reg_date,0777);
 			if(!move_uploaded_file($file2,$_zb_path."data/$id/".$reg_date."/".$s_file_name2)) Error1("파일업로드가 제대로 되지 않았습니다");
@@ -344,7 +344,7 @@ if($file2_size>0&&$setup[use_pds]&&$file2) {
 			@chmod($_zb_path."data/$id/".$reg_date,0707);
 		} else {
 			if(!move_uploaded_file($file2,$_zb_path."data/$id/".$s_file_name2)) Error1("파일업로드가 제대로 되지 않았습니다");
-			$file_name2="data/$id/".$s_file_name2;              
+			$file_name2="data/$id/".$s_file_name2;
 			@chmod($_zb_path.$file_name2,0706);
 		}
 	}
@@ -379,5 +379,5 @@ mysql_query("update $t_board"."_$id set total_comment='$total[0]' where no='$no'
 session_unregister("ZBRD_SS_VRS");
 
 // 페이지 이동
-movepage($_zb_url."/".$view_file_link."?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&category=$category");
+movepage($zb_url."/".$view_file_link."?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&category=$category");
 ?>

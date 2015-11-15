@@ -10,8 +10,7 @@ $_head_php_excuted = true;
 **************************************************************************/
 
 // 라이브러리 함수 파일 include
-if(preg_match("/:\/\//i",$_zb_path)||preg_match("/\.\./i",$_zb_path)||preg_match("/^\//i",$_zb_path)||preg_match("/data:;/i",$_zb_path)||preg_match("/:/i",$_zb_path)) $_zb_path="/home/hosting_users/blrun/www/bbs/";
-include $_zb_path."lib.php";
+include "lib.php";
 
 /***************************************************************************
 * 현재 _head.php를 호출하는 파일이 게시판 관련 파일인지 검사

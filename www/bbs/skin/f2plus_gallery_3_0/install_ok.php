@@ -19,7 +19,7 @@ function file_del($path) {
 }
 
 $path=$zbpath."data/".$board_id."/thumbnail/";
-if($type!=$prev_type) @file_del($path);
+if($type!=$prev_type && is_dir($path)) @file_del($path);
 
 $cols=5;
 if($no_use==1) $hide_no="on"; else $hide_no="off";
@@ -127,7 +127,7 @@ $file=@fopen($setup_file,"w");
 
 <head>
 <meta http-equiv="content-type" content="text/html; charset=euc-kr">
-<title>f2plus gallery ver2.0 install page</title>
+<title>f2plus gallery ver3.0 install page</title>
 <meta name="generator" content="Namo WebEditor v5.0">
 <style>
 BODY,TD {font-size:9pt;font-family:굴림;color:ffffff;line-height:160%}

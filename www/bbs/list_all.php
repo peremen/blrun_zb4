@@ -177,7 +177,7 @@ elseif($exec=="delete_all") {
 	}
 	$temp=mysql_fetch_array(mysql_query("select count(*) from  $t_board"."_$id",$connect));
 	@mysql_query("update $admin_table set total_article='$temp[0]' where name='$id'") or Error(mysql_error());
-	echo "<script>opener.window.history.go(0);window.close();</script>";
+	echo "<script>opener.location.href='zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&category=$category'; window.close();</script>";
 }
 
 /**********************************************************************************
@@ -325,7 +325,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 
 
 	if($exec=="copy_all") {
-		echo "<script> opener.window.history.go(0); window.close(); </script>";
+		echo "<script>opener.location.href='zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&category=$category'; window.close();</script>";
 	} elseif($exec=="move_all") {
 		echo "<script> location.href='list_all.php?id=$id&exec=delete_all&selected=$select_list'; </script>";
 		exit;

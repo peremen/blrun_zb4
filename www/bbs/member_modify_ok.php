@@ -151,6 +151,6 @@ mysql_close($connect);
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <script>
 alert("회원님의 정보 수정이 제대로 처리되었습니다.");
-//opener.window.history.go(0);
+//opener.reload();
 window.close();
 </script>

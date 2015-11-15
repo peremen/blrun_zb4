@@ -102,7 +102,7 @@ class Aokio_Analyzer_Browser{
 //TODO 스트링 안에 istb 가 있으면 인포시크 툴바가 설치되어있음
 //Mozilla/5.0 (compatible; MSIE 6.0;Windows; U; Windows NT 5.0; ja-JP; rv:1.7.5) Gecko/20041108 Firefox/1.0
 // 이거 머야...? -,.- 머 이런넘이 다 있어....
-		if( (ereg('msie',$agent)||ereg('rv:11',$agent)) && 
+		if( (ereg('msie',$agent)||ereg('rv:11',$agent)||ereg('edge',$agent)) && 
 			!ereg('opr',$agent) && 
 			!ereg('avant browser',$agent) && 
 			!ereg('sleipnir',$agent) && 
@@ -261,7 +261,9 @@ class Aokio_Analyzer_Browser{
 		$key = array_search($browser_name,$temp_array);
 		$this->browser_version =  $temp_array[$key+1];
 		if($browser_name== "msie"&& $this->browser_version =="6.0.2800"){
-			$this->browser_version =="6.0";
+			$this->browser_version = "6.0";
+		}elseif($browser_name== "edge"){
+			$this->browser_version = "Edge ".$temp_array[$key+1];
 		}
 		//Netscape 1
 		//Netscape 2,3 :navigator
@@ -299,6 +301,8 @@ class Aokio_Analyzer_Browser{
 		}elseif($browser =="Internet Explorer"){
 			if(ereg('rv:11',$agent))
 				$this->_setBrowserCommonExtendedInfo('rv',$temp_array);
+			elseif(ereg('edge',$agent))
+				$this->_setBrowserCommonExtendedInfo('edge',$temp_array);
 			else
 				$this->_setBrowserCommonExtendedInfo('msie',$temp_array);
 		}elseif($browser =="Opera"){

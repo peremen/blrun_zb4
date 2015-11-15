@@ -3,7 +3,7 @@ unset($_point);
 $c_memo = love_convert($c_memo);
 if($is_admin) $show_comment_ip = "<font class=com5>".$c_data['ip']."</font>";
 else $show_comment_ip = "";
-$a_del=str_replace("del_comment.php?","del_comment.php?_zb_url=$zb_url/&_zb_path=$zb_path&",$a_del);
+$a_del=str_replace("del_comment.php?","del_comment.php?_zb_url=$_zb_url&_zb_path=$config_dir&",$a_del);
 $t_c=mysql_fetch_array(mysql_query("select * from $table where reg_date='$c_data[reg_date]'"));
 //$t_memo=str_replace("<","&lt",$t_c[memo]);
 $a_c_vote="$dir/vote.php?id=$id&no=$data[no]&c_no=$t_c[no]&who=$member[no]";
@@ -34,7 +34,7 @@ if($member[no]){
 		<td valign=top align=right><font style=font-family:tahoma;color:cc9999;font-size:8pt;font-weight:bold>Point :</font> <?=$_point?>&nbsp;<font style=font-family:tahoma;color:cc9999;font-size:8pt;font-weight:bold>[<?=$c_vote?>]</font></td>
 		<?if($member[no]){?>
 
-		<td align=right><FORM METHOD=POST ACTION="<?=$a_c_vote?>"><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$zb_url?>"><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=_url value="<?=$PHP_SELF?>"><INPUT TYPE=image src=<?=$dir?>/images/vote.gif border=0 align=absmiddle></td><?}?>
+		<td align=right><FORM METHOD=POST ACTION="<?=$a_c_vote?>"><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$_zb_url?>"><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=_url value="<?=$PHP_SELF?>"><INPUT TYPE=image src=<?=$dir?>/images/vote.gif border=0 align=absmiddle></td><?}?>
 	</tr>
 	<tr><td height=1 background=<?=$dir?>/images/dot3.gif colspan=<?=$c_colspan?>></td></tr>
 	<tr>

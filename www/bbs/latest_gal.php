@@ -227,22 +227,22 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 				$reg_date[]=$data[reg_date];
 				if(!file_exists($_zb_path.$img1)||!file_exists($_zb_path.$img2)){
 					$size=array(52,200);
-					if($use_thumb==2) thumbnail_make1($size,$_zb_url.$data[file_name1],$_zb_path,$img1,$img2,3/4);
-					else thumbnail_make2($size,$_zb_url.$data[file_name1],$_zb_path,$img1,$img2,3/4);
+					if($use_thumb==2) thumbnail_make1($size,$_zb_path.$data[file_name1],$_zb_path,$img1,$img2,3/4);
+					else thumbnail_make2($size,$_zb_path.$data[file_name1],$_zb_path,$img1,$img2,3/4);
 				}
 			}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name2])){
 				$reg_date[]=$data[reg_date];
 				if(!file_exists($_zb_path.$img1)||!file_exists($_zb_path.$img2)){
 					$size=array(52,200);
-					if($use_thumb==2) thumbnail_make1($size,$_zb_url.$data[file_name2],$_zb_path,$img1,$img2,3/4);
-					else thumbnail_make2($size,$_zb_url.$data[file_name2],$_zb_path,$img1,$img2,3/4);
+					if($use_thumb==2) thumbnail_make1($size,$_zb_path.$data[file_name2],$_zb_path,$img1,$img2,3/4);
+					else thumbnail_make2($size,$_zb_path.$data[file_name2],$_zb_path,$img1,$img2,3/4);
 				}
 			}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$out[0][1].".".$out[0][2])) {
 				$reg_date[]=$data[reg_date];
 				if(file_exists($_zb_path.$src_img) && (!file_exists($_zb_path.$img1)||!file_exists($_zb_path.$img2))){
 					$size=array(52,200);
-					if($use_thumb==2) thumbnail_make1($size,$_zb_url.$src_img,$_zb_path,$img1,$img2,3/4);
-					else thumbnail_make2($size,$_zb_url.$src_img,$_zb_path,$img1,$img2,3/4);
+					if($use_thumb==2) thumbnail_make1($size,$_zb_path.$src_img,$_zb_path,$img1,$img2,3/4);
+					else thumbnail_make2($size,$_zb_path.$src_img,$_zb_path,$img1,$img2,3/4);
 				}elseif(!file_exists($_zb_path.$src_img)){
 					$filename1=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 					$filename2=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
