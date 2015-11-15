@@ -1,6 +1,6 @@
 <?
 $gd_use="2";
-$zb_url="/bbs";
+$zb_url="http://www.blrun.net/bbs";
 $zb_path="/home/hosting_users/blrun/www/bbs/";
 $emoticon_url=$dir."/emoticon";
 

@@ -48,6 +48,33 @@ $file=@fopen("myZrCnf2019.php","w") or Error("myZrCnf2019.php 파일 생성 실패<br>
 @chmod("icon",0707);
 @chmod("myZrCnf2019.php",0707);
 
+// 보안 서버 정보 저장
+$zburl="http://".substr($sslurl,8,strrpos($sslurl,':')-8).substr($sslurl,strpos($sslurl,'/',strrpos($sslurl,':')));
+
+$file=@fopen("include/get_url.php","w") or Error("get_url.php 파일 생성 실패<br><br>bbs/include디렉토리의 퍼미션을 707로 주십시요","");
+$str1='<?
+function sslUrl() {
+	return "'.$sslurl.'";
+}
+function zbUrl() {
+	return "'.$zburl.'";
+}
+'.'?>';
+@fwrite($file,$str1) or Error("get_url.php 파일 생성 실패<br><br>bbs/include 디렉토리의 퍼미션을 707로 주십시요","");
+@fclose($file);
+@chmod("include/get_url.php",0707);
+
+$file=@fopen("script/get_url.php","w") or Error("get_url.php 파일 생성 실패<br><br>bbs/script디렉토리의 퍼미션을 707로 주십시요","");
+$str1='function sslUrl() {
+	return "'.$sslurl.'";
+}
+function zbUrl() {
+	return "'.$zburl.'";
+}';
+@fwrite($file,$str1) or Error("get_url.php 파일 생성 실패<br><br>bbs/script 디렉토리의 퍼미션을 707로 주십시요","");
+@fclose($file);
+@chmod("script/get_url.php",0707);
+
 $temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where is_admin = '1'",$connect));
 
 mysql_close($connect);

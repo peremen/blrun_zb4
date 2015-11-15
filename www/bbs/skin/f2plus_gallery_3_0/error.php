@@ -1,5 +1,5 @@
 <?
-$dir="http://www.blrun.net/bbs/skin/f2plus_gallery_3_0/";
+$dir = "skin/f2plus_gallery_3_0/";
 ?>
 <table width='<?=$setup['table_width']?>' border='0' cellpadding='0' cellspacing='0'>
 <tr>

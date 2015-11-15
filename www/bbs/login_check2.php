@@ -73,7 +73,7 @@ if($member_data[no]) {
 	elseif($id) movepage($_zb_url."zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&category=$category&no=$no");
 	elseif($group[join_return_url]) movepage($group[join_return_url]);
 	elseif($referer) movepage($referer);
-	else echo "<script>history.go(-2);</script>";
+	else echo "<script>location.href=document.referrer;</script>";
 
 // 회원로그인이 실패하였을 경우 에러 표시
 } else {

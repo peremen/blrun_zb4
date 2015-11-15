@@ -23,7 +23,7 @@ function head1($body="",$scriptfile="") {
 
 	print "<!--\n".$license."\n-->\n";
 
-	if(!eregi("member_",$PHP_SELF)) $stylefile=$_zb_url."/skin/$setup[skinname]/style.css"; else $stylefile=$_zb_url."/style.css";
+	if(!eregi("member_",$PHP_SELF)) $stylefile=$_zb_url."skin/$setup[skinname]/style.css"; else $stylefile=$_zb_url."style.css";
 
 	if($setup[use_formmail]) {
 		$f = fopen($_zb_path."script/script_zbLayer.php","r");
@@ -174,7 +174,7 @@ $a_view="<a href=# onclick=history.back()>";
 
 head1();
 
-$target=$_zb_url."/".$dir."/del_comment_ok.php";
+$target=$_zb_url.$dir."/del_comment_ok.php";
 include $_zb_path.$dir."/ask_password.php";
 
 foot1();

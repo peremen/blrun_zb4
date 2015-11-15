@@ -27,6 +27,7 @@ else {
 head("  bgcolor=444444  onload=write.user_id.focus()");
 ?>
 
+<script src="script/get_url.php" type="text/javascript"></script>
 <script>
 function check_submit() {
 	if(!write.user_id.value) {
@@ -43,7 +44,7 @@ function check_submit() {
 	//액션
 	if ( f.SSL_Login.checked ) { //보안접속 체크 판별
 		//보안접속을 체크했을 때의 액션
-		f.action = "https://www.blrun.net:47006/bbs/login_check2.php";
+		f.action = sslUrl()+"login_check2.php";
 	}
 	return true;
 }

@@ -57,8 +57,9 @@ session_register("zb_last_connect_check");
 
 mysql_close($connect);
 ?>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <script>
 alert("정상적으로 탈퇴가 되었습니다.");
-//opener.window.history.go(0);
+//opener.reload();
 window.close();
 </script>

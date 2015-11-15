@@ -1,19 +1,19 @@
 <meta name="viewport" content="width=device-width">
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
 <?
 if($flag != ok) {
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
  <HEAD>
-  <TITLE> Escape ¹®ÀÚ ÇØµ¶ÇÏ±â </TITLE>
+  <TITLE> Escape ë¬¸ì í•´ë…í•˜ê¸° </TITLE>
  </HEAD>
 
  <BODY>
-  <h3> Escape ¹®ÀÚ ÇØµ¶ÇÏ±â </h3>
+  <h3> Escape ë¬¸ì í•´ë…í•˜ê¸° </h3>
   <FORM NAME="form1" METHOD="Post" ACTION="ue.php?flag=ok">
 	<INPUT NAME="str1" TYPE="Text" SIZE="44" MAXLENGTH="700">
-	<INPUT TYPE="Submit" VALUE="Àü¼Û">
+	<INPUT TYPE="Submit" VALUE="ì „ì†¡">
   </FORM>
  </BODY>
 </HTML>
@@ -34,8 +34,8 @@ if($flag != ok) {
 
 	$string = $_POST['str1'];
 	$time_start = getmicrotime();    
-	echo  JsUnescape($string);
+	echo JsUnescape($string);
 	$time = getmicrotime() - $time_start;
-	print("<p>¼öÇà½Ã°£ ( $time ÃÊ)</p>");
+	print("<p>ìˆ˜í–‰ì‹œê°„ ( $time ì´ˆ)</p>");
 }
 ?>

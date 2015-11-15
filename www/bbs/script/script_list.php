@@ -117,7 +117,7 @@ function delete_all() {
 		  }
 		 }
 		}
-		window.open("select_list_all.php?id=<?=$id?>&selected="+document.list.selected.value,"게시물정리","width=260,height=180,toolbars=no,resize=no,scrollbars=no");
+		window.open("select_list_all.php?id=<?=$id?>&page="+document.list.page.value+"&page_num="+document.list.page_num.value+"&select_arrange="+document.list.select_arrange.value+"&desc="+document.list.desc.value+"&sn="+document.list.sn.value+"&ss="+document.list.ss.value+"&sc="+document.list.sc.value+"&sm="+document.list.sm.value+"&keyword="+document.list.keyword.value+"&category="+document.search.category.value+"&selected="+document.list.selected.value,"게시물정리","width=260,height=180,toolbars=no,resize=no,scrollbars=no");
 	}
 	else {alert('정리할 게시물을 선택하여 주십시요');}
 }

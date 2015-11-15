@@ -18,7 +18,7 @@ $_dbTimeStart = getmicrotime();
 $data=mysql_fetch_array(mysql_query("select * from  $t_board"."_$id  where no='$no'"));
 $_dbTime += getmicrotime()-$_dbTimeStart;
 
-$social_ref = urlencode("http://www.blrun.net/bbs/view.php?$href$sort&no=$no");
+$social_ref = urlencode($_zb_url."view.php?$href$sort&no=$no");
 if(!$data[no]) Error("선택하신 게시물이 존재하지 않습니다","zboard.php?$href$sort");
 
 // 이전글과 이후글의 데이타를 구함;

@@ -28,15 +28,16 @@ if($password) {
 	}
 	$secret_check=mysql_fetch_array(mysql_query("select count(*) from $member_table where user_id='$member[user_id]' and password=password('$password')"));
 	if(!$secret_check[0]) error("비밀번호 오류! 회원정보를 수정할 권한이 없습니다");
-	$target2="https://www.blrun.net:47006/bbs/member_modify_ok.php";
+	$target2=$ssl_url."member_modify_ok.php";
 } else {
 	head();
 	$title="회원 비밀번호를 다시한번 입력하여 주십시요.";
 	$input_password="<input type=password name=password size=20 maxlength=20 class=input>";
-	$target="https://www.blrun.net:47006/bbs/member_modify.php";
+	$target=$ssl_url."member_modify.php";
 	if(preg_match("/:\/\//i",$dir)||preg_match("/\.\./i",$dir)) $dir="./";
 ?>
 
+<script src="script/get_url.php" type="text/javascript"></script>
 <script>
  function check_submit()
  {
@@ -46,9 +47,9 @@ if($password) {
   //액션
   if ( f.SSL_Login.checked ) { //보안접속 체크 판별
 	//보안접속을 체크했을 때의 액션
-	f.action = "https://www.blrun.net:47006/bbs/member_modify.php";
+	f.action = sslUrl()+"member_modify.php";
   } else {
-	f.action = "http://www.blrun.net/bbs/member_modify.php";
+	f.action = zbUrl()+"member_modify.php";
   }
 
   return true;
@@ -139,41 +140,39 @@ head();
   if(write.password.value!=write.password1.value) {alert("패스워드가 일치하지 않습니다.");write.password.value="";write.password1.value=""; write.password.focus(); return false;}
   if(!write.name.value) { alert("이름을 입력하세요"); write.name.focus(); return false; }
 
+<? if($group_data[use_birth]) { ?>
+
+  if ( write.birth_1.value < 1000 || write.birth_1.value <= 0 )  {
+    alert('생년이 잘못입력되었습니다.');
+    write.birth_1.value='';
+    write.birth_1.focus();
+    return false;
+  }
+  if ( write.birth_2.value > 12 || write.birth_2.value <= 0 ) {
+    alert('생월이 잘못입력되었습니다.');
+    write.birth_2.value='';
+    write.birth_2.focus();
+    return false;
+  }
+  if ( write.birth_3.value > 31 || write.birth_3.value <= 0 )  {
+    alert('생일이 잘못입력되었습니다.');
+    write.birth_3.value='';
+    write.birth_3.focus();
+    return false;
+  }
+
+<? } ?>
+
+  if(!write.email.value) {alert("E-Mail을 입력하여 주십시요.");write.email.focus(); return false;}
+
   var f = document.forms["write"];
   //액션
   if ( f.SSL_Login.checked ) { //보안접속 체크 판별
 	//보안접속을 체크했을 때의 액션
-	f.action = "https://www.blrun.net:47006/bbs/member_modify_ok.php";
+	f.action = sslUrl()+"member_modify_ok.php";
   } else {
-	f.action = "http://www.blrun.net/bbs/member_modify_ok.php";
+	f.action = zbUrl()+"member_modify_ok.php";
   }
-
-<? 
-if($group_data[use_birth]) { 
-?>
-
-    if ( write.birth_1.value < 1000 || write.birth_1.value <= 0 )  {
-        alert('생년이 잘못입력되었습니다.');
-        write.birth_1.value='';
-        write.birth_1.focus();
-        return false;
-    }
-    if ( write.birth_2.value > 12 || write.birth_2.value <= 0 ) {
-        alert('생월이 잘못입력되었습니다.');
-        write.birth_2.value='';
-        write.birth_2.focus();
-        return false;
-    }
-    if ( write.birth_3.value > 31 || write.birth_3.value <= 0 )  {
-        alert('생일이 잘못입력되었습니다.');
-        write.birth_3.value='';
-        write.birth_3.focus();
-        return false;
-    }
-
-<?
-} 
-?>
 
   return true;
  }

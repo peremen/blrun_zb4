@@ -241,7 +241,7 @@ if($use_html2<2) {
 	</td>
 </tr>
 <tr bgcolor=white valign=top>
-	<td>
+	<td class=memo>
 		<?=$memo?>
 	</td>
 </tr>

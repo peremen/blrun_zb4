@@ -220,11 +220,9 @@ if($Thumbnail_use=="on"){
 	}
 
     $img_info=@getimagesize(urldecode($source_img));
-	$img_info[0]=$img_info[0]+10;
-	$img_info[1]=$img_info[1]+55;
 
 	$view_img="<span style=\"cursor:pointer\" onClick='transimg(\"image\",\"$img_tag\")'>";
-	$full_img="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') onfocus=this.blur(); class=shadow style=cursor:pointer>";
+	$full_img="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=".($img_info[0]+10)."&height=".($img_info[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') onfocus=this.blur(); class=shadow style=cursor:pointer>";
 
 }else{
 
@@ -276,10 +274,8 @@ if($Thumbnail_use=="on"){
 	}
 
 	$img_info=@getimagesize(urldecode($thumb_img));
-	$img_info[0]=$img_info[0]+10;
-	$img_info[1]=$img_info[1]+55;
 
 	$view_img="<span style=\"cursor:pointer\" onClick='transimg(\"image\",\"$img_tag\")'>";
-	$full_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";
+	$full_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=".($img_info[0]+10)."&height=".($img_info[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";
 }
 ?>

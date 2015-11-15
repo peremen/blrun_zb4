@@ -1,8 +1,10 @@
-<? 
-	$align="right";
-	if($member[no]){
-		$align="left";
-	}
+<?
+$a_preview = str_replace("view_preview()","preview_m()",$a_preview);
+
+$align="right";
+if($member[no]){
+	$align="left";
+}
 ?>
 
 <SCRIPT LANGUAGE="JavaScript">
@@ -102,7 +104,7 @@ function preview_m() {
 </SCRIPT><br>
 <a name="m_review_w"><img src=<?=$dir?>/t.gif border=0 height=4></a><br>
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> align=center>
-<form method=post id=write name=write action=<?=$dir?>/comment_ok.php onsubmit="return check_submit_y();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="write"><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$zb_url?>"><input type=hidden name=antispam value="<?=$num1num2?>">
+<form method=post id=write name=write action=<?=$dir?>/comment_ok.php onsubmit="return check_submit_y();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="write"><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$_zb_url?>"><input type=hidden name=antispam value="<?=$num1num2?>">
 <col width=80 style=padding:0,3,0,5></col><col width=80 style=padding:0,3,0,3></col><col width=80 style=padding:0,3,0,3></col><col width=80 style=padding:0,3,0,3></col><col width=></col>
 <tr>
 <?if(!$member['no']){?>

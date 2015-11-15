@@ -125,7 +125,7 @@ if($exec=="delete"&&strlen($no)&&$id) {
 			@z_unlink("./"."data/".$table_name."/thumbnail/".$member[no]."/sl_".$out[1].".jpg");
 			@z_unlink("./"."data/".$table_name."/thumbnail/".$member[no]."/sXL_".$out[1].".jpg");
 			@z_unlink("./"."data/".$table_name."/thumbnail/".$member[no]."/vXL_".$out[1].".".$out[2].".jpg");
-			@z_unlink("./".$path."/thumbnail/"."iXS_".$out[1].".jpg");
+			@z_unlink("./".$path."/thumbnail/"."iXS_".$out[1].".".$out[2].".jpg");
 		}
 	}
 
@@ -339,7 +339,7 @@ for($i=$startNum;$i<$endNum;$i++) {
 	$src_img=$path."/".$image_list[$i];
 	if(preg_match("#(.+?)\.(jpg|jpeg|png)$#i",$image_list[$i],$out)){
 		// 썸네일 디렉토리 내 각 회원별 디렉토리 생성
-		$iBox_small="iXS_".$out[1].".jpg";
+		$iBox_small="iXS_".$out[1].".".$out[2].".jpg";
 		$error_check=0;
 		if(!is_dir($_zb_path.$path."/thumbnail/")) {
 			if(!@mkdir($_zb_path.$path."/thumbnail/",0777,true)) $error_check+=1;
