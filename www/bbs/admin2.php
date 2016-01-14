@@ -1,8 +1,8 @@
 <?
 include "lib.php";
-$connect=dbConn();
+if(!$connect) $connect=dbConn();
 $member=member_info();
-if((($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$member[board_name]))&&$_token2) movepage("admin_setup_bac.php?exec=$exec&no=$no&group_no=$group_no&exec2=$exec2");
+if((($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$member[board_name]))&&$_token2) movepage("admin_setup_bac.php?exec=$exec&no=$no&group_no=$group_no&exec2=$exec2&_token2=$_token2");
 else {
 	if($member[no]) {
 		destroyZBSessionID($member[no]);
@@ -46,10 +46,12 @@ function check_submit() {
 		//보안접속을 체크했을 때의 액션
 		f.action = sslUrl()+"login_check2.php";
 	}
+	check=confirm("자동 로그인 기능을 사용하시겠습니까?\n\n자동 로그인 사용시 다음 접속부터는 로그인을 하실필요가 없습니다.\n\n단, 게임방, 학교등 공공장소에서 이용시 개인정보가 유출될수 있으니 조심하여 주십시요");
+	if(check) {write.auto_login.value=1;}
 	return true;
 }
 
-function check_SSL_Login() { 
+function check_SSL_Login() {
 	if (document.write.SSL_Login.checked==true) {
 		alert("SSL 암호화 보안접속을 설정합니다");
 	} else {
@@ -60,6 +62,7 @@ function check_SSL_Login() {
 
 <br><br><br>
 <form name=write method=post action=login_check2.php onsubmit="return check_submit();">
+<input type=hidden name=auto_login value=<?if(!$autologin[ok])echo "0"; else echo "1"?>>
 <input type=hidden name=s_url value="<?=$REQUEST_URI?>">
 <input type=hidden name=exec value=view_board>
 <input type=hidden name=no value=<?=$no?>>

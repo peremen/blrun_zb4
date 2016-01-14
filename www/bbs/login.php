@@ -1,12 +1,12 @@
 <?
 // 자동으로 www 붙여준다. 
-if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI); 
+if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
 
 include "lib.php";
 
 if(!$id&&!$group_no) Error("게시판 이름이나 그룹번호를 지정하여 주셔야 합니다.<br><br>(login.php?id=게시판이름   또는  login.php?group_no=번호)","");
 
-$connect=dbConn();
+if(!$connect) $connect=dbConn();
 
 // 현재 게시판 설정 읽어 오기
 if($id) {

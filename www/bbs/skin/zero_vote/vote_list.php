@@ -16,10 +16,10 @@
     <table border=0 width=100% height=6 cellspacing=0 cellpadding=0>
     <tr>
       <td width=1%><table border=0 width=100% height=6 bgcolor=666666 cellspacing=0 cellpadding=0><tr><td></td></tr></table></td>
-      <td width=90%>
+      <td width=88%>
         <table border=0 width=<?=$bar_size?>% height=6 bgcolor=666666 cellspacing=0 cellpadding=0><tr><td></td></tr></table>
       </td>
-      <td width=9%><?=$bar_size?>%</td>
+      <td width=11%><?=$bar_size?>%</td>
     </tr>
     </table>
   </td>

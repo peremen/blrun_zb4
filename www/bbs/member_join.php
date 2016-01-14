@@ -16,10 +16,10 @@ if($pass == "gg") {
 	$WRT_SPM_PWD = $pass;
 	session_register("WRT_SPM_PWD");
 
-	// 랜덤한 두 숫자를 발생(1-8) 후 변수에 대입
-	$wnum1 = rand(1,8);
-	$wnum2 = rand(1,8);
-	$wnum1num2 = $wnum1*10 + $wnum2;
+	// 랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입
+	$wnum1 = mt_rand(1,1000);
+	$wnum2 = mt_rand(1,1000);
+	$wnum1num2 = $wnum1*10000 + $wnum2;
 	//글쓰기 보안을 위해 세션변수를 설정
 	$WRT_SS_VRS = $wnum1num2;
 	session_register("WRT_SS_VRS");
@@ -278,7 +278,7 @@ function check_SSL_Login() {
 
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;><b>E-mail&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=email size=50 maxlength=255 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_email checked> 공개</td>
+  <td align=left>&nbsp;<input type=text name=email size=50 maxlength=200 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_email checked> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>

@@ -162,7 +162,16 @@ if($member_data[is_admin]>2)
 <? } ?>
 <tr height=22 align=center>
   <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>E-mail&nbsp;&nbsp;</td>
-  <td align=left bgcolor=#e0e0e0><input type=text name=email size=50 maxlength=255 value="<?=stripslashes($member_data[email])?>" class=input style=border-color:#b0b0b0></td>
+  <td align=left bgcolor=#e0e0e0><input type=text name=email size=50 maxlength=200 value="<?
+  $member_data[email]=stripslashes($member_data[email]);
+  // email IP 표식 불러와 처리
+  unset($c_match);
+  if(preg_match("#\|\|\|([0-9.]{1,})$#",$member_data[email],$c_match)) {
+    //$tokenID = $c_match[1];
+    $member_data[email] = str_replace($c_match[0],"",$member_data[email]);
+  }
+  echo $member_data[email];
+  ?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <tr height=22 align=center>
   <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>홈페이지&nbsp;&nbsp;</td>

@@ -9,8 +9,14 @@
 	<td background=<?=$dir?>/4.gif><img src=<?=$dir?>/4.gif border=0></td>
 	<td align=center><b>
 		<?
-		if(!$mode||$mode=="write") echo "새로운 설문조사 작성";
-		elseif($mode=="reply") echo "설문조사 항목 추가";
+		if(!$mode||$mode=="write") {
+			echo "새로운 설문조사 작성";
+			$memo="설문조사|".time();
+		}
+		elseif($mode=="reply") {
+			echo "설문조사 항목 추가";
+			$memo="설문조사|".time();
+		}
 		else echo"설문조사 제목 수정";
 		?></b><br>
 		<?
@@ -35,7 +41,7 @@
 			<input type=hidden name=sm value="<?=$sm?>">
 			<input type=hidden name=mode value="<?=$mode?>">
 			<input type=hidden name=wantispam value="<?=$wnum1num2?>">
-			<input type=hidden name=memo value="설문조사<?=time()?>">
+			<input type=hidden name=memo value="<?=$memo?>">
 			<input type=hidden name=use_html value=1>
 			<!----------------------------------------------->
 		</td>

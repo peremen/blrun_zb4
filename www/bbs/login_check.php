@@ -1,7 +1,7 @@
 <?
 include "lib.php";
 
-$connect=dbconn();
+if(!$connect) $connect=dbConn();
 
 $user_id = trim($user_id);
 $password = trim($password);
@@ -46,15 +46,22 @@ if($member_data[no]) {
 	}
 
 	// 랜덤한 세 숫자를 발생(각1000-9999까지) 후 토큰변수에 대입
-	$num1 = rand(1000,9999);
-	$num2 = rand(1000,9999);
-	$num3 = rand(1000,9999);
+	$num1 = mt_rand(1000,9999);
+	$num2 = mt_rand(1000,9999);
+	$num3 = mt_rand(1000,9999);
 	$num123 = $num1.$num2.$num3;
 
-	//로그인시 토큰 생성
+	// 로그인시 토큰 생성
 	setCookie("token","$num123",0,"/","");
 	$_token = "$num123";
-
+	// email IP 표식 불러와 처리
+	unset($c_match);
+	if(preg_match("#\|\|\|([0-9.]{1,})$#",$member_data[email],$c_match)) {
+		//$tokenID = $c_match[1];
+		$member_data[email] = str_replace($c_match[0],"",$member_data[email]);
+	}
+	$member_data[email].="|||".$REMOTE_ADDR;
+	mysql_query("update $member_table set email='$member_data[email]' where user_id='$user_id'");
 	session_register("_token");
 
 	// 4.0x 용 세션 처리

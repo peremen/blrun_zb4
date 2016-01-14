@@ -9,7 +9,7 @@ if($_name1) $memo=$_name1;
 if(!$subject) Error("포스트 제목을 입력하여 주십시요","window.close");
 if(!$memo) Error("포스트 내용을 입력하여 주십시요","window.close");
 
-$connect=dbconn();
+if(!$connect) $connect=dbConn();
 
 // 게시판 설정 읽어 오기
 $setup=get_table_attrib($id);
@@ -24,7 +24,7 @@ $group=group_info($setup[group_no]);
 $member = member_info();
 
 // 원 게시글 정보 읽어오기
-if($no&&$mode="modify") $data=mysql_fetch_array(mysql_query("select * from  $t_board"."_$id  where no='$no'"));
+if($no&&$mode=="modify") $data=mysql_fetch_array(mysql_query("select * from  $t_board"."_$id  where no='$no'"));
 
 // 현재 로그인되어 있는 멤버가 전체, 또는 그룹관리자인지 검사
 if($member[is_admin]==1||($member[is_admin]==2&&$member[group_no]==$setup[group_no])||check_board_master($member, $setup[no])) $is_admin=1; else $is_admin="";

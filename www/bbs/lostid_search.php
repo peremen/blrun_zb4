@@ -10,13 +10,13 @@ $_homepage = $_zbDefaultSetup[url];
 // 사이트 이름
 $_sitename = $_zbDefaultSetup[sitename];
 
-$connect = dbconn();
+if(!$connect) $connect=dbConn();
 
 if(isblank($email)) Error("E-Mail을 입력하여 주세요");
 if(isblank($jumin1)||!isnum($jumin1)) Error("주민등록번호를 제대로 입력하여 주세요");
 if(isblank($jumin2)||!isnum($jumin2)) Error("주민등록번호를 제대로 입력하여 주세요");
 
-$result=mysql_query("select * from zetyx_member_table where email='$email' and jumin=password('$jumin1"."$jumin2')",$connect) or Error(mysql_error());
+$result=mysql_query("select * from zetyx_member_table where email like concat('$email','|||%') and jumin=password('$jumin1"."$jumin2')",$connect) or Error(mysql_error());
 
 if(!mysql_num_rows($result)) Error("입력하신 정보에 해당하는 회원이 없습니다.<br><br>다시 한번확인하여 주시기 바랍니다");
 else {

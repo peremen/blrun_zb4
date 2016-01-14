@@ -3,7 +3,7 @@
 require "lib.php";
 
 // DB 연결
-$connect=dbConn();
+if(!$connect) $connect=dbConn();
 
 // 멤버정보 구하기
 $member=member_info();

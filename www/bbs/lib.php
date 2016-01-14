@@ -58,6 +58,19 @@ $_zb_url = zbUrl();
 $_zb_path = $config_dir;
 $ssl_url = sslUrl();
 
+// 관리자 테이블과 회원관리 테이블의 이름을 미리 변수로 정의
+$member_table = "zetyx_member_table";  // 회원들의 데이타가 들어 있는 직접적인 테이블
+$group_table = "zetyx_group_table";   // 그룹테이블
+$admin_table="zetyx_admin_table";     // 게시판의 관리자 테이블
+
+$send_memo_table ="zetyx_send_memo";
+$get_memo_table ="zetyx_get_memo";
+
+$t_division="zetyx_division"; // Division 테이블
+$t_board = "zetyx_board"; // 메인 테이블
+$t_comment ="zetyx_board_comment"; // 코멘트테이블
+$t_category ="zetyx_board_category"; // 카테고리 테이블
+
 /*******************************************************************************
  * install 페이지가 아닌 경우
  ******************************************************************************/
@@ -97,19 +110,50 @@ if(!preg_match("/install/i",$PHP_SELF)&&file_exists($_zb_path."myZrCnf2019.php")
 	unset($autoLoginData);
 	$autoLoginData = getZBSessionID();
 	if($autoLoginData[no]) {
-		$zb_logged_no=$autoLoginData[no];
-		$zb_logged_ip=$REMOTE_ADDR;
-		$zb_logged_time=time();
-		$_token=$_COOKIE['token'];
-		session_register("zb_logged_no");
-		session_register("zb_logged_ip");
-		session_register("zb_logged_time");
-		session_register("_token");
-		$HTTP_SESSION_VARS["zb_logged_no"] = $zb_logged_no;
+		// DB 연결
+		if(!$connect) $connect=dbConn();
+		// 멤버 정보 구해오기
+		$_dbTimeStart = getmicrotime();
+		$m=mysql_fetch_array(mysql_query("select email from $member_table where no ='".$autoLoginData[no]."'"));
+		$_dbTime += getmicrotime()-$_dbTimeStart;
+		// email IP 표식 불러와 처리
+		if(preg_match("#\|\|\|([0-9.]{1,})$#",$m[email],$c_match)) {
+			$tokenID = $c_match[1];
+		}
+		// email IP가 현재 사용자의 아이피와 다를 경우 로그아웃 시킴
+		if($tokenID!=$REMOTE_ADDR) {
+			$zb_logged_no="";
+			$zb_logged_ip="";
+			$zb_logged_time="";
+			session_register("zb_logged_no");
+			session_register("zb_logged_ip");
+			session_register("zb_logged_time");
+			session_destroy();
+		} else {
+			$zb_logged_no=$autoLoginData[no];
+			$zb_logged_ip=$REMOTE_ADDR;
+			$zb_logged_time=time();
+			$_token=$_COOKIE['token'];
+			session_register("zb_logged_no");
+			session_register("zb_logged_ip");
+			session_register("zb_logged_time");
+			session_register("_token");
+			$HTTP_SESSION_VARS["zb_logged_no"] = $zb_logged_no;
+		}
 	// 세션 값을 체크하여 로그인을 처리
 	} elseif($HTTP_SESSION_VARS["zb_logged_no"]) {
+		// DB 연결
+		if(!$connect) $connect=dbConn();
+		// 멤버 정보 구해오기
+		$_dbTimeStart = getmicrotime();
+		$m=mysql_fetch_array(mysql_query("select email from $member_table where no ='".$HTTP_SESSION_VARS["zb_logged_no"]."'"));
+		$_dbTime += getmicrotime()-$_dbTimeStart;
+		// email IP 표식 불러와 처리
+		if(preg_match("#\|\|\|([0-9.]{1,})$#",$m[email],$c_match)) {
+			$tokenID = $c_match[1];
+		}
 		// 로그인 시간이 지정된 시간을 넘었거나 로그인 아이피가 현재 사용자의 아이피와 다를 경우 로그아웃 시킴
-		if(time()-$HTTP_SESSION_VARS["zb_logged_time"]>$_zbDefaultSetup["login_time"]||$HTTP_SESSION_VARS["zb_logged_ip"]!=$REMOTE_ADDR) {
+		if(time()-$HTTP_SESSION_VARS["zb_logged_time"]>$_zbDefaultSetup["login_time"]||$HTTP_SESSION_VARS["zb_logged_ip"]!=$REMOTE_ADDR||$tokenID!=$REMOTE_ADDR) {
 			$zb_logged_no="";
 			$zb_logged_ip="";
 			$zb_logged_time="";
@@ -170,19 +214,6 @@ if(!file_exists($config_dir."myZrCnf2019.php")&&!preg_match("/install/i",$PHP_SE
 	echo "<meta http-equiv=\"refresh\" content=\"0; url=install.php\">";
 	exit;
 }
-
-// 관리자 테이블과 회원관리 테이블의 이름을 미리 변수로 정의
-$member_table = "zetyx_member_table";  // 회원들의 데이타가 들어 있는 직접적인 테이블
-$group_table = "zetyx_group_table";   // 그룹테이블
-$admin_table="zetyx_admin_table";     // 게시판의 관리자 테이블
-
-$send_memo_table ="zetyx_send_memo";
-$get_memo_table ="zetyx_get_memo";
-
-$t_division="zetyx_division"; // Division 테이블
-$t_board = "zetyx_board"; // 메인 테이블
-$t_comment ="zetyx_board_comment"; // 코멘트테이블
-$t_category ="zetyx_board_category"; // 카테고리 테이블
 
 // 마이크로 타임 구함
 function getmicrotime() {
@@ -469,17 +500,28 @@ function foot($max_depth="") {
 
 <!-- 이미지 리사이즈를 위해서 처리하는 부분 -->
 <script>
-	function zb_img_check(){
-		var zb_main_table_width = document.zb_get_table_width.width*(100-5*<?=$max_depth?>-4)/100;
-		var zb_target_resize_num = document.zb_target_resize.length;
-		for(i=0;i<zb_target_resize_num;i++){ 
-			if(document.zb_target_resize[i].width > zb_main_table_width) {
-				document.zb_target_resize[i].height = document.zb_target_resize[i].height * zb_main_table_width / document.zb_target_resize[i].width;
-				document.zb_target_resize[i].width = zb_main_table_width;
-			}
+function addLoadEvent(func){
+	var oldonload = window.onload;
+	if(typeof window.onload != 'function'){
+		window.onload = func;
+	}else{
+		window.onload = function(){
+			oldonload();
+			func();
+		};
+	}
+}
+function zb_img_check(){
+	var zb_main_table_width = document.zb_get_table_width.width*(100-5*<?=$max_depth?>-4)/100;
+	var zb_target_resize_num = document.zb_target_resize.length;
+	for(i=0;i<zb_target_resize_num;i++){ 
+		if(document.zb_target_resize[i].width > zb_main_table_width) {
+			document.zb_target_resize[i].height = document.zb_target_resize[i].height * zb_main_table_width / document.zb_target_resize[i].width;
+			document.zb_target_resize[i].width = zb_main_table_width;
 		}
 	}
-	window.onload = zb_img_check;
+}
+addLoadEvent(zb_img_check);
 </script>
 
 <?
@@ -948,10 +990,17 @@ function size2($size) {
 
 // 메일 보내는 함수
 function zb_sendmail($type, $to, $to_name, $from, $from_name, $subject, $comment, $cc="", $bcc="") {
+	// email IP 표식 불러와 처리
+	if(preg_match("#\|\|\|([0-9.]{1,})$#",$to,$c_match))
+		$to = str_replace($c_match[0],"",$to);
 	$recipient = "$to_name <$to>";
 
 	if($type==1) $comment = nl2br($comment);
 
+	// email IP 표식 불러와 처리
+	unset($c_match);
+	if(preg_match("#\|\|\|([0-9.]{1,})$#",$from,$c_match))
+		$from = str_replace($c_match[0],"",$from);
 	$headers = "From: $from_name <$from>\n";
 	$headers .= "X-Sender: <$from>\n";
 	$headers .= "X-Mailer: PHP ".phpversion()."\n";
@@ -962,8 +1011,20 @@ function zb_sendmail($type, $to, $to_name, $from, $from_name, $subject, $comment
 	else $headers .= "Content-Type: text/html; ";
 	$headers .= "charset=euc-kr\n";
 
-	if($cc)  $headers .= "cc: $cc\n";
-	if($bcc)  $headers .= "bcc: $bcc";
+	if($cc) {
+		// email IP 표식 불러와 처리
+		unset($c_match);
+		if(preg_match("#\|\|\|([0-9.]{1,})$#",$cc,$c_match))
+			$cc = str_replace($c_match[0],"",$cc);
+		$headers .= "cc: $cc\n";
+	}
+	if($bcc) {
+		// email IP 표식 불러와 처리
+		unset($c_match);
+		if(preg_match("#\|\|\|([0-9.]{1,})$#",$bcc,$c_match))
+			$bcc = str_replace($c_match[0],"",$bcc);
+		$headers .= "bcc: $bcc";
+	}
 
 	$comment = stripslashes($comment);
 	$comment = str_replace("\n\r","\n", $comment);

@@ -41,8 +41,12 @@ function list_check(&$data,$view_check=0) {
 		$showCommentStr = str_replace("'","",$showCommentStr);
 		$showCommentStr = str_replace("\"","",$showCommentStr);
 		$showCommentStr .= $showCommentStr_tail;
-	}	
-
+	}
+	// email IP 표식 불러와 처리
+	if(preg_match("#\|\|\|([0-9.]{1,})$#",$data[email],$c_match)) {
+		//$tokenID = $c_match[1];
+		$data[email] = str_replace($c_match[0],"",$data[email]);
+	}
 	$_zbCount = check_zbLayer($data);
 	
 	// HTML 사용일 경우 현재 회원의 admin 레벨이 익명사용자라면 style 속성을 제거

@@ -1,6 +1,6 @@
 <?
 include "lib.php";
-$connect=dbConn();
+if(!$connect) $connect=dbConn();
 
 set_time_limit(0);
 
