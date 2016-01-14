@@ -2,10 +2,10 @@
 
 0.3 /index.php 파일 13, 14, 15행 쯤, /m/index.php 파일 13, 14, 15행 쯤 이미지와 url 정보를 수정해 준다.
 
-0.5 lib.php 파일의 291행 쯤의 @mysql_query("set names euckr",$connect); 에서 DB 캐릭터셋을 확인한다.
-0.6 lib.php 파일의 397행, 430행 쯤의 rss 주소를 확인한다.
-0.7 lib.php 파일의 395행, 396행, 428행, 429행 쯤의 이미지 파일을 각자에 맞게 수정해 사용한다.
-0.9 lib.php 파일의 496행 $target 변수를 aanalyzer에서 만들어 둔 것으로 셋팅한다.
+0.5 lib.php 파일의 322행 쯤의 @mysql_query("set names euckr",$connect); 에서 DB 캐릭터셋을 확인한다.
+0.6 lib.php 파일의 428행, 461행 쯤의 rss 주소를 확인한다.
+0.7 lib.php 파일의 426행, 427행, 459행, 460행 쯤의 이미지 파일을 각자에 맞게 수정해 사용한다.
+0.9 lib.php 파일의 538행 $target 변수를 aanalyzer에서 만들어 둔 것으로 셋팅한다.
 0.9.5 www/bbs/admin_setup_bac.php 파일의 64행 id 값을 aanalyzer에서 만들어 둔 것으로 셋팅한다.
 
 1. www와 /www/m 폴더 안의 main.php 파일 5번째 6번째 줄의 $_zb_url 과 $_zb_path 정보를 올바르게 수정해 준다.

@@ -94,6 +94,12 @@ if($password) {
 $member[name] = stripslashes($member[name]);
 $member[job] = stripslashes($member[job]);
 $member[email] = stripslashes($member[email]);
+// email IP 표식 불러와 처리
+unset($c_match);
+if(preg_match("#\|\|\|([0-9.]{1,})$#",$member[email],$c_match)) {
+	//$tokenID = $c_match[1];
+	$member[email] = str_replace($c_match[0],"",$member[email]);
+}
 $member[homepage] = stripslashes($member[homepage]);
 $member[birth] = stripslashes($member[birth]);
 $member[hobby] = stripslashes($member[hobby]);
@@ -130,6 +136,7 @@ head();
 
 ?>
 
+<script src="script/get_url.php" type="text/javascript"></script>
 <script>
  function address_popup(num)                                                                                                      
  {                                                                                                                                
@@ -254,7 +261,7 @@ head();
 
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;><b>E-mail&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=email size=40 maxlength=255 value="<?=$member[email]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_email <?=$check[$member[open_email]]?>> 공개</td>
+  <td align=left>&nbsp;<input type=text name=email size=40 maxlength=200 value="<?=$member[email]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_email <?=$check[$member[open_email]]?>> 공개</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>

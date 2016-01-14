@@ -29,10 +29,10 @@ if($pass == "gg" || $member[no] || $password) {
 	}
 	session_register("WRT_SPM_PWD");
 
-// 랜덤한 두 숫자를 발생(1-8) 후 변수에 대입
-	$wnum1 = rand(1,8);
-	$wnum2 = rand(1,8);
-	$wnum1num2 = $wnum1*10 + $wnum2;
+// 랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입
+	$wnum1 = mt_rand(1,1000);
+	$wnum2 = mt_rand(1,1000);
+	$wnum1num2 = $wnum1*10000 + $wnum2;
 	//글쓰기 보안을 위해 세션변수를 설정
 	$WRT_SS_VRS = $wnum1num2;
 	session_register("WRT_SS_VRS");
@@ -55,6 +55,9 @@ if($pass == "gg" || $member[no] || $password) {
 		$result=@mysql_query("select * from $t_board"."_$id where no='$no'") or error(mysql_error());
 		$data=mysql_fetch_array($result);
 		$_dbTime += getmicrotime()-$_dbTimeStart;
+		$ip_array = explode("|||",$data[memo]);
+		if($setup[skinname]!="zero_vote" && substr($ip_array[0],0,9)=="설문조사|")
+			Error("투표 내용은 수정할 수 없습니다.");
 		if(!$data[no]) Error("원본글이 존재하지 않습니다");
 	}
 

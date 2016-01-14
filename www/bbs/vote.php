@@ -12,11 +12,17 @@ include "_head.php";
 if($setup[grant_view]<$member[level]&&!$is_admin) Error("사용권한이 없습니다","login.php?id=$id&page=$page&page_num=$page_num&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&file=zboard.php");
 
 // 보안향상
-$no=stripslashes($no);
-$no=addslashes($no);
+if(!get_magic_quotes_gpc()) {
+	$no = addslashes($no);
+}
+
+$result=@mysql_query("select * from $t_board"."_$id where no='$no'") or error(mysql_error());
+$data=mysql_fetch_array($result);
+$ip_array = explode("|||",$data[memo]);
 
 // 현재글의 Vote수 올림;;
 if($setup[skinname]!="zero_vote") {
+	if(substr($ip_array[0],0,9)=="설문조사|") Error("정상적인 투표를 하지 않으셨습니다.");
 	if(!preg_match("/".$setup[no]."_".$no."/",$HTTP_SESSION_VARS["zb_vote"])) {
 		mysql_query("update $t_board"."_$id set vote=vote+1 where no='$no'");
 		$vote_str =  "," . $setup[no]."_".$no;

@@ -1,7 +1,7 @@
 <?
 include "lib.php";
 
-$connect=dbConn();
+if(!$connect) $connect=dbConn();
 
 // 관리자가 1명이상 있을경우 바로 로그인 페이지로...
 $temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where is_admin='1'",$connect));

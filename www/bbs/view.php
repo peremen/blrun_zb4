@@ -100,6 +100,12 @@ if($data[prev_no]&&!$setup[use_alllist]) {
 	$prev_subject=$prev_data[subject]=stripslashes($prev_data[subject])." ".$prev_comment_num;
 	$prev_name=$prev_data[name]=stripslashes($prev_data[name]);
 	$prev_data[email]=stripslashes($prev_data[email]);
+	// email IP 표식 불러와 처리
+	unset($c_match);
+	if(preg_match("#\|\|\|([0-9.]{1,})$#",$prev_data[email],$c_match)) {
+		//$tokenID = $c_match[1];
+		$prev_data[email] = str_replace($c_match[0],"",$prev_data[email]);
+	}
 
 	$temp_name = get_private_icon($prev_data[ismember], "2");
 	if($temp_name) $prev_name="<img src='$temp_name' border=0 align=absmiddle>";
@@ -143,6 +149,12 @@ if($data[next_no]&&!$setup[use_alllist]) {
 	$next_subject=$next_data[subject]=stripslashes($next_data[subject])." ".$next_comment_num;
 	$next_name=$next_data[name]=stripslashes($next_data[name]);
 	$next_data[email]=stripslashes($next_data[email]);
+	// email IP 표식 불러와 처리
+	unset($c_match);
+	if(preg_match("#\|\|\|([0-9.]{1,})$#",$next_data[email],$c_match)) {
+		//$tokenID = $c_match[1];
+		$next_data[email] = str_replace($c_match[0],"",$next_data[email]);
+	}
 
 	$temp_name = get_private_icon($next_data[ismember], "2");
 	if($temp_name) $next_name="<img src='$temp_name' border=0 align=absmiddle>";
@@ -237,7 +249,7 @@ $a_preview="<a onfocus=blur() href='#' onclick='javascript:return view_preview()
 if($setup[use_html]>0) $a_codebox="<a onfocus=blur() href='javascript:showCodeBox()'>"; else $a_codebox="<Zeroboard ";
 
 // bit.ly 버튼
-$a_bitly="<a href='bitly.php?social_ref=$social_ref' target=_blank>";
+$a_bitly="<a href='bitly.php?social_ref=".urlencode("view.php?$href$sort&no=$no")."' target=_blank>";
 
 // 사이트 링크를 나타나게 하는 변수;;
 if(!$sitelink1) {$hide_sitelink1_start="<!--";$hide_sitelink1_end="-->";}
@@ -362,6 +374,7 @@ if($setup[use_comment]) {
 		$c_memo=$c_data[memo];
 
 		// 계층 코멘트 표식 불러와 처리
+		unset($c_match);
 		if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$c_memo,$c_match)) {
 			$c_org = $c_match[1];
 			$c_depth = $c_match[2];
