@@ -51,8 +51,13 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 			$date = date($datetype, $data[reg_date]);
 			if($data[is_secret])
 				$memo = "<font color='gray'>비밀 덧글입니다</font>";
-			else
+			else {
+				// 계층 코멘트 표식 불러와 처리
+				unset($c_match);
+				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
+					$data[memo] = str_replace($c_match[0],"",$data[memo]);
 				$memo = cut_str(stripslashes(strip_tags($data[memo])),$textlen);
+			}
 			$no = $data[no];
 			   $parent = $data[parent];
 

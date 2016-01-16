@@ -34,7 +34,7 @@ if($_view_included==true){
 }
 
 // 외부 html <img> 태그 src url 추출
-$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?(http[s]?:\/\/[^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
+$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?([^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
 preg_match_all($imagePattern,$data[memo],$img,PREG_SET_ORDER);
 for($i=0;$i<2;$i++)
 	if(($mypos=strrpos($img[$i][1],"http://"))||($mypos=strrpos($img[$i][1],"https://")))
