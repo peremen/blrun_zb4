@@ -34,14 +34,14 @@ $iNext_thumb_large1="fl_".$out2[0][1].".jpg";
 $iNext_thumb_large2="sl_".$out2[1][1].".jpg";
 
 // 외부 html <img> 태그 src url 추출 (Prev)
-$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?(http[s]?:\/\/[^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
+$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?([^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
 preg_match_all($imagePattern,$prev_data[memo],$img1,PREG_SET_ORDER);
 for($i=0;$i<2;$i++)
 	if(($mypos=strrpos($img1[$i][1],"http://"))||($mypos=strrpos($img1[$i][1],"https://")))
 		$img1[$i][1]=substr($img1[$i][1],$mypos);
 
 // 외부 html <img> 태그 src url 추출 (Next)
-$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?(http[s]?:\/\/[^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
+$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?([^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
 preg_match_all($imagePattern,$next_data[memo],$img2,PREG_SET_ORDER);
 for($i=0;$i<2;$i++)
 	if(($mypos=strrpos($img2[$i][1],"http://"))||($mypos=strrpos($img2[$i][1],"https://")))

@@ -121,10 +121,12 @@ $codePattern = "#(\[[a-z]+[0-9]?\_code\:[0-9]+\{[^}]*?\}\]|[\/[a-z]+[0-9]?\_code
 $temp = preg_split($codePattern,$memo,-1,PREG_SPLIT_DELIM_CAPTURE);
 
 for($i=0;$i<count($temp);$i++) {
+	$cnt=0;
 	for($j=0;$j<count($code);$j++) {
 		$pattern1 = "#\[".$code[$j]."\_code\:([0-9]+)\{([^}]*?)\}\]#i";
 		$pattern2 = "#\[\/".$code[$j]."\_code\]#i";
 		if(preg_match($pattern1,$temp[$i])) {
+			$cnt++;
 			if($code[$j]=="php")
 				$temp[$i]=preg_replace($pattern1,"<pre class=\"brush: $code[$j]; html_script: true; first-line: \\1\" title=\"\\2\">",$temp[$i]);
 			else
@@ -137,13 +139,18 @@ for($i=0;$i<count($temp);$i++) {
 			$temp[$i+1]=str_replace("my_lt_ek","&amp;lt;",$temp[$i+1]); // &lt 사용!
 			$temp[$i+1]=str_replace("my_gt_ek","&amp;gt;",$temp[$i+1]); // &gt 사용!
 			$temp[$i+1]=str_replace("<","&lt;",$temp[$i+1]);
-			//$temp[$i+1]=str_replace("\'","&#039;",$temp[$i+1]);
-			//$temp[$i+1]=str_replace("\"","&quot;",$temp[$i+1]);
 			$i+=1;
-		}
-		elseif(preg_match($pattern2,$temp[$i])) {
+		} elseif(preg_match($pattern2,$temp[$i])) {
+			$cnt++;
 			$temp[$i]="</pre>";
 		}
+	}
+	if($cnt==0) {
+		// 위지윅에디터에서 &가 &amp;로 바뀔때 썸네일이 보이지 않는 현상 해결
+		$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?([^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
+		preg_match_all($imagePattern,$temp[$i],$img,PREG_SET_ORDER);
+		for($j=0;$j<count($img);$j++)
+			$temp[$i]=str_replace($img[$j][1],str_replace("&amp;","&",$img[$j][1]),$temp[$i]);
 	}
 }
 
