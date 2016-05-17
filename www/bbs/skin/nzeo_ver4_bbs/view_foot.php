@@ -20,7 +20,7 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 </table>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <tr>
-	<td height=30>
+	<td align=left height=30>
 		<?=$a_reply?>답글달기</a>
 		<?=$a_modify?>수정하기</a>
 		<?=$a_delete?>삭제하기</a>
@@ -43,7 +43,7 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 
 <table width=<?=$width?>>
 <tr>
-	<td style='word-break:break-all;'>▲ <?=$a_prev?><?=$prev_subject?></a></td>
+	<td align=left style='word-break:break-all;'>▲ <?=$a_prev?><?=$prev_subject?></a></td>
 </tr>
 </table>
 <?=$hide_prev_end?>
@@ -52,7 +52,7 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 
 <table width=<?=$width?>>
 <tr>
-	<td style='word-break:break-all;'>▼ <?=$a_next?><?=$next_subject?></a></td>
+	<td align=left style='word-break:break-all;'>▼ <?=$a_next?><?=$next_subject?></a></td>
 </tr>
 </table>
 <?=$hide_next_end?>

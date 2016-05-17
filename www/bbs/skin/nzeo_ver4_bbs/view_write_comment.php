@@ -8,30 +8,30 @@
 		<col width=70 align=right style=padding-right:10px></col><col width=></col>
 <?if(!$member['no']){?>
 		<tr>
-			<td class=list0><font class=list_eng><b>Name</b></font></td>
-			<td class=list1><font class=list_han><? $c_name=stripslashes($c_name); echo $c_name; ?></font></td>
+			<td align=right class=list0><font class=list_eng><b>Name</b></font></td>
+			<td align=left class=list1><font class=list_han><?=$c_name?></font></td>
 		</tr>
 <?}?>
 		<?=$hide_c_password_start?>
 
 		<tr>
-			<td class=list0><font class=list_eng><b>Password</b></font></td>
-			<td class=list1><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input></td>
+			<td align=right class=list0><font class=list_eng><b>Password</b></font></td>
+			<td align=left class=list1><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
 		</tr>
 		<?=$hide_c_password_end?>
 
 		<tr>
-			<td class=list0><font class=list_eng><b>Option</b></font></td>
-			<td class=list_eng><?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>>HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?></td>
+			<td align=right class=list0><font class=list_eng><b>Option</b></font></td>
+			<td align=left class=list_eng><?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?> <font id="state"></font></td>
 		</tr>
 		<tr>	
-			<td class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</font></td>
-			<td width=100% height=100% class=list1>
+			<td align=right class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</font></td>
+			<td align=left width=100% height=100% class=list1>
 				<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
 				<col width=></col><col width=70></col>
 				<tr>
-					<td width=100%><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'></textarea></td>
-					<td width=70><input type=submit rows=5 class=submit value=' 글쓰기 ' accesskey="s" style=height:100%></td>
+					<td width=100%><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);' onkeyup="addStroke()"></textarea></td>
+					<td width=70><input type=button value='임시저장' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit class=submit value='작성완료' accesskey="s" style="height:50%"></td>
 				</tr>
 				</table>
 			</td>
@@ -43,9 +43,9 @@
 				<tr valign=top>
 				  <td width=52 align=right>
 				  <?=$hide_pds_start?><font class=list_eng>Upload #1</font></td>
-				  <td class=list_eng><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%></td>
+				  <td align=left class=list_eng><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%></td>
 				  <td width=52 align=right><font class=list_eng>Upload #2</font></td>
-				  <td class=list_eng><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%><?=$hide_pds_end?></td>
+				  <td align=left class=list_eng><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%><?=$hide_pds_end?></td>
 				</tr>
 				</table>
 			</td>

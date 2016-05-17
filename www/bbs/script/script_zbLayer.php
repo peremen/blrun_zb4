@@ -1,4 +1,5 @@
 
+<!-- 이름 클릭시 보이는 레이어 관련 스크립트 -->
 <script language='JavaScript'>
 var select_obj;
 var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -90,49 +91,56 @@ function utf8_decode(utftext) {
 	return string;
 }
 
+function htmlspecialchars_encode(str){
+	str = str.replace(/&amp;/g,'&amp;amp;');
+	str = str.replace(/&#039;/g,'&amp;#039;');
+	str = str.replace(/&quot;/g,'&amp;quot;');
+	str = str.replace(/&nbsp;/g,'&amp;nbsp;');
+	str = str.replace(/&lt;/g,'&amp;lt;').replace(/&gt;/g,'&amp;gt;');
+	str = str.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+	str = str.replace(/\'/g,'&#039;');
+	str = str.replace(/\"/g,'&quot;');
+
+	return str;
+}
+
 function print_ZBlayer(name, homepage, mail, member_no, boardID, writer, traceID, traceType, isAdmin, isMember) {
 	var printHeight = 0;
 	var printMain="";
 
 	if(homepage) {
-		printMain = "<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('"+homepage+"');><td style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_homepage.gif border=0 align=absmiddle>&nbsp;&nbsp;홈페이지&nbsp;&nbsp;</td></tr>";
+		printMain = "<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('"+homepage+"');><td align=left style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_homepage.gif border=0 align=absmiddle>&nbsp;&nbsp;홈페이지&nbsp;&nbsp;</td></tr>";
 		printHeight = printHeight + 16;
 	}
 	if(mail) {
-		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=location.href='mailto:"+decode64(mail)+"';><td style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_mail.gif border=0 align=absmiddle>&nbsp;&nbsp;메일 보내기&nbsp;&nbsp;</td></tr>";
+		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=location.href='mailto:"+htmlspecialchars_encode(decode64(mail))+"';><td align=left style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_mail.gif border=0 align=absmiddle>&nbsp;&nbsp;메일 보내기&nbsp;&nbsp;</td></tr>";
 		printHeight = printHeight + 16;
 	}
 	if(member_no) {
 		if(isMember) {
-			printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('view_info.php?member_no="+member_no+"','view_info','width=400,height=510,toolbar=no,scrollbars=yes');><td style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_memo.gif border=0 align=absmiddle>&nbsp;&nbsp;쪽지 보내기&nbsp;&nbsp;</td></tr>";
+			printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('view_info.php?member_no="+member_no+"','view_info','width=400,height=510,toolbar=no,scrollbars=yes');><td align=left style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_memo.gif border=0 align=absmiddle>&nbsp;&nbsp;쪽지 보내기&nbsp;&nbsp;</td></tr>";
 			printHeight = printHeight + 16;
 		}
-		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('view_info2.php?member_no="+member_no+"','view_info','width=400,height=510,toolbar=no,scrollbars=yes');><td style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_information.gif border=0 align=absmiddle>&nbsp;&nbsp;회원정보 보기&nbsp;&nbsp;</td></tr>";
+		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('view_info2.php?member_no="+member_no+"','view_info','width=400,height=510,toolbar=no,scrollbars=yes');><td align=left style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_information.gif border=0 align=absmiddle>&nbsp;&nbsp;회원정보 보기&nbsp;&nbsp;</td></tr>";
 		printHeight = printHeight + 16;
 	}
 	if(writer) {
-		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=location.href='zboard.php?id="+boardID+"&sn1=on&sn=on&ss=off&sc=off&keyword="+writer+"';><td style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_search.gif border=0 align=absmiddle>&nbsp;&nbsp;이름으로 검색&nbsp;&nbsp;</td></tr>";
+		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=location.href='zboard.php?id="+boardID+"&sn1=on&sn=on&ss=off&sc=off&keyword="+writer+"';><td align=left style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_search.gif border=0 align=absmiddle>&nbsp;&nbsp;이름으로 검색&nbsp;&nbsp;</td></tr>";
 		printHeight = printHeight + 16;
 	}
 	if(isAdmin) {
 		if(member_no) {
-			printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('open_window.php?mode=i&str="+member_no+"','ZBremote','left=1,top=1,scrollbars=yes');><td style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_modify.gif border=0 align=absmiddle>&nbsp;&nbsp;<font color=darkred>회원정보 변경&nbsp;&nbsp;</td></tr>";
+			printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('open_window.php?mode=i&str="+member_no+"','ZBremote','width=1024,height=768,left=1,top=1,scrollbars=yes');><td align=left style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_modify.gif border=0 align=absmiddle>&nbsp;&nbsp;<font color=darkred>회원정보 변경&nbsp;&nbsp;</td></tr>";
 			printHeight = printHeight + 16;
 		}
-		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('open_window.php?mode="+traceType+"&str="+traceID+"','ZBremote','width=870,height=500,left=1,top=1,toolbar=no,scrollbars=yes');><td style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_relationlist.gif border=0 align=absmiddle>&nbsp;&nbsp;<font color=darkred>관련글 추적</font>&nbsp;&nbsp;</td></tr>";
+		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('open_window.php?mode="+traceType+"&str="+traceID+"','ZBremote','width=1024,height=768,left=1,top=1,toolbar=no,scrollbars=yes');><td align=left style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_relationlist.gif border=0 align=absmiddle>&nbsp;&nbsp;<font color=darkred>관련글 추적</font>&nbsp;&nbsp;</td></tr>";
 		printHeight = printHeight + 16;
 	
 	}
-	var printHeader = "<div id='"+name+"' style='position:absolute; left:10px; top:25px; width:127; height: "+printHeight+"; z-index:1; visibility: hidden' onMousedown=ZB_layerAction('"+name+"','hidden',event)><table border=0><tr><td colspan=3 onMouseover=ZB_layerAction('"+name+"','hidden',event) height=3></td></tr><tr><td width=5 onMouseover=ZB_layerAction('"+name+"','hidden',event) rowspan=2>&nbsp;</td><td height=5></td></tr><tr><td><table style=cursor:pointer border='0' cellspacing='1' cellpadding='0' bgcolor='black' width=100% height=100%><tr><td valign=top bgcolor=white><table border=0 cellspacing=0 cellpadding=3 width=100% height=100%>";
+	var printHeader = "<div id='"+name+"' style='position:absolute; left:10px; top:25px; width:127px; height: "+printHeight+"px; z-index:1; visibility: hidden' onMousedown=ZB_layerAction('"+name+"','hidden',event)><table border=0><tr><td colspan=3 onMouseover=ZB_layerAction('"+name+"','hidden',event) height=3></td></tr><tr><td width=5 onMouseover=ZB_layerAction('"+name+"','hidden',event) rowspan=2>&nbsp;</td><td height=5></td></tr><tr><td><table style=cursor:pointer border='0' cellspacing='1' cellpadding='0' bgcolor='black' width=100% height=100%><tr><td valign=top bgcolor=white><table border=0 cellspacing=0 cellpadding=3 width=100% height=100%>";
 	var printFooter = "</table></td></tr></table></td><td width=5 rowspan=2 onMouseover=ZB_layerAction('"+name+"','hidden',event)>&nbsp;</td></tr><tr><td colspan=3 height=10 onMouseover=ZB_layerAction('"+name+"','hidden',event)></td></tr></table></div>";
 
 	document.writeln(printHeader+printMain+printFooter);
 }
-
-function category_change(obj) {
-	var myindex=obj.selectedIndex;
-	document.search.category.value=obj.options[myindex].value;
-	document.search.submit();
-	return true;
-}
 </script>
+<!-- 이름 클릭시 보이는 레이어 관련 스크립트 끝 -->

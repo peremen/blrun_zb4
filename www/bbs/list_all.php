@@ -54,12 +54,17 @@ if($exec=="view_all") {
 
 	head();
 
+	//global $max_depth;
+
 	// 상단 현황 부분 출력
 	include "$dir/setup.php";
 
+	$all_depth = 0;
 	for($idx=count($selected)-2;$idx>=0;$idx--) {
 		$no = $selected[$idx];
+		$count=0;
 		include "view.php";
+		if($all_depth<$max_depth) $all_depth=$max_depth;
 	}
 
 	// layer 출력
@@ -68,7 +73,7 @@ if($exec=="view_all") {
 		unset($zbLayer);
 	}
 
-	foot();
+	foot('',$all_depth);
 ?>
 <!-- 브라우저 로딩시간 구하기 스크립트 출력 -->
 <script>

@@ -2,7 +2,11 @@
 /***************************************************************************
 * 공통 파일 include
 **************************************************************************/
-if(!$_view_included) {include "_head.php";}
+if(!$_view_included) {
+	include "_head.php";
+	// HTML 출력 
+	print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
+}
 
 /***************************************************************************
 * 게시판 설정 체크
@@ -97,9 +101,9 @@ if($data[prev_no]&&!$setup[use_alllist]) {
 	$prev_comment_num="[".$prev_data[total_comment]."]"; // 간단한 답글 수
 	if($prev_data[total_comment]==0) $prev_comment_num="";
 	$a_prev="<a onfocus=blur() href='".$target."?".$href.$sort."&no=$data[prev_no]'>";
-	$prev_subject=$prev_data[subject]=stripslashes($prev_data[subject])." ".$prev_comment_num;
-	$prev_name=$prev_data[name]=stripslashes($prev_data[name]);
-	$prev_data[email]=stripslashes($prev_data[email]);
+	$prev_subject=$prev_data[subject]=$prev_data[subject]." ".$prev_comment_num;
+	$prev_name=$prev_data[name]=htmlspecialchars($prev_data[name]);
+	$prev_data[email]=htmlspecialchars($prev_data[email]);
 	// email IP 표식 불러와 처리
 	unset($c_match);
 	if(preg_match("#\|\|\|([0-9.]{1,})$#",$prev_data[email],$c_match)) {
@@ -117,8 +121,8 @@ if($data[prev_no]&&!$setup[use_alllist]) {
 		else $prev_name="<div $show_ip>$prev_name</div>";
 	}
 
-	$prev_hit=stripslashes($prev_data[hit]);
-	$prev_vote=stripslashes($prev_data[vote]);
+	$prev_hit=htmlspecialchars($prev_data[hit]);
+	$prev_vote=htmlspecialchars($prev_data[vote]);
 	$prev_reg_date="<span title='".date("Y/m/d H:i:d",$prev_data[reg_date])."'>".date("Y/m/d",$prev_data[reg_date])."</span>";
 
 	if(!isBlank($prev_email)||$prev_data[ismember]) {
@@ -146,9 +150,9 @@ if($data[next_no]&&!$setup[use_alllist]) {
 	$a_next="<a onfocus=blur() href='".$target."?".$href.$sort."&no=$data[next_no]'>";
 	$next_comment_num="[".$next_data[total_comment]."]"; // 간단한 답글 수
 	if($next_data[total_comment]==0) $next_comment_num="";
-	$next_subject=$next_data[subject]=stripslashes($next_data[subject])." ".$next_comment_num;
-	$next_name=$next_data[name]=stripslashes($next_data[name]);
-	$next_data[email]=stripslashes($next_data[email]);
+	$next_subject=$next_data[subject]=$next_data[subject]." ".$next_comment_num;
+	$next_name=$next_data[name]=htmlspecialchars($next_data[name]);
+	$next_data[email]=htmlspecialchars($next_data[email]);
 	// email IP 표식 불러와 처리
 	unset($c_match);
 	if(preg_match("#\|\|\|([0-9.]{1,})$#",$next_data[email],$c_match)) {
@@ -166,8 +170,8 @@ if($data[next_no]&&!$setup[use_alllist]) {
 		else $next_name="<div $show_ip>$next_name</div>";
 	}
 	
-	$next_hit=stripslashes($next_data[hit]);
-	$next_vote=stripslashes($next_data[vote]);
+	$next_hit=htmlspecialchars($next_data[hit]);
+	$next_vote=htmlspecialchars($next_data[vote]);
 	$next_reg_date="<span title='".date("Y/m/d H:i:d",$next_data[reg_date])."'>".date("Y/m/d",$next_data[reg_date])."</span>";
 	if(!isBlank($next_email)||$next_data[ismember]) {
 		if(!$setup[use_formmail]) $a_next_email="<a onfocus=blur() href='mailto:$next_email'>";
@@ -282,13 +286,13 @@ if($member[no]) {
 	if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>";
 	$temp_name = get_private_icon($member[no], "1");
 	if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>".$c_name;
-} else $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input value=\"".$HTTP_SESSION_VARS["zb_writer_name"]."\">";
+} else $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input value=\"".htmlspecialchars(stripslashes($HTTP_SESSION_VARS["zb_writer_name"]))."\" onkeyup='ajaxLoad2()'>";
 
 /****************************************************************************************
 * 실제 출력 부분
 ***************************************************************************************/
 // 헤더 출력
-if(!$_view_included) head(" onload=unlock() onunload=hideImageBox() ","script_comment.php");
+if(!$_view_included) head("onload=unlock() onunload=hideImageBox()","script_comment.php");
 
 // 상단 현황 부분 출력 
 if(!$_view_included) {
@@ -306,10 +310,10 @@ $max_depth = 0;
 // 코멘트 출력;;
 if($setup[use_comment]) {
 	while($c_data=mysql_fetch_array($view_comment_result)) {
-		$comment_name=stripslashes($c_data[name]);
+		$comment_name=$c_data[name];
 		$temp_name = get_private_icon($c_data[ismember], "2");
 		if($temp_name) $comment_name="<img src='$temp_name' border=0 align=absmiddle>";
-		$c_data[memo]=trim(stripslashes($c_data[memo]));
+		$c_data[memo]=trim($c_data[memo]);
 
 		// html 이미지 리사이즈
 		$imagePattern = "#<img(.+?)src=([^>]*?)>#i";
@@ -553,7 +557,7 @@ if($zbLayer&&!$_view_included) {
 }
 
 // 마지막 부분 출력
-if(!$_view_included) foot($max_depth);
+if(!$_view_included) foot($max_depth,'');
 
 /***************************************************************************
 * 마무리 부분 include

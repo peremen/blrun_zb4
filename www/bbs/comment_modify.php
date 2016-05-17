@@ -51,7 +51,7 @@ head();
 <input type=hidden name=ss value="<?=$ss?>">
 <input type=hidden name=sc value="<?=$sc?>">
 <input type=hidden name=sm value="<?=$sm?>">
-<input type=hidden name=mode value="<?=$mode?>">
+<input type=hidden name=mode value="modify">
 <input type=hidden name=c_no value=<?=$c_no?>>
 <input type=hidden name=antispam value=<?=$num1num2?>>
 <table border=0 width=250 cellspacing=1 cellpadding=0>
@@ -71,8 +71,8 @@ if(!$member[no]) {
 ?>
 <tr class=list0 height=30>
 	<td align=center>
-		<input type=submit class=submit value=" 확  인 " border=0 accesskey="s">
-		<input type=button class=button value="이전화면" onclick=history.back()>
+		<input type=submit class=submit value=" 확  인 " accesskey="s">
+		<input type=button class=submit value="이전화면" onclick=history.back()>
 	</td>
 </tr>
 </table>

@@ -64,7 +64,8 @@ vote int(11) default 0,
 point1 int(3),
 point2 int(1),
 memo text,
-who text
+who text,
+KEY parent (parent)
 )";
 
 	mysql_query("$movie_type_schema",$connect);

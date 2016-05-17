@@ -38,7 +38,7 @@ if($total_comment[0]>0){
 }
 ?>
 
-<table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed;border-width:1pt;border-style:solid;border-color:cccccc>
+<table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed;border-width:1pt;border-style:solid;border-color:#cccccc>
 <col width=74></col><col width=></col>
 <tr align=left valign="middle" height=25>
 	<td class=com>&nbsp;&nbsp;<img src=<?=$dir?>/images/front_img.gif>&nbsp;&nbsp;Subject : </td>
@@ -56,11 +56,11 @@ if($total_comment[0]>0){
 	<font class=com5>&nbsp;|&nbsp;</font><font class=com3>Point : <?=($m_data[point1]*10+$m_data[point2])?></font><font class=com5>&nbsp;|&nbsp;</font><?}?><?if($hide_date=="off"){?><font class=com3><?=$date?></font><font class=com5>&nbsp;|&nbsp;</font><?}?><?if($hide_hit=="off"){?><font class=com3>Read : <?=number_format($hit)?></font><font class=com5>&nbsp;|&nbsp;</font><?}?><?if($hide_vote=="off"){?><font class=com3>Vote : <?=$vote?></font><?}?></td></tr>
 	<tr><td height=1 colspan=2 background=<?=$dir?>/images/dot.gif></td></tr></table>
 	<table border=0 cellspacing=0 cellpadding=3 width=100% style=table-layout:fixed>
-	<tr><td>&nbsp;&nbsp;<img src=<?=$dir?>/images/sell_intro.gif></td></tr>
+	<tr><td align=left>&nbsp;&nbsp;<img src=<?=$dir?>/images/sell_intro.gif></td></tr>
 	<tr><td height=5></td></tr>
 	<tr valign=top>
-		<td style=padding-left:10px><?=$print_img1?><?=$view_img1?></a>
-			<table border=0 cellpadding=0 cellspacing=0><tr><td nowrap width=55><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;力格</B> :&nbsp;</td><td nowrap width=100%><?=$subject?></td></tr></table>
+		<td align=left style=padding-left:10px><?=$print_img1?><?=$view_img1?></a>
+			<table border=0 cellpadding=0 cellspacing=0><tr><td nowrap width=55 align=left><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;力格</B> :&nbsp;</td><td nowrap width=100%><?=$subject?></td></tr></table>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
@@ -91,9 +91,9 @@ if($total_comment[0]>0){
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr></table>
 			<BR><BR><BR>
-			<table border=0 cellspacing=1 cellpadding=5 align=center width=250 style=border-width:1px;border-style:solid;border-color:C5C5C5>
+			<table border=0 cellspacing=1 cellpadding=5 align=center width=250 style=border-width:1px;border-style:solid;border-color:#C5C5C5>
 			<col width=></col><col width=140></col>
-			<tr bgcolor=eeeeee>
+			<tr bgcolor=#eeeeee>
 			<td>
 				<a href=<?=$data[sitelink1]?> target=_blank><font class=list_eng><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;力炼 权其捞瘤</font></a>
 			</td>
@@ -103,7 +103,7 @@ if($total_comment[0]>0){
 			<td colspan=2><img src=<?=$dir?>/images/point_fr2.gif border=0 align=absmiddle> :&nbsp;<?=$_point?><br>
 			<img src=<?=$dir?>/images/point_fr3.gif border=0 align=absmiddle> :&nbsp;<?=$aver_point?><BR></td>
 			</tr>
-			<tr bgcolor=eeeeee height=15><td align=right colspan=2>
+			<tr bgcolor=#eeeeee height=15><td align=right colspan=2>
 				<table border=0 width=100% cellspacing=0 cellpadding=0 align=center>
 				<col width=></col><col width=77></col>
 				<tr><td align=right>
@@ -118,7 +118,7 @@ if($total_comment[0]>0){
 		</td>
 	</tr>
 	<tr>
-		<td class=memo>
+		<td align=left class=memo>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr>
 				<td height=4></td>
@@ -140,7 +140,7 @@ if($total_comment[0]>0){
 	</tr>
 	<tr><td height=2 background=<?=$dir?>/images/main_bar_line.gif></td></tr>
 	<tr valign=top>
-		<td class=memo><BR>			
+		<td align=left class=memo><BR>			
 		<?=$print_img2?><?=$view_img2?></A>
 		<B>&nbsp;· 惑前汲疙</B> :<BR><BR><?=$_name1?><BR><BR>
 		<? include "script/sns.php"; ?>
@@ -150,7 +150,7 @@ if($total_comment[0]>0){
 	<tr>
 		<td>
 			<table width=100% border=0>
-			<tr><td>
+			<tr><td align=left>
 			<div align=right class=com5><?=$ip?></div><br>
 			<a href="http://www.ntzn.net/" target="_blank" style="color:blue;">http://www.ntzn.net/</a>
 			</td></tr>

@@ -45,8 +45,8 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
     <col width=80></col><col width=></col><col width=80></col>
     <tr>
       <td align=center style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br><b>Option</b></td>
-      <td class=listnum>
-        <?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>>HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?>
+      <td align=left class=listnum>
+        <?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?> <font id="state"></font>
       </td>
       <td width=80>&nbsp;</td>
     </tr>
@@ -56,7 +56,7 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
       <td>&nbsp;</td>
     </tr>
     <tr align=center valign=top>
-      <td nowrap height=80>
+      <td width=80>
         <? $c_name=stripslashes($c_name); echo $c_name; ?>
 
         <?=$hide_c_password_start?>
@@ -64,18 +64,18 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
         <br><img src=images/t.gif border=0 height=10><br>
         <font style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>Password</b></font><br>
         <img src=images/t.gif border=0 height=5><br>
-        <input type=password id=password name=password <?=size(8)?> maxlength=20 class=input>
+        <input type=password id=password name=password <?=size(8)?> maxlength=20 class=input onkeyup="ajaxLoad2()"><br>비번을 재입력하면 임시저장이 복원됨
         <?=$hide_c_password_end?>
 
       </td>
       <td>
         <table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
         <tr><td width=100% valign=top>
-          <textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea>
+          <textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);' onkeyup="addStroke()"><?=$memo?></textarea>
         </td></tr>
         </table>
       </td>
-      <td><input type=submit rows=5 class=comment_submit value='작성완료' accesskey="s"></td>
+      <td valign=middle><input type=button class=comment_submit value='임시저장' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit class=comment_submit value='작성완료' accesskey="s" style="height:50%"></td>
     </tr>
     </table>
     <table border=0 cellspacing=2 cellpadding=0 width=100% height=20>
@@ -84,9 +84,9 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
     <?=$hide_pds_start?>
 
       <td width=52 align=right><font class=listnum>Upload #1</font></td>
-      <td class=listnum><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name1?></td>
+      <td align=left class=listnum><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name1?></td>
       <td width=52 align=right><font class=listnum>Upload #2</font></td>
-      <td class=listnum><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
+      <td align=left class=listnum><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
     <?=$hide_pds_end?>
 
     </tr>

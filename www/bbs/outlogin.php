@@ -210,7 +210,7 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 	// 공지사항 형식을 만들때 사용
 	if(preg_match("/\[notice\_/i",$header)) {
 		$data=mysql_fetch_array($result);
-		$memo = strip_tags(stripslashes($data[memo]));
+		$memo = strip_tags($data[memo]);
 		$filename1 = $data[file_name1];
 		$filename2 = $data[file_name2];
 		if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$filename1))$uploadimage1 = "<img src=".$_zb_url.$filename1." border=0><br>"; else $uploadimage1="";
@@ -218,9 +218,9 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 		$memo = autolink($uploadimage1.$uploadimage2.$memo);
 		if($data[ismember]) {
 			$imageBoxPattern = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i";
-			$memo=preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data[ismember]/\\1.\\2' align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>", stripslashes($memo));
+			$memo=preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data[ismember]/\\1.\\2' align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>", $memo);
 		}
-		$subject = cut_str(strip_tags(stripslashes($data[subject])),$textlen)."</font></b>";
+		$subject = cut_str(htmlspecialchars(strip_tags($data[subject])),$textlen)."</font></b>";
 		$date = date($datetype, $data[reg_date]);
 		$header = str_replace("[notice_memo]",$memo,$header);
 		$header = str_replace("[notice_subject]",$subject,$header);
@@ -229,8 +229,8 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 
 	$main_data = "";
 	while($data=mysql_fetch_array($result)) {
-		$name = stripslashes($data[name]);
-		$sbj_all = $data[subject]=strip_tags(stripslashes($data[subject]));
+		$name = $data[name];
+		$sbj_all = $data[subject]=strip_tags($data[subject]);
 		$sbj_all = str_replace("\"","'",$sbj_all);
 		$subject = cut_str($data[subject],$textlen)."</font></b>";
 		$date = date($datetype, $data[reg_date]);
@@ -271,7 +271,7 @@ function print_survey($skinname, $title, $id, $textlen=30) {
 	$tmpData = mysql_fetch_array($result);
 	$no = $tmpData[no];
 	$headnum = $tmpData[headnum];
-	$main_subject="<a href='".$_zb_url.$target."&no=$no'>".strip_tags(stripslashes($tmpData[subject]))."</a>";
+	$main_subject="<a href='".$_zb_url.$target."&no=$no'>".htmlspecialchars(strip_tags($tmpData[subject]))."</a>";
 	if($tmpData[vote]) $main_vote = "[총 ".$tmpData[vote]."표]"; else $main_vote="";
 
 	$result = mysql_query("select * from $t_board"."_$id where headnum='$headnum' and arrangenum > 0 order by arrangenum", $connect) or die(mysql_error());
@@ -284,7 +284,7 @@ function print_survey($skinname, $title, $id, $textlen=30) {
 
 	$main_data = "";
 	while($data=mysql_fetch_array($result)) {
-		$subject = cut_str(strip_tags(stripslashes($data[subject])),$textlen)."</font></b>";
+		$subject = cut_str(htmlspecialchars(strip_tags($data[subject])),$textlen)."</font></b>";
 		if($data[vote]) $vote = "[".$data[vote]."표]"; else $vote="";
 		$main = $loop;
 		$main = str_replace("[subject]","<a href='".$_zb_url."apply_vote.php?id=$id&no=$no&sub_no=$data[no]'>".$subject."</a>",$main);

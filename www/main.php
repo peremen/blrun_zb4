@@ -54,7 +54,7 @@ include $_zb_path."latest_skin/bes_latest_scroll/recent_bbs_scroll.php";
 		echo "<script>startscroll();</script>";
 		echo "</div>";
 		?>
-		<? print_comment_total("bes_latest_skin08","ÃÖ±ÙÄÚ¸àÆ®","clmn1,blrun1,cap1,basket1",30,45); ?>
+		<? print_comment_total("bes_latest_skin08","ÃÖ±ÙÄÚ¸àÆ®","clmn1,blrun1,cap1,basket1,gal1,poll1,past1,blog1,bug1",50,45); ?>
 		</td></tr>
 		<tr>
 			<td colspan="2" width="100%" valign="top"><? latest_gal("f2plus_latest_2", "gal1", "ÃÖ±Ù °¶·¯¸®", 7, 77, 100, "m/d"); ?></td>

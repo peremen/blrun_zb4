@@ -123,9 +123,9 @@ sw_layers_cells += ed_cellF();
 sw_layers_cells += "<tr><td align='center' colspan='10' id='xy_display' class='sw_ft_style_1' style='font-weight:bold; padding-top:4;'>가로:0&nbsp;&nbsp;세로:0</td></tr></table></div>";
 
 var sw_layers_color = "<div id='ed_colordiv' style='position:absolute; visibility:hidden;'>";
-sw_layers_color += "<table id='ed_colortable' border='1' cellpadding='0' cellspacing='3' class='sw_bd_style_5' onmousemove='clear_timeout()' onmouseout='start_timeout(this)'>";
-sw_layers_color += "<tr><td width='50%' height='20' id='ed_selcolor' bgcolor='#000000' class='sw_ft_style_0'>&nbsp;</td>";
-sw_layers_color += "<td width='50%' align='center' id='ed_seltext' class='sw_ft_style_0'>#000000</td></tr><tr><td colspan='2'>";
+sw_layers_color += "<table id='ed_colortable' border='1' width='289' cellpadding='0' cellspacing='3' class='sw_bd_style_5' onmousemove='clear_timeout()' onmouseout='start_timeout(this)'>";
+sw_layers_color += "<tr><td width='144' height='20' id='ed_selcolor' bgcolor='#000000' class='sw_ft_style_0'>&nbsp;</td>";
+sw_layers_color += "<td width='145' align='center' id='ed_seltext' class='sw_ft_style_0'>#000000</td></tr><tr><td colspan='2'>";
 sw_layers_color += "<img usemap='#colmap' src='" + sw_skins_dir + "/images/color_table.gif' border='0' width='289' height='67'>";
 sw_layers_color += "</td></tr></table></div>";
 disp_map();

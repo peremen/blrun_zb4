@@ -4,7 +4,7 @@
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <tr>
 <!--페이징-->    
-  <td height="40" style="padding-left:10px;"><?=$a_prev_page?>[이전<?=$setup[page_num]?>개]</a> <?=$print_page?> <font class=zv3_normal><?=$a_next_page?>[다음<?=$setup[page_num]?>개]</font></a></td>
+  <td height="40" align=left style="padding-left:10px;"><?=$a_prev_page?>[이전<?=$setup[page_num]?>개]</a> <?=$print_page?> <font class=zv3_normal><?=$a_next_page?>[다음<?=$setup[page_num]?>개]</font></a></td>
 <!--검색-->
   <td align=right>
     <table border=0 cellspacing=0 cellpadding=0>
@@ -31,7 +31,7 @@
 <table border=0 cellpadding=0 cellspacing=0 width=<?=$width?>>
 <tr>
   <!--하단버튼들-->
-  <td width="80%" height="35">
+  <td width="80%" height="35" align=left>
     <?=$a_delete_all?><img src=<?=$dir?>/btn_admin.gif border=0 align=absmiddle></a>
     <?=$hide_cart_start?><?=$a_cart?><img src=<?=$dir?>/btn_list.gif border=0 align=absmiddle></a><?=$hide_cart_end?>
 

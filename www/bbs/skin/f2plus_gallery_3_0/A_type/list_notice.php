@@ -19,6 +19,8 @@ if(trim($_m[$i])) $line[] = $_m[$i];
 $tmp_memo=$line[0]."".$line[1]."".$line[2]."".$line[3]."".$line[4]."".$line[5]."".$line[6]."".$line[7]."".$line[8]."".$line[9]."".$line[10];// 이부분이 미리나오는 내용 입니다. 라인 1,2,3 적용	if($line[11]) $tmp_memo.="..."; 
 $_name1=explode("|||",$tmp_memo);
 $_name1[0] = love_convert($_name1[0]);
+
+$m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no=$data[ismember]",$connect));
 ?>
 
 	<tr align=center height=45 style=padding-bottom:0px class=list<?=$coloring%2?>>
@@ -44,10 +46,10 @@ $_name1[0] = love_convert($_name1[0]);
 			<tr><td background=<?=$dir?>/images/dot.gif border=0 height=1 colspan=<?=$cols?>></td>
 			</tr>
 			<tr valign=middle>
-				<td align=left><div style="overflow:hidden"><nobr><font style=color:B0B0B0><? if(!$data[is_secret]) echo substr(strip_tags(stripslashes($_name1[0])),0,400); else echo "비밀글입니다"; ?></font></nobr></div></td>
+				<td align=left><div style="overflow:hidden"><nobr><font style=color:#B0B0B0><? if(!$data[is_secret]) echo htmlspecialchars(substr($_name1[0],0,400)); else echo "비밀글입니다"; ?></font></nobr></div></td>
 				<?if($hide_name=="off"){?><? if($browser=="1"){ ?><td align=center class=com3><div style="overflow:hidden"><img src=<?=$dir?>/images/point.gif align=absmiddle>&nbsp;<?=($m_data[point1]*10+$m_data[point2])?></div></td><? } ?><?}?>
 
-				<?if($hide_date=="off"){?><? if($browser=="1"){ ?><td align=center><font class=com3 color=aaaaaa><?=date("H:i:s",$data[reg_date])?></font></td><? } ?><?}?>
+				<?if($hide_date=="off"){?><? if($browser=="1"){ ?><td align=center><font class=com3 color=#aaaaaa><?=date("H:i:s",$data[reg_date])?></font></td><? } ?><?}?>
 
 				<?if($hide_vote=="off"){?><? if($browser=="1"){ ?><td></td><? } ?><?}?>
 
@@ -66,10 +68,10 @@ $_name1[0] = love_convert($_name1[0]);
 			</table>
 		</td>
 	</tr>
-	<tr><td colspan=<?=$colspan?> height=1 bgcolor=cccccc></td></tr>
-	<tr><td height=1 bgcolor=eaeaea colspan=<?=$colspan?>></td></tr>
-	<tr><td height=1 bgcolor=efefef colspan=<?=$colspan?>></td></tr>
-	<tr><td height=1 bgcolor=f3f3f3 colspan=<?=$colspan?>></td></tr>
-	<tr><td height=1 bgcolor=f6f6f6 colspan=<?=$colspan?>></td></tr>
-	<tr><td height=1 bgcolor=f9f9f9 colspan=<?=$colspan?>></td></tr>
+	<tr><td colspan=<?=$colspan?> height=1 bgcolor=#cccccc></td></tr>
+	<tr><td height=1 bgcolor=#eaeaea colspan=<?=$colspan?>></td></tr>
+	<tr><td height=1 bgcolor=#efefef colspan=<?=$colspan?>></td></tr>
+	<tr><td height=1 bgcolor=#f3f3f3 colspan=<?=$colspan?>></td></tr>
+	<tr><td height=1 bgcolor=#f6f6f6 colspan=<?=$colspan?>></td></tr>
+	<tr><td height=1 bgcolor=#f9f9f9 colspan=<?=$colspan?>></td></tr>
 <?$coloring++;?>

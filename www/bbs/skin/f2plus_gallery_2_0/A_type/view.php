@@ -7,11 +7,11 @@ if (!$connect) $connect=dbconn();
 $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no=$data[ismember]"));
 ?>
 
-<table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed;border-width:1pt;border-style:solid;border-color:cccccc>
+<table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed;border-width:1pt;border-style:solid;border-color:#cccccc>
 <col width=74></col><col width=></col>
 <tr align=left valign="middle" height=25>
-	<td class=com>&nbsp;&nbsp;<img src=<?=$dir?>/front_img.gif>&nbsp;&nbsp;Subject : </td>
-	<td class=title2_han><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?></td>
+	<td align=left class=com>&nbsp;&nbsp;<img src=<?=$dir?>/front_img.gif>&nbsp;&nbsp;Subject : </td>
+	<td align=left class=title2_han><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?></td>
 </tr>
 </table>
 <table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed>
@@ -62,7 +62,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 		</table>
 		<table border=0 cellspacing=0 cellpadding=10 width=100% style=table-layout:fixed>
 		<tr>
-			<td class=memo>
+			<td align=left class=memo>
 				<!--여기부터 본문 내용 시작입니다-->
 				<?=$memo?><BR><BR>
 				<? include "script/sns.php"; ?>

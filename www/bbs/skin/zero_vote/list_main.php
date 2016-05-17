@@ -40,7 +40,7 @@ else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$commen
 	</tr>
 	<tr>
 		<td background=<?=$dir?>/4.gif><img src=<?=$dir?>/4.gif border=0></td>
-		<td style='word-break:break-all;'>
+		<td align=left style='word-break:break-all;'>
 			<b><?=$loop_number?>. <?=$subject?><?=$comment_new?><?=$new?> (<?=$vote?>)</b>
 		</td>
 		<td background=<?=$dir?>/6.gif><img src=<?=$dir?>/6.gif border=0></td>
@@ -59,7 +59,7 @@ else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$commen
 	</tr>
 	<tr>
 		<td background=<?=$dir?>/4.gif><img src=<?=$dir?>/4.gif border=0></td>
-		<td><font color="blue">투표합계 검증: </font>개별투표수와 전체 투표수가 <? if(($data[vote]==1&&$hop_vote==0)||$data[vote]==$hop_vote) echo "일치함"; else echo "<font color='red'>일치하지 않음!</font>"; ?></td>
+		<td align=left><font color="blue">투표합계 검증: </font>개별투표수와 전체 투표수가 <? if(($data[vote]==1&&$hop_vote==0)||$data[vote]==$hop_vote) echo "일치함"; else echo "<font color='red'>일치하지 않음!</font>"; ?></td>
 		<td background=<?=$dir?>/6.gif><img src=<?=$dir?>/6.gif border=0></td>
 	</tr>
 	<tr>

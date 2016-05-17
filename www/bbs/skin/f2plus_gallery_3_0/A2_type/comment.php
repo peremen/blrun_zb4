@@ -37,9 +37,9 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 <?=$hide_pds_start?>
 
 	<td width=52 align=right><font class=list_eng>Upload #1</font></td>
-	<td class=list_eng><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name1?></td>
+	<td align=left class=list_eng><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name1?></td>
 	<td width=52 align=right><font class=list_eng>Upload #2</font></td>
-	<td class=list_eng><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
+	<td align=left class=list_eng><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
 <?=$hide_pds_end?>
 
 </tr>
@@ -47,7 +47,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 </table>
 <table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0>
 <tr>
-	<td width=200 height=40>
+	<td align=left width=200 height=40>
 		<?=$a_preview?>미리보기</a><?=$a_imagebox?>그림창고</a><?=$a_codebox?>코드삽입</a>
 	</td>
 </tr>

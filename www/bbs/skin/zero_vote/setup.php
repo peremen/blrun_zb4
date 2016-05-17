@@ -57,8 +57,8 @@ include "$dir/value.php3";
 </tr>
 <tr>
 	<td width=1></td>
-	<td valign=bottom style=font-family:Tahoma;font-size:6pt;font-weight:bold;>
-		<a href=javascript:void(window.open('member_memo3.php','member_memo','width=450,height=500,status=no,toolbar=no,resizable=yes,scrollbars=yes'))><img src=<?=$dir?>/images/setup_logedmember.gif align=absmiddle border=0></a><?=$total_connect?><br>
+	<td align=left valign=bottom style=font-family:Tahoma;font-size:6pt;font-weight:bold;>
+		<a href="javascript:void(window.open('member_memo3.php','member_memo','width=450,height=500,status=no,toolbar=no,resizable=yes,scrollbars=yes'))"><img src=<?=$dir?>/images/setup_logedmember.gif align=absmiddle border=0></a><?=$total_connect?><br>
 		<img src=<?=$dir?>/images/setup_total.gif align=absmiddle> <?=$total?><img src=<?=$dir?>/images/setup_articles.gif align=absmiddle> <?=$total_page?><img src=<?=$dir?>/images/setup_pages_nowpage.gif align=absmiddle> <?=$page?>
 	</td>
 	<td valign=bottom nowrap='nowrap' width=5%>

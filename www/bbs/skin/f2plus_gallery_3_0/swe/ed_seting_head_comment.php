@@ -49,6 +49,7 @@ else
 
 $a_imagebox = str_replace("showImageBox","sw_imagebox",$a_imagebox);
 $a_codebox = str_replace("showCodeBox","sw_codebox",$a_codebox);
+//$c_name = str_replace("ajaxLoad2()","ajaxLoad2_n()",$c_name);
 ?>
 
 <SCRIPT language="JavaScript">

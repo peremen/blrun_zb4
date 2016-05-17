@@ -10,7 +10,7 @@ elseif(time()-$last_comment_time<60*60*48) $comment_new = "&nbsp;<font color=blu
 else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$comment_num."</font>";
 ?>
 	<tr><td colspan=<?=$num?>>
-		<table border=0 cellspacing=0 cellpadding=2 align=left width=100% style=border-width:1pt;border-style:solid;border-color:cccccc>
+		<table border=0 cellspacing=0 cellpadding=2 align=left width=100% style=border-width:1pt;border-style:solid;border-color:#cccccc>
 		<tr align=center height=10 style=padding-bottom:3px>
 			<col width=100></col><col width=></col>
 			<td width=100 class=list_eng nowrap><img src=<?=$dir?>/images/notice.gif align=absmiddle border=0></td>

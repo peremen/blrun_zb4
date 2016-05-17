@@ -6,8 +6,9 @@ $pass = stripslashes($pass);
  **************************************************************************/
 include "_head.php";
 
-// HTML 출력 
-head(" onload=unlock() onunload=hideImageBox() ","script_write.php");
+// HTML 출력
+print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
+head("onload=unlock() onunload=hideImageBox()","script_write.php");
 
 if($pass == "gg" || $member[no] || $password) {
 
@@ -111,7 +112,7 @@ if($pass == "gg" || $member[no] || $password) {
 
 // 카테고리 데이타 갖고 오기;;
 	if($setup[use_category]) {
-		$category_kind="<select name=category><option>Category</option>";
+		$category_kind="<select id=category name=category><option>Category</option>";
 
 		while($category_data=mysql_fetch_array($category_result)) {
 			if($data[category]==$category_data[no]) $category_kind.="<option value=$category_data[no] selected>$category_data[name]</option>";
@@ -126,9 +127,9 @@ if($pass == "gg" || $member[no] || $password) {
 	else $title = " 신규 글쓰기 "; 
 
 // 쿠키값을 이용;;
-	$name=$HTTP_SESSION_VARS["zb_writer_name"];
-	$email=$HTTP_SESSION_VARS["zb_writer_email"];
-	$homepage=$HTTP_SESSION_VARS["zb_writer_homepage"];
+	$name=htmlspecialchars(stripslashes($HTTP_SESSION_VARS["zb_writer_name"]));
+	$email=htmlspecialchars(stripslashes($HTTP_SESSION_VARS["zb_writer_email"]));
+	$homepage=htmlspecialchars(stripslashes($HTTP_SESSION_VARS["zb_writer_homepage"]));
 
 /******************************************************************************************
  * 글쓰기 모드에 따른 내용 체크
@@ -177,26 +178,21 @@ if($pass == "gg" || $member[no] || $password) {
 		// 비밀글이고 관리자가 아니고 멤버가 일치하지 않고 세션값이 틀리면 리턴
 		if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$HTTP_SESSION_VARS[zb_s_check]!=$zb_check) error("정상적인 방법으로 수정하세요");
 
-			$name=stripslashes($data[name]); // 이름
-			$email=stripslashes($data[email]); // 메일
-			$homepage=stripslashes($data[homepage]); // 홈페이지 
-			$subject=$data[subject]=stripslashes($data[subject]); // 제목
-			$subject=str_replace("\"","&quot;",$subject);
-			$homepage=str_replace("\"","&quot;",$homepage);
-			$name=str_replace("\"","&quot;",$name);
-			$sitelink1=str_replace("\"","&quot;",$sitelink1);
-			$sitelink2=str_replace("\"","&quot;",$sitelink2);
-			$memo=str_replace("&nbsp;","&amp;nbsp;",stripslashes($memo)); // 내용
-			$sitelink1=$data[sitelink1]=stripslashes($data[sitelink1]);
-			$sitelink2=$data[sitelink2]=stripslashes($data[sitelink2]);
-			if($data[file_name1])$file_name1="<br>&nbsp;".$data[s_file_name1]."이 등록되어 있습니다. <input type=checkbox name=del_file1 value=1> 삭제";
-			if($data[file_name2])$file_name2="<br>&nbsp;".$data[s_file_name2]."이 등록되어 있습니다. <input type=checkbox name=del_file2 value=1> 삭제";
+		$name=htmlspecialchars($data[name]); // 이름
+		$email=htmlspecialchars($data[email]); // 메일
+		$homepage=htmlspecialchars($data[homepage]); // 홈페이지 
+		$subject=$data[subject]=htmlspecialchars($data[subject]); // 제목
+		$memo=str_replace("&nbsp;","&amp;nbsp;",$memo); // 내용
+		$sitelink1=$data[sitelink1]=htmlspecialchars($data[sitelink1]); // 사이트 링크
+		$sitelink2=$data[sitelink2]=htmlspecialchars($data[sitelink2]);
+		if($data[file_name1])$file_name1="<br>&nbsp;".$data[s_file_name1]."이 등록되어 있습니다. <input type=checkbox name=del_file1 value=1> 삭제";
+		if($data[file_name2])$file_name2="<br>&nbsp;".$data[s_file_name2]."이 등록되어 있습니다. <input type=checkbox name=del_file2 value=1> 삭제";
 
-			if($data[use_html]) $use_html=" checked ";
+		if($data[use_html]) $use_html=" checked ";
 
-			if($data[reply_mail]) $reply_mail=" checked ";
-			if($data[is_secret]) $secret=" checked ";
-			if($data[headnum]<=-2000000000) $notice=" checked ";
+		if($data[reply_mail]) $reply_mail=" checked ";
+		if($data[is_secret]) $secret=" checked ";
+		if($data[headnum]<=-2000000000) $notice=" checked ";
 
 	// 답글일때 제목과 내용 수정;;
 	} elseif($mode=="reply") {
@@ -206,11 +202,8 @@ if($pass == "gg" || $member[no] || $password) {
 
 		if($data[is_secret]) $secret=" checked ";
 
-		$subject=$data[subject]=stripslashes($data[subject]); // 제목
-		$subject=str_replace("\"","&quot;",$subject);
-		$sitelink1=str_replace("\"","&quot;",$sitelink1);
-		$sitelink2=str_replace("\"","&quot;",$sitelink2);
-		$memo=str_replace("&nbsp;","&amp;nbsp;",stripslashes($data[memo])); // 내용
+		$subject=$data[subject]=htmlspecialchars($data[subject]); // 제목
+		$memo=str_replace("&nbsp;","&amp;nbsp;",$data[memo]); // 내용
 		if(!preg_match("/\[re\]/i",$subject)) $subject="[re] ".$subject; // 답글일때는 앞에 [re] 붙임;;
 		$memo=str_replace("\n","\n>",$memo);
 		$memo="\n\n>".$memo."\n";
@@ -244,7 +237,6 @@ if($pass == "gg" || $member[no] || $password) {
 		$value_use_html=1;
 	}
 	$use_html .= " value='$value_use_html' onclick='check_use_html(this)'><ZeroBoard";
-
 
 // 비밀글 사용;;
 	if(!$setup[use_secret]) { $hide_secret_start="<!--"; $hide_secret_end="-->"; }
