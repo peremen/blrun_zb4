@@ -11,7 +11,7 @@
   </td>
 </tr>
 <tr>
-  <td height=22 nowrap>
+  <td height=22 align=left nowrap>
     <img src=images/t.gif border=0 width=100 height=1><br>
     &nbsp; <?=$a_c_list?><font class=view_title1>Category</font> <font class=listnum>(<?=$setup[total_article]?>)</font></a>
   </td>

@@ -10,8 +10,8 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 <table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed>
 <col width=5></col><col width=></col><col width=13></col>
 <tr align=left valign="middle" height=35>
-	<td class=title1></td>
-	<td class=title2><font class=title_font>&nbsp;· &nbsp;Subject : </font><font class=title_font2><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?></font></td>
+	<td align=left class=title1></td>
+	<td align=left class=title2><font class=title_font>&nbsp;· &nbsp;Subject : </font><font class=title_font2><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?></font></td>
 	<td class=title3></td>
 </tr>
 </table>
@@ -64,7 +64,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 		</table>
 		<table border=0 cellspacing=0 cellpadding=10 width=100% style=table-layout:fixed>
 		<tr>
-			<td class=memo>
+			<td align=left class=memo>
 				<!--여기부터 본문 내용 시작입니다-->
 				<?=$memo?><BR><BR>
 				<? include "script/sns.php"; ?>

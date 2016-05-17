@@ -9,7 +9,7 @@ if(!preg_match("/Zeroboard/i",$a_member_memo)) $a_member_memo= str_replace(">","
 
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <tr>
-	<td <?if(!$setup[use_category]) echo"align=right";?>>
+	<td align=left <?if(!$setup[use_category]) echo"align=right";?>>
 		<?=$a_login?>로그인</a>
 		<?=$a_member_join?>회원가입</a>
 		<?=$a_member_modify?>정보수정</a>

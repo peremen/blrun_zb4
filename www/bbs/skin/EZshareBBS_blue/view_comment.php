@@ -16,7 +16,7 @@ else $show_comment_ip = "";
 		<a name="<?=$c_data[no]?>">
 		<table border=0 cellspacing=0 cellpadding=0 width=100% class=zv3_header_inside style=table-layout:fixed>
 		<tr>
-			<td width=><?=$c_face_image?> <?=$comment_name?> </b><font class=zv3_small color=888888>(<?=date("Y-m-d H:i:s",$c_data[reg_date])?>)</font> <?=$show_comment_ip?> <?=$a_comm_r?><img src=<?=$dir?>/reply.gif border=0 align=absmiddle></a></td>
+			<td align=left width=><?=$c_face_image?> <?=$comment_name?> </b><font class=zv3_small color=888888>(<?=date("Y-m-d H:i:s",$c_data[reg_date])?>)</font> <?=$show_comment_ip?> <?=$a_comm_r?><img src=<?=$dir?>/reply.gif border=0 align=absmiddle></a></td>
 			<td width=70 align=right style=font-family:verdana;font-size:9px;><?=$a_edit2?><img src=<?=$dir?>/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/edit.gif border=0 valign=absmiddle></a><?=$a_del?><img id=deleteButton_<?=$c_data[no]?> src=<?=$dir?>/del.gif border=0 valign=absmiddle></a><img src=images/t.gif border=0 width=1 height=1>&nbsp;</td>
 		</tr>
 		</table>
@@ -24,7 +24,7 @@ else $show_comment_ip = "";
 	</td>
 </tr>
 <tr>
-	<td class=memo style='word-break:break-all;padding:2px;padding-left:10px;padding-top:5px;'>&nbsp;::: 
+	<td align=left class=memo style='word-break:break-all;padding:2px;padding-left:10px;padding-top:5px;'>&nbsp;::: 
 		<?
 		if($o_data[ismember]=="") $ismember0="0"; else $ismember0=$o_data[ismember];
 		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$ismember0!=$member[no]&&$member[level]>$setup[grant_view_secret])
@@ -67,7 +67,7 @@ if (<?=$c_org?> > 0 && <?=$c_depth?> > 0)
     {
         oOrg.innerHTML += oCur.innerHTML;
         document.getElementById("deleteButton_"+<?=$c_org?>).style.display = "none";
-        oCur.removeNode(true);
+        oCur.parentNode.removeChild(oCur);
     }
 }
 else

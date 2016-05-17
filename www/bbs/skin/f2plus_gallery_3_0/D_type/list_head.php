@@ -1,7 +1,7 @@
 
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> align=center>
 <tr><td colspan=2>
-	<table border=0 cellspacing=0 cellpadding=0 width=100% style=border-width:1pt;border-style:solid;border-color:cccccc;padding:0,0,0,3>
+	<table border=0 cellspacing=0 cellpadding=0 width=100% style=border-width:1pt;border-style:solid;border-color:#cccccc;padding:0,0,0,3>
 	<form method=post name=list action=list_all.php>
 	<input type=hidden id=nStart name=nStart>
 	<input type=hidden name=page value=<?=$page?>>

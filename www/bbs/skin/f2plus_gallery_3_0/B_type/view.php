@@ -6,7 +6,7 @@ if (!$connect) $connect=dbconn();
 $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no=$data[ismember]"));
 ?>
 
-<table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed;border-width:1pt;border-style:solid;border-color:cccccc>
+<table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed;border-width:1pt;border-style:solid;border-color:#cccccc>
 <col width=74></col><col width=></col>
 <tr align=left valign="middle" height=25>
 	<td class=com>&nbsp;&nbsp;<img src=<?=$dir?>/images/front_img.gif>&nbsp;&nbsp;Subject : </td>
@@ -17,7 +17,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 <tr>
 	<td align=left>
 	<?=$face_image?> <b><font class=title_han4><?=$name?></font></b>
-	<?if($data['homepage']) {?><a class=title_eng href="<?=$data['homepage']?>" target=_blank>(Homepage)</a><?}?>
+	<?if($data['homepage']) {?><a class=list_eng href="<?=$data['homepage']?>" target=_blank>(Homepage)</a><?}?>
 	
 	<font class=com5>&nbsp;|&nbsp;</font><font class=com3>Point : <?=($m_data[point1]*10+$m_data[point2])?></font><font class=com5>&nbsp;|&nbsp;</font>
 	<font class=com3><?=$date?></font><font class=com5>&nbsp;|&nbsp;</font>
@@ -61,7 +61,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 		</table>
 		<table border=0 cellspacing=0 cellpadding=10 width=100% style=table-layout:fixed>
 		<tr>
-			<td class=memo>
+			<td align=left class=memo>
 				<!--여기부터 본문 내용 시작입니다-->
 				<?=$memo?><BR><BR>
 				<? include "script/sns.php"; ?>

@@ -28,7 +28,7 @@
 <!-- 버튼 부분 -->
 <table border=0 cellspacing=1 cellpadding=1 width=<?=$width?>>
 <tr>
-  <td width=40% height=20 nowrap> 
+  <td width=40% height=20 align=left nowrap> 
     <?=$hide_cart_start?><?=$a_cart?><img src=<?=$dir?>/i_list.gif border=0 align=absmiddle></a><?=$hide_cart_end?>
 
     <?=$a_delete_all?><img src=<?=$dir?>/i_admin.gif border=0 align=absmiddle></a>

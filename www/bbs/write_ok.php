@@ -24,6 +24,10 @@ elseif($setup[grant_write]<$member[level]&&!$is_admin) Error("사용권한이 없습니�
 if(!$is_admin&&$setup[grant_notice]<$member[level]) $notice = 0;
 
 // 각종 변수 검사;;
+$name = str_replace("ㅤ","",$name);
+$subject = str_replace("ㅤ","",$subject);
+$memo = str_replace("ㅤ","",$memo);
+
 if(!$member[no]) {
 	if(isblank($name)) Error("이름을 입력하셔야 합니다");
 	if(isblank($password)) Error("비밀번호를 입력하셔야 합니다");
@@ -33,11 +37,6 @@ if(!$member[no]) {
 } else {
 	$password = $member[password];
 }
-
-$subject = str_replace("ㅤ","",$subject);
-$memo = str_replace("ㅤ","",$memo);
-$name = stripslashes($name);
-$name = str_replace("ㅤ","",$name);
 
 if(isblank($subject)) Error("제목을 입력하셔야 합니다");
 if(isblank($memo)) Error("내용을 입력하셔야 합니다");
@@ -138,10 +137,12 @@ for($i=0;$i<count($temp);$i++) {
 	}
 	if($cnt==0) {
 		// 위지윅에디터에서 &가 &amp;로 바뀔때 썸네일이 보이지 않는 현상 해결
-		$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?([^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
+		$imagePattern="#<img[^>]*src=[\']?[\"]?([^>\'\"]+)[\']?[\"]?[^>]*>#i";
 		preg_match_all($imagePattern,$temp[$i],$img,PREG_SET_ORDER);
 		for($j=0;$j<count($img);$j++)
 			$temp[$i]=str_replace($img[$j][1],str_replace("&amp;","&",$img[$j][1]),$temp[$i]);
+		// 자동 저장 잘림 방지
+		$temp[$i]=str_replace("&#160;"," ",$temp[$i]);
 	}
 }
 
@@ -168,7 +169,7 @@ if($mode=="modify"||$mode=="reply") {
 // 공지글에는 답글이 안 달리게 처리
 if($mode=="reply"&&$s_data[headnum]<=-2000000000) Error("공지글에는 답글을 달수 없습니다");
 
-
+$ismember = $member[no]; // 자동저장 멤버 번호
 // 회원등록이 되어 있을때 이름등을 가져옴;;
 if($member[no]) {
 	if($mode=="modify"&&$member[no]!=$s_data[ismember]) {
@@ -180,21 +181,35 @@ if($member[no]) {
 		$email=$member[email];
 		$homepage=$member[homepage];
 	}
+	if(!get_magic_quotes_gpc()) $name=addslashes($name);
+	$name = trim($name);
+} else {
+	if(!get_magic_quotes_gpc()) $name=addslashes($name);
+	$member[name] = trim($name);
+	$ismember = '0';
 }
 
 // 각종 변수의 addslashes 시킴;;
-$name=trim(addslashes(del_html($name)));
-if(($is_admin||$member[level]<=$setup[use_html])&&$use_html) $subject=trim(addslashes($subject));
-else $subject=trim(addslashes(del_html($subject)));
-$memo=trim(addslashes($memo));
+if(!get_magic_quotes_gpc()) {
+	$email=addslashes($email);
+	$homepage=addslashes($homepage);
+	$subject=addslashes($subject);
+	$memo=addslashes($memo);
+	$sitelink1=addslashes($sitelink1);
+	$sitelink2=addslashes($sitelink2);
+}
+
+$email=trim($email);
+$homepage=trim($homepage);
+if(($is_admin||$member[level]<=$setup[use_html])&&$use_html) $subject=trim($subject);
+else $subject=trim(del_html($subject));
+$memo=trim($memo);
 if($use_html<2) {
 	$memo=str_replace("  ","&nbsp;&nbsp;",$memo);
 	$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
 }
-$sitelink1=trim(addslashes(del_html($sitelink1)));
-$sitelink2=trim(addslashes(del_html($sitelink2)));
-$email=trim(addslashes(del_html($email)));
-$homepage=trim(addslashes(del_html($homepage)));
+$sitelink1=trim($sitelink1);
+$sitelink2=trim($sitelink2);
 
 // 홈페이지 주소의 경우 http:// 가 없으면 붙임
 if((!preg_match("/http:\/\//i",$homepage))&&$homepage) $homepage="http://".$homepage;
@@ -582,6 +597,10 @@ if($mode=="modify"&&$no) {
 	if($next_no) mysql_query("update $t_board"."_$id set prev_no='$no' where headnum='$next_data[headnum]' and division='$next_data[division]'");
 	mysql_query("update $t_category"."_$id set num=num+1 where no='$category'",$connect);
 }
+
+// 임시 저장 정보 삭제
+if($mode=="write"||$mode=="reply") mysql_query("delete from $board_imsi_table where bname='$id' and bno='0' and ismember='$ismember' and name='$member[name]' and password='$password'");
+elseif($mode=="modify") mysql_query("delete from $board_imsi_table where bname='$id' and bno='$no' and ismember='$ismember' and name='$member[name]'");
 
 // 글의 갯수를 다시 갱신
 $total=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id "));

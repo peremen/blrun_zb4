@@ -11,7 +11,7 @@ $admin_table="zetyx_admin_table";     // 게시판의 관리자 테이블
 //////////////////////////////////////////////////////////////////////////
 $division_table_schema = "
 create table zetyx_division_$table_name (
-	no int(10) not null auto_increment primary key ,
+	no int(10) not null auto_increment primary key,
 	division int(10) not null default 1,
 	num int(10) not null default 0,
 	key division(division,num)) ";
@@ -23,9 +23,9 @@ create table zetyx_division_$table_name (
 $member_table_schema ="
 
   create table $member_table (
-	no int(20) not null auto_increment primary key ,
+	no int(20) not null auto_increment primary key,
 	group_no int(20) not null,
-	user_id char(20) not null ,
+	user_id char(20) not null,
 	password char(41) not null,
 	board_name char(255) null default '',
 	name char(20) not null,
@@ -85,7 +85,7 @@ $member_table_schema ="
 $group_table_schema = "
 
   create table $group_table (
-	no int(20) not null auto_increment primary key ,
+	no int(20) not null auto_increment primary key,
 
 	name char(20) not null,
 
@@ -205,6 +205,70 @@ $admin_table_schema = "
 
 
 ///////////////////////////////////////////////////////////////////////////
+// 게시판 본체 임시 테이블
+///////////////////////////////////////////////////////////////////////////
+
+$board_table_imsi_schema ="
+
+  create table zetyx_board_imsi (
+
+	no int(20) unsigned not null auto_increment primary key,
+	bname char(40) not null,
+	bno int(20) default 0 not null,
+
+	ismember int(20) default 0 not null,
+
+	memo mediumtext,
+
+	password char(41) not null,
+	name char(20) not null,
+	homepage char(255),
+	email char(255),
+	subject char(250) not null,
+	use_html char(1) default 0,
+	reply_mail char(1) default 0,
+	notice char(1) default 0,
+	category int(11) default 1 not null,
+	is_secret char(1) not null default 0,
+	sitelink1 char(255),
+	sitelink2 char(255),
+
+	reg_date int(13) not null default 0,
+
+	KEY name (name),
+	KEY reg_date (reg_date),
+	KEY category (category)
+  )
+
+";
+
+
+/////////////////////////////////////////////////////////////////////////////////
+// 간단한 답글 임시 테이블 
+/////////////////////////////////////////////////////////////////////////////////
+
+$board_comment_imsi_schema ="
+
+  create table zetyx_board_comment_imsi (
+	no int(11) not null auto_increment primary key,
+	bname char(40) not null,
+	cno int(11) default 0 not null,
+	parent int(20) not null,
+	ismember int(20) default 0 not null,
+	name char(20) not null,
+	password char(41) not null,
+	memo mediumtext,
+	reg_date int(13),
+	use_html2 char(1) default 0,
+	is_secret char(1) not null default 0,
+
+	KEY parent (parent)
+  )
+
+";
+
+
+///////////////////////////////////////////////////////////////////////////
 // 게시판 본체 테이블
 ///////////////////////////////////////////////////////////////////////////
 
@@ -280,8 +344,8 @@ $board_table_main_schema ="
 $board_comment_schema ="
 
   create table zetyx_board_comment_$table_name (
-	no int(11) not null auto_increment primary key ,
-	parent int(11) not null,
+	no int(11) not null auto_increment primary key,
+	parent int(20) not null,
 	ismember int(20) default 0 not null,
 	name char(20),
 	password char(41),
@@ -308,7 +372,7 @@ $board_comment_schema ="
 
 $board_category_table ="
   create table zetyx_board_category_$table_name (
-	no int(11) not null auto_increment primary key ,
+	no int(11) not null auto_increment primary key,
 	num int(11) default 0 not null,
 	name char(100) not null,
 	KEY name (name)
@@ -322,7 +386,7 @@ $board_category_table ="
 
 $get_memo_table_schema = "
   create table zetyx_get_memo (
-	no int(20) not null auto_increment primary key ,
+	no int(20) not null auto_increment primary key,
 	member_no int(13) not null,
 	member_from int(13) not null,
 	subject char(200) not null,
@@ -336,7 +400,7 @@ $get_memo_table_schema = "
 
 $send_memo_table_schema = "
   create table zetyx_send_memo (
-	no int(20) not null auto_increment primary key ,
+	no int(20) not null auto_increment primary key,
 	member_no int(13) not null,
 	member_to int(13) not null,
 	subject char(200) not null,

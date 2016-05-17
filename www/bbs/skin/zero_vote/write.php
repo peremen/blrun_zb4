@@ -48,42 +48,42 @@
 		<td>
 			<table border=0 width=100% cellsapcing=0 cellpadding=2>
 			<tr>
-			<td valign=top>
+			<td align=left valign=top>
 				<table border=0 cellsapcing=0 cellpadding=3 width=100% height=100%>
 				<?=$hide_category_start?>
 
 				<tr>
-					<td>설문조사 종류</td><td><?=$category_kind?></td>
+					<td align=right>설문조사 종류</td><td align=left><?=$category_kind?> <font id="state"></font></td>
 				</tr>
 				<?=$hide_category_end?>
 
 				<?=$hide_notice_start?>
 
 				<tr>
-					<td> 공지사항 선택 </td>
-					<td> <input type=checkbox name=notice <?=$notice?> value=1> </td>
+					<td align=right>공지사항 선택</td>
+					<td align=left> <input type=checkbox id=notice name=notice <?=$notice?> value=1></td>
 				</tr>
 				<?=$hide_notice_end?>
 
 				<tr>
-					<td>설문조사 제목</td>
-					<td> <input type=text id=subject name=subject <?=size(70)?> value="<?=$subject?>" maxlength=200 class=input> </td>
+					<td align=right>설문조사 제목</td>
+					<td align=left> <input type=text id=subject name=subject <?=size(70)?> value="<?=$subject?>" maxlength=200 class=input onkeyup="addStroke()"> </td>
 				</tr>
 				<?=$hide_start?>
 
 				<tr>
-					<td>비밀번호 입력</td>
-					<td> <input type=password id=password name=password <?=size(10)?> maxlength=20 class=input> </td>
+					<td align=right>비밀번호 입력</td>
+					<td align=left> <input type=password id=password name=password <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
 				</tr>
 				<tr>
-					<td width=60 align=center>설문 작성인</td> 
-					<td> <input type=text id=name name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input> </td>
+					<td width=60 align=right>설문 작성인</td> 
+					<td align=left> <input type=text id=name name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> </td>
 				</tr>
 				<?=$hide_end?>
 
 				<tr align=center>
 					<td colspan=2 height=100% valign=bottom>
-						<input type=image src=<?=$dir?>/write.gif border=0> &nbsp; &nbsp;
+						<img src=<?=$dir?>/bt_imsi_ok.gif border=0 accesskey="a" onclick=autoSave() style="cursor:pointer"> &nbsp; &nbsp;<input type=image src=<?=$dir?>/write.gif border=0> &nbsp; &nbsp;
 						<a href=# onclick=history.back()><img src=<?=$dir?>/list.gif border=0></a>
 					</td>
 				</tr>

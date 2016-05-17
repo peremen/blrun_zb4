@@ -63,8 +63,6 @@ if(!$is_admin&&$setup[grant_html]<$member[level]) {
 	}
 }
 
-$memo=trim(stripslashes($memo));
-
 if($mode=="modify") {
 	if($member[no]!=$s_data[ismember])
 		$ismember=$s_data[ismember];
@@ -116,6 +114,9 @@ for($i=0;$i<count($temp);$i++) {
 // 임시 치환된 문자를 복원함
 $memo=str_replace("my_lt_ek","&lt;",$memo);
 $memo=str_replace("my_gt_ek","&gt;",$memo);
+
+// 각종 변수의 addslashes 시킴;;
+if(!get_magic_quotes_gpc())	$memo=addslashes($memo);
 
 $memo=trim($memo);
 
@@ -236,13 +237,13 @@ if($use_html2<2) {
 </table>
 <table border=0 cellspacing=0 cellpadding=10 width=100% height=100% bgcolor=black style=table-layout:fixed>
 <tr bgcolor=white valign=top>
-	<td height=40 class=title2_han>
-		<b>제목: [<?=$setup[title]?>]의 "<?=stripslashes($data[subject])?>" 게시글의 덧글</b><br>
+	<td height=50 class=title2_han>
+		<b>제목: [<?=$setup[title]?>]의 "<?=$data[subject]?>" 게시글의 덧글</b><br>
 	</td>
 </tr>
 <tr bgcolor=white valign=top>
 	<td class=memo>
-		<?=$memo?>
+		<?=stripslashes($memo)?>
 	</td>
 </tr>
 </table>

@@ -12,7 +12,7 @@
 			<td colspan=2>
 				<table border=0 cellspacing=0 cellpadding=0 width=100%>
 				<tr>
-					<td style='word-break:break-all;padding:3 7 7 7' valign=top class=cu><?=$memo?></span></td>
+					<td align=left style='word-break:break-all;padding:3 7 7 7' valign=top class=cu><?=$memo?></span></td>
 				</tr>
 				</table>
 			</td>

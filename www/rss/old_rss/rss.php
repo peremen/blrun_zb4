@@ -108,7 +108,7 @@
 		// rss의 setItem 인자들
 		//	$title,$link,$description ="",$author = "",$pubDate ="",$category ="",
 		//			$guid ="",$source ="",$comments ="",$enclosure =""
-		$rss->setItem(stripslashes($row[subject]),$link,stripslashes($description),$row[name],date("Y/m/d H:i:s",$row[reg_date]),$cate[name]);
+		$rss->setItem(str_replace("\"","&quot;",$row[subject]),$link,$description,$row[name],date("Y/m/d H:i:s",$row[reg_date]),$cate[name]);
 		if ($count++ > $max_count)
 			break;
 	}

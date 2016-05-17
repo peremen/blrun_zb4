@@ -7,7 +7,8 @@ $pass = stripslashes($pass);
 **************************************************************************/
 include "_head.php";
 
-// HTML 출력 
+// HTML 출력
+print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
 head(" onload=unlock() onunload=hideImageBox() ","script_comment.php");
 
 if($pass == "gg" || $member[no] || $password) {
@@ -140,9 +141,8 @@ if($pass == "gg" || $member[no] || $password) {
 			if(!$o_data[no]) Error("원본 덧글이 존재하지 않습니다");
 		}
 
-		$name=trim(stripslashes($s_data[name])); // 이름
-		$name=str_replace("\"","&quot;",$name);
-		$memo=str_replace("&nbsp;","&amp;nbsp;",trim(stripslashes($memo))); // 내용
+		$name=trim(htmlspecialchars($s_data[name])); // 이름
+		$memo=str_replace("&nbsp;","&amp;nbsp;",trim($memo)); // 내용
 		if($s_data[file_name1])$s_file_name1="<br>&nbsp;".$s_data[s_file_name1]."이 등록되어 있습니다.<br> <input type=checkbox name=del_file1 value=1> 삭제";
 		if($s_data[file_name2])$s_file_name2="<br>&nbsp;".$s_data[s_file_name2]."이 등록되어 있습니다.<br> <input type=checkbox name=del_file2 value=1> 삭제";
 		if($s_data[use_html2]) $use_html2=" checked ";
@@ -190,8 +190,8 @@ if($pass == "gg" || $member[no] || $password) {
 		if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>";
 		$temp_name = get_private_icon($member[no], "1");
 		if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>".$c_name;
-	} elseif($mode=="modify") $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input value=\"".$name."\">";
-	else $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input>";
+	} elseif($mode=="modify") $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input value=\"".$name."\" onkeyup='ajaxLoad2()'>";
+	else $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input onkeyup='ajaxLoad2()'>";
 
 	// 이미지 창고 버튼
 	if($member[no]&&$setup[grant_imagebox]>=$member[level]) $a_imagebox="<a onfocus=blur() href='javascript:showImageBox(\"$id\")'>"; else $a_imagebox="<Zeroboard ";

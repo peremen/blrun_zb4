@@ -9,10 +9,10 @@
 <table border='0' cellpadding='0' cellspacing='0'>
 <tr>
  <td>
-  <select onChange='sub_style_chg(this.value)' id='sub_fcolor' name='sub_fcolor' style='background-color:444444;'>
+  <select onChange='sub_style_chg(this.value)' id='sub_fcolor' name='sub_fcolor' style='background-color:#444444;'>
   <SCRIPT language="JavaScript">
   <!--
-   var sub_fc_Val = new Array('444444','FF0000','00FF00','0000FF','FFFF00','00FFFF','FF00FF','CCCCCC','999999','666666');     
+   var sub_fc_Val = new Array('#444444','#FF0000','#00FF00','#0000FF','#FFFF00','#00FFFF','#FF00FF','#CCCCCC','#999999','#666666');     
    for(var i=0; i < sub_fc_Val.length; i++)
 	 document.writeln("<option value='" + sub_fc_Val[i] + "' style='background-color:" + sub_fc_Val[i] + ";'>&nbsp;&nbsp;&nbsp;</option>");     
   //-->
@@ -38,7 +38,7 @@
 <? } ?>
 <table width='100%' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5' style='border:0'>
 <tr>
-<td><input type='text' id='subject' name='subject' value="<?=$subject?>" maxlength='200' style='width:100%' class='input'></td>
+<td><input type='text' id='subject' name='subject' value="<?=$subject?>" maxlength='200' style='width:100%' class='input' onkeyup="addStroke()"></td>
 </tr>
 </table>
 <!--====================[ sw_edit 파일명: ed_seting_substyle.php 끝]====================-->

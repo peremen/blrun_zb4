@@ -2,7 +2,7 @@
 <img src=<?=$dir?>/t.gif border=0 height=5><br>
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <tr class=title>
-	<td class=title2_han style=padding:8px;word-break:break-all;>
+	<td align=left class=title2_han style=padding:8px;word-break:break-all;>
 		<b><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?></b>
 	</td>
 </tr>
@@ -11,7 +11,7 @@
 		<table border=0 cellspacing=0 width=100% style=table-layout:fixed height=30 class=list0 style=table-layout:fixed>
 		<col width=></col><col width=249></col>
 		<tr>
-			<td nowrap='nowrap' style=padding-left:10px>
+			<td align=left nowrap='nowrap' style=padding-left:10px>
 				<div style="overflow:hidden;" class=list_han><?=$face_image?> <?=$name?>&nbsp;
 				<? if($data['homepage']) { ?><a href="<?=$data['homepage']?>" target=_blank><font class=list_eng>(Homepage)</font></a><? } ?></div>
 			</td>
@@ -20,7 +20,7 @@
 		</table>
 		<table border=0 cellspacing=0 cellpadding=10 width=100% padding=8 style=table-layout:fixed>
 		<tr>
-			<td class=memo>
+			<td align=left class=memo>
 				<?=$hide_sitelink1_start?><font class=list_eng>- <b>SiteLink #1</b> : <?=$sitelink1?></font><br><?=$hide_sitelink1_end?>
 
 				<?=$hide_sitelink2_start?><font class=list_eng>- <b>SiteLink #2</b> : <?=$sitelink2?></font><br><?=$hide_sitelink2_end?>

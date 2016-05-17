@@ -99,10 +99,10 @@
    while($data=mysql_fetch_array($result))
    {
     flush();
-	$data[subject] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html(stripslashes($data[subject])));
+	$data[subject] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html($data[subject]));
 ?>
 
-&nbsp;&nbsp; [<?=stripslashes($data[name])?>] &nbsp;
+&nbsp;&nbsp; [<?=$data[name]?>] &nbsp;
 <a href=<?=$file?>?id=<?=$table_name?>&no=<?=$data[no]?> target=_blank><?=$data[subject]?></a></b> 
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 <font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font>)</font>
@@ -127,9 +127,9 @@
     while($data=mysql_fetch_array($result))
     {
      flush();
-	 $data[memo] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html(stripslashes($data[memo])));
+	 $data[memo] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html($data[memo]));
 ?>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <?=stripslashes($data[name])?> ]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <?=$data[name]?> ]
 &nbsp;<a href=<?=$file?>?id=<?=$table_name?>&no=<?=$data[parent]?> target=_blank><? if($data[is_secret]) echo "<font color='gray'>비밀 덧글입니다</font>"; else echo $data[memo]; ?></a> &nbsp;&nbsp;
 <font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font>)</font>
 <img src=images/t.gif border=0 height=20><Br>

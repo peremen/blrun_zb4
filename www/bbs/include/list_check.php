@@ -21,7 +21,7 @@ function list_check(&$data,$view_check=0) {
 
 	// 제목에 5줄로 툴바 만듬
 	if($setup[use_status]) {
-		$tmpData = explode("\n",strip_tags(stripslashes($data[memo])));
+		$tmpData = explode("\n",htmlspecialchars(strip_tags($data[memo])));
 		$totalCommentLineNum = count($tmpData);
 		$tmpData_Count = $totalCommentLineNum;
 		$showCommentStr = "";
@@ -38,8 +38,6 @@ function list_check(&$data,$view_check=0) {
 		else $cntStr="\n\n$strCnt characters";
 
 		$showCommentStr_tail.="$cntStr (total : $totalCommentLineNum lines)";
-		$showCommentStr = str_replace("'","",$showCommentStr);
-		$showCommentStr = str_replace("\"","",$showCommentStr);
 		$showCommentStr .= $showCommentStr_tail;
 	}
 	// email IP 표식 불러와 처리
@@ -55,20 +53,20 @@ function list_check(&$data,$view_check=0) {
 		$data[memo]=preg_replace($style_pattern,"\\1\\3",$data[memo]);
 	}*/
 
-	// ' 등의 특수문자때문에 붙인 \(역슬래쉬)를 떼어낸다
-	$name=$data[name]=stripslashes($data[name]); 
+	// ' " \ 등의 특수문자때문에 htmlspecialchars 를 해준다
+	$name=$data[name]=htmlspecialchars($data[name]); 
 	$temp_name = get_private_icon($data[ismember], "2");
 	if($temp_name) $name="<img src='$temp_name' border=0 align=absmiddle>"; 
 
-	$subject=$data[subject]=stripslashes($data[subject]); // 제목
-	$subject_all=strip_tags(str_replace("\"","'",$subject));
+	$subject=str_replace("\"","&quot;",$data[subject]); // 제목
+	$subject_all=strip_tags($subject);
 	$subject=cut_str($subject,$setup[cut_length]); // 제목 자르는 부분
 
 	// 검색어에 해당하는 글자를 빨간색으로 바꾸어줌;;
 	if($keyword) {
 		$keyword_pattern = "/".str_replace("\0","\\0",preg_quote($keyword,"/"))."/i";
 		if($sn=="on") $name = preg_replace($keyword_pattern, "<span style='color:#FF001E;background-color:#FFF000;'>$keyword</span>", $name);
-		if($ss=="on") $subject = preg_replace($keyword_pattern, "<span color='FF001E' style='color:#FF001E;background-color:#FFF000;'>$keyword</span>", $subject);
+		if($ss=="on") $subject = preg_replace($keyword_pattern, "<span color='#FF001E' style='color:#FF001E;background-color:#FFF000;'>$keyword</span>", $subject);
 	}
 
 	if($data[file_name1]||$data[file_name2]) $subject = $subject." <img src='images/ico_file.gif' border=0>";
@@ -91,9 +89,8 @@ function list_check(&$data,$view_check=0) {
 	}
 
 	if(!$setup[only_board]) {
-		$homepage=$data[homepage]=stripslashes($data[homepage]);
+		$homepage=$data[homepage]=htmlspecialchars($data[homepage]);
 		if($homepage) $homepage="<a href='$homepage' target=_blank>$homepage</a>";
-		$data[memo]=stripslashes($data[memo]);
 
 		// html 이미지 리사이즈
 		$imagePattern = "#<img(.+?)src=([^>]*?)>#i";
@@ -167,8 +164,8 @@ function list_check(&$data,$view_check=0) {
 		// 아이피
 		if($is_admin) $ip="IP Address : ".$data[ip]."&nbsp;";  
 
-		$sitelink1=$data[sitelink1]=stripslashes($data[sitelink1]);
-		$sitelink2=$data[sitelink2]=stripslashes($data[sitelink2]);
+		$sitelink1=$data[sitelink1]=htmlspecialchars($data[sitelink1]);
+		$sitelink2=$data[sitelink2]=htmlspecialchars($data[sitelink2]);
 		if($sitelink1)$sitelink1="<a href='$sitelink1' target=_blank>$sitelink1</a>";
 		if($sitelink2)$sitelink2="<a href='$sitelink2' target=_blank>$sitelink2</a>";
 		$file_name1=del_html($data[s_file_name1]);

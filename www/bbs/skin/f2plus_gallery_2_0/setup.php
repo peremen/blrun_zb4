@@ -30,7 +30,7 @@ if($setup[use_alllist]) $view_target="zboard.php"; else $view_target="view.php";
 <?}?>
 <col width=50%></col><col width=50%></col>
 <tr>
-  <td>
+  <td align=left>
     <font class=com>Total article&nbsp;</font><b><font class=title_eng4><?=$setup[total_article]?> :</font></b>
     <?if($setup[total_article]!=$total) echo " (<font color=red>$total</font> searched) ";?>&nbsp;<b><font class=title_eng4><?=$page?></font></b><font class=com> page&nbsp;/&nbsp;total </font><b><font class=title_eng4><?=$total_page?></font></b><font class=com> page   <?=$memo_on_sound?></font>
   </td>
@@ -52,7 +52,7 @@ if($setup[use_alllist]) $view_target="zboard.php"; else $view_target="view.php";
 <table border=0 cellspacing=1 cellpadding=0 width=<?=$width?>>
 <tr><td background=<?=$dir?>/dot.gif height=1></td></tr>
 <tr align=center>
-  <td>
+  <td align=left>
     <? include "include/print_category.php"; ?>
 
   </td>

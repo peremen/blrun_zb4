@@ -1,7 +1,4 @@
 <?
-$name = stripslashes($name);
-$password = stripslashes($password);
-$memo = stripslashes($memo);
 /***************************************************************************
 * 공통 파일 include
 **************************************************************************/
@@ -46,14 +43,17 @@ if(!$setup[use_alllist]) $view_file_link="view.php"; else $view_file_link="zboar
 if($setup[grant_comment]<$member[level]&&!$is_admin) Error1("사용권한이 없습니다","login.php?id=$id&page=$page&page_num=$page_num&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&file=$view_file_link");
 
 // 각종 변수 검사;;
+$name = str_replace("ㅤ","",$name);
 $memo = str_replace("ㅤ","",$memo);
-if(isblank($memo)) Error1("내용을 입력하셔야 합니다");
+
 if(!$member[no]) {
 	if(isblank($name)) Error1("이름을 입력하셔야 합니다");
 	if(isblank($password)) Error1("비밀번호를 입력하셔야 합니다");
 } else {
 	$password = $member[password];
 }
+
+if(isblank($memo)) Error1("내용을 입력하셔야 합니다");
 
 // 리플라이 덧글 관련 예약 문자열 검사
 if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",trim($memo))) Error("예약된 문자열은 사용할 수 없습니다");
@@ -147,10 +147,12 @@ for($i=0;$i<count($temp);$i++) {
 	}
 	if($cnt==0) {
 		// 위지윅에디터에서 &가 &amp;로 바뀔때 썸네일이 보이지 않는 현상 해결
-		$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?([^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
+		$imagePattern="#<img[^>]*src=[\']?[\"]?([^>\'\"]+)[\']?[\"]?[^>]*>#i";
 		preg_match_all($imagePattern,$temp[$i],$img,PREG_SET_ORDER);
 		for($j=0;$j<count($img);$j++)
 			$temp[$i]=str_replace($img[$j][1],str_replace("&amp;","&",$img[$j][1]),$temp[$i]);
+		// 자동 저장 잘림 방지
+		$temp[$i]=str_replace("&#160;"," ",$temp[$i]);
 	}
 }
 
@@ -176,6 +178,7 @@ if($mode=="modify") {
 	if(!$s_data[no]) Error1("원본 덧글이 존재하지 않습니다");
 }
 
+$ismember = $member[no]; // 자동저장 멤버 번호
 // 회원등록이 되어 있을때 이름등을 가져옴;;
 if($member[no]) {
 	if($mode=="modify"&&$member[no]!=$s_data[ismember]) {
@@ -183,11 +186,19 @@ if($member[no]) {
 	} else {
 		$name=$member[name];
 	}
+	if(!get_magic_quotes_gpc()) $name=addslashes($name);
+	$name = trim($name);
+} else {
+	if(!get_magic_quotes_gpc()) $name=addslashes($name);
+	$member[name] = trim($name);
+	$ismember = '0';
 }
 
-// 각종 변수의 addslashes 시킴
-$name=trim(addslashes(del_html($name)));
-$memo=trim(addslashes($memo));
+// 각종 변수의 addslashes 시킴;;
+if(!get_magic_quotes_gpc()) {
+	$memo=addslashes($memo);
+}
+
 if($use_html2<2) {
 	$memo=str_replace("  ","&nbsp;&nbsp;",$memo);
 	$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
@@ -375,6 +386,10 @@ if($mode=="modify"&&$c_no) {
 	// 회원일 경우 해당 해원의 점수 주기
 	mysql_query("update $member_table set point2=point2+1 where no='$member[no]'",$connect) or Error1(mysql_error());
 }
+
+// 임시 저장 정보 삭제
+if($mode=="write"||$mode=="reply") mysql_query("delete from $comment_imsi_table where bname='$id' and cno='0' and parent='$no' and ismember='$ismember' and name='$member[name]' and password='$password'");
+elseif($mode=="modify") mysql_query("delete from $comment_imsi_table where bname='$id' and cno='$c_no' and parent='$no' and ismember='$ismember' and name='$member[name]'");
 
 // 코멘트 갯수를 구해서 정리
 $total=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where parent='$no'"));

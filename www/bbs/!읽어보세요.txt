@@ -2,10 +2,10 @@
 
 0.3 /index.php 파일 13, 14, 15행 쯤, /m/index.php 파일 13, 14, 15행 쯤 이미지와 url 정보를 수정해 준다.
 
-0.5 lib.php 파일의 322행 쯤의 @mysql_query("set names euckr",$connect); 에서 DB 캐릭터셋을 확인한다.
-0.6 lib.php 파일의 428행, 461행 쯤의 rss 주소를 확인한다.
-0.7 lib.php 파일의 426행, 427행, 459행, 460행 쯤의 이미지 파일을 각자에 맞게 수정해 사용한다.
-0.9 lib.php 파일의 538행 $target 변수를 aanalyzer에서 만들어 둔 것으로 셋팅한다.
+0.5 lib.php 파일의 324행 쯤의 @mysql_query("set names euckr",$connect); 에서 DB 캐릭터셋을 확인한다.
+0.6 lib.php 파일의 430행, 494행 쯤의 rss 주소를 확인한다.
+0.7 lib.php 파일의 428행, 429행, 492행, 493행 쯤의 이미지 파일을 각자에 맞게 수정해 사용한다.
+0.9 lib.php 파일의 575행 $target 변수를 aanalyzer에서 만들어 둔 것으로 셋팅한다.
 0.9.5 www/bbs/admin_setup_bac.php 파일의 64행 id 값을 aanalyzer에서 만들어 둔 것으로 셋팅한다.
 
 1. www와 /www/m 폴더 안의 main.php 파일 5번째 6번째 줄의 $_zb_url 과 $_zb_path 정보를 올바르게 수정해 준다.
@@ -26,4 +26,10 @@
 
 6. www/fr_right.htm www/m/favorite.htm의 채팅방 소스는 chatroom=blrun 부분을 자신의 고유 아이디로 바꾸어 사용합니다.
 
+7. lib_ajax.php 파일의 304행 쯤의 @mysql_query("set names euckr",$connect); 에서 DB 캐릭터셋을 확인한다.
+8. lib_ajax.php 파일의 410행, 474행 쯤의 rss 주소를 확인한다.
+9. lib_ajax.php 파일의 408행, 409행, 472행, 473행 쯤의 이미지 파일을 각자에 맞게 수정해 사용한다.
+10. lib_ajax.php 파일의 555행 $target 변수를 aanalyzer에서 만들어 둔 것으로 셋팅한다.
+
 ※ 회원중에 sprdrg 란 아이디를 만들어 레벨 9의 게스트 계정을 만들고 회원가입한 분들을 레벨8로 설정하면 로그인 용도로만 사용할 수 있는 게스트 계정을 운용할 수 있습니다. 참고 바랍니다. ^^;
+또 bbs/skin 디렉토리 안에 있는 폴더명은 변경하지 마시기 바랍니다. 부득이하게 웹소스 내에서 폴더 스킨명을 그대로 사용하는 코드가 있어서 변경을 하게 되면 일부 기능에서 오동작을 하게 됩니다.

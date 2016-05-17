@@ -42,10 +42,10 @@ function sendit() {
 	}
 	session_register("WRT_SPM_PWD");
 
-//랜덤한 두 숫자를 발생(1-8) 후 변수에 대입
-	$wnum1 = rand(1,8);
-	$wnum2 = rand(1,8);
-	$wnum1num2 = $wnum1*10 + $wnum2;
+//랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입
+	$wnum1 = mt_rand(1,1000);
+	$wnum2 = mt_rand(1,1000);
+	$wnum1num2 = $wnum1*10000 + $wnum2;
 	//글쓰기 보안을 위해 세션변수를 설정
 	$WRT_SS_VRS = $wnum1num2;
 	session_register("WRT_SS_VRS");
@@ -68,7 +68,7 @@ function sendit() {
 	<input type=hidden name=ss value="<?=$ss?>">
 	<input type=hidden name=sc value="<?=$sc?>">
 	<input type=hidden name=mode value="<?=$mode?>">
-	<input type=hidden name=subject value="Guest<?=$subject?>">
+	<input type=hidden id=subject name=subject value="Guest<?=$subject?>">
 	<input type=hidden name=wantispam value=<?=$wnum1num2?>>
 	<!----------------------------------------------->
 </td>
@@ -84,33 +84,33 @@ function sendit() {
 
 	<tr>
 		<td width=70 align=right><span class=cu><span class=v7><b>N</b>ame&nbsp;</span></span></td>
-		<td align=left><input type=text id=name name=name value="<? $name=stripslashes($name); echo $name; ?>" <?=size(16)?> maxlength=20 class=input2></td>
+		<td align=left><input type=text id=name name=name value="<?=$name?>" <?=size(16)?> maxlength=20 class=input2 onkeyup="ajaxLoad2()"></td>
 	</tr>
 	<tr>
 	<td width=70 align=right><span class=cu><span class=v7><b>P</b>assword&nbsp;</span></span></td>
-	<td><input type=password id=password name=password <?=size(16)?> maxlength=20 class=input2></td>
+	<td align=left><input type=password id=password name=password <?=size(16)?> maxlength=20 class=input2 onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
 	</tr>
 	<tr>
 		<td width=70 align=right><span class=cu><span class=v7><b>E</b>-mail&nbsp;</span></span></td>
-		<td><input type=text name=email value="<?=$email?>" <?=size(22)?> maxlength=200 class=input2></td>
+		<td align=left><input type=text id=email name=email value="<?=$email?>" <?=size(22)?> maxlength=200 class=input2></td>
 	</tr>
 	<tr>
 		<td width=70 align=right><span class=cu><span class=v7><b>H</b>omepage&nbsp;</span></span></td>
-		<td><input type=text name=homepage value="<?=$homepage?>" <?=size(22)?> maxlength=200 class=input2></td>
+		<td align=left><input type=text id=homepage name=homepage value="<?=$homepage?>" <?=size(22)?> maxlength=200 class=input2></td>
 	</tr>
 <?=$hide_end?>
 
 	<tr>
-		<td colspan=2 class=cu align=center height=25><?=$hide_notice_start?><input type=checkbox name=notice <?=$notice?> value=1>&nbsp;<span class=v7><b>N</b>otice</span><?=$hide_notice_end?>&nbsp;<?=$hide_html_start?><input type=checkbox name=use_html <?=$use_html?> value=1>&nbsp;<span class=v7><b>H</b>tml</span><?=$hide_html_end?>&nbsp;<input type=checkbox name=reply_mail <?=$reply_mail?> value=1>&nbsp;<span class=v7><b>R</b>e.email</span></td>
+		<td colspan=2 class=cu align=center height=25><?=$hide_notice_start?><input type=checkbox id=notice name=notice <?=$notice?> value=1>&nbsp;<span class=v7><b>N</b>otice</span><?=$hide_notice_end?>&nbsp;<?=$hide_html_start?><input type=checkbox id=use_html name=use_html <?=$use_html?>>&nbsp;<span class=v7><b>H</b>tml</span><?=$hide_html_end?>&nbsp;<input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1>&nbsp;<span class=v7><b>R</b>e.email</span> <font id="state"></font></td>
 	</tr>
 	<tr>
-		<td colspan=2 align=center><textarea name=memo <?=size2(35)?> class=text><?=$memo?></textarea></td>
+		<td colspan=2 align=center><textarea id=memo name=memo rows=5 <?=size2(35)?> class=text onkeyup="addStroke()"><?=$memo?></textarea></td>
 	</tr>
 	<tr>
 		<td height=5 colspan=2></td>
 	</tr>
 	<tr>
-		<td align=center valign=bottom colspan=2><input type=submit value="Confirm" class=submit onfocus='this.blur()' style=cursor:hand>&nbsp;&nbsp;<input type=button value="Back" onclick=history.go(-1) class=submit onfocus='this.blur()' style=cursor:hand></td>
+		<td align=center valign=bottom colspan=2><input type=button value="AutoSave" onclick=autoSave() class=submit onfocus='this.blur()' style=cursor:hand>&nbsp;&nbsp;<input type=submit value="Confirm" class=submit onfocus='this.blur()' style=cursor:hand>&nbsp;&nbsp;<input type=button value="Back" onclick=history.go(-1) class=submit onfocus='this.blur()' style=cursor:hand></td>
 	</tr>
 	</table>
 </td>

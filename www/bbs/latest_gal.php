@@ -199,11 +199,11 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 
 	$main_data = "";
 	while($data=mysql_fetch_array($result)) {
-		$name = stripslashes($data[name]);
-		$subject = cut_str(strip_tags(stripslashes($data[subject])),$textlen)."</font></b>";
+		$name = $data[name];
+		$subject = cut_str(strip_tags($data[subject]),$textlen)."</font></b>";
 		$date = date($datetype, $data[reg_date]);
 		if($data[total_comment]) $comment = "[".$data[total_comment]."]"; else $comment="";
-		$memo = cut_str(strip_tags(stripslashes($data[memo])),$textlen2);
+		$memo = cut_str(strip_tags($data[memo]),$textlen2);
 
 		$img1="data/latest_thumb/$id/$data[reg_date]"."_small.jpg";
 		$img2="data/latest_thumb/$id/$data[reg_date]"."_large.jpg";
@@ -216,7 +216,7 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 		$src_img="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
 
 		// 외부 html <img> 태그 src url 추출
-		$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?([^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
+		$imagePattern="#<img[^>]*src=[\']?[\"]?([^>\'\"]+)[\']?[\"]?[^>]*>#i";
 		preg_match_all($imagePattern,$data[memo],$img,PREG_SET_ORDER);
 		for($i=0;$i<1;$i++)
 			if(($mypos=strrpos($img[$i][1],"http://"))||($mypos=strrpos($img[$i][1],"https://")))
@@ -247,7 +247,7 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 					$filename1=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 					$filename2=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 				}
-			}elseif(($src_img1=stripslashes($img[0][1])) && !preg_match("#\.(gif|bmp)$#i",$src_img1)){
+			}elseif(($src_img1=$img[0][1]) && !preg_match("#\.(gif|bmp)$#i",$src_img1)){
 				$reg_date[]=$data[reg_date];
 				if(!file_exists($_zb_path.$img1)||!file_exists($_zb_path.$img2)){
 					$size=array(52,200);
@@ -275,7 +275,7 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 					$filename1=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
 					$filename2=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
 				}
-			}elseif(($src_img1=stripslashes($img[0][1])) && preg_match("#\.(gif|bmp)$#i",$src_img1)){
+			}elseif(($src_img1=$img[0][1]) && preg_match("#\.(gif|bmp)$#i",$src_img1)){
 				$filename1=$src_img1;
 				$filename2=$src_img1;
 			}else{
@@ -298,7 +298,7 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 					$filename1=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
 					$filename2=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
 				}
-			}elseif(($src_img1=stripslashes($img[0][1])) && preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$src_img1)){
+			}elseif(($src_img1=$img[0][1]) && preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$src_img1)){
 				$filename1=$src_img1;
 				$filename2=$src_img1;
 			}else{

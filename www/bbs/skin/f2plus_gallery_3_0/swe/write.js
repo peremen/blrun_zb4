@@ -36,17 +36,16 @@ function check_submit_n()
 
 	if(member_yn == "Y")
 	{
-		if(!rPass.value)
-		{
-			alert('암호를 입력하여 주세요.\n\n암호를 입력하셔야 수정/삭제를 할 수 있습니다.');
-			rPass.focus();
-			return false;
-		}
-
 		if(!rName.value)
 		{
 			alert('이름을 입력하여 주세요.');
 			rName.focus();
+			return false;
+		}
+		if(!rPass.value)
+		{
+			alert('암호를 입력하여 주세요.\n\n암호를 입력하셔야 수정/삭제를 할 수 있습니다.');
+			rPass.focus();
 			return false;
 		}
 	}
@@ -208,4 +207,27 @@ function sw_mcpy()
 			memoE.createTextRange().execCommand("Copy");
 		}
 	}
+}
+
+function autoSave_n()
+{
+	var rStr=document.getElementById('memo');
+	if(edit_tag_yn == "Y")
+	{
+		rStr.value = memoi2memo(memoiW.document.body.innerHTML);
+	}
+	autoSave();
+}
+
+var cntkey = 0;
+var qSet;
+function addStroke() {
+	cntkey++;
+	if(cntkey<2) {
+		qSet = setTimeout("autoSave_n()",60000);
+	} else {
+		clearTimeout(qSet);
+		qSet = setTimeout("autoSave_n()",30000);
+	}
+	if(cntkey%78==2) autoSave_n();
 }

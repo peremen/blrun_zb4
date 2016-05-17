@@ -22,42 +22,15 @@ function check_comment_submit()
 
 	if(member_yn == "Y")
 	{
-		if(!rPass.value)
-		{
-			alert('암호를 입력하여 주세요.\n\n암호를 입력하셔야 수정/삭제를 할 수 있습니다.');
-			rPass.focus();
-			return false;
-		}
-
 		if(!rName.value)
 		{
 			alert('이름을 입력하여 주세요.');
 			rName.focus();
 			return false;
 		}
-
-		var nStr=rName.value;
-		var pStr=rPass.value;
-
-		var nLen=nStr.length;
-		var pLen=pStr.length;
-		var cnt=0;
-
-		for(i=0;i<nLen;i++){
-			if(nStr.substr(i,1)=="\"") cnt++;
-		}
-		if(cnt>0){
-			alert("이름에 \" 문자가 들어가 있습니다.");
-			rName.focus();
-			return false;
-		}
-
-		cnt=0;
-		for(i=0;i<pLen;i++){
-			if(pStr.substr(i,1)=="\"") cnt++;
-		}
-		if(cnt>0){
-			alert('패스워드에 \" 문자가 들어가 있습니다.');
+		if(!rPass.value)
+		{
+			alert('암호를 입력하여 주세요.\n\n암호를 입력하셔야 수정/삭제를 할 수 있습니다.');
 			rPass.focus();
 			return false;
 		}
@@ -254,4 +227,27 @@ function sw_codebox(id)
 	} else {		
 		alert('HTML 체크후 사용하세요.');	
 	}
+}
+
+function autoSave_n()
+{
+	var rMemo=document.getElementById('memo');
+	if(edit_tag_yn == "Y")
+	{
+		rMemo.value = memoi2memo(memoiW.document.body.innerHTML);
+	}
+	autoSave();
+}
+
+var cntkey = 0;
+var qSet;
+function addStroke() {
+	cntkey++;
+	if(cntkey<2) {
+		qSet = setTimeout("autoSave_n()",60000);
+	} else {
+		clearTimeout(qSet);
+		qSet = setTimeout("autoSave_n()",30000);
+	}
+	if(cntkey%78==2) autoSave_n();
 }

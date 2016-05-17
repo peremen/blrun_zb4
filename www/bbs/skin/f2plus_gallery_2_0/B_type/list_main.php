@@ -11,15 +11,11 @@ else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$commen
 
 include "list_image_info.php";
 
-$memo=explode("||",$data[memo]);
-$str=cut_str($memo[0],200);
-$str=strip_tags($str);
-$str=str_replace("<br />","",$str);
-$str=str_replace("<br>","\n",$str);
-$str=str_replace("\"","",$str);
-$str2=cut_str($data[subject],10);
-$str3=str_replace("$data[subject]","$str2",$subject);
-$str3=str_replace("title=\"$str2 ","title=\"$data[subject] ",$str3);
+$memo=explode("|||",$data[memo]);
+$str=cut_str(htmlspecialchars(strip_tags($memo[0])),200);
+$str2=cut_str(str_replace("\"","&quot;",$data[subject]),10);
+$str3=str_replace(str_replace("\"","&quot;",$data[subject]),"$str2",$subject);
+$str3=str_replace("title=\"$str2 ","title=\"".cut_str($subject_all,$setup[cut_length])." ",$str3);
 
 if($counter%$num==1){
 ?>

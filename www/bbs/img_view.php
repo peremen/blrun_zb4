@@ -28,7 +28,7 @@ function win_size(img_width,img_height)
 }
 
 var rate_X = <?=$width?>/window.screen.width;
-var rate_Y = <?=$height?>/window.screen.height;
+var rate_Y = <?=$height*1.2?>/window.screen.height;
 
 function scroll_img(img_width,img_height,myEvent)
 {

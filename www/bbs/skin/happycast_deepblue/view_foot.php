@@ -81,7 +81,7 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 <!-- 버튼 관련 출력 -->
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <tr height=23>
-  <td>
+  <td align=left>
     <?=$a_list?><img src=<?=$dir?>/i_list.gif border=0 align=absmiddle></a>
     <?=$a_write?><img src=<?=$dir?>/i_write.gif border=0 align=absmiddle></a>
     <? if($box_view) { echo $a_preview."미리보기</a>".$a_imagebox."그림창고</a>".$a_codebox."코드삽입</a>"; }?>

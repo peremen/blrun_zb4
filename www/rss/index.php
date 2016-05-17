@@ -68,7 +68,7 @@ $webMaster_q = "blrun39@hanafos.com";
 
 // 통합추출 게시판 아이디를 적어주세요.
 // 아이디|아이디|아이디 형식으로 추가가능.
-$boardzero = "clmn1|blrun1|cap1|basket1|bug1";
+$boardzero = "clmn1|blrun1|cap1|basket1|bug1|blog1";
 
 // 금지시킬 게시판 아이디
 // 아이디|아이디|아이디 형식으로 추가가능.
@@ -102,10 +102,10 @@ $result = mysql_query($query);
 while ($data_board = mysql_fetch_array($result)) 
 {
 $bbs_tmp[] = $bbss[$i];
-$subject[] = stripslashes($data_board[subject]);
-$name[] = htmlspecialchars(stripslashes($data_board[name]));
+$subject[] = str_replace("\"","&quot;",$data_board[subject]);
+$name[] = htmlspecialchars($data_board[name]);
 
-$category_name[] = htmlspecialchars(stripslashes($data_board[category_name]));
+$category_name[] = htmlspecialchars($data_board[category_name]);
 $comment[] = $data_board[total_comment];
 $num[] = $data_board[no];
 $use_htmls[] = $data_board[use_html];
@@ -117,7 +117,7 @@ $imageBoxPattern2 = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/ie";
 $data_board[memo]=preg_replace($imageBoxPattern2,"'[img:'.str_replace('%2F', '/', urlencode('\\1.\\2')).','",$data_board[memo]);
 $data_board[memo]=preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data_board[ismember]/\\1.\\2' align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$data_board[memo]);
 if($data_board[use_html]<2) $data_board[memo]=str_replace("\n","<br />",$data_board[memo]);
-$memo[] = stripslashes($data_board[memo]);
+$memo[] = $data_board[memo];
 $file_name1[] = $data_board[file_name1];
 $file_name2[] = $data_board[file_name2];
 

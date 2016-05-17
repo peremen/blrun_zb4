@@ -2,7 +2,7 @@
 
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> align=center>
 <tr><td>
-	<table border=0 cellspacing=0 cellpadding=0 width=100% align=center style=border-width:1pt;border-style:solid;border-color:cccccc style=table-layout:fixed>
+	<table border=0 cellspacing=0 cellpadding=0 width=100% align=center style=border-width:1pt;border-style:solid;border-color:#cccccc style=table-layout:fixed>
 	<form method=post name=list action=list_all.php>
 	<input type=hidden id=nStart name=nStart>
 	<input type=hidden name=page value=<?=$page?>>
@@ -39,8 +39,8 @@
 	<table border=0 cellspacing=0 cellpadding=0 width=100% align=center style=table-layout:fixed>
 	<?if($hide_no=="off"){?><? if($browser=="1"){ ?><col width=40></col><? } ?><?}?><? if($browser=="1"){ ?><col width=80></col><? } ?><col width=></col>
 <? if ($hide_no=="on"||$browser=="0") $colspan=1; else $colspan=3;?>
-	<tr><td height=1 bgcolor=eaeaea colspan=<?=$colspan?>></td></tr>
-	<tr><td height=1 bgcolor=efefef colspan=<?=$colspan?>></td></tr>
-	<tr><td height=1 bgcolor=f1f1f1 colspan=<?=$colspan?>></td></tr>
-	<tr><td height=1 bgcolor=f5f5f5 colspan=<?=$colspan?>></td></tr>
-	<tr><td height=1 bgcolor=f7f7f7 colspan=<?=$colspan?>></td></tr>
+	<tr><td height=1 bgcolor=#eaeaea colspan=<?=$colspan?>></td></tr>
+	<tr><td height=1 bgcolor=#efefef colspan=<?=$colspan?>></td></tr>
+	<tr><td height=1 bgcolor=#f1f1f1 colspan=<?=$colspan?>></td></tr>
+	<tr><td height=1 bgcolor=#f5f5f5 colspan=<?=$colspan?>></td></tr>
+	<tr><td height=1 bgcolor=#f7f7f7 colspan=<?=$colspan?>></td></tr>

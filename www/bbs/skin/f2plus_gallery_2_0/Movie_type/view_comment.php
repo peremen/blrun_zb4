@@ -21,7 +21,7 @@ if($member[no]){
 ?>
 
 <div id=IAMCOMMENT_<?=$c_data[no]?> align=right style="display:none;width:<?=$width?>">
-<table id=comment_<?=$c_data[no]?> border=0 width=<?=$width?> cellspacing=1 cellpadding=0 align=center style=table-layout:fixed;border-width:1pt;border-style:solid;border-color:f1f1f1>
+<table id=comment_<?=$c_data[no]?> border=0 width=<?=$width?> cellspacing=1 cellpadding=0 align=center style=table-layout:fixed;border-width:1pt;border-style:solid;border-color:#f1f1f1>
 <tr>
 	<td height=6><img src=<?=$dir?>/t.gif border=0 height=6></td>
 </tr>
@@ -31,8 +31,8 @@ if($member[no]){
 	<col width=></col><col width=150></col><?if($member[no]){?><col width=70></col><?}?>
 
 	<tr valign=top>
-		<td style='word-break:break-all;' align=left><font color=F2955C class=com4>&nbsp;<B><?=++$count?>.</B>&nbsp;&nbsp;<?if($hide_name=="off"){?><?=$c_face_image?></font><font class=thm7pt><?=$comment_name?>&nbsp;</font><?}?><?=$a_comm_r?><img src=<?=$dir?>/reply.gif border=0 align=absmiddle></a></td>
-		<td valign=top align=right><font style=font-family:tahoma;color:cc9999;font-size:8pt;font-weight:bold>Point :</font> <?=$_point?>&nbsp;<font style=font-family:tahoma;color:cc9999;font-size:8pt;font-weight:bold>[<?=$c_vote?>]</font></td>
+		<td style='word-break:break-all;' align=left><font color=#F2955C class=com4>&nbsp;<B><?=++$count?>.</B>&nbsp;&nbsp;<?if($hide_name=="off"){?><?=$c_face_image?></font><font class=thm7pt><?=$comment_name?>&nbsp;</font><?}?><?=$a_comm_r?><img src=<?=$dir?>/reply.gif border=0 align=absmiddle></a></td>
+		<td valign=top align=right><font style=font-family:tahoma;color:#cc9999;font-size:8pt;font-weight:bold>Point :</font> <?=$_point?>&nbsp;<font style=font-family:tahoma;color:#cc9999;font-size:8pt;font-weight:bold>[<?=$c_vote?>]</font></td>
 		<?if($member[no]){?>
 
 		<td align=right><FORM METHOD=POST ACTION="<?=$a_c_vote?>"><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$_zb_url?>"><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=_url value="<?=$PHP_SELF?>"><INPUT TYPE=image src=<?=$dir?>/vote.gif border=0 align=absmiddle></td><?}?>
@@ -40,7 +40,7 @@ if($member[no]){
 	</tr>
 	<tr><td height=1 background=<?=$dir?>/dot3.gif colspan=<?=$c_colspan?>></td></tr>
 	<tr>
-		<td valign=top bgcolor=eeeeee colspan=<?=$c_colspan?> class=memo>&nbsp;::: 
+		<td align=left valign=top bgcolor=#eeeeee colspan=<?=$c_colspan?> class=memo>&nbsp;::: 
 		<?
 		if($o_data[ismember]=="") $ismember0="0"; else $ismember0=$o_data[ismember];
 		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$ismember0!=$member[no]&&$member[level]>$setup[grant_view_secret])
@@ -90,7 +90,7 @@ if (<?=$c_org?> > 0 && <?=$c_depth?> > 0)
     {
         oOrg.innerHTML += oCur.innerHTML;
         document.getElementById("deleteButton_"+<?=$c_org?>).style.display = "none";
-        oCur.removeNode(true);
+        oCur.parentNode.removeChild(oCur);
     }
 }
 else
