@@ -5,7 +5,7 @@
 <input type='hidden' id='sub_style_E' name='sub_style_E' value="</font>">
 <table width='100%' border='0' cellpadding='3' cellspacing='0' class='sw_bd_style_5'>
 <tr>
-<td>
+<td align='left'>
 <table border='0' cellpadding='0' cellspacing='0'>
 <tr>
  <td>

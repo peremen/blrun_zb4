@@ -7,7 +7,7 @@
  **************************************************************************/
 include $_zb_path."_head.php";
 
-if(!eregi($HTTP_HOST,$HTTP_REFERER)) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
+if(!eregi($HTTP_HOST,$HTTP_REFERER)||$DEL_COMM_SEC!=$delsec) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
 
 //  초기 헤더를 뿌려주는 부분;;;;
 function head1($body="",$scriptfile="") {
@@ -180,4 +180,7 @@ include $_zb_path.$dir."/ask_password.php";
 foot1();
 
 include $_zb_path."_foot.php";
+
+// 보안을 위해 세션변수 삭제
+//session_unregister("DEL_COMM_SEC");
 ?>

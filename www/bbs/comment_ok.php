@@ -180,6 +180,17 @@ if($use_html2<2) {
 	$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
 }
 
+// 각종 변수 설정
+$ip=$REMOTE_ADDR; // 아이피값 구함;;
+$reg_date=time(); // 현재의 시간구함;;
+
+// 도배인지 아닌지 검사;; 우선 같은 아이피대에 30초이내의 덧글은 도배로 간주;;
+if(!$is_admin&&$mode!="modify") {
+	$max_no=mysql_fetch_array(mysql_query("select max(no) from $t_comment"."_$id"));
+	$temp=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where ip='$ip' and $reg_date - reg_date <30 and no='$max_no[0]'"));
+	if($temp[0]>0) {Error("덧글 등록은 30초이상이 지나야 가능합니다"); exit;}
+}
+
 // 코멘트의 최고 Number 값을 구함 (중복 체크를 위해서)
 $max_no=mysql_fetch_array(mysql_query("select max(no) from $t_comment"."_$id where parent='$no'"));
 
@@ -190,15 +201,11 @@ if(!$is_admin&&$mode!="modify") {
 }
 
 // 쿠키 설정;;
-
 // 4.0x 용 세션 처리
 if($c_name) {
 	$writer_name=$name;
 	session_register("writer_name");
 }
-
-// 각종 변수 설정
-$reg_date=time(); // 현재의 시간구함;;
 
 // 해당글이 있는 지를 검사
 $check = mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where no = '$no'", $connect));
@@ -355,7 +362,7 @@ if($mode=="modify"&&$c_no) {
 
 } elseif($mode=="write"||($mode=="reply"&&$c_no)) {
 	// 코멘트 입력
-	mysql_query("insert into $t_comment"."_$id (parent,ismember,name,password,memo,reg_date,ip,use_html2,is_secret,file_name1,file_name2,s_file_name1,s_file_name2) values ('$no','$member[no]','$name','$password','$memo','$reg_date','$REMOTE_ADDR','$use_html2','$is_secret','$file_name1','$file_name2','$s_file_name1','$s_file_name2')") or error(mysql_error());
+	mysql_query("insert into $t_comment"."_$id (parent,ismember,name,password,memo,reg_date,ip,use_html2,is_secret,file_name1,file_name2,s_file_name1,s_file_name2) values ('$no','$member[no]','$name','$password','$memo','$reg_date','$ip','$use_html2','$is_secret','$file_name1','$file_name2','$s_file_name1','$s_file_name2')") or error(mysql_error());
 	// 회원일 경우 해당 해원의 점수 주기
 	@mysql_query("update $member_table set point2=point2+1 where no='$member[no]'",$connect) or error(mysql_error());
 

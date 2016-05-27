@@ -162,7 +162,7 @@ function list_check(&$data,$view_check=0) {
 		}
 
 		// 아이피
-		if($is_admin) $ip="IP Address : ".$data[ip]."&nbsp;";  
+		if($is_admin) $ip="IP Address : <a href='trace_ip.php?keykind=ip&keyword=".$data[ip]."' target='_blank'>".$data[ip]."</a> <a href='#' style='color:red' onclick='javascript: var yn=confirm(\"▶엎질러진 물은 돌이킬 수 없습니다.◀\\n정말로 [$data[name]]님의 전체 게시글/덧글 삭제 후 차단하시겠습니까?\"); if(yn) window.open(\"spam_ip.php?keykind=ip&keyword=$data[ip]\",\"_blank\"); else return false;'>[스팸]</a>&nbsp;";  
 
 		$sitelink1=$data[sitelink1]=htmlspecialchars($data[sitelink1]);
 		$sitelink2=$data[sitelink2]=htmlspecialchars($data[sitelink2]);
