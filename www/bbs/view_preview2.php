@@ -101,6 +101,7 @@ for($i=0;$i<count($temp);$i++) {
 		elseif(preg_match($pattern2,$temp[$i])) {
 			$temp[$i]="</pre>";
 		}
+		else $temp[$i]=preg_replace("#delsec#","",$temp[$i]);
 	}
 }
 

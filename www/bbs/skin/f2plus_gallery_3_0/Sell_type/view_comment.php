@@ -1,8 +1,6 @@
 <?
 unset($_point);
 $c_memo = love_convert($c_memo);
-if($is_admin) $show_comment_ip = "<font class=com5>".$c_data['ip']."</font>";
-else $show_comment_ip = "";
 $a_del=str_replace("del_comment.php?","del_comment.php?_zb_url=$_zb_url&_zb_path=$config_dir&",$a_del);
 $t_c=mysql_fetch_array(mysql_query("select * from $table where reg_date='$c_data[reg_date]'"));
 //$t_memo=str_replace("<","&lt",$t_c[memo]);
@@ -57,7 +55,7 @@ if($member[no]){
 	</tr>
 	<tr><td height=1 background=<?=$dir?>/images/dot3.gif colspan=<?=$c_colspan?>></td></tr>
 	<tr valign=top>
-		<td colspan=<?=$c_colspan?> align=right><?if($hide_date=="off"){?> DATE :<font class=com3> <?=date("m-d",$c_data[reg_date])?>&nbsp;<?=date("H:i:s",$c_data[reg_date])?>&nbsp;</font><?}?><?if ($member[isadmin]==1){?>/ &nbsp;IP :&nbsp;<?=$show_comment_ip?></font><?}?> <?=$a_edit2?><img src=<?=$dir?>/images/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/images/edit.gif border=0 valign=absmiddle></a> <?=$a_del?><img id=deleteButton_<?=$c_data[no]?> src=<?=$dir?>/images/del.gif border=0 valign=absmiddle></a>
+		<td colspan=<?=$c_colspan?> align=right><?if($hide_date=="off"){?> DATE :<font class=com3> <?=date("m-d",$c_data[reg_date])?>&nbsp;<?=date("H:i:s",$c_data[reg_date])?>&nbsp;</font><?}?><?if($is_admin){?>/ &nbsp;IP :&nbsp;<font class=com5><?=$show_comment_ip?></font><?}?> <?=$a_edit2?><img src=<?=$dir?>/images/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/images/edit.gif border=0 valign=absmiddle></a> <?=$a_del?><img id=deleteButton_<?=$c_data[no]?> src=<?=$dir?>/images/del.gif border=0 valign=absmiddle></a>
 		</FORM>
 		</td>
 	</tr>

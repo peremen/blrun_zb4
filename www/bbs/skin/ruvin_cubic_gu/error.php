@@ -15,7 +15,7 @@ if(!$url)
 else
 {
 ?>
-<div align=center><input type=button value=" Back " onclick=location.href="<?echo $url;?>"  class=submit onfocus='this.blur()' style=cursor:hand>
+<div align=center><input type=button value=" Move " onclick=location.href="<?echo $url;?>"  class=submit onfocus='this.blur()' style=cursor:hand>
 <?
 }
 ?>

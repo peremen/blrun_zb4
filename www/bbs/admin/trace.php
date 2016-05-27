@@ -4,7 +4,7 @@ include "../lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
 $s_keyword = $keyword;
-if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
+if(!$member[no]||$member[is_admin]>1||$member[level]>2) Error("레벨2 이상의 최고 관리자만이 사용할수 있습니다");
 if($keykind[5]) {
 	$userno = mysql_Fetch_array(mysql_query("select no from zetyx_member_table where user_id='$keyword'", $connect));
 	$userno = $userno[0];
@@ -93,11 +93,11 @@ if($keyword&&$s_que)
 		while($data=mysql_fetch_array($result))
 		{
 			flush();
-				$data[subject] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html($data[subject]));
+			$data[subject] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html($data[subject]));
 ?>
 
 &nbsp;&nbsp; [<?=$data[name]?>] &nbsp;
-<a href=../<?=$file?>?id=<?=$table_name?>&no=<?=$data[no]?> target=_blank><?=$data[subject]?></a></b> 
+<b><a href=../<?=$file?>?id=<?=$table_name?>&no=<?=$data[no]?> target=_blank><?=$data[subject]?></a></b> 
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 <font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font> / <font color=green><?=$data[ip]?></font>)</font>
 <img src=../images/t.gif border=0 height=20><br>
@@ -120,6 +120,10 @@ if($keyword&&$s_que)
 			{
 				flush();
 				$data[memo] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html($data[memo]));
+				// 계층 코멘트 표식 불러와 처리
+				unset($c_match);
+				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
+					$data[memo] = str_replace($c_match[0],"",$data[memo]);
 ?>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <?=$data[name]?> ]
 &nbsp;<a href=../<?=$file?>?id=<?=$table_name?>&no=<?=$data[parent]?> target=_blank><?=$data[memo]?></a> &nbsp;&nbsp;

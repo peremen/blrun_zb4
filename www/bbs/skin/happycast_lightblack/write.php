@@ -104,7 +104,7 @@ function formresize(mode) {
 
 <tr>
   <td align=right class=listnum width=80><img src=images/t.gif border=0 width=80 height=1><br><b>Special&nbsp;</b></td>
-  <td> 
+  <td align=left> 
     <table border=0 cellpadding=0 cellspacing=0>
     <tr>
       <td><?=$category_kind?></td>

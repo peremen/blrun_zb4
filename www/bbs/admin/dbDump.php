@@ -65,7 +65,7 @@ function zbDB_getDataList($tableName) {
 	while($data=mysql_fetch_array($result)) {
 		unset($str);
 		for($i=0;$i<$field_count;$i++) {
-			$str .= " '".addslashes(stripslashes($data[$field_array[$i]]))."',";
+			$str .= " '".addslashes($data[$field_array[$i]])."',";
 		}
 		$str = substr($str,0,strlen($str)-1);
 		echo "INSERT INTO ".$tableName." VALUES (".$str.");\n";
