@@ -28,7 +28,6 @@ function show(down){
 	}
 }
 </script>
-<body oncontextmenu="return false">
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <?=$memo_on_sound?>
 <tr>

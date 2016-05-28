@@ -23,7 +23,6 @@ if($setup[group_no]) $group_no=$setup[group_no];
 
 // 패스워드를 암호화
 if($password){
-	//stripslashes($password);
 	if($password) {
 		$temp=mysql_fetch_array(mysql_query("select password('$password')"));
 		$password=$temp[0];   

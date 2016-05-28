@@ -94,33 +94,33 @@ if(!preg_match("/install/i",$PHP_SELF)&&file_exists($_zb_path."myZrCnf2019.php")
 	// 자동 로그인일때 제대로 된 자동 로그인인지 체크하는 부분
 	unset($autoLoginData);
 	$autoLoginData = getZBSessionID();
-
-	// 로그인 시간이 지정된 시간을 넘었거나 로그인 아이피가 현재 사용자의 아이피와 다를 경우 로그아웃 시킴
-	if(time()-$HTTP_SESSION_VARS["zb_logged_time"]>$_zbDefaultSetup["login_time"]||$HTTP_SESSION_VARS["zb_logged_ip"]!=$_SERVER['REMOTE_ADDR']) {
-		$zb_logged_no="";
-		$zb_logged_time="";
-		$zb_logged_ip="";
-		session_register("zb_logged_no");
-		session_register("zb_logged_ip");
-		session_register("zb_logged_time");
-		session_destroy();
-
-	} elseif($autoLoginData[no]) {
-		// 유효할 경우 로그인 시간을 다시 설정
+	if($autoLoginData[no]) {
 		$zb_logged_no=$autoLoginData[no];
-		$zb_logged_ip=$_SERVER['REMOTE_ADDR'];
+		$zb_logged_ip=$REMOTE_ADDR;
 		$zb_logged_time=time();
+		$_token=$_COOKIE['token'];
 		session_register("zb_logged_no");
 		session_register("zb_logged_ip");
 		session_register("zb_logged_time");
+		session_register("_token");
 		$HTTP_SESSION_VARS["zb_logged_no"] = $zb_logged_no;
-
 	// 세션 값을 체크하여 로그인을 처리
 	} elseif($HTTP_SESSION_VARS["zb_logged_no"]) {
-		// 유효할 경우 로그인 시간을 다시 설정
-		$zb_logged_time=time();
-		session_register("zb_logged_time");
-	} 
+		// 로그인 시간이 지정된 시간을 넘었거나 로그인 아이피가 현재 사용자의 아이피와 다를 경우 로그아웃 시킴
+		if(time()-$HTTP_SESSION_VARS["zb_logged_time"]>$_zbDefaultSetup["login_time"]||$HTTP_SESSION_VARS["zb_logged_ip"]!=$REMOTE_ADDR) {
+			$zb_logged_no="";
+			$zb_logged_ip="";
+			$zb_logged_time="";
+			session_register("zb_logged_no");
+			session_register("zb_logged_ip");
+			session_register("zb_logged_time");
+			session_destroy();
+		} else {
+			// 유효할 경우 로그인 시간을 다시 설정
+			$zb_logged_time=time();
+			session_register("zb_logged_time");
+		}
+	}
 	$_sessionEnd = getmicrotime();
 
 	// 현재 접속자의 데이타를 체크하여 파일로 저장 (회원, 비회원으로 구분해서 저장)
@@ -286,7 +286,7 @@ function dbconn() {
 
 	if(!$connect){
 		$connect = @mysql_connect($f[1],$f[2],$f[3]);
-		@mysql_set_charset('euckr',$connect);
+		@mysql_query("set names euckr",$connect);
 	}
 	if(!$connect) Error("DB 접속시 에러가 발생했습니다!");
 

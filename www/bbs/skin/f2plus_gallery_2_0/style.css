@@ -5,11 +5,12 @@ body,td,div {
 	letter-spacing:normal;
 	line-height:140%;
 }
+p {margin-top:0px; margin-bottom:0px;}
 
 img {border:0px;}
 select,option {font-size:9pt;font-family:tahoma;color:F7F7F7;background-color:4b4b4b}
 
-body{
+body {
 	scrollbar-face-color:#CCCCCC;
 	scrollbar-highlight-color: #DDDDDD;
 	scrollbar-3dlight-color: #EEEEEE;

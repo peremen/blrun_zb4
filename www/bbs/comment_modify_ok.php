@@ -39,7 +39,7 @@ if($flag != ok) {
 	}
 
 	if($s_data[use_html2]<2) {
-		$s_data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;","\t",$s_data[memo]);
+		$s_data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;","\t",$s_data[memo]);
 		$s_data[memo]=str_replace("&nbsp;&nbsp;","  ",$s_data[memo]);
 	}
 
@@ -354,7 +354,7 @@ if($flag != ok) {
 	$memo=trim(addslashes($memo));
 	if($use_html2<2) {
 		$memo=str_replace("  ","&nbsp;&nbsp;",$memo);
-		$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
+		$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
 	}
 
 	$reg_date=time(); // 현재의 시간구함

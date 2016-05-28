@@ -26,7 +26,7 @@ var close_id = null;
 var which_color = null;
 var selectionObj = null;
 var sw_no_grant_color = null;
-var default_source = "<HEAD><STYLE> body,td,div { font-family:굴림; font-size:10pt; color:#444444; line-height:140%; scrollbar-arrow-color: #CCCCCC; scrollbar-track-color: #EEEEEE; scrollbar-highlight-color: #FFFFFF; scrollbar-shadow-color: #CCCCCC; scrollbar-face-color:#FFFFFF; scrollbar-3dlight-color: #CCCCCC; scrollbar-darkshadow-color: #FFFFFF; margin-top:2px; margin-bottom:0px; margin-left:1px; margin-right:1px; } body { background-color:#FFFFFF; }</STYLE></HEAD>";
+var default_source = "<HEAD><STYLE> body,td,div { font-family:굴림; font-size:10pt; color:#444444; line-height:140%; scrollbar-arrow-color: #CCCCCC; scrollbar-track-color: #EEEEEE; scrollbar-highlight-color: #FFFFFF; scrollbar-shadow-color: #CCCCCC; scrollbar-face-color:#FFFFFF; scrollbar-3dlight-color: #CCCCCC; scrollbar-darkshadow-color: #FFFFFF; margin-top:2px; margin-bottom:0px; margin-left:1px; margin-right:1px; } body { background-color:#FFFFFF; } p {margin-top:0px; margin-bottom:0px;}</STYLE></HEAD>";
 var img_mark = new Array('ed_emoticon_img','ed_asword_img','ed_createLink_img','ed_hr_img','ed_urlimage_img','ed_urlmedia_img','ed_print_img','ed_saveas_img','ed_table_img','ed_tablebgcolor_img','ed_height_out_img','ed_height_in_img','ed_height_default_img','ed_newdoc_img','ed_bold_img','ed_italic_img','ed_underline_img','ed_strikethrough_img','ed_fontcolor_img','ed_fontbgcolor_img','ed_selectall_img','ed_cut_img','ed_copy_img','ed_paste_img','ed_search_img','ed_left_img','ed_center_img','ed_right_img','ed_numlist_img','ed_itemlist_img','ed_outdent_img','ed_indent_img');
 var img_mark_no_grant = new Array('ed_emoticon_img','ed_asword_img','ed_height_out_img','ed_height_in_img','ed_height_default_img','ed_newdoc_img','ed_print_img','ed_saveas_img','ed_bold_img','ed_italic_img','ed_underline_img','ed_fontcolor_img','ed_fontbgcolor_img','ed_selectall_img','ed_cut_img','ed_copy_img','ed_paste_img','ed_search_img');
 var tdbrd_line_0 = "<tr><td class='sw_bg_style_0'></td></tr>";
@@ -205,10 +205,10 @@ function btnStyc()
 }
 
 function htmlspecialchars_encode(str){
-	str = str.replace(/&amp;/gi,'&amp;amp;');
-	str = str.replace(/&#039;/gi,'&amp;#039;');
-	str = str.replace(/&quot;/gi,'&amp;quot;');
-	str = str.replace(/&nbsp;/gi,'&amp;nbsp;');
+	str = str.replace(/&amp;/g,'&amp;amp;');
+	str = str.replace(/&#039;/g,'&amp;#039;');
+	str = str.replace(/&quot;/g,'&amp;quot;');
+	str = str.replace(/&nbsp;/g,'&amp;nbsp;');
 	str = str.replace(/&lt;/g,'&amp;lt;').replace(/&gt;/g,'&amp;gt;');
 	str = str.replace(/</g,'&lt;').replace(/>/g,'&gt;');
 	str = str.replace(/\'/g,'&#039;');
@@ -222,10 +222,10 @@ function htmlspecialchars_decode(str){
 	str = str.replace(/&#039;/g,'\'');
 	str = str.replace(/&lt;/g,'<').replace(/&gt;/g,'>');
 	str = str.replace(/&amp;lt;/g,'&lt;').replace(/&amp;gt;/g,'&gt;');
-	str = str.replace(/&amp;nbsp;/gi,'&nbsp;');
-	str = str.replace(/&amp;quot;/gi,'&quot;');
-	str = str.replace(/&amp;#039;/gi,'&#039;');
-	str = str.replace(/&amp;/gi,'&');
+	str = str.replace(/&amp;nbsp;/g,'&nbsp;');
+	str = str.replace(/&amp;quot;/g,'&quot;');
+	str = str.replace(/&amp;#039;/g,'&#039;');
+	str = str.replace(/&amp;/g,'&');
 
 	return str;
 }
@@ -234,12 +234,12 @@ function brAddFix(str,use_html) {
 	if(use_html < 2) {
 		if(typeof window.getSelection != "undefined") //FF
 		{
-			str = str.replace(/\n/gi,"<br />");
+			str = str.replace(/\n/g,"<br />");
 			str = str.replace(ffPattern,"<$1$2>");
 		}
 		else if(typeof document.selection != "Control") //IE
 		{
-			str = str.replace(/\n/gi,"<br />");
+			str = str.replace(/\n/g,"<br />");
 			str = str.replace(iePattern,"<$1$2>");
 			str = str.replace(iePattern2,"<$1$2>");
 			str = str.replace(iePattern3,"");
@@ -252,6 +252,52 @@ function brRemove(str,use_html) {
 	if(use_html < 2) {
 		str = str.replace(/<br \/>|<br>/gi,"\n");
 		str = str.replace(iePattern3,"\n");
+	}
+	return str;
+}
+
+function pRemove(str,use_html) {
+	if(use_html < 2) {
+		if(re2.exec(uAgent) != null) { //IE8
+			str = str.replace(/<\/p>|<\/div>/gi,"");
+			str = str.replace(/<p>\n|<div>\n/gi,"\n");
+			str = str.replace(/<p>|<div>/gi,"");
+		} else { //Chrome & Opera
+			str = str.replace(/<p>\n<\/p>|<div>\n<\/div>/gi,"\n");
+			str = str.replace(/\n<\/p>|\n<\/div>/gi,"\n");
+			str = str.replace(/<\/p>|<\/div>/gi,"\n");
+			str = str.replace(/\n<p>|\n<div>/gi,"\n");
+			str = str.replace(/<p>|<div>/gi,"\n");
+			str = str.replace(/<span[^>]*?>|<\/span>/gi,"");
+		}
+		str = str.replace(/&nbsp;/g," ");
+	}
+	return str;
+}
+
+function eRemove(temp,str,use_html) {
+	// Chrome & Opera 에서 끝 </div> 태그 제거하는 루틴
+	var len1, len2;
+	if(use_html < 2 && re2.exec(uAgent) == null) {
+		if(temp.match(/<div[^>]*?>/gi) == null)
+			len1 = 0;
+		else
+			len1 = temp.match(/<div[^>]*?>/gi).length;
+		if(temp.match(/<\/div>/gi) == null)
+			len2 = 0;
+		else
+			len2 = temp.match(/<\/div>/gi).length;
+		while(len1 < len2) {
+			str = str.replace(/<\/div>$/gi,"");
+			if(temp.match(/<div[^>]*?>/gi) == null)
+				len1 = 0;
+			else
+				len1 = temp.match(/<div[^>]*?>/gi).length;
+			if(temp.match(/<\/div>/gi) == null)
+				len2 = 0;
+			else
+				len2 = temp.match(/<\/div>/gi).length;
+		}
 	}
 	return str;
 }
@@ -283,7 +329,7 @@ function memo2memoi(str){
 	}
 	if(e_use_html < 2) {
 		memo = memo.replace(/  /g,'&nbsp;&nbsp;');
-		memo = memo.replace(/\t/g,'&nbsp;&nbsp;&nbsp;&nbsp;');
+		memo = memo.replace(/\t/g,'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
 	}
 
 	return memo;
@@ -296,10 +342,10 @@ function memoi2memo(str){
 	else
 		e_use_html = parseInt(document.getElementById("use_html2").value);
 
-	var memo = "", temp, pt = 0;
+	var memo = "", memo2 = "", temp, pt = 0;
 	if(e_use_html < 2) {
-		str = str.replace(/&nbsp;&nbsp;&nbsp;&nbsp;/gi,'\t');
-		str = str.replace(/&nbsp;&nbsp;/gi,'  ');
+		str = str.replace(/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/g,'\t');
+		str = str.replace(/&nbsp;&nbsp;/g,'  ');
 	}
 	if(str.match(pattern) == null) {
 		memo = brRemove(str,e_use_html);
@@ -308,14 +354,18 @@ function memoi2memo(str){
 			temp = str.substring(pt,matchArray.index);
 			if(pattern2.test(matchArray[0]) == true) {
 				temp = brRemove(temp,e_use_html);
+				temp = pRemove(temp,e_use_html);
 				temp = htmlspecialchars_decode(temp);
 			} else {
 				temp = brRemove(temp,e_use_html);
+				memo2 += temp;
 			}
 			memo += temp + matchArray[0];
 			pt = matchArray.index + matchArray[0].length;
 		}
-		temp = str.substring(pt)
+		temp = str.substring(pt);
+		memo2 += temp;
+		temp = eRemove(memo2,temp,e_use_html);
 		memo += brRemove(temp,e_use_html);
 	}
 
@@ -1061,7 +1111,8 @@ function edit_window_size(window_size)
 		edit_windowdiv.style.height = (last_height + 50) + "px";
 	}
 	if(window_size == "height_out") {
-		edit_windowdiv.style.height = (last_height - 50) + "px";
+		if(edit_windowdiv.style.height > "150px")
+			edit_windowdiv.style.height = (last_height - 50) + "px";
 	}
 	if(window_size == "height_default") {
 		if(sw_edit_use == "write") {

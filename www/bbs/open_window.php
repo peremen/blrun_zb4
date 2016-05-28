@@ -17,7 +17,7 @@ mysql_close($connect);
 
 if(($mode=="i"||$mode=="t")&&$is_admin&&$data[user_id]) {
 	if($mode=="i") {
-		$href = "admin_setup_bac.php?exec=view_member&group_no=$data[group_no]&exec2=modify&no=$data[no]";
+		$href = "admin2.php?exec=view_member&group_no=$data[group_no]&exec2=modify&no=$data[no]";
 	} else {
 		$href = "admin/trace.php?keykind[5]=ismember&keyword=$data[user_id]";
 	}

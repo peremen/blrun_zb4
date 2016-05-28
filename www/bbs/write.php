@@ -6,6 +6,9 @@ $pass = stripslashes($pass);
  **************************************************************************/
 include "_head.php";
 
+// HTML 출력 
+head(" onload=unlock() onunload=hideImageBox() ","script_write.php");
+
 if($pass == "gg" || $member[no] || $password) {
 
 /***************************************************************************
@@ -47,9 +50,11 @@ if($pass == "gg" || $member[no] || $password) {
 
 // 답글이나 수정일때 원본글을 가져옴;;
 	if($mode!="write"&&$no) {
-		$result=@mysql_query("select * from $t_board"."_$id where no='$no'") or error(mysql_error());
 		unset($data);
+		$_dbTimeStart = getmicrotime();
+		$result=@mysql_query("select * from $t_board"."_$id where no='$no'") or error(mysql_error());
 		$data=mysql_fetch_array($result);
+		$_dbTime += getmicrotime()-$_dbTimeStart;
 		if(!$data[no]) Error("원본글이 존재하지 않습니다");
 	}
 
@@ -64,13 +69,17 @@ if($pass == "gg" || $member[no] || $password) {
 // 비밀글이고 패스워드가 틀리고 관리자가 아니면 에러 표시
 	if($mode!="write"&&$data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]) {
 		if($member[no]) {
+			$_dbTimeStart = getmicrotime();
 			$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where no='$data[no]' and ismember='$member[no]'"));
+			$_dbTime += getmicrotime()-$_dbTimeStart;
 			if(!$secret_check[0]) error("비밀글을 열람할 권한이 없습니다");
 		} else {
 			if(!get_magic_quotes_gpc()) {
 				$password = addslashes($password);
 			}
+			$_dbTimeStart = getmicrotime();
 			$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where no='$data[no]' and password=password('$password')"));
+			$_dbTime += getmicrotime()-$_dbTimeStart;
 			if(!$secret_check[0]) {
 				head();
 				$a_list="<a onfocus=blur() href='zboard.php?$href$sort'>";    
@@ -93,7 +102,9 @@ if($pass == "gg" || $member[no] || $password) {
 	if($mode=="reply"&&$data[headnum]<=-2000000000) Error("공지글에는 답글을 달수 없습니다");
 
 // 카테고리 데이타 가져옴;;
+	$_dbTimeStart = getmicrotime();
 	$category_result=mysql_query("select * from $t_category"."_$id order by no");
+	$_dbTime += getmicrotime()-$_dbTimeStart;
 
 // 카테고리 데이타 갖고 오기;;
 	if($setup[use_category]) {
@@ -120,7 +131,7 @@ if($pass == "gg" || $member[no] || $password) {
  * 글쓰기 모드에 따른 내용 체크
  *****************************************************************************************/
 	if($data[use_html]<2) {
-		$data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;","\t",$data[memo]);
+		$data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;","\t",$data[memo]);
 		$data[memo]=str_replace("&nbsp;&nbsp;","  ",$data[memo]);
 	}
 
@@ -251,15 +262,10 @@ if($pass == "gg" || $member[no] || $password) {
 // 미리보기 버튼
 	$a_preview="<a onfocus=blur() href='#' onclick='javascript:return view_preview();'>";
 
-// HTML 출력 
-
-	head(" onload=unlock() onunload=hideImageBox() ","script_write.php");
-
+// 각 스킨 디렉토리 write.php 인클루드
+	$_skinTimeStart = getmicrotime();
 	include $dir."/write.php";
-
-	foot();
-
-	include "_foot.php";
+	$_skinTime += getmicrotime()-$_skinTimeStart;
 
 // 세션이 초기화되는 버그 때문에 세션변수를 재설정
 	$WRT_SPM_PWD = "gg";
@@ -267,11 +273,6 @@ if($pass == "gg" || $member[no] || $password) {
 
 } else {
 ?>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
-<meta name="viewport" content="width=device-width">
-<title>암호입력 페이지</title>
 <script language="javascript">
 <!--
 function sendit() {
@@ -284,24 +285,27 @@ function sendit() {
 }
 //-->
 </script>
-</head>
-
-<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 <form name="myform" method="post" action="write.php">
 <input type=hidden name="page" value="<?=$page?>"><input type=hidden name="id" value="<?=$id?>"><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value="<?=$select_arrange?>"><input type=hidden name=desc value="<?=$desc?>"><input type=hidden name=page_num value="<?=$page_num?>"><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=zb_check value="<?=$setup[no]."_".$no?>">
-<table width=<?=$width?> height="70" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" align="center">
+<table width=320 height=100 border=0 cellpadding=1 cellspacing=0 bgcolor=#FFFFFF align=center>
 <tr>
 	<td>
-		<table width="320" height="100%" border="1" style="border-collapse:collapse;" bordercolor="black" bgcolor="#BEEBDD" cellpadding="1" align="center">
-		<tr><td align="center"><b><span style="font-size:11pt">익명 글쓰기!!<br>스팸방지 비번(<font color="red">gg</font>)을 입력: </span></b><input type="password" name="pwd" size="20"></td>
+		<table width=100% height=100% border=1 style="border-collapse:collapse" bordercolor=gray cellpadding=2 cellspacing=0 align=center>
+		<tr class=list0><td align=center><b>익명 글쓰기!!<br>스팸방지 비번(<font color=red>gg</font>)을 입력: </span></b><br><input type=password name=pwd size=20 class=input></td>
 		</tr>
-		<tr><td align="center"><input type="button" value="확인" onClick="javascript:sendit();">
-		<tr>
+		<tr class=list0><td align=center><input type=button value=" 확 인 " onClick="javascript:sendit()"></td>
+		</tr>
 		</table>
 	</td>
 </tr>
 </table>
 </form>
-</body>
-</html>
-<? } ?>
+<? 
+}
+
+foot();
+
+$_skinTimeStart = getmicrotime();
+include "_foot.php";
+$_skinTime += getmicrotime()-$_skinTimeStart;
+?>
