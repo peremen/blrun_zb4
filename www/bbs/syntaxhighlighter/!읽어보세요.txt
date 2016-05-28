@@ -1,0 +1,5 @@
+SyntaxHighlighter 3.0.83
+
+추가된 파일:
+1. scripts/jquery-1.4.2.min.js
+2. scripts/jQuery.js

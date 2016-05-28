@@ -1,0 +1,48 @@
+<?
+/*
+제로보드용 우편번호 플러그인
+만든이: 이수영 (http://nzeo.wo.tc:8080)
+본 소스의 무단배포,수정을 금합니다.
+*/
+ini_set("max_execution_time", "300");
+ini_set("max_input_time", "600");
+
+require_once "_head.php";
+
+$schema = "CREATE TABLE zetyx_zipcode (
+seq int(11) not null default '0',
+zipcode varchar(7) not null default '',
+sido varchar(4) not null default '',
+gugun varchar(20) not null default '',
+dong varchar(52) not null default '',
+bunji varchar(20) not null default '',
+primary key (seq),
+key dong (dong));";
+
+$query = mysql_query($schema) or die(mysql_error());
+
+$fd = fopen("zipcode.sql", "r");
+$i = 0;
+while (!feof ($fd))
+{
+	$data = fgets($fd, 6096);
+	$data = trim($data);
+	if($data)
+	{
+		$tmp=explode("\n",$data);
+		mysql_query($tmp[0]) or die(mysql_error());
+		$i++;
+		
+		if(($i % 1000) == 0)
+		{
+			echo "<b>{$i}</b> 건을 입력하였습니다.<br />";
+			flush();
+		}
+	}
+}
+fclose ($fd);
+@mysql_query("repair table zetyx_zipcode");
+?>
+<br />우편번호테이블 생성완료<br />
+<b><?=$i?></b>건을 입력 완료 하였습니다.<br />
+우편번호 테이블과 데이타를 정상적으로 생성하였습니다.

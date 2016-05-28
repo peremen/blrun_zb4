@@ -1,0 +1,1 @@
+html,head,title,meta,body,a,img,font,b,div,center,p,br,table,tbody,tr,td,th,pre,xmp,marquee,span,strong,object,param,u,i,o:p,hr,h1,h2,h3,h4,ol,ul,li,strike,embed,!--,em

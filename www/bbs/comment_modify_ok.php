@@ -1,0 +1,458 @@
+<?
+	//set_time_limit(0); 
+	$del_que1 = $del_que2 = null;
+
+/***************************************************************************
+ * 공통 파일 include
+ **************************************************************************/
+	include "_head.php";
+
+	if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)||$ZBRD_SS_VRS!=$antispam) Error("정상적으로 글을 수정하여 주시기 바랍니다.");
+
+if($flag != ok) {
+	/***************************************************************************
+	* 코멘트 수정 진행
+	**************************************************************************/
+
+	// 패스워드 addslashes
+	if(!get_magic_quotes_gpc()) {
+		$password = addslashes($password);
+	}
+
+	$pass =$password;
+	// 패스워드를 암호화
+	if($password) {
+		$temp=mysql_fetch_array(mysql_query("select password('$password')"));
+		$password=$temp[0];   
+	}
+
+	// 원본글을 가져옴
+	$s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
+
+	// 회원일때를 확인;;
+	if(!$is_admin&&$member[level]>$setup[grant_delete]) {
+		if(!$s_data[ismember]) {
+			if($s_data[password]!=$password) Error("비밀번호가 올바르지 않습니다");
+		} else {
+			if($s_data[ismember]!=$member[no]) Error("비밀번호를 입력하여 주십시요");
+		}
+	}
+
+	$s_data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;","\t",$s_data[memo]);
+	$s_data[memo]=str_replace("&nbsp;&nbsp;","  ",$s_data[memo]);
+
+	//신택스하이라이트 헤더 처리 시작
+	$codePattern = "#(<pre class\=\"brush\: [a-z]+[^>]*?>|<\/pre>)#si";
+	$memo = $s_data[memo];
+	$temp = preg_split($codePattern,$memo,-1,PREG_SPLIT_DELIM_CAPTURE);
+
+	for($i=0;$i<count($temp);$i++) {
+		$cnt=0;
+		for($j=0;$j<count($code);$j++) {
+			$pattern1 = "#<pre class\=\"brush\: ".$code[$j]."[^>]*? first-line\: ([0-9]+)\" title=\"([^\"]*?)\">#i";
+			$pattern2 = "#<\/pre>#i";
+			if(preg_match($pattern1,$temp[$i])) {
+				$cnt++;
+				$temp[$i]=preg_replace($pattern1,"[".$code[$j]."_code:\\1{\\2}]",$temp[$i]);
+				$i+=1;
+				if(preg_match($pattern2,$temp[$i+1])) {
+					$temp[$i+1]="[/".$code[$j]."_code]";
+					$i+=1;
+				}
+			}
+		}
+		if($cnt==0) {
+			$temp[$i]=str_replace("&amp;","&amp;amp;",$temp[$i]);
+			$temp[$i]=str_replace("&lt;","&amp;lt;",$temp[$i]);
+			$temp[$i]=str_replace("&gt;","&amp;gt;",$temp[$i]);
+		}
+	}
+
+	$memo="";
+
+	for($i=0;$i<count($temp);$i++) {
+		$memo = $memo.$temp[$i];
+	}
+	//신택스하이라이트 헤더 처리 끝
+
+	$memo=str_replace("&nbsp;","&amp;nbsp;",trim(stripslashes($memo)));
+
+	if($s_data[file_name1])$s_file_name1="<br>&nbsp;".$s_data[s_file_name1]."이 등록되어 있습니다.<br> <input type=checkbox name=del_file1 value=1> 삭제";
+	if($s_data[file_name2])$s_file_name2="<br>&nbsp;".$s_data[s_file_name2]."이 등록되어 있습니다.<br> <input type=checkbox name=del_file2 value=1> 삭제";
+
+	// 자료실 기능을 사용하는지 않하는지 표시;;
+	if(!$setup[use_pds]) { $hide_pds_start="<!--";$hide_pds_end="-->";}
+
+	if($s_data[use_html2]) $use_html2=" checked ";
+	if($s_data[is_secret]) $secret=" checked ";
+	
+	// HTML사용 체크버튼 
+	if($setup[use_html]==0) {
+		if(!$is_admin&&$member[level]>$setup[grant_html]) { 
+			$hide_html_start="<!--";
+			$hide_html_end="-->"; 
+		}
+	}
+
+	// HTML 사용 체크를 확장시킴
+	if(!$s_data[use_html2]) $value_use_html2 = 1;
+	else $value_use_html2=$s_data[use_html2];
+	$use_html2 .= " value='$value_use_html2' onclick='check_use_html2(this)'><ZeroBoard";
+
+	// 비밀글 사용;;
+	if(!$setup[use_secret]) { $hide_secret_start="<!--"; $hide_secret_end="-->"; }
+
+	// 이미지 창고 버튼
+	if($member[no]&&$setup[grant_imagebox]>=$member[level]) $a_imagebox="<a onfocus=blur() href='javascript:showImageBox(\"$id\")'>"; else $a_imagebox="<Zeroboard ";
+	if($s_data[ismember]!=$member[no]) $a_imagebox = "<Zeroboard";
+
+	// 미리보기 버튼
+	$a_preview="<a onfocus=blur() href='#' onclick='javascript:return view_preview();'>";
+
+	// 코드삽입 버튼
+	if($setup[use_html]>0) $a_codebox="<a onfocus=blur() href='javascript:showCodeBox()'>"; else $a_codebox="<Zeroboard ";
+
+	$a_list="<a href=zboard.php?$href$sort>";
+	$a_view="<a href=view.php?$href$sort&no=$no>";
+
+	head(" onload=unlock() onunload=hideImageBox() ","script_comment.php");
+	?>
+	<table border=0 cellspacing=1 cellpadding=1 class=line1 width=<?=$width?>>
+	<tr>
+		<td bgcolor=white>
+			<table border=0 cellspacing=1 cellpadding=8 width=100% height=120 bgcolor=white>
+			<form method=post action="comment_modify_ok.php?flag=ok" onsubmit="return check_submit()" name=write enctype=multipart/form-data>
+			<input type=hidden name=page value=<?=$page?>>
+			<input type=hidden name=id value=<?=$id?>>
+			<input type=hidden name=no value=<?=$no?>>
+			<input type=hidden name=select_arrange value=<?=$select_arrange?>>
+			<input type=hidden name=desc value=<?=$desc?>>
+			<input type=hidden name=page_num value=<?=$page_num?>>
+			<input type=hidden name=keyword value="<?=$keyword?>">
+			<input type=hidden name=category value="<?=$category?>">
+			<input type=hidden name=sn value="<?=$sn?>">
+			<input type=hidden name=ss value="<?=$ss?>">
+			<input type=hidden name=sc value="<?=$sc?>">
+			<input type=hidden name=sm value="<?=$sm?>">
+			<input type=hidden name=mode value="<?=$mode?>">
+			<input type=hidden name=c_no value=<?=$c_no?>>
+			<input type=hidden name=antispam value=<?=$antispam?>>
+			<col width=70 align=right style=padding-right:10px></col><col width=></col>
+ 			<?if(!$member['no']){?>
+			<tr>
+				<td class=list0><font class=list_eng><b>Name</b></td>
+				<td class=list1><input type=text name=name <?=size(8)?> maxlength=20 class=input value="<?=trim(stripslashes($s_data[name]))?>"></td>
+			</tr>
+			<tr>
+				<td class=list0><font class=list_eng><b>Password</b></td>
+				<td class=list1><input type=password name=password <?=size(8)?> maxlength=20 class=input value="<?=stripslashes($pass)?>"></td>
+			</tr>
+			<?}?>
+			<?=$hide_html_start?>
+			<tr>
+				<td class=list0>Option</td><td class=list_eng><input type=checkbox name=use_html2<?=$use_html2?>> HTML사용</td>
+			</tr>
+			<?=$hide_html_end?>
+			<tr>	
+				<td class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</td>
+				<td width=100% height=100% class=list1>
+					<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
+					<col width=></col><col width=70></col>
+					<tr>
+						<td width=100%><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea></td>
+						<td width=70><input type=submit rows=5 class=submit value='수정하기' accesskey="s" style=height:100%></td>
+					</tr>
+					</table>
+					<table border=0 cellspacing=2 cellpadding=0 width=100% height=20>
+					<col width=5%></col><col width=35%></col><col width=5%></col><col width=35%></col><col width=2%></col><col width=7%></col><col width=11%></col>
+					<tr valign=top>
+					<?=$hide_pds_start?>
+					  <td width=52 align=right><font class=list_eng>Upload #1</font></td>
+					  <td class=list_eng><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name1?></td>
+					  <td width=52 align=right><font class=list_eng>Upload #2</font></td>
+					  <td class=list_eng><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
+					<?=$hide_pds_end?>
+					  <td width=5 valign=middle class=list_eng><?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1></td><td width=40 align=left valign=middle class=list_eng>비밀글<?=$hide_secret_end?></td><td nowrap align=left valign=middle class=list_eng><?=$a_codebox?>코드삽입</a></td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			</form>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<div align="left"><?=$a_preview?>미리보기</a> <?=$a_imagebox?>그림창고</a></div>
+<?
+	foot();
+	include "_foot.php";
+}
+else {
+
+	if(isblank($memo)) Error("내용을 입력하셔야 합니다");
+	if(!$member[no]) {
+		if(isblank($password)) Error("비밀번호를 입력하셔야 합니다");
+	}
+
+	// 필터링;; 관리자가 아닐때;;
+	if(!$is_admin&&$setup[use_filter]) {
+		$filter=explode(",",$setup[filter]);
+		$f_memo=eregi_replace("([\_\-\./~@?=%&! ]+)","",strip_tags($memo));
+		for($i=0;$i<count($filter);$i++) 
+		if(!isblank($filter[$i])) {
+			if(eregi($filter[$i],$f_memo)) Error("<b>$filter[$i]</b> 은(는) 등록하기에 적합한 단어가 아닙니다");
+		}
+	}
+
+	// 패스워드 addslashes
+	if(!get_magic_quotes_gpc()) {
+		$password = addslashes($password);
+	}
+
+	// 패스워드를 암호화
+	if($password) {
+		$temp=mysql_fetch_array(mysql_query("select password('$password')"));
+		$password=$temp[0];   
+	}
+
+	// 관리자이거나 HTML허용레벨이 낮을때 태그의 금지유무를 체크
+	if(!$is_admin&&$setup[grant_html]<$member[level]) {
+
+		// 내용의 HTML 금지;;
+		if(!$use_html2||$setup[use_html]==0) $memo=del_html($memo);
+
+		// HTML의 부분허용일때;;
+		if($use_html2&&$setup[use_html]==1) {
+			$memo=str_replace("&lt;","&amp;lt;",$memo);
+			$memo=str_replace("<","&lt;",$memo);
+			$tag=explode(",",$setup[avoid_tag]);
+			for($i=0;$i<count($tag);$i++) {
+				if(!isblank($tag[$i])) { 
+					$memo=eregi_replace("&lt;".$tag[$i]." ","<".$tag[$i]." ",$memo); 
+					$memo=eregi_replace("&lt;".$tag[$i].">","<".$tag[$i].">",$memo); 
+					$memo=eregi_replace("&lt;/".$tag[$i],"</".$tag[$i],$memo); 
+				}
+			}
+			$memo=str_replace("&amp;lt;","&lt;",$memo);
+			//XSS 해킹 이벤트 핸들러 제거
+			$xss_pattern1 = "!(<[^>]*?)on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)([^>]*?)(>)!i";
+			$xss_pattern2 = "!on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)=!i";
+			if(preg_match($xss_pattern1,$memo))
+				$memo=preg_replace($xss_pattern1,"\\1\\4",$memo);
+			if(preg_match($xss_pattern2,$memo))
+				$memo=preg_replace($xss_pattern2,"",$memo);
+		}
+	} else {
+		if(!$use_html2) {
+			$memo=del_html($memo);
+		}
+	}
+
+	//신택스하이라이트 처리 시작
+	$codePattern = "#(\[[a-z]+\_code\:[0-9]+\{[^}]*?\}\]|\[\/[a-z]+\_code\])#si";
+	$temp = preg_split($codePattern,$memo,-1,PREG_SPLIT_DELIM_CAPTURE);
+
+	for($i=0;$i<count($temp);$i++) {
+		for($j=0;$j<count($code);$j++) {
+			$pattern1 = "#\[".$code[$j]."\_code\:([0-9]+)\{([^}]*?)\}\]#i";
+			$pattern2 = "#\[\/".$code[$j]."\_code\]#i";
+			if(preg_match($pattern1,$temp[$i])) {
+				if($code[$j]=="php")
+					$temp[$i]=preg_replace($pattern1,"<pre class=\"brush: $code[$j]; html_script: true; first-line: \\1\" title=\"\\2\">",$temp[$i]);
+				else
+					$temp[$i]=preg_replace($pattern1,"<pre class=\"brush: $code[$j]; first-line: \\1\" title=\"\\2\">",$temp[$i]);
+
+				$temp[$i+1]=str_replace("&amp;","&amp;amp;",$temp[$i+1]);
+				$temp[$i+1]=str_replace("&#039;","&amp;#039;",$temp[$i+1]);
+				$temp[$i+1]=str_replace("&quot;","&amp;quot;",$temp[$i+1]);
+				$temp[$i+1]=str_replace("&nbsp;","&amp;nbsp;",$temp[$i+1]);
+				$temp[$i+1]=str_replace("<","&lt;",$temp[$i+1]);
+				$i+=1;
+			}
+			elseif(preg_match($pattern2,$temp[$i])) {
+				$temp[$i]="</pre>";
+			}
+		}
+	}
+
+	$memo="";
+
+	for($i=0;$i<count($temp);$i++) {
+		$memo = $memo.$temp[$i];
+	}
+	//신택스하이라이트 처리 끝
+
+	// 원본글을 가져옴
+	unset($s_data);
+	$s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
+
+	// 각종 변수의 addslashes 시킴;;
+	$memo=trim(addslashes($memo));
+	if($use_html2<2) {
+		$memo=str_replace("  ","&nbsp;&nbsp;",$memo);
+		$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
+	}
+
+	$reg_date=time(); // 현재의 시간구함
+
+/***************************************************************************
+ * 업로드가 있을때
+ **************************************************************************/
+	if($HTTP_POST_FILES[file1]) {
+		$file1 = $HTTP_POST_FILES[file1][tmp_name];
+		$file1_name = $HTTP_POST_FILES[file1][name];
+		$file1_size = $HTTP_POST_FILES[file1][size];
+	}
+	if($HTTP_POST_FILES[file2]) {
+		$file2 = $HTTP_POST_FILES[file2][tmp_name];
+		$file2_name = $HTTP_POST_FILES[file2][name];
+		$file2_size = $HTTP_POST_FILES[file2][size];
+	}
+
+	// 파일삭제
+	if($del_file1==1) {
+		@z_unlink("./".$s_data[file_name1]);
+		$del_que1=",file_name1='',s_file_name1=''";
+		//빈 파일 폴더 삭제
+		if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$s_data[file_name1],$out))
+			if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
+	} 
+	if($del_file2==1) {
+		@z_unlink("./".$s_data[file_name2]);
+		$del_que2=",file_name2='',s_file_name2=''";
+		//빈 파일 폴더 삭제
+		if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$s_data[file_name2],$out))
+			if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
+	}
+	
+	if($file1_size>0&&$setup[use_pds]&&$file1) {
+		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$file1_name,$result); //특수문자가 들어갔는지 조사
+		if($result[0]!=$file1_name) Error("한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!"); //특수 문자가 들어갔으면
+
+		if(!is_uploaded_file($file1)) Error("정상적인 방법으로 업로드 해주세요");
+		if($file1_name==$file2_name) Error("같은 파일은 등록할수 없습니다");
+		$file1_size=filesize($file1);
+
+		if($setup[max_upload_size]<$file1_size&&!$is_admin) error("첫번째 파일 업로드는 최고 ".GetFileSize($setup[max_upload_size])." 까지 가능합니다");
+
+		// 업로드 금지
+		if($file1_size>0) {
+			$s_file_name1=$file1_name;
+			if(substr($s_file_name1,0,1)=='.'||preg_match("#\.(inc|phtm|htm|shtm|ztx|php|dot|asp|cgi|pl)$#i",$s_file_name1)) Error("Html, PHP 관련파일은 업로드할수 없습니다");
+
+			//확장자 검사
+			if($setup[pds_ext1]) {
+				$temp=explode(".",$s_file_name1);
+				$s_point=count($temp)-1;
+				$upload_check=$temp[$s_point];
+				if(!preg_match("/".$upload_check."/i",$setup[pds_ext1])||!$upload_check) Error("첫번째 업로드는 $setup[pds_ext1] 확장자만 가능합니다");
+			}
+
+			$file1=eregi_replace("\\\\","\\",$file1);
+			$s_file_name1=str_replace(" ","_",$s_file_name1);
+			$s_file_name1=str_replace("-","_",$s_file_name1);
+
+			// 디렉토리를 검사함
+			if(!is_dir("data/".$id)) { 
+				@mkdir("data/".$id,0777);
+				@chmod("data/".$id,0707);
+			}
+
+			// 중복파일이 있을때;; 
+			if(file_exists("data/$id/".$s_file_name1)) {
+				@mkdir("data/$id/".$reg_date,0777);
+				if(!move_uploaded_file($file1,"data/$id/".$reg_date."/".$s_file_name1)) Error("파일업로드가 제대로 되지 않았습니다");
+				$file_name1="data/$id/".$reg_date."/".$s_file_name1;
+				@chmod($file_name1,0706);
+				@chmod("data/$id/".$reg_date,0707);
+			} else {
+				if(!move_uploaded_file($file1,"data/$id/".$s_file_name1)) Error("파일업로드가 제대로 되지 않았습니다");
+				$file_name1="data/$id/".$s_file_name1;   
+				@chmod($file_name1,0706);
+			}
+		}
+  	}
+
+	if($file2_size>0&&$setup[use_pds]&&$file2) {
+		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$file2_name,$result); //특수문자가 들어갔는지 조사
+		if($result[0]!=$file2_name) Error("한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!"); //특수 문자가 들어갔으면
+		
+		if(!is_uploaded_file($file2)) Error("정상적인 방법으로 업로드 해주세요");
+		$file2_size=filesize($file2);
+		if($setup[max_upload_size]<$file2_size&&!$is_admin) error("파일 업로드는 최고 ".GetFileSize($setup[max_upload_size])." 까지 가능합니다");
+		if($file2_size>0) {
+			$s_file_name2=$file2_name;
+			if(substr($s_file_name2,0,1)=='.'||preg_match("#\.(inc|phtm|htm|shtm|ztx|php|dot|asp|cgi|pl)$#i",$s_file_name2)) Error("Html, PHP 관련파일은 업로드할수 없습니다");
+
+			//확장자 검사
+			if($setup[pds_ext2]) {
+				$temp=explode(".",$s_file_name2);
+				$s_point=count($temp)-1;
+				$upload_check=$temp[$s_point];
+				if(!preg_match("/".$upload_check."/i",$setup[pds_ext2])||!$upload_check) Error("업로드는 $setup[pds_ext2] 확장자만 가능합니다");
+			}
+
+			$file2=eregi_replace("\\\\","\\",$file2);
+			$s_file_name2=str_replace(" ","_",$s_file_name2);
+			$s_file_name2=str_replace("-","_",$s_file_name2);
+
+			// 디렉토리를 검사함
+			if(!is_dir("data/".$id)) {
+				mkdir("data/".$id,0777);
+				@chmod("data/".$id,0707);
+			}
+
+			// 중복파일이 있을때;; 
+			if(file_exists("data/$id/".$s_file_name2)) {
+				@mkdir("data/$id/".$reg_date,0777);
+				if(!move_uploaded_file($file2,"data/$id/".$reg_date."/".$s_file_name2)) Error("파일업로드가 제대로 되지 않았습니다");
+				$file_name2="data/$id/".$reg_date."/".$s_file_name2;
+				@chmod($file_name2,0706);
+				@chmod("data/$id/".$reg_date,0707);
+			} else {
+				if(!move_uploaded_file($file2,"data/$id/".$s_file_name2)) Error("파일업로드가 제대로 되지 않았습니다");
+				$file_name2="data/$id/".$s_file_name2;              
+				@chmod($file_name2,0706);
+			}
+		}
+	}
+	
+/***************************************************************************
+ * 수정글일때-덧글 수정 관련
+ **************************************************************************/
+	if($s_data[ismember]) {
+		if(!$is_admin&&$member[level]>$setup[grant_delete]&&$s_data[ismember]!=$member[no]) Error("정상적인 방법으로 수정하세요");
+	}
+
+	// 파일등록
+	if($file_name1) {$del_que1=",file_name1='$file_name1',s_file_name1='$s_file_name1'";}
+	if($file_name2) {$del_que2=",file_name2='$file_name2',s_file_name2='$s_file_name2'";}
+
+	//관리자 수정 권한땐 패스워드를 업데이트 시키지 않는다
+	if(!$is_admin&&$member[level]>$setup[grant_delete])
+		$ps_str="password='$password',";
+	else
+		$ps_str="";
+
+	$query = "update $t_comment"."_$id set ".$ps_str."name='$name',memo='$memo',use_html2='$use_html2',is_secret='$is_secret' $del_que1 $del_que2 where no = '$c_no'";
+	$result = mysql_query($query,$connect);
+
+	if($result) {
+		//보안을 위해 세션변수 삭제
+		session_unregister("ZBRD_SS_VRS");
+		session_unregister("num1num2");
+		// 페이지 이동
+		if($setup[use_alllist]) movepage("zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no");
+		else movepage("view.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no");
+		exit;
+	}
+	else {
+		echo "<script>alert('코멘트 수정실패');</script>";
+		session_unregister("ZBRD_SS_VRS");
+		session_unregister("num1num2");
+		exit;
+	}
+}
+
+	@mysql_close($connect);
+?>
