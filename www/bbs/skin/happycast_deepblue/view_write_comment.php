@@ -30,7 +30,7 @@ if($pass == "gg" || $member[no] || $data[is_secret] != 0) {
 	$box_view=true;
 ?>
 <!-- 간단한 답변글 쓰기 -->
-<form method=post name=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data>
+<form method=post name=write id=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data>
 <input type=hidden name=page value=<?=$page?>>
 <input type=hidden name=id value=<?=$id?>>
 <input type=hidden name=no value=<?=$no?>>
@@ -62,7 +62,7 @@ if($pass == "gg" || $member[no] || $data[is_secret] != 0) {
       <td>&nbsp;</td>
     </tr>
     <tr align=center valign=top>
-      <td nowrap height=80><? $c_name=stripslashes($c_name); echo $c_name; ?><?=$hide_c_password_start?><br><img src=images/t.gif border=0 height=10><br><font style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>Password</b></font><br><img src=images/t.gif border=0 height=5><br><input type=password name=password <?=size(8)?> maxlength=20 class=input><?=$hide_c_password_end?></td>
+      <td nowrap height=80><? $c_name=stripslashes($c_name); echo $c_name; ?><?=$hide_c_password_start?><br><img src=images/t.gif border=0 height=10><br><font style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>Password</b></font><br><img src=images/t.gif border=0 height=5><br><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input><?=$hide_c_password_end?></td>
       <td>
         <table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
         <tr><td width=100% valign=top>

@@ -70,7 +70,7 @@ if($pass == "gg" || $member[no] || $data[is_secret] != 0) {
 <?=$hide_c_password_start?>
 
 				<td valign=top style='padding:0 13 0 0;' nowrap>
-					<font class='sw_ft_style_1'>암호</font><input type='password' name='password' maxlength='20' style='width:60;' class='input'>
+					<font class='sw_ft_style_1'>암호</font><input type='password' id='password' name='password' maxlength='20' style='width:60;' class='input'>
 				</td>
 <?=$hide_c_password_end?>
 

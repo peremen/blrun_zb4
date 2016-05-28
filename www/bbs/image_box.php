@@ -23,7 +23,7 @@ if($setup[grant_imagebox]<$member[level]) Error("사용 권한이 없습니다","window.c
 // icon 디렉토리에 member_image_box 디렉토리가 없을경우 디렉토리 생성
 $path = "icon/member_image_box";
 if(!is_dir($path)) {
-	@mkdir($path,0707);
+	@mkdir($path,0707,true);
 	@chmod($path,0707);
 }
 
@@ -342,7 +342,7 @@ for($i=$startNum;$i<$endNum;$i++) {
 		$iBox_small="iXS_".$out[1].".jpg";
 		$error_check=0;
 		if(!is_dir($_zb_path.$path."/thumbnail/")) {
-			if(!@mkdir($_zb_path.$path."/thumbnail/",0777)) $error_check+=1;
+			if(!@mkdir($_zb_path.$path."/thumbnail/",0777,true)) $error_check+=1;
 			if(!@chmod($_zb_path.$path."/thumbnail/",0707)) $error_check+=2;
 		}
 		if($error_check==2) echo "<br> ".$_zb_path.$path."/thumbnail/ 디렉토리의 권한을 707로 설정하세요<br><br>";

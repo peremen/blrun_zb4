@@ -65,7 +65,7 @@ function formresize(mode) {
 </tr>
 </table>
 <table border=0 cellspacing=1 cellpadding=0 width=<?=$width?> style=table-layout:fixed>
-<form method=post name=write id=write action=write_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=wantispam value="<?=$wnum1num2?>">
+<form method=post id=write name=write action=write_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=wantispam value="<?=$wnum1num2?>">
 <tr>
   <td colspan=2 height=30>&nbsp;&nbsp;<?=$title?></td>
 </tr>
@@ -81,9 +81,9 @@ function formresize(mode) {
     <col width=80></col><col width=></col><col width=80></col><col width=></col>
     <tr>
       <td width=80 align=right class=listnum><b>Name&nbsp;</b></td>
-      <td><img src=images/t.gif width=1 align=absmiddle><input type=text name=name value="<? $name=stripslashes($name); echo $name; ?>" <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>;border-style:solid;"></td>
+      <td><img src=images/t.gif width=1 align=absmiddle><input type=text id=name name=name value="<? $name=stripslashes($name); echo $name; ?>" <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>;border-style:solid;"></td>
       <td width=80 align=right class=listnum><b>Password&nbsp;</b></td>
-      <td><input type=password name=password <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;"></td>
+      <td><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;"></td>
     </tr>
     </table>
   </td>
@@ -119,7 +119,7 @@ function formresize(mode) {
 <tr><td bgcolor=#ffffff height=1 colspan=2><img src=images/t.gif height=1></td></tr>
 <tr>
   <td align=right class=listnum><b>Subject&nbsp;</b></td>
-  <td> <input type=text name=subject value="<?=$subject?>" <?=size(60)?> maxlength=200 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;"> </td>
+  <td> <input type=text id=subject name=subject value="<?=$subject?>" <?=size(60)?> maxlength=200 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;"> </td>
 </tr>
 <tr><td bgcolor=#ffffff height=1 colspan=2><img src=images/t.gif height=1></td></tr>
 <tr>

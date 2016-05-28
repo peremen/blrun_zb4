@@ -30,7 +30,12 @@ function zb_formresize(obj) {
 
 function check_submit_y()
 {
-	if(document.check_attack.check.value==1)
+	var rName=document.getElementById('name');
+	var rPass=document.getElementById('password');
+	var rSub=document.getElementById('subject');
+	var rStr=document.getElementById('memo');
+	var rCheck=document.getElementById('check');
+	if(rCheck.value==1)
 	{
 		alert('글쓰기 버튼을 여러번 누르시면 안됩니다.');
 		return false;
@@ -38,7 +43,7 @@ function check_submit_y()
 
 	if(edit_tag_yn == "Y")
 	{
-		document.getElementById("memo").value = memoi2memo(memoiW.document.body.innerHTML);
+		rStr.value = memoi2memo(memoiW.document.body.innerHTML);
 	}
 
 	if(use_category_yn == "Y")
@@ -54,25 +59,25 @@ function check_submit_y()
 
 	if(member_yn == "Y")
 	{
-		if(!document.write.password.value)
+		if(!rPass.value)
 		{
 			alert('암호를 입력하여 주세요.\n\n암호를 입력하셔야 수정/삭제를 할 수 있습니다.');
-			document.write.password.focus();
+			rPass.focus();
 			return false;
 		}
 
-		if(!document.write.name.value)
+		if(!rName.value)
 		{
 			alert('이름을 입력하여 주세요.');
-			document.write.name.focus();
+			rName.focus();
 			return false;
 		}
 	}
 
-	if(!document.write.subject.value)
+	if(!rSub.value)
 	{
 		alert('제목을 입력하여 주세요.');
-		document.write.subject.focus();
+		rSub.focus();
 		return false;
 	}
 
@@ -87,39 +92,46 @@ function check_submit_y()
 		if(!memoE.value||memoE.value=="<P>&nbsp;</P>"||memoE.value=="<br>")
 		{
 			alert('내용을 입력하여 주세요.');
-			document.write.memo.focus();
+			rStr.focus();
 			return false;
 		}
 	}
 
-	if(document.write._name2.value==""){
+	var rName2=document.getElementById('_name2');
+	var rName3=document.getElementById('_name3');
+	var rName4=document.getElementById('_name4');
+	var rName5=document.getElementById('_name5');
+	var rName6=document.getElementById('_name6');
+	var rName8=document.getElementById('_name8');
+
+	if(rName2.value==""){
 		alert("감독을 입력하세요!");
-		document.write._name2.focus();
+		rName2.focus();
 		return false;
 	}
-	else if(document.write._name3.value==""){
+	else if(rName3.value==""){
 		alert("개봉일을 입력하세요!");
-		document.write._name3.focus();
+		rName3.focus();
 		return false;
 	}
-	else if(document.write._name4.value==""){
+	else if(rName4.value==""){
 		alert("장르를 입력하세요!");
-		document.write._name4.focus();
+		rName4.focus();
 		return false;
 	}
-	else if(document.write._name5.value==""){
+	else if(rName5.value==""){
 		alert("주연을 입력하세요!");
-		document.write._name5.focus();
+		rName5.focus();
 		return false;
 	}
-	else if(document.write._name6.value=="0"){
+	else if(rName6.value=="0"){
 		alert("평점을 입력하세요!");
-		document.write._name6.focus();
+		rName6.focus();
 		return false;
 	}
-	else if(document.write._name8.value==""){
+	else if(rName8.value==""){
 		alert("상영시간을 입력하세요!");
-		document.write._name8.focus();
+		rName8.focus();
 		return false;
 	}
 
@@ -127,15 +139,15 @@ function check_submit_y()
 	{
 		if(edit_tag_yn == "Y")
 		{
-			if(document.getElementById("subject").value && memoiW.document.body.innerHTML) { sub_val_ins(); }
+			if(rSub.value && memoiW.document.body.innerHTML) { sub_val_ins(); }
 		} else {
-			if(document.getElementById("subject").value && memoE.value) { sub_val_ins(); }
+			if(rSub.value && memoE.value) { sub_val_ins(); }
 		}
 	}
 
 	sw_mcpy();
 
-	document.check_attack.check.value=1;
+	rCheck.value=1;
 	show_waiting();
 	hideImageBox();
 
@@ -156,14 +168,14 @@ function check_submit_y()
 
 <tr>
   <td><font class=com2><b>이름</b></font></td>
-  <td><input type=text name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=input></td>
+  <td><input type=text id=name name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
   <td><font class=com2><b>암호</b></font></td>
-  <td><input type=password name=password <?=size(20)?> maxlength=20 class=input></td>
+  <td><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
@@ -187,7 +199,7 @@ function check_submit_y()
 <tr>
   <td><font class=com2>평점</font></td>
   <td>
-    <SELECT NAME=_name6 value=<?=$_name6?>>
+    <SELECT id=_name6 NAME=_name6 value=<?=$_name6?>>
 <? $checked=array("","","","","",""); $checked[$_name6]="selected"; ?>
     <option value=0 <?=$checked[0]?>>포인트</option>
     <option value=1 <?=$checked[1]?>>★</option>
@@ -207,35 +219,35 @@ function check_submit_y()
 </tr>
 <tr>
   <td><font class=com2>감독</font></td>
-  <td><input type=text name=_name2 value="<?=$_name2?>" <?=size(20)?> maxlength=200 class=input></td>
+  <td><input type=text id=_name2 name=_name2 value="<?=$_name2?>" <?=size(20)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
   <td><font class=com2>개봉일</font></td>
-  <td><input type=text name=_name3 value="<?=$_name3?>" <?=size(20)?> maxlength=200 class=input></td>
+  <td><input type=text id=_name3 name=_name3 value="<?=$_name3?>" <?=size(20)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
   <td><font class=com2>상영시간</font></td>
-  <td><input type=text name=_name8 value="<?=$_name8?>" <?=size(10)?> maxlength=200 class=input>분</td>
+  <td><input type=text id=_name8 name=_name8 value="<?=$_name8?>" <?=size(10)?> maxlength=200 class=input>분</td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
   <td><font class=com2>장르</font></td>
-  <td><input type=text name=_name4 value="<?=$_name4?>" <?=size(10)?> maxlength=200 class=input></td>
+  <td><input type=text id=_name4 name=_name4 value="<?=$_name4?>" <?=size(10)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
   <td><font class=com2>주연</font></td>
-  <td><input type=text name=_name5 value="<?=$_name5?>" <?=size(50)?> maxlength=200 class=input></td>
+  <td><input type=text id=_name5 name=_name5 value="<?=$_name5?>" <?=size(50)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>

@@ -20,7 +20,7 @@ if($pass == "gg" || $member[no] || $data[is_secret] != 0) {
 
 <img src=<?=$dir?>/t.gif border=0 height=4><br>
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> align=center>
-<form method=post name=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="write"><input type=hidden name=antispam value="<?=$num1num2?>">
+<form method=post id=write name=write action=comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="write"><input type=hidden name=antispam value="<?=$num1num2?>">
 <col width=60 style=padding:0,3,0,5></col><col width=80 style=padding:0,3,0,3></col><col width=80 style=padding:0,3,0,3></col><col width=80 style=padding:0,3,0,3></col><col width=></col>
 <tr>
 <?if(!$member['no']){?>
@@ -30,7 +30,7 @@ if($pass == "gg" || $member[no] || $data[is_secret] != 0) {
 <?=$hide_c_password_start?>
 
 	<td align=center><font class=list_eng><b>Password</b></font></td>
-	<td><input type=password name=password <?=size(8)?> maxlength=20 class=input></td>
+	<td><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input></td>
 <?=$hide_c_password_end?>
 
 	<td width="100%"><div align=right><?if($emoticon_use=="on"){?><input onclick='showEmoticon()' type=checkbox name=Emoticons value='yes'><img src=<?=$dir?>/use_emo.gif></div><?}?></td>
@@ -51,7 +51,7 @@ if($pass == "gg" || $member[no] || $data[is_secret] != 0) {
 			<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
 			<col width=></col><col width=70></col>
 			<tr>
-				<td width=100% valign=top><textarea name=memo id=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'></textarea></td>
+				<td width=100% valign=top><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'></textarea></td>
 				<td width=70><input type=submit rows=5 class=submit value=' ±Û¾²±â ' accesskey="s" style=height:100%></td>
 			</tr>
 			</table>

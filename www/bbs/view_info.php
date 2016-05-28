@@ -75,7 +75,7 @@ if($member_no>0&&$member[no]>0) {
   <td width="17" background="images/memo_listleftbg.gif"><img src="images/t.gif" width="17" height="10"></td>
   <td>
     <table border=0 width=100% cellspacing=0 cellpadding=3>
-    <form method=post action=send_message.php name=write>
+    <form method=post action=send_message.php name=write onsubmit="return check_submit();">
     <input type=hidden name=id value=<?=$id?>>
     <input type=hidden name=member_no value="<?=$member_no?>">
     <input type=hidden name=kind value=1>
@@ -113,10 +113,10 @@ if($member[no]&&$data[no]) {
 ?>
     <tr>
       <td width=50 align=right><img src=images/vi_subject.gif></td> 
-      <td>&nbsp;<input type=text style=width:80% name=subject class=input style=border-color:#d8b3b3> <input type=hidden name=html value=0></td>
+      <td>&nbsp;<input type=text style=width:80% id=subject name=subject class=input style=border-color:#d8b3b3> <input type=hidden name=html value=0></td>
     </tr>
     <tr>
-      <td colspan=2 align=center><textarea name=memo class=textarea rows=21 style=width:100%;border-color:#d8b3b3></textarea></td>
+      <td colspan=2 align=center><textarea id=memo name=memo class=textarea rows=21 style=width:100%;border-color:#d8b3b3></textarea></td>
     </tr>
     <tr>
       <td align=right colspan=2><input type=image border=0 src=images/sm_send.gif accesskey="s"> <a href=JavaScript:window.close()><img src="images/memo_close.gif" width="69" height="25" border="0"></a></td>

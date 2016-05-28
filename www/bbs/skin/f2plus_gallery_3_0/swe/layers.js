@@ -53,7 +53,7 @@ var sw_layers_emoticon = "<div id='ed_emoticondiv' style='position:absolute; vis
 sw_layers_emoticon += "<table id='ed_emoticontable' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5' onmousemove='clear_timeout()' onmouseout='start_timeout(this)'><tr><td style='padding:3;'>";
 sw_layers_emoticon += "<table width='110' height='130' border='0' cellpadding='2' cellspacing='0'>";
 
-var emoticon_dir = sw_d_zb_self_dir + sw_skins_dir + "/images/emoticon/";
+var emoticon_dir = sw_skins_dir + "/images/emoticon/";
 
 function ed_emoticonF()
 {

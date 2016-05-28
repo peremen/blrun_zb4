@@ -17,7 +17,7 @@ function zb_formresize(obj) {
 </SCRIPT>
 
 <table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0 style=table-layout:fixed>
-<form method=post name=write id=write action=write_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name="page" value="<?=$page?>"><input type=hidden name="id" value="<?=$id?>"><input type=hidden name=no value="<?=$no?>"><input type=hidden name=select_arrange value="<?=$select_arrange?>"><input type=hidden name=desc value="<?=$desc?>"><input type=hidden name=page_num value="<?=$page_num?>"><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=wantispam value="<?=$wnum1num2?>">
+<form method=post id=write name=write action=write_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name="page" value="<?=$page?>"><input type=hidden name="id" value="<?=$id?>"><input type=hidden name=no value="<?=$no?>"><input type=hidden name=select_arrange value="<?=$select_arrange?>"><input type=hidden name=desc value="<?=$desc?>"><input type=hidden name=page_num value="<?=$page_num?>"><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=wantispam value="<?=$wnum1num2?>">
 <col width=80 align=right style="padding-right:10px;height:28px" class=list1></col><col class=list0 style="padding-left:10px;height:28px" width=></col>
 <tr class=title>
 	<td colspan=2 class=title_han align=center>&nbsp;&nbsp;<?=$title?></td>
@@ -26,11 +26,11 @@ function zb_formresize(obj) {
 
 <tr>
 	<td width=80 align=right><font class=list_eng><b>Password</b></font></td>
-	<td><input type=password name=password <?=size(20)?> maxlength=20 class=input></td>
+	<td><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input></td>
 </tr>
 <tr>
 	<td align=right><font class=list_eng><b>Name</b></font></td>
-	<td><input type=text name=name value="<? $name=stripslashes($name); echo $name; ?>" <?=size(20)?> maxlength=20 class=input></td>
+	<td><input type=text id=name name=name value="<? $name=stripslashes($name); echo $name; ?>" <?=size(20)?> maxlength=20 class=input></td>
 </tr>
 <tr>
 	<td align=right><font class=list_eng>E-mail</font></td>
@@ -52,7 +52,7 @@ function zb_formresize(obj) {
 </tr>
 <tr valign=top>
 	<td align=right><font class=list_eng><b>Subject</b></font></td>
-	<td><input type=text name=subject id=subject value="<?=$subject?>" <?=size(60)?> maxlength=200 style=width:99% class=input></td>
+	<td><input type=text id=subject name=subject value="<?=$subject?>" <?=size(60)?> maxlength=200 style=width:99% class=input></td>
 </tr>
 <tr>
 	<td align=right onclick=document.getElementById('memo').rows=document.getElementById('memo').rows+4 style=cursor:pointer><font class=list_eng><b>Memo</b></font> <font class=list_eng>¡å</font></td>
