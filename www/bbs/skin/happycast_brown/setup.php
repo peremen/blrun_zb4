@@ -47,7 +47,7 @@ function swapImage() {
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <?=$memo_on_sound?>
 <tr>
-  <td valign=bottom><a href=javascript:void(window.open('member_memo3.php','member_memo','width=450,height=500,status=no,toolbar=no,resizable=yes,scrollbars=yes'))><img src=<?=$dir?>/setup_logedmember.gif border=0 align=absmiddle></a></td>
+  <td valign=middle><a href=javascript:void(window.open('member_memo3.php','member_memo','width=450,height=500,status=no,toolbar=no,resizable=yes,scrollbars=yes'))><img src=<?=$dir?>/setup_logedmember.gif border=0 align=absmiddle></a></td>
   <td valign=bottom><font class=setup><?=$total_connect?></font></td>
   <td width=100% align=right><?=$a_member_memo?><span onClick="swapImage('memozzz','','<?=$dir?>/member_memo_off.gif',0)"><?=$member_memo_icon?></span></a></td>
 </tr>

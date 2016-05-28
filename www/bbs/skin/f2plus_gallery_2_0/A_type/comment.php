@@ -36,7 +36,7 @@
 		<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
 		<col width=></col><col width=70></col>
 		<tr>
-		<td width=100%><textarea name=memo id=memo cols=20 rows=5 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea></td>
+		<td width=100% valign=top><textarea name=memo id=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea></td>
 		<td width=70><input type=submit rows=5 class=submit value='수정하기' accesskey="s" style=height:100%></td>
 		</tr>
 		</table>
