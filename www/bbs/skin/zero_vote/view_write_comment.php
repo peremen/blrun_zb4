@@ -18,11 +18,10 @@ $pass = stripslashes($pass);
 
 if($pass == "gg" || $member[no] || $data[is_secret] != 0) {
 
-	//랜덤한 두 숫자를 발생(1-8) 후 세션변수에 대입
+	//랜덤한 두 숫자를 발생(1-8) 후 변수에 대입
 	$num1 = rand(1,8);
 	$num2 = rand(1,8);
 	$num1num2 = $num1*10 + $num2;
-	session_register("num1num2");
 	//코멘트 보안을 위해 세션변수를 설정
 	$ZBRD_SS_VRS = $num1num2;
 	session_register("ZBRD_SS_VRS");

@@ -1,7 +1,6 @@
-
-<!--====================[ sw_edit 파일명: memo_convert_js.php ]====================-->
-
 <?
+/* ====================[ sw_edit 파일명: memo_convert_js.php ]==================== */
+
 function love_convert($memo)
 {
 	global $dir;

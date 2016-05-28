@@ -6,7 +6,7 @@ $pass = stripslashes($pass);
  **************************************************************************/
 include "_head.php";
 
-if($pass == "gg" || $member[no]) {
+if($pass == "gg" || $member[no] || $password) {
 
 /***************************************************************************
  * 게시판 설정 체크
@@ -15,6 +15,7 @@ if($pass == "gg" || $member[no]) {
  	if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
 
 	if(preg_match("/:\/\//i",$dir)) $dir=".";
+
 // 스팸방지 보안 세션변수 설정과 Mode변수 로그인 유형별 넘겨받기 셋팅
 	if($member[no]) {
 		$mode = $HTTP_GET_VARS[mode];
@@ -25,11 +26,10 @@ if($pass == "gg" || $member[no]) {
 	}
 	session_register("WRT_SPM_PWD");
 
-// 랜덤한 두 숫자를 발생(1-8) 후 세션변수에 대입
+// 랜덤한 두 숫자를 발생(1-8) 후 변수에 대입
 	$wnum1 = rand(1,8);
 	$wnum2 = rand(1,8);
 	$wnum1num2 = $wnum1*10 + $wnum2;
-	session_register("wnum1num2");
 	//글쓰기 보안을 위해 세션변수를 설정
 	$WRT_SS_VRS = $wnum1num2;
 	session_register("WRT_SS_VRS");
@@ -46,7 +46,7 @@ if($pass == "gg" || $member[no]) {
 	if($mode=="reply"&&$setup[grant_view]<$member[level]&&!$is_admin) Error("사용권한이 없습니다","login.php?id=$id&page=$page&page_num=$page_num&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&file=zboard.php");
 
 // 답글이나 수정일때 원본글을 가져옴;;
-	if(($mode=="reply"||$mode=="modify")&&$no) {
+	if($mode!="write"&&$no) {
 		$result=@mysql_query("select * from $t_board"."_$id where no='$no'") or error(mysql_error());
 		unset($data);
 		$data=mysql_fetch_array($result);
@@ -56,6 +56,37 @@ if($pass == "gg" || $member[no]) {
 // 수정 글일때 권한 체크
 	if($mode=="modify"&&$data[ismember]) {
 		if($data[ismember]!=$member[no]&&!$is_admin&&$member[level]>$setup[grant_delete]) Error("사용권한이 없습니다","login.php?id=$id&page=$page&page_num=$page_num&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&file=zboard.php");
+	}
+
+// ask_password.php에서 사용할 폼타켓을 write.php로 설정
+	$target="write.php";
+
+// 비밀글이고 패스워드가 틀리고 관리자가 아니면 에러 표시
+	if($mode!="write"&&$data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]) {
+		if($member[no]) {
+			$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where no='$data[no]' and ismember='$member[no]'"));
+			if(!$secret_check[0]) error("비밀글을 열람할 권한이 없습니다");
+		} else {
+			if(!get_magic_quotes_gpc()) {
+				$password = addslashes($password);
+			}
+			$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where no='$data[no]' and password=password('$password')"));
+			if(!$secret_check[0]) {
+				head();
+				$a_list="<a onfocus=blur() href='zboard.php?$href$sort'>";    
+				$a_view="<Zeroboard ";
+				$title="이 글은 비밀글입니다.<br>비밀번호를 입력하여 주십시요";
+				$input_password="<input type=password name=password size=20 maxlength=20 class=input>";
+				if(preg_match("/:\/\//i",$dir)||preg_match("/\.\./i",$dir)) $dir="./";
+				include $dir."/ask_password.php";
+				foot();
+				exit();
+			} else {
+				// 세션이 초기화되는 버그 때문에 세션변수를 재설정
+				$secret_str = $setup[no]."_".$no;
+				$HTTP_SESSION_VARS['zb_s_check'] = $secret_str;
+			}
+		}
 	}
 
 // 공지글에는 답글이 안 달리게 처리
@@ -129,8 +160,8 @@ if($pass == "gg" || $member[no]) {
 		}
 		// 신택스하이라이트 헤더 처리 끝
 
-		// 비밀글이고 패스워드가 틀리고 관리자가 아니면 리턴
-		if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$HTTP_SESSION_VARS[zb_s_check]!=$setup[no]."_".$no) error("정상적인 방법으로 수정하세요");
+		// 비밀글이고 관리자가 아니고 멤버가 일치하지 않고 세션값이 틀리면 리턴
+		if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$HTTP_SESSION_VARS[zb_s_check]!=$zb_check) error("정상적인 방법으로 수정하세요");
 
 			$name=stripslashes($data[name]); // 이름
 			$email=stripslashes($data[email]); // 메일
@@ -156,8 +187,8 @@ if($pass == "gg" || $member[no]) {
 	// 답글일때 제목과 내용 수정;;
 	} elseif($mode=="reply") {
 
-		// 비밀글이고 패스워드가 틀리고 관리자가 아니면 리턴
-		if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$HTTP_SESSION_VARS[zb_s_check]!=$setup[no]."_".$no) error("정상적인 방법으로 답글을 다세요");
+		// 비밀글이고 관리자가 아니고 멤버가 일치하지 않고 세션값이 틀리면 리턴
+		if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$HTTP_SESSION_VARS[zb_s_check]!=$zb_check) error("정상적인 방법으로 답글을 다세요");
 
 		if($data[is_secret]) $secret=" checked ";
 
@@ -230,6 +261,10 @@ if($pass == "gg" || $member[no]) {
 
 	include "_foot.php";
 
+// 세션이 초기화되는 버그 때문에 세션변수를 재설정
+	$WRT_SPM_PWD = "gg";
+	session_register("WRT_SPM_PWD");
+
 } else {
 ?>
 <html>
@@ -253,7 +288,7 @@ function sendit() {
 
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 <form name="myform" method="post" action="write.php">
-<input type=hidden name="page" value="<?=$page?>"><input type=hidden name="id" value="<?=$id?>"><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value="<?=$select_arrange?>"><input type=hidden name=desc value="<?=$desc?>"><input type=hidden name=page_num value="<?=$page_num?>"><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>">
+<input type=hidden name="page" value="<?=$page?>"><input type=hidden name="id" value="<?=$id?>"><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value="<?=$select_arrange?>"><input type=hidden name=desc value="<?=$desc?>"><input type=hidden name=page_num value="<?=$page_num?>"><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=zb_check value="<?=$setup[no]."_".$no?>">
 <table width=<?=$width?> height="70" border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" align="center">
 <tr>
 	<td>

@@ -1,6 +1,5 @@
 
 <!--====================[ sw_edit 파일명: ed_seting_option_comment.php ]====================-->
-
 <table border='0' cellpadding='0' cellspacing='0' width='100%'>
 <tr height='21'>
 <? if($sw_edit_yn == "N") { ?>
@@ -45,3 +44,4 @@
 	</td>
 </tr>
 </table>
+<!--====================[ sw_edit 파일명: ed_seting_option_comment.php 끝]====================-->

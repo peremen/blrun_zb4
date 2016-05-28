@@ -15,6 +15,7 @@
 <input type=hidden name=sm value="<?=$sm?>">
 <input type=hidden name=mode value="<?=$mode?>">
 <input type=hidden name=c_no value=<?=$c_no?>>
+<input type=hidden name=zb_check value="<?=$zb_check?>">
 <table border=0 width=250 class=zv3_writeform>
 <tr>
   <td align=center bgcolor=#000000 style=padding:2px><b><font color="#FFFFFF"><?=$title?></font></b></td>

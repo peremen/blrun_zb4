@@ -104,30 +104,6 @@ function check_submit_y() {
 
 	return true;
 }
-
-function preview_m() {
-	var rSub=document.getElementById('subject');
-	var rStr=document.getElementById('memo');
-	if(!rSub.value)
-	{
-		alert('글쓰기 제목을 입력하여 주세요.');
-		rSub.focus();
-		return false;
-	}
-
-	if(!rStr.value)
-	{
-		alert('글쓰기 내용을 입력하여 주세요.');
-		rStr.focus();
-		return false;
-	}
-	var rWrite=document.getElementById('write');
-	rWrite.action = "view_preview.php";
-	rWrite.target = "_blank";
-	rWrite.submit();
-	rWrite.action = "<?=$dir?>/write_ok.php";
-	rWrite.target = "_self";
-}
 //-->
 </SCRIPT><br>
 <?$_url=$dir."/write_ok.php";?>

@@ -4,10 +4,8 @@ $input_password = str_replace(">"," style='width:90;'>",$input_password);
 
 if($target=="del_comment_ok.php"){
 	$target=$dir."/del_comment_ok.php";
-}else {
-	if($target=="delete_ok.php"){
-		$target=$dir."/delete_ok.php";
-	}
+}elseif($target=="delete_ok.php"){
+	$target=$dir."/delete_ok.php";
 }	
 ?>
 <table width='<?=$setup['table_width']?>' border='0' cellpadding='0' cellspacing='0'>
@@ -28,6 +26,7 @@ if($target=="del_comment_ok.php"){
 <input type=hidden name=sm value="<?=$sm?>">
 <input type=hidden name=mode value="<?=$mode?>">
 <input type=hidden name=c_no value=<?=$c_no?>>
+<input type=hidden name=zb_check value="<?=$zb_check?>">
 <tr>
 	<td align='center' style='padding:50 0 50 0;'>
 		<table width='250' border='0' cellpadding='0' cellspacing='0' background='<?=$dir?>/images/sw_window_bgi.gif' style='word-break:break-all; background-repeat:repeat-y;'>

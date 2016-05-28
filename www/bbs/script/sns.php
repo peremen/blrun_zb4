@@ -2,6 +2,7 @@
 	;
 } else {
 ?>
+
 <!--SNS 관련 태그 삽입-->
 <center>
 <div style="clear:both;line-height:1em;width:300px;">

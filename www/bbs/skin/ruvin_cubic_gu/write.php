@@ -46,11 +46,10 @@ function sendit() {
 	}
 	session_register("WRT_SPM_PWD");
 
-//랜덤한 두 숫자를 발생(1-8) 후 세션변수에 대입
+//랜덤한 두 숫자를 발생(1-8) 후 변수에 대입
 	$wnum1 = rand(1,8);
 	$wnum2 = rand(1,8);
 	$wnum1num2 = $wnum1*10 + $wnum2;
-	session_register("wnum1num2");
 	//글쓰기 보안을 위해 세션변수를 설정
 	$WRT_SS_VRS = $wnum1num2;
 	session_register("WRT_SS_VRS");
