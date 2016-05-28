@@ -27,10 +27,13 @@ function win_size(img_width,img_height)
 	window.resizeTo(new_width, new_height);
 }
 
+var rate_X = <?=$width?>/window.screen.width;
+var rate_Y = <?=$height?>/window.screen.height;
+
 function scroll_img(img_width,img_height,myEvent)
 {
 	if(window.screen.width<=img_width || window.screen.height-30<=img_height)
-	window.scroll(myEvent.clientX - 30,myEvent.clientY -30);
+		window.scroll(Math.ceil(rate_X*(myEvent.clientX - 30)),Math.ceil(rate_Y*(myEvent.clientY - 30)));
 }
 -->
 </script>
