@@ -17,7 +17,7 @@
 <tr align=center class=list<?=$coloring%2?>>
 	<? if($browser=="1"){ ?><td class=list_eng>Notice</td><? } ?>
 	<?=$hide_category_start?><td class=list_eng><div style="overflow:hidden"><? if($browser=="1") echo $category_name; else echo Notice; ?></div></td><?=$hide_category_end?>
-	<td align=left nowrap='nowrap'><div style="overflow:hidden"><?=$hide_cart_start?><input type=checkbox name=cart value="<?=$data[no]?>"><?=$hide_cart_end?>&nbsp;<?=$insert?><?=$subject?>&nbsp;<?=$comment_new?><?=$new?></div></td> 
+	<td align=left nowrap='nowrap'><div style="overflow:hidden"><?=$hide_cart_start?><input type=checkbox name=cart value="<?=$data[no]?>"><?=$hide_cart_end?>&nbsp;(°øÁö)&nbsp;<?=$insert?><?=$subject?>&nbsp;<?=$comment_new?><?=$new?></div></td> 
 	<? if($browser=="1"){ ?><td nowrap='nowrap'><div style="overflow:hidden"><nobr><?=$face_image?><?=$name?></nobr></div></td><? } ?>
 	<? if($browser=="1"){ ?><td nowrap='nowrap' class=list_eng><?=$reg_date?></td><? } ?>
 	<? if($browser=="1"){ ?>

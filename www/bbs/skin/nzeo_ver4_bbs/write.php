@@ -93,5 +93,6 @@ function zb_formresize(obj) {
 		<input type=button value="취소하기" class=button onclick=history.back()>
 	</td>
 </tr>
+</form>
 </table>
 <br>

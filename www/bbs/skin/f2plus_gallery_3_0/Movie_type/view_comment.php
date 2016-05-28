@@ -1,13 +1,5 @@
 <?
 	unset($_point);
-
-	if($c_data[ismember]) {
-		$imageBoxPattern = "/\[img\:(.+?)\.(jpg|jpeg|gif|png)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i";
-		$imageBoxPattern2 = "/\[img\:(.+?)\.(jpg|jpeg|gif|png)/e";
-		$c_memo=preg_replace($imageBoxPattern2,"'[img:'.str_replace('%2F', '/', urlencode('\\1.\\2'))",$c_memo);
-		$c_memo=preg_replace($imageBoxPattern,"<img src='icon/member_image_box/$c_data[ismember]/\\1.\\2' align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$c_memo);
-	}
-
 	$c_memo = love_convert($c_memo);
 	if($is_admin) $show_comment_ip = "<font class=com5>".$c_data['ip']."</font>";
 	else $show_comment_ip = "";
@@ -17,15 +9,15 @@
 	$a_c_vote="$dir/vote.php?id=$id&no=$data[no]&c_no=$t_c[no]&who=$member[no]";
 	$c_vote=$t_c[vote];
 	if ($t_c[point1]!=0){
-	for($i=1;$i<=$t_c[point1];$i++){
-		$_point.="★";
+		for($i=1;$i<=$t_c[point1];$i++){
+			$_point.="★";
 		}
 	}
 	if($t_c[point2]==1) $_point=$_point."☆";
 	$c_colspan=2;
 	if($member[no]){
 		$c_colspan=3;
-		}
+	}
 		
 ?>
 <img src=<?=$dir?>/images/t.gif border=0 height=8><br>
@@ -47,14 +39,14 @@
 		</tr>
 		<tr><td height=1 background=<?=$dir?>/images/dot3.gif colspan=<?=$c_colspan?>></td></tr>
 		<tr>
-		<td valign=top bgcolor=eeeeee colspan=<?=$c_colspan?>>
+		<td valign=top bgcolor=eeeeee colspan=<?=$c_colspan?>>&nbsp;::: 
 		<?
 		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$member[level]>$setup[grant_view_secret])
 			echo "<span style='color:gray;font-size:10pt'>비밀 덧글입니다</span>";
 		else {
 		?>
-		<?=$c_hide_download1_start?><font class=com2>- <b>Download #1</b> : <?=$c_file_link1?><?=$c_file_name1?> (<?=$c_file_size1?>)</a>, Download : <?=$c_file_download1?></font><br><?=$c_upload_image1?><?=$c_hide_download1_end?>
-		<?=$c_hide_download2_start?><font class=com2>- <b>Download #2</b> : <?=$c_file_link2?><?=$c_file_name2?> (<?=$c_file_size2?>)</a>, Download : <?=$c_file_download2?></font><br><?=$c_upload_image2?><?=$c_hide_download2_end?>
+		<?=$c_hide_download1_start?><br><font class=com2>- <b>Download #1</b> : <?=$c_file_link1?><?=$c_file_name1?> (<?=$c_file_size1?>)</a>, Download : <?=$c_file_download1?></font><br><?=$c_upload_image1?><?=$c_hide_download1_end?>
+		<?=$c_hide_download2_start?><br><font class=com2>- <b>Download #2</b> : <?=$c_file_link2?><?=$c_file_name2?> (<?=$c_file_size2?>)</a>, Download : <?=$c_file_download2?></font><br><?=$c_upload_image2?><?=$c_hide_download2_end?>
 		<br><font class=com2><?if($c_data[is_secret]) echo "<img src=".$dir."/images/post_security.gif border=0>";?><?=$c_memo?></font>
 		<? } ?>
 		</td></tr>

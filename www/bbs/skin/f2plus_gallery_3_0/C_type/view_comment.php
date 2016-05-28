@@ -1,13 +1,5 @@
 <?
-	if($c_data[ismember]) {
-		$imageBoxPattern = "/\[img\:(.+?)\.(jpg|jpeg|gif|png)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i";
-		$imageBoxPattern2 = "/\[img\:(.+?)\.(jpg|jpeg|gif|png)/e";
-		$c_memo=preg_replace($imageBoxPattern2,"'[img:'.str_replace('%2F', '/', urlencode('\\1.\\2'))",$c_memo);
-		$c_memo=preg_replace($imageBoxPattern,"<img src='icon/member_image_box/$c_data[ismember]/\\1.\\2' align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$c_memo);
-	}
-	
 	$c_memo = love_convert($c_memo);
-
 	if($is_admin) $show_comment_ip = $c_data['ip'];
 	else $show_comment_ip = "";
 	$a_del=str_replace("del_comment.php?","del_comment.php?_zb_url=$zb_url/&_zb_path=$zb_path&",$a_del);
@@ -22,14 +14,14 @@
 	</tr>
 <tr>
 <td background=<?=$dir?>/images/cc_middle_bg1.gif></td>
-<td><font color=F2955C class=com><?=++$count?>.</font>
+<td><font color=F2955C class=com><?=++$count?>.</font>&nbsp;::: 
 <?
 if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$member[level]>$setup[grant_view_secret])
 	echo "<span style='color:gray;font-size:10pt'>비밀 덧글입니다</span>";
 else {
 ?>
-<?=$c_hide_download1_start?><font class=com2>- <b>Download #1</b> : <?=$c_file_link1?><?=$c_file_name1?> (<?=$c_file_size1?>)</a>, Download : <?=$c_file_download1?></font><br><?=$c_upload_image1?><?=$c_hide_download1_end?>
-<?=$c_hide_download2_start?><font class=com2>- <b>Download #2</b> : <?=$c_file_link2?><?=$c_file_name2?> (<?=$c_file_size2?>)</a>, Download : <?=$c_file_download2?></font><br><?=$c_upload_image2?><?=$c_hide_download2_end?>
+<?=$c_hide_download1_start?><br><font class=com2>- <b>Download #1</b> : <?=$c_file_link1?><?=$c_file_name1?> (<?=$c_file_size1?>)</a>, Download : <?=$c_file_download1?></font><br><?=$c_upload_image1?><?=$c_hide_download1_end?>
+<?=$c_hide_download2_start?><br><font class=com2>- <b>Download #2</b> : <?=$c_file_link2?><?=$c_file_name2?> (<?=$c_file_size2?>)</a>, Download : <?=$c_file_download2?></font><br><?=$c_upload_image2?><?=$c_hide_download2_end?>
 <br><font class=com2><?if($c_data[is_secret]) echo "<img src=".$dir."/images/post_security.gif border=0>";?><?=$c_memo?></font>
 <? } ?></td>
 <td background=<?=$dir?>/images/cc_middle_bg2.gif></td></tr>
