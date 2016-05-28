@@ -32,8 +32,8 @@
 		
 				<img src=<?=$dir?>/t.gif border=0 width=10><br>
 				<!--여기부터 본문 내용 시작입니다-->
-				<?=$memo?>
-				<br>
+				<?=$memo?><br><br>
+				<? include "script/sns.php"; ?>
 				<br><div align=right class=list_eng><?=$ip?></div><br>
 				<a href="http://www.ntzn.net/" target="_blank" style="color:blue;">http://www.ntzn.net/</a>
 				<!--여기까지 본문 내용 끝입니다-->
