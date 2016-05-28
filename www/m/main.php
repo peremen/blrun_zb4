@@ -78,12 +78,5 @@ include $_zb_path."latest_skin/bes_latest_scroll/recent_bbs_scroll.php";
 	</td>
 </tr>
 </table>
-<!-- 리포트2.0 로그분석코드 시작 -->
-<script type="text/javascript">
-var JsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
-var uname = escape("www.blrun.net");
-document.write(unescape("%3Cscript id='log_script' src='" + JsHost + "blrun.weblog.cafe24.com/weblog.js?uid=blrun&uname="+uname+"' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<!-- 리포트2.0  로그분석코드 완료 -->
 </body>
 </html>

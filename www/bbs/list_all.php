@@ -333,5 +333,5 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 }
 
 //MySQL Á¾·á /////////////////////////////////////
-if($connect) mysql_close($connect); $connect="";
+if($connect) @mysql_close($connect); $connect="";
 ?>

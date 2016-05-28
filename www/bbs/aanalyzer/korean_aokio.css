@@ -1,0 +1,430 @@
+body {  font: 14px;
+		background-color: #F3F3F3;
+		background-image: url(./images/bg_pattern01.gif);
+/*		margin:1; */
+/*			padding:1;*/
+}
+
+a {
+		text-decoration:none;
+		color:#aa1100;
+/*		padding:0.5em 0;
+		color:#e63;
+		*/
+}
+ a:hover {
+		color:#9b4;
+}
+
+
+.loginMainMessage{
+	font: 12px Gulim;
+	color: #000000;
+	text-align: center;
+	font-weight: bold;
+}
+
+.loginSubMessage{
+	font: 9px Tahoma;
+	color: #3366cc;
+	text-align: center;
+}
+
+
+.loginErrorMessage{
+	font: 12px Gulim;
+	color: #FF0000;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+.loginInputItemTitles{
+	font: 11px Tahoma;
+	color: #3366cc;
+	text-align: center;
+	font-weight: bold;
+}
+.loginInputForms{
+	font: 12px Tahoma;
+	
+	text-align: center;
+	font-weight: bold;
+}
+
+.loginTable{
+	background-color: #FFFFFF;
+	float:center;
+}
+
+
+
+
+.topRecordItems{
+	font: 9px Tahoma;
+	color: #3366cc;
+	text-align: left;
+	font-weight: bold;
+
+}
+
+.topRecordCounts{
+	font: 9px Tahoma;
+	color: #3366cc;
+	text-align: left;
+
+}
+.topRecordMenu{
+	font: 9px Tahoma;
+	color: #3366cc;
+	text-align: right;
+
+}
+
+.topTodayInfo{
+	font: 9px Tahoma;
+	color: #3366cc;
+	text-align: right;
+
+}
+
+
+.topApplicationName{
+	font: 14px Tahoma;
+	color: #3366cc;
+	text-align: left;
+	font-weight: bold;
+
+}
+
+.topTargetName{
+	font: 12px Tahoma;
+	color: #3366cc;
+	text-align: left;
+	font-weight: bold;
+}
+
+/* 사용 */
+.analysisTableTopItemTitles {
+	font: 12px Gulim;
+	font-weight: 500;
+/*	font-variant: small-caps;  */
+	text-align: center;
+	font-weight: bold;
+/*	letter-spacing: inherit;  */
+/*	vertical-align: middle;  */
+}
+
+/* 사용 */
+.analysisTableItemRecordYear {
+	font: 12px Gulim;
+	font-weight: 500;
+/*	font-variant: small-caps;  */
+	text-align: center;
+	font-weight: bold;
+/*	letter-spacing: inherit;  */
+/*	vertical-align: middle;  */
+}
+
+/* 사용 */
+.analysisTableBottomTitles {
+	font: 12px Gulim;
+	font-weight: 500;
+/*	font-variant: small-caps;  */
+	text-align: left;
+	font-weight: bold;
+/*	letter-spacing: inherit;  */
+/*	vertical-align: middle;  */
+}
+
+.analysisTableBottomRecords {
+	font: 12px Gulim;
+	font-weight: 500;
+/*	font-variant: small-caps;  */
+	text-align: left;
+/*	font-weight: bold;  */
+/*	letter-spacing: inherit;  */
+/*	vertical-align: middle;  */
+}
+
+
+
+/* 사용 */
+.analysisTableTopItemRecord {
+	font: 12px Gulim;
+	font-weight: 500;
+/*	font-variant: small-caps;  */
+	text-align: center;
+	font-weight: bold;
+/*	letter-spacing: inherit;  */
+/*	vertical-align: middle;  */
+}
+
+.analysisPercentage {
+	font: 10px Tahoma;
+	text-align: right;
+}
+.analysisItem {
+	font: 11px Tahoma;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+.analysisRefererItem {
+	font: 11px Tahoma;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.analysisHangulItem {
+	font: 12px Gulim;
+	text-align: left;
+	vertical-align: middle;
+}
+
+
+
+.analysisCounts {
+	font: 10px Tahoma;
+	text-align: right;
+}
+
+
+
+
+.analysisTableNationNames {
+	font: 11px Tahoma;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+
+
+.analysisTableSRUA {
+	font: 11px Tahoma;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+
+.analysisPagerList {
+	font: 11px Tahoma;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.analysisPagerThisPage {
+	font: 11px Tahoma;
+	text-align: center;
+	font-weight: bold;  
+	vertical-align: middle;
+}
+
+
+.analysisPagerPrev {
+	font: 11px Tahoma;
+	text-align: right;
+/*	font-weight: bold;  */
+	vertical-align: middle;
+}
+
+
+.analysisPagerNext {
+	font: 11px Tahoma;
+	text-align: left;
+/*	font-weight: bold;  */
+	vertical-align: middle;
+}
+
+
+
+
+
+
+
+.mainTable {
+        background-color: #ffffff;
+}
+
+.menuTableBorder {
+        background-color: #dbdbdb;
+}
+
+.titleTable {
+	background-color: #ffffff;
+	font: 14px Tahoma;
+	color: #3366cc;
+	font-weight: bold;
+}
+
+.analysisItem {
+	font: 11px Tahoma;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: middle;
+}
+.allAnalysisItem {
+	font: 10px Tahoma;
+	background-color: #f0f0f0;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+}
+.allAnalysisRecords{
+	font: 11px Tahoma;
+	background-color: #ffffff;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.analysisItemTime {
+	font: 11px Tahoma;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+
+.analysisItemKorean {
+	font: 12px Gulim;
+	text-align: left;
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+
+.analysisGraph {
+	text-align: left;
+}
+
+.contentsCell {
+	background-position: left top;
+	vertical-align: top;
+
+}
+
+.contentTableItemsCells{
+	background-color: #ffffff;
+	text-align: center;
+	font: 12px Tahoma;
+	color: #0000;
+	font-weight: bold;
+}
+
+.iconWithTitle{
+	text-align: center;
+
+}
+
+
+
+.lucida{
+ font-size:7pt;
+ font-family:lucida sans unicode,trebuchet ms, arial;
+}
+
+
+.configItems{
+	font: 11px Tahoma;
+	background-color: #ffffff;
+	text-align: left;
+//	vertical-align: middle;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.bottomApplicationStrings{
+	font: 9px Tahoma;
+	text-align: right;
+}
+
+
+
+
+.valignTop{
+
+	vertical-align: top;
+
+}
+
+
+.managerItemTitles{
+	font: 12px Tahoma;
+	color: #000000;
+	text-align: center;
+	font-weight: bold;
+}
+.managerItemContents{
+	font: 12px Tahoma;
+	color: #000000;
+	text-align: center;
+
+}
+
+.managerConfigItemTitles{
+	font: 12px Gulim;
+	background-color: #f0f0f0;
+	text-align: center;
+	font-weight: bold;
+}
+.managerConfigCreateComment{
+	font: 12px Gulim;
+	color: #ff0000;
+	text-align: left;
+	font-weight: bold;
+}
+
+
+.managerCreateExample{
+	font: 12px Courier New;
+	color: #000000;
+	text-align: left;
+}
+
+
+.configItemTitles{
+	font: 12px Gulim;
+	background-color: #f0f0f0;
+	text-align: center;
+	font-weight: bold;
+}
+
+.configItemContents{
+	font: 12px Gulim;
+	text-align: left;
+	font-weight: normal;
+}
+
+.configErrorMessage{
+}
+
+.configOKMessage{
+	font: 13px Gulim;
+	color: #ff0000;
+	text-align: center;
+	font-weight: bold;
+}
+
+
+
+.words{
+	font: 12px Gulim;
+	color: #000000;
+	text-align: center;
+}
+

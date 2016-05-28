@@ -160,7 +160,7 @@ else $config_dir="";
 
 // 모바일일 때와 PC일 때 처리
 $browser=$HTTP_USER_AGENT; //echo $browser;
-if(preg_match("/(iphone|ipod|android|x11|bada|blackberry|windows ce|symbian|nokia|webos|opera mini|sonyericsson|opera mobi|iemobile)/i",$browser)) $browser="0"; else $browser="1";
+if(preg_match("/(iPhone|iPod|IEMobile|Mobile|lgtelecom|PPC)/i",$browser)) $browser="0"; else $browser="1";
 //echo $browser;
 
 // DB가 설정이 되었는지를 검사
@@ -390,6 +390,7 @@ function head($body="",$scriptfile="") {
 <title><?=$setup[title]?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <meta name="viewport" content="width=device-width">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="image_src" href="/blrun2_fb.jpg">
 <link rel="alternate" type="application/rss+xml" title="네티즌 세상을 위하여..." href="http://blrun.net/rss/">
 <link rel=StyleSheet HREF=<?=$stylefile?> type=text/css title=style>
@@ -422,6 +423,7 @@ function head($body="",$scriptfile="") {
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <meta name="viewport" content="width=device-width">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="image_src" href="/blrun2_fb.jpg">
 <link rel="alternate" type="application/rss+xml" title="네티즌 세상을 위하여..." href="http://blrun.net/rss/">
 <link rel=StyleSheet HREF=style.css type=text/css title=style>
@@ -486,6 +488,13 @@ function foot($max_depth="") {
 		if($setup[footer_url]) { @include $setup[footer_url]; }
 		if($group[footer_url]) { @include $group[footer_url]; }
 ?>
+
+<!-- 접속통계 관련 헤더 -->
+<?
+$target="blrun";
+@include "aanalyzer/aokio_analyzer.php";
+?>
+<script src="aanalyzer/screen.js" type="text/javascript"></script>
 
 </body>
 </html>
