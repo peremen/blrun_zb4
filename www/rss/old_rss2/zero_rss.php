@@ -67,11 +67,11 @@ $webMaster_q = "blrun39@hanafos.com";
 
 // 통합추출 게시판 아이디를 적어주세요.
 // 아이디|아이디|아이디 형식으로 추가가능.
-$boardzero = "clmn1|blrun1|cap1|basket1";
+$boardzero = "clmn1|blrun1|cap1|basket1|bug1";
 
 // 금지시킬 게시판 아이디
 // 아이디|아이디|아이디 형식으로 추가가능.
-$board_close = "/add1|visit1|poll1|gal1|mov1|mov2|sell1/i";
+$board_close = "/add1|visit1|poll1|gal1|mov1|mov2|sell1|past1/i";
 
 // 아래부터는 수정 않하셔도됩니다.
 if(preg_match($board_close,$id)) {
@@ -116,7 +116,7 @@ $imagePattern = "#<img(.+?)src=([^>]*?)>#i";
 $data_board[memo]=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize\\1src=\\2></div>",$data_board[memo]);
 // html 이미지 리사이즈 끝
 $imageBoxPattern = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i";
-$imageBoxPattern2 = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/e";
+$imageBoxPattern2 = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/ie";
 $data_board[memo]=preg_replace($imageBoxPattern2,"'[img:'.str_replace('%2F', '/', urlencode('\\1.\\2')).','",$data_board[memo]);
 $data_board[memo]=preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data_board[ismember]/\\1.\\2' name=zb_target_resize align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$data_board[memo]);
 if($data_board[use_html]<2) $data_board[memo]=str_replace("\n","<br />",$data_board[memo]);

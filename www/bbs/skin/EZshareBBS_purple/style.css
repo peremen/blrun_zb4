@@ -11,6 +11,8 @@ A:visited {color:7f7f7f;text-decoration:none;}
 A:active  {color:666666;text-decoration:none;}
 A:hover  {color:666666;text-decoration:none;}
 
+.memo {word-wrap:break-word; word-break:break-word; word-break:keep-all;}
+
 .view_title1 {font-family:verdana;font-size:9pt;font-weight:bold;color:#888888}
 .view_title2 {font-family:Arial;font-size:19px;letter-spacing:-1px;font-weight:bold;color=#eeeeee}
 

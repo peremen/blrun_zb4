@@ -74,7 +74,7 @@
 <img src=<?=$dir?>/t.gif border=0 height=2><br>
 <table cellspacing=0 cellpadding=3 width=<?=$width?> bgcolor=efefef height=100 style="table-layout:fixed;">
 <tr bgcolor=white>
-	<td style='word-break:break-all;padding:10'>
+	<td class=memo style='word-break:break-all;padding:10'>
 		<span style=line-height:160%>
 		<?=$upload_image1?><br>
 		<?=$upload_image2?><br>

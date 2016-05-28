@@ -118,7 +118,7 @@ if($total_comment[0]>0){
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class=memo>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr>
 				<td height=4></td>
@@ -140,7 +140,7 @@ if($total_comment[0]>0){
 	</tr>
 	<tr><td height=2 background=<?=$dir?>/images/main_bar_line.gif></td></tr>
 	<tr valign=top>
-		<td><BR>			
+		<td class=memo><BR>			
 		<?=$print_img2?><?=$view_img2?></A>
 		<B>&nbsp;· 상품설명</B> :<BR><BR><?=$_name1?><BR><BR>
 		<? include "script/sns.php"; ?>

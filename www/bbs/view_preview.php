@@ -172,6 +172,9 @@ if($use_html<2) {
 		if(preg_match($pattern1,$temp[$i])) {
 			$temp[$i+1]=preg_replace("#<br \/>|<br>#si","",$temp[$i+1]);
 			$i+=1;
+		} else {
+			// 자동링크 거는 부분;;
+			if($setup[use_autolink]&&!preg_match("/url\(/i",$temp[$i])) $temp[$i]=autolink($temp[$i]);
 		}
 	}
 
@@ -182,9 +185,6 @@ if($use_html<2) {
 	}
 	// 신택스하이라이트 처리 끝
 }
-
-// 자동링크 거는 부분;;
-if($setup[use_autolink]&&!preg_match("/url\(/i",$memo)) $memo=autolink($memo);
 
 // 제목 제작
 if(($is_admin||$member[level]<=$setup[use_html])&&$use_html) $data[subject]=stripslashes($subject);

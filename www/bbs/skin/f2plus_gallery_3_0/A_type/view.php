@@ -61,7 +61,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 		</table>
 		<table border=0 cellspacing=0 cellpadding=10 width=100% style=table-layout:fixed>
 		<tr>
-			<td>
+			<td class=memo>
 				<!--여기부터 본문 내용 시작입니다-->
 				<?=$memo?><BR><BR>
 				<? include "script/sns.php"; ?>

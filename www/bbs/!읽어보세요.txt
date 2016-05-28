@@ -23,7 +23,7 @@
 
 4.5 www/bbs/admin/dbDump.php 파일 136행 쯤 "bin/" 를 우분투에서는 "/bin/" 으로 고쳐줘야 DB가 제대로 루트 폴더에 생성이 된다. 리눅스 서버에선 수정없이 그대로 사용한다!
 
-5. www/rss/ 안의 index.php와 zero_rss.php의 url 정보를 수정해 준다.
+5. www/rss/ 안의 index.php와 zero_rss.php, main.php, rss.php의 url 정보를 수정해 준다.
 
 5.5 www/bbs/setup.php 파일 12행 쯤 url 정보를 수정해 준다.
 

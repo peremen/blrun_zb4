@@ -13,7 +13,7 @@
 	<td align=right class=cub><span class=v7><font title="답변"><?=$a_reply?>R&nbsp;&nbsp;</a></font><? if($data[homepage]){?><a href="<?=$data[homepage]?>" target="_blank" onfocus='this.blur()'><font title="홈페이지">H&nbsp;&nbsp;</a></font><?}else{?><?}?><font title="수정"><?=$a_modify?>M&nbsp;&nbsp;</a></font><font title="삭제"><?=$a_delete?>D</a></font></span></td>
 </tr>
 <tr>
-	<td align=left style='word-break:break-all;' valign=top colspan=2 class=cu><?=$memo?><br><span class=t7><?=$date?></span></td>
+	<td class=memo align=left style='word-break:break-all;' valign=top colspan=2 class=cu><?=$memo?><br><span class=t7><?=$date?></span></td>
 </tr>
 <tr>
 	<td valign=top colspan=2>

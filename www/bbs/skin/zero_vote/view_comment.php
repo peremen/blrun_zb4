@@ -18,7 +18,7 @@
 	<a name="<?=$c_data[no]?>">
 	<table border=0 width=100%>
 	<tr>
-	<td width=130>&nbsp; <?=$c_face_image?> <b><?=$comment_name?></b> <?=$a_comm_r?><img src=<?=$dir?>/reply_comment.gif border=0 align=absmiddle></a></td><td style='word-break:break-all;font-size:9pt;font-color:444444' width=>
+	<td class=memo width=130>&nbsp; <?=$c_face_image?> <b><?=$comment_name?></b> <?=$a_comm_r?><img src=<?=$dir?>/reply_comment.gif border=0 align=absmiddle></a></td><td style='word-break:break-all;font-size:9pt;font-color:444444' width=>
 		<?
 		if($o_data[ismember]=="") $ismember0="0"; else $ismember0=$o_data[ismember];
 		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$ismember0!=$member[no]&&$member[level]>$setup[grant_view_secret])
