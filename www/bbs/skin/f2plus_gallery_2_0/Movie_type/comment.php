@@ -1,9 +1,14 @@
 <? 
 $m_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id"."_movie where parent='$s_data[parent]' and reg_date='$s_data[reg_date]'"));
-$_point1=$m_data[point1];
-$_point2=$m_data[point2];
-$parent=$m_data[parent];
-$c_date=$m_data[reg_date];
+if($mode=="modify") {
+	$_point1=$m_data[point1];
+	$_point2=$m_data[point2];
+	$parent=$m_data[parent];
+	$c_date=$m_data[reg_date];
+} else {
+	$_point1=0;
+	$_point2=0;
+}
 
 $a_preview = str_replace("view_preview()","preview_m()",$a_preview);
 $a_preview = str_replace(">","><font class=list_eng>",$a_preview)."&nbsp;&nbsp;";
@@ -61,19 +66,40 @@ function check_submit_y() {
 	}
 <? } ?>
 
-	if(document.getElementById("memo").value==""){
-		alert("내용을 입력하세요!");
-		document.getElementById("memo").focus();
+	var rPattern=/\|\|\|\d+\|\d+$/g;
+	var rStr=document.write.memo.value;
+
+	if(!rStr)
+	{
+		alert('덧글 내용을 입력하여 주세요.');
+		document.write.memo.focus();
 		return false;
 	}
+
+	if(rStr.match(rPattern)!= null){
+		alert('예약된 문자열은 사용할 수 없습니다.');
+		document.write.memo.focus();
+		return false;
+	}
+
+	document.getElementById('is_secret').disabled = false;
 
 	return true;
 }
 
 function preview_m() {
-	if(!document.write.memo.value)
+	var rPattern=/\|\|\|\d+\|\d+$/g;
+	var rStr=document.write.memo.value;
+
+	if(!rStr)
 	{
 		alert('덧글 내용을 입력하여 주세요..');
+		document.write.memo.focus();
+		return false;
+	}
+
+	if(rStr.match(rPattern)!= null){
+		alert('예약된 문자열은 사용할 수 없습니다..');
 		document.write.memo.focus();
 		return false;
 	}
@@ -86,7 +112,7 @@ function preview_m() {
 //-->
 </SCRIPT><br>
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> align=center>
-<form method=post name=write action=<?=$dir?>/comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="modify"><input type=hidden name=c_no value=<?=$c_no?>><input type=hidden name=parent value=<?=$parent?>><input type=hidden name=c_date value=<?=$c_date?>><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$zb_url?>"><input type=hidden name=antispam value="<?=$num1num2?>">
+<form method=post name=write action=<?=$dir?>/comment_ok.php onsubmit="return check_submit();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=c_no value=<?=$c_no?>><input type=hidden name=c_org value=<?=$c_org?>><input type=hidden name=c_depth value=<?=$c_depth?>><input type=hidden name=parent value=<?=$parent?>><input type=hidden name=c_date value=<?=$c_date?>><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$zb_url?>"><input type=hidden name=antispam value="<?=$num1num2?>">
 <col width=80 style=padding:0,3,0,5></col><col width=80 style=padding:0,3,0,3></col><col width=80 style=padding:0,3,0,3></col><col width=80 style=padding:0,3,0,3></col><col width=></col>
 <tr>
 <?=$hide_start?>
@@ -112,7 +138,7 @@ function preview_m() {
 			</td>
 			<td valign=top>
 			<select name="_point2" value=<?=$_point2?>>
-<?$checked[$_point2]="selected";?>
+<? $checked=array("",""); $checked[$_point2]="selected";?>
 
 				<option value=0 style=background-color:#ffffff;color:555555 <?=$checked[0]?>>절반</option>
 				<option value=1 style=background-color:#ffffff;color:black <?=$checked[1]?>>☆</option>
@@ -128,7 +154,7 @@ function preview_m() {
 	<td height=1 colspan=5 background=<?=$dir?>/dot.gif></td>
 </tr>
 <tr>
-	<td colspan=5 align=right class=list_eng><?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>>HTML사용 <?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1>비밀글 <?=$hide_secret_end?></td>
+	<td colspan=5 align=right class=list_eng><?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>>HTML사용 <?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>비밀글 <?=$hide_secret_end?></td>
 </tr>
 <tr>
 	<td bgcolor=white height=3 colspan=5></td>

@@ -12,6 +12,8 @@ var pattern = /(\[\w+\_code\:\d+\{[^}]*?\}\]|\[\/\w+\_code\])/gi;
 var pattern2 = /\[\/\w+\_code\]/gi;
 var matchArray, e_use_html;
 var iePattern = /<br[^>]*?><(P|DIV|\/PRE|HR|LI|OL|O:P|UL|TABLE|TBODY|TR|TD|TH|CENTER|H1|H2|H3|H4)([^>]*?)>/gi;
+var iePattern2 = /<(HR)([^>]*?)>\s*?<br[^>]*?>/gi;
+var iePattern3 = / (?:\r\n|\r|\n)/g;
 var ffPattern = /<br[^>]*?><(TBODY|TR|TD)([^>]*?)>/gi;
 
 var DocReadyState = false;
@@ -168,7 +170,7 @@ function btnStyc()
 }
 
 function htmlspecialchars_encode(str){
-	str = str.replace(/&amp;/gi,'&amp;amp;')
+	str = str.replace(/&amp;/gi,'&amp;amp;');
 	str = str.replace(/&#039;/gi,'&amp;#039;');
 	str = str.replace(/&quot;/gi,'&amp;quot;');
 	str = str.replace(/&nbsp;/gi,'&amp;nbsp;');
@@ -204,6 +206,8 @@ function brAddFix(str,use_html) {
 		{
 			str = str.replace(/\n/gi,"<br />");
 			str = str.replace(iePattern,"<$1$2>");
+			str = str.replace(iePattern2,"<$1$2>");
+			str = str.replace(iePattern3,"");
 		}
 	}
 	return str;
@@ -212,6 +216,7 @@ function brAddFix(str,use_html) {
 function brRemove(str,use_html) {
 	if(use_html < 2) {
 		str = str.replace(/<br \/>|<br>/gi,"\n");
+		str = str.replace(iePattern3,"\n");
 	}
 	return str;
 }

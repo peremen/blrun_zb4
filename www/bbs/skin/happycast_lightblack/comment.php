@@ -32,8 +32,10 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
 <input type=hidden name=ss value="<?=$ss?>">
 <input type=hidden name=sc value="<?=$sc?>">
 <input type=hidden name=sm value="<?=$sm?>">
-<input type=hidden name=mode value="modify">
+<input type=hidden name=mode value="<?=$mode?>">
 <input type=hidden name=c_no value=<?=$c_no?>>
+<input type=hidden name=c_org value=<?=$c_org?>>
+<input type=hidden name=c_depth value=<?=$c_depth?>>
 <input type=hidden name=antispam value="<?=$num1num2?>">
 <div align=center>
 <table width=<?=$width?> border=0 cellspacing=1 cellpadding=0 bgcolor=<?=$list_footer_bg_color?>>
@@ -44,7 +46,7 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
     <tr>
       <td align=center style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br><b>Option</b></td>
       <td class=listnum>
-        <?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>>HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?>
+        <?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>>HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?>
       </td>
       <td width=80>&nbsp;</td>
     </tr>
@@ -73,7 +75,7 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
         </td></tr>
         </table>
       </td>
-      <td><input type=submit rows=5 class=comment_submit value='수정하기' accesskey="s"></td>
+      <td><input type=submit rows=5 class=comment_submit value='작성완료' accesskey="s"></td>
     </tr>
     </table>
     <table border=0 cellspacing=2 cellpadding=0 width=100% height=20>

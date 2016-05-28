@@ -1,7 +1,7 @@
 
-		</table>
-	</td>
+		</table>
+	</td>
 </tr>
-</form>
-</table>
-<br>
+</form>
+</table>
+<br>

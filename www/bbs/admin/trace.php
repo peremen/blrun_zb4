@@ -1,21 +1,14 @@
 <?
 $_zb_path="../";
-
 include "../lib.php";
-
 $connect=dbconn();
-
 $member=member_info();
-
 $s_keyword = $keyword;
-
 if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
-
 if($keykind[5]) {
 	$userno = mysql_Fetch_array(mysql_query("select no from zetyx_member_table where user_id='$keyword'", $connect));
 	$userno = $userno[0];
 }
-
 // 실제 검색부분
 if($keyword)
 {
@@ -81,7 +74,6 @@ head(" bgcolor=white");
 </tr>
 </table>
 </div>
-
 <?
 if($keyword&&$s_que)
 {
@@ -96,7 +88,6 @@ if($keyword&&$s_que)
 ?>
 
 <br><br><br>
-
 &nbsp;&nbsp;<a href=../zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>게시판</b></font></a><br>
 <?
 		while($data=mysql_fetch_array($result))
@@ -109,9 +100,7 @@ if($keyword&&$s_que)
 <a href=../<?=$file?>?id=<?=$table_name?>&no=<?=$data[no]?> target=_blank><?=$data[subject]?></a></b> 
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 <font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font> / <font color=green><?=$data[ip]?></font>)</font>
-
 <img src=../images/t.gif border=0 height=20><br>
-
 <?
 		}
 
@@ -136,7 +125,6 @@ if($keyword&&$s_que)
 &nbsp;<a href=../<?=$file?>?id=<?=$table_name?>&no=<?=$data[parent]?> target=_blank><?=$data[memo]?></a> &nbsp;&nbsp;
 <font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font> / <font color=green><?=$data[ip]?></font>)</font>
 <img src=../images/t.gif border=0 height=20><br>
-
 <?
 			}
 		}

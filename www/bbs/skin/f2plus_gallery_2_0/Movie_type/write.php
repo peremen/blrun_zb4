@@ -171,7 +171,7 @@ function preview_m() {
     <option value=5 <?=$checked[5]?>>¡Ú¡Ú¡Ú¡Ú¡Ú</option>
     </SELECT>
     <SELECT NAME=_name7 value=<?=$_name7?>>
-<? $checked[$_name7]="selected"; ?>
+<? $checked=array("",""); $checked[$_name7]="selected"; ?>
     <option value=0 <?=$checked[0]?>>Àý¹Ý</option>
     <option value=1 <?=$checked[1]?>>¡Ù</option>
     </select>

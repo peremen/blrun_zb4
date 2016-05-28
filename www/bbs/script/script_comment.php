@@ -56,9 +56,18 @@ function check_submit()
 
 <? } ?>
 
-	if(!document.write.memo.value)
+	var rPattern=/\|\|\|\d+\|\d+$/g;
+	var rStr=document.write.memo.value;
+
+	if(!rStr)
 	{
 		alert('내용을 입력하여 주세요.');
+		document.write.memo.focus();
+		return false;
+	}
+
+	if(rStr.match(rPattern)!= null){
+		alert('예약된 문자열은 사용할 수 없습니다.');
 		document.write.memo.focus();
 		return false;
 	}
@@ -66,6 +75,8 @@ function check_submit()
 	document.check_attack.check.value=1;
 	show_waiting();
 	hideImageBox();
+
+	document.getElementById('is_secret').disabled = false;
 
 	return true;
 }
@@ -89,9 +100,18 @@ function showCodeBox() {
 }
 
 function view_preview() {
-	if(!document.write.memo.value)
+	var rPattern=/\|\|\|\d+\|\d+$/g;
+	var rStr=document.write.memo.value;
+
+	if(!rStr)
 	{
-		alert('덧글 내용을 입력하여 주세요.');
+		alert('내용을 입력하여 주세요..');
+		document.write.memo.focus();
+		return false;
+	}
+
+	if(rStr.match(rPattern)!= null){
+		alert('예약된 문자열은 사용할 수 없습니다..');
 		document.write.memo.focus();
 		return false;
 	}

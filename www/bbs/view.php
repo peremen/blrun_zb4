@@ -250,7 +250,7 @@ if(!$data[email]) {$hide_email_start="<!--";$hide_email_end="-->";}
 if(!$setup[use_pds]) { $hide_pds_start="<!--";$hide_pds_end="-->";}
 
 // 비밀글 사용;;
-if(!$setup[use_secret]) { $hide_secret_start="<!--"; $hide_secret_end="-->"; }
+if(!$setup[use_secret]||$data[ismember]=="0") { $hide_secret_start="<!--"; $hide_secret_end="-->"; }
 
 // 코멘트를 안 보이게 하는 변수;;
 if(!$setup[use_comment])
@@ -283,6 +283,7 @@ $_skinTimeStart = getmicrotime();
 include $dir."/view.php";
 $_skinTime += getmicrotime()-$_skinTimeStart;
 
+$max_depth = 0;
 // 코멘트 출력;;
 if($setup[use_comment]) {
 	while($c_data=mysql_fetch_array($view_comment_result)) {
@@ -350,6 +351,22 @@ if($setup[use_comment]) {
 		}
 		$c_memo=$c_data[memo];
 
+		// 계층 코멘트 표식 불러와 처리
+		if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$c_memo,$c_match)) {
+			$c_org = $c_match[1];
+			$c_depth = $c_match[2];
+			if($max_depth<$c_depth) $max_depth=$c_depth;
+			$c_memo = str_replace($c_match[0],"",$c_memo);
+		} else {
+			$c_org = 0;
+			$c_depth = 0;
+		}
+		unset($o_data);
+		if($c_org) {
+			$result2=@mysql_query("select * from $t_comment"."_$id where no='$c_org'") or error(mysql_error());
+			$o_data=mysql_fetch_array($result2);
+		}
+
 		// 자동링크 거는 부분;;
 		if($setup[use_autolink]&&!preg_match("/url\(/i",$c_memo)) $c_memo=autolink($c_memo);
 
@@ -413,7 +430,7 @@ if($setup[use_comment]) {
 		$c_reg_date="<span title='".date("Y년 m월 d일 H시 i분 s초",$c_data[reg_date])."'>".date("Y/m/d",$c_data[reg_date])."</span>";
 		if($c_data[ismember]) {
 			if(($c_data[ismember]==$member[no]||$is_admin||$member[level]<=$setup[grant_delete])&&$member[user_id]!="sprdrg") {
-				$a_edit="<a onfocus=blur() href='comment.php?$href$sort&no=$no&c_no=$c_data[no]'>";
+				$a_edit="<a onfocus=blur() href='comment.php?$href$sort&no=$no&c_no=$c_data[no]&mode=modify'>";
 				$a_edit2="<a onfocus=blur() href='comment_modify.php?$href$sort&no=$no&c_no=$c_data[no]'>";
 				$a_del="<a onfocus=blur() href='del_comment.php?$href$sort&no=$no&c_no=$c_data[no]' style='color:red'>";
 			}
@@ -423,10 +440,17 @@ if($setup[use_comment]) {
 				$a_del="&nbsp;<Zeroboard ";
 			}
 		} else {
-			$a_edit="<a onfocus=blur() href='comment.php?$href$sort&no=$no&c_no=$c_data[no]'>";
+			$a_edit="<a onfocus=blur() href='comment.php?$href$sort&no=$no&c_no=$c_data[no]&mode=modify'>";
 			$a_edit2="<a onfocus=blur() href='comment_modify.php?$href$sort&no=$no&c_no=$c_data[no]'>";
 			$a_del="<a onfocus=blur() href='del_comment.php?$href$sort&no=$no&c_no=$c_data[no]' style='color:red'>";
 		}
+
+		// 코멘트 리플라이 버튼
+		if($o_data[ismember]=="") $ismember0="0"; else $ismember0=$o_data[ismember];
+		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$ismember0!=$member[no]&&$member[level]>$setup[grant_view_secret])
+			$a_comm_r="&nbsp;<Zeroboard ";
+		else
+			$a_comm_r="<a onfocus=blur() href='comment.php?$href$sort&no=$no&c_no=$c_data[no]&mode=reply'>";
 
 		// 이름앞에 붙는 아이콘 정의;;
 		$c_face_image=get_face($c_data);
@@ -507,7 +531,7 @@ if($zbLayer&&!$_view_included) {
 }
 
 // 마지막 부분 출력
-if(!$_view_included) foot();
+if(!$_view_included) foot($max_depth);
 
 /***************************************************************************
 * 마무리 부분 include

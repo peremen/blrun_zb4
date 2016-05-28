@@ -23,12 +23,12 @@ function sendit() {
 <body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
 <form name="myform" method="post" action="zboard.php">
 <input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=mode value=<?=$mode?>>
-<table width="100%" height="50" border="0" cellpadding="0" cellspacing="1" bgcolor="#E6E7E1" align="center">
+<table width="100%" height="70" border="0" cellpadding="0" cellspacing="1" bgcolor="#E6E7E1" align="center">
 	<tr><td>
-		<table width="320" height="30" border="1" style="border-collapse:collapse;" bordercolor="black" bgcolor="#BEEBDD" cellpadding="1" align="center">
-			<tr><td height="35" align="center"><b><span style="font-size:11pt">글쓰기!<br>스팸방지 비번(<font color="red">gg</font>)을 입력: </span></b><input type="password" name="pwd" size="20">
+		<table width="320" height="100%" border="1" style="border-collapse:collapse;" bordercolor="black" bgcolor="#BEEBDD" cellpadding="1" align="center">
+			<tr><td align="center"><b><span style="font-size:11pt">글쓰기!<br>스팸방지 비번(<font color="red">gg</font>)을 입력: </span></b><input type="password" name="pwd" size="20">
 			</td></tr>
-			<tr><td height="35" align="center"><input type="button" value="확인" onClick="javascript:sendit();"></tr>
+			<tr><td align="center"><input type="button" value="확인" onClick="javascript:sendit();"></tr>
 		</table>
 	</td></tr>
 </table>

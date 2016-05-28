@@ -63,7 +63,7 @@ function check_submit_n()
 	} else {
 		if(!memoE.value||memoE.value=="<P>&nbsp;</P>"||memoE.value=="<br>")
 		{
-			alert('내용을 입력하여 주세요.');
+			alert('내용을 입력하여 주세요..');
 			document.write.memo.focus();
 			return false;
 		}
@@ -143,7 +143,7 @@ function sw_preview()
 	if(edit_tag_yn == "Y") {
 		if(!memoiW.document.body.innerHTML||memoiW.document.body.innerHTML=="<P>&nbsp;</P>"||memoiW.document.body.innerHTML=="<br>")
 		{
-			alert('내용을 입력하여 주세요..');
+			alert('내용을 입력하여 주세요.');
 			memoiW.focus();
 			return false;
 		}
@@ -177,7 +177,7 @@ function preview_m()
 	if(edit_tag_yn == "Y") {
 		if(!memoiW.document.body.innerHTML||memoiW.document.body.innerHTML=="<P>&nbsp;</P>"||memoiW.document.body.innerHTML=="<br>")
 		{
-			alert('내용을 입력하여 주세요..');
+			alert('내용을 입력하여 주세요.');
 			memoiW.focus();
 			return false;
 		}
