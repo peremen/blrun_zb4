@@ -1,7 +1,5 @@
 <?
 $c_memo = love_convert($c_memo);
-if($is_admin) $show_comment_ip = $c_data['ip'];
-else $show_comment_ip = "";
 $a_del=str_replace("del_comment.php?","del_comment.php?_zb_url=$zb_url/&_zb_path=$zb_path&",$a_del);
 ?>
 

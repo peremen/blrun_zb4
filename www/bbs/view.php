@@ -307,6 +307,15 @@ include $dir."/view.php";
 $_skinTime += getmicrotime()-$_skinTimeStart;
 
 $max_depth = 0;
+
+// 코멘트 삭제 보안을 위한 랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입
+$cnum1 = mt_rand(1,1000);
+$cnum2 = mt_rand(1,1000);
+$cnum1num2 = $cnum1*10000 + $cnum2;
+// 코멘트 보안을 위해 세션변수를 설정
+$DEL_COMM_SEC = $cnum1num2;
+session_register("DEL_COMM_SEC");
+
 // 코멘트 출력;;
 if($setup[use_comment]) {
 	while($c_data=mysql_fetch_array($view_comment_result)) {
@@ -403,6 +412,10 @@ if($setup[use_comment]) {
 			if($sm=="on") $c_memo = preg_replace($keyword_pattern, "<span color='FF001E' style='color:#FF001E;background-color:#FFF000;'>$keyword</span>", $c_memo);
 		}
 
+		// 아이피
+		if($is_admin) $show_comment_ip="<a href='trace_ip.php?keykind=ip&keyword=".$c_data[ip]."' target='_blank'>".$c_data[ip]."</a> <a href='#' style='color:red' onclick='javascript: var yn=confirm(\"▶엎질러진 물은 돌이킬 수 없습니다.◀\\n정말로 [$c_data[name]]님의 전체 게시글/덧글 삭제 후 차단하시겠습니까?\"); if(yn) window.open(\"spam_ip.php?keykind=ip&keyword=$c_data[ip]\",\"_blank\"); else return false;'>[스팸]</a>";
+		else $show_comment_ip = "";
+
 		$c_file_name1=del_html($c_data[s_file_name1]);
 		$c_file_name2=del_html($c_data[s_file_name2]);
 
@@ -458,7 +471,7 @@ if($setup[use_comment]) {
 			if(($c_data[ismember]==$member[no]||$is_admin||$member[level]<=$setup[grant_delete])&&$member[user_id]!="sprdrg") {
 				$a_edit="<a onfocus=blur() href='comment.php?$href$sort&no=$no&c_no=$c_data[no]&mode=modify'>";
 				$a_edit2="<a onfocus=blur() href='comment_modify.php?$href$sort&no=$no&c_no=$c_data[no]'>";
-				$a_del="<a onfocus=blur() href='del_comment.php?$href$sort&no=$no&c_no=$c_data[no]' style='color:red'>";
+				$a_del="<a onfocus=blur() href='del_comment.php?$href$sort&no=$no&c_no=$c_data[no]&delsec=$cnum1num2' style='color:red'>";
 			}
 			else {
 				$a_edit="&nbsp;<Zeroboard ";
@@ -468,7 +481,7 @@ if($setup[use_comment]) {
 		} else {
 			$a_edit="<a onfocus=blur() href='comment.php?$href$sort&no=$no&c_no=$c_data[no]&mode=modify'>";
 			$a_edit2="<a onfocus=blur() href='comment_modify.php?$href$sort&no=$no&c_no=$c_data[no]'>";
-			$a_del="<a onfocus=blur() href='del_comment.php?$href$sort&no=$no&c_no=$c_data[no]' style='color:red'>";
+			$a_del="<a onfocus=blur() href='del_comment.php?$href$sort&no=$no&c_no=$c_data[no]&delsec=$cnum1num2' style='color:red'>";
 		}
 
 		// 코멘트 리플라이 버튼

@@ -1,7 +1,5 @@
 <?
 if($emoticon_use=="on") $c_memo=str_to_emoticon($c_memo,$emoticon_url);
-if($is_admin) $show_comment_ip = $c_data['ip'];
-else $show_comment_ip = "";
 ?>
 
 <div id=IAMCOMMENT_<?=$c_data[no]?> align=right style="display:none;width:<?=$width?>">

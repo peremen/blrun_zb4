@@ -12,10 +12,6 @@
 
  */
 ?>
-<?
-if($is_admin) $show_comment_ip = "<font class=listnum>".$c_data['ip']."</font>";
-else $show_comment_ip = "";
-?>
 
 <div id=IAMCOMMENT_<?=$c_data[no]?> align=right style="display:none;width:<?=$width?>">
 <table id=comment_<?=$c_data[no]?> border=0 cellspacing=0 cellpadding=0 width=<?=$width?> style=table-layout:fixed>
@@ -30,7 +26,7 @@ else $show_comment_ip = "";
 		<a name="<?=$c_data[no]?>">
 		<table border=0 cellspacing=0 cellpadding=0 width=100% style=table-layout:fixed>
 		<tr>
-			<td align=left width=><?=$c_face_image?> <?=$comment_name?> </b><font class=listnum color=888888>(<?=date("Y-m-d H:i:s",$c_data[reg_date])?>)</font> <?=$show_comment_ip?> <?=$a_comm_r?><img src=<?=$dir?>/reply.gif border=0 align=absmiddle></a></td>
+			<td align=left width=><?=$c_face_image?> <?=$comment_name?> </b><font class=listnum color=888888>(<?=date("Y-m-d H:i:s",$c_data[reg_date])?>) <?=$show_comment_ip?></font> <?=$a_comm_r?><img src=<?=$dir?>/reply.gif border=0 align=absmiddle></a></td>
 			<td width=70 align=right style=font-family:verdana;font-size:9px;><?=$a_edit2?><img src=<?=$dir?>/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/edit.gif border=0 valign=absmiddle></a> <?=$a_del?><img id=deleteButton_<?=$c_data[no]?> src=<?=$dir?>/del.gif border=0 valign=absmiddle></a><img src=images/t.gif border=0 width=1 height=1>&nbsp;</td>
 		</tr>
 		</table>

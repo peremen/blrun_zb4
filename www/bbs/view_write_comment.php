@@ -1,4 +1,5 @@
 <?
+//if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.","/");
 $pass = $_POST["pwd"];
 $pass = stripslashes($pass);
 

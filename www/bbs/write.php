@@ -6,6 +6,7 @@ $pass = stripslashes($pass);
  **************************************************************************/
 include "_head.php";
 
+//if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.","/");
 // HTML 출력
 print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
 head("onload=unlock() onunload=hideImageBox()","script_write.php");

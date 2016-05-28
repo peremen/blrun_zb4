@@ -4,29 +4,15 @@ include "lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
 $s_keyword = $keyword;
-if($keykind[4]) {
-	$userno = mysql_Fetch_array(mysql_query("select no from zetyx_member_table where user_id='$keyword'", $connect));
-	$userno = $userno[0];
-}
+if(!$member[no]||$member[is_admin]>1||$member[level]>2) Error("레벨2 이상의 최고 관리자만이 사용할수 있습니다");
 // 실제 검색부분
 if($keyword) {
 	$comment_search=1;
 	$s_que = "";
-	for($i=0;$i<5;$i++) {
-		if($keykind[$i]) {
-			if($keykind[$i]!="ismember") {
-				if(!$s_que) $s_que .= " where $keykind[$i] like '%$keyword%' ";
-				else $s_que .= " and $keykind[$i] like '%$keyword%' ";
-			} else {
-				if($userno) {
-					if(!$s_que) $s_que .= " where $keykind[$i] = '$userno' ";
-					else $s_que .= " and $keykind[$i] = '$userno' ";
-				}
-			}
-			if($keykind[$i]=="email"||$keykind[$i]=="subject") $comment_search=0;
-		}
-		$table_name_result=mysql_query("select name, use_alllist from $admin_table order by name",$connect) or error(mysql_error());
+	if($keykind) {
+		if(!$s_que) $s_que .= " where $keykind like '%$keyword%' ";
 	}
+	$table_name_result=mysql_query("select name, use_alllist from $admin_table order by name",$connect) or error(mysql_error());
 }
 
 head(" bgcolor=white");
@@ -46,18 +32,14 @@ head(" bgcolor=white");
   <Table border=0>
 	<tr>
   	<td style=line-height:180% height=40 align=right>
-  		<input type=checkbox name=keykind[0] value="name" <?if($keykind[0]) echo "checked";?>> 이름 &nbsp;
-  		<input type=checkbox name=keykind[1] value="email" <?if($keykind[1]) echo "checked";?>> E-Mail &nbsp;
-  		<input type=checkbox name=keykind[2] value="subject" <?if($keykind[2]) echo "checked";?>> 제목 &nbsp;
-  		<input type=checkbox name=keykind[3] value="memo" <?if($keykind[3]) echo "checked";?>> 내용 &nbsp;
-  		<input type=checkbox name=keykind[4] value="ismember" <?if($keykind[4]) echo "checked";?>> 아이디 &nbsp;
+  		<input type=checkbox name=keykind value="ip" <?if($keykind) echo "checked";?>> 아이피 &nbsp;
   	</td>
   	<td><input type=text name=keyword value="<?=$s_keyword?>" size=20 class=input>&nbsp;</td>
   	<td><input type=image src=images/trace_search.gif border=0 valign=absmiddle></td>
 	</tr>
 	<tr>
   	<td colspan=3 align=right>
-		<font color=darkred>* 체크된 항목은 AND 연산됩니다, 즉 선택된 항목이 모두 해당될때입니다.</font>
+		<font color=darkred>* ip로 검색된 결과는 비밀글도 모두 보여집니다.</font>
   	</td>
 	</tr>
 	</form>
@@ -72,6 +54,7 @@ if($keyword&&$s_que)
 {
 	while($table_data=mysql_fetch_array($table_name_result))
 	{
+
 		$table_name=$table_data[name];
 		if($table_data[use_alllist]) $file="zboard.php"; else $file="view.php";
 
@@ -86,15 +69,15 @@ if($keyword&&$s_que)
 		while($data=mysql_fetch_array($result))
 		{
 			flush();
-			$data[subject] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html($data[subject]));
+			$data[subject] = del_html($data[subject]);
 ?>
 
 &nbsp;&nbsp; [<?=$data[name]?>] &nbsp;
 <b><a href=<?=$file?>?id=<?=$table_name?>&no=<?=$data[no]?> target=_blank><?=$data[subject]?></a></b> 
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-<font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font>)</font>
-
-<img src=images/t.gif border=0 height=20><Br>
+<font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font>)</font><img src=images/t.gif border=0 height=20><Br>
+&nbsp;&nbsp; <?=del_html(strip_tags($data[memo]))?><br>
+<img src=images/t.gif border=0 height=5><Br>
 
 <?
 		}
@@ -114,14 +97,14 @@ if($keyword&&$s_que)
 			while($data=mysql_fetch_array($result))
 			{
 				flush();
-				$data[memo] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html($data[memo]));
+				$data[memo] = del_html(strip_tags($data[memo]));
 				// 계층 코멘트 표식 불러와 처리
 				unset($c_match);
 				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
 					$data[memo] = str_replace($c_match[0],"",$data[memo]);
 ?>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <?=$data[name]?> ]
-&nbsp;<a href=<?=$file?>?id=<?=$table_name?>&no=<?=$data[parent]?> target=_blank><? if($data[is_secret]) echo "<font color='gray'>비밀 덧글입니다</font>"; else echo $data[memo]; ?></a> &nbsp;&nbsp;
+&nbsp;<a href=<?=$file?>?id=<?=$table_name?>&no=<?=$data[parent]?> target=_blank><?=$data[memo]?></a> &nbsp;&nbsp;
 <font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font>)</font>
 <img src=images/t.gif border=0 height=20><Br>
 
