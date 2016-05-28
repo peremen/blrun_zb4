@@ -29,39 +29,39 @@ function zb_formresize(obj) {
 <?=$hide_start?>
 
 <tr>
-  <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_password.gif></td></tr></table></td>
-  <td><input type=password id=password name=password <?=size(20)?> maxlength=20 class=zv3_input></td>
+  <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_name.gif></td></tr></table></td> 
+  <td align=left><input type=text id=name name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()"></td>
 </tr>
 <tr>
-  <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_name.gif></td></tr></table></td> 
-  <td><input type=text id=name name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=zv3_input></td>
+  <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_password.gif></td></tr></table></td>
+  <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
 </tr>
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_email.gif></td></tr></table></td>
-  <td><input type=text name=email value="<?=$email?>" <?=size(40)?> maxlength=200 class=zv3_input></td>
+  <td align=left><input type=text id=email name=email value="<?=$email?>" <?=size(40)?> maxlength=200 class=zv3_input></td>
 </tr>
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_homepage.gif></td></tr></table></td>
-  <td><input type=text name=homepage value="<?=$homepage?>" <?=size(40)?> maxlength=200 class=zv3_input></td>
+  <td align=left><input type=text id=homepage name=homepage value="<?=$homepage?>" <?=size(40)?> maxlength=200 class=zv3_input></td>
 </tr>
 <?=$hide_end?>
 
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_select.gif></td></tr></table></td>
-  <td class=zv3_comment><?=$category_kind?><?=$hide_notice_start?> <input type=checkbox name=notice <?=$notice?> value=1>공지사항<?=$hide_notice_end?><?=$hide_html_start?> <input type=checkbox name=use_html <?=$use_html?> value=1>HTML사용<?=$hide_html_end?><input type=checkbox name=reply_mail <?=$reply_mail?> value=1>답변메일받기<?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?>&nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick=zb_formresize(document.write.memo)></td>
+  <td align=left class=zv3_comment><?=$category_kind?><?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1>공지사항<?=$hide_notice_end?><?=$hide_html_start?> <input type=checkbox id=use_html name=use_html <?=$use_html?> value=1>HTML사용<?=$hide_html_end?><input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1>답변메일받기<?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?>&nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick=zb_formresize(document.write.memo)> <font id="state"></font></td>
 </tr>
 <tr valign=top>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_subject.gif></td></tr></table></td>
-  <td><input type=text id=subject name=subject value="<?=$subject?>" <?=size(60)?> maxlength=200 style=width:99% class=zv3_input></td>
+  <td align=left><input type=text id=subject name=subject value="<?=$subject?>" <?=size(60)?> maxlength=200 style=width:99% class=zv3_input onkeyup="addStroke()"></td>
 </tr>
 <tr>
-  <td colspan=2 style=padding:5px><textarea id=memo name=memo <?=size2(90)?> rows=18 class=zv3_w_textarea style=width:99% onkeydown='return doTab(event);'><?=$memo?></textarea></td>
+  <td colspan=2 align=left style=padding:5px><textarea id=memo name=memo <?=size2(90)?> rows=18 class=zv3_w_textarea style=width:99% onkeydown='return doTab(event);' onkeyup="addStroke()"><?=$memo?></textarea></td>
 </tr>
 <?=$hide_sitelink1_start?>
 
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_link1.gif></td></tr></table></td>
-  <td><input type=text name=sitelink1 value="<?=$sitelink1?>" <?=size(62)?> maxlength=200 class=zv3_input></td>
+  <td align=left><input type=text id=sitelink1 name=sitelink1 value="<?=$sitelink1?>" <?=size(62)?> maxlength=200 class=zv3_input></td>
 </tr>
 <?=$hide_sitelink1_end?>
 
@@ -69,7 +69,7 @@ function zb_formresize(obj) {
 
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_link2.gif></td></tr></table></td>
-  <td><input type=text name=sitelink2 value="<?=$sitelink2?>" <?=size(62)?> maxlength=200 class=zv3_input></td>
+  <td align=left><input type=text id=sitelink2 name=sitelink2 value="<?=$sitelink2?>" <?=size(62)?> maxlength=200 class=zv3_input></td>
 </tr>
 <?=$hide_sitelink2_end?>
 
@@ -77,11 +77,11 @@ function zb_formresize(obj) {
 
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_upload1.gif></td></tr></table></td>
-  <td><input type=file name=file1 <?=size(50)?> maxlength=255 class=zv3_input> <?=$file_name1?></td>
+  <td align=left><input type=file name=file1 <?=size(50)?> maxlength=255 class=zv3_input> <?=$file_name1?></td>
 </tr>
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_upload2.gif></td></tr></table></td>
-  <td><input type=file name=file2 <?=size(50)?> maxlength=255 class=zv3_input> <?=$file_name2?></td>
+  <td align=left><input type=file name=file2 <?=size(50)?> maxlength=255 class=zv3_input> <?=$file_name2?></td>
 </tr>
 <?=$hide_pds_end?>
 
@@ -94,8 +94,9 @@ function zb_formresize(obj) {
     </table>
     <table border=0 cellspacing=1 cellpadding=2 width=100% height=40>
     <tr>
-      <td><?=$a_preview?><img src=<?=$dir?>/btn_preview.gif border=0></a> <?=$a_imagebox?><img src=<?=$dir?>/btn_imagebox.gif border=0></a> <?=$a_codebox?>코드삽입</a>&nbsp;</td>
+      <td align=left><?=$a_preview?><img src=<?=$dir?>/btn_preview.gif border=0></a> <?=$a_imagebox?><img src=<?=$dir?>/btn_imagebox.gif border=0></a> <?=$a_codebox?>코드삽입</a>&nbsp;</td>
       <td align=right>
+        <img src=<?=$dir?>/btn_save.gif border=0 accesskey="a" onclick=autoSave() style=cursor:pointer>
         <input type=image src=<?=$dir?>/btn_writeok.gif border=0 onfocus=blur() border=0 accesskey="s">
         <a href=javascript:void(history.back()) onfocus=blur()><img src=<?=$dir?>/btn_writecancel.gif border=0></a>
       </td>

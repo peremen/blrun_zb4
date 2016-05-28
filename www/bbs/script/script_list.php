@@ -1,10 +1,10 @@
 
+<!-- zboard.php 관련 스크립트 헤더 -->
 <script language="javascript">
 browserName = navigator.appName;
 browserVer = parseInt(navigator.appVersion);
 if(browserName == "Netscape" && browserVer >= 3){ init = "net"; }
 else { init = "ie"; }
-
 
 if(((init == "net")&&(browserVer >=3))||((init == "ie")&&(browserVer >= 4))){
 
@@ -46,9 +46,7 @@ if(((init == "net")&&(browserVer >=3))||((init == "ie")&&(browserVer >= 4))) {
   }
  }
 }
-</script>
 
-<script language="javascript">
 function reverse() {
 	var i, chked=0;
 	if(confirm('목록을 반전하시겠습니까?\n\n반전을 원하지 않는다면 취소를 누르시면 다음으로 넘어갑니다'))
@@ -122,11 +120,37 @@ function delete_all() {
 	else {alert('정리할 게시물을 선택하여 주십시요');}
 }
 
-function category_change(obj) {
-	var myindex=obj.selectedIndex;
-	document.search.category.value=obj.options[myindex].value;
-	document.search.submit();
-	return true;
+function unlock2() {
+	document.getElementById('check').value=0;
+<?
+if($_view_included||$setup[skinname]=="ruvin_cubic_gu") {
+?>
+	ajaxLoad();
+<? } ?>
 }
-//-->
+
+<?
+if($_view_included||$setup[skinname]=="ruvin_cubic_gu") {
+?>
+<?
+	if($setup[skinname]!="f2plus_gallery_3_0") {
+?>
+var cntkey = 0;
+function addStroke() {
+	cntkey++;
+	if(cntkey==1) setInterval("autoSave()",60000);
+	if(cntkey%78==2) autoSave();
+}
+<?	}
+}
+?>
+
+function hideImageBox2() {
+	if(imageBoxHandler) {
+		if(imageBoxHandler != 'undefined') {
+			if(imageBoxHandler.closed==false) imageBoxHandler.close();
+		}
+	}
+}
 </script>
+<!-- zboard.php 관련 스크립트 헤더 끝 -->

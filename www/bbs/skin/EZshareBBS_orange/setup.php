@@ -18,7 +18,7 @@ if(!$setup[use_category]) {
 
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <tr>
-  <td><?=$a_category?></td>
+  <td align=left><?=$a_category?></td>
   <td align=right>
     <?=$a_login?><img src=<?=$dir?>/btn_s_login.gif border=0 align=absmiddle></a>
     <?=$a_member_join?><img src=<?=$dir?>/btn_join.gif border=0 align=absmiddle></a>

@@ -7,23 +7,24 @@ if (!$connect) $connect=dbconn();
 $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no=$data[ismember]"));
 ?>
 
-<table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed;border-width:1pt;border-style:solid;border-color:cccccc>
+<table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed;border-width:1pt;border-style:solid;border-color:#cccccc>
 <col width=74></col><col width=></col>
 <tr align=left valign="middle" height=25>
-	<td class=com>&nbsp;&nbsp;<img src=<?=$dir?>/front_img.gif>&nbsp;&nbsp;Subject : </td>
-	<td class=title2_han><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?></td>
+	<td align=left class=com>&nbsp;&nbsp;<img src=<?=$dir?>/front_img.gif>&nbsp;&nbsp;Subject : </td>
+	<td align=left class=title2_han><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?></td>
 </tr>
 </table>
 <table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed>
 <col width=></col><col width=70></col><col width=100></col>
 <tr><td align=left>
-	<?if($hide_name=="off"){?><?=$face_image?> <b><font class=title_han4><?=$name?></font></b><?if($data['homepage']){?><a class=list_eng href="<?=$data['homepage']?>" target=_blank>(Homepage)</a><?}?><font class=com5>&nbsp;|&nbsp;</font><font class=com3>Point : <?=($m_data[point1]*10+$m_data[point2])?></font><font class=com5>&nbsp;|&nbsp;</font><?}?>
+	<?=$face_image?> <b><font class=title_han4><?=$name?></font></b>
+	<?if($data['homepage']){?><a class=list_eng href="<?=$data['homepage']?>" target=_blank>(Homepage)</a><?}?>
 
-	<?if($hide_date=="off"){?><font class=com3><?=$date?></font><font class=com5>&nbsp;|&nbsp;</font><?}?>
-
-	<?if($hide_hit=="off"){?><font class=com3>Read : <?=number_format($hit)?></font><font class=com5>&nbsp;|&nbsp;</font><?}?>
-
-	<?if($hide_vote=="off"){?><font class=com3>Vote : <?=$vote?></font><?}?></td>
+	<font class=com5>&nbsp;|&nbsp;</font><font class=com3>Point : <?=($m_data[point1]*10+$m_data[point2])?></font><font class=com5>&nbsp;|&nbsp;</font>
+	<font class=com3><?=$date?></font><font class=com5>&nbsp;|&nbsp;</font>
+	<font class=com3>Read : <?=number_format($hit)?></font><font class=com5>&nbsp;|&nbsp;</font>
+	<font class=com3>Vote : <?=$vote?></font>
+	</td>
 	<?if($prev_thumb){?><td align=left><?=$a_prev?><span onMouseMove="msgposit(100,-15,event)";  onMouseOver="msgset('<img src=<?=$prev_thumb?> border=0 width=200>')"; onMouseOut="msghide();" class=shadow style='cursor:pointer'><img src=<?=$dir?>/prev_img.gif border=0 align=absmiddle></span></a></td><?}?>
 
 	<?if($next_thumb){?><td align=left><?=$a_next?><span onMouseMove="msgposit(100,-15,event)";  onMouseOver="msgset('<img src=<?=$next_thumb?> border=0 width=200>')"; onMouseOut="msghide();" class=shadow style='cursor:pointer'><img src=<?=$dir?>/next_img.gif border=0 align=absmiddle></span></a></td><?}?>
@@ -61,17 +62,20 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 		</table>
 		<table border=0 cellspacing=0 cellpadding=10 width=100% style=table-layout:fixed>
 		<tr>
-			<td class=memo>
+			<td align=left class=memo>
+				<!--여기부터 본문 내용 시작입니다-->
 				<?=$memo?><BR><BR>
 				<? include "script/sns.php"; ?>
 				<div align=right class=com5><?=$ip?></div><br>
 				<a href="http://www.ntzn.net/" target="_blank" style="color:blue;">http://www.ntzn.net/</a>
+				<!--여기까지 본문 내용 끝입니다-->
 			</td>
 		</tr>
 		</table>
 	</td>
 </tr>
-<tr><td background=<?=$dir?>/dot.gif border=0 height=1></td></tr>
+<tr><td background=<?=$dir?>/dot.gif border=0 height=1></td>
+</tr>
 </table>
 
 <img src=<?=$dir?>/t.gif border=0 height=2><br>

@@ -53,7 +53,7 @@ if($counter%$num==1){?>
 	<td align=center valign=top>
 		<table border=0 cellspacing=0 cellpadding=0 align=center width=100% style=table-layout:fixed>
 		<tr>
-		<td valign=top><?=$view_img?><img src=<?=$thumb_img?> border=0 align=left width=<?=$min_width_size?> height=<?=$min_width_size*3/2?> class=shadow2 style=border-width:4pt;border-style:solid;border-color:#f1f1f1;></a>
+		<td align=left valign=top><?=$view_img?><img src=<?=$thumb_img?> border=0 align=left width=<?=$min_width_size?> height=<?=$min_width_size*3/2?> class=shadow2 style=border-width:4pt;border-style:solid;border-color:#f1f1f1;></a>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=2 background=<?=$dir?>/main_bar_line.gif></td></tr>
 			<tr><td height=5></td></tr>
@@ -92,14 +92,14 @@ if($counter%$num==1){?>
 		</td>
 		</tr>
 		<tr>
-		<td>
+		<td align=left>
 			<table border=0 cellspacing=0 cellpadding=2 width=100%>
 			<tr><td><img src=<?=$dir?>/bolddot.gif border=0 align=absmiddle>&nbsp;<B>주연</B>(출연) <BR>&nbsp;<?=$_name5?></td></tr>
 			<tr><td height=1 background=<?=$dir?>/dot.gif></td></tr>
 			<tr><td height=4></td></tr>
 			</table>
-			<table border=0 cellspacing=0 cellpadding=3 width=100% height=80 style=border-width:1px;border-color:eeeeee;border-style:solid;>
-			<tr><td valign=top><div style="overflow:hidden"><B>· 영화내용</B>(줄거리) :&nbsp;<?=$tmp_memo?>..<?=$comment_new?><div></td></tr>
+			<table border=0 cellspacing=0 cellpadding=3 width=100% height=80 style=border-width:1px;border-color:#eeeeee;border-style:solid;>
+			<tr><td valign=top><div style="overflow:hidden"><B>· 영화내용</B>(줄거리) :&nbsp;<?=htmlspecialchars($tmp_memo)?><?=$comment_new?><div></td></tr>
 			</table>
 		</td>
 		</tr>

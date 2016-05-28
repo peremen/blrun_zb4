@@ -1,5 +1,5 @@
 <?
-$temp=str_replace("\"","'",$data[subject]);
+$temp=str_replace("\"","&quot;",$data[subject]);
 
 if($keyword != "")
 {
@@ -14,10 +14,10 @@ else
 {
 	if(preg_match(" <img src='images/ico_file.gif' border=0>",$subject)) {
 		$subject=str_replace(" <img src='images/ico_file.gif' border=0>","",$subject);
-		$link=str_replace("$data[subject]</a>","<img src=$dir/detail.gif border=0 align=absmiddle alt=\"力格 : $temp\"> <img src='images/ico_file.gif' border=0></a>",$subject);
+		$link=str_replace("$temp</a>","<img src=$dir/detail.gif border=0 align=absmiddle alt=\"力格 : $temp\"> <img src='images/ico_file.gif' border=0></a>",$subject);
 	}
 	else {
-		$link=str_replace("$data[subject]</a>","<img src=$dir/detail.gif border=0 align=absmiddle alt=\"力格 : $temp\"></a>",$subject);
+		$link=str_replace("$temp</a>","<img src=$dir/detail.gif border=0 align=absmiddle alt=\"力格 : $temp\"></a>",$subject);
 	}
 }
 
@@ -29,11 +29,8 @@ elseif(time()-$last_comment_time<60*60*48) $comment_new = "&nbsp;<font color=blu
 else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$comment_num."</font>";
 
 if($Exif_use=="on") {
-	$str=cut_str($data[memo],200);
-	$str=str_replace("<br>","\n",$str);
-	$str=str_replace("<br />","",$str);
-	$str=strip_tags($str);
-	$str=str_replace("\"","",$str);
+	$memo=explode("|||",$data[memo]);
+	$str=cut_str(htmlspecialchars(strip_tags($memo[0])),200);
 	$str="力格 : ".$temp."\n郴侩 : ".$str."\n";
 	if($hide_date=="off") $str="累己老 : ".date("m-d",$data[reg_date])."\n".$str;
 	if($hide_name=="off") $str="累己磊 : ".$data[name]."\n".$str;

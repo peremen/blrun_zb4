@@ -26,7 +26,7 @@ var close_id = null;
 var which_color = null;
 var selectionObj = null;
 var sw_no_grant_color = null;
-var default_source = "<HEAD><STYLE> body,td,div { font-family:굴림; font-size:10pt; color:#444444; line-height:140%; scrollbar-arrow-color: #CCCCCC; scrollbar-track-color: #EEEEEE; scrollbar-highlight-color: #FFFFFF; scrollbar-shadow-color: #CCCCCC; scrollbar-face-color:#FFFFFF; scrollbar-3dlight-color: #CCCCCC; scrollbar-darkshadow-color: #FFFFFF; margin-top:2px; margin-bottom:0px; margin-left:1px; margin-right:1px; } body { background-color:#FFFFFF; } p {margin-top:0px; margin-bottom:0px;}</STYLE></HEAD>";
+var default_source = "<HEAD><STYLE> body,td,div { font-family:굴림; font-size:10pt; color:#444444; line-height:140%; scrollbar-arrow-color:#CCCCCC; scrollbar-track-color:#EEEEEE; scrollbar-highlight-color:#FFFFFF; scrollbar-shadow-color:#CCCCCC; scrollbar-face-color:#FFFFFF; scrollbar-3dlight-color:#CCCCCC; scrollbar-darkshadow-color:#FFFFFF; margin-top:2px; margin-bottom:0px; margin-left:1px; margin-right:1px; } body { background-color:#FFFFFF; } p {margin-top:0px; margin-bottom:0px;}</STYLE></HEAD>";
 var img_mark = new Array('ed_emoticon_img','ed_asword_img','ed_createLink_img','ed_hr_img','ed_urlimage_img','ed_urlmedia_img','ed_print_img','ed_saveas_img','ed_table_img','ed_tablebgcolor_img','ed_height_out_img','ed_height_in_img','ed_height_default_img','ed_newdoc_img','ed_bold_img','ed_italic_img','ed_underline_img','ed_strikethrough_img','ed_fontcolor_img','ed_fontbgcolor_img','ed_selectall_img','ed_cut_img','ed_copy_img','ed_paste_img','ed_search_img','ed_left_img','ed_center_img','ed_right_img','ed_numlist_img','ed_itemlist_img','ed_outdent_img','ed_indent_img');
 var img_mark_no_grant = new Array('ed_emoticon_img','ed_asword_img','ed_height_out_img','ed_height_in_img','ed_height_default_img','ed_newdoc_img','ed_print_img','ed_saveas_img','ed_bold_img','ed_italic_img','ed_underline_img','ed_fontcolor_img','ed_fontbgcolor_img','ed_selectall_img','ed_cut_img','ed_copy_img','ed_paste_img','ed_search_img');
 var tdbrd_line_0 = "<tr><td class='sw_bg_style_0'></td></tr>";
@@ -1106,19 +1106,29 @@ function Layer_xy(obj,objt,lpx,lpy,myEvent)
 
 function edit_window_size(window_size)
 {
+	var textArea = document.getElementById("memo");
 	var last_height = parseInt(edit_windowdiv.style.height);
 	if(window_size == "height_in") {
-		edit_windowdiv.style.height = (last_height + 50) + "px";
+		edit_windowdiv.style.height = (last_height + 60) + "px";
+		if(typeof window.getSelection == "undefined") //FF가 아니면
+			textArea.rows = textArea.rows + 4;
 	}
 	if(window_size == "height_out") {
-		if(edit_windowdiv.style.height > "150px")
-			edit_windowdiv.style.height = (last_height - 50) + "px";
+		if(edit_windowdiv.style.height > "150px") {
+			edit_windowdiv.style.height = (last_height - 60) + "px";
+			if(typeof window.getSelection == "undefined") //FF가 아니면
+				textArea.rows = textArea.rows - 4;
+		}
 	}
 	if(window_size == "height_default") {
 		if(sw_edit_use == "write") {
 			edit_windowdiv.style.height = "300px";
+			if(typeof window.getSelection == "undefined") //FF가 아니면
+				textArea.rows = "20";
 		} else {
 			edit_windowdiv.style.height = "150px";
+			if(typeof window.getSelection == "undefined") //FF가 아니면
+				textArea.rows = "10";
 		}
 	}
 }

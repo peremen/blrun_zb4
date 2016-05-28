@@ -26,6 +26,14 @@ else $group_table_exist=1;
 if(!istable($member_table,$dbname)) @mysql_query($member_table_schema, $connect) or Error("회원관리 테이블 생성 실패","");
 else $member_table_exist=1;
 
+// 게시판 임시저장 테이블 생성
+if(!istable($board_imsi_table,$dbname)) @mysql_query($board_table_imsi_schema, $connect) or Error("게시판 임시저장 테이블 생성 실패","");
+else $board_imsi_table_exist=1;
+
+// 코멘트 임시저장 테이블 생성
+if(!istable($comment_imsi_table,$dbname)) @mysql_query($board_comment_imsi_schema, $connect) or Error("코멘트 임시저장 테이블 생성 실패","");
+else $comment_imsi_table_exist=1;
+
 // 쪽지테이블
 if(!istable($get_memo_table,$dbname))  @mysql_query($get_memo_table_schema, $connect) or Error("받은 쪽지 테이블 생성 실패");
 else $get_memo_table_exists=1;

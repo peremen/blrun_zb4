@@ -7,6 +7,9 @@ $del_que1 = $del_que2 = null;
 **************************************************************************/
 include "_head.php";
 
+// HTML 출력
+print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
+
 if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)||$ZBRD_SS_VRS!=$antispam) Error("정상적으로 글을 수정하여 주시기 바랍니다.");
 
 if($flag != ok) {
@@ -94,7 +97,7 @@ if($flag != ok) {
 		if(!$o_data[no]) Error("원본 덧글이 존재하지 않습니다");
 	}
 
-	$memo=str_replace("&nbsp;","&amp;nbsp;",trim(stripslashes($memo)));
+	$memo=str_replace("&nbsp;","&amp;nbsp;",trim($memo));
 
 	if($s_data[file_name1])$s_file_name1="<br>&nbsp;".$s_data[s_file_name1]."이 등록되어 있습니다.<br> <input type=checkbox name=del_file1 value=1> 삭제";
 	if($s_data[file_name2])$s_file_name2="<br>&nbsp;".$s_data[s_file_name2]."이 등록되어 있습니다.<br> <input type=checkbox name=del_file2 value=1> 삭제";
@@ -137,8 +140,9 @@ if($flag != ok) {
 	$a_list="<a href=zboard.php?$href$sort>";
 	$a_view="<a href=view.php?$href$sort&no=$no>";
 
-	head(" onload=unlock() onunload=hideImageBox() ","script_comment_modify.php");
+	head("onload=unlock() onunload=hideImageBox()","script_comment_modify.php");
 ?>
+
 <table border=0 cellspacing=1 cellpadding=1 class=line1 width=<?=$width?>>
 <tr>
 	<td bgcolor=white>
@@ -163,30 +167,30 @@ if($flag != ok) {
 		<input type=hidden name=antispam value=<?=$antispam?>>
 		<col width=70 align=right style=padding-right:10px></col><col width=></col>
 <?if(!$member['no']){?>
+		<col width=70 align=right style=padding-right:10px></col><col width=></col>
 		<tr>
-			<td class=list0><font class=list_eng><b>Name</b></font></td>
-			<td class=list1><input type=text id=name name=name <?=size(8)?> maxlength=20 class=input value="<?=trim(stripslashes($s_data[name]))?>"></td>
+			<td align=right class=list0><font class=list_eng><b>Name</b></font></td>
+			<td align=left class=list1><input type=text id=name name=name <?=size(8)?> maxlength=20 class=input value="<?=trim(htmlspecialchars($s_data[name]))?>" onkeyup="ajaxLoad2()"></td>
 		</tr>
 		<tr>
-			<td class=list0><font class=list_eng><b>Password</b></font></td>
-			<td class=list1><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input value="<?=stripslashes($pass)?>"></td>
+			<td align=right class=list0><font class=list_eng><b>Password</b></font></td>
+			<td align=left class=list1><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input value="<?=htmlspecialchars(stripslashes($pass))?>" onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
 		</tr>
 <?}?>
 		<tr>
-			<td class=list0><font class=list_eng><b>Option</b></font></td>
-			<td class=list_eng>
-				<?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>> HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1> 비밀글<?=$hide_secret_end?>
-
+			<td align=right class=list0><font class=list_eng><b>Option</b></font></td>
+			<td align=left class=list_eng>
+				<?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>> HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1> 비밀글<?=$hide_secret_end?> <font id="state"></font>
 			</td>
 		</tr>
 		<tr>
-			<td class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</font></td>
+			<td align=right class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</font></td>
 			<td width=100% height=100% class=list1>
 				<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
 				<col width=></col><col width=70></col>
 				<tr>
-					<td width=100%><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea></td>
-					<td width=70><input type=submit rows=5 class=submit value='수정하기' accesskey="s" style=height:100%></td>
+					<td width=100%><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);' onkeyup="addStroke()"><?=$memo?></textarea></td>
+					<td width=70><input type=button class=submit value='임시저장' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit class=submit value='수정완료' accesskey="s" style="height:50%"></td>
 				</tr>
 				</table>
 			</td>
@@ -198,9 +202,9 @@ if($flag != ok) {
 				<tr valign=top>
 <?=$hide_pds_start?>
 				  <td width=52 align=right><font class=list_eng>Upload #1</font></td>
-				  <td class=list_eng><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name1?></td>
+				  <td align=right class=list_eng><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name1?></td>
 				  <td width=52 align=right><font class=list_eng>Upload #2</font></td>
-				  <td class=list_eng><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
+				  <td align=right class=list_eng><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
 <?=$hide_pds_end?>
 				</tr>
 				</table>
@@ -221,15 +225,16 @@ if($flag != ok) {
 	session_register("ZBRD_SS_VRS");
 
 } else {
+	// 각종 변수 검사;;
+	$name = str_replace("ㅤ","",$name);
+	$memo = str_replace("ㅤ","",$memo);
 
 	if(!$member[no]) {
 		if(isblank($name)) Error("이름을 입력하셔야 합니다");
 		if(isblank($password)) Error("비밀번호를 입력하셔야 합니다");
+	} else {
+		$password = $member[password];
 	}
-
-	$memo = str_replace("ㅤ","",$memo);
-	$name = stripslashes($name);
-	$name = str_replace("ㅤ","",$name);
 
 	if(isblank($memo)) Error("내용을 입력하셔야 합니다");
 
@@ -323,10 +328,12 @@ if($flag != ok) {
 		}
 		if($cnt==0) {
 			// 위지윅에디터에서 &가 &amp;로 바뀔때 썸네일이 보이지 않는 현상 해결
-			$imagePattern="#<img[^>]*src=[\\\']?[\\\"]?([^>\\\'\\\"]+)[\\\']?[\\\"]?[^>]*>#i";
+			$imagePattern="#<img[^>]*src=[\']?[\"]?([^>\'\"]+)[\']?[\"]?[^>]*>#i";
 			preg_match_all($imagePattern,$temp[$i],$img,PREG_SET_ORDER);
 			for($j=0;$j<count($img);$j++)
 				$temp[$i]=str_replace($img[$j][1],str_replace("&amp;","&",$img[$j][1]),$temp[$i]);
+			// 자동 저장 잘림 방지
+			$temp[$i]=str_replace("&#160;"," ",$temp[$i]);
 		}
 	}
 
@@ -348,6 +355,7 @@ if($flag != ok) {
 	// 원본글을 이용한 비교
 	if(!$s_data[no]) Error("해당 덧글이 존재하지 않습니다!");
 
+	$ismember = $member[no]; // 자동저장 멤버 번호
 	// 회원등록이 되어 있을때 이름등을 가져옴;;
 	if($member[no]) {
 		if($member[no]!=$s_data[ismember]) {
@@ -355,11 +363,19 @@ if($flag != ok) {
 		} else {
 			$name=$member[name];
 		}
+		if(!get_magic_quotes_gpc()) $name=addslashes($name);
+		$name = trim($name);
+	} else {
+		if(!get_magic_quotes_gpc()) $name=addslashes($name);
+		$member[name] = trim($name);
+		$ismember = '0';
 	}
 
 	// 각종 변수의 addslashes 시킴;;
-	$name=trim(addslashes(del_html($name)));
-	$memo=trim(addslashes($memo));
+	if(!get_magic_quotes_gpc()) {
+		$memo=addslashes($memo);
+	}
+
 	if($use_html2<2) {
 		$memo=str_replace("  ","&nbsp;&nbsp;",$memo);
 		$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
@@ -512,6 +528,9 @@ if($flag != ok) {
 
 	$query = "update $t_comment"."_$id set ".$ps_str."name='$name',memo='$memo',use_html2='$use_html2',is_secret='$is_secret' $del_que1 $del_que2 where no = '$c_no'";
 	$result = mysql_query($query,$connect);
+
+	// 임시 저장 정보 삭제
+	if($mode=="modify") mysql_query("delete from $comment_imsi_table where bname='$id' and cno='$c_no' and parent='$no' and ismember='$ismember' and name='$member[name]'");
 
 	if($result) {
 		// 보안을 위해 세션변수 삭제

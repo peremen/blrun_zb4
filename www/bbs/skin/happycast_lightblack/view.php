@@ -106,7 +106,7 @@
 
 <tr>
   <td height=23 align=right class=listnum width=100 bgcolor=<?=$view_left_header_color?> class=view_left_menu><b>Homepage&nbsp;&nbsp;</b></td>
-  <td><img src=images/t.gif height=3><br>&nbsp;<font class=listnum><?=$homepage?></font></td>
+  <td align=left><img src=images/t.gif height=3><br>&nbsp;<font class=listnum><?=$homepage?></font></td>
 </tr>
 <tr><td bgcolor=#ffffff height=1 colspan=2><img src=images/t.gif height=1></td></tr>
 <?=$hide_homepage_end?>
@@ -115,7 +115,7 @@
 
 <tr>
   <td height=23 align=right class=listnum width=100 bgcolor=<?=$view_left_header_color?> class=view_left_menu><b>File #1&nbsp;&nbsp;</b></td>
-  <td><img src=images/t.gif height=3><br>&nbsp;<font class=listnum><?=$a_file_link1?><?=$file_name1?> (<?=$file_size1?>)</a> &nbsp; <font style=font-size:7pt;>Download : <b><?=$file_download1?></b></font></font></td>
+  <td align=left><img src=images/t.gif height=3><br>&nbsp;<font class=listnum><?=$a_file_link1?><?=$file_name1?> (<?=$file_size1?>)</a> &nbsp; <font style=font-size:7pt;>Download : <b><?=$file_download1?></b></font></font></td>
 </tr>
 
 <tr><td bgcolor=#ffffff height=1 colspan=2><img src=images/t.gif height=1></td></tr>
@@ -125,7 +125,7 @@
 
 <tr>
   <td height=23 align=right class=listnum width=100 bgcolor=<?=$view_left_header_color?> class=view_left_menu><b>File #2&nbsp;&nbsp;</b></td>
-  <td><img src=images/t.gif height=3><br>&nbsp;<font class=listnum><?=$a_file_link2?><?=$file_name2?> (<?=$file_size2?>)</a> &nbsp; <font style=font-size:7pt;>Download : <b><?=$file_download2?></b></font></font></td>
+  <td align=left><img src=images/t.gif height=3><br>&nbsp;<font class=listnum><?=$a_file_link2?><?=$file_name2?> (<?=$file_size2?>)</a> &nbsp; <font style=font-size:7pt;>Download : <b><?=$file_download2?></b></font></font></td>
 </tr>
 <tr><td bgcolor=#ffffff height=1 colspan=2><img src=images/t.gif height=1></td></tr>
 <?=$hide_download2_end?>
@@ -134,7 +134,7 @@
 
 <tr>
   <td height=23 align=right class=listnum width=100 bgcolor=<?=$view_left_header_color?>  class=view_left_menu><b>Link #1&nbsp;&nbsp;</b></td>
-  <td><img src=images/t.gif height=3><br>&nbsp;<font class=listnum><?=$sitelink1?></font></td>
+  <td align=left><img src=images/t.gif height=3><br>&nbsp;<font class=listnum><?=$sitelink1?></font></td>
 </tr>
 <tr><td bgcolor=#ffffff height=1 colspan=2><img src=images/t.gif height=1></td></tr>
 <?=$hide_sitelink1_end?>
@@ -143,21 +143,21 @@
 
 <tr>
   <td height=23 align=right class=listnum width=100 bgcolor=<?=$view_left_header_color?>  class=view_left_menu><b>Link #2&nbsp;&nbsp;</b></td>
-  <td><img src=images/t.gif height=3><br>&nbsp;<font class=listnum><?=$sitelink2?></font></td>
+  <td align=left><img src=images/t.gif height=3><br>&nbsp;<font class=listnum><?=$sitelink2?></font></td>
 </tr>
 <tr><td bgcolor=#ffffff height=1 colspan=2><img src=images/t.gif height=1></td></tr>
 <?=$hide_sitelink2_end?>
 
 <tr>
   <td height=23 align=right class=listnum width=100 bgcolor=<?=$view_left_header_color?> class=view_left_menu style='word-break:break-all;'><b>Subject&nbsp;&nbsp;</b></td>
-  <td><img src=images/t.gif height=3><br>&nbsp;<b><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?></b></td>
+  <td align=left><img src=images/t.gif height=3><br>&nbsp;<b><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?></b></td>
 </tr>
 <tr><td bgcolor=f0f0f0 height=1 colspan=2><img src=images/t.gif height=1></td></tr>
 <tr><td colspan=2 bgcolor=<?=$view_divider?>><img src=images/t.gif height=1></td></tr>
 </table>
 <table border=0 cellspacing=0 cellpadding=10 width=<?=$width?> style=table-layout:fixed>
 <tr>
-  <td class=memo style='word-break:break-all;' bgcolor=#ffffff valign=top>
+  <td class=memo style='word-break:break-all;' bgcolor=#ffffff align=left valign=top>
     <span style=line-height:160%>
     <?=$upload_image1?><br>
     <?=$upload_image2?><br>

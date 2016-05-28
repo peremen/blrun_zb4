@@ -19,11 +19,13 @@ if(trim($_m[$i])) $line[] = $_m[$i];
 $tmp_memo=$line[0]."".$line[1]."".$line[2]."".$line[3]."".$line[4]."".$line[5]."".$line[6]."".$line[7]."".$line[8]."".$line[9]."".$line[10];// 이부분이 미리나오는 내용 입니다. 라인 1,2,3 적용	if($line[11]) $tmp_memo.="..."; 
 $_name1=explode("|||",$tmp_memo);
 if($emoticon_use=="on") $_name1[0]=str_to_emoticon($_name1[0],$emoticon_url);
+
+$m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no=$data[ismember]",$connect));
 ?>
 
 	<tr align=center height=50 style=padding-bottom:3px class=list<?=$coloring%2?>>
 		<td class=list_main1></td>
-		<?if($hide_no!="on"){?><? if($browser=="1"){ ?><td class=list_main2 align=center nowrap><div style="overflow:hidden"><font class=title_font style=color:FF4E00>notice</font></div></td><? } ?><?}?>
+		<?if($hide_no!="on"){?><? if($browser=="1"){ ?><td class=list_main2 align=center nowrap><div style="overflow:hidden"><font class=title_font style=color:#FF4E00>notice</font></div></td><? } ?><?}?>
 
 		<? if($browser=="1"){ ?><td style=padding-top:5px;padding-bottom:5px border=0 class=list_main2_2 align=center><?=$view_img?><img src=<?=$thumb_img?> width=52 height=39 class=shadow2 style=border-width:1pt;border-style:solid;border-color:#000000;></td><? } ?>
 
@@ -32,9 +34,9 @@ if($emoticon_use=="on") $_name1[0]=str_to_emoticon($_name1[0],$emoticon_url);
 			<col width=100%></col><?if($hide_name!="on"){?><? if($browser=="1"){ ?><col width=100></col><? } ?><?}?><?if($hide_date!="on"){?><? if($browser=="1"){ ?><col width=65></col><? } ?><?}?><?if($hide_vote!="on"){?><? if($browser=="1"){ ?><col width=35></col><? } ?><?}?><?if($hide_hit!="on"){?><? if($browser=="1"){ ?><col width=50></col><? } ?><?}?>
 
 			<tr>
-				<td align=left style=padding-top:7px nowrap><div style="overflow:hidden"><?=$hide_cart_start?><input type=checkbox name=cart value="<?=$data[no]?>"><?=$hide_cart_end?>&nbsp;&nbsp;<img src=<?=$dir?>/notice_fr2.gif align=absmiddle border=0>&nbsp;<?=$insert?><B><?=$subject?></B><?=$comment_new?></div></td>
+				<td align=left style=padding-bottom:5px nowrap><div style="overflow:hidden"><?=$hide_cart_start?><input type=checkbox name=cart value="<?=$data[no]?>"><?=$hide_cart_end?>&nbsp;&nbsp;<img src=<?=$dir?>/notice_fr2.gif align=absmiddle border=0>&nbsp;<?=$insert?><B><?=$subject?></B><?=$comment_new?></div></td>
 
-				<?if($hide_name!="on"){?><? if($browser=="1"){ ?><td nowrap align=center style=padding-top:4px><div style="overflow:hidden"><nobr><?=$face_image?><?=$name?></nobr></div></td><? } ?><?}?>
+				<?if($hide_name!="on"){?><? if($browser=="1"){ ?><td nowrap align=center style=padding-bottom:5px><div style="overflow:hidden"><nobr><?=$face_image?><?=$name?></nobr></div></td><? } ?><?}?>
 
 				<?if($hide_date!="on"){?><? if($browser=="1"){ ?><td nowrap class=list_eng align=center><?=$reg_date?></td><? } ?><?}?>
 
@@ -44,14 +46,14 @@ if($emoticon_use=="on") $_name1[0]=str_to_emoticon($_name1[0],$emoticon_url);
 
 			</tr>
 			<tr valign=bottom>
-				<td align=left style=padding-top:10px><div style="overflow:hidden"><nobr><font style=color:ffffff>&nbsp;&nbsp;&nbsp;<? if(!$data[is_secret]) echo substr(strip_tags(stripslashes($_name1[0])),0,400); else echo "비밀글입니다"; ?></font></nobr></div></td>
+				<td align=left style=padding-bottom:4px><div style="overflow:hidden"><nobr><font style=color:ffffff>&nbsp;&nbsp;&nbsp;<? if(!$data[is_secret]) echo htmlspecialchars(substr($_name1[0],0,400)); else echo "비밀글입니다"; ?></font></nobr></div></td>
 				<?if($hide_name!="on"){?><? if($browser=="1"){ ?><td align=center class=com7 style=padding-bottom:2px><div style="overflow:hidden"><img src=<?=$dir?>/point.gif align=absmiddle>&nbsp;<?=($m_data[point1]*10+$m_data[point2])?></div></td><? } ?><?}?>
 
-				<?if($hide_date!="on"){?><? if($browser=="1"){ ?><td align=center style=padding-top:8px><font class=com7 color=aaaaaa><?=date("H:i:s",$data[reg_date])?></font></td><? } ?><?}?>
+				<?if($hide_date!="on"){?><? if($browser=="1"){ ?><td align=center style=padding-bottom:4px><font class=com7 color=#aaaaaa><?=date("H:i:s",$data[reg_date])?></font></td><? } ?><?}?>
 
 				<?if($hide_vote!="on"){?><? if($browser=="1"){ ?><td></td><? } ?><?}?>
 
-				<?if($hide_hit!="on"){?><? if($browser=="1"){ ?><td align=center valign=bottom style=padding-bottom:4px><?if ($data[hit]<=$max_hit/15)
+				<?if($hide_hit!="on"){?><? if($browser=="1"){ ?><td align=center valign=bottom style=padding-bottom:7px><?if ($data[hit]<=$max_hit/15)
 					echo "<img src=$dir/hit_gra1.gif border=0 align=absmiddle>";
 				elseif ($data[hit]<=$max_hit/3)
 					echo "<img src=$dir/hit_gra2.gif border=0 align=absmiddle>";

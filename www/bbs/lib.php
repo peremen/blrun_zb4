@@ -62,6 +62,8 @@ $ssl_url = sslUrl();
 $member_table = "zetyx_member_table";  // 회원들의 데이타가 들어 있는 직접적인 테이블
 $group_table = "zetyx_group_table";   // 그룹테이블
 $admin_table="zetyx_admin_table";     // 게시판의 관리자 테이블
+$board_imsi_table="zetyx_board_imsi"; // 게시판 임시저장 테이블
+$comment_imsi_table="zetyx_board_comment_imsi"; // 코멘트 임시저장 테이블
 
 $send_memo_table ="zetyx_send_memo";
 $get_memo_table ="zetyx_get_memo";
@@ -396,7 +398,7 @@ function check_board_master($member, $board_num) {
 //  초기 헤더를 뿌려주는 부분;;;;
 function head($body="",$scriptfile="") {
 
-	global $group, $setup, $dir,$member, $PHP_SELF, $id, $_head_executived, $HTTP_COOKIE_VARS, $width;
+	global $group, $setup, $dir,$member, $PHP_SELF, $id, $_head_executived, $HTTP_COOKIE_VARS, $width, $_view_included;
 
 	if($_head_executived) return;
 	$_head_executived = true;
@@ -431,11 +433,25 @@ function head($body="",$scriptfile="") {
 <!-- SyntaxHighlighter 관련 헤더 -->
 <link rel="stylesheet" type="text/css" href="syntaxhighlighter/styles/shThemeDefault.css" />
 <link rel="stylesheet" type="text/css" href="syntaxhighlighter/styles/shCore.css" />
-<SCRIPT type="text/javascript" src="syntaxhighlighter/scripts/jquery-1.7.1.min.js"></SCRIPT>
+<script type="text/javascript" src="syntaxhighlighter/scripts/jquery-1.6.1.min.js"></script>
 <script type="text/javascript" src="syntaxhighlighter/scripts/shCore.js"></script>
 <script type="text/javascript" src="syntaxhighlighter/scripts/shAutoloader.js"></script>
-<SCRIPT type="text/javascript" src="syntaxhighlighter/scripts/jQuery.js"></SCRIPT>
+<script type="text/javascript" src="syntaxhighlighter/scripts/jQuery.js"></script>
 <!-- SyntaxHighlighter 관련 헤더 끝 -->
+
+<!-- 추가 스크립트 로딩 -->
+<script language='JavaScript'>
+// 카테고리 변경 리로딩 관련 펑션
+function category_change(obj) {
+	var myindex=obj.selectedIndex;
+	document.search.category.value=obj.options[myindex].value;
+	document.search.submit();
+	return true;
+}
+// 전역 이미지 박스 핸들러 변수 선언
+var imageBoxHandler;
+</script>
+<!-- 추가 스크립트 로딩 끝 -->
 <? if($setup[use_formmail]) echo $zbLayerScript; ?>
 <? if($scriptfile) include "script/".$scriptfile; ?>
 
@@ -449,6 +465,23 @@ function head($body="",$scriptfile="") {
 ?>
 
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> height=1 style="table-layout:fixed;"><col width=100%></col><tr><td><img src=images/t.gif border=0 width=98% height=1 name=zb_get_table_width><br><img src=images/t.gif border=0 name=zb_target_resize width=1 height=1></td></tr></table>
+<form name=check_attack><input type=hidden id=check name=check value=0></form>
+<div id='zb_waiting' style='position:absolute; top:50%; left:50%; width:292px; height:91px; overflow:hidden; margin-top:-45px; margin-left:-146px; z-index:1; visibility: hidden'>
+<table border=0 width=98% cellspacing=1 cellpadding=0 bgcolor=black>
+<form name=waiting_form>
+<tr bgcolor=white>
+	<td>
+		<table border=0 cellspacing=0 cellpadding=0 width=100%>
+		<tr>
+			<td><img src=images/waiting_left.gif border=0></td>
+			<td><img src=images/waiting_top.gif border=0><br><img src=images/waiting_text.gif></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</form>
+</table>
+</div>
 <?
 	} else {
 ?>
@@ -472,9 +505,11 @@ function head($body="",$scriptfile="") {
 }
 
 // 푸터 부분 출력
-function foot($max_depth="") {
+function foot($max_depth="",$all_depth="") {
 
-	global $width, $group, $setup, $_startTime , $_queryTime , $_foot_executived, $_skinTime, $_sessionStart, $_sessionEnd, $_nowConnectStart, $_nowConnectEnd, $_dbTime, $_listCheckTime, $_zbResizeCheck, $max_depth;
+	global $width, $group, $setup, $_startTime , $_queryTime , $_foot_executived, $_skinTime, $_sessionStart, $_sessionEnd, $_nowConnectStart, $_nowConnectEnd, $_dbTime, $_listCheckTime, $_zbResizeCheck, $max_depth, $all_depth;
+
+	if(!$all_depth) $all_depth=$max_depth;
 
 	if($_foot_executived) return;
 	$_foot_executived = true;
@@ -500,6 +535,7 @@ function foot($max_depth="") {
 
 <!-- 이미지 리사이즈를 위해서 처리하는 부분 -->
 <script>
+// onload 추가 실행 관련 펑션
 function addLoadEvent(func){
 	var oldonload = window.onload;
 	if(typeof window.onload != 'function'){
@@ -512,7 +548,7 @@ function addLoadEvent(func){
 	}
 }
 function zb_img_check(){
-	var zb_main_table_width = document.zb_get_table_width.width*(100-5*<?=$max_depth?>-4)/100;
+	var zb_main_table_width = document.zb_get_table_width.width*(100-5*<?=$all_depth?>-4)/100;
 	var zb_target_resize_num = document.zb_target_resize.length;
 	for(i=0;i<zb_target_resize_num;i++){ 
 		if(document.zb_target_resize[i].width > zb_main_table_width) {
@@ -523,6 +559,7 @@ function zb_img_check(){
 }
 addLoadEvent(zb_img_check);
 </script>
+<!-- 이미지 리사이즈를 위해서 처리하는 부분 끝 -->
 
 <?
 		}
@@ -574,12 +611,12 @@ function check_zbLayer($data) {
 	global $zbLayer, $setup, $member, $is_admin, $id, $_zbCheckNum;
 	if($setup[use_formmail]) {
 		if(!$_zbCheckNum) $_zbCheckNum=0;
-		$data[name]=stripslashes($data[name]);
+		//$data[name]=stripslashes($data[name]);
 		$data[name]=urlencode($data[name]);
 
 		if($data[homepage]){
-			$data[homepage]=str_replace("http://","",stripslashes($data[homepage]));
-			$data[homepage]="http://".$data[homepage];
+			$data[homepage]=str_replace("http://","",$data[homepage]);
+			$data[homepage]="http://".str_replace("%2F", "/", urlencode($data[homepage]));
 		}
 
 		$data[email]=base64_encode($data[email]);
@@ -601,7 +638,7 @@ function check_zbLayer($data) {
 
 		if($data[ismember]<1) $data[ismember]="";
 
-		$zbLayer = $zbLayer."\nprint_ZBlayer('zbLayer$_zbCheckNum', '".addslashes($data[homepage])."', '$data[email]', '$data[ismember]', '$id', '$data[name]', '$traceID', '$traceType', '$isAdmin', '$isMember');";
+		$zbLayer = $zbLayer."\nprint_ZBlayer('zbLayer$_zbCheckNum', '".$data[homepage]."', '$data[email]', '$data[ismember]', '$id', '$data[name]', '$traceID', '$traceType', '$isAdmin', '$isMember');";
 	}   
 	return $_zbCount;
 }

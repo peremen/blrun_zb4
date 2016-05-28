@@ -1,8 +1,116 @@
 
+<!-- 코멘트 직접 수정 관련 스크립트 헤더 -->
 <script language="javascript">
+function ajaxLoad()
+{
+	$.ajax({
+		type: "POST",
+		url: "comment_init_ok.php",
+		dataType: "json",
+		data: $("#write").serialize(),
+		success: function(data) {
+			var yn = confirm("임시저장된 덧글을 불러오시겠습니까?");
+			if(yn) {
+<? if($setup[use_html]>0||$is_admin||$member[level]<=$setup[grant_html]) { ?>
+				if(data.use_html2) {
+					$("#use_html2").prop("checked", true);
+					$("#use_html2").val(data.use_html2);
+				} else $("#use_html2").prop("checked", false);
+<? } ?>
+
+<? if($setup[use_secret]) { ?>
+				if(data.is_secret) $("#is_secret").prop("checked", true);
+				else $("#is_secret").prop("checked", false);
+<? } ?>
+
+<? if(!$member[no]) { ?>
+				$("#name").val(data.name);
+<? } ?>
+				$("#memo").val(data.memo);
+			}
+		}
+	});
+}
+
+function loadAjax2()
+{
+	$.ajax({
+		type: "POST",
+		url: "comment_init_ok.php",
+		dataType: "json",
+		data: $("#write").serialize(),
+		success: function(data) {
+<? if($setup[use_html]>0||$is_admin||$member[level]<=$setup[grant_html]) { ?>
+			if(data.use_html2) {
+				$("#use_html2").prop("checked", true);
+				$("#use_html2").val(data.use_html2);
+			} else $("#use_html2").prop("checked", false);
+<? } ?>
+
+<? if($setup[use_secret]) { ?>
+			if(data.is_secret) $("#is_secret").prop("checked", true);
+			else $("#is_secret").prop("checked", false);
+<? } ?>
+
+<? if(!$member[no]) { ?>
+			$("#name").val(data.name);
+<? } ?>
+			$("#memo").val(data.memo);
+		}
+	});
+}
+
+var cntLoad = 0;
+var pSet;
+
+function ajaxLoad2()
+{
+	cntLoad++;
+	if(cntLoad<2) {
+		pSet = setTimeout("loadAjax2()",3000);
+	} else {
+		clearTimeout(pSet);
+		pSet = setTimeout("loadAjax2()",1500);
+	}
+}
+
+function autoSave()
+{
+	$('#state').css('color','red');
+	$('#state').html('임시저장중...');
+	$.ajax({
+		type: "POST",
+		url: "comment_imsi_ok.php",
+		dataType: "json",
+		data: $("#write").serialize(),
+		success: function(data) {
+			$('#state').css('color','blue');
+			$('#state').html('임시저장 완료!');
+		},
+		error: function() {
+			$('#state').css('color','red');
+			$('#state').html('임시저장 실패!');
+		}
+	});
+}
+
 function unlock()
 {
 	document.getElementById('check').value=0;
+	ajaxLoad(); 
+}
+
+var cntkey = 0;
+var qSet;
+function addStroke() {
+	cntkey++;
+	if(cntkey<2) {
+		qSet = setTimeout("autoSave()",60000);
+	} else {
+		clearTimeout(qSet);
+		qSet = setTimeout("autoSave()",30000);
+	}
+	if(cntkey%78==2) autoSave();
 }
 
 function check_submit()
@@ -23,40 +131,12 @@ function check_submit()
 		rName.focus();
 		return false;
 	}
-
 	if(!rPass.value)
 	{
 		alert('암호를 입력하여 주세요.\n\n암호를 입력하셔야 수정/삭제를 할수 있습니다');
 		rPass.focus();
 		return false;
 	}
-
-	var nStr=rName.value;
-	var pStr=rPass.value;
-
-	var nLen=nStr.length;
-	var pLen=pStr.length;
-	var cnt=0;
-
-	for(i=0;i<nLen;i++){
-		if(nStr.substr(i,1)=="\"") cnt++;
-	}
-	if(cnt>0){
-		alert("이름에 \" 문자가 들어가 있습니다.");
-		rName.focus();
-		return false;
-	}
-
-	cnt=0;
-	for(i=0;i<pLen;i++){
-		if(pStr.substr(i,1)=="\"") cnt++;
-	}
-	if(cnt>0){
-		alert('패스워드에 \" 문자가 들어가 있습니다.');
-		rPass.focus();
-		return false;
-	}
-
 <? } ?>
 
 	var rPattern=/\|\|\|\d+\|\d+$/g;
@@ -84,7 +164,6 @@ function check_submit()
 	return true;
 }
 
-var imageBoxHandler;
 function showImageBox(id) {
 	imageBoxHandler= window.open("image_box.php?id="+id,"imageBox","width=600,height=540,resizable=yes,scrollbars=yes,toolbars=no");
 }
@@ -195,20 +274,4 @@ function doTab(arg1){
 	return true;
 }
 </script>
-<form name=check_attack><input type=hidden id=check name=check value=0></form>
-<div id='zb_waiting' style='position:absolute; left:50px; top:120px; width:292; height: 91; z-index:1; visibility: hidden'>
-<table border=0 width=98% cellspacing=1 cellpadding=0 bgcolor=black>
-<form name=waiting_form>
-<tr bgcolor=white>
-	<td>
-		<table border=0 cellspacing=0 cellpadding=0 width=100%>
-		<tr>
-			<td><img src=images/waiting_left.gif border=0></td>
-			<td><img src=images/waiting_top.gif border=0><br><img src=images/waiting_text.gif></td>
-		</tr>
-		</table>
-	</td>
-</tr>
-</form>
-</table>
-</div>
+<!-- 코멘트 직접 수정 관련 스크립트 헤더 끝 -->

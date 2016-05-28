@@ -21,7 +21,7 @@ if(!preg_match("/Zeroboard/i",$a_delete)) $a_delete=str_replace("delete.php?","$
 <table width=<?=$width?> cellspacing=0 cellpadding=0 align=center>
 <col width=265></col><col width=170></col><col width=></col>
 <tr>
-  <td height=30>
+  <td align=left height=30>
     <?=$a_reply?><img src=<?=$dir?>/bt_reply.gif border=0></a>
     <?=$a_modify?><img src=<?=$dir?>/bt_modify.gif border=0></a>
     <?=$a_delete?><img src=<?=$dir?>/bt_del.gif border=0></a>
@@ -54,7 +54,7 @@ if(!preg_match("/Zeroboard/i",$a_delete)) $a_delete=str_replace("delete.php?","$
 
 <table width=<?=$width?>>
 <tr>
-  <td style='word-break:break-all;'>¡ã <?=$a_prev?><?=$prev_subject?></a></td>
+  <td align=left style='word-break:break-all;'>¡ã <?=$a_prev?><?=$prev_subject?></a></td>
 </tr>
 </table>
 <?=$hide_prev_end?>
@@ -63,7 +63,7 @@ if(!preg_match("/Zeroboard/i",$a_delete)) $a_delete=str_replace("delete.php?","$
 
 <table width=<?=$width?>>
 <tr>
-  <td style='word-break:break-all;'>¡å <?=$a_next?><?=$next_subject?></a></td>
+  <td align=left style='word-break:break-all;'>¡å <?=$a_next?><?=$next_subject?></a></td>
 </tr>
 </table>
 <?=$hide_next_end?>

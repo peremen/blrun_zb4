@@ -7,22 +7,22 @@ if($keyword) {
 	if($ss=="on"&&$setup[cut_length]>0) $setup[cut_length]=$setup[cut_length]+16;
 }
 
-// ' 등의 특수문자때문에 붙인 \(역슬래쉬)를 떼어낸다
-$name=$reply_data[name]=stripslashes($reply_data[name]);  // 이름
-$email=$reply_data[email]=stripslashes($reply_data[email]);  // 메일
-$subject=$reply_data[subject]=stripslashes($reply_data[subject]); // 제목
+// ' " \ 등의 특수문자때문에 htmlspecialchars 를 해준다
+$name=$reply_data[name]=htmlspecialchars($reply_data[name]);  // 이름
+$email=$reply_data[email]=htmlspecialchars($reply_data[email]);  // 메일
+$subject=$reply_data[subject]=htmlspecialchars($reply_data[subject]); // 제목
 $subject=cut_str($subject,$setup[cut_length]); // 제목 자르는 부분
 if($member[level]<=$setup[grant_view]) $subject="<a href=view.php?$href$sort&no=$reply_data[no]>".$subject."</a>"; // 제목에 링크 거는 부분;
-$homepage=$reply_data[homepage]=stripslashes($reply_data[homepage]);
+$homepage=$reply_data[homepage]=htmlspecialchars($reply_data[homepage]);
 if($homepage) $homepage="<a href=$homepage target=_blank>$homepage</a>";
-$memo=$reply_data[memo]=nl2br(stripslashes($reply_data[memo])); // 내용
+$memo=$reply_data[memo]=nl2br($reply_data[memo]); // 내용
 $memo=autolink($memo); // 자동링크 거는 부분;;
 $hit=$reply_data[hit];  // 조회수
 $vote=$reply_data[vote];  // 투표수
 if($setup[use_showip]||$is_admin)$ip="IP Address : ".$reply_data[ip]."&nbsp;";  // 아이피
 $comment_num="[".$reply_data[total_comment]."]"; // 간단한 답글 수
-$sitelink1=$reply_data[sitelink1]=stripslashes($reply_data[sitelink1]);
-$sitelink2=$reply_data[sitelink2]=stripslashes($reply_data[sitelink2]);
+$sitelink1=$reply_data[sitelink1]=htmlspecialchars($reply_data[sitelink1]);
+$sitelink2=$reply_data[sitelink2]=htmlspecialchars($reply_data[sitelink2]);
 if($sitelink1)$sitelink1="<a href=$sitelink1 target=_blank>$sitelink1</a>";
 if($sitelink2)$sitelink2="<a href=$sitelink2 target=_blank>$sitelink2</a>";
 $file_name1=$reply_data[s_file_name1];

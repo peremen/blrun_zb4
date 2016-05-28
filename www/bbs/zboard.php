@@ -4,6 +4,9 @@
 **************************************************************************/
 include "_head.php";
 
+// HTML 출력 
+print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
+
 /***************************************************************************
 * 게시판 설정 체크
 **************************************************************************/
@@ -174,20 +177,28 @@ $a_download2="<a onfocus=blur() href='$PHP_SELF?$href&select_arrange=download2&d
 * 정리한 데이타를 출력하는 부분 
 **************************************************************************/
 
+// 현재 선택된 데이타가 있을때, 즉 $no 가 있을때 $_view_included 변수 True로 셋.
+if($no&&$setup[use_alllist])
+	$_view_included = true;
+
 // 헤더 출력
 $_skinTimeStart = getmicrotime();
-head(" onload=unlock() onunload=hideImageBox() ","script_list.php");
-include "script/script_comment.php";
+head("onload=unlock2() onunload=hideImageBox2()","script_list.php");
+
+// $_view_included 변수가 True 일 때 추가 스크립트 포함
+if($_view_included) {
+	if($setup[skinname] != "ruvin_cubic_gu")
+		include "script/script_comment.php";
+} elseif($setup[skinname] == "ruvin_cubic_gu")
+	include "script/script_write.php";
 
 // 상단 현황 부분 출력 
 include "$dir/setup.php";
 $_skinTime += getmicrotime()-$_skinTimeStart;
 
 // 현재 선택된 데이타가 있을때, 즉 $no 가 있을때 데이타 가져옴
-if($no&&$setup[use_alllist]) {
-	$_view_included = true;
+if($_view_included)
 	include "view.php";
-}
 
 // 리스트의 상단 부분 출력
 $_skinTimeStart = getmicrotime();

@@ -2,8 +2,8 @@
 include "lib.php";
 
 if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.","window.close");
-if(!preg_match("/write.php/i",$HTTP_REFERER)) Error("정상적으로 글을 쓰시기 바랍니다","window.close");
-if(getenv("REQUEST_METHOD") == 'GET' ) Error("정상적으로 글을 쓰시기 바랍니다","window.close");
+if(!preg_match("/write.php/i",$HTTP_REFERER)) Error("정상적으로 글을 쓰시기 바랍니다.","window.close");
+if(getenv("REQUEST_METHOD") == 'GET' ) Error("정상적으로 글을 쓰시기 바랍니다..","window.close");
 
 if($_name1) $memo=$_name1;
 if(!$subject) Error("포스트 제목을 입력하여 주십시요","window.close");
@@ -64,8 +64,6 @@ if(!$is_admin&&$setup[grant_html]<$member[level]) {
 	}
 }
 
-$memo=trim(stripslashes($memo));
-
 if($mode=="modify") {
 	if($member[no]!=$data[ismember])
 		$ismember=$data[ismember];
@@ -117,6 +115,12 @@ for($i=0;$i<count($temp);$i++) {
 // 임시 치환된 문자를 복원함
 $memo=str_replace("my_lt_ek","&lt;",$memo);
 $memo=str_replace("my_gt_ek","&gt;",$memo);
+
+// 각종 변수의 addslashes 시킴;;
+if(!get_magic_quotes_gpc()) {
+	$subject=addslashes($subject);
+	$memo=addslashes($memo);
+}
 
 $memo=trim($memo);
 
@@ -187,8 +191,8 @@ if($use_html<2) {
 }
 
 // 제목 제작
-if(($is_admin||$member[level]<=$setup[use_html])&&$use_html) $data[subject]=stripslashes($subject);
-else $data[subject]=del_html(stripslashes($subject));
+if(($is_admin||$member[level]<=$setup[use_html])&&$use_html) $data[subject]=trim($subject);
+else $data[subject]=trim(del_html($subject));
 
 ?>
 <html>
@@ -241,13 +245,13 @@ else $data[subject]=del_html(stripslashes($subject));
 </table>
 <table border=0 cellspacing=0 cellpadding=10 width=100% height=100% bgcolor=black style=table-layout:fixed>
 <tr bgcolor=white valign=top>
-	<td height=40 class=title2_han>
-		<b>제목: <?=$data[subject]?></b><br>
+	<td height=50 class=title2_han>
+		<b>제목: <?=stripslashes($data[subject])?></b><br>
 	</td>
 </tr>
 <tr bgcolor=white valign=top>
 	<td class=memo>
-		<?=$memo?>
+		<?=stripslashes($memo)?>
 	</td>
 </tr>
 </table>
