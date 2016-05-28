@@ -7,14 +7,14 @@ if($chk_edit_use=="on")	를 if(true) 로 바꿉니다.
 -->
 
 <?	
-	if($emoticon_use=="on")			//<!-- 에디터 기능 사용유무 체크 -->
-	{
-		$sw_edit_yn = "Y";			//<!-- HTML Editer 사용여부 -->
-		$sw_edit_tag_yn = "N";		//<!-- HTML/Visual 모드 토글 -->
-	}else{
-		$sw_edit_yn = "N";
-		$sw_edit_tag_yn = "N";
-	};
+if($emoticon_use=="on")			//<!-- 에디터 기능 사용유무 체크 -->
+{
+	$sw_edit_yn = "Y";			//<!-- HTML Editer 사용여부 -->
+	$sw_edit_tag_yn = "N";		//<!-- HTML/Visual 모드 토글 -->
+}else{
+	$sw_edit_yn = "N";
+	$sw_edit_tag_yn = "N";
+};
 ?>
 <!--========================[ 에디터 기능 사용유무 체크 ]=========================-->
 
@@ -70,3 +70,4 @@ include $dir."/swe/ed_seting_fileview.php";
 	imgViewReloadInterval = setInterval("imgViewReload()", 300);	
   //-->
 </SCRIPT>
+<!--====================[ sw_edit 파일명: ed_seting_head.php 끝]====================-->

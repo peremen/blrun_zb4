@@ -20,7 +20,7 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 	$id=explode(",", $id_array);
 	$n=$num;
 
-	//날짜를 배열로 만들어 내림순으로 정열
+	// 날짜를 배열로 만들어 내림순으로 정열
 	for($i=0;$i<count($id);$i++){
 		$result = mysql_query("select * from $t_comment"."_$id[$i]  order by no desc limit $num", $connect) or die(mysql_error());
 
@@ -29,18 +29,18 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 		}
 	}
 
-	//내림순으로 된 날짜배열
+	// 내림순으로 된 날짜배열
 	$re_date=explode("|", $r_date);
 	rsort($re_date);
 
-	//새로 정열된 날짜로 데이터를 뽑아온다
+	// 새로 정열된 날짜로 데이터를 뽑아온다
 	for($j=0;$j<$n;$j++){
 		$_date=explode(";", $re_date[$j]);
 		// get memo data
 
 		$result = mysql_query("select * from $t_comment"."_$_date[1] where reg_date='$_date[0]'", $connect) or die(mysql_error());
 		if($data=mysql_fetch_array($result)){
-			//게시판타이틀 없으면 게시판아이디 출력
+			// 게시판타이틀 없으면 게시판아이디 출력
 			$set=mysql_fetch_array(mysql_query("select * from zetyx_admin_table where name='$_date[1]'", $connect));
 			if(!$set[title])$subject=$_date[1];
 			else $subject = $set[title];
@@ -73,7 +73,7 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 				$main = str_replace("[new]", "",$main); 
 			} 
 
-			//아이콘 끝 
+			// 아이콘 끝 
 			$main = str_replace("[name]","<a href='".$_zb_url.$target."&no=".$parent."#$data[no]' target=_self>".$name."</a>",$main);
 			$main = str_replace("[date]","<a href='".$_zb_url.$target."&no=".$parent."#$data[no]' target=_self>".$date."</a>",$main);
 			$main_data .= "".$main;
@@ -85,5 +85,4 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 	$list=str_replace("[dir]",$_zb_url."latest_skin/".$skinname."/images/",$list);
 	echo $list;
 }
-
 ?>

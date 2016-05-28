@@ -42,3 +42,4 @@
 <td><input type='text' id='subject' name='subject' value="<?=$subject?>" maxlength='200' style='width:100%' class='input'></td>
 </tr>
 </table>
+<!--====================[ sw_edit 파일명: ed_seting_substyle.php 끝]====================-->

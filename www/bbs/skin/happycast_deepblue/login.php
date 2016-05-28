@@ -1,4 +1,5 @@
 <? include "$dir/value.php3"; ?>
+
 <div align=center>
 <br><br><br>
 <table width=250 border=1 cellspacing=0 cellpadding=0 bgcolor=<?=$list_header_bg_color?> bordercolorlight=<?=$list_header_dark0?> bordercolordark=<?=$list_header_dark1?>><tr><td><img src=images/t.gif height=3></td></tr></table>

@@ -16,7 +16,7 @@ $Thumbnail_icon_use="";
 $Thumbnail_url=$zb_url."/data/".$id."/thumbnail/";
 $Thumbnail_path=$zb_path."data/".$id."/thumbnail/";
 
-$type="B_type";
+$type="D_type";
 
 $table="";
 

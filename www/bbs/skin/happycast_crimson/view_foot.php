@@ -33,16 +33,17 @@ if(!preg_match("/Zeroboard/i",$a_home)) $a_home = str_replace(">","><font class=
 if(!preg_match("/Zeroboard/i",$a_bitly)) $a_bitly = str_replace(">","><font class=view_title1>",$a_bitly)."&nbsp;&nbsp;";
 if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font class=view_title1>",$a_keyword)."&nbsp;&nbsp;";
 ?>
+
 <!-- 이전 / 다음글 출력 -->
 <table border=0 cellpadding cellspacing=0 width=<?=$width?>>
 <tr><td colspan=10 bgcolor=white><img src=images/t.gif height=1></td></tr>
 <tr><td colspan=10 bgcolor=<?=$view_left_header_color?>><img src=images/t.gif height=2></td></tr>
 </table>
-
 <?=$hide_prev_start?>
+
 <table border=0 width=<?=$width?> cellspacing=0 cellpadding=0>
 <tr>
- <td colspan=8 bgcolor=<?=$list_header_dark0?>><img src=images/t.gif height=1></td>
+  <td colspan=8 bgcolor=<?=$list_header_dark0?>><img src=images/t.gif height=1></td>
 </tr>
 <tr align=center height=24>
   <td width=8% class=listnum>Prev</td>
@@ -50,7 +51,6 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
   <td width=10% nowrap><img src=images/t.gif height=3><br><?=$prev_face_image?> <?=$prev_name?></td>
 </tr>
 </table>
-
 <table border=0 cellpadding cellspacing=0 width=<?=$width?>>
 <tr>
   <td colspan=10 bgcolor=<?=$list_divider?>><img src=images/t.gif height=1></td>
@@ -59,9 +59,10 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 <?=$hide_prev_end?>
 
 <?=$hide_next_start?>
+
 <table border=0 width=<?=$width?> cellspacing=0 cellpadding=0>
 <tr>
- <td colspan=8 bgcolor=<?=$list_header_dark1?>><img src=images/t.gif height=1></td>
+  <td colspan=8 bgcolor=<?=$list_header_dark1?>><img src=images/t.gif height=1></td>
 </tr>
 <tr align=center height=24>
   <td width=8% class=listnum>Next</td>
@@ -69,7 +70,6 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
   <td width=10% nowrap><img src=images/t.gif height=3><br><?=$next_face_image?> <?=$next_name?></td>
 </tr>
 </table>
-
 <table border=0 cellpadding cellspacing=0 width=<?=$width?>>
 <tr>
   <td colspan=10 bgcolor=<?=$list_footer_bg_color?>><img src=images/t.gif height=1></td>
@@ -80,16 +80,17 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 <!-- 버튼 관련 출력 -->
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <tr height=23>
- <td>
-  <?=$a_list?><img src=<?=$dir?>/i_list.gif border=0 align=absmiddle></a>
-  <?=$a_write?><img src=<?=$dir?>/i_write.gif border=0 align=absmiddle></a>
-  <? if($box_view) { echo $a_preview."미리보기</a>".$a_imagebox."그림창고</a>".$a_codebox."코드삽입</a>"; }?>
- </td>
- <td align=right>
-  <?=$a_home?>[HOME]</a><?=$a_bitly?>[bitly]</a><?=$a_keyword?>[반전해제]</a>
-  <?=$a_vote?><img src=<?=$dir?>/i_vote.gif border=0 align=absmiddle></a>
-  <?=$a_reply?><img src=<?=$dir?>/i_reply.gif border=0 align=absmiddle></a>
- </td>
+  <td>
+    <?=$a_list?><img src=<?=$dir?>/i_list.gif border=0 align=absmiddle></a>
+    <?=$a_write?><img src=<?=$dir?>/i_write.gif border=0 align=absmiddle></a>
+    <? if($box_view) { echo $a_preview."미리보기</a>".$a_imagebox."그림창고</a>".$a_codebox."코드삽입</a>"; }?>
+
+  </td>
+  <td align=right>
+    <?=$a_home?>[HOME]</a><?=$a_bitly?>[bitly]</a><?=$a_keyword?>[반전해제]</a>
+    <?=$a_vote?><img src=<?=$dir?>/i_vote.gif border=0 align=absmiddle></a>
+    <?=$a_reply?><img src=<?=$dir?>/i_reply.gif border=0 align=absmiddle></a>
+  </td>
 </tr>
 </table>
 <?

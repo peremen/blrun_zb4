@@ -1,13 +1,13 @@
 <?
-	//set_time_limit(0); 
-	$del_que1 = $del_que2 = null;
+//set_time_limit(0); 
+$del_que1 = $del_que2 = null;
 
 /***************************************************************************
- * 공통 파일 include
- **************************************************************************/
-	include "_head.php";
+* 공통 파일 include
+**************************************************************************/
+include "_head.php";
 
-	if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)||$ZBRD_SS_VRS!=$antispam) Error("정상적으로 글을 수정하여 주시기 바랍니다.");
+if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)||$ZBRD_SS_VRS!=$antispam) Error("정상적으로 글을 수정하여 주시기 바랍니다.");
 
 if($flag != ok) {
 	/***************************************************************************
@@ -38,10 +38,12 @@ if($flag != ok) {
 		}
 	}
 
-	$s_data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;","\t",$s_data[memo]);
-	$s_data[memo]=str_replace("&nbsp;&nbsp;","  ",$s_data[memo]);
+	if($s_data[use_html2]<2) {
+		$s_data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;","\t",$s_data[memo]);
+		$s_data[memo]=str_replace("&nbsp;&nbsp;","  ",$s_data[memo]);
+	}
 
-	//신택스하이라이트 헤더 처리 시작
+	// 신택스하이라이트 헤더 처리 시작
 	$codePattern = "#(<pre class\=\"brush\: [a-z]+[^>]*?>|<\/pre>)#si";
 	$memo = $s_data[memo];
 	$temp = preg_split($codePattern,$memo,-1,PREG_SPLIT_DELIM_CAPTURE);
@@ -73,7 +75,7 @@ if($flag != ok) {
 	for($i=0;$i<count($temp);$i++) {
 		$memo = $memo.$temp[$i];
 	}
-	//신택스하이라이트 헤더 처리 끝
+	// 신택스하이라이트 헤더 처리 끝
 
 	$memo=str_replace("&nbsp;","&amp;nbsp;",trim(stripslashes($memo)));
 
@@ -116,85 +118,84 @@ if($flag != ok) {
 	$a_view="<a href=view.php?$href$sort&no=$no>";
 
 	head(" onload=unlock() onunload=hideImageBox() ","script_comment.php");
-	?>
-	<table border=0 cellspacing=1 cellpadding=1 class=line1 width=<?=$width?>>
-	<tr>
-		<td bgcolor=white>
-			<table border=0 cellspacing=1 cellpadding=8 width=100% height=120 bgcolor=white>
-			<form method=post action="comment_modify_ok.php?flag=ok" onsubmit="return check_submit()" name=write enctype=multipart/form-data>
-			<input type=hidden name=page value=<?=$page?>>
-			<input type=hidden name=id value=<?=$id?>>
-			<input type=hidden name=no value=<?=$no?>>
-			<input type=hidden name=select_arrange value=<?=$select_arrange?>>
-			<input type=hidden name=desc value=<?=$desc?>>
-			<input type=hidden name=page_num value=<?=$page_num?>>
-			<input type=hidden name=keyword value="<?=$keyword?>">
-			<input type=hidden name=category value="<?=$category?>">
-			<input type=hidden name=sn value="<?=$sn?>">
-			<input type=hidden name=ss value="<?=$ss?>">
-			<input type=hidden name=sc value="<?=$sc?>">
-			<input type=hidden name=sm value="<?=$sm?>">
-			<input type=hidden name=mode value="<?=$mode?>">
-			<input type=hidden name=c_no value=<?=$c_no?>>
-			<input type=hidden name=antispam value=<?=$antispam?>>
-			<col width=70 align=right style=padding-right:10px></col><col width=></col>
- 			<?if(!$member['no']){?>
-			<tr>
-				<td class=list0><font class=list_eng><b>Name</b></font></td>
-				<td class=list1><input type=text name=name <?=size(8)?> maxlength=20 class=input value="<?=trim(stripslashes($s_data[name]))?>"></td>
-			</tr>
-			<tr>
-				<td class=list0><font class=list_eng><b>Password</b></font></td>
-				<td class=list1><input type=password name=password <?=size(8)?> maxlength=20 class=input value="<?=stripslashes($pass)?>"></td>
-			</tr>
-			<?}?>
-			<?=$hide_html_start?>
-			<tr>
-				<td class=list0><font class=list_eng><b>Option</b></font></td>
-				<td class=list_eng>
-					<?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>> HTML사용 <?=$hide_html_end?>
-					<?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1> 비밀글 <?=$hide_secret_end?>
-				</td>
-			</tr>
-			<?=$hide_html_end?>
-			<tr>	
-				<td class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</font></td>
-				<td width=100% height=100% class=list1>
-					<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
-					<col width=></col><col width=70></col>
-					<tr>
-						<td width=100%><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea></td>
-						<td width=70><input type=submit rows=5 class=submit value='수정하기' accesskey="s" style=height:100%></td>
-					</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td colspan=2 class=list1>
-					<table border=0 cellspacing=2 cellpadding=0 width=100% height=20>
-					<col width=5%></col><col width=45%></col><col width=5%></col><col width=45%></col>
-					<tr valign=top>
-					<?=$hide_pds_start?>
-					  <td width=52 align=right><font class=list_eng>Upload #1</font></td>
-					  <td class=list_eng><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name1?></td>
-					  <td width=52 align=right><font class=list_eng>Upload #2</font></td>
-					  <td class=list_eng><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
-					<?=$hide_pds_end?>
-					</tr>
-					</table>
-				</td>
-			</tr>
-			</form>
-			</table>
-		</td>
-	</tr>
-	</table>
-	<div align="left"><?=$a_preview?>미리보기</a> <?=$a_imagebox?>그림창고</a> <?=$a_codebox?>코드삽입</a></div>
+?>
+<table border=0 cellspacing=1 cellpadding=1 class=line1 width=<?=$width?>>
+<tr>
+	<td bgcolor=white>
+		<table border=0 cellspacing=1 cellpadding=8 width=100% height=120 bgcolor=white>
+		<form method=post action="comment_modify_ok.php?flag=ok" onsubmit="return check_submit()" name=write enctype=multipart/form-data>
+		<input type=hidden name=page value=<?=$page?>>
+		<input type=hidden name=id value=<?=$id?>>
+		<input type=hidden name=no value=<?=$no?>>
+		<input type=hidden name=select_arrange value=<?=$select_arrange?>>
+		<input type=hidden name=desc value=<?=$desc?>>
+		<input type=hidden name=page_num value=<?=$page_num?>>
+		<input type=hidden name=keyword value="<?=$keyword?>">
+		<input type=hidden name=category value="<?=$category?>">
+		<input type=hidden name=sn value="<?=$sn?>">
+		<input type=hidden name=ss value="<?=$ss?>">
+		<input type=hidden name=sc value="<?=$sc?>">
+		<input type=hidden name=sm value="<?=$sm?>">
+		<input type=hidden name=mode value="<?=$mode?>">
+		<input type=hidden name=c_no value=<?=$c_no?>>
+		<input type=hidden name=antispam value=<?=$antispam?>>
+		<col width=70 align=right style=padding-right:10px></col><col width=></col>
+<?if(!$member['no']){?>
+		<tr>
+			<td class=list0><font class=list_eng><b>Name</b></font></td>
+			<td class=list1><input type=text name=name <?=size(8)?> maxlength=20 class=input value="<?=trim(stripslashes($s_data[name]))?>"></td>
+		</tr>
+		<tr>
+			<td class=list0><font class=list_eng><b>Password</b></font></td>
+			<td class=list1><input type=password name=password <?=size(8)?> maxlength=20 class=input value="<?=stripslashes($pass)?>"></td>
+		</tr>
+		<?}?>
+<?=$hide_html_start?>
+		<tr>
+			<td class=list0><font class=list_eng><b>Option</b></font></td>
+			<td class=list_eng>
+				<?=$hide_html_start?> <input type=checkbox name=use_html2<?=$use_html2?>> HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1> 비밀글<?=$hide_secret_end?>
+
+			</td>
+		</tr>
+<?=$hide_html_end?>
+		<tr>	
+			<td class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</font></td>
+			<td width=100% height=100% class=list1>
+				<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
+				<col width=></col><col width=70></col>
+				<tr>
+					<td width=100%><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);'><?=$memo?></textarea></td>
+					<td width=70><input type=submit rows=5 class=submit value='수정하기' accesskey="s" style=height:100%></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2 class=list1>
+				<table border=0 cellspacing=2 cellpadding=0 width=100% height=20>
+				<col width=5%></col><col width=45%></col><col width=5%></col><col width=45%></col>
+				<tr valign=top>
+<?=$hide_pds_start?>
+				  <td width=52 align=right><font class=list_eng>Upload #1</font></td>
+				  <td class=list_eng><input type=file name=file1 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name1?></td>
+				  <td width=52 align=right><font class=list_eng>Upload #2</font></td>
+				  <td class=list_eng><input type=file name=file2 <?=size(50)?> maxlength=255 class=input style=width:99%> <?=$s_file_name2?></td>
+<?=$hide_pds_end?>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</form>
+		</table>
+	</td>
+</tr>
+</table>
+<div align="left"><?=$a_preview?>미리보기</a> <?=$a_imagebox?>그림창고</a> <?=$a_codebox?>코드삽입</a></div>
 <?
 	foot();
 	include "_foot.php";
-}
-else {
+} else {
 
 	if(!$member[no]) {
 		if(isblank($name)) Error("이름을 입력하셔야 합니다");
@@ -228,6 +229,10 @@ else {
 		$password=$temp[0];   
 	}
 
+	// &lt,&gt를 신택스하이라이트에서 사용하기 위해 임시 치환
+	$memo=str_replace("&lt;","my_lt_ek",$memo);
+	$memo=str_replace("&gt;","my_gt_ek",$memo);
+
 	// 관리자이거나 HTML허용레벨이 낮을때 태그의 금지유무를 체크
 	if(!$is_admin&&$setup[grant_html]<$member[level]) {
 
@@ -236,7 +241,6 @@ else {
 
 		// HTML의 부분허용일때;;
 		if($use_html2&&$setup[use_html]==1) {
-			$memo=str_replace("&lt;","&amp;lt;",$memo);
 			$memo=str_replace("<","&lt;",$memo);
 			$tag=explode(",",$setup[avoid_tag]);
 			for($i=0;$i<count($tag);$i++) {
@@ -246,8 +250,7 @@ else {
 					$memo=eregi_replace("&lt;/".$tag[$i],"</".$tag[$i],$memo); 
 				}
 			}
-			$memo=str_replace("&amp;lt;","&lt;",$memo);
-			//XSS 해킹 이벤트 핸들러 제거
+			// XSS 해킹 이벤트 핸들러 제거
 			$xss_pattern1 = "!(<[^>]*?)on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)([^>]*?)(>)!i";
 			$xss_pattern2 = "!on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)=!i";
 			if(preg_match($xss_pattern1,$memo))
@@ -261,7 +264,7 @@ else {
 		}
 	}
 
-	//신택스하이라이트 처리 시작
+	// 신택스하이라이트 처리 시작
 	$codePattern = "#(\[[a-z]+\_code\:[0-9]+\{[^}]*?\}\]|\[\/[a-z]+\_code\])#si";
 	$temp = preg_split($codePattern,$memo,-1,PREG_SPLIT_DELIM_CAPTURE);
 
@@ -279,7 +282,11 @@ else {
 				$temp[$i+1]=str_replace("&#039;","&amp;#039;",$temp[$i+1]);
 				$temp[$i+1]=str_replace("&quot;","&amp;quot;",$temp[$i+1]);
 				$temp[$i+1]=str_replace("&nbsp;","&amp;nbsp;",$temp[$i+1]);
+				$temp[$i+1]=str_replace("my_lt_ek","&amp;lt;",$temp[$i+1]); // &lt 사용!
+				$temp[$i+1]=str_replace("my_gt_ek","&amp;gt;",$temp[$i+1]); // &gt 사용!
 				$temp[$i+1]=str_replace("<","&lt;",$temp[$i+1]);
+				//$temp[$i+1]=str_replace("\'","&#039;",$temp[$i+1]);
+				//$temp[$i+1]=str_replace("\"","&quot;",$temp[$i+1]);
 				$i+=1;
 			}
 			elseif(preg_match($pattern2,$temp[$i])) {
@@ -293,7 +300,11 @@ else {
 	for($i=0;$i<count($temp);$i++) {
 		$memo = $memo.$temp[$i];
 	}
-	//신택스하이라이트 처리 끝
+	// 신택스하이라이트 처리 끝
+
+	// 임시 치환된 문자를 복원함
+	$memo=str_replace("my_lt_ek","&lt;",$memo);
+	$memo=str_replace("my_gt_ek","&gt;",$memo);
 
 	// 원본글을 가져옴
 	unset($s_data);
@@ -321,9 +332,9 @@ else {
 
 	$reg_date=time(); // 현재의 시간구함
 
-/***************************************************************************
- * 업로드가 있을때
- **************************************************************************/
+	/***************************************************************************
+	 * 업로드가 있을때
+	 **************************************************************************/
 	if($HTTP_POST_FILES[file1]) {
 		$file1 = $HTTP_POST_FILES[file1][tmp_name];
 		$file1_name = $HTTP_POST_FILES[file1][name];
@@ -339,14 +350,14 @@ else {
 	if($del_file1==1) {
 		@z_unlink("./".$s_data[file_name1]);
 		$del_que1=",file_name1='',s_file_name1=''";
-		//빈 파일 폴더 삭제
+		// 빈 파일 폴더 삭제
 		if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$s_data[file_name1],$out))
 			if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 	} 
 	if($del_file2==1) {
 		@z_unlink("./".$s_data[file_name2]);
 		$del_que2=",file_name2='',s_file_name2=''";
-		//빈 파일 폴더 삭제
+		// 빈 파일 폴더 삭제
 		if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$s_data[file_name2],$out))
 			if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 	}
@@ -366,7 +377,7 @@ else {
 			$s_file_name1=$file1_name;
 			if(substr($s_file_name1,0,1)=='.'||preg_match("#\.(inc|phtm|htm|shtm|ztx|php|dot|asp|cgi|pl)$#i",$s_file_name1)) Error("Html, PHP 관련파일은 업로드할수 없습니다");
 
-			//확장자 검사
+			// 확장자 검사
 			if($setup[pds_ext1]) {
 				$temp=explode(".",$s_file_name1);
 				$s_point=count($temp)-1;
@@ -397,7 +408,7 @@ else {
 				@chmod($file_name1,0706);
 			}
 		}
-  	}
+	}
 
 	if($file2_size>0&&$setup[use_pds]&&$file2) {
 		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$file2_name,$result); //특수문자가 들어갔는지 조사
@@ -410,7 +421,7 @@ else {
 			$s_file_name2=$file2_name;
 			if(substr($s_file_name2,0,1)=='.'||preg_match("#\.(inc|phtm|htm|shtm|ztx|php|dot|asp|cgi|pl)$#i",$s_file_name2)) Error("Html, PHP 관련파일은 업로드할수 없습니다");
 
-			//확장자 검사
+			// 확장자 검사
 			if($setup[pds_ext2]) {
 				$temp=explode(".",$s_file_name2);
 				$s_point=count($temp)-1;
@@ -443,9 +454,9 @@ else {
 		}
 	}
 	
-/***************************************************************************
- * 수정글일때-덧글 수정 관련
- **************************************************************************/
+	/***************************************************************************
+	 * 수정글일때-덧글 수정 관련
+	 **************************************************************************/
 	if($s_data[ismember]) {
 		if(!$is_admin&&$member[level]>$setup[grant_delete]&&$s_data[ismember]!=$member[no]) Error("정상적인 방법으로 수정하세요");
 	}
@@ -454,7 +465,7 @@ else {
 	if($file_name1) {$del_que1=",file_name1='$file_name1',s_file_name1='$s_file_name1'";}
 	if($file_name2) {$del_que2=",file_name2='$file_name2',s_file_name2='$s_file_name2'";}
 
-	//관리자 수정 권한땐 패스워드를 업데이트 시키지 않는다
+	// 관리자 수정 권한땐 패스워드를 업데이트 시키지 않는다
 	if(!$is_admin&&$member[level]>$setup[grant_delete])
 		$ps_str="password='$password',";
 	else
@@ -464,7 +475,7 @@ else {
 	$result = mysql_query($query,$connect);
 
 	if($result) {
-		//보안을 위해 세션변수 삭제
+		// 보안을 위해 세션변수 삭제
 		session_unregister("ZBRD_SS_VRS");
 		session_unregister("num1num2");
 		// 페이지 이동
@@ -480,5 +491,5 @@ else {
 	}
 }
 
-	@mysql_close($connect);
+@mysql_close($connect);
 ?>

@@ -15,7 +15,7 @@ $file1_check=0;
 
 if($Thumbnail_use=="on"){
 	//썸네일 디렉토리 내 각 회원별 디렉토리 생성
-	if(!is_dir($zb_path."data/$id/thumbnail/".$data[ismember]."/")) { 
+	if(!is_dir($zb_path."data/$id/thumbnail/".$data[ismember]."/")) {
 		if(!@mkdir($zb_path."data/$id/thumbnail/".$data[ismember]."/",0777)) $error_check+=1;
 		if(!@chmod($zb_path."data/$id/thumbnail/".$data[ismember]."/",0707)) $error_check+=2;
 	}
@@ -66,9 +66,8 @@ if($Thumbnail_use=="on"){
 		}
 	}
 
-
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name2])){
-		
+
 		$src_img2=$data[file_name2];
 		if(!file_exists($Thumbnail_path.$Thumbnail_small2) || !file_exists($Thumbnail_path.$Thumbnail_large2)){
 			$size=array(52,200);
@@ -140,9 +139,9 @@ if($Thumbnail_use=="on"){
 	$ran_img1=array($thumb_img12,$thumb_img22);
 	$ran_img2=array($src_img1,$src_img2,$dir."/no_image.gif");
 
-	if($thumb_img1&&$thumb_img2){                              //업로드 이미지 파일이 둘다 있을때 
+	if($thumb_img1&&$thumb_img2){                              //업로드 이미지 파일이 둘다 있을때
 		$img_tag=image_tag($thumb_img1,$thumb_img2);     //업로드 이미지가 둘다 있을때 마우스 오버시 둘다 보여짐
-		$thumb_img=$ran_img1[$ran];           
+		$thumb_img=$ran_img1[$ran];
 		$source_img=$ran_img2[$ran];
 	}                                                       //리스트 메인에서는 첫번째 파일의 썸네일만 보여짐
 	elseif($thumb_img1&&!$thumb_img2){                     //업로드 이미지 1번파일만 있을때
@@ -164,9 +163,9 @@ if($Thumbnail_use=="on"){
 	$img_info=getimagesize(urldecode($source_img));
 
 	if($img_show=="on"){
-		$view_img="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=$img_info[0]&height=$img_info[1]','view_info','width=640,height=480,toolbar=no,scrollbars=no') onfocus='this.blur();' onMouseMove=\"msgposit(-35,50,event)\";  onMouseOver=\"msgset('$img_tag')\"; onMouseOut=\"msghide();\" 'class=shadow' style='cursor:pointer'>";
+		$view_img="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=$img_info[0]&height=$img_info[1]','view_info','width=640,height=480,toolbar=no,scrollbars=no') onfocus='this.blur();' onMouseMove=\"msgposit(-35,50,event);\" onMouseOver=\"msgset('$img_tag');\" onMouseOut=\"msghide();\" class=shadow style='cursor:pointer'>";
 	}else {
-		  $view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] onMouseMove=\"msgposit(-35,50,event)\";  onMouseOver=\"msgset('$img_tag')\"; onMouseOut=\"msghide();\" 'class=shadow' style='cursor:pointer'>";
+		  $view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] onMouseMove=\"msgposit(-35,50,event);\" onMouseOver=\"msgset('$img_tag');\" onMouseOut=\"msghide();\" class=shadow style='cursor:pointer'>";
 	}
 			 // 자바 스크립트를 이용해 마우스 오버시 서브레이어 창으로 이미지 출력
 }else{
@@ -194,7 +193,7 @@ if($Thumbnail_use=="on"){
 
 	$ran_img1=array($thumb_img1,$thumb_img2,$dir."/no_image.gif");
 
-	if($thumb_img1&&$thumb_img2){                              //업로드 이미지 파일이 둘다 있을때 
+	if($thumb_img1&&$thumb_img2){                              //업로드 이미지 파일이 둘다 있을때
 		$img_tag=image_tag($thumb_img1,$thumb_img2);     //업로드 이미지가 둘다 있을때 마우스 오버시 둘다 보여짐
 		$thumb_img=$ran_img1[$ran];
 	}                                                       //리스트 메인에서는 첫번째 파일의 썸네일만 보여짐
@@ -214,11 +213,10 @@ if($Thumbnail_use=="on"){
 	$img_info=getimagesize(urldecode($thumb_img));
 
 	if($img_show=="on"){
-		$view_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') onfocus='this.blur();' onMouseMove=\"msgposit(-35,50,event)\";  onMouseOver=\"msgset('$img_tag')\"; onMouseOut=\"msghide();\" 'class=shadow' style='cursor:pointer'>";
+		$view_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') onfocus='this.blur();' onMouseMove=\"msgposit(-35,50,event);\" onMouseOver=\"msgset('$img_tag');\" onMouseOut=\"msghide();\" class=shadow style='cursor:pointer'>";
 	}else {
-		$view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] onMouseMove=\"msgposit(-35,50,event)\";  onMouseOver=\"msgset('$img_tag')\"; onMouseOut=\"msghide();\" 'class=shadow' style='cursor:pointer'>";
+		$view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] onMouseMove=\"msgposit(-35,50,event);\" onMouseOver=\"msgset('$img_tag');\" onMouseOut=\"msghide();\" class=shadow style='cursor:pointer'>";
 	}
 			 // 자바 스크립트를 이용해 마우스 오버시 서브레이어 창으로 이미지 출력
 }
-   
 ?>

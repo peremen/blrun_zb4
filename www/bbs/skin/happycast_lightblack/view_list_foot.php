@@ -22,6 +22,6 @@
 ///////////////////////////////////////////////////////////////////////// ?>
 
 <!-- 마무리 부분입니다 -->
-<tr>
-<td colspan=10 bgcolor=<?=$list_footer_bg_color?>><img src=images/t.gif height=3></td></tr>
+<tr><td colspan=10 bgcolor=<?=$list_footer_bg_color?>><img src=images/t.gif height=3></td></tr>
 </table>
+</form>

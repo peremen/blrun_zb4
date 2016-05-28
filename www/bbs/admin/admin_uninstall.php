@@ -1,29 +1,28 @@
 <?
-	if($exec=="uninstall"&&$uninstall=="ok"&&$member[is_admin]==1) {
-		if(!$u_hostname) Error("Hostname을 입력하세요");
-		if(!$u_userid) Error("User ID를 입력하세요");
-		if(!$u_password) Error("Password를 입력하세요");
-		if(!$u_dbname) Error("DB Name을 입력하세요");
+if($exec=="uninstall"&&$uninstall=="ok"&&$member[is_admin]==1) {
+	if(!$u_hostname) Error("Hostname을 입력하세요");
+	if(!$u_userid) Error("User ID를 입력하세요");
+	if(!$u_password) Error("Password를 입력하세요");
+	if(!$u_dbname) Error("DB Name을 입력하세요");
 
-		mysql_close($connect);
+	mysql_close($connect);
 
-		$connect = @mysql_connect($u_hostname,$u_userid,$u_password) or error(mysql_error());
-		@mysql_select_db($u_dbname) or Error(mysql_error());
-		
-		$result = mysql_query("show table status from $u_dbname like 'zetyx%'",$connect) or error(mysql_error());
-		while($data=mysql_fetch_array($result)) {
-			mysql_query("drop table $data[Name]");
-		}
-
-		zRmDir("./data");
-		zRmDir("./icon");
-		z_unlink("./myZrCnf2019.php");
-
-		error("제로보드가 서버에서 완전히 제거되었습니다","install.php"); 
-		exit();
+	$connect = @mysql_connect($u_hostname,$u_userid,$u_password) or error(mysql_error());
+	@mysql_select_db($u_dbname) or Error(mysql_error());
+	
+	$result = mysql_query("show table status from $u_dbname like 'zetyx%'",$connect) or error(mysql_error());
+	while($data=mysql_fetch_array($result)) {
+		mysql_query("drop table $data[Name]");
 	}
-?>
 
+	zRmDir("./data");
+	zRmDir("./icon");
+	z_unlink("./myZrCnf2019.php");
+
+	error("제로보드가 서버에서 완전히 제거되었습니다","install.php"); 
+	exit();
+}
+?>
 
 <table border=0 cellspacing=0 cellpadding=10 bgcolor=eeeeee width=100% height=100%>
 <form name=uninstall method=post onsubmit="return confirm('제거하시겠습니까?')">

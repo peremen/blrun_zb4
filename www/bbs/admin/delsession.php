@@ -1,39 +1,39 @@
 <?
-	header("Content-Type: text/html; charset=EUC-KR");
+header("Content-Type: text/html; charset=EUC-KR");
 
-	set_time_limit (0);
+set_time_limit (0);
 
-	$_zb_path="../";
+$_zb_path="../";
 
-	include "../lib.php";
+include "../lib.php";
 
-	$connect=dbconn();
+$connect=dbconn();
 
-	$member=member_info();
+$member=member_info();
 
-	if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
+if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
 
-	// 세션 삭제
-	if($exec=="delete") {
+// 세션 삭제
+if($exec=="delete") {
 
-		$i=0;
-		$path = "../".$_zbDefaultSetup[session_path];
-		$directory = dir($path);
-		while($entry = $directory->read()) {
-			if ($entry != "." && $entry != "..") {
-				if(!eregi(session_id(), $entry)&&!eregi($HTTP_COOKIE_VARS[ZBSESSIONID], $entry)) {
-					z_unlink($path."/".$entry);
-					$i++;
-					if($i%100==0) print(".");
-					flush();
-				}
+	$i=0;
+	$path = "../".$_zbDefaultSetup[session_path];
+	$directory = dir($path);
+	while($entry = $directory->read()) {
+		if ($entry != "." && $entry != "..") {
+			if(!eregi(session_id(), $entry)&&!eregi($HTTP_COOKIE_VARS[ZBSESSIONID], $entry)) {
+				z_unlink($path."/".$entry);
+				$i++;
+				if($i%100==0) print(".");
+				flush();
 			}
 		}
-		print("\n\n<script>\nalert('세션 디렉토리를 정리하였습니다');\nwindow.close();\n</script>");
-		exit();
 	}
+	print("\n\n<script>\nalert('세션 디렉토리를 정리하였습니다');\nwindow.close();\n</script>");
+	exit();
+}
 
-	head(" bgcolor=white");
+head(" bgcolor=white");
 ?>
 <div align=center>
 <br>
@@ -56,61 +56,58 @@
 </div>
 <?flush()?>
 
-	<div align=center>
-	<form name=sdc action=<?=$PHP_SELF?> method=post>
-	<input type=hidden name=exec value=delete>
-	<table border=0 cellspacing=1 cellpadding=4 width=300 bgcolor=bbbbbb>
-	<col width=40></col><col width=></col>
-	<tr bgcolor=eeeeee>
-		<td colspan=2 align=center><b>Session diectory checking...</b></td>
-	</tr>
-	<tr bgcolor=white>
-		<td align=center>갯수</td><td><input type=input name=num value="" size=30 style=border:0;height:18px></td>
-	</tr>
-	<tr bgcolor=white>
-		<td align=center>용량</td><td><input type=input name=size value="" size=30 style=border:0;height:18px></td>
-	</tr>
-	<tr bgcolor=cccccc>
-		<td align=center colspan=2><input type=submit value="세션 파일 삭제" class=submit></td>
-	</tr>
-	</table>
-	</form>
-	<script>
+<div align=center>
+<form name=sdc action=<?=$PHP_SELF?> method=post>
+<input type=hidden name=exec value=delete>
+<table border=0 cellspacing=1 cellpadding=4 width=300 bgcolor=bbbbbb>
+<col width=40></col><col width=></col>
+<tr bgcolor=eeeeee>
+  <td colspan=2 align=center><b>Session diectory checking...</b></td>
+</tr>
+<tr bgcolor=white>
+  <td align=center>갯수</td><td><input type=input name=num value="" size=30 style=border:0;height:18px></td>
+</tr>
+<tr bgcolor=white>
+  <td align=center>용량</td><td><input type=input name=size value="" size=30 style=border:0;height:18px></td>
+</tr>
+<tr bgcolor=cccccc>
+  <td align=center colspan=2><input type=submit value="세션 파일 삭제" class=submit></td>
+</tr>
+</table>
+</form>
+<script>
 <?
-	
-	// 전체 파일 목록을 구함
-	unset($list);
-	$path = "../".$_zbDefaultSetup[session_path];
-	$directory = dir($path);
-	$i=0;
-	$totalsize = 0;
-	while($entry = $directory->read()) {
-		if ($entry != "." && $entry != "..") {
-			$list[] = $entry;
-			$i++;
-			$totalsize += filesize($path."/".$entry);
-			if($i%100==0) {
-				print "document.sdc.num.value='".$i." 개';\n";
-				print "document.sdc.size.value='".getfilesize($totalsize)."';\n";
-			}
-			flush();
+// 전체 파일 목록을 구함
+unset($list);
+$path = "../".$_zbDefaultSetup[session_path];
+$directory = dir($path);
+$i=0;
+$totalsize = 0;
+while($entry = $directory->read()) {
+	if ($entry != "." && $entry != "..") {
+		$list[] = $entry;
+		$i++;
+		$totalsize += filesize($path."/".$entry);
+		if($i%100==0) {
+			print "document.sdc.num.value='".$i." 개';\n";
+			print "document.sdc.size.value='".getfilesize($totalsize)."';\n";
 		}
+		flush();
 	}
-	$directory->close();
-	print "document.sdc.num.value='".number_format($i)." 개';\n";
-	print "document.sdc.size.value='".getfilesize($totalsize)."';\n";
+}
+$directory->close();
+print "document.sdc.num.value='".number_format($i)." 개';\n";
+print "document.sdc.size.value='".getfilesize($totalsize)."';\n";
 
-	$totallist = count($list);
+$totallist = count($list);
 ?>
-	</script>
-	</div>
+</script>
+</div>
 <?
- mysql_close($connect);
- $connect="";
+mysql_close($connect);
+$connect="";
 ?>
-
-<br><Br><Br>
-
+<br><br><br>
 <?
- foot();
+foot();
 ?>

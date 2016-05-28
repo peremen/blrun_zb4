@@ -1,3 +1,4 @@
+
 <script language="javascript">
 function insert_tag(sTag,str,eTag)
 {

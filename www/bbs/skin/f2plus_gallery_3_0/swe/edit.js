@@ -172,7 +172,8 @@ function htmlspecialchars_encode(str){
 	str = str.replace(/&#039;/gi,'&amp;#039;');
 	str = str.replace(/&quot;/gi,'&amp;quot;');
 	str = str.replace(/&nbsp;/gi,'&amp;nbsp;');
-	str = str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	str = str.replace(/&lt;/g,'&amp;lt;').replace(/&gt;/g,'&amp;gt;');
+	str = str.replace(/</g,'&lt;').replace(/>/g,'&gt;');
 	str = str.replace(/\'/g,'&#039;');
 	str = str.replace(/\"/g,'&quot;');
 
@@ -180,10 +181,14 @@ function htmlspecialchars_encode(str){
 }
 
 function htmlspecialchars_decode(str){
-	str = str.replace(/&nbsp;/gi,' ');
-	str = str.replace(/&lt;/gi,'<').replace(/&gt;/gi,'>');
+	str = str.replace(/&quot;/g,'\"');
 	str = str.replace(/&#039;/g,'\'');
-	str = str.replace(/&quot;/gi,'\"');
+	str = str.replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+	str = str.replace(/&amp;lt;/g,'&lt;').replace(/&amp;gt;/g,'&gt;');
+	str = str.replace(/&amp;nbsp;/gi,'&nbsp;');
+	str = str.replace(/&amp;quot;/gi,'&quot;');
+	str = str.replace(/&amp;#039;/gi,'&#039;');
+	str = str.replace(/&amp;/gi,'&');
 
 	return str;
 }
@@ -205,14 +210,6 @@ function brAddFix(str,use_html) {
 }
 
 function brRemove(str,use_html) {
-	if(use_html < 2) {
-		str = str.replace(/<br \/>|<br>/gi,"\n");
-	}
-	str = str.replace(/&lt;/gi,'<').replace(/&gt;/gi,'>').replace(/&amp;/gi,'&');
-	return str;
-}
-
-function brRemove2(str,use_html) {
 	if(use_html < 2) {
 		str = str.replace(/<br \/>|<br>/gi,"\n");
 	}
@@ -244,8 +241,10 @@ function memo2memoi(str){
 		temp = str.substring(pt)
 		memo += brAddFix(temp,e_use_html);
 	}
-	memo = memo.replace(/  /g,'&nbsp;&nbsp;');
-	memo = memo.replace(/\t/g,'&nbsp;&nbsp;&nbsp;&nbsp;');
+	if(e_use_html < 2) {
+		memo = memo.replace(/  /g,'&nbsp;&nbsp;');
+		memo = memo.replace(/\t/g,'&nbsp;&nbsp;&nbsp;&nbsp;');
+	}
 
 	return memo;
 }
@@ -258,8 +257,12 @@ function memoi2memo(str){
 		e_use_html = parseInt(document.getElementById("use_html2").value);
 
 	var memo = "", temp, pt = 0;
+	if(e_use_html < 2) {
+		str = str.replace(/&nbsp;&nbsp;&nbsp;&nbsp;/gi,'\t');
+		str = str.replace(/&nbsp;&nbsp;/gi,'  ');
+	}
 	if(str.match(pattern) == null) {
-		memo = brRemove2(str,e_use_html);
+		memo = brRemove(str,e_use_html);
 	} else {
 		while((matchArray = pattern.exec(str)) != null){
 			temp = str.substring(pt,matchArray.index);
@@ -267,16 +270,14 @@ function memoi2memo(str){
 				temp = brRemove(temp,e_use_html);
 				temp = htmlspecialchars_decode(temp);
 			} else {
-				temp = brRemove2(temp,e_use_html);
+				temp = brRemove(temp,e_use_html);
 			}
 			memo += temp + matchArray[0];
 			pt = matchArray.index + matchArray[0].length;
 		}
 		temp = str.substring(pt)
-		memo += brRemove2(temp,e_use_html);
+		memo += brRemove(temp,e_use_html);
 	}
-	memo = memo.replace(/&nbsp;&nbsp;/gi,'  ');
-	memo = memo.replace(/    /gi,'\t');
 
 	return memo;
 }

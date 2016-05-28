@@ -1,26 +1,25 @@
 <?
-	include "lib.php";
-	if(!$connect) $connect=dbconn();
-	$result=mysql_query("select name from $admin_table order by name");
+include "lib.php";
+if(!$connect) $connect=dbconn();
+$result=mysql_query("select name from $admin_table order by name");
 
-	// 멤버 정보 구해오기;;; 멤버가 있을때
-	$member=member_info();
+// 멤버 정보 구해오기;;; 멤버가 있을때
+$member=member_info();
 
-	// 그룹 정보 구해오기
-	$setup=get_table_attrib($id);
+// 그룹 정보 구해오기
+$setup=get_table_attrib($id);
 
-	// 현재 로그인되어 있는 멤버가 전체, 또는 그룹관리자인지 검사
-	if($member[is_admin]==1||$member[is_admin]==2&&$member[group_no]==$setup[group_no]||$member[board_name]) $is_admin=1; else $is_admin="";
+// 현재 로그인되어 있는 멤버가 전체, 또는 그룹관리자인지 검사
+if($member[is_admin]==1||$member[is_admin]==2&&$member[group_no]==$setup[group_no]||$member[board_name]) $is_admin=1; else $is_admin="";
 
-	unset($setup);
+unset($setup);
 
-	if(!$is_admin) error("사용권한이 없습니다");
+if(!$is_admin) error("사용권한이 없습니다");
 
-	mysql_close($connect);
+mysql_close($connect);
 
-	head();
+head();
 ?>
-
 
 <script>
 function change_board_name()
@@ -51,8 +50,6 @@ function board_move()
  check=confirm(select.board_name.value+"게시판으로 이동하시겠습니까?");
  if(check==true) {document.select.submit();}
 }
-
-
 </script>
 
 <table border=0 cellspacing=0 cellpadding=0>
@@ -77,15 +74,15 @@ function board_move()
 	<tr>
 		<td><select name=select_board_name onchange=change_board_name() style=width:100%>
 <?
-	$select="selected";
-	$s_name = "";
-	while($data=mysql_fetch_array($result)) {
-		if(!$s_name) $s_name = $data[name];
+$select="selected";
+$s_name = "";
+while($data=mysql_fetch_array($result)) {
+	if(!$s_name) $s_name = $data[name];
 ?>
 			<option value="<?=$data[name]?>" <?=$select?>><?=$data[name]?></option>
 <?
-		$select="";
-	}
+	$select="";
+}
 ?>
 		</select></td>
 	</tr>
@@ -107,5 +104,5 @@ function board_move()
 </form>
 </table>
 <?
-	foot();
+foot();
 ?>

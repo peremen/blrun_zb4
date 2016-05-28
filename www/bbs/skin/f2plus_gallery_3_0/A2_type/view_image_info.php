@@ -1,10 +1,10 @@
-<? 
+<?
 unset($prev_thumb);
-unset($next_thumb);        
+unset($next_thumb);
 unset($alt1);
 unset($alt2);        //각종 변수들 초기화
 
-if($Exif_use=="on"){ 
+if($Exif_use=="on"){
 	if($upload_image1) $alt1=exif_info($data[file_name1]);
 	if($upload_image2) $alt2=exif_info($data[file_name2]);
 }
@@ -20,12 +20,12 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		}else {
 			$view_img1=str_replace("<br>","",$upload_image1);
 			$view_img1=str_replace("cursor:pointer","",$view_img1);
-			$view_img1=str_replace("onclick=window.open(this.src)","alt='$alt1'",$view_img1);
+			$view_img1=preg_replace("#onclick=\"javascript\:[^>]+?(>)#i","alt='$alt1'\\1",$view_img1);
 		}
 		$img_info1=getimagesize($data[file_name1]);
 		$img_info1[0]=$img_info1[0]+10;
 		$img_info1[1]=$img_info1[1]+55;
-		$print_img1="<a onclick=window.open('$dir/img_view.php?img=$data[file_name1]&width=$img_info1[0]&height=$img_info1[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>"; 
+		$print_img1="<a onclick=window.open('$dir/img_view.php?img=$data[file_name1]&width=$img_info1[0]&height=$img_info1[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
 	if($upload_image2){
 		if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name2])){
@@ -34,17 +34,17 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 			}
 			$thumb_view2=$Thumbnail_url.$view_large2;
 			$view_img2="<img src=$thumb_view2 border=0 name=zb_target_resize alt='$alt2'>";
-		}else {	
+		}else {
 			$view_img2=str_replace("<br>","",$upload_image2);
 			$view_img2=str_replace("cursor:pointer","",$view_img2);
-			$view_img2=str_replace("onclick=window.open(this.src)","alt='$alt2'",$view_img2);
+			$view_img2=preg_replace("#onclick=\"javascript\:[^>]+?(>)#i","alt='$alt2'\\1",$view_img2);
 		}
 		$img_info2=getimagesize($data[file_name2]);
 		$img_info2[0]=$img_info2[0]+10;
 		$img_info2[1]=$img_info2[1]+55;
-		$print_img2="<a onclick=window.open('$dir/img_view.php?img=$data[file_name2]&width=$img_info2[0]&height=$img_info2[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>"; 
+		$print_img2="<a onclick=window.open('$dir/img_view.php?img=$data[file_name2]&width=$img_info2[0]&height=$img_info2[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
-	
+
    //이전 및 다음 데이터의 썸네일 정보를 읽어옴
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$prev_data[file_name1])){
 
@@ -53,11 +53,11 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 			thumbnail($size,$prev_data[file_name1],$Thumbnail_path,$Prev_thumb_small1,$Prev_thumb_large1,3/4);
 		}
 		$prev_thumb=$Thumbnail_url.$Prev_thumb_large1;
-			
+
 	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$out1[0][1].".".$out1[0][2])){
 		//썸네일 디렉토리 내 각 회원별 디렉토리 생성
 		$error_check=0;
-		if(!is_dir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/")) { 
+		if(!is_dir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/")) {
 			if(!@mkdir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0777)) $error_check+=1;
 			if(!@chmod($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0707)) $error_check+=2;
 		}
@@ -74,19 +74,19 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		}else{
 			$prev_thumb=$Thumbnail_url.$prev_data[ismember]."/".str_replace("%2F", "/", urlencode($iPrev_thumb_large1));
 		}
-			
-	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$prev_data[file_name2])){  
-	  
+
+	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$prev_data[file_name2])){
+
 		if(!file_exists($Thumbnail_path.$Prev_thumb_large2)||!file_exists($Thumbnail_path.$Prev_thumb_small2)){
 		    $size=array($min_width_size,200);
 			thumbnail($size,$prev_data[file_name2],$Thumbnail_path,$Prev_thumb_small2,$Prev_thumb_large2,3/4);
 		}
 		$prev_thumb=$Thumbnail_url.$Prev_thumb_large2;
-			
+
 	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$out1[1][1].".".$out1[1][2])){
 		//썸네일 디렉토리 내 각 회원별 디렉토리 생성
 		$error_check=0;
-		if(!is_dir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/")) { 
+		if(!is_dir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/")) {
 			if(!@mkdir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0777)) $error_check+=1;
 			if(!@chmod($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0707)) $error_check+=2;
 		}
@@ -103,7 +103,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		}else{
 			$prev_thumb=$Thumbnail_url.$prev_data[ismember]."/".str_replace("%2F", "/", urlencode($iPrev_thumb_large2));
 		}
-			
+
 	}elseif(preg_match("#\.(gif|bmp)$#i",$prev_data[file_name1]))
 		$prev_thumb=str_replace("%2F", "/", urlencode($prev_data[file_name1]));
 	elseif(preg_match("#\.(gif|bmp)$#i",$out1[0][1].".".$out1[0][2])){
@@ -119,18 +119,18 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 	}elseif($prev_data[no])
 		$prev_thumb=$dir."/images/no_image.gif";
 
-	if(preg_match("#\.(jpg|jpeg|png)$#i",$next_data[file_name1])){  
-	  
+	if(preg_match("#\.(jpg|jpeg|png)$#i",$next_data[file_name1])){
+
 		if(!file_exists($Thumbnail_path.$Next_thumb_large1)||!file_exists($Thumbnail_path.$Next_thumb_small1)){
 		    $size=array($min_width_size,200);
 			thumbnail($size,$next_data[file_name1],$Thumbnail_path,$Next_thumb_small1,$Next_thumb_large1,3/4);
 		}
 		$next_thumb=$Thumbnail_url.$Next_thumb_large1;
-	
+
 	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$out2[0][1].".".$out2[0][2])){
 		//썸네일 디렉토리 내 각 회원별 디렉토리 생성
 		$error_check=0;
-		if(!is_dir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/")) { 
+		if(!is_dir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/")) {
 			if(!@mkdir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0777)) $error_check+=1;
 			if(!@chmod($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0707)) $error_check+=2;
 		}
@@ -147,19 +147,19 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		}else{
 			$next_thumb=$Thumbnail_url.$next_data[ismember]."/".str_replace("%2F", "/", urlencode($iNext_thumb_large1));
 		}
-			
-	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$next_data[file_name2])){  
+
+	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$next_data[file_name2])){
 
 		if(!file_exists($Thumbnail_path.$Next_thumb_large2)||!file_exists($Thumbnail_path.$Next_thumb_small2)){
 			$size=array($min_width_size,200);
 			thumbnail($size,$next_data[file_name2],$Thumbnail_path,$Next_thumb_small2,$Next_thumb_large2,3/4);
 		}
 		$next_thumb=$Thumbnail_url.$Next_thumb_large2;
-			
+
 	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$out2[1][1].".".$out2[1][2])){
 		//썸네일 디렉토리 내 각 회원별 디렉토리 생성
 		$error_check=0;
-		if(!is_dir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/")) { 
+		if(!is_dir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/")) {
 			if(!@mkdir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0777)) $error_check+=1;
 			if(!@chmod($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0707)) $error_check+=2;
 		}
@@ -176,7 +176,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		}else{
 			$next_thumb=$Thumbnail_url.$next_data[ismember]."/".str_replace("%2F", "/", urlencode($iNext_thumb_large2));
 		}
-			
+
 	}elseif(preg_match("#\.(gif|bmp)$#i",$next_data[file_name1]))
 		$next_thumb=str_replace("%2F", "/", urlencode($next_data[file_name1]));
 	elseif(preg_match("#\.(gif|bmp)$#i",$out2[0][1].".".$out2[0][2])){
@@ -197,7 +197,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		$view_img1="<img src=$source_img name=zb_target_resize border=0 alt='$alt1'>";
 		$img_info1=getimagesize($data[file_name1]);
 		$img_info1[0]=$img_info1[0]+10;
-		 $img_info1[1]=$img_info1[1]+55;
+		$img_info1[1]=$img_info1[1]+55;
 		$print_img1="<a onmouseover=window.open('$dir/img_view.php?img=$data[file_name1]&width=$img_info1[0]&height=$img_info1[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
 	if($upload_image2){
@@ -208,8 +208,8 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		$img_info2[1]=$img_info2[1]+55;
 		$print_img2="<a onmouseover=window.open('$dir/img_view.php?img=$data[file_name2]&width=$img_info2[0]&height=$img_info2[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
-	  	 
-	//썸네일 사용하지 않을때 이전파일및 다음파일 정보를 저장	 
+
+	//썸네일 사용하지 않을때 이전파일및 다음파일 정보를 저장
 	if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$prev_data[file_name1]))
 		$prev_thumb=$prev_data[file_name1];
 	elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$out1[0][1].".".$out1[0][2])){
@@ -238,6 +238,5 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 
 	$prev_thumb=str_replace("%2F", "/", urlencode($prev_thumb));
 	$next_thumb=str_replace("%2F", "/", urlencode($next_thumb));
-
 }
 ?>

@@ -1,4 +1,4 @@
-<? 
+<?
   /*
   이 파일은 게시판에서 상단의 상태를 보여줍니다.
   
@@ -42,7 +42,6 @@ function swapImage() {
 }
 </script>
 
-
 <!-- HTML 시작 -->
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <?=$memo_on_sound?>
@@ -52,7 +51,6 @@ function swapImage() {
   <td width=100% align=right><?=$a_member_memo?><span onClick="swapImage('memozzz','','<?=$dir?>/member_memo_off.gif',0)"><?=$member_memo_icon?></span></a></td>
 </tr>
 </table>
-
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <tr>
   <td><img src=<?=$dir?>/setup_total.gif></td>
@@ -70,14 +68,15 @@ function swapImage() {
     <?=$a_setup?><img src=<?=$dir?>/setup_config.gif border=0></a></td>
 </tr>
 </table>
-  
 <?
 if($setup[use_category])
 {
 ?>
 <table border=0 width=<?=$width?> cellspacing=0 cellpadding=0>
 <tr valign=top>
-  <td width=100><? include "include/print_category.php"; ?>
+  <td width=100>
+    <? include "include/print_category.php"; ?>
+
   </td>
   <td align=right width=100%>
 <?

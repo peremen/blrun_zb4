@@ -18,7 +18,9 @@ if(!preg_match("/Zeroboard/i",$a_member_memo)) $a_member_memo= str_replace(">","
 		<?=$a_setup?>설정변경</a>
 	</td>
 <?=$hide_category_start?>
+
 	<td align=right><font class=list_eng><b>Category</b> :</font> <?=$a_category?></td>
 <?=$hide_category_end?>
+
 </tr>
 </table>

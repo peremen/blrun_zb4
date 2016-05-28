@@ -1,18 +1,19 @@
 <?
-	set_time_limit (0);
+set_time_limit (0);
 
-	$_zb_path="../";
+$_zb_path="../";
 
-	include "../lib.php";
+include "../lib.php";
 
-	$connect=dbconn();
+$connect=dbconn();
 
-	$member=member_info();
+$member=member_info();
 
-	if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
+if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
 
-	head(" bgcolor=white");
+head(" bgcolor=white");
 ?>
+
 <div align=center>
 <br>
 <table border=0 cellspacing=0 cellpadding=0 width=98%>
@@ -35,46 +36,46 @@
 <?flush()?>
 <pre>
 <?
-	$result = mysql_query("select * from $admin_table order by name") or die(mysql_error());
+$result = mysql_query("select * from $admin_table order by name") or die(mysql_error());
 
-	$totalfilesnum = 0;
-	$ntotalfilesnum = 0;
-	$existsfilesnum = 0;
-	$nexistsfilesnum = 0;
+$totalfilesnum = 0;
+$ntotalfilesnum = 0;
+$existsfilesnum = 0;
+$nexistsfilesnum = 0;
 
-	while($bbs = mysql_fetch_array($result)) {
-		
-		$id = $bbs[name];		
+while($bbs = mysql_fetch_array($result)) {
+	
+	$id = $bbs[name];		
 
-		$files1 = mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where file_name1 != ''"));
-		$files2 = mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where file_name2 != ''"));
-		$files3 = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where file_name1 != ''"));
-		$files4 = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where file_name2 != ''"));
+	$files1 = mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where file_name1 != ''"));
+	$files2 = mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where file_name2 != ''"));
+	$files3 = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where file_name1 != ''"));
+	$files4 = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where file_name2 != ''"));
 
-		$filesnum1 = $files1[0];
-		$filesnum2 = $files2[0];
-		$filesnum3 = $files3[0];
-		$filesnum4 = $files4[0];
+	$filesnum1 = $files1[0];
+	$filesnum2 = $files2[0];
+	$filesnum3 = $files3[0];
+	$filesnum4 = $files4[0];
 
-		$nfiles1 = mysql_query("select no, file_name1 , s_file_name1 from $t_board"."_$id where file_name1 !='' and file_name1 not like 'data/$id/%'");
-		$nfiles2 = mysql_query("select no, file_name2 , s_file_name2 from $t_board"."_$id where file_name2 !='' and file_name2 not like 'data/$id/%'");
-		$nfiles3 = mysql_query("select no, file_name1 , s_file_name1 from $t_comment"."_$id where file_name1 !='' and file_name1 not like 'data/$id/%'");
-		$nfiles4 = mysql_query("select no, file_name2 , s_file_name2 from $t_comment"."_$id where file_name2 !='' and file_name2 not like 'data/$id/%'");
+	$nfiles1 = mysql_query("select no, file_name1 , s_file_name1 from $t_board"."_$id where file_name1 !='' and file_name1 not like 'data/$id/%'");
+	$nfiles2 = mysql_query("select no, file_name2 , s_file_name2 from $t_board"."_$id where file_name2 !='' and file_name2 not like 'data/$id/%'");
+	$nfiles3 = mysql_query("select no, file_name1 , s_file_name1 from $t_comment"."_$id where file_name1 !='' and file_name1 not like 'data/$id/%'");
+	$nfiles4 = mysql_query("select no, file_name2 , s_file_name2 from $t_comment"."_$id where file_name2 !='' and file_name2 not like 'data/$id/%'");
 
-		$nfilesnum1 = mysql_num_rows($nfiles1);
-		$nfilesnum2 = mysql_num_rows($nfiles2);
-		$nfilesnum3 = mysql_num_rows($nfiles3);
-		$nfilesnum4 = mysql_num_rows($nfiles4);
+	$nfilesnum1 = mysql_num_rows($nfiles1);
+	$nfilesnum2 = mysql_num_rows($nfiles2);
+	$nfilesnum3 = mysql_num_rows($nfiles3);
+	$nfilesnum4 = mysql_num_rows($nfiles4);
 
-		$totalfilesnum += $filesnum1 + $filesnum2 + $filesnum3 + $filesnum4;
-		$ntotalfilesnum += $nfilesnum1 + $nfilesnum2 + $nfilesnum3 + $nfilesnum4;
+	$totalfilesnum += $filesnum1 + $filesnum2 + $filesnum3 + $filesnum4;
+	$ntotalfilesnum += $nfilesnum1 + $nfilesnum2 + $nfilesnum3 + $nfilesnum4;
 
-		// 디렉토리 검사
-		if(!is_dir("../data/$id")) {
-			mkdir("../data/$id",0777);
-		}
+	// 디렉토리 검사
+	if(!is_dir("../data/$id")) {
+		mkdir("../data/$id",0777);
+	}
 
-		if(!is_dir("../data/$id")) die("../data/$id 디렉토리를 생성할수가 없습니다");
+	if(!is_dir("../data/$id")) die("../data/$id 디렉토리를 생성할수가 없습니다");
 
 ?>
 	<b><?=$id?></b> 게시판</b>
@@ -83,160 +84,160 @@
 	 - 경로가 잘못된 첨부파일 필드수 : <?=number_format($nfilesnum1+$nfilesnum2+$nfilesnum3+$nfilesnum4)?> 개
 
 <?
-		while($data=mysql_fetch_array($nfiles1)) {
+	while($data=mysql_fetch_array($nfiles1)) {
 
-			// 소스 파일의 정보를 체크
-			$filename = stripslashes($data[s_file_name1]);
-			$source = "../".stripslashes($data[file_name1]);
-			$path = str_replace($filename, "", $source);
-			$no = $data[no];
+		// 소스 파일의 정보를 체크
+		$filename = stripslashes($data[s_file_name1]);
+		$source = "../".stripslashes($data[file_name1]);
+		$path = str_replace($filename, "", $source);
+		$no = $data[no];
 
-			// 소스 파일이 있을 경우에만 체크
-			if(file_exists($source)) {
+		// 소스 파일이 있을 경우에만 체크
+		if(file_exists($source)) {
 
-				$existsfilesnum ++;
+			$existsfilesnum ++;
 
-				// 옮길 대상에 같은 파일이 존재하는지 체크
-				if(file_exists("../data/$id/$filename")) {
-					$add_dir = time();
-					$target_path = "../data/$id/$add_dir";
-					mkdir($target_path,0777);
-					$target_path = "../data/$id/$add_dir/$filename";
-					$sql = "update $t_board"."_$id set file_name1 = 'data/$id/$add_dir/$filename' where no = $no";
-				} else {
-					$target_path = "../data/$id/$filename";
-					$sql = "update $t_board"."_$id set file_name1 = 'data/$id/$filename' where no = $no";
-				}
-
-				if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> 파일을 복사할수가 없습니다<br>(파일을 체크하신후 다시 실행을 해주시기 바랍니다)</center>");
-				z_unlink($source);
-				@rmdir($path);
-
-				mysql_query($sql) or die(mysql_error());
-
+			// 옮길 대상에 같은 파일이 존재하는지 체크
+			if(file_exists("../data/$id/$filename")) {
+				$add_dir = time();
+				$target_path = "../data/$id/$add_dir";
+				mkdir($target_path,0777);
+				$target_path = "../data/$id/$add_dir/$filename";
+				$sql = "update $t_board"."_$id set file_name1 = 'data/$id/$add_dir/$filename' where no = $no";
 			} else {
-
-				$nexistsfilesnum ++;
-
+				$target_path = "../data/$id/$filename";
+				$sql = "update $t_board"."_$id set file_name1 = 'data/$id/$filename' where no = $no";
 			}
+
+			if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> 파일을 복사할수가 없습니다<br>(파일을 체크하신후 다시 실행을 해주시기 바랍니다)</center>");
+			z_unlink($source);
+			@rmdir($path);
+
+			mysql_query($sql) or die(mysql_error());
+
+		} else {
+
+			$nexistsfilesnum ++;
+
 		}
-
-		while($data=mysql_fetch_array($nfiles2)) {
-
-			// 소스 파일의 정보를 체크
-			$filename = stripslashes($data[s_file_name2]);
-			$source = "../".stripslashes($data[file_name2]);
-			$path = str_replace($filename, "", $source);
-			$no = $data[no];
-
-			// 소스 파일이 있을 경우에만 체크
-			if(file_exists($source)) {
-
-				$existsfilesnum ++;
-
-				// 옮길 대상에 같은 파일이 존재하는지 체크
-				if(file_exists("../data/$id/$filename")) {
-					$add_dir = time();
-					$target_path = "../data/$id/$add_dir";
-					mkdir($target_path,0777);
-					$target_path = "../data/$id/$add_dir/$filename";
-					$sql = "update $t_board"."_$id set file_name2 = 'data/$id/$add_dir/$filename' where no = $no";
-				} else {
-					$target_path = "../data/$id/$filename";
-					$sql = "update $t_board"."_$id set file_name2 = 'data/$id/$filename' where no = $no";
-				}
-
-				if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> 파일을 복사할수가 없습니다<br><br>(파일을 체크하신후 다시 실행을 해주시기 바랍니다)</center>");
-				z_unlink($source);
-				@rmdir($path);
-
-				mysql_query($sql) or die(mysql_error());
-
-			} else {
-
-				$nexistsfilesnum ++;
-
-			}
-		}
-
-		while($data=mysql_fetch_array($nfiles3)) {
-
-			// 소스 파일의 정보를 체크
-			$filename = stripslashes($data[s_file_name1]);
-			$source = "../".stripslashes($data[file_name1]);
-			$path = str_replace($filename, "", $source);
-			$no = $data[no];
-
-			// 소스 파일이 있을 경우에만 체크
-			if(file_exists($source)) {
-
-				$existsfilesnum ++;
-
-				// 옮길 대상에 같은 파일이 존재하는지 체크
-				if(file_exists("../data/$id/$filename")) {
-					$add_dir = time();
-					$target_path = "../data/$id/$add_dir";
-					mkdir($target_path,0777);
-					$target_path = "../data/$id/$add_dir/$filename";
-					$sql = "update $t_comment"."_$id set file_name1 = 'data/$id/$add_dir/$filename' where no = $no";
-				} else {
-					$target_path = "../data/$id/$filename";
-					$sql = "update $t_comment"."_$id set file_name1 = 'data/$id/$filename' where no = $no";
-				}
-
-				if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> 파일을 복사할수가 없습니다<br>(파일을 체크하신후 다시 실행을 해주시기 바랍니다)</center>");
-				z_unlink($source);
-				@rmdir($path);
-
-				mysql_query($sql) or die(mysql_error());
-
-			} else {
-
-				$nexistsfilesnum ++;
-
-			}
-		}
-
-		while($data=mysql_fetch_array($nfiles4)) {
-
-			// 소스 파일의 정보를 체크
-			$filename = stripslashes($data[s_file_name2]);
-			$source = "../".stripslashes($data[file_name2]);
-			$path = str_replace($filename, "", $source);
-			$no = $data[no];
-
-			// 소스 파일이 있을 경우에만 체크
-			if(file_exists($source)) {
-
-				$existsfilesnum ++;
-
-				// 옮길 대상에 같은 파일이 존재하는지 체크
-				if(file_exists("../data/$id/$filename")) {
-					$add_dir = time();
-					$target_path = "../data/$id/$add_dir";
-					mkdir($target_path,0777);
-					$target_path = "../data/$id/$add_dir/$filename";
-					$sql = "update $t_comment"."_$id set file_name2 = 'data/$id/$add_dir/$filename' where no = $no";
-				} else {
-					$target_path = "../data/$id/$filename";
-					$sql = "update $t_comment"."_$id set file_name2 = 'data/$id/$filename' where no = $no";
-				}
-
-				if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> 파일을 복사할수가 없습니다<br><br>(파일을 체크하신후 다시 실행을 해주시기 바랍니다)</center>");
-				z_unlink($source);
-				@rmdir($path);
-
-				mysql_query($sql) or die(mysql_error());
-
-			} else {
-
-				$nexistsfilesnum ++;
-
-			}
-		}
-
-		flush();
 	}
+
+	while($data=mysql_fetch_array($nfiles2)) {
+
+		// 소스 파일의 정보를 체크
+		$filename = stripslashes($data[s_file_name2]);
+		$source = "../".stripslashes($data[file_name2]);
+		$path = str_replace($filename, "", $source);
+		$no = $data[no];
+
+		// 소스 파일이 있을 경우에만 체크
+		if(file_exists($source)) {
+
+			$existsfilesnum ++;
+
+			// 옮길 대상에 같은 파일이 존재하는지 체크
+			if(file_exists("../data/$id/$filename")) {
+				$add_dir = time();
+				$target_path = "../data/$id/$add_dir";
+				mkdir($target_path,0777);
+				$target_path = "../data/$id/$add_dir/$filename";
+				$sql = "update $t_board"."_$id set file_name2 = 'data/$id/$add_dir/$filename' where no = $no";
+			} else {
+				$target_path = "../data/$id/$filename";
+				$sql = "update $t_board"."_$id set file_name2 = 'data/$id/$filename' where no = $no";
+			}
+
+			if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> 파일을 복사할수가 없습니다<br><br>(파일을 체크하신후 다시 실행을 해주시기 바랍니다)</center>");
+			z_unlink($source);
+			@rmdir($path);
+
+			mysql_query($sql) or die(mysql_error());
+
+		} else {
+
+			$nexistsfilesnum ++;
+
+		}
+	}
+
+	while($data=mysql_fetch_array($nfiles3)) {
+
+		// 소스 파일의 정보를 체크
+		$filename = stripslashes($data[s_file_name1]);
+		$source = "../".stripslashes($data[file_name1]);
+		$path = str_replace($filename, "", $source);
+		$no = $data[no];
+
+		// 소스 파일이 있을 경우에만 체크
+		if(file_exists($source)) {
+
+			$existsfilesnum ++;
+
+			// 옮길 대상에 같은 파일이 존재하는지 체크
+			if(file_exists("../data/$id/$filename")) {
+				$add_dir = time();
+				$target_path = "../data/$id/$add_dir";
+				mkdir($target_path,0777);
+				$target_path = "../data/$id/$add_dir/$filename";
+				$sql = "update $t_comment"."_$id set file_name1 = 'data/$id/$add_dir/$filename' where no = $no";
+			} else {
+				$target_path = "../data/$id/$filename";
+				$sql = "update $t_comment"."_$id set file_name1 = 'data/$id/$filename' where no = $no";
+			}
+
+			if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> 파일을 복사할수가 없습니다<br>(파일을 체크하신후 다시 실행을 해주시기 바랍니다)</center>");
+			z_unlink($source);
+			@rmdir($path);
+
+			mysql_query($sql) or die(mysql_error());
+
+		} else {
+
+			$nexistsfilesnum ++;
+
+		}
+	}
+
+	while($data=mysql_fetch_array($nfiles4)) {
+
+		// 소스 파일의 정보를 체크
+		$filename = stripslashes($data[s_file_name2]);
+		$source = "../".stripslashes($data[file_name2]);
+		$path = str_replace($filename, "", $source);
+		$no = $data[no];
+
+		// 소스 파일이 있을 경우에만 체크
+		if(file_exists($source)) {
+
+			$existsfilesnum ++;
+
+			// 옮길 대상에 같은 파일이 존재하는지 체크
+			if(file_exists("../data/$id/$filename")) {
+				$add_dir = time();
+				$target_path = "../data/$id/$add_dir";
+				mkdir($target_path,0777);
+				$target_path = "../data/$id/$add_dir/$filename";
+				$sql = "update $t_comment"."_$id set file_name2 = 'data/$id/$add_dir/$filename' where no = $no";
+			} else {
+				$target_path = "../data/$id/$filename";
+				$sql = "update $t_comment"."_$id set file_name2 = 'data/$id/$filename' where no = $no";
+			}
+
+			if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> 파일을 복사할수가 없습니다<br><br>(파일을 체크하신후 다시 실행을 해주시기 바랍니다)</center>");
+			z_unlink($source);
+			@rmdir($path);
+
+			mysql_query($sql) or die(mysql_error());
+
+		} else {
+
+			$nexistsfilesnum ++;
+
+		}
+	}
+
+	flush();
+}
 ?>
 
 	<b>전체 첨부파일 수 :</b> <?=number_format($totalfilesnum)?>
@@ -261,16 +262,15 @@
 	<input type=submit value=" 쓰레기 파일 검사 " class=submit>
 	</form>
 
-
 </pre>
 
 <?
- mysql_close($connect);
- $connect="";
+mysql_close($connect);
+$connect="";
 ?>
 
-<br><Br><Br>
+<br><br><br>
 
 <?
- foot();
+foot();
 ?>

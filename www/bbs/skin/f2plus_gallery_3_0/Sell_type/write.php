@@ -1,30 +1,32 @@
-<? include $dir."/swe/ed_seting_head.php"; ?>
 <?
-	if($mode=="reply") $title="답글 쓰기";
-	elseif($mode=="modify") $title="글 수정하기";
-	else $title="새로 글 쓰기";
-	
+include $dir."/swe/ed_seting_head.php";
 
-	$m_memo = explode("|||",$memo);
-	$memo = $m_memo[0];  
-	$_name2 = $m_memo[1];  
-	$_name3 = $m_memo[2]; 
-	$_name4 = $m_memo[3]; 
-	$_name5 = $m_memo[4];
-	$_name6 = $m_memo[5];
-	$_name7 = $m_memo[6];
-	$_name8 = $m_memo[7];
-	$_name9 = $m_memo[8];
-	$_name10 = $m_memo[9];
+if($mode=="reply") $title="답글 쓰기";
+elseif($mode=="modify") $title="글 수정하기";
+else $title="새로 글 쓰기";
 
-	$a_preview = str_replace(">","><font class=com2>",$a_preview)."";
-	$a_imagebox = str_replace(">","><font class=com2>",$a_imagebox)."";
-	$a_codebox = str_replace(">","><font class=com2>",$a_codebox)."";
+
+$m_memo = explode("|||",$memo);
+$memo = $m_memo[0];  
+$_name2 = $m_memo[1];  
+$_name3 = $m_memo[2]; 
+$_name4 = $m_memo[3]; 
+$_name5 = $m_memo[4];
+$_name6 = $m_memo[5];
+$_name7 = $m_memo[6];
+$_name8 = $m_memo[7];
+$_name9 = $m_memo[8];
+$_name10 = $m_memo[9];
+
+$a_preview = str_replace(">","><font class=com2>",$a_preview)."";
+$a_imagebox = str_replace(">","><font class=com2>",$a_imagebox)."";
+$a_codebox = str_replace(">","><font class=com2>",$a_codebox)."";
 ?>
+
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function zb_formresize(obj) {
-	obj.rows += 3;
+	obj.rows += 4;
 }
 
 function check_submit_y()
@@ -145,13 +147,14 @@ function check_submit_y()
 <?$_url=$dir."/write_ok.php";?>
 <table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=border-width:1pt;border-style:solid;border-color:cccccc style=table-layout:fixed>
 <tr align=left valign="middle" height=25>
-	<td class=list_eng>&nbsp;&nbsp;<img src=<?=$dir?>/images/front_img.gif>&nbsp;&nbsp;새글쓰기 </td>
+  <td class=list_eng>&nbsp;&nbsp;<img src=<?=$dir?>/images/front_img.gif>&nbsp;&nbsp;새글쓰기 </td>
 </tr>
 </table>
 <table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0 style=table-layout:fixed>
 <form method=post id=write name=write action=<?=$_url?> onsubmit="return check_submit_y();" enctype=multipart/form-data><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=no value=<?=$no?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=keyword value="<?=$keyword?>"><input type=hidden name=category value="<?=$category?>"><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=mode value="<?=$mode?>"><input type=hidden name=wantispam value="<?=$wnum1num2?>"><input type=hidden name=_zb_path value="<?=$config_dir?>"><input type=hidden name=_zb_url value="<?=$zb_url?>">
 <col width=80 align=right style=padding-right:10px;height:28px class=com2></col><col class=list1 style=padding-left:10px;height:28px width=></col>
 <?=$hide_start?>
+
 <tr>
   <td><font class=com2><b>이름</b></font></td>
   <td><input type=text name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=input></td>
@@ -181,23 +184,26 @@ function check_submit_y()
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <?=$hide_end?>
+
 <tr>
   <td><font class=com2>평점</font></td>
-  <td><SELECT NAME=_name6 value=<?=$_name6?>>
-  <? $checked=array("","","","","","");
-     $checked[$_name6]="selected"?>
-  <option value=0 <?=$checked[0]?>>포인트</option>
-  <option value=1 <?=$checked[1]?>>★</option>
-  <option value=2 <?=$checked[2]?>>★★</option>
-  <option value=3 <?=$checked[3]?>>★★★</option>
-  <option value=4 <?=$checked[4]?>>★★★★</option>
-  <option value=5 <?=$checked[5]?>>★★★★★</option></SELECT>
-  <SELECT NAME=_name7 value=<?=$_name7?>>
-  <?$checked[$_name7]="selected"?>
-  <option value=0 <?=$checked[0]?>>절반</option>
-  <option value=1 <?=$checked[1]?>>☆</option></select>
- </tr>
- <tr>
+  <td>
+    <SELECT NAME=_name6 value=<?=$_name6?>>
+<? $checked=array("","","","","",""); $checked[$_name6]="selected" ?>
+    <option value=0 <?=$checked[0]?>>포인트</option>
+    <option value=1 <?=$checked[1]?>>★</option>
+    <option value=2 <?=$checked[2]?>>★★</option>
+    <option value=3 <?=$checked[3]?>>★★★</option>
+    <option value=4 <?=$checked[4]?>>★★★★</option>
+    <option value=5 <?=$checked[5]?>>★★★★★</option>
+    </SELECT>
+    <SELECT NAME=_name7 value=<?=$_name7?>>
+<?$checked[$_name7]="selected"?>
+    <option value=0 <?=$checked[0]?>>절반</option>
+    <option value=1 <?=$checked[1]?>>☆</option>
+    </select>
+</tr>
+<tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
@@ -245,13 +251,14 @@ function check_submit_y()
 <tr>
   <td><font class=com2>옵션</font></td>
   <td class=com2>
-       <?=$hide_category_start?><?=$category_kind?><?=$hide_category_end?>
-       <?=$hide_notice_start?> <input type=checkbox name=notice <?=$notice?> value=1> 공지사항 <?=$hide_notice_end?>       
-       <input type=checkbox name=reply_mail <?=$reply_mail?> value=1> 답변메일받기
-       <?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1> 비밀글 <?=$hide_secret_end?>
-		<?=$hide_html_start?>
-		<? include $dir."/swe/ed_seting_option.php"; ?>
-		<?=$hide_html_end?>
+    <?=$hide_category_start?><?=$category_kind?><?=$hide_category_end?>
+
+    <?=$hide_notice_start?> <input type=checkbox name=notice <?=$notice?> value=1>공지사항<?=$hide_notice_end?> <input type=checkbox name=reply_mail <?=$reply_mail?> value=1>답변메일받기<?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?>
+
+    <?=$hide_html_start?>
+    <? include $dir."/swe/ed_seting_option.php"; ?>
+    <?=$hide_html_end?>
+
   </td>
 </tr>
 <tr>
@@ -259,7 +266,7 @@ function check_submit_y()
 </tr>
 <tr>
   <td><font class=com2><b>제목</b></font></td>
-  <td><? include $dir."/swe/ed_seting_substyle.php";  ?></td>
+  <td><? include $dir."/swe/ed_seting_substyle.php"; ?></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
@@ -289,6 +296,7 @@ function check_submit_y()
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <?=$hide_pds_start?>
+
 <tr>
   <td><font class=com2>파일 #1</font></td>
   <td class=com2><? echo(filebox_add("1",$file_name1)) ?></td>
@@ -304,6 +312,7 @@ function check_submit_y()
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <?=$hide_pds_end?>
+
 </table>
 <table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0>
 <tr>

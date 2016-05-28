@@ -1,10 +1,10 @@
 <?
-   $_zb_url = "http://www.blrun.net/bbs/";
-   $_zb_path = "/home/hosting_users/blrun/www/bbs/";
-   include $_zb_path."outlogin.php";
-   include $_zb_path."latest_gal.php";
-   include $_zb_path."latest_skin/bes_latest_skin08/recent_bbs_skin08.php";
-   include $_zb_path."latest_skin/bes_latest_scroll/recent_bbs_scroll.php";
+$_zb_url = "http://www.blrun.net/bbs/";
+$_zb_path = "/home/hosting_users/blrun/www/bbs/";
+include $_zb_path."outlogin.php";
+include $_zb_path."latest_gal.php";
+include $_zb_path."latest_skin/bes_latest_skin08/recent_bbs_skin08.php";
+include $_zb_path."latest_skin/bes_latest_scroll/recent_bbs_scroll.php";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -34,46 +34,53 @@
 <tr>
 	<td colspan="2" align="center">
 		<table  width="100%" border="0" cellspacing="2" cellpadding="0">
-			<tr>
-				<td width="50%" valign="top"><? print_bbs("nzeo/black_bbs", "네티즌칼럼", "clmn1", 10, 31); ?></td>
-				<td width="50%" valign="top"><? print_bbs("nzeo/red_bbs", "자료게시판", "blrun1", 12, 31); ?></td>
-			</tr>
-			<tr>
-				<td colspan="2" width="100%" valign="top"><? print_survey("nzeo/survey", "네티즌Poll", "poll1", 100) ?></td>
-			</tr>
-			<tr><td colspan="2" width="100%" valign="top">
-			<? 
-				$mb_id = array("clmn1", "blrun1", "cap1", "basket1");  
-				$mb_title = array("네티즌", "칼럼자료", "스크랩", "쓰레기통"); 
-				$mb_conf[showidtitle] = 1;
-				if($browser==1) //ie 일때와 스마트폰일 때 처리
-					recent_scroll("bes_latest_scroll", "최근게시물50개", 50,50);
-				else
-					recent_scroll("bes_latest_scroll", "최근게시물50개", 50,20);
-				echo "<div style='width: 100%; height: 117px; position: relative; overflow:hidden;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1' id='scroll_image'>";
-				echo "<script>startscroll();</script>";
-				echo "</div>";
+		<tr>
+			<td width="50%" valign="top"><? print_bbs("nzeo/black_bbs", "네티즌칼럼", "clmn1", 10, 31); ?></td>
+			<td width="50%" valign="top"><? print_bbs("nzeo/red_bbs", "자료게시판", "blrun1", 12, 31); ?></td>
+		</tr>
+		<tr>
+			<td colspan="2" width="100%" valign="top"><? print_survey("nzeo/survey", "네티즌Poll", "poll1", 100) ?></td>
+		</tr>
+		<tr><td colspan="2" width="100%" valign="top">
+		<? 
+		$mb_id = array("clmn1", "blrun1", "cap1", "basket1");  
+		$mb_title = array("네티즌", "칼럼자료", "스크랩", "쓰레기통"); 
+		$mb_conf[showidtitle] = 1;
+		if($browser==1) //ie 일때와 스마트폰일 때 처리
+			recent_scroll("bes_latest_scroll", "최근게시물50개", 50,50);
+		else
+			recent_scroll("bes_latest_scroll", "최근게시물50개", 50,20);
+		echo "<div style='width: 100%; height: 117px; position: relative; overflow:hidden;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1' id='scroll_image'>";
+		echo "<script>startscroll();</script>";
+		echo "</div>";
+		?>
+		<? print_comment_total("bes_latest_skin08","최근코멘트","clmn1,blrun1,cap1,basket1",30,45); ?>
+		</td></tr>
+		<tr>
+			<td colspan="2" width="100%" valign="top">
+			<?
+			if($browser==1) //ie 일때와 스마트폰일 때 처리
+				latest_gal("f2plus_latest_2", "gal1", "최근 갤러리", 7, 110, 150, "m/d");
+			else
+				latest_gal("f2plus_latest_2", "gal1", "최근 갤러리", 4, 38, 30, "m/d");
 			?>
-			<? print_comment_total("bes_latest_skin08","최근코멘트","clmn1,blrun1,cap1,basket1",30,45); ?>
-			</td></tr>
-			<tr>
-				<td colspan="2" width="100%" valign="top">
-				<?
-				if($browser==1) //ie 일때와 스마트폰일 때 처리
-					latest_gal("f2plus_latest_2", "gal1", "최근 갤러리", 7, 110, 150, "m/d");
-				else
-					latest_gal("f2plus_latest_2", "gal1", "최근 갤러리", 4, 38, 30, "m/d");
-				?>
-				</td>
-			</tr>
+			</td>
+		</tr>
 		</table>
 	</td>
 </tr>
 <tr>
 	<td colspan="2" height="30">
-		<p style="line-height:100%; margin-top:0; margin-bottom:0;" align="center">&nbsp;<span style="font-family:굴림; font-size:9pt;">CopyRight&copy;<a href="mailto:blrun39@hanafos.com" style="color:black;text-decoration:none;"><b>Y.C.Lee</b></a> All Rights Reserved. Since 2007.12.13.</span>&nbsp;<a href="http://blrun.net/rss/" target="_blank"><img src="/rss/rss2.gif" border="0"></a></p>
+		<p style="line-height:100%; margin-top:0; margin-bottom:0;" align="center">&nbsp;<span style="font-family:굴림; font-size:9pt;">CopyRight&copy;<a href="mailto:blrun39@hanafos.com" style="color:black;text-decoration:none;"><b>Y.C.Lee</b></a> All Rights Reserved. Since 2007.12.13.</span>&nbsp;<a href="http://blrun.net/rss/" target="_blank"><img src="/rss/rss2.gif" border="0" align="absmiddle" vspace="5"></a></p>
 	</td>
 </tr>
 </table>
+<!-- 리포트2.0 로그분석코드 시작 -->
+<script type="text/javascript">
+var JsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+var uname = escape("www.blrun.net");
+document.write(unescape("%3Cscript id='log_script' src='" + JsHost + "blrun.weblog.cafe24.com/weblog.js?uid=blrun&uname="+uname+"' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!-- 리포트2.0  로그분석코드 완료 -->
 </body>
 </html>
