@@ -53,6 +53,8 @@ $_startTime=getmicrotime();
  * 기본 설정 파일을 읽음
  ******************************************************************************/
 $_zbDefaultSetup = getDefaultSetup();
+$_zb_url = "http://www.blrun.net/bbs/";
+$_zb_path = "/home/hosting_users/blrun/www/bbs/";
 
 /*******************************************************************************
  * install 페이지가 아닌 경우

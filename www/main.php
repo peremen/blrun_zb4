@@ -1,4 +1,7 @@
 <?
+// 자동으로 www 붙여준다. 
+if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI); 
+
 $_zb_url = "http://www.blrun.net/bbs/";
 $_zb_path = "/home/hosting_users/blrun/www/bbs/";
 include $_zb_path."outlogin.php";
