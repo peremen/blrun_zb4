@@ -1,4 +1,7 @@
-
+<? if(preg_match("/MSIE ([1-6]{1}[\.0-9]{0,})/i",$HTTP_USER_AGENT)) {
+	;
+} else {
+?>
 <!--SNS 관련 태그 삽입-->
 <center>
 <div style="clear:both;line-height:1em;width:300px;">
@@ -17,3 +20,4 @@
 </div>
 </center>
 <!--SNS 관련 태그 삽입 끝-->
+<? } ?>

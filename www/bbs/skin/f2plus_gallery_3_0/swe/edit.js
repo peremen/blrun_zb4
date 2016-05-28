@@ -16,6 +16,9 @@ var iePattern2 = /<(HR)([^>]*?)>\s*?<br[^>]*?>/gi;
 var iePattern3 = / (?:\r\n|\r|\n)/g;
 var ffPattern = /<br[^>]*?><(TBODY|TR|TD)([^>]*?)>/gi;
 
+var uAgent = navigator.userAgent;
+var re = new RegExp("rv:11"); //IE11 userAgent값 검출 정규식
+var re2 = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})"); //IE6,7,8,9,10 userAgent값 검출 정규식
 var DocReadyState = false;
 var DocReloadInterval = null;
 var memoiW = null;	
@@ -53,9 +56,17 @@ function get_selection()
 	{
 		if(this.m_selection.type != "Control")
 		{
-			if(memoiW.document.body.createTextRange().inRange(this.m_selection) == true)
+			if(re.exec(uAgent) != null)
 			{
-				this.m_selection.select();
+				//IE11
+				this.m_selection.removeAllRanges();
+				this.m_selection.addRange(this.range);
+			} else {
+				//IE8
+				if(memoiW.document.body.createTextRange().inRange(this.m_selection) == true)
+				{
+					this.m_selection.select();
+				}
 			}
 		} else {
 			this.m_selection.select();
@@ -65,12 +76,20 @@ function get_selection()
 
 function put_selection()
 {
-	if(typeof window.getSelection != "undefined"){
+	if(typeof document.selection != "Control") {
+		if(re.exec(uAgent) != null)
+		{
+			//IE11
+			this.m_selection = memoiW.window.getSelection();
+			this.range = this.m_selection.getRangeAt(0);
+		} else {
+			//IE8
+			this.m_selection = memoiW.document.selection.createRange();
+			this.m_selection.type = memoiW.document.selection.type;
+		}
+	} else {	//Chrome & FF
 		this.m_selection = memoiW.window.getSelection();
 		this.m_selection.type = typeof memoiW.document.getSelection;
-	} else if(typeof document.selection != "Control"){
-		this.m_selection = memoiW.document.selection.createRange();
-		this.m_selection.type = memoiW.document.selection.type;
 	}
 }
 
@@ -148,9 +167,17 @@ function btnStyc()
 			img_get = document.getElementById(img_mark[i]);
 			
 			if(edit_tag_yn == "Y") {
-				img_get.style.filter = "";
+				if(typeof window.getSelection != "undefined") {
+					img_get.style.opacity = ""; /* For Webkit browsers */
+				} else if(typeof document.selection != "Control"){
+					img_get.style.filter = "";
+				}
 			} else {
-				img_get.style.filter = "gray() + alpha(opacity=50)";
+				if(typeof window.getSelection != "undefined") {
+					img_get.style.opacity = "0.5"; /* For Webkit browsers */
+				} else if(typeof document.selection != "Control"){
+					img_get.style.filter = "gray() + alpha(opacity=50)";
+				}
 			}
 		}
 	}
@@ -161,9 +188,17 @@ function btnStyc()
 			img_get = document.getElementById(img_mark_no_grant[i]);
 			
 			if(edit_tag_yn == "Y") {
-				img_get.style.filter = "";
+				if(typeof window.getSelection != "undefined") {
+					img_get.style.opacity = ""; /* For Webkit browsers */
+				} else if(typeof document.selection != "Control"){
+					img_get.style.filter = "";
+				}
 			} else {
-				img_get.style.filter = "gray() + alpha(opacity=50)";
+				if(typeof window.getSelection != "undefined") {
+					img_get.style.opacity = "0.5"; /* For Webkit browsers */
+				} else if(typeof document.selection != "Control"){
+					img_get.style.filter = "gray() + alpha(opacity=50)";
+				}
 			}
 		}
 	}
@@ -452,11 +487,22 @@ function command(obj,myEvent)
 			}
 			case ("ed_hr") :
 			{
-				if(typeof window.getSelection != "undefined")
+				if(typeof document.selection != "Control") {
+					if(re.exec(uAgent) != null)
+					{
+						//IE11
+						var eEdit = memoiW.window.getSelection().getRangeAt(0);
+						eEdit.deleteContents(); 
+						eEdit.insertNode(eEdit.createContextualFragment("<hr size='1' color='#CCCCCC'>"));
+					} else if(re2.exec(uAgent) != null) {
+						//IE8
+						var eEdit = memoiW.document.selection.createRange();
+						eEdit.pasteHTML("<hr size='1' color='#CCCCCC'>");
+					} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
+						memoiW.document.execCommand("InsertHTML",false,"<hr size='1' color='#CCCCCC'>");
+					}
+				} else {	//Chrome & FF
 					memoiW.document.execCommand("InsertHTML",false,"<hr size='1' color='#CCCCCC'>");
-				else if(typeof document.selection != "Control"){
-					var eEdit = memoiW.document.selection.createRange();
-					eEdit.pasteHTML("<hr size='1' color='#CCCCCC'>");
 				}
 				break;
 			}
@@ -466,8 +512,8 @@ function command(obj,myEvent)
 				Layer_xy(ed_createLinkdiv,'',0,+10,myEvent);
 
 				var URL_link = memoiW.document.selection.createRange().htmlText;
-				var re = new RegExp("<A href=\"*\"", "gi");
-				var result = re.exec(URL_link);
+				var re3 = new RegExp("<A href=\"*\"", "gi");
+				var result = re3.exec(URL_link);
 				if (result != null)
 				{
 					url = URL_link.substring(URL_link.indexOf("<A href=\"")+9);
@@ -567,20 +613,86 @@ function command_no_grant(obj,myEvent)
 			break;
 		case ("ed_bold") :
 		{
-			var insertCMD = memoiW.document.selection.createRange();
-			insertCMD.pasteHTML("[SW_B#]" + insertCMD.text + "[#SW_B]");
+			if(typeof document.selection != "Control") {
+				if(re.exec(uAgent) != null)
+				{
+					//IE11
+					var insertCMD = memoiW.window.getSelection().getRangeAt(0);
+					var eSel = insertCMD.toString();
+					insertCMD.deleteContents();
+					insertCMD.insertNode(insertCMD.createContextualFragment("[SW_B#]" + eSel + "[#SW_B]"));
+				} else if(re2.exec(uAgent) != null) {
+					//IE8
+					var insertCMD = memoiW.document.selection.createRange();
+					insertCMD.pasteHTML("[SW_B#]" + insertCMD.text + "[#SW_B]");
+				} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
+					var insertCMD = memoiW.window.getSelection().getRangeAt(0);
+					var eSel = insertCMD.toString();
+					insertCMD.deleteContents();
+					memoiW.document.execCommand("InsertHTML",false,"[SW_B#]" + eSel + "[#SW_B]");
+				}
+			} else {	//Chrome & FF
+				var insertCMD = memoiW.window.getSelection().getRangeAt(0);
+				var eSel = insertCMD.toString();
+				insertCMD.deleteContents();
+				memoiW.document.execCommand("InsertHTML",false,"[SW_B#]" + eSel + "[#SW_B]");
+			}
 			break;
 		}
 		case ("ed_italic") :
 		{
-			var insertCMD = memoiW.document.selection.createRange();
-			insertCMD.pasteHTML("[SW_I#]" + insertCMD.text + "[#SW_I]");
+			if(typeof document.selection != "Control") {
+				if(re.exec(uAgent) != null)
+				{
+					//IE11
+					var insertCMD = memoiW.window.getSelection().getRangeAt(0);
+					var eSel = insertCMD.toString();
+					insertCMD.deleteContents();
+					insertCMD.insertNode(insertCMD.createContextualFragment("[SW_I#]" + eSel + "[#SW_I]"));
+				} else if(re2.exec(uAgent) != null) {
+					//IE8
+					var insertCMD = memoiW.document.selection.createRange();
+					insertCMD.pasteHTML("[SW_I#]" + insertCMD.text + "[#SW_I]");
+				} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
+					var insertCMD = memoiW.window.getSelection().getRangeAt(0);
+					var eSel = insertCMD.toString();
+					insertCMD.deleteContents();
+					memoiW.document.execCommand("InsertHTML",false,"[SW_I#]" + eSel + "[#SW_I]");
+				}
+			} else {	//Chrome & FF
+				var insertCMD = memoiW.window.getSelection().getRangeAt(0);
+				var eSel = insertCMD.toString();
+				insertCMD.deleteContents();
+				memoiW.document.execCommand("InsertHTML",false,"[SW_I#]" + eSel + "[#SW_I]");
+			}
 			break;
 		}
 		case ("ed_underline") :
 		{
-			var insertCMD = memoiW.document.selection.createRange();
-			insertCMD.pasteHTML("[SW_U#]" + insertCMD.text + "[#SW_U]");
+			if(typeof document.selection != "Control") {
+				if(re.exec(uAgent) != null)
+				{
+					//IE11
+					var insertCMD = memoiW.window.getSelection().getRangeAt(0);
+					var eSel = insertCMD.toString();
+					insertCMD.deleteContents();
+					insertCMD.insertNode(insertCMD.createContextualFragment("[SW_U#]" + eSel + "[#SW_U]"));
+				} else if(re2.exec(uAgent) != null) {
+					//IE8
+					var insertCMD = memoiW.document.selection.createRange();
+					insertCMD.pasteHTML("[SW_U#]" + insertCMD.text + "[#SW_U]");
+				} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
+					var insertCMD = memoiW.window.getSelection().getRangeAt(0);
+					var eSel = insertCMD.toString();
+					insertCMD.deleteContents();
+					memoiW.document.execCommand("InsertHTML",false,"[SW_U#]" + eSel + "[#SW_U]");
+				}
+			} else {	//Chrome & FF
+				var insertCMD = memoiW.window.getSelection().getRangeAt(0);
+				var eSel = insertCMD.toString();
+				insertCMD.deleteContents();
+				memoiW.document.execCommand("InsertHTML",false,"[SW_U#]" + eSel + "[#SW_U]");
+			}
 			break;
 		}
 		case ("ed_fontcolor") :
@@ -683,13 +795,24 @@ function layerClick(obj,objcmd)
 		if(obj.id == "ed_Url_Imagediv")
 		{
 			var image_url = document.getElementById("urlimage_text").value;
-			if(typeof window.getSelection != "undefined")
+			if(typeof document.selection != "Control") {
+				if(re.exec(uAgent) != null)
+				{
+					//IE11
+					var eEdit = memoiW.window.getSelection().getRangeAt(0);
+					eEdit.deleteContents(); 
+					eEdit.insertNode(eEdit.createContextualFragment("<p><img src='"+image_url+"' border='0'></p>"));
+				} else if(re2.exec(uAgent) != null) {
+					//IE8
+					var eEdit = memoiW.document.selection.createRange();
+					eEdit.pasteHTML("<p><img src='"+image_url+"' border='0'></p>");
+				} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
+					memoiW.document.execCommand("InsertHTML",false,"<p><img src='"+image_url+"' border='0'></p>");
+				}
+			} else {	//Chrome & FF
 				memoiW.document.execCommand("InsertHTML",false,"<p><img src='"+image_url+"' border='0'></p>");
-			else if(typeof document.selection != "Control"){
-				var eEdit = memoiW.document.selection.createRange();
-				eEdit.pasteHTML("<p><img src='"+image_url+"' border='0'></p>");
 			}
-			ed_Url_Imagediv.style.visibility = "hidden";
+			ed_asworddiv.style.visibility = "hidden";
 		}
 		if(obj.id == "ed_Url_mediadiv")
 		{
@@ -698,26 +821,59 @@ function layerClick(obj,objcmd)
 			var media_height = document.getElementById("urlmedia_height").value;
 
 			if(document.getElementById("urlmedia_mv").checked == true) {
-				if(typeof window.getSelection != "undefined")
+				if(typeof document.selection != "Control") {
+					if(re.exec(uAgent) != null)
+					{
+						//IE11
+						var eEdit = memoiW.window.getSelection().getRangeAt(0);
+						eEdit.deleteContents(); 
+						eEdit.insertNode(eEdit.createContextualFragment("<p><embed src='"+media_url+"' width='"+media_width+"' height='"+media_height+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>"));
+					} else if(re2.exec(uAgent) != null) {
+						//IE8
+						var eEdit = memoiW.document.selection.createRange();
+						eEdit.pasteHTML("<p><embed src='"+media_url+"' width='"+media_width+"' height='"+media_height+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
+					} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
+						memoiW.document.execCommand("InsertHTML",false,"<p><embed src='"+media_url+"' width='"+media_width+"' height='"+media_height+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
+					}
+				} else {	//Chrome & FF
 					memoiW.document.execCommand("InsertHTML",false,"<p><embed src='"+media_url+"' width='"+media_width+"' height='"+media_height+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
-				else if(typeof document.selection != "Control"){
-					var eEdit = memoiW.document.selection.createRange();
-					eEdit.pasteHTML("<p><embed src='"+media_url+"' width='"+media_width+"' height='"+media_height+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
 				}
 			} else {
 				if(media_url.match(/(.SWF)$/i)) {
-					if(typeof window.getSelection != "undefined")
+					if(typeof document.selection != "Control") {
+						if(re.exec(uAgent) != null)
+						{
+							//IE11
+							var eEdit = memoiW.window.getSelection().getRangeAt(0);
+							eEdit.deleteContents(); 
+							eEdit.insertNode(eEdit.createContextualFragment("<p><embed src='"+media_url+"' quality='high' width='"+media_width+"' height='"+media_height+"' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' wmode='transparent' /></p>"));
+						} else if(re2.exec(uAgent) != null) {
+							//IE8
+							var eEdit = memoiW.document.selection.createRange();
+							eEdit.pasteHTML("<p><embed src='"+media_url+"' quality='high' width='"+media_width+"' height='"+media_height+"' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' wmode='transparent' /></p>");
+						} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
+							memoiW.document.execCommand("InsertHTML",false,"<p><embed src='"+media_url+"' quality='high' width='"+media_width+"' height='"+media_height+"' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' wmode='transparent' /></p>");
+						}
+					} else {	//Chrome & FF
 						memoiW.document.execCommand("InsertHTML",false,"<p><embed src='"+media_url+"' quality='high' width='"+media_width+"' height='"+media_height+"' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' wmode='transparent' /></p>");
-					else if(typeof document.selection != "Control"){
-						var eEdit = memoiW.document.selection.createRange();
-						eEdit.pasteHTML("<p><embed src='"+media_url+"' quality='high' width='"+media_width+"' height='"+media_height+"' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' wmode='transparent' /></p>");
 					}
 				} else {
-					if(typeof window.getSelection != "undefined")
+					if(typeof document.selection != "Control") {
+						if(re.exec(uAgent) != null)
+						{
+							//IE11
+							var eEdit = memoiW.window.getSelection().getRangeAt(0);
+							eEdit.deleteContents(); 
+							eEdit.insertNode(eEdit.createContextualFragment("<p><embed src='"+media_url+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>"));
+						} else if(re2.exec(uAgent) != null) {
+							//IE8
+							var eEdit = memoiW.document.selection.createRange();
+							eEdit.pasteHTML("<p><embed src='"+media_url+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
+						} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
+							memoiW.document.execCommand("InsertHTML",false,"<p><embed src='"+media_url+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
+						}
+					} else {	//Chrome & FF
 						memoiW.document.execCommand("InsertHTML",false,"<p><embed src='"+media_url+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
-					else if(typeof document.selection != "Control"){
-						var eEdit = memoiW.document.selection.createRange();
-						eEdit.pasteHTML("<p><embed src='"+media_url+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='0' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
 					}
 				}
 			}
@@ -749,11 +905,22 @@ function layerClick(obj,objcmd)
 		}
 		if(obj.id == "ed_asworddiv")
 		{
-			if(typeof window.getSelection != "undefined")
+			if(typeof document.selection != "Control") {
+				if(re.exec(uAgent) != null)
+				{
+					//IE11
+					var eEdit = memoiW.window.getSelection().getRangeAt(0);
+					eEdit.deleteContents(); 
+					eEdit.insertNode(eEdit.createContextualFragment(objcmd));
+				} else if(re2.exec(uAgent) != null) {
+					//IE8
+					var eEdit = memoiW.document.selection.createRange();
+					eEdit.pasteHTML([objcmd]);
+				} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
+					memoiW.document.execCommand("InsertHTML",false,[objcmd]);
+				}
+			} else {	//Chrome & FF
 				memoiW.document.execCommand("InsertHTML",false,[objcmd]);
-			else if(typeof document.selection != "Control"){
-				var eEdit = memoiW.document.selection.createRange();
-				eEdit.pasteHTML([objcmd]);
 			}
 			ed_asworddiv.style.visibility = "hidden";
 		}
@@ -766,7 +933,6 @@ function layerClick(obj,objcmd)
 
 function layerClick_no_grant(obj,objcmd)
 {
-	var objTextArea = memoiW;
 	memoiW.focus();
 
 	if(selectionObj.m_selection != null)
@@ -784,40 +950,69 @@ function layerClick_no_grant(obj,objcmd)
 	} else {
 		if(obj.id == "ed_emoticondiv")
 		{
-			if(typeof window.getSelection != "undefined")
+			if(typeof document.selection != "Control") {
+				if(re.exec(uAgent) != null)
+				{
+					//IE11
+					var eEdit = memoiW.window.getSelection().getRangeAt(0);
+					eEdit.deleteContents(); 
+					eEdit.insertNode(eEdit.createContextualFragment("[SW_EMTC" + objcmd + "]"));
+				} else if(re2.exec(uAgent) != null) {
+					//IE8
+					var eEdit = memoiW.document.selection.createRange();
+					eEdit.pasteHTML("[SW_EMTC" + [objcmd] + "]");
+				} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
+					memoiW.document.execCommand("InsertHTML",false,"[SW_EMTC" + [objcmd] + "]");
+				}
+			} else {	//Chrome & FF
 				memoiW.document.execCommand("InsertHTML",false,"[SW_EMTC" + [objcmd] + "]");
-			else if(typeof document.selection != "Control"){
-				var eEdit = memoiW.document.selection.createRange();
-				eEdit.pasteHTML("[SW_EMTC" + [objcmd] + "]");
 			}
 			ed_emoticondiv.style.visibility = "hidden";
 		}
 		if(obj.id == "ed_colordiv")
 		{
-			if(typeof window.getSelection != "undefined"){
-				var sStart = objTextArea.selectionStart;
-				var sEnd = objTextArea.selectionEnd;
-				var selectedText = objTextArea.document.body.innerHTML.substring(0, 0);
-
-				//alert(sStart+" "+sEnd);
-
-				if(sw_no_grant_color == "sw_fontcolor") {
-					memoiW.document.execCommand("InsertHTML",false,"[" + [objcmd] + "_FC#]" + selectedText + "[#FC_" + [objcmd] + "]");
-				} else {
-					memoiW.document.execCommand("InsertHTML",false,"[" + [objcmd] + "_FB#]" + selectedText + "[#FB_" + [objcmd] + "]");
+			if(typeof document.selection != "Control") {
+				if(re.exec(uAgent) != null)
+				{
+					//IE11
+					var eEdit = memoiW.window.getSelection().getRangeAt(0);
+					var eSel = eEdit.toString();
+					eEdit.deleteContents();
+					if(sw_no_grant_color == "sw_fontcolor") {
+						eEdit.insertNode(eEdit.createContextualFragment("[" + objcmd + "_FC#]" + eSel + "[#FC_" + objcmd + "]"));
+					} else {
+						eEdit.insertNode(eEdit.createContextualFragment("[" + objcmd + "_FB#]" + eSel + "[#FB_" + objcmd + "]"));
+					}
+				} else if(re2.exec(uAgent) != null) {
+					//IE8
+					if(sw_no_grant_color == "sw_fontcolor") {
+						var eEdit = memoiW.document.selection.createRange();
+						eEdit.pasteHTML("[" + [objcmd] + "_FC#]" + eEdit.text + "[#FC_" + [objcmd] + "]");
+					} else {
+						var eEdit = memoiW.document.selection.createRange();
+						eEdit.pasteHTML("[" + [objcmd] + "_FB#]" + eEdit.text + "[#FB_" + [objcmd] + "]");
+					}
+				} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
+					var eEdit = memoiW.window.getSelection().getRangeAt(0);
+					var eSel = eEdit.toString();
+					eEdit.deleteContents();
+					if(sw_no_grant_color == "sw_fontcolor") {
+						memoiW.document.execCommand("InsertHTML",false,"[" + [objcmd] + "_FC#]" + eSel + "[#FC_" + [objcmd] + "]");
+					} else {
+						memoiW.document.execCommand("InsertHTML",false,"[" + [objcmd] + "_FB#]" + eSel + "[#FB_" + [objcmd] + "]");
+					}
 				}
-				ed_colordiv.style.visibility = "hidden";
-			}
-			else if(typeof document.selection != "Control"){
+			} else {	//Chrome & FF
+				var eEdit = memoiW.window.getSelection().getRangeAt(0);
+				var eSel = eEdit.toString();
+				eEdit.deleteContents();
 				if(sw_no_grant_color == "sw_fontcolor") {
-					var eEdit = memoiW.document.selection.createRange();
-					eEdit.pasteHTML("[" + [objcmd] + "_FC#]" + eEdit.text + "[#FC_" + [objcmd] + "]");
+					memoiW.document.execCommand("InsertHTML",false,"[" + [objcmd] + "_FC#]" + eSel + "[#FC_" + [objcmd] + "]");
 				} else {
-					var eEdit = memoiW.document.selection.createRange();
-					eEdit.pasteHTML("[" + [objcmd] + "_FB#]" + eEdit.text + "[#FB_" + [objcmd] + "]");
+					memoiW.document.execCommand("InsertHTML",false,"[" + [objcmd] + "_FB#]" + eSel + "[#FB_" + [objcmd] + "]");
 				}
-				ed_colordiv.style.visibility = "hidden";
 			}
+			ed_colordiv.style.visibility = "hidden";
 		}
 		if(obj.id == "ed_searchdiv")
 		{
@@ -994,14 +1189,22 @@ function selectXY(td,myEvent)
 		selectionObj.GetSelection();
 	}
 	
-	if(typeof window.getSelection != "undefined") //FF
-	{
+	if(typeof document.selection != "Control") {
+		if(re.exec(uAgent) != null)
+		{
+			//IE11
+			var eEdit = memoiW.window.getSelection().getRangeAt(0);
+			eEdit.deleteContents(); 
+			eEdit.insertNode(eEdit.createContextualFragment(strTable));
+		} else if(re2.exec(uAgent) != null) {
+			//IE8
+			var eEdit = memoiW.document.selection.createRange();
+			eEdit.pasteHTML(strTable);
+		} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
+			memoiW.document.execCommand("InsertHTML",false,strTable);
+		}
+	} else {	//Chrome & FF
 		memoiW.document.execCommand("InsertHTML",false,strTable);
-	}
-	else if(typeof document.selection != "Control") //IE
-	{
-		var eEdit = memoiW.document.selection.createRange();
-		eEdit.pasteHTML(strTable);
 	}
 	close_div(ed_cellsdiv);
 }
