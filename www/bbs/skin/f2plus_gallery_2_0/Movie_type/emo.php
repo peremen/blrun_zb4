@@ -1,31 +1,50 @@
 <!--쌀리가 노가다 하다-->
 <script language=javascript>
 function showEmoticon(){
-if(Emoticon.style.display=='none'){
-Emoticon.style.display='';
-}else{
-Emoticon.style.display='none';
+	if(Emoticon.style.display=='none'){
+		Emoticon.style.display='';
+	}else{
+		Emoticon.style.display='none';
+	}
 }
+
+function insert_emo(str)
+{
+	var objSelection = document.selection;
+	var objTextArea = document.getElementById('memo');
+	objTextArea.focus();
+	
+	if(typeof objSelection != 'undefined') //IE
+	{
+		var sRange = objSelection.createRange();
+		//var selectedText = sRange.text;
+		sRange.text = str;
+	}
+	else if(typeof objTextArea.selectionStart != 'undefined') //FF
+	{
+		var sStart = objTextArea.selectionStart;
+		var sEnd = objTextArea.selectionEnd;
+		objTextArea.value = objTextArea.value.substr(0, sStart) + str + objTextArea.value.substr(sEnd);
+		objTextArea.selectionStart = objTextArea.selectionEnd = sStart + str.length;
+	}
+	else
+	{
+		objTextArea.value += str;
+	}
 }
 
 function insertSmiley(smiley){
-if(document.write._name1.createTextRange){
-document.write._name1.focus();
-document.selection.createRange().duplicate().text=smiley;
-}else{
-document.write._name1.value+=smiley;
-}
+	insert_emo(smiley);
 }
 </script>
-			<style>
-			.on {border:1px solid #6B717B}
-			.off {border:1px solid white}
-			.down {border:1px solid #444A54;background-color:efefef}
-			.up {border:1px solid #6B717B;background-color:white}
-			.curHand {cursor:hand}
-			
-			</style>
-			<div id=Emoticon style="display:none">
+<style>
+.on {border:1px solid #6B717B}
+.off {border:1px solid white}
+.down {border:1px solid #444A54;background-color:efefef}
+.up {border:1px solid #6B717B;background-color:white}
+.curHand {cursor:pointer}
+</style>
+<div id=Emoticon style="display:none">
 
 <table border=0 cellpadding=3 cellspacing=0 style="background-color:white;border:1px solid #cdcdcd;" align=left>
 <tr>
