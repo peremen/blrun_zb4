@@ -38,9 +38,8 @@ if(!preg_match("/Zeroboard/i",$a_delete)) $a_delete=str_replace("delete.php?","$
  <td align=right>
     <table border=0 cellpadding=0 cellspacing=0>
 	<tr>
-		<td><?=$a_home?>[HOME]</a></td><td><?=$a_bitly?>[bitly]</a></td><td><?=$a_keyword?>[반전해제]</a></td>
-		<td><?=$a_list?><img src=<?=$dir?>/bt_list.gif border=0></a></td>
-		<td><?=$a_write?><img src=<?=$dir?>/bt_write.gif border=0></a></td>
+		<td><?=$a_home?>[HOME]</a></td><td><?=$a_bitly?>[bitly]</a></td><td nowrap><?=$a_keyword?>[반전해제]</a></td>
+		<td><?=$a_list?><img src=<?=$dir?>/bt_list.gif border=0></a><?=$a_write?><img src=<?=$dir?>/bt_write.gif border=0></a></td>
 	</tr>
 	</table>
  </td>
