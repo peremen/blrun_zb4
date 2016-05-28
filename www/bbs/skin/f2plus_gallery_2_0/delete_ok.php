@@ -103,13 +103,11 @@ if(!$s_data[child]) // 답글이 없을때;;
 		@z_unlink($_zb_path."data/".$id."/thumbnail/fs_".$s_data[reg_date].".jpg");
 		@z_unlink($_zb_path."data/".$id."/thumbnail/fl_".$s_data[reg_date].".jpg");
 		@z_unlink($_zb_path."data/".$id."/thumbnail/fXL_".$s_data[reg_date].".jpg");
-
 	}
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$s_data[file_name2])){ 
 		@z_unlink($_zb_path."data/".$id."/thumbnail/ss_".$s_data[reg_date].".jpg");
 		@z_unlink($_zb_path."data/".$id."/thumbnail/sl_".$s_data[reg_date].".jpg");
 		@z_unlink($_zb_path."data/".$id."/thumbnail/sXL_".$s_data[reg_date].".jpg");
-
 	}
 
 	// 기존 외부 html 썸네일 삭제

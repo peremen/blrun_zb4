@@ -27,7 +27,6 @@ function thumbnail($size,$source_file,$save_path,$small,$large,$ratio){
 					$new_width=$max_width;
 					$new_height=intval($alpha*$img_info[1]);
 				}
-			
 			}
 
 			$srcx=(int)($max_width-$new_width)/2;
@@ -47,6 +46,8 @@ function thumbnail($size,$source_file,$save_path,$small,$large,$ratio){
 		}
 	}
 	@ImageDestroy($srcimg);
+
+	return $img_info[0];
 }
 
 function thumbnail2($size,$source_file,$save_file){

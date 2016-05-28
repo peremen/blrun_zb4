@@ -11,8 +11,8 @@ var sw_edit_use = document.getElementById("sw_edit_use").value;
 var pattern = /(\[\w+\_code\:\d+\{[^}]*?\}\]|\[\/\w+\_code\])/gi;
 var pattern2 = /\[\/\w+\_code\]/gi;
 var matchArray, e_use_html;
-var iePattern = /<br[^>]*?><(P|DIV|\/PRE|HR|LI|OL|O:P|UL|TABLE|TBODY|TR|TD|TH|CENTER|H1|H2|H3|H4)([^>]*?)>/gi;
-var iePattern2 = /<(HR)([^>]*?)>\s*?<br[^>]*?>/gi;
+var iePattern = /<br[^>]*?><(P|DIV|\/PRE|HR|LI|OL|O:P|UL|TABLE|TBODY|TR|TD|TH|CENTER|H1|H2|H3|H4|FORM|SCRIPT|\/SCRIPT)([^>]*?)>/gi;
+var iePattern2 = /<(HR|SCRIPT|\/SCRIPT)([^>]*?)>\s*?<br[^>]*?>/gi;
 var iePattern3 = / (?:\r\n|\r|\n)/g;
 var ffPattern = /<br[^>]*?><(TBODY|TR|TD)([^>]*?)>/gi;
 

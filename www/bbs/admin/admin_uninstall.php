@@ -47,23 +47,23 @@ if($exec=="uninstall"&&$uninstall=="ok"&&$member[is_admin]==1) {
 	<br>
 	<table border=0 cellspacing=1 cellpadding=3 bgcolor=777777>
 	<tr>
-		<td bgcolor=555555 align=right style=font-family:tahoma;font-size:8pt;color:white width=100><b>Hostname&nbsp;</td>
+		<td bgcolor=555555 align=right style=font-family:tahoma;font-size:9pt;color:white width=100><b>Hostname&nbsp;</td>
 		<td bgcolor=f3f3f3><input type=input name=u_hostname value="" class=input size=20></td>
 	</tr>
 	<tr>
-		<td bgcolor=555555 align=right style=font-family:tahoma;font-size:8pt;color:white width=100><b>User ID&nbsp;</td>
+		<td bgcolor=555555 align=right style=font-family:tahoma;font-size:9pt;color:white width=100><b>User ID&nbsp;</td>
 		<td bgcolor=f3f3f3><input type=input name=u_userid value="" class=input size=20></td>
 	</tr>
 	<tr>
-		<td bgcolor=555555 align=right style=font-family:tahoma;font-size:8pt;color:white width=100><b>Password&nbsp;</td>
+		<td bgcolor=555555 align=right style=font-family:tahoma;font-size:9pt;color:white width=100><b>Password&nbsp;</td>
 		<td bgcolor=f3f3f3><input type=password name=u_password value="" class=input size=20></td>
 	</tr>
 	<tr>
-		<td bgcolor=555555 align=right style=font-family:tahoma;font-size:8pt;color:white width=100><b>DB Name&nbsp;</td>
+		<td bgcolor=555555 align=right style=font-family:tahoma;font-size:9pt;color:white width=100><b>DB Name&nbsp;</td>
 		<td bgcolor=f3f3f3><input type=input name=u_dbname value="" class=input size=20></td>
 	</tr>
 	<tr>
-		<td colspan=2 bgcolor=555555 align=center><input type=submit value="    확        인    " style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:20px;></td>
+		<td colspan=2 bgcolor=555555 align=center><input type=submit value="    확        인    " style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;></td>
 	</tr>
 	</table>
 	</td>

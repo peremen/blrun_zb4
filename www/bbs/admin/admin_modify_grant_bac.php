@@ -9,7 +9,7 @@ $board_data=mysql_fetch_array(mysql_query("select * from $admin_table where no='
 <tr height=30><td bgcolor=#3d3d3d colspan=10><img src=images/admin_webboard.gif></td>
 </tr>
 <tr height=30>
-  <td bgcolor=white colspan=10 align=right style=font-family:Tahoma;font-size:8pt;>
+  <td bgcolor=white colspan=10 align=right style=font-family:Tahoma;font-size:9pt;>
     그룹 이름 : <b><?=$group_data[name]?></b> , 게시판 이름 : <a href=zboard.php?id=<?=$board_data[name]?> target=_blank><b><?=$board_data[name]?></a></b> &nbsp;&nbsp;&nbsp;
     <input type=button value='게시판관리' class=input style=width=100px onclick=location.href="<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&exec2=modify&no=<?=$no?>&page=<?=$page?>&page_num=<?=$page_num?>">
     <input type=button value='카테고리 관리' class=input style=width=100px onclick=location.href="<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&exec2=category&no=<?=$no?>&page=<?=$page?>&page_num=<?=$page_num?>">&nbsp;&nbsp;&nbsp;
@@ -25,7 +25,7 @@ $board_data=mysql_fetch_array(mysql_query("select * from $admin_table where no='
 <input type=hidden name=page_num value=<?=$page_num?>>
 <input type=hidden name=no value=<?=$no?>>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;width=30%><b>목록 보기 권한 &nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;width=30%><b>목록 보기 권한 &nbsp;</td>
   <td >&nbsp;&nbsp;
     <select name=grant_list class=input >
 <?
@@ -39,7 +39,7 @@ else echo "<option value=$i>$i</option>";
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;><b>내용 보기 권한 &nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;><b>내용 보기 권한 &nbsp;</td>
   <td >&nbsp;&nbsp;
     <select name=grant_view  class=input>
 <?
@@ -53,7 +53,7 @@ else echo "<option value=$i>$i</option>";
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;><b>글쓰기 권한 &nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;><b>글쓰기 권한 &nbsp;</td>
   <td >&nbsp;&nbsp;
     <select name=grant_write class=input>
 <?
@@ -67,7 +67,7 @@ else echo "<option value=$i>$i</option>";
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;><b>간단한 답글 쓰기 권한 &nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;><b>간단한 답글 쓰기 권한 &nbsp;</td>
   <td >&nbsp;&nbsp;
     <select name=grant_comment class=input>
 <?
@@ -81,7 +81,7 @@ else echo "<option value=$i>$i</option>";
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;><b>답변쓰기 권한 &nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;><b>답변쓰기 권한 &nbsp;</td>
   <td >&nbsp;&nbsp;
     <select name=grant_reply class=input>
 <?
@@ -95,7 +95,7 @@ else echo "<option value=$i>$i</option>";
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;><b>삭제 권한 &nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;><b>삭제 권한 &nbsp;</td>
   <td >&nbsp;&nbsp;
     <select name=grant_delete class=input>
 <?
@@ -109,7 +109,7 @@ else echo "<option value=$i>$i</option>";
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;><b> HTML 사용 권한 &nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;><b> HTML 사용 권한 &nbsp;</td>
   <td >&nbsp;&nbsp;
     <select name=grant_html class=input>
 <?
@@ -123,7 +123,7 @@ else echo "<option value=$i>$i</option>";
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;><b>공지사항 작성 권한 &nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;><b>공지사항 작성 권한 &nbsp;</td>
   <td >&nbsp;&nbsp;
     <select name=grant_notice class=input>
 <?
@@ -137,7 +137,7 @@ else echo "<option value=$i>$i</option>";
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;><b>비밀글 보기 권한 &nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;><b>비밀글 보기 권한 &nbsp;</td>
   <td >&nbsp;&nbsp;
     <select name=grant_view_secret class=input>
 <?
@@ -151,7 +151,7 @@ else echo "<option value=$i>$i</option>";
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;><b>Image Box 사용 권한 &nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;><b>Image Box 사용 권한 &nbsp;</td>
   <td >&nbsp;&nbsp;
     <select name=grant_imagebox class=input>
 <?

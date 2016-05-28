@@ -14,7 +14,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 			}
 			$thumb_view1=$Thumbnail_url.$view_large1;
 			$view_img1="<img src=$thumb_view1 border=0 name=zb_target_resize align=left class=shadow5>";
-		}else {
+		}else{
 			$view_img1=str_replace("<br>","",$upload_image1);
 			$view_img1=preg_replace("#onclick=\"javascript\:[^>]+?(>)#i","align=left class=shadow5\\1",$view_img1);
 		}
@@ -30,7 +30,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 			}
 			$thumb_view2=$Thumbnail_url.$view_large2;
 			$view_img2="<img src=$thumb_view2 border=0 name=zb_target_resize align=left class=shadow5>";
-		}else {
+		}else{
 			$view_img2=str_replace("<br>","",$upload_image2);
 			$view_img2=preg_replace("#onclick=\"javascript\:[^>]+?(>)#i","align=left class=shadow5\\1",$view_img2);
 		}
@@ -46,8 +46,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 			thumbnail($min_width_size,$prev_data[file_name1],$Thumbnail_path,$Prev_thumb_small1,3/2);
 		}
 		$prev_thumb=$Thumbnail_url.$Prev_thumb_large1;
-	}
-	elseif(preg_match("#\.(jpg|jpeg|png)$#i",$prev_data[file_name2])){
+	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$prev_data[file_name2])){
 
 		if(!file_exists($Thumbnail_path.$Prev_thumb_small2)){
 			thumbnail($min_width_size,$prev_data[file_name2],$Thumbnail_path,$Prev_thumb_small2,3/2);
@@ -65,8 +64,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 			thumbnail($min_width_size,$next_data[file_name1],$Thumbnail_path,$Prev_thumb_small1,3/2);
 		}
 		$next_thumb=$Thumbnail_url.$Next_thumb_small1;
-	}
-	elseif(preg_match("#\.(jpg|jpeg|png)$#i",$next_data[file_name2])){
+	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$next_data[file_name2])){
 
 		if(!file_exists($Thumbnail_path.$Prev_thumb_small2)){
 			thumbnail($min_width_size,$next_data[file_name2],$Thumbnail_path,$Prev_thumb_small2,3/2);
@@ -83,7 +81,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		$source_img=str_replace("%2F", "/", urlencode($data[file_name1]));
 		if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name1])){
 			$view_img1="<img src=$source_img name=zb_target_resize border=0 alt='$alt1'>";
-		}else {
+		}else{
 			$view_img1=str_replace("<br>","",$upload_image1);
 			$view_img1=preg_replace("#onclick=\"javascript\:[^>]+?(>)#i","align=left class=shadow5\\1",$view_img1);
 		}
@@ -91,13 +89,12 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		$img_info1[0]=$img_info1[0]+10;
 		$img_info1[1]=$img_info1[1]+55;
 		$print_img1="<a onclick=window.open('$dir/img_view.php?img=$data[file_name1]&width=$img_info1[0]&height=$img_info1[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
-
 	}
 	if($upload_image2){
 		$source_img=str_replace("%2F", "/", urlencode($data[file_name2]));
 		if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name2])){
 			$view_img2="<img src=$source_img name=zb_target_resize border=0 alt='$alt2'>";
-		}else {
+		}else{
 			$view_img2=str_replace("<br>","",$upload_image2);
 			$view_img2=preg_replace("#onclick=\"javascript\:[^>]+?(>)#i","align=left class=shadow5\\1",$view_img2);
 		}

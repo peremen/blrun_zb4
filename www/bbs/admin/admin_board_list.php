@@ -55,15 +55,15 @@ $number=$total-($page-1)*$page_num;
 
 echo "
 <tr align=center height=23 bgcolor=#a0a0a0>
-  <td style=font-family:Tahoma;font-size:8pt;><b>번호</td>
-  <td style=font-family:Tahoma;font-size:8pt;><b>게시판 이름</td>
-  <td style=font-family:Tahoma;font-size:8pt;><b>전체등록 수</td>
-  <td style=font-family:Tahoma;font-size:8pt;><b>미리보기</td>
-  <td style=font-family:Tahoma;font-size:8pt;><b>기본설정 변경</td>
-  <td style=font-family:Tahoma;font-size:8pt;><b>권한 설정</td>
-  <td style=font-family:Tahoma;font-size:8pt;><b>카테고리 관리</a></td>
-  <td style=font-family:Tahoma;font-size:8pt;><b>오류복구</a></td>
-  <td style=font-family:Tahoma;font-size:8pt;><b>삭제</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>번호</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>게시판 이름</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>전체등록 수</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>미리보기</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>기본설정 변경</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>권한 설정</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>카테고리 관리</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>오류복구</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>삭제</a></td>
 </tr>";
 
 // 뽑아온 게시물 데이타를 화면에 출력
@@ -71,15 +71,15 @@ while($data=mysql_fetch_array($result))
 {
 	echo "
 <tr align=center height=23 bgcolor=#e0e0e0>
-  <td style=font-family:Tahoma;font-size:7pt;>$number</td>
-  <td style=font-family:Tahoma;font-size:8pt;><b>$data[name]</b></td>
-  <td style=font-family:Tahoma;font-size:8pt;>$data[total_article]</td>
-  <td style=font-family:Tahoma;font-size:8pt;><a href=zboard.php?id=$data[name] target=_blank>View</a></td>
-  <td style=font-family:Tahoma;font-size:8pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=modify&no=$data[no]&page=$page&page_num=$page_num>Setup</a></td>
-  <td style=font-family:Tahoma;font-size:8pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=grant&no=$data[no]&page=$page&page_num=$page_num>Setup</a></td>
-  <td style=font-family:Tahoma;font-size:8pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=category&no=$data[no]&page=$page&page_num=$page_num>Setup</a></td>
-  <td style=font-family:Tahoma;font-size:8pt;><a href=\"javascript:board_recover('$data[no]','$data[name]')\">정리</a></td>
-  <td style=font-family:Tahoma;font-size:8pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=del&no=$data[no]&page=$page&page_num=$page_num onclick=\"return confirm('$data[name] 게시판을 \\n\\n삭제하시겠습니까?')\">삭제</a></td>
+  <td style=font-family:Tahoma;font-size:8pt;>$number</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>$data[name]</b></td>
+  <td style=font-family:Tahoma;font-size:9pt;>$data[total_article]</td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=zboard.php?id=$data[name] target=_blank>View</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=modify&no=$data[no]&page=$page&page_num=$page_num>Setup</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=grant&no=$data[no]&page=$page&page_num=$page_num>Setup</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=category&no=$data[no]&page=$page&page_num=$page_num>Setup</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=\"javascript:board_recover('$data[no]','$data[name]')\">정리</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=del&no=$data[no]&page=$page&page_num=$page_num onclick=\"return confirm('$data[name] 게시판을 \\n\\n삭제하시겠습니까?')\">삭제</a></td>
 </tr>";
 	// 가상 번호를 1씩 뺌
 	$number--;
@@ -96,8 +96,8 @@ while($data=mysql_fetch_array($result))
 <input type=hidden name=group_no value=<?=$group_no?>>
 <tr>
   <td><input type=text name=page_num value=<?=$page_num?> size=2></td>
-  <td><input type=submit value='페이지당 갯수' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:20px;>&nbsp;&nbsp;</td>
-  <td><input type=button onclick=location.href="<?=$PHP_SELF?>?exec=view_board&exec2=add&page=<?=$page?>&page_num=<?=$page_num?>&group_no=<?=$group_no?>" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:20px; value=' 게시판 추가하기 '></td>
+  <td><input type=submit value='페이지당 갯수' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;>&nbsp;&nbsp;</td>
+  <td><input type=button onclick=location.href="<?=$PHP_SELF?>?exec=view_board&exec2=add&page=<?=$page?>&page_num=<?=$page_num?>&group_no=<?=$group_no?>" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; value=' 게시판 추가하기 '></td>
 </tr>
 </form>
 </table>

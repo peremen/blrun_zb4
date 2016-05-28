@@ -10,10 +10,10 @@ if($flag != ok) {
  </HEAD>
 
  <BODY>
-  <font color="red"><b>bit.ly URL을 단축, 또는 원래대로 변환시키는 프로그램입니다. 둘 중에 어느 하나를 입력하고 변환을 누르세요! 두 개 동시에 넣고 변환해도 변환이 됩니다. 단 두번째는 단축 URL을 넣어야 합니다</b></font>
+  <font color="red"><b>URL을 bit.ly URL로 단축, 또는 원래대로 변환시키는 프로그램입니다. 둘 중에 어느 하나를 입력하고 변환을 누르세요! 두 개 동시에 넣고 변환해도 변환이 됩니다. 단 두번째는 단축 URL을 넣어야 합니다</b></font>
   <FORM NAME="form1" METHOD="Post" ACTION="bl.php?flag=ok">
-	<b>Long URL: </b><INPUT NAME="l_url" TYPE="Text" SIZE="44" MAXLENGTH="3000"><br>
-	<b>Short URL: </b><INPUT NAME="s_url" TYPE="Text" SIZE="22" MAXLENGTH="44">
+	<b>Long URL → Short URL: </b><INPUT NAME="l_url" TYPE="Text" SIZE="44" MAXLENGTH="3000"><br>
+	<b>Short URL → Long URL: </b><INPUT NAME="s_url" TYPE="Text" SIZE="22" MAXLENGTH="44">
 	<br><br><INPUT TYPE="Submit" VALUE="변환">
   </FORM>
  </BODY>

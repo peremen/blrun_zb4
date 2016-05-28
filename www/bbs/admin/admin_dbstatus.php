@@ -15,14 +15,14 @@
 
 		<table border=0 cellspacing=1 cellpadding=2 width=100% bgcolor=999999>
 		<tr bgcolor=444444 align=center>
-			<td style=color:white;font-size:8pt;font-family:tahoma>No</td>
-			<td style=color:white;font-size:8pt;font-family:tahoma>테이블 이름</td>
-			<td style=color:white;font-size:8pt;font-family:tahoma>형식</td>
-			<td style=color:white;font-size:8pt;font-family:tahoma>줄(Rows)</td>
-			<td style=color:white;font-size:8pt;font-family:tahoma>데이타 용량</td>
-			<td style=color:white;font-size:8pt;font-family:tahoma>인덱스 용량</td>
-			<td style=color:white;font-size:8pt;font-family:tahoma><b>전체 용량</b></td>
-			<td style=color:white;font-size:8pt;font-family:tahoma>생성시간</td>
+			<td style=color:white;font-size:9pt;font-family:tahoma>No</td>
+			<td style=color:white;font-size:9pt;font-family:tahoma>테이블 이름</td>
+			<td style=color:white;font-size:9pt;font-family:tahoma>형식</td>
+			<td style=color:white;font-size:9pt;font-family:tahoma>줄(Rows)</td>
+			<td style=color:white;font-size:9pt;font-family:tahoma>데이타 용량</td>
+			<td style=color:white;font-size:9pt;font-family:tahoma>인덱스 용량</td>
+			<td style=color:white;font-size:9pt;font-family:tahoma><b>전체 용량</b></td>
+			<td style=color:white;font-size:9pt;font-family:tahoma>생성시간</td>
 		</tr>
 <?
 $dbData = file("myZrCnf2019.php");

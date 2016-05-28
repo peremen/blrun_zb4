@@ -159,9 +159,9 @@ while($data=mysql_fetch_array($result)) {
 	//$check=mysql_fetch_array(mysql_query("select count(*) from $now_table where user_id='$data[user_id]'"));
 	if($check[0]) $stat="<img src=images/memo_online.gif>";
 	else $stat="<img src=images/memo_offline.gif>";
-	if($data[is_admin]==1) $kind="<font color=#aa0000 style=font-family:Tahoma;font-size:8pt;><b>Super Administrator</b>($data[level])</font>";
-	elseif($data[is_admin]==2) $kind="<font color=#0000aa style=font-family:Tahoma;font-size:8pt;><b>Group Administrator</b>($data[level])</font>";
-	else $kind="<font style=font-family:Tahoma;font-size:8pt;><b>Member</b>($data[level])</font>";
+	if($data[is_admin]==1) $kind="<font color=#aa0000 style=font-family:Tahoma;font-size:9pt;><b>Super Administrator</b>($data[level])</font>";
+	elseif($data[is_admin]==2) $kind="<font color=#0000aa style=font-family:Tahoma;font-size:9pt;><b>Group Administrator</b>($data[level])</font>";
+	else $kind="<font style=font-family:Tahoma;font-size:9pt;><b>Member</b>($data[level])</font>";
 
 	echo "
     <tr>
@@ -213,7 +213,7 @@ while($data=mysql_fetch_array($result)) {
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="5">
   <tr>
-    <td>&nbsp;&nbsp;&nbsp;<font style=font-family:Tahoma;font-size:7pt;color:#cc0000><?=$print_page?></font></td>
+    <td>&nbsp;&nbsp;&nbsp;<font style=font-family:Tahoma;font-size:8pt;color:#cc0000><?=$print_page?></font></td>
     <td align="right"><a href=JavaScript:window.close()><img src="images/memo_close.gif" width="69" height="25" border="0"></a> </td>
   </tr>
 </table>

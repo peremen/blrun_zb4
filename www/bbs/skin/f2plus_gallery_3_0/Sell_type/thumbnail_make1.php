@@ -36,6 +36,8 @@ function thumbnail($size,$source_file,$save_path,$small,$ratio){
 	@ImageJPEG($dstimg,$save_path.$small,85);
 	@ImageDestroy($dstimg);
 	@ImageDestroy($srcimg);
+
+	return $img_info[0];
 }
 
 function thumbnail2($size,$source_file,$save_file){

@@ -47,23 +47,23 @@ if(file_exists("myZrCnf2019.php")) error("이미 myZrCnf2019.php가 생성되어 있습니
 	<form name=write method=post action=install_ok.php onsubmit="return check_submit();">
 	<table border=0 cellpadding=2 cellspacing=0>
 	<tr>
-		<td width=90 align=right style=font-family:Tahoma;font-size:8pt;>Host Name</td>
-		<td width=90><input type=text name=hostname value='localhost' style=font-family:Tahoma;font-size:8pt;></td>
+		<td width=90 align=right style=font-family:Tahoma;font-size:9pt;>Host Name</td>
+		<td width=90><input type=text name=hostname value='localhost' style=font-family:Tahoma;font-size:9pt;></td>
 		<td width=300>MySQL DB의 호스트네임을 입력하세요.</font></td>
 	</tr>
 	<tr>
-		<td align=right style=font-family:Tahoma;font-size:8pt;>SQL User ID</td>
-		<td><input type=text name=user_id style=font-family:Tahoma;font-size:8pt;></td>
+		<td align=right style=font-family:Tahoma;font-size:9pt;>SQL User ID</td>
+		<td><input type=text name=user_id style=font-family:Tahoma;font-size:9pt;></td>
 		<td>MySQL계정의 ID를 입력하세요</font></td>
 	</tr>
 	<tr>
-		<td align=right style=font-family:Tahoma;font-size:8pt;>Password</td>
-		<td><input type=password name=password style=font-family:Tahoma;font-size:8pt;></td>
+		<td align=right style=font-family:Tahoma;font-size:9pt;>Password</td>
+		<td><input type=password name=password style=font-family:Tahoma;font-size:9pt;></td>
 		<td>Mysql DB의 패스워드를 입력하세요</font></td>
 	</tr>
 	<tr>
-		<td align=right style=font-family:Tahoma;font-size:8pt;>DB Name</td>
-		<td><input type=text name=dbname style=font-family:Tahoma;font-size:8pt;></td>
+		<td align=right style=font-family:Tahoma;font-size:9pt;>DB Name</td>
+		<td><input type=text name=dbname style=font-family:Tahoma;font-size:9pt;></td>
 		<td>Mysql DB의 Name을 입력하세요</font></td>
 	</tr>
 	<tr>

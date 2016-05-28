@@ -55,11 +55,8 @@ function thumbnail_make1($size,$source_file,$save_path,$small,$large,$ratio){
 		 	
 			if($i==sizeof($size)-1) {
 				//$ratio가 0으로 나누어지는 것 방지
-				if($img_info[0]==""){
-					$img_info[1]=3;
-					$img_info[0]=4;
-				}
-				$ratio=$img_info[1]/$img_info[0];
+				if($img_info[0]!="")
+					$ratio=$img_info[1]/$img_info[0];
 			}
 
 			$max_width=$size[$i];
@@ -105,6 +102,8 @@ function thumbnail_make1($size,$source_file,$save_path,$small,$large,$ratio){
 		}
 	}
 	@ImageDestroy($srcimg);
+
+	return $img_info[0];
 }
 
 function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
@@ -120,11 +119,8 @@ function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
 		 	
 			if($i==sizeof($size)-1) {
 				//$ratio가 0으로 나누어지는 것 방지
-				if($img_info[0]==""){
-					$img_info[1]=3;
-					$img_info[0]=4;
-				}
-				$ratio=$img_info[1]/$img_info[0];
+				if($img_info[0]!="")
+					$ratio=$img_info[1]/$img_info[0];
 			}
 
 			$max_width=$size[$i];
@@ -164,6 +160,8 @@ function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
 		}
 	}
 	@ImageDestroy($srcimg);
+
+	return $img_info[0];
 }
 
 function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $datetype="m/d"){
@@ -251,11 +249,14 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 				}
 			}elseif(($src_img1=stripslashes($img[0][1])) && !preg_match("#\.(gif|bmp)$#i",$src_img1)){
 				$reg_date[]=$data[reg_date];
-				if($src_img1 && (!file_exists($_zb_path.$img1)||!file_exists($_zb_path.$img2))){
+				if(!file_exists($_zb_path.$img1)||!file_exists($_zb_path.$img2)){
 					$size=array(52,200);
-					if($use_thumb==2) thumbnail_make1($size,$src_img1,$_zb_path,$img1,$img2,3/4);
-					else thumbnail_make2($size,$src_img1,$_zb_path,$img1,$img2,3/4);
-				}elseif(!$src_img1){
+					if($use_thumb==2) $zx=thumbnail_make1($size,$src_img1,$_zb_path,$img1,$img2,3/4);
+					else $zx=thumbnail_make2($size,$src_img1,$_zb_path,$img1,$img2,3/4);
+					@mysql_query("update zetyx_board"."_$id set x='$zx' where no='$data[no]'") or error(mysql_error());
+				}
+				$re=mysql_fetch_array(mysql_query("select x from zetyx_board"."_$id where no='$data[no]'"));
+				if(!$re[x]){
 					$filename1=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 					$filename2=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 				}
@@ -297,7 +298,7 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 					$filename1=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
 					$filename2=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
 				}
-			}elseif(($src_img1=stripslashes($img[0][1])) && preg_match("#\.(gif|bmp)$#i",$src_img1)){
+			}elseif(($src_img1=stripslashes($img[0][1])) && preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$src_img1)){
 				$filename1=$src_img1;
 				$filename2=$src_img1;
 			}else{
@@ -315,7 +316,7 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 		$main = str_replace("[date]",$date,$main);
 		$main = str_replace("[memo]",$memo,$main);
 		if((mktime()-$data[reg_date])/3600<48) $main = str_replace("[subject]","<a href='".$_zb_url.$target."&no=$data[no]'>".$subject."</a>&nbsp;<img src=".$_zb_url."latest_skin/$skinname/images/new_head.gif align=absmiddle>",$main);
-			else $main = str_replace("[subject]","<a href='".$_zb_url.$target."&no=$data[no]'>".$subject."</a>",$main);
+		else $main = str_replace("[subject]","<a href='".$_zb_url.$target."&no=$data[no]'>".$subject."</a>",$main);
 		$main = str_replace("[comment]",$comment,$main);
 		$main = str_replace("[img]",$imgList,$main);
 		$imgList="";
@@ -332,12 +333,13 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 		$path=$_zb_path."data/latest_thumb/$id/";
 		$directory=get_dirinfo($path);
 
+		// 모바일 메인페이지 최근 갤러리 갯수도 고려한 배수 설정
 		if($num==7)
 			$multi=2;
 		elseif($num==4)
 			$multi=4;
 		else
-			$multi=4;
+			$multi=14;
 
 		if(sizeof($directory) >= sizeof($reg_date)*$multi) latest_thumb_del($path,$directory,$reg_date);
 	}

@@ -18,7 +18,7 @@ while($temp2=mysql_fetch_array($temp))
 <form name=write method=post action=<?=$PHP_SELF?> enctype=multipart/form-data onsubmit="return confirm('삭제하시겠습니까?')">
 <input type=hidden name=exec value=del_group_ok>
 <input type=hidden name=group_no value=<?=$group_no?>>
-<tr align=center><td bgcolor=bbbbbb colspan=2 height=25 style=font-family:Tahoma;font-size:8pt;>Group Name : <b><?=$data[name]?></b></td>
+<tr align=center><td bgcolor=bbbbbb colspan=2 height=25 style=font-family:Tahoma;font-size:9pt;>Group Name : <b><?=$data[name]?></b></td>
 </tr>
 <tr align=center>
   <td colspan=2 style=line-height:180%; bgcolor=#e0e0e0><br>
@@ -29,15 +29,15 @@ while($temp2=mysql_fetch_array($temp))
   </td>
 </tr>
 <tr align=right>
-  <td width=47%  style=font-family:Tahoma;font-size:8pt;><br>회원들을 이동시킬 그룹 지정 : &nbsp;</font></td>
+  <td width=47%  style=font-family:Tahoma;font-size:9pt;><br>회원들을 이동시킬 그룹 지정 : &nbsp;</font></td>
   <td align=left><br>&nbsp;<select name=member_move><?=$group_option?></select></td>
 </tr>
 <tr align=right>
-  <td style=font-family:Tahoma;font-size:8pt;>게시판을 이동시킬 그룹 지정 : &nbsp;<br><br></td>
+  <td style=font-family:Tahoma;font-size:9pt;>게시판을 이동시킬 그룹 지정 : &nbsp;<br><br></td>
   <td align=left>&nbsp;<select name=board_move><?=$group_option?></select><br><br></td>
 </tr>
 <tr align=center>
-  <td colspan=2 bgcolor=#e0e0e0><br><input type=submit value=' Delete Group ' style='border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:20px;font-weight:bold;color=#ff5555'> <input type=button value= ' go Back ' onclick=history.back() style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:20px;><br><br></td>
+  <td colspan=2 bgcolor=#e0e0e0><br><input type=submit value=' Delete Group ' style='border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;font-weight:bold;color=#ff5555'> <input type=button value= ' go Back ' onclick=history.back() style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;><br><br></td>
 </tr>
 </form>
 </table>

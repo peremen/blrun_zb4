@@ -115,7 +115,6 @@ elseif($exec=="delete_all") {
 				@z_unlink("./"."data/".$id."/thumbnail/fs_".$temp[reg_date].".jpg");
 				@z_unlink("./"."data/".$id."/thumbnail/fl_".$temp[reg_date].".jpg");
 				@z_unlink("./"."data/".$id."/thumbnail/fXL_".$temp[reg_date].".jpg");
-		  
 			}
 			if(preg_match("#\.(jpg|jpeg|png)$#i",$temp[file_name2])){ 
 				@z_unlink("./"."data/".$id."/thumbnail/ss_".$temp[reg_date].".jpg");

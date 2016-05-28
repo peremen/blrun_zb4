@@ -69,11 +69,11 @@ $check[1]="checked";
 <tr height=22 align=center><td height=30 colspan=2><b><?=$member_data[name]?></b> 회원 설정 변경</td>
 </tr>
 <tr height=22 align=center bgcolor=#e0e0e0>
-  <td width=25% align=right bgcolor=#a0a0a0 style=font-family:Tahoma;font-size:8pt;font-weight:bold;>아이디&nbsp;&nbsp;</td>
+  <td width=25% align=right bgcolor=#a0a0a0 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>아이디&nbsp;&nbsp;</td>
   <td align=left>&nbsp;<?=$member_data[user_id]?> &nbsp;(<?=date("Y년 m월 d일 H시 i분",$member_data[reg_date])?>에 가입)</td>
 </tr>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>비밀번호&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>비밀번호&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=password name=password size=20 maxlength=20 class=input style=border-color:#b0b0b0> 확인 : <input type=password name=password1 size=20 maxlength=20 class=input style=border-color:#b0b0b0></td>
 </tr>
 <?
@@ -84,7 +84,7 @@ if($member[is_admin]==1)
 	$select[$member_data[is_admin]]="selected";
 ?>
 <tr height=22 align=center>  
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>관리자 레벨&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>관리자 레벨&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>
     <select name=is_admin <?=$locking?>>
     <option value=3 <?=$select[3]?>>일반사용자</option>
@@ -97,7 +97,7 @@ if($member[is_admin]==1)
 }
 ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>레벨&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>레벨&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>
     <select name=level <?=$locking?>>
 <?
@@ -108,7 +108,7 @@ for($i=$member[level];$i<=10;$i++) if($i==$member_data[level]) echo "<option val
   </td>
 </tr>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>이름&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>이름&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=name size=20 maxlength=20 value="<?=$member_data[name]?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <?                                                                                                  
@@ -132,7 +132,7 @@ if($member_data[is_admin]>2)
 	$board_list=mysql_query("select no,name from $admin_table where group_no='$group_data[no]'") or error(mysql_error());
 ?>                                                                                                  
 <tr height=22 align=center>                                                                       
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>게시판 관리자 지정&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>게시판 관리자 지정&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>
     <?=$__manager_board_name?>
 
@@ -146,7 +146,7 @@ if($member_data[is_admin]>2)
 	}
 ?>
 
-    </select> <input type=button value="게시판 관리 권한 추가" onclick="add_board_manager()" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:20px;>
+    </select> <input type=button value="게시판 관리 권한 추가" onclick="add_board_manager()" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;>
   </td>
 </tr>
 <?                                                                                                  
@@ -154,93 +154,93 @@ if($member_data[is_admin]>2)
 ?> 
 <? if($group_data[use_birth]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>생일&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>생일&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=birth_1 size=4 maxlength=4 value="<?=date("Y",$member_data[birth])?>" class=input style=border-color:#b0b0b0> 년 
     <input type=text name=birth_2 size=2 maxlength=2 value="<?=date("m",$member_data[birth])?>" class=input style=border-color:#b0b0b0> 월
     <input type=text name=birth_3 size=2 maxlength=2 value="<?=date("d",$member_data[birth])?>" class=input style=border-color:#b0b0b0> 일 
 </tr>
 <? } ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>E-mail&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>E-mail&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=email size=50 maxlength=255 value="<?=stripslashes($member_data[email])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>홈페이지&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>홈페이지&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=homepage size=50 maxlength=255 value="<?=stripslashes($member_data[homepage])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? if($group_data[use_icq]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>ICQ&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ICQ&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=icq size=20 maxlength=20 value="<?=stripslashes($member_data[icq])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_aol]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>AIM(AOL)&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>AIM(AOL)&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=aol size=20 maxlength=20 value="<?=stripslashes($member_data[aol])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_msn]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>MSN&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>MSN&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=msn size=20 maxlength=20 value="<?=stripslashes($member_data[msn])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_hobby]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>취미&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>취미&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=hobby size=50 maxlength=50 value="<?=stripslashes($member_data[hobby])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_job]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>직업&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>직업&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=job size=20 maxlength=20 value="<?=stripslashes($member_data[job])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_home_address]) { ?> 
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>집 주소&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>집 주소&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=home_address size=50 maxlength=255 value="<?=stripslashes($member_data[home_address])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_home_tel]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>집 전화번호&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>집 전화번호&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=home_tel size=20 maxlength=20 value="<?=stripslashes($member_data[home_tel])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_office_address]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>회사 주소&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>회사 주소&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=office_address size=50 maxlength=255 value="<?=stripslashes($member_data[office_address])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_office_tel]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>회사 전화번호&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>회사 전화번호&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=office_tel size=20 maxlength=20 value="<?=stripslashes($member_data[office_tel])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_handphone]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>핸드폰&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>핸드폰&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=handphone size=20 maxlength=20 value="<?=stripslashes($member_data[handphone])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_mailing]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>메일링리스트 가입&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>메일링리스트 가입&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=checkbox name=mailing value=1 <?=$check[$member_data[mailing]]?>></td>
 </tr>
 <? } ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>정보 공개 여부&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>정보 공개 여부&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=checkbox name=openinfo value=1 <?=$check[$member_data[openinfo]]?>></td>
 </tr>
 <? if($group_data[use_picture]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>사진&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>사진&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=file name=picture size=37 maxlength=255 class=input style=border-color:#b0b0b0> (480X480 이내)
     <? if($member_data[picture]) echo "<br>&nbsp;<img src='$member_data[picture]' border=0>"; ?>
   </td>
@@ -248,19 +248,19 @@ if($member_data[is_admin]>2)
 <? } ?>
 <? if($group_data[use_comment]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>소갯말&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>소갯말&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><textarea cols=50 rows=4 name=comment class=textarea style=border-color:#b0b0b0><?=stripslashes($member_data[comment])?></textarea></td>
 </tr>
 <? } ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>Point&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>Point&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>&nbsp;<?=($member_data[point1]*10+$member_data[point2])?> 점 ( 작성글수 : <?=$member_data[point1]?>, 코멘트 : <?=$member_data[point2]?> )</td>
 </tr>
 <tr height=22 align=center>
-  <td colspan=2 bgcolor=#a0a0a0 style=font-family:Tahoma;font-size:8pt;font-weight:bold; align=center>관리자 고유권한</td>
+  <td colspan=2 bgcolor=#a0a0a0 style=font-family:Tahoma;font-size:9pt;font-weight:bold; align=center>관리자 고유권한</td>
 </tr>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>Image Box 용량 지정&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>Image Box 용량 지정&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>
 <?
 $maxDirSize = zReadFile("icon/member_image_box/".$no."_maxsize.php");
@@ -276,7 +276,7 @@ if($maxDirSize) {
   </td>
 </tr>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>마크 그림&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>마크 그림&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>&nbsp;
 <? 
 $private_icon = get_private_icon($member_data[no],1);
@@ -298,7 +298,7 @@ if($private_icon) {
 </tr>
 
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:8pt;font-weight:bold;>이름 그림&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>이름 그림&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>&nbsp;
 <?
 $private_name = get_private_icon($member_data[no],2);
@@ -322,8 +322,8 @@ if($private_name) {
   </td>
 </tr>
 <tr height=22 align=center>
-  <td colspan=2><input type=submit value='  변경 완료  ' style=font-weight:bold;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:23px;>
-    <input type=button value='  변경 취소  ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:8pt;font-family:Tahoma;height:23px; onclick=location.href="<?="$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like"?>">
+  <td colspan=2><input type=submit value='  변경 완료  ' style=font-weight:bold;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px;>
+    <input type=button value='  변경 취소  ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px; onclick=location.href="<?="$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like"?>">
   </td>
 </tr>
 </form>
