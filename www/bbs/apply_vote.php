@@ -26,18 +26,32 @@ $next_no2=$result[next_no]; //상단 투표 넘버의 하단 투표 넘버
 if($prev_no1==0) $next_no2=$prev_no2;
 else if($next_no1==0) $prev_no2=$next_no2;
 
-// 현재글의 Vote수 올림;;
-if(!preg_match("/".$setup[no]."_".$no."/i",  $HTTP_SESSION_VARS[zb_vote])&&$no==$prev_no2&&$no==$next_no2) {
-	mysql_query("update $t_board"."_$id set vote=vote+1 where no='$sub_no'");
-	mysql_query("update $t_board"."_$id set vote=vote+1 where no='$no'");
+// 기존 아이피가 있는지 검사
+$data = mysql_fetch_array(mysql_query("select memo from $t_board"."_$id where no='$no'"));
+$ip_array = explode("|||",$data[memo]);
+$rows = 1;
+for($i=1;$i<count($ip_array);$i++)
+	if(preg_match("#".$REMOTE_ADDR."#",$ip_array[$i])) $rows = 0; //존재하면 플래그 0으로 셋팅
 
-	// 4.0x 용 세션 처리
-	$zb_vote = $HTTP_SESSION_VARS[zb_vote] . "," . $setup[no]."_".$no;
-	session_register("zb_vote");
+if($rows) {
+	// 아이피 테이블 만듦
+	unset($data);
+	$data = mysql_fetch_array(mysql_query("select memo from $t_board"."_$id where no='$no'"));
+	$memo = $data[memo]."|||".$REMOTE_ADDR;
+	mysql_query("update $t_board"."_$id set memo='$memo' where no='$no'");
+	// 현재글의 Vote수 올림;;
+	if(!preg_match("/".$setup[no]."_".$no."/i",  $HTTP_SESSION_VARS[zb_vote])&&$no==$prev_no2&&$no==$next_no2) {
+		mysql_query("update $t_board"."_$id set vote=vote+1 where no='$sub_no'");
+		mysql_query("update $t_board"."_$id set vote=vote+1 where no='$no'");
 
-	// 기존 세션 처리 (4.0x용 세션 처리로 인하여 주석 처리)
-	//$HTTP_SESSION_VARS[zb_vote] = $HTTP_SESSION_VARS[zb_vote] . "," . $setup[no]."_".$no;
-}
+		// 4.0x 용 세션 처리
+		$zb_vote = $HTTP_SESSION_VARS[zb_vote] . "," . $setup[no]."_".$no;
+		session_register("zb_vote");
+
+		// 기존 세션 처리 (4.0x용 세션 처리로 인하여 주석 처리)
+		//$HTTP_SESSION_VARS[zb_vote] = $HTTP_SESSION_VARS[zb_vote] . "," . $setup[no]."_".$no;
+	} else Error("이미 투표하셨습니다.");
+} else Error("이미 투표하셨습니다..");
 
 @mysql_close($connect);
 

@@ -109,4 +109,37 @@ function zbDB_Header($filename) {
 		header("Pragma: public");
 	}
 }
+
+function all_Backup($host,$user,$password,$dbname,$filename) {
+	$db = mysql_connect($host,$user,$password) or die(mysql_error());
+	$connect = mysql_select_db($dbname,$db) or die(mysql_error());
+
+	session_start();
+	$HTTP_SESSION_VARS[HOST]=$host;
+	$HTTP_SESSION_VARS[DB]=$dbname;
+	$HTTP_SESSION_VARS[ID]=$user;
+	$HTTP_SESSION_VARS[PW]=$password;
+
+	$myhost=$HTTP_SESSION_VARS[HOST];
+	$mydb=$HTTP_SESSION_VARS[DB];
+	$myid=$HTTP_SESSION_VARS[ID];
+	$mypw=$HTTP_SESSION_VARS[PW];
+
+	$connect=mysql_connect($myhost,$myid,$mypw) or die("sql erroe");
+	mysql_select_db($mydb,$connect);
+
+	header("Content-disposition: filename=$filename");
+	header("Content-type: application/octetstream");
+	header("Pragma: no-cache");
+	header("Expires: 0");
+
+	$pResult=mysql_query("show variables");
+
+	while($rowArray=mysql_fetch_row($pResult))
+	{
+		if($rowArray[0]=="basedir")
+			$bindir=$rowArray[1]."bin/";
+	}
+	passthru($bindir."mysqldump --user=$myid --password=$mypw $dbname > ../$filename");
+}
 ?>

@@ -16,7 +16,7 @@ else $show_comment_ip = "";
 		<a name="<?=$c_data[no]?>">
 		<table border=0 cellspacing=0 cellpadding=0 width=100% style=table-layout:fixed>
 		<tr>
-			<td width=><?=$c_face_image?> <?=$comment_name?> </b><font class=list_eng color=888888>(<?=date("Y-m-d H:i:s",$c_data[reg_date])?>)</font> <?=$show_comment_ip?> <?=$a_comm_r?><img src=<?=$dir?>/reply.gif border=0 valign=absmiddle></a></td>
+			<td width=><?=$c_face_image?> <?=$comment_name?> </b><font class=list_eng color=888888>(<?=date("Y-m-d H:i:s",$c_data[reg_date])?>)</font> <?=$show_comment_ip?> <?=$a_comm_r?><img src=<?=$dir?>/reply.gif border=0 align=absmiddle></a></td>
 			<td width=70 align=right style=font-family:verdana;font-size:9px;><?=$a_edit2?><img src=<?=$dir?>/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/edit.gif border=0 valign=absmiddle></a><?=$a_del?><img id=deleteButton_<?=$c_data[no]?> src=<?=$dir?>/del.gif border=0 valign=absmiddle></a><img src=images/t.gif border=0 width=1 height=1>&nbsp;</td>
 		</tr>
 		</table>
