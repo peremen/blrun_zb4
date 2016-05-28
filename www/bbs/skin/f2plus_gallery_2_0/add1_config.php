@@ -16,7 +16,7 @@ $Thumbnail_icon_use="";
 $Thumbnail_url=$zb_url."/data/".$id."/thumbnail/";
 $Thumbnail_path=$zb_path."data/".$id."/thumbnail/";
 
-$type="A2_type";
+$type="A_type";
 
 $table="";
 
@@ -24,7 +24,7 @@ $img_show="on";
 
 $num="5";
 
-$max_hit="500";
+$max_hit="1000";
 
 $min_width_size="120";
 

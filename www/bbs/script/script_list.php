@@ -72,6 +72,10 @@ function reverse() {
 	if(chked) {
 		if(confirm('선택된 항목을 보시겠습니까?'))
 		{
+		  //실행시간 스타트 타임 저장
+		  var nStart = new Date().getTime();
+		  document.getElementById('nStart').value = nStart;
+
 		  document.list.selected.value='';
 		  document.list.exec.value='view_all';
 		  for(i=0;i<document.list.length;i++)

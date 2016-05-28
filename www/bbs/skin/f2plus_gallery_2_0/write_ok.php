@@ -15,6 +15,10 @@ if(!$memo){
 **************************************************************************/
 include $_zb_path."_head.php";
 
+if(file_exists($id."_config.php")){ 
+	include $id."_config.php";
+}
+
 function error1($message, $url="") {
 	global $setup, $connect, $dir, $_zb_path, $_zb_url;
 
@@ -40,7 +44,7 @@ function error1($message, $url="") {
 
 // 편법을 이용한 글쓰기 방지
 $mode = $HTTP_POST_VARS[mode];
-if(!eregi($HTTP_HOST,$HTTP_REFERER)||$WRT_SS_VRS!=$wantispam||$WRT_SPM_PWD!="gg") Error1("정상적으로 글을 작성하여 주시기 바랍니다.");
+if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)||$WRT_SS_VRS!=$wantispam||$WRT_SPM_PWD!="gg") Error1("정상적으로 글을 작성하여 주시기 바랍니다.");
 if(getenv("REQUEST_METHOD") == 'GET' ) Error1("정상적으로 글을 쓰시기 바랍니다","");
 if(!$mode) $mode = "write";
 
@@ -417,6 +421,21 @@ if($file2_size>0&&$setup[use_pds]&&$file2) {
 * 수정글일때
 **************************************************************************/
 if($mode=="modify"&&$no) {
+	// 기존 외부 html 썸네일 삭제
+	$Thumbnail_small1="fs_".$s_data[reg_date].".jpg";
+	$Thumbnail_small2="ss_".$s_data[reg_date].".jpg";
+
+	$Thumbnail_large1="fl_".$s_data[reg_date].".jpg";
+	$Thumbnail_large2="sl_".$s_data[reg_date].".jpg";
+	if(file_exists($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_small1)){
+		@z_unlink($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_small1);
+		@z_unlink($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_large1);
+	}
+	if(file_exists($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_small2)){
+		@z_unlink($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_small2);
+		@z_unlink($Thumbnail_path.$s_data[ismember]."/".$Thumbnail_large2);
+	}
+
 	// 파일등록
 	if($file_name1) {$del_que1=",file_name1='$file_name1',s_file_name1='$s_file_name1'";}
 	if($file_name2) {$del_que2=",file_name2='$file_name2',s_file_name2='$s_file_name2'";}

@@ -20,11 +20,11 @@ $type="D_type";
 
 $table="";
 
-$img_show="off";
+$img_show="on";
 
 $num="5";
 
-$max_hit="200";
+$max_hit="1000";
 
 $min_width_size="120";
 
