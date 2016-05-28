@@ -28,7 +28,7 @@ $total_member=$temp2[0];
 if($status) {
 	$_str = trim(zReadFile("data/now_member_connect.php"));
 	if($_str) {
-		$_str = str_replace("<? die('Access Denied');/*","",$_str);
+		$_str = str_replace("<?php die('Access Denied');/*","",$_str);
 		$_str = str_replace("*/?>","",$_str);
 		$_connector = explode(":",$_str);
 		
