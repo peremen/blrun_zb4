@@ -113,7 +113,7 @@ if($pass == "gg" || $member[no] || $password) {
 
 // 카테고리 데이타 갖고 오기;;
 	if($setup[use_category]) {
-		$category_kind="<select id=category name=category><option>Category</option>";
+		$category_kind="<select id=category name=category><option value=0>Category</option>";
 
 		while($category_data=mysql_fetch_array($category_result)) {
 			if($data[category]==$category_data[no]) $category_kind.="<option value=$category_data[no] selected>$category_data[name]</option>";

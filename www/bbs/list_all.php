@@ -153,19 +153,19 @@ elseif($exec=="delete_all") {
 			}
 
 			// 간단한 답글(코멘트) 삭제
-		   $del_comment_result=mysql_query("select * from $t_comment"."_$id where parent='$selected[$i]'");
-		   mysql_query("delete from $t_comment"."_$id where parent='$selected[$i]'") or Error(mysql_error());
-		   while($c_data=mysql_fetch_array($del_comment_result)) {
-			   // 파일삭제
-			   @z_unlink("./".$c_data[file_name1]);
-			   @z_unlink("./".$c_data[file_name2]);
-			   //빈 파일 폴더 삭제
-			   if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name1],$out))
-				 if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
-			   if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name2],$out))
-				 if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
-		   }
-		   @mysql_query("delete from $t_comment"."_$id"."_movie where parent='$selected[$i]'");
+			$del_comment_result=mysql_query("select * from $t_comment"."_$id where parent='$selected[$i]'");
+			mysql_query("delete from $t_comment"."_$id where parent='$selected[$i]'") or Error(mysql_error());
+			while($c_data=mysql_fetch_array($del_comment_result)) {
+				// 파일삭제
+				@z_unlink("./".$c_data[file_name1]);
+				@z_unlink("./".$c_data[file_name2]);
+				//빈 파일 폴더 삭제
+				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name1],$out))
+					if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
+				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name2],$out))
+					if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
+			}
+			@mysql_query("delete from $t_comment"."_$id"."_movie where parent='$selected[$i]'");
 
 			// 메시지 보내는 부분
 			if($notice_user) {

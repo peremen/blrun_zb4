@@ -72,10 +72,63 @@ if($keyword&&$s_que)
 		}
 		if(!$Blocked) {
 			$avoid_ip = $keyword.", ".$setup[avoid_ip];
-			mysql_query("update $admin_table set avoid_ip='$avoid_ip' where name='$table_name'");
+			mysql_query("update $admin_table set avoid_ip='$avoid_ip' where name='$table_name'",$connect) or error(mysql_error());
 		}
 		// 스팸 아이피 글 일괄 삭제
-		mysql_query("delete from $t_board"."_$table_name $s_que", $connect) or error(mysql_error());
+		unset($result);unset($data);
+		$result=mysql_query("select * from $t_board"."_$table_name $s_que", $connect) or error(mysql_error());
+		while($data=mysql_fetch_array($result))
+		{
+			if(!$data[child]) // 답글이 없을때;;
+			{
+				mysql_query("delete from $t_board"."_$table_name where no='$data[no]'", $connect) or error(mysql_error());
+				// 파일삭제
+				@z_unlink("./".$data[file_name1]);
+				@z_unlink("./".$data[file_name2]);
+				// 빈 파일 폴더 삭제
+				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$data[file_name1],$out))
+					if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
+				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$data[file_name2],$out))
+					if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
+
+				mysql_query("update $t_division"."_$table_name set num=num-1 where division='$data[division]'",$connect) or error(mysql_error());
+
+				if($data[depth]==0)
+				{
+					if($data[prev_no]) mysql_query("update $t_board"."_$table_name set next_no='$data[next_no]' where next_no='$data[no]'",$connect) or error(mysql_error()); // 이전글이 있으면 빈자리 메꿈;;;
+					if($data[next_no]) mysql_query("update $t_board"."_$table_name set prev_no='$data[prev_no]' where prev_no='$data[no]'",$connect) or error(mysql_error()); // 다음글이 있으면 빈자리 메꿈;;;
+				}
+				else
+				{
+					$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$table_name where father='$data[father]'"));
+					if(!$temp[0]) mysql_query("update $t_board"."_$table_name set child='0' where no='$data[father]'",$connect) or error(mysql_error()); // 원본글이 있으면 원본글의 자식글을 없앰;;;
+				}
+
+				// 간단한 답글(코멘트) 삭제
+				unset($del_comment_result);unset($c_data);
+				$del_comment_result=mysql_query("select * from $t_comment"."_$table_name where parent='$data[no]'",$connect) or error(mysql_error());
+				mysql_query("delete from $t_comment"."_$table_name where parent='$data[no]'",$connect) or error(mysql_error());
+				while($c_data=mysql_fetch_array($del_comment_result)) {
+					// 파일삭제
+					@z_unlink("./".$c_data[file_name1]);
+					@z_unlink("./".$c_data[file_name2]);
+					//빈 파일 폴더 삭제
+					if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name1],$out))
+						if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
+					if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name2],$out))
+						if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
+				}
+
+				// 카테고리 필드 조절
+				mysql_query("update $t_category"."_$table_name set num=num-1 where no='$data[category]'",$connect) or error(mysql_error());
+			}
+		}
+
+		// 전체글수 조정
+		$total=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$table_name "));
+		mysql_query("update $admin_table set total_article='$total[0]' where name='$table_name'",$connect) or error(mysql_error());
+
+		unset($result);unset($data);
 		// 본문
 		$result=mysql_query("select * from $t_board"."_$table_name $s_que", $connect) or error(mysql_error());
 ?>
@@ -105,20 +158,38 @@ if($keyword&&$s_que)
 		/// 코멘트
 		if($comment_search)
 		{
+			unset($result);unset($c_data);
 			// 스팸 아이피 덧글 일괄 삭제
-			mysql_query("delete from $t_comment"."_$table_name $s_que", $connect) or error(mysql_error());
 			$result=mysql_query("select * from $t_comment"."_$table_name $s_que", $connect) or error(mysql_error());
+			unset($c_data);
+			while($c_data=mysql_fetch_array($result)) {
+				// 코멘트 갯수 정리를 위해 배열 저장
+				$table_name_array[] = $table_name;
+				$parent_no_array[] = $c_data[parent];
+				// 코멘트 삭제
+				mysql_query("delete from $t_comment"."_$table_name where no='$c_data[no]'",$connect) or error(mysql_error());
+
+				// 파일삭제
+				@z_unlink("./".$c_data[file_name1]);
+				@z_unlink("./".$c_data[file_name2]);
+				// 빈 파일 폴더 삭제
+				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name1],$out))
+					if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
+				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name2],$out))
+					if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
+			}
 ?>
 
 <br><br><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>게시판</b> 의 간단한 답글</font></a>
 <br>
 <?
+			unset($result);unset($data);
+			// 스팸 아이피 덧글 일괄 삭제 후 덧글 항목 표시
+			$result=mysql_query("select * from $t_comment"."_$table_name $s_que", $connect) or error(mysql_error());
 			while($data=mysql_fetch_array($result))
 			{
 				flush();
-				$table_name_array[] = $table_name;
-				$parent_no_array[] = $data[parent];
 				$data[memo] = del_html(strip_tags($data[memo]));
 				// 계층 코멘트 표식 불러와 처리
 				unset($c_match);
@@ -139,13 +210,14 @@ if($keyword&&$s_que)
 // 코멘트 갯수 정리 시작
 if($keyword&&$s_que)
 {
+	unset($total);
 	for($i=0;$i<count($table_name_array);$i++)
 	{
 
 		$table_name=$table_name_array[$i];
 		// 코멘트 갯수를 구해서 정리
 		$total=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$table_name where parent='$parent_no_array[$i]'"));
-		mysql_query("update $t_board"."_$table_name set total_comment='$total[0]' where no='$parent_no_array[$i]'") or error(mysql_error());
+		mysql_query("update $t_board"."_$table_name set total_comment='$total[0]' where no='$parent_no_array[$i]'",$connect) or error(mysql_error());
 	}
 }
 

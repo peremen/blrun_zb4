@@ -236,13 +236,13 @@ function total_division() {
 // 답글일때 해당 division의 num 값 증가
 function plus_division($division) {
 	global $connect, $t_division, $id;
-	mysql_query("update $t_division"."_$id set num=num+1 where division='$division'") or error(mysql_error);
+	mysql_query("update $t_division"."_$id set num=num+1 where division='$division'") or error(mysql_error());
 }
 
 // 삭제하거나 공지글을 일반글로 옮기는 등의 division num값 변화시 해당 division의 num값 감소시킴
 function minus_division($division) {
 	global $connect, $t_division, $id;
-	mysql_query("update $t_division"."_$id set num=num-1 where division='$division'") or error(mysql_error);
+	mysql_query("update $t_division"."_$id set num=num-1 where division='$division'") or error(mysql_error());
 }
 
 // 신규글쓰기일때 최근 division의 num 값 증가
