@@ -77,7 +77,7 @@ function Result() {
 	var nDiff = nEnd - <?=$nStart?>;
 	document.getElementById('print').innerHTML = '카트 목록 전체 페이지를 로딩하는데 ' + nDiff + 'ms(' + nDiff/1000 + '초) 시간이 걸렸습니다!';
 }
-window.onload = Result;
+addLoadEvent(Result);
 </script>
 <div id="print"></div>
 <?

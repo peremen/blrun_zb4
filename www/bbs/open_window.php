@@ -1,6 +1,6 @@
 <?
 if(!$mode||!$str) die("<script>window.close()</script>");
-if($mode!="i"&&$mode!="t"&&$mode!="tn") die("<script>window.close()</script>");
+if($mode!="m"&&$mode!="i"&&$mode!="t"&&$mode!="tn") die("<script>window.close()</script>");
 
 include "lib.php";
 if(!$connect) $connect=dbconn();
@@ -23,6 +23,10 @@ if(($mode=="i"||$mode=="t")&&$is_admin&&$data[user_id]) {
 	}
 } elseif($mode=="tn"&&$is_admin&&$str) {
 	$href = "admin/trace.php?keykind[0]=name&keyword=$str";
+}
+if($mode=="m") {
+	$mail = base64_decode($str);
+	$href = "mailto:$mail";
 }
 ?>
 

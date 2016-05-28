@@ -3,7 +3,7 @@
 
  include "lib.php";
 
- $connect=dbconn();
+ if(!$connect) $connect=dbConn();
 
  $member=member_info();
 

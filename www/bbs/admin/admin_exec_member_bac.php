@@ -101,8 +101,14 @@ if($exec2=="del"&&$member[is_admin]<3) {
 
 
 // 회원정보 변경하는 부분 
-
+preg_match('/[0-9a-zA-Z.\@\_]+/',$email,$result); //특수문자가 들어갔는지 조사
+if($result[0]!=$email) Error("E-mail 문자를 확인하세요(영문자와 숫자, ., @, _만을 사용!)","");
 $email=addslashes($email);
+$member_data = mysql_fetch_array(mysql_query("select email from $member_table where no = '$member_no'"));
+// email IP 표식 불러와 처리
+unset($c_match);
+if(preg_match("#(\|\|\|)([0-9.]{1,})$#",$member_data[email],$c_match))
+	$email.=$c_match[1].$c_match[2];
 $homepage=addslashes($homepage);
 $icq=addslashes($icq);
 $aol=addslashes($aol);

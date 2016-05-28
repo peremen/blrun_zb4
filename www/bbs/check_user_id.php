@@ -3,9 +3,8 @@ $user_id = htmlspecialchars(trim($user_id));
 
 include "lib.php";
 $user_id = trim($user_id);
-$connect=dbconn();
-$check=mysql_fetch_array(mysql_query("select count(*) from $member_table where user_id='$user_id'"));
-mysql_close($connect);
+if(!$connect) $connect=dbConn();
+$check=mysql_fetch_array(mysql_query("select count(*) from $member_table where user_id='$user_id'",$connect));
 head();
 ?>
 <table border=0 width=100% height=100%>

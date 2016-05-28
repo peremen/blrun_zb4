@@ -1,4 +1,4 @@
-
+<? include "lib.php"; ?>
 <meta name="viewport" content="width=device-width">
 <?
 /* returns the shortened url */
@@ -19,7 +19,7 @@ function curl_get_result($url) {
 	return $data;
 }
 
-$social_ref = stripslashes($_GET['social_ref']);
+$social_ref = stripslashes($_zb_url.$_GET['social_ref']);
 
 if($flag != ok) {
 ?>
