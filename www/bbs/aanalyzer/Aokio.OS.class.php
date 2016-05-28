@@ -151,6 +151,8 @@ class Aokio_Analyzer_OS{
 			$os_version = "8";
 		}elseif(ereg('windows nt 6.3',$agent)){
 			$os_version = "8.1";
+		}elseif(ereg('windows nt 10.0',$agent)){
+			$os_version = "10";
 		}else{
 			$os_version = "Ver.?";
 

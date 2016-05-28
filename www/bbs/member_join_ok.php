@@ -181,10 +181,14 @@ if(!$mode) {
 }
 
 mysql_close($connect);
+
+// 보안을 위해 세션변수 삭제
+session_unregister("WRT_SS_VRS");
+session_unregister("WRT_SPM_PWD");
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <script>
-	alert("회원가입이 정상적으로 처리 되었습니다\n\n회원이 되신것을 진심으로 축하드립니다.");
-	//opener.window.history.go(0);
-	window.close();
+alert("회원가입이 정상적으로 처리 되었습니다\n\n회원이 되신것을 진심으로 축하드립니다.");
+//opener.reload();
+window.close();
 </script>

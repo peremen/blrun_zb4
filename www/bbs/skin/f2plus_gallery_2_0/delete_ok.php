@@ -15,7 +15,6 @@ function Error1($message, $url="") {
 	$message=str_replace("\"","\\\"",$message);
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
-<meta name="viewport" content="width=device-width">
 <script>
 <!--
 alert("<?=$message?>");
@@ -176,5 +175,5 @@ if(!$s_data[child]) // 답글이 없을때;;
 if($connect) mysql_close($connect);
 $query_time=getmicrotime();
 
-movepage($_zb_url."/zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&sn1=$sn1&divpage=$divpage");
+movepage($zb_url."/zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&category=$category&sn1=$sn1&divpage=$divpage");
 ?>

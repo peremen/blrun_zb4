@@ -13,9 +13,9 @@ if($result[0]==1){
 	}else{ 
 		$type="A2_type";
 		$gd_use=2;
-		$zb_url="";
-		$zb_path="";
-}
+		$zb_url=substr(zbUrl(),0,strlen(zbUrl())-1);
+		$zb_path=$config_dir;
+	}
 ?>
 
 <html>
@@ -39,7 +39,7 @@ BODY,TD {font-size:9pt;font-family:±¼¸²;color:ffffff;line-height:160%}
 .border2 {border:solid 1;border-color:cccccc}
 
 .textarea {border:solid 1;border-color:cccccc;font-size:9pt;color:black;background-color:dddddd}
-.textarea2 {border:solid 1;border-color:cccccc;font-size:9pt;color:black;background-color:dddddd;height:15px}
+.textarea2 {border:solid 1;border-color:cccccc;font-size:9pt;color:black;background-color:dddddd;height:19px}
 .input {border:solid 1;border-color:C4C4C4;font-size:9pt;color:301B04;background-color:white;height:19px}
 .submit {border:solid 1;border-color:black;font-size:9pt;font-weight:bold;color:00ff00;background-color:black;height:25px}
 .button {border:solid 1;border-color:black;font-size:9pt;font-weight:bold;color:ff3333;background-color:black;height:25px}

@@ -21,18 +21,18 @@
 	<?if($hide_no=="off"){?><? if($browser=="1"){ ?><col width=40></col><? } ?><?}?><? if($browser=="1"){ ?><col width=80></col><? } ?><col width=></col><?if($hide_name=="off"){?><? if($browser=="1"){ ?><col width=100></col><? } ?><?}?><?if($hide_date=="off"){?><? if($browser=="1"){ ?><col width=65></col><? } ?><?}?><?if($hide_vote=="off"){?><? if($browser=="1"){ ?><col width=35></col><? } ?><?}?><?if($hide_hit=="off"){?><? if($browser=="1"){ ?><col width=50></col><? } ?><?}?>
 
 	<tr align=center valign="middle" height=25>
-		<?if($hide_no=="off"){?><? if($browser=="1"){ ?><td><?=$a_no?><img src=<?=$dir?>/top_no.gif border=0></td><? } ?><?}?>
+		<?if($hide_no=="off"){?><? if($browser=="1"){ ?><td width=40><?=$a_no?><img src=<?=$dir?>/top_no.gif border=0></td><? } ?><?}?>
 
-		<? if($browser=="1"){ ?><td><img src=<?=$dir?>/top_img.gif border=0></td><? } ?>
+		<? if($browser=="1"){ ?><td width=80><img src=<?=$dir?>/top_img.gif border=0></td><? } ?>
 
 		<td><?=$a_subject?><img src=<?=$dir?>/top_subject.gif border=0></td>
-		<?if($hide_name=="off"){?><? if($browser=="1"){ ?><td align=center><?=$a_name?><img src=<?=$dir?>/top_name.gif border=0></td><? } ?><?}?>
+		<?if($hide_name=="off"){?><? if($browser=="1"){ ?><td width=100><?=$a_name?><img src=<?=$dir?>/top_name.gif border=0></td><? } ?><?}?>
 
-		<?if($hide_date=="off"){?><? if($browser=="1"){ ?><td><?=$a_date?><img src=<?=$dir?>/top_date.gif border=0></td><? } ?><?}?>
+		<?if($hide_date=="off"){?><? if($browser=="1"){ ?><td width=65><?=$a_date?><img src=<?=$dir?>/top_date.gif border=0></td><? } ?><?}?>
 
-		<?if($hide_vote=="off"){?><? if($browser=="1"){ ?><td><?=$a_vote?><img src=<?=$dir?>/top_vote.gif border=0></td><? } ?><?}?>
+		<?if($hide_vote=="off"){?><? if($browser=="1"){ ?><td width=35><?=$a_vote?><img src=<?=$dir?>/top_vote.gif border=0></td><? } ?><?}?>
 
-		<?if($hide_hit=="off"){?><? if($browser=="1"){ ?><td><?=$a_hit?><img src=<?=$dir?>/top_hit.gif border=0></td><? } ?><?}?>
+		<?if($hide_hit=="off"){?><? if($browser=="1"){ ?><td width=50><?=$a_hit?><img src=<?=$dir?>/top_hit.gif border=0></td><? } ?><?}?>
 
 	</tr>
 	</table>

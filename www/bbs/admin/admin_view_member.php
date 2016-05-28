@@ -67,10 +67,11 @@ $number=$total-($page-1)*$page_num;
 
   function select() {
     var i, chked=0;
-    for(i=0;i<document.write.length;i++) {
-    if(document.write[i].type=='checkbox') { 
-     if(document.write[i].checked) { document.write[i].checked=false; }
-     else { document.write[i].checked=true; }
+	var pCart=document.getElementsByName('cart[]');
+    for(i=0;i<pCart.length;i++) {
+    if(pCart[i].type=='checkbox') { 
+     if(pCart[i].checked) { pCart[i].checked=false; }
+     else { pCart[i].checked=true; }
      }
     }
      return false;
@@ -79,12 +80,13 @@ $number=$total-($page-1)*$page_num;
   function sendmail()
   {
    var i, chked=0, cart="";
-   for(i=0;i<document.write.length;i++) 
+   var pCart=document.getElementsByName('cart[]');
+   for(i=0;i<pCart.length;i++) 
    {
-    if(document.write[i].type=='checkbox') 
+    if(pCart[i].type=='checkbox') 
     {
-     if(document.write[i].checked)
-     { cart = cart + "||" + document.write[i].value; chked=1; }
+     if(pCart[i].checked)
+     { cart = cart + "||" + pCart[i].value; chked=1; }
     }
    }
    if(chked)
@@ -100,8 +102,9 @@ $number=$total-($page-1)*$page_num;
   function delete_all()
   {
    var i, j=0, k=0;
-   for(i=0;i<document.write.length;i++) {
-    if(document.write[i].checked)
+   var pCart=document.getElementsByName('cart[]');
+   for(i=0;i<pCart.length;i++) {
+    if(pCart[i].checked)
     k++;
    }
    if(k<1)
@@ -122,8 +125,9 @@ $number=$total-($page-1)*$page_num;
   function move_all()
   {
    var i, j=0, k=0;
-   for(i=0;i<document.write.length;i++) {
-    if(document.write[i].checked)
+   var pCart=document.getElementsByName('cart[]');
+   for(i=0;i<pCart.length;i++) {
+    if(pCart[i].checked)
     k++;
    }
    if(k<1)
@@ -146,8 +150,9 @@ $number=$total-($page-1)*$page_num;
   function move_group()
   {
    var i, j=0, k=0;
-   for(i=0;i<document.write.length;i++) {
-    if(document.write[i].checked)
+   var pCart=document.getElementsByName('cart[]');
+   for(i=0;i<pCart.length;i++) {
+    if(pCart[i].checked)
     k++;
    }
    if(k<1)

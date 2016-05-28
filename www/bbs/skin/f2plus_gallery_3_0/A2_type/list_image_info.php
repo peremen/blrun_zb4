@@ -217,11 +217,9 @@ if($Thumbnail_use=="on"){
 	}
 
 	$img_info=@getimagesize(urldecode($source_img));
-	$img_info[0]=$img_info[0]+10;
-	$img_info[1]=$img_info[1]+55;
 
 	if($img_show=="on"){
-		$view_img="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=$img_info[0]&height=$img_info[1]','view_info','width=640,height=480,toolbar=no,scrollbars=no') onfocus='this.blur();' onMouseMove=\"msgposit(-35,50,event);\" onMouseOver=\"msgset('$img_tag');\" onMouseOut=\"msghide();\" class=shadow style='cursor:pointer'>";
+		$view_img="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=".($img_info[0]+10)."&height=".($img_info[1]+55)."','view_info','width=640,height=480,toolbar=no,scrollbars=no') onfocus='this.blur();' onMouseMove=\"msgposit(-35,50,event);\" onMouseOver=\"msgset('$img_tag');\" onMouseOut=\"msghide();\" class=shadow style='cursor:pointer'>";
 	}else{
 		$view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] onMouseMove=\"msgposit(-35,50,event);\" onMouseOver=\"msgset('$img_tag');\" onMouseOut=\"msghide();\" class=shadow style='cursor:pointer'>";
 	}
@@ -275,11 +273,9 @@ if($Thumbnail_use=="on"){
 	}
 
 	$img_info=@getimagesize(urldecode($thumb_img));
-	$img_info[0]=$img_info[0]+10;
-	$img_info[1]=$img_info[1]+55;
 
 	if($img_show=="on"){
-		$view_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=$img_info[0]&height=$img_info[1]','view_info','width=0,height=0,toolbar=no,scrollbars=no') onfocus='this.blur();' onMouseMove=\"msgposit(-35,50,event);\" onMouseOver=\"msgset('$img_tag');\" onMouseOut=\"msghide();\" class=shadow style='cursor:pointer'>";
+		$view_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=".($img_info[0]+10)."&height=".($img_info[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') onfocus='this.blur();' onMouseMove=\"msgposit(-35,50,event);\" onMouseOver=\"msgset('$img_tag');\" onMouseOut=\"msghide();\" class=shadow style='cursor:pointer'>";
 	}else{
 		$view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] onMouseMove=\"msgposit(-35,50,event);\" onMouseOver=\"msgset('$img_tag');\" onMouseOut=\"msghide();\" class=shadow style='cursor:pointer'>";
 	}

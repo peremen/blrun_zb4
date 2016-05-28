@@ -19,7 +19,7 @@ function file_del($path) {
 }
 
 $path=$zbpath."data/".$board_id."/thumbnail/";
-if($type!=$prev_type) @file_del($path);
+if($type!=$prev_type && is_dir($path)) @file_del($path);
 
 $cols=5;
 if($no_use==1) $hide_no="on"; else $hide_no="off";

@@ -246,7 +246,7 @@ else $data[subject]=del_html(stripslashes($subject));
 	</td>
 </tr>
 <tr bgcolor=white valign=top>
-	<td>
+	<td class=memo>
 		<?=$memo?>
 	</td>
 </tr>
