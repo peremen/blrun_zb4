@@ -172,7 +172,7 @@ if($_zboardis) {
 			}
 			$keyword=stripslashes($keyword);
 		}
-//		echo $s_que; 
+
 		// 검색 조건이 있을때 앞에 where 문 추가
 		if($s_que) $s_que=" where ".$s_que;
 
@@ -266,7 +266,7 @@ if($_zboardis) {
 	$a_status="<Zeroboard ";
 
 	// Setup 버튼
-	if($is_admin) $a_setup="<a onfocus=blur() href='admin_setup_bac.php?exec=view_board&no=$setup[no]&group_no=$setup[group_no]&exec2=modify' target=_blank>"; else $a_setup="<Zeroboard ";
+	if($is_admin) $a_setup="<a onfocus=blur() href='admin2.php?exec=view_board&no=$setup[no]&group_no=$setup[group_no]&exec2=modify' target=_blank>"; else $a_setup="<Zeroboard ";
 
 	// 현재 멤버의 새 쪽지가 있을때 아이콘 변경;;
 	if($member[no]) {
@@ -292,11 +292,18 @@ if($id&&!preg_match("/".$id."/i", $s_url)) {
 $s_url = urlencode($s_url);
 
 if(!$member[no]) {
+	//토큰 초기화
+	$_token='';
+	session_register("_token");
+	setCookie("token","",0,"/","");
+
 	$a_login="<a onfocus=blur() href='".$_zb_url."login.php?$href$sort&s_url=$s_url'>";
 	$a_logout="<Zeroboard ";
 	$a_member_modify="<Zeroboard ";
 	$a_member_memo="<Zeroboard ";
 } else {
+
+	if($member[no]&&$_token!=$_COOKIE['token']) Error("세션 하이재킹은 허용되지 않습니다.<br>세션이 해킹되어 해커가 로그인을 시도하고 있으니 브라우저의 쿠키를 지우고 재접속 바랍니다.<br>그 다음 해커가 계정을 사용하기 전에 즉시 비밀번호를 바꿔야 합니다!");
 	$a_login="<Zeroboard ";
 	$a_logout="<a onfocus=blur() href='".$_zb_url."logout.php?$href$sort&s_url=$s_url'>";
 	if($member[user_id]!="sprdrg") {

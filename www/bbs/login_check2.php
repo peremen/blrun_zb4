@@ -37,11 +37,6 @@ $member_data = mysql_fetch_array($result);
 // 회원로그인이 성공하였을 경우 세션을 생성하고 페이지를 이동함
 if($member_data[no]) {
 
-	//토큰 초기화
-	$_token2='';
-	session_register("_token2");
-	setCookie("token2","",0,"/","");
-
 	if($auto_login) {
 		makeZBSessionID($member_data[no]);
 	}
@@ -53,10 +48,12 @@ if($member_data[no]) {
 	$num123 = $num1.$num2.$num3;
 
 	//로그인시 토큰 생성
-	setCookie("token","$num123",0,"/","");
-	$_token = "$num123";
-
+	$_token = $_COOKIE['token'];
 	session_register("_token");
+
+	setCookie("token2","$num123",0,"/","");
+	$_token2 = "$num123";
+	session_register("_token2");
 
 	// 4.0x 용 세션 처리
 	$zb_logged_no = $member_data[no];

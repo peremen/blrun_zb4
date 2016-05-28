@@ -54,6 +54,9 @@ if(!$is_admin&&$setup[grant_notice]<$member[level]) $notice = 0;
 if(!$member[no]) {
 	if(isblank($name)) Error1("이름을 입력하셔야 합니다");
 	if(isblank($password)) Error1("비밀번호를 입력하셔야 합니다");
+	if(!get_magic_quotes_gpc()) {
+		$password = addslashes($password);
+	}
 } else {
 	$password = $member[password];
 }
@@ -638,7 +641,6 @@ session_unregister("wnum1num2");
 session_unregister("WRT_SPM_PWD");
 
 // 페이지 이동
-//if($setup[use_alllist]) $view_file="zboard.php"; else $view_file="view.php";
 $view_file =$_zb_url."/".$view_target;
-movepage($view_file."?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no");
+movepage($view_file."?id=$id&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no");
 ?>

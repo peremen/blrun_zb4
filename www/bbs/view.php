@@ -52,6 +52,9 @@ if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$s
 		$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where headnum='$data[headnum]' and ismember='$member[no]'"));
 		if(!$secret_check[0]) error("비밀글을 열람할 권한이 없습니다");
 	} else {
+		if(!get_magic_quotes_gpc()) {
+			$password = addslashes($password);
+		}
 		$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where headnum='$data[headnum]' and password=password('$password')"));
 		if(!$secret_check[0]) {
 			head();
