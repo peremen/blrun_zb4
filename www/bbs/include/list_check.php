@@ -162,7 +162,7 @@ function list_check(&$data,$view_check=0) {
 		}
 
 		// view.php 창이 깨지지 않게 하기 위해 조립
-		$memo="<div id=IAMCONT></div><textarea style='display:none' id=IAMAREA>".$memo."</textarea><script>document.getElementById('IAMCONT').innerHTML = document.getElementById('IAMAREA').value</script>";
+		$memo="<div id=MEMOCONT_$data[no]></div><textarea style='display:none' id=MEMOAREA_$data[no]>".$memo."</textarea><script>document.getElementById('MEMOCONT_'+$data[no]).innerHTML = document.getElementById('MEMOAREA_'+$data[no]).value</script>";
 
 		// 스팸아이피 글 일괄삭제와 덧글삭제 보안을 위한 랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입
 		$cnum1 = mt_rand(1,1000);
