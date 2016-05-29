@@ -13,7 +13,7 @@ function list_check(&$data,$view_check=0) {
 			$file_name1, $file_name2, $file_download1, $file_download2, $file_size1, $file_size2,
 			$upload_image1, $upload_image2, $category_name, $date, $reg_date, $insert, $icon, $face_image,$number,$loop_number,
 			$a_file_link1, $a_file_link2, $a_reply, $a_delete, $a_modify, $zbLayer, $_zbCheckNum,
-			$_listCheckTime;
+			$_listCheckTime, $cnum1num2;
 
 	$_listCheckTimeStart = getmicrotime();
 
@@ -161,8 +161,16 @@ function list_check(&$data,$view_check=0) {
 			$memo = preg_replace($keyword_pattern, "<span style='color:#FF001E;background-color:#FFF000;'>$keyword</span>", $memo);
 		}
 
+		// view.php 창이 깨지지 않게 하기 위해 조립
+		$memo="<div id=IAMCONT></div><textarea style='display:none' id=IAMAREA>".$memo."</textarea><script>document.getElementById('IAMCONT').innerHTML = document.getElementById('IAMAREA').value</script>";
+
+		// 스팸아이피 글 일괄삭제와 덧글삭제 보안을 위한 랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입
+		$cnum1 = mt_rand(1,1000);
+		$cnum2 = mt_rand(1,1000);
+		$cnum1num2 = $cnum1*10000 + $cnum2;
+
 		// 아이피
-		if($is_admin) $ip="IP Address : <a href='trace_ip.php?keykind=ip&keyword=".$data[ip]."' target='_blank'>".$data[ip]."</a> <a href='#' style='color:red' onclick='javascript: var yn=confirm(\"▶엎질러진 물은 돌이킬 수 없습니다.◀\\n정말로 [$data[name]]님의 전체 게시글/덧글 삭제 후 차단하시겠습니까?\"); if(yn) window.open(\"spam_ip.php?keykind=ip&keyword=$data[ip]\",\"_blank\"); else return false;'>[스팸]</a>&nbsp;";  
+		if($is_admin) $ip="IP Address : <a href='trace_ip.php?keykind=ip&keyword=".$data[ip]."' target='_blank'>".$data[ip]."</a> <a href='#' style='color:red' onclick='javascript: var yn=confirm(\"▶엎질러진 물은 돌이킬 수 없습니다.◀\\n정말로 [$data[name]]님의 전체 게시글/덧글 삭제 후 차단하시겠습니까?\"); if(yn) window.open(\"spam_ip.php?keykind=ip&keyword=$data[ip]&delsec=$cnum1num2\",\"_blank\"); else return false;'>[스팸]</a>&nbsp;";  
 
 		$sitelink1=$data[sitelink1]=htmlspecialchars($data[sitelink1]);
 		$sitelink2=$data[sitelink2]=htmlspecialchars($data[sitelink2]);
