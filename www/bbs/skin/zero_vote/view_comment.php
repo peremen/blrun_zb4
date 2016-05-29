@@ -26,7 +26,12 @@
 		else {
 		?>
 
-		<font color=888888 size=1>:::</font> <?if($c_data[is_secret]) echo "<img src=".$dir."/post_security.gif border=0>";?><?if(preg_match("#\|\|\|[0-9]{1,}\|[0-9]{1,10}$#",$o_data[memo])) echo "<font color=blue>To $o_data[name]</font>";?><?=autolink($c_memo)?> <?=$c_reg_date?> 
+		<font color=888888 size=1>:::</font> <?if($c_data[is_secret]) echo "<img src=".$dir."/post_security.gif border=0>";?><?if(preg_match("#\|\|\|[0-9]{1,}\|[0-9]{1,10}$#",$o_data[memo])) echo "<font color=blue>To $o_data[name]</font>";?>
+		<!-- 덧글 내용 시작 -->
+		<div id=IAMCONT_<?=$c_data[no]?>></div>
+		<textarea style='display:none' id=IAMAREA_<?=$c_data[no]?>><?=autolink($c_memo)?> <?=$c_reg_date?></textarea>
+		<script>document.getElementById("IAMCONT_"+<?=$c_data[no]?>).innerHTML = document.getElementById("IAMAREA_"+<?=$c_data[no]?>).value</script>
+		<!-- 덧글 내용 끝 -->
 		<? } ?>
 
 	</td>

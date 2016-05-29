@@ -192,9 +192,12 @@ if($data[next_no]&&!$setup[use_alllist]) {
 	$hide_next_end="-->";
 }
 
-
 // 현재 선택된 글을 정리함
 list_check($data,1);
+
+// list_check 안에서 설정한 코멘트와 아이피글 삭제를 위해 설정한 보안코드 글로벌 변수를 세션 등록
+$DEL_COMM_SEC = $cnum1num2;
+session_register("DEL_COMM_SEC");
 
 /****************************************************************************************
 * 변수 설정
@@ -308,14 +311,6 @@ $_skinTime += getmicrotime()-$_skinTimeStart;
 
 $max_depth = 0;
 
-// 코멘트 삭제 보안을 위한 랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입
-$cnum1 = mt_rand(1,1000);
-$cnum2 = mt_rand(1,1000);
-$cnum1num2 = $cnum1*10000 + $cnum2;
-// 코멘트 보안을 위해 세션변수를 설정
-$DEL_COMM_SEC = $cnum1num2;
-session_register("DEL_COMM_SEC");
-
 // 코멘트 출력;;
 if($setup[use_comment]) {
 	while($c_data=mysql_fetch_array($view_comment_result)) {
@@ -413,7 +408,7 @@ if($setup[use_comment]) {
 		}
 
 		// 아이피
-		if($is_admin) $show_comment_ip="<a href='trace_ip.php?keykind=ip&keyword=".$c_data[ip]."' target='_blank'>".$c_data[ip]."</a> <a href='#' style='color:red' onclick='javascript: var yn=confirm(\"▶엎질러진 물은 돌이킬 수 없습니다.◀\\n정말로 [$c_data[name]]님의 전체 게시글/덧글 삭제 후 차단하시겠습니까?\"); if(yn) window.open(\"spam_ip.php?keykind=ip&keyword=$c_data[ip]\",\"_blank\"); else return false;'>[스팸]</a>";
+		if($is_admin) $show_comment_ip="<a href='trace_ip.php?keykind=ip&keyword=".$c_data[ip]."' target='_blank'>".$c_data[ip]."</a> <a href='#' style='color:red' onclick='javascript: var yn=confirm(\"▶엎질러진 물은 돌이킬 수 없습니다.◀\\n정말로 [$c_data[name]]님의 전체 게시글/덧글 삭제 후 차단하시겠습니까?\"); if(yn) window.open(\"spam_ip.php?keykind=ip&keyword=$c_data[ip]&delsec=$cnum1num2\",\"_blank\"); else return false;'>[스팸]</a>";
 		else $show_comment_ip = "";
 
 		$c_file_name1=del_html($c_data[s_file_name1]);

@@ -27,7 +27,14 @@ if($emoticon_use=="on") $c_memo=str_to_emoticon($c_memo,$emoticon_url);
 
 		<?=$c_hide_download2_start?><br><font class=com9>- <b>Download #2</b> : <?=$c_file_link2?><?=$c_file_name2?> (<?=$c_file_size2?>)</a>, Download : <?=$c_file_download2?></font><br><?=$c_upload_image2?><?=$c_hide_download2_end?>
 
-		<br><?if($c_data[is_secret]) echo "<img src=".$dir."/post_security.gif border=0>";?><?if(preg_match("#\|\|\|[0-9]{1,}\|[0-9]{1,10}$#",$o_data[memo])) echo "<font color=orange>To $o_data[name]</font>";?><?=$c_memo?><? } ?></td>
+		<br><?if($c_data[is_secret]) echo "<img src=".$dir."/post_security.gif border=0>";?><?if(preg_match("#\|\|\|[0-9]{1,}\|[0-9]{1,10}$#",$o_data[memo])) echo "<font color=orange>To $o_data[name]</font>";?>
+
+		<!-- 덧글 내용 시작 -->
+		<div id=IAMCONT_<?=$c_data[no]?> class=com9></div>
+		<textarea style='display:none' id=IAMAREA_<?=$c_data[no]?>><?=$c_memo?></textarea>
+		<script>document.getElementById("IAMCONT_"+<?=$c_data[no]?>).innerHTML = document.getElementById("IAMAREA_"+<?=$c_data[no]?>).value</script>
+		<!-- 덧글 내용 끝 -->
+		<? } ?></td>
 	<td background=<?=$dir?>/c_middle_bg2.gif></td>
 </tr>
 </table>
