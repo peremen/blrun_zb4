@@ -99,6 +99,9 @@ if($flag != ok) {
 
 	$memo=str_replace("&nbsp;","&amp;nbsp;",trim($memo));
 
+	// textarea 태그가 들어있을시 깨짐 방지
+	$memo=str_replace("<","&lt;",$memo);
+
 	if($s_data[file_name1])$s_file_name1="<br>&nbsp;".$s_data[s_file_name1]."이 등록되어 있습니다.<br> <input type=checkbox name=del_file1 value=1> 삭제";
 	if($s_data[file_name2])$s_file_name2="<br>&nbsp;".$s_data[s_file_name2]."이 등록되어 있습니다.<br> <input type=checkbox name=del_file2 value=1> 삭제";
 

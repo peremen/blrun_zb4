@@ -47,7 +47,7 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 			if($set[use_alllist]) $target = "zboard.php?id=".$_date[1];
 			else $target = "view.php?id=".$_date[1];
 
-			$name = $data[name];
+			$name = del_html($data[name]);
 			$date = date($datetype, $data[reg_date]);
 			if($data[is_secret])
 				$memo = "<font color='gray'>비밀 덧글입니다</font>";
@@ -56,7 +56,7 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 				unset($c_match);
 				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
 					$data[memo] = str_replace($c_match[0],"",$data[memo]);
-				$memo = cut_str(strip_tags($data[memo]),$textlen);
+				$memo = del_html(cut_str(strip_tags($data[memo]),$textlen));
 			}
 			$no = $data[no];
 			   $parent = $data[parent];

@@ -155,6 +155,9 @@ if($pass == "gg" || $member[no] || $password) {
 		$c_depth = 0;
 	}
 
+	// textarea 태그가 들어있을시 깨짐 방지
+	$memo=str_replace("<","&lt;",$memo);
+
 	// 비밀글 체크박스 처리
 	if($mode=="modify"&&!$o_data[is_secret]&&$s_data[is_secret])
 		$secret=" checked ";

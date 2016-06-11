@@ -11,7 +11,7 @@ if($keyword) {
 	$comment_search=1;
 	$s_que = "";
 	if($keykind) {
-		if(!$s_que) $s_que .= " where $keykind like '%$keyword%' ";
+		if(!$s_que) $s_que .= " where islevel > 8 and $keykind like '%$keyword%' ";
 	}
 	$table_name_result=mysql_query("select name, use_alllist from $admin_table order by name",$connect) or error(mysql_error());
 }
@@ -53,6 +53,7 @@ head(" bgcolor=white");
 <?
 if($keyword&&$s_que)
 {
+	$hop = 0; // 삭제할 총 레코드 갯수 카운트
 	while($table_data=mysql_fetch_array($table_name_result))
 	{
 
@@ -78,11 +79,15 @@ if($keyword&&$s_que)
 		// 스팸 아이피 글 일괄 삭제
 		unset($result);unset($data);
 		$result=mysql_query("select * from $t_board"."_$table_name $s_que", $connect) or error(mysql_error());
+
+		$cnt1 = 0; $cnt2 = 0; // 게시판에서 삭제할 레코드 갯수 카운트
+		
 		while($data=mysql_fetch_array($result))
 		{
 			if(!$data[child]) // 답글이 없을때;;
 			{
 				mysql_query("delete from $t_board"."_$table_name where no='$data[no]'", $connect) or error(mysql_error());
+				$cnt1 += mysql_affected_rows();
 				// 파일삭제
 				@z_unlink("./".$data[file_name1]);
 				@z_unlink("./".$data[file_name2]);
@@ -109,7 +114,10 @@ if($keyword&&$s_que)
 				unset($del_comment_result);unset($c_data);
 				$del_comment_result=mysql_query("select * from $t_comment"."_$table_name where parent='$data[no]'",$connect) or error(mysql_error());
 				mysql_query("delete from $t_comment"."_$table_name where parent='$data[no]'",$connect) or error(mysql_error());
+				$cnt2 += mysql_affected_rows();
 				while($c_data=mysql_fetch_array($del_comment_result)) {
+					// Movie, Sell 덧글 포인트 테이블 삭제
+					@mysql_query("delete from $t_comment"."_$table_name"."_movie where parent='$data[no]' and reg_date='$c_data[reg_date]'");
 					// 파일삭제
 					@z_unlink("./".$c_data[file_name1]);
 					@z_unlink("./".$c_data[file_name2]);
@@ -136,7 +144,7 @@ if($keyword&&$s_que)
 
 <br><br><br>
 
-&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>게시판</b></font></a><br>
+&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>게시판</b>에서 총<?=$cnt1?>개의 레코드가 삭제되었습니다</font></a><br>
 <?
 		while($data=mysql_fetch_array($result))
 		{
@@ -144,7 +152,7 @@ if($keyword&&$s_que)
 			$data[subject] = del_html($data[subject]);
 ?>
 
-&nbsp;&nbsp; [<?=$data[name]?>] &nbsp;
+&nbsp;&nbsp; [<?=del_html($data[name])?>] &nbsp;
 <b><a href=<?=$file?>?id=<?=$table_name?>&no=<?=$data[no]?> target=_blank><?=$data[subject]?></a></b>
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 <font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font>)</font><img src=images/t.gif border=0 height=20><Br>
@@ -162,13 +170,15 @@ if($keyword&&$s_que)
 			unset($result);unset($c_data);
 			// 스팸 아이피 덧글 일괄 삭제
 			$result=mysql_query("select * from $t_comment"."_$table_name $s_que", $connect) or error(mysql_error());
-			unset($c_data);
 			while($c_data=mysql_fetch_array($result)) {
 				// 코멘트 갯수 정리를 위해 배열 저장
 				$table_name_array[] = $table_name;
 				$parent_no_array[] = $c_data[parent];
 				// 코멘트 삭제
 				mysql_query("delete from $t_comment"."_$table_name where no='$c_data[no]'",$connect) or error(mysql_error());
+				$cnt2 += mysql_affected_rows();
+				// Movie, Sell 덧글 포인트 테이블 삭제
+				@mysql_query("delete from $t_comment"."_$table_name"."_movie where reg_date='$c_data[reg_date]'");
 
 				// 파일삭제
 				@z_unlink("./".$c_data[file_name1]);
@@ -182,7 +192,7 @@ if($keyword&&$s_que)
 ?>
 
 <br><br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>게시판</b> 의 간단한 답글</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>게시판</b> 의 간단한 답글에서 총<?=$cnt2?>개의 레코드가 삭제되었습니다</font></a>
 <br>
 <?
 			unset($result);unset($data);
@@ -197,7 +207,7 @@ if($keyword&&$s_que)
 				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
 					$data[memo] = str_replace($c_match[0],"",$data[memo]);
 ?>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <?=$data[name]?> ]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <?=del_html(str_replace("&rlm;","",$data[name]))?> ]
 &nbsp;<a href=<?=$file?>?id=<?=$table_name?>&no=<?=$data[parent]?> target=_blank><?=$data[memo]?></a> &nbsp;&nbsp;
 <font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font>)</font>
 <img src=images/t.gif border=0 height=20><Br>
@@ -205,6 +215,9 @@ if($keyword&&$s_que)
 <?
 			}
 		}
+		// 삭제된 레코드 수 카운트 초기화
+		$hop += $cnt1+$cnt2;
+		$cnt1=0; $cnt2=0;
 	}
 }
 
@@ -222,12 +235,14 @@ if($keyword&&$s_que)
 	}
 }
 
+echo "<br><br><br>{$keyword} 란 아이피의 모든 게시글/덧글이 모두 {$hop}개 삭제 후 차단되었습니다.\n차단해제는 게시판 관라자메뉴를 이용하십시요.";
+
 mysql_close($connect);
 $connect="";
 ?>
 <br><br><br>
 <script>
-alert("<?=$keyword?> 란 아이피의 모든 게시글/덧글이 삭제 후 차단되었습니다.\n차단해제는 게시판 관라자메뉴를 이용하십시요.");
+alert("<?=$keyword?> 란 아이피의 모든 게시글/덧글이 모두 <?=$hop?>개 삭제 후 차단되었습니다.\n차단해제는 게시판 관라자메뉴를 이용하십시요.");
 </script>
 <?
 foot();

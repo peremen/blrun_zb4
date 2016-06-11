@@ -103,7 +103,7 @@ if($counter%$num==1){?>
 			<tr><td height=4></td></tr>
 			</table>
 			<table border=0 cellspacing=0 cellpadding=3 width=100% height=80 style=border-width:1px;border-color:#eeeeee;border-style:solid;>
-			<tr><td valign=top><div style="overflow:hidden"><B>· 상품설명</B> :&nbsp;<?=htmlspecialchars($tmp_memo)?><?=$comment_new?></td></tr>
+			<tr><td valign=top><div style="overflow:hidden"><B>· 상품설명</B> :&nbsp;<?=del_html($tmp_memo)?><?=$comment_new?></td></tr>
 			</table>
 		</td>
 		</tr>

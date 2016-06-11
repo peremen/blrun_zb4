@@ -22,7 +22,7 @@ $notice_result = mysql_query($notice_que, $connect) or error(mysql_error());
 if($s_que) {
 	$_dbTimeStart = getmicrotime();
 	if($sm=="on") {
-		$que="select $t_board"."_$id.no, division, headnum, arrangenum, depth, prev_no, next_no, father, child, $t_board"."_$id.ismember, islevel, $t_board"."_$id.memo, $t_board"."_$id.ip, $t_board"."_$id.name, homepage, email, subject, use_html, reply_mail, category, $t_board"."_$id.is_secret, $t_board"."_$id.file_name1, $t_board"."_$id.file_name2, $t_board"."_$id.reg_date, hit, vote, total_comment, x, y from $t_board"."_$id left join $t_comment"."_$id on parent=$t_board"."_$id.no $s_que group by $t_board"."_$id.no having count($t_board"."_$id.no)>=1 order by $select_arrange $desc limit $start_num, $page_num";
+		$que="select $t_board"."_$id.no, division, headnum, arrangenum, depth, prev_no, next_no, father, child, $t_board"."_$id.ismember, $t_board"."_$id.islevel, $t_board"."_$id.memo, $t_board"."_$id.ip, $t_board"."_$id.name, homepage, email, subject, use_html, reply_mail, category, $t_board"."_$id.is_secret, $t_board"."_$id.file_name1, $t_board"."_$id.file_name2, $t_board"."_$id.reg_date, hit, vote, total_comment, x, y from $t_board"."_$id left join $t_comment"."_$id on parent=$t_board"."_$id.no $s_que group by $t_board"."_$id.no having count($t_board"."_$id.no)>=1 order by $select_arrange $desc limit $start_num, $page_num";
 	} else {
 		$que="select * from $t_board"."_$id $s_que order by $select_arrange $desc limit $start_num, $page_num";
 	}

@@ -347,6 +347,7 @@ $board_comment_schema ="
 	no int(11) not null auto_increment primary key,
 	parent int(20) not null,
 	ismember int(20) default 0 not null,
+	islevel int(2) default 10 not null,
 	name char(20),
 	password char(41),
 	memo mediumtext,

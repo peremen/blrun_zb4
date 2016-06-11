@@ -172,8 +172,8 @@ elseif($exec=="delete_all") {
 				if($temp[ismember]) {
 					$_to = $temp[ismember];
 					$_from = $member[no];	
-					$_subject = stripslashes($temp[name])." 님의 게시물이 ".$_kind."되었습니다";
-					$_memo = stripslashes($temp[name])." 님께서 쓰신 \"".stripslashes($temp[subject])."\" 글이 $member[name]님에 의해서 게시판 성격에 적합하지 않아서 ".$_kind." 되었습니다\n";
+					$_subject = del_html($temp[name])." 님의 게시물이 ".$_kind."되었습니다";
+					$_memo = del_html($temp[name])." 님께서 쓰신 \"".del_html($temp[subject])."\" 글이 $member[name]님에 의해서 게시판 성격에 적합하지 않아서 ".$_kind." 되었습니다\n";
 					_send_message($_to,$_from,$_subject,$_memo);
 				}
 			}
@@ -266,7 +266,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 				$data[father]=$data[father]+$term_father;
 				$data[child]=$data[child]+$term_child;
 
-				// 게시물 삭제시 기록 남길 경우
+				// 게시물 복사, 이동시 기록 남길 경우
 				if($notice_bbs) {
 					$data[memo] .= "\n\n* $member[name]님에 의해서 게시물이 ".$_kind."되었습니다 (".date("Y-m-d H:i").")";
 				}
@@ -303,7 +303,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 					}
 					$comment_data[memo]=addslashes($comment_data[memo]);
 					$comment_data[name]=addslashes($comment_data[name]);
-					mysql_query("insert into $t_comment"."_$board_name (parent,ismember,name,password,memo,reg_date,ip,use_html2,is_secret,file_name1,file_name2,s_file_name1,s_file_name2,download1,download2) values ('$no','$comment_data[ismember]','$comment_data[name]','$comment_data[password]','$comment_data[memo]','$comment_data[reg_date]','$comment_data[ip]','$comment_data[use_html2]','$comment_data[is_secret]','$comment_data[file_name1]','$comment_data[file_name2]','$comment_data[s_file_name1]','$comment_data[s_file_name2]','$comment_data[download1]','$comment_data[download2]')") or error(mysql_error());
+					mysql_query("insert into $t_comment"."_$board_name (parent,ismember,islevel,name,password,memo,reg_date,ip,use_html2,is_secret,file_name1,file_name2,s_file_name1,s_file_name2,download1,download2) values ('$no','$comment_data[ismember]','$comment_data[islevel]','$comment_data[name]','$comment_data[password]','$comment_data[memo]','$comment_data[reg_date]','$comment_data[ip]','$comment_data[use_html2]','$comment_data[is_secret]','$comment_data[file_name1]','$comment_data[file_name2]','$comment_data[s_file_name1]','$comment_data[s_file_name2]','$comment_data[download1]','$comment_data[download2]')") or error(mysql_error());
 				}
 
 				mysql_query("update $t_category"."_$board_name set num=num+1 where no='$category'",$connect);
@@ -317,8 +317,8 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 				if($s_data[ismember]) {
 					$_to = $s_data[ismember];
 					$_from = $member[no];	
-					$_subject = stripslashes($s_data[name])." 님의 게시물이 ".$_kind."되었습니다";
-					$_memo = stripslashes($s_data[name])." 님께서 쓰신 \"".stripslashes($s_data[subject])."\" 글이 $member[name]님에 의해서 ".$_kind." 되었습니다\n";
+					$_subject = del_html($s_data[name])." 님의 게시물이 ".$_kind."되었습니다";
+					$_memo = del_html($s_data[name])." 님께서 쓰신 \"".del_html($s_data[subject])."\" 글이 $member[name]님에 의해서 ".$_kind." 되었습니다\n";
 					$_memo .= " 옮겨진 위치 : zboard.php?id=".$board_name."&no=".$no;
 					_send_message($_to,$_from,$_subject,$_memo);
 				}

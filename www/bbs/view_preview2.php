@@ -28,6 +28,8 @@ if($c_no&&$mode=="modify") $s_data=mysql_fetch_array(mysql_query("select * from 
 // 현재 로그인되어 있는 멤버가 전체, 또는 그룹관리자인지 검사
 if($member[is_admin]==1||($member[is_admin]==2&&$member[group_no]==$setup[group_no])||check_board_master($member, $setup[no])) $is_admin=1; else $is_admin="";
 
+if(get_magic_quotes_gpc()) $memo=stripslashes($memo);
+
 // &lt,&gt를 신택스하이라이트에서 사용하기 위해 임시 치환
 $memo=str_replace("&lt;","my_lt_ek",$memo);
 $memo=str_replace("&gt;","my_gt_ek",$memo);
@@ -116,9 +118,6 @@ for($i=0;$i<count($temp);$i++) {
 $memo=str_replace("my_lt_ek","&lt;",$memo);
 $memo=str_replace("my_gt_ek","&gt;",$memo);
 
-// 각종 변수의 addslashes 시킴;;
-if(!get_magic_quotes_gpc())	$memo=addslashes($memo);
-
 $memo=trim($memo);
 
 if($use_html2<2) {
@@ -187,6 +186,8 @@ if($use_html2<2) {
 	// 신택스하이라이트 처리 끝
 }
 
+// $memo의 &를 &amp 로 치환 후 textarea 태그 안의 textarea 태그 깨짐 방지를 위해 < 를 &lt; 로 한번더 치환
+$memo=str_replace("<","&lt;",str_replace("&","&amp;",$memo));
 ?>
 <html>
 <head>
@@ -239,12 +240,15 @@ if($use_html2<2) {
 <table border=0 cellspacing=0 cellpadding=10 width=100% height=100% bgcolor=black style=table-layout:fixed>
 <tr bgcolor=white valign=top>
 	<td height=50 class=title2_han>
-		<b>제목: [<?=$setup[title]?>]의 "<?=$data[subject]?>" 게시글의 덧글</b><br>
+		<b>제목: [<?=$setup[title]?>]의 "<?=del_html($data[subject])?>" 게시글의 덧글</b><br>
 	</td>
 </tr>
 <tr bgcolor=white valign=top>
 	<td class=memo>
-		<?=stripslashes($memo)?>
+		<!-- 내용 창이 깨지지 않게 하기 위해 조립 -->
+		<div id=IAMCONT></div>
+		<textarea style='display:none' id=IAMAREA><?=$memo?></textarea>
+		<script>document.getElementById('IAMCONT').innerHTML = document.getElementById('IAMAREA').value</script>
 	</td>
 </tr>
 </table>

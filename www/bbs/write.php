@@ -211,6 +211,8 @@ if($pass == "gg" || $member[no] || $password) {
 		$title="$name님의 글에 대한 답글쓰기";
 	}
 
+// textarea 태그가 들어있을시 깨짐 방지
+	$memo=str_replace("<","&lt;",$memo);
 
 // 회원일때는 기본 입력사항 안보이게;;
 	if($member[no]) { $hide_start="<!--"; $hide_end="-->"; }

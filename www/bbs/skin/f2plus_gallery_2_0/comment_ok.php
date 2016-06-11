@@ -388,7 +388,7 @@ if($mode=="modify"&&$c_no) {
 
 } elseif($mode=="write"||($mode=="reply"&&$c_no)) {
 	// 코멘트 입력
-	mysql_query("insert into $t_comment"."_$id (parent,ismember,name,password,memo,reg_date,ip,use_html2,is_secret,file_name1,file_name2,s_file_name1,s_file_name2) values ('$no','$member[no]','$name','$password','$memo','$reg_date','$ip','$use_html2','$is_secret','$file_name1','$file_name2','$s_file_name1','$s_file_name2')") or error1(mysql_error());
+	mysql_query("insert into $t_comment"."_$id (parent,ismember,islevel,name,password,memo,reg_date,ip,use_html2,is_secret,file_name1,file_name2,s_file_name1,s_file_name2) values ('$no','$member[no]','$member[level]','$name','$password','$memo','$reg_date','$ip','$use_html2','$is_secret','$file_name1','$file_name2','$s_file_name1','$s_file_name2')") or error1(mysql_error());
 	if($type=="Movie_type") mysql_query("insert into $t_comment"."_$id"."_movie (parent,reg_date,point1,point2) values ('$no','$reg_date','$_point1','$_point2')") or error1(mysql_error());
 	// 회원일 경우 해당 해원의 점수 주기
 	mysql_query("update $member_table set point2=point2+1 where no='$member[no]'",$connect) or error1(mysql_error());
