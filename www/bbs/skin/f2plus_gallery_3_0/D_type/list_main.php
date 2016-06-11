@@ -30,10 +30,10 @@ else
 
 if($Exif_use=="on") {
 	$memo=explode("|||",$data[memo]);
-	$str=cut_str(htmlspecialchars(strip_tags($memo[0])),200);
+	$str=htmlspecialchars(cut_str(strip_tags($memo[0]),200));
 	$str="제목 : ".$temp."\n내용 : ".$str."\n";
 	if($hide_date=="off") $str="작성일 : ".date("m-d",$data[reg_date])."\n".$str;
-	if($hide_name=="off") $str="작성자 : ".$data[name]."\n".$str;
+	if($hide_name=="off") $str="작성자 : ".htmlspecialchars($data[name])."\n".$str;
 }
 else $str="";
 

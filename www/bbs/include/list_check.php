@@ -21,7 +21,7 @@ function list_check(&$data,$view_check=0) {
 
 	// 제목에 5줄로 툴바 만듬
 	if($setup[use_status]) {
-		$tmpData = explode("\n",htmlspecialchars(strip_tags($data[memo])));
+		$tmpData = explode("\n",del_html(str_replace("\"","&quot;",strip_tags($data[memo]))));
 		$totalCommentLineNum = count($tmpData);
 		$tmpData_Count = $totalCommentLineNum;
 		$showCommentStr = "";
@@ -47,14 +47,14 @@ function list_check(&$data,$view_check=0) {
 	}
 	$_zbCount = check_zbLayer($data);
 	
-	// HTML 사용일 경우 현재 회원의 admin 레벨이 익명사용자라면 style 속성을 제거
-	/*if($data[use_html]&&$data[islevel]=="0") {
+	// HTML 사용일 경우 현재 데이타 회원의 islevel이 익명사용자/게스트 레벨이라면 style 속성을 제거
+	if($data[use_html]&&$data[islevel]>8) {
 		$style_pattern = "/(<[^>]*?)style([^>]*?)(>)/i";
 		$data[memo]=preg_replace($style_pattern,"\\1\\3",$data[memo]);
-	}*/
+	}
 
-	// ' " \ 등의 특수문자때문에 htmlspecialchars 를 해준다
-	$name=$data[name]=htmlspecialchars($data[name]); 
+	// ' " \ 등의 특수문자때문에 del_html 를 해준다
+	$name=$data[name]=del_html(str_replace("\"","&quot;",$data[name])); 
 	$temp_name = get_private_icon($data[ismember], "2");
 	if($temp_name) $name="<img src='$temp_name' border=0 align=absmiddle>"; 
 
@@ -89,7 +89,7 @@ function list_check(&$data,$view_check=0) {
 	}
 
 	if(!$setup[only_board]) {
-		$homepage=$data[homepage]=htmlspecialchars($data[homepage]);
+		$homepage=$data[homepage]=del_html($data[homepage]);
 		if($homepage) $homepage="<a href='$homepage' target=_blank>$homepage</a>";
 
 		// html 이미지 리사이즈
@@ -161,6 +161,9 @@ function list_check(&$data,$view_check=0) {
 			$memo = preg_replace($keyword_pattern, "<span style='color:#FF001E;background-color:#FFF000;'>$keyword</span>", $memo);
 		}
 
+		// $memo의 &를 &amp 로 치환 후 textarea 태그 안의 textarea 태그 깨짐 방지를 위해 < 를 &lt; 로 한번더 치환
+		$memo=str_replace("<","&lt;",str_replace("&","&amp;",$memo));
+
 		// view.php 창이 깨지지 않게 하기 위해 조립
 		$memo="<div id=MEMOCONT_$data[no]></div><textarea style='display:none' id=MEMOAREA_$data[no]>".$memo."</textarea><script>document.getElementById('MEMOCONT_'+$data[no]).innerHTML = document.getElementById('MEMOAREA_'+$data[no]).value</script>";
 
@@ -172,8 +175,8 @@ function list_check(&$data,$view_check=0) {
 		// 아이피
 		if($is_admin) $ip="IP Address : <a href='trace_ip.php?keykind=ip&keyword=".$data[ip]."' target='_blank'>".$data[ip]."</a> <a href='#' style='color:red' onclick='javascript: var yn=confirm(\"▶엎질러진 물은 돌이킬 수 없습니다.◀\\n정말로 [$data[name]]님의 전체 게시글/덧글 삭제 후 차단하시겠습니까?\"); if(yn) window.open(\"spam_ip.php?keykind=ip&keyword=$data[ip]&delsec=$cnum1num2\",\"_blank\"); else return false;'>[스팸]</a>&nbsp;";  
 
-		$sitelink1=$data[sitelink1]=htmlspecialchars($data[sitelink1]);
-		$sitelink2=$data[sitelink2]=htmlspecialchars($data[sitelink2]);
+		$sitelink1=$data[sitelink1]=del_html($data[sitelink1]);
+		$sitelink2=$data[sitelink2]=del_html($data[sitelink2]);
 		if($sitelink1)$sitelink1="<a href='$sitelink1' target=_blank>$sitelink1</a>";
 		if($sitelink2)$sitelink2="<a href='$sitelink2' target=_blank>$sitelink2</a>";
 		$file_name1=del_html($data[s_file_name1]);

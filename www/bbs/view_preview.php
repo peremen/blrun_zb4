@@ -29,6 +29,11 @@ if($no&&$mode=="modify") $data=mysql_fetch_array(mysql_query("select * from  $t_
 // 현재 로그인되어 있는 멤버가 전체, 또는 그룹관리자인지 검사
 if($member[is_admin]==1||($member[is_admin]==2&&$member[group_no]==$setup[group_no])||check_board_master($member, $setup[no])) $is_admin=1; else $is_admin="";
 
+if(get_magic_quotes_gpc()) {
+	$subject=stripslashes($subject);
+	$memo=stripslashes($memo);
+}
+
 // &lt,&gt를 신택스하이라이트에서 사용하기 위해 임시 치환
 $memo=str_replace("&lt;","my_lt_ek",$memo);
 $memo=str_replace("&gt;","my_gt_ek",$memo);
@@ -117,12 +122,6 @@ for($i=0;$i<count($temp);$i++) {
 $memo=str_replace("my_lt_ek","&lt;",$memo);
 $memo=str_replace("my_gt_ek","&gt;",$memo);
 
-// 각종 변수의 addslashes 시킴;;
-if(!get_magic_quotes_gpc()) {
-	$subject=addslashes($subject);
-	$memo=addslashes($memo);
-}
-
 $memo=trim($memo);
 
 if($use_html<2) {
@@ -195,6 +194,8 @@ if($use_html<2) {
 if(($is_admin||$member[level]<=$setup[use_html])&&$use_html) $data[subject]=trim($subject);
 else $data[subject]=trim(del_html($subject));
 
+// $memo의 &를 &amp 로 치환 후 textarea 태그 안의 textarea 태그 깨짐 방지를 위해 < 를 &lt; 로 한번더 치환
+$memo=str_replace("<","&lt;",str_replace("&","&amp;",$memo));
 ?>
 <html>
 <head>
@@ -247,12 +248,15 @@ else $data[subject]=trim(del_html($subject));
 <table border=0 cellspacing=0 cellpadding=10 width=100% height=100% bgcolor=black style=table-layout:fixed>
 <tr bgcolor=white valign=top>
 	<td height=50 class=title2_han>
-		<b>제목: <?=stripslashes($data[subject])?></b><br>
+		<b>제목: <?=$data[subject]?></b><br>
 	</td>
 </tr>
 <tr bgcolor=white valign=top>
 	<td class=memo>
-		<?=stripslashes($memo)?>
+		<!-- 내용 창이 깨지지 않게 하기 위해 조립 -->
+		<div id=MEMOCONT></div>
+		<textarea style='display:none' id=MEMOAREA><?=$memo?></textarea>
+		<script>document.getElementById('MEMOCONT').innerHTML = document.getElementById('MEMOAREA').value</script>
 	</td>
 </tr>
 </table>

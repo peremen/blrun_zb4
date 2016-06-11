@@ -199,11 +199,11 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 
 	$main_data = "";
 	while($data=mysql_fetch_array($result)) {
-		$name = $data[name];
-		$subject = cut_str(strip_tags($data[subject]),$textlen)."</font></b>";
+		$name = del_html($data[name]);
+		$subject = del_html(cut_str(strip_tags($data[subject]),$textlen))."</font></b>";
 		$date = date($datetype, $data[reg_date]);
 		if($data[total_comment]) $comment = "[".$data[total_comment]."]"; else $comment="";
-		$memo = cut_str(strip_tags($data[memo]),$textlen2);
+		$memo = del_html(cut_str(strip_tags($data[memo]),$textlen2));
 
 		$img1="data/latest_thumb/$id/$data[reg_date]"."_small.jpg";
 		$img2="data/latest_thumb/$id/$data[reg_date]"."_large.jpg";

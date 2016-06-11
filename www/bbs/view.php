@@ -102,8 +102,8 @@ if($data[prev_no]&&!$setup[use_alllist]) {
 	if($prev_data[total_comment]==0) $prev_comment_num="";
 	$a_prev="<a onfocus=blur() href='".$target."?".$href.$sort."&no=$data[prev_no]'>";
 	$prev_subject=$prev_data[subject]=$prev_data[subject]." ".$prev_comment_num;
-	$prev_name=$prev_data[name]=htmlspecialchars($prev_data[name]);
-	$prev_data[email]=htmlspecialchars($prev_data[email]);
+	$prev_name=$prev_data[name]=del_html($prev_data[name]);
+	$prev_data[email]=del_html($prev_data[email]);
 	// email IP 표식 불러와 처리
 	unset($c_match);
 	if(preg_match("#\|\|\|([0-9.]{1,})$#",$prev_data[email],$c_match)) {
@@ -121,8 +121,8 @@ if($data[prev_no]&&!$setup[use_alllist]) {
 		else $prev_name="<div $show_ip>$prev_name</div>";
 	}
 
-	$prev_hit=htmlspecialchars($prev_data[hit]);
-	$prev_vote=htmlspecialchars($prev_data[vote]);
+	$prev_hit=del_html($prev_data[hit]);
+	$prev_vote=del_html($prev_data[vote]);
 	$prev_reg_date="<span title='".date("Y/m/d H:i:d",$prev_data[reg_date])."'>".date("Y/m/d",$prev_data[reg_date])."</span>";
 
 	if(!isBlank($prev_email)||$prev_data[ismember]) {
@@ -151,8 +151,8 @@ if($data[next_no]&&!$setup[use_alllist]) {
 	$next_comment_num="[".$next_data[total_comment]."]"; // 간단한 답글 수
 	if($next_data[total_comment]==0) $next_comment_num="";
 	$next_subject=$next_data[subject]=$next_data[subject]." ".$next_comment_num;
-	$next_name=$next_data[name]=htmlspecialchars($next_data[name]);
-	$next_data[email]=htmlspecialchars($next_data[email]);
+	$next_name=$next_data[name]=del_html($next_data[name]);
+	$next_data[email]=del_html($next_data[email]);
 	// email IP 표식 불러와 처리
 	unset($c_match);
 	if(preg_match("#\|\|\|([0-9.]{1,})$#",$next_data[email],$c_match)) {
@@ -170,8 +170,8 @@ if($data[next_no]&&!$setup[use_alllist]) {
 		else $next_name="<div $show_ip>$next_name</div>";
 	}
 	
-	$next_hit=htmlspecialchars($next_data[hit]);
-	$next_vote=htmlspecialchars($next_data[vote]);
+	$next_hit=del_html($next_data[hit]);
+	$next_vote=del_html($next_data[vote]);
 	$next_reg_date="<span title='".date("Y/m/d H:i:d",$next_data[reg_date])."'>".date("Y/m/d",$next_data[reg_date])."</span>";
 	if(!isBlank($next_email)||$next_data[ismember]) {
 		if(!$setup[use_formmail]) $a_next_email="<a onfocus=blur() href='mailto:$next_email'>";
@@ -314,10 +314,16 @@ $max_depth = 0;
 // 코멘트 출력;;
 if($setup[use_comment]) {
 	while($c_data=mysql_fetch_array($view_comment_result)) {
-		$comment_name=$c_data[name];
+		$comment_name=del_html(str_replace("&rlm;","",$c_data[name]));
 		$temp_name = get_private_icon($c_data[ismember], "2");
 		if($temp_name) $comment_name="<img src='$temp_name' border=0 align=absmiddle>";
 		$c_data[memo]=trim($c_data[memo]);
+
+		// HTML 사용일 경우 현재 데이타 회원의 islevel이 익명사용자/게스트 레벨이라면 style 속성을 제거
+		if($c_data[use_html2]&&$c_data[islevel]>8) {
+			$style_pattern = "/(<[^>]*?)style([^>]*?)(>)/i";
+			$c_data[memo]=preg_replace($style_pattern,"\\1\\3",$c_data[memo]);
+		}
 
 		// html 이미지 리사이즈
 		$imagePattern = "#<img(.+?)src=([^>]*?)>#i";
@@ -406,6 +412,9 @@ if($setup[use_comment]) {
 			if($sm=="on" && $sn=="on") $comment_name = preg_replace($keyword_pattern, "<span style='color:#FF001E;background-color:#FFF000;'>$keyword</span>", $comment_name);
 			if($sm=="on") $c_memo = preg_replace($keyword_pattern, "<span color='FF001E' style='color:#FF001E;background-color:#FFF000;'>$keyword</span>", $c_memo);
 		}
+
+		// $c_memo의 &를 &amp 로 치환 후 textarea 태그 안의 textarea 태그 깨짐 방지를 위해 < 를 &lt; 로 한번더 치환
+		$c_memo=str_replace("<","&lt;",str_replace("&","&amp;",$c_memo));
 
 		// 아이피
 		if($is_admin) $show_comment_ip="<a href='trace_ip.php?keykind=ip&keyword=".$c_data[ip]."' target='_blank'>".$c_data[ip]."</a> <a href='#' style='color:red' onclick='javascript: var yn=confirm(\"▶엎질러진 물은 돌이킬 수 없습니다.◀\\n정말로 [$c_data[name]]님의 전체 게시글/덧글 삭제 후 차단하시겠습니까?\"); if(yn) window.open(\"spam_ip.php?keykind=ip&keyword=$c_data[ip]&delsec=$cnum1num2\",\"_blank\"); else return false;'>[스팸]</a>";

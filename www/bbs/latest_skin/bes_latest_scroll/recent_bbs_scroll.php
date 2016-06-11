@@ -73,8 +73,8 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 		$query = "select * from ".$t_board."_".$id[$i]." where is_secret=0 and reg_date > $cut_time order by no desc limit $num";
 		$result = mysql_query($query, $connect) or die(mysql_error()); 
 		while($data=mysql_fetch_array($result)){ 
-			$ad[$tc][name] = htmlspecialchars($data[name]); 
-			$ad[$tc][subject] = cut_str(htmlspecialchars(strip_tags($data[subject])), $textlen)."</font></b>"; 
+			$ad[$tc][name] = del_html(str_replace("\"","&quot;",addslashes($data[name]))); 
+			$ad[$tc][subject] = del_html(str_replace("\"","&quot;",cut_str(strip_tags(addslashes($data[subject])), $textlen)))."</font></b>"; 
 			$ad[$tc][date] = date($datetype, $data[reg_date]); 
 			$ad[$tc][reg_date] = $data[reg_date]; 
 
@@ -178,7 +178,7 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 			//$list[$sc] = str_replace("\r\n"," ",$list[$sc]);
 			$list[$sc] = str_replace("\n"," ",$list[$sc]);
 			$list[$sc] = str_replace("\r"," ",$list[$sc]);
-			$list[$sc] = str_replace("\"","'",$list[$sc]);
+			$list[$sc] = str_replace("\"","&quot;",$list[$sc]);
 
 			$main_data = "";
 			$sc++;

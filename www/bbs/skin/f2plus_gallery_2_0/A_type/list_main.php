@@ -49,7 +49,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 			<tr><td background=<?=$dir?>/dot.gif border=0 height=1 colspan=<?=$cols?>></td>
 			</tr>
 			<tr valign=middle>
-				<td align=left><div style="overflow:hidden"><nobr><font style=color:#B0B0B0><? if(!$data[is_secret]) echo htmlspecialchars(substr($_name1[0],0,400)); else echo "비밀글입니다"; ?></font></nobr></div></td>
+				<td align=left><div style="overflow:hidden"><nobr><font style=color:#B0B0B0><? if(!$data[is_secret]) echo del_html(substr($_name1[0],0,400)); else echo "비밀글입니다"; ?></font></nobr></div></td>
 				<?if($hide_name=="off"){?><? if($browser=="1"){ ?><td align=center class=com3><div style="overflow:hidden"><img src=<?=$dir?>/point.gif align=absmiddle>&nbsp;<?=($m_data[point1]*10+$m_data[point2])?></div></td><? } ?><?}?>
 
 				<?if($hide_date=="off"){?><? if($browser=="1"){ ?><td align=center><font class=com3 color=#aaaaaa><?=date("H:i:s",$data[reg_date])?></font></td><? } ?><?}?>

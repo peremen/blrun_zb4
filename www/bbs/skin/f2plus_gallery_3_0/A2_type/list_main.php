@@ -55,7 +55,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 
 			</tr>
 			<tr valign=bottom>
-				<td align=left style=padding-top:10px><div style="overflow:hidden"><nobr><font style=color:#8D8D8D>&nbsp;&nbsp;&nbsp;<? if(!$data[is_secret]) echo htmlspecialchars(substr($_name1[0],0,400)); else echo "비밀글입니다"; ?></font></nobr></div></td>
+				<td align=left style=padding-top:10px><div style="overflow:hidden"><nobr><font style=color:#8D8D8D>&nbsp;&nbsp;&nbsp;<? if(!$data[is_secret]) echo del_html(substr($_name1[0],0,400)); else echo "비밀글입니다"; ?></font></nobr></div></td>
 				<?if($hide_name!="on"){?><? if($browser=="1"){ ?><td align=center class=com8 style=padding-bottom:2px><div style="overflow:hidden"><img src=<?=$dir?>/images/point.gif align=absmiddle>&nbsp;<?=($m_data[point1]*10+$m_data[point2])?></div></td><? } ?><?}?>
 
 				<?if($hide_date!="on"){?><? if($browser=="1"){ ?><td align=center style=padding-top:8px><font class=com8 color=aaaaaa><?=date("H:i:s",$data[reg_date])?></font></td><? } ?><?}?>

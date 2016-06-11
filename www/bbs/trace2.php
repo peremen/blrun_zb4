@@ -89,7 +89,7 @@ if($keyword&&$s_que)
 			$data[subject] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html($data[subject]));
 ?>
 
-&nbsp;&nbsp; [<?=$data[name]?>] &nbsp;
+&nbsp;&nbsp; [<?=del_html($data[name])?>] &nbsp;
 <b><a href=<?=$file?>?id=<?=$table_name?>&no=<?=$data[no]?> target=_blank><?=$data[subject]?></a></b> 
 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
 <font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font>)</font>
@@ -120,7 +120,7 @@ if($keyword&&$s_que)
 				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
 					$data[memo] = str_replace($c_match[0],"",$data[memo]);
 ?>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <?=$data[name]?> ]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <?=del_html(str_replace("&rlm;","",$data[name]))?> ]
 &nbsp;<a href=<?=$file?>?id=<?=$table_name?>&no=<?=$data[parent]?> target=_blank><? if($data[is_secret]) echo "<font color='gray'>비밀 덧글입니다</font>"; else echo $data[memo]; ?></a> &nbsp;&nbsp;
 <font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font>)</font>
 <img src=images/t.gif border=0 height=20><Br>
