@@ -43,7 +43,7 @@ history.back(-1);
 
 // 편법을 이용한 글쓰기 방지
 $mode = $HTTP_POST_VARS[mode];
-if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)||$WRT_SS_VRS!=$wantispam||$WRT_SPM_PWD!="gg") Error1("정상적으로 글을 작성하여 주시기 바랍니다.");
+if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)||$WRT_SS_VRS!=$wantispam) Error1("정상적으로 글을 작성하여 주시기 바랍니다.");
 if(getenv("REQUEST_METHOD") == 'GET' ) Error1("정상적으로 글을 쓰시기 바랍니다","");
 if(!$mode) $mode = "write";
 
@@ -124,7 +124,7 @@ if(!$is_admin&&$setup[grant_html]<$member[level]) {
 		}
 		// XSS 해킹 이벤트 핸들러 제거
 		$xss_pattern1 = "!(<[^>]*?)on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)([^>]*?)(>)!i";
-		$xss_pattern2 = "!on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)=!i";
+		$xss_pattern2 = "!on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)\s*\=!i";
 		if(preg_match($xss_pattern1,$memo))
 			$memo=preg_replace($xss_pattern1,"\\1\\4",$memo);
 		if(preg_match($xss_pattern2,$memo))
@@ -145,7 +145,8 @@ for($i=0;$i<count($temp);$i++) {
 	for($j=0;$j<count($code);$j++) {
 		$pattern1 = "#\[".$code[$j]."\_code\:([0-9]+)\{([^}]*?)\}\]#i";
 		$pattern2 = "#\[\/".$code[$j]."\_code\]#i";
-		if(preg_match($pattern1,$temp[$i])) {
+		// 코드삽입 태그 짝이 발견되면
+		if(preg_match($pattern1,$temp[$i])&&preg_match($pattern2,$temp[$i+2])) {
 			$cnt++;
 			if($code[$j]=="php")
 				$temp[$i]=preg_replace($pattern1,"<pre class=\"brush: $code[$j]; html_script: true; first-line: \\1\" title=\"\\2\">",$temp[$i]);
@@ -159,15 +160,14 @@ for($i=0;$i<count($temp);$i++) {
 			$temp[$i+1]=str_replace("my_lt_ek","&amp;lt;",$temp[$i+1]); // &lt 사용!
 			$temp[$i+1]=str_replace("my_gt_ek","&amp;gt;",$temp[$i+1]); // &gt 사용!
 			$temp[$i+1]=str_replace("<","&lt;",$temp[$i+1]);
-			$i+=1;
-		} elseif(preg_match($pattern2,$temp[$i])) {
-			$cnt++;
-			$temp[$i]="</pre>";
+			
+			$temp[$i+2]="</pre>";
+			$i+=2;
 		}
 	}
 	if($cnt==0) {
 		// 위지윅에디터에서 &가 &amp;로 바뀔때 썸네일이 보이지 않는 현상 해결
-		$imagePattern="#<img[^>]*src=[\']?[\"]?([^>\'\"]+)[\']?[\"]?[^>]*>#i";
+		$imagePattern="#<img[^>]*src=[\']?[\"]?([^>]+)[\']?[\"]?[^>]*>#i";
 		preg_match_all($imagePattern,$temp[$i],$img,PREG_SET_ORDER);
 		for($j=0;$j<count($img);$j++)
 			$temp[$i]=str_replace($img[$j][1],str_replace("&amp;","&",$img[$j][1]),$temp[$i]);
@@ -253,14 +253,14 @@ $reg_date=time(); // 현재의 시간구함;;
 if(!$is_admin&&$mode!="modify") {
 	$max_no=mysql_fetch_array(mysql_query("select max(no) from $t_board"."_$id"));
 	$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where ip='$ip' and $reg_date - reg_date <5 and no='$max_no[0]'"));
-	if($temp[0]>0) {Error1("글등록은 30초이상이 지나야 가능합니다"); exit;}
+	if($temp[0]>0) Error1("글등록은 30초이상이 지나야 가능합니다");
 }
 
 // 같은 내용이 있는지 검사;;
 if(!$is_admin&&$mode!="modify") {
 	$max_no=mysql_fetch_array(mysql_query("select max(no) from $t_board"."_$id"));
 	$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where memo='$memo' and no='$max_no[0]'"));
-	if($temp[0]>0) {Error1("같은 내용의 글은 등록할수가 없습니다"); exit; }
+	if($temp[0]>0) Error1("같은 내용의 글은 등록할수가 없습니다");
 }
 
 // 쿠키 설정;;
@@ -695,7 +695,6 @@ if($connect) {
 
 // 보안을 위해 세션변수 삭제
 session_unregister("WRT_SS_VRS");
-session_unregister("WRT_SPM_PWD");
 
 // 페이지 이동
 $view_file =$zb_url."/".$view_target;

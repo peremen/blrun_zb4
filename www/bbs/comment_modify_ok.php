@@ -288,7 +288,7 @@ if($flag != ok) {
 			}
 			// XSS 해킹 이벤트 핸들러 제거
 			$xss_pattern1 = "!(<[^>]*?)on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)([^>]*?)(>)!i";
-			$xss_pattern2 = "!on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)=!i";
+			$xss_pattern2 = "!on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)\s*\=!i";
 			if(preg_match($xss_pattern1,$memo))
 				$memo=preg_replace($xss_pattern1,"\\1\\4",$memo);
 			if(preg_match($xss_pattern2,$memo))
@@ -309,7 +309,8 @@ if($flag != ok) {
 		for($j=0;$j<count($code);$j++) {
 			$pattern1 = "#\[".$code[$j]."\_code\:([0-9]+)\{([^}]*?)\}\]#i";
 			$pattern2 = "#\[\/".$code[$j]."\_code\]#i";
-			if(preg_match($pattern1,$temp[$i])) {
+			// 코드삽입 태그 짝이 발견되면
+			if(preg_match($pattern1,$temp[$i])&&preg_match($pattern2,$temp[$i+2])) {
 				$cnt++;
 				if($code[$j]=="php")
 					$temp[$i]=preg_replace($pattern1,"<pre class=\"brush: $code[$j]; html_script: true; first-line: \\1\" title=\"\\2\">",$temp[$i]);
@@ -323,15 +324,14 @@ if($flag != ok) {
 				$temp[$i+1]=str_replace("my_lt_ek","&amp;lt;",$temp[$i+1]); // &lt 사용!
 				$temp[$i+1]=str_replace("my_gt_ek","&amp;gt;",$temp[$i+1]); // &gt 사용!
 				$temp[$i+1]=str_replace("<","&lt;",$temp[$i+1]);
-				$i+=1;
-			} elseif(preg_match($pattern2,$temp[$i])) {
-				$cnt++;
-				$temp[$i]="</pre>";
+				
+				$temp[$i+2]="</pre>";
+				$i+=2;
 			}
 		}
 		if($cnt==0) {
 			// 위지윅에디터에서 &가 &amp;로 바뀔때 썸네일이 보이지 않는 현상 해결
-			$imagePattern="#<img[^>]*src=[\']?[\"]?([^>\'\"]+)[\']?[\"]?[^>]*>#i";
+			$imagePattern="#<img[^>]*src=[\']?[\"]?([^>]+)[\']?[\"]?[^>]*>#i";
 			preg_match_all($imagePattern,$temp[$i],$img,PREG_SET_ORDER);
 			for($j=0;$j<count($img);$j++)
 				$temp[$i]=str_replace($img[$j][1],str_replace("&amp;","&",$img[$j][1]),$temp[$i]);
@@ -541,12 +541,10 @@ if($flag != ok) {
 		// 페이지 이동
 		if($setup[use_alllist]) movepage("zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&category=$category");
 		else movepage("view.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&category=$category");
-		exit;
 	}
 	else {
 		echo "<script>alert('코멘트 수정실패');</script>";
 		session_unregister("ZBRD_SS_VRS");
-		exit;
 	}
 }
 

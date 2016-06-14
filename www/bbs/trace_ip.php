@@ -10,7 +10,7 @@ if($keyword) {
 	$comment_search=1;
 	$s_que = "";
 	if($keykind) {
-		if(!$s_que) $s_que .= " where $keykind like '%$keyword%' ";
+		if(!$s_que) $s_que .= " where $keykind like '%$keyword%' order by no desc ";
 	}
 	$table_name_result=mysql_query("select name, use_alllist from $admin_table order by name",$connect) or error(mysql_error());
 }

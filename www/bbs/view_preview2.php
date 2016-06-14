@@ -53,7 +53,7 @@ if(!$is_admin&&$setup[grant_html]<$member[level]) {
 		}
 		// XSS 해킹 이벤트 핸들러 제거
 		$xss_pattern1 = "!(<[^>]*?)on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)([^>]*?)(>)!i";
-		$xss_pattern2 = "!on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)=!i";
+		$xss_pattern2 = "!on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)\s*\=!i";
 		if(preg_match($xss_pattern1,$memo))
 			$memo=preg_replace($xss_pattern1,"\\1\\4",$memo);
 		if(preg_match($xss_pattern2,$memo))
@@ -80,10 +80,13 @@ $codePattern = "#(\[[a-z]+[0-9]?\_code\:[0-9]+\{[^}]*?\}\]|[\/[a-z]+[0-9]?\_code
 $temp = preg_split($codePattern,$memo,-1,PREG_SPLIT_DELIM_CAPTURE);
 
 for($i=0;$i<count($temp);$i++) {
+	$cnt=0;
 	for($j=0;$j<count($code);$j++) {
 		$pattern1 = "#\[".$code[$j]."\_code\:([0-9]+)\{([^}]*?)\}\]#i";
 		$pattern2 = "#\[\/".$code[$j]."\_code\]#i";
-		if(preg_match($pattern1,$temp[$i])) {
+		// 코드삽입 태그 짝이 발견되면
+		if(preg_match($pattern1,$temp[$i])&&preg_match($pattern2,$temp[$i+2])) {
+			$cnt++;
 			if($code[$j]=="php")
 				$temp[$i]=preg_replace($pattern1,"<pre class=\"brush: $code[$j]; html_script: true; first-line: \\1\" title=\"\\2\">",$temp[$i]);
 			else
@@ -96,15 +99,12 @@ for($i=0;$i<count($temp);$i++) {
 			$temp[$i+1]=str_replace("my_lt_ek","&amp;lt;",$temp[$i+1]); // &lt 사용!
 			$temp[$i+1]=str_replace("my_gt_ek","&amp;gt;",$temp[$i+1]); // &gt 사용!
 			$temp[$i+1]=str_replace("<","&lt;",$temp[$i+1]);
-			//$temp[$i+1]=str_replace("\'","&#039;",$temp[$i+1]);
-			//$temp[$i+1]=str_replace("\"","&quot;",$temp[$i+1]);
-			$i+=1;
+			
+			$temp[$i+2]="</pre>";
+			$i+=2;
 		}
-		elseif(preg_match($pattern2,$temp[$i])) {
-			$temp[$i]="</pre>";
-		}
-		else $temp[$i]=preg_replace("#delsec#","",$temp[$i]);
 	}
+	if($cnt==0) $temp[$i]=preg_replace("#delsec#i","",$temp[$i]);
 }
 
 $memo="";

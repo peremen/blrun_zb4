@@ -78,7 +78,7 @@ $t_category ="zetyx_board_category"; // 카테고리 테이블
  ******************************************************************************/
 if(!preg_match("/install/i",$PHP_SELF)&&file_exists($_zb_path."myZrCnf2019.php")) {
 
-	//세션 처리 (세션은 3일동안 유효하게 설정)
+	// 세션 디렉토리가 존재하지 않으면 생성 후 777권한 부여
 	if(!is_dir($_zb_path.$_zbDefaultSetup[session_path])) {
 		mkdir($_zb_path.$_zbDefaultSetup[session_path], 0777, true);
 		chmod($_zb_path.$_zbDefaultSetup[session_path], 0777);
@@ -90,7 +90,7 @@ if(!preg_match("/install/i",$PHP_SELF)&&file_exists($_zb_path."myZrCnf2019.php")
 	if(!is_writable($_zb_path.$_zbDefaultSetup[session_path])) error("세션 디렉토리(".$_zb_path.$_zbDefaultSetup[session_path].")의 쓰기 권한이 없습니다<br>제로보드를 사용하기 위해서는 세션디렉토리의 쓰기 권한이 있어야 합니다");
 
 	$_sessionStart = getmicrotime();
-	@session_save_path($_zb_path.$_zbDefaultSetup[session_path]);
+	//@session_save_path($_zb_path.$_zbDefaultSetup[session_path]);
 	@session_cache_limiter('nocache, must_revalidate');
 
 	session_set_cookie_params(0,"/");
