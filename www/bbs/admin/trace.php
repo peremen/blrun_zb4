@@ -84,7 +84,7 @@ if($keyword&&$s_que)
 		if($table_data[use_alllist]) $file="zboard.php"; else $file="view.php";
 
 		// º»¹®
-		$result=mysql_query("select * from $t_board"."_$table_name $s_que", $connect) or error(mysql_error());
+		$result=mysql_query("select * from $t_board"."_$table_name $s_que order by no desc", $connect) or error(mysql_error());
 ?>
 
 <br><br><br>
@@ -109,7 +109,7 @@ if($keyword&&$s_que)
 		/// ÄÚ¸àÆ®
 		if($comment_search)
 		{
-			$result=mysql_query("select * from $t_comment"."_$table_name $s_que", $connect) or error(mysql_error());
+			$result=mysql_query("select * from $t_comment"."_$table_name $s_que order by no desc", $connect) or error(mysql_error());
 ?>
 
 <br><br><br>
