@@ -404,6 +404,7 @@ if($setup[use_comment]) {
 			$result2=@mysql_query("select * from $t_comment"."_$id where no='$c_org'") or error(mysql_error());
 			$o_data=mysql_fetch_array($result2);
 			$_dbTime += getmicrotime()-$_dbTimeStart;
+			$o_data[name]=del_html(str_replace("&rlm;","",$o_data[name]));
 		}
 
 		// 검색어에 해당하는 글자를 빨간색으로 바꾸어줌;;
