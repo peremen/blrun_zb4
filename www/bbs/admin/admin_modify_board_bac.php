@@ -59,7 +59,7 @@ if(!$data[memo_num]) $data[memo_num]=20;
 <!-- 스킨 설정 -->
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>스킨 &nbsp;</td>
-  <td >&nbsp;&nbsp; 
+  <td >&nbsp;&nbsp;
     <select name=skinname>
 <?
 // /skin 디렉토리에서 디렉토리를 구함
@@ -98,7 +98,7 @@ function check2()
 
 <tr height=70 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>스킨 형식 설정 &nbsp;</td>
-  <td>&nbsp;&nbsp; 
+  <td>&nbsp;&nbsp;
 <? unset($check);$check[$data[only_board]]="checked";?>
     <input type=checkbox name=only_board value=1 <?=$check[1]?>> 게시판으로만 사용시 선택하여 주십시요. (스킨처리 속도가 줄어듭니다)<br>
     &nbsp;&nbsp; <input type=button class=input onclick=check1() style=border-color:#b0b0b0;height=18px value="게시판 형태"> 내용이 목록에 나오지 않는 게시판 형태의 스킨
@@ -289,17 +289,17 @@ function check2()
     자동링크 기능 사용
   </td>
 </tr>
-<? 
-if($data[use_showip]) $check="checked"; 
-if(!$data[use_showip]) $image_box_level=1;
-else $image_box_level=$data[use_showip]; 
-?> 
-<tr height=25 bgcolor=#e0e0e0> 
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>Image Box 기능 사용 </td> 
+<?
+if($data[use_showip]) $check="checked"; else $check="";
+if(!$data[use_showip]) $image_box_level=0;
+else $image_box_level=$data[use_showip];
+?>
+<tr height=25 bgcolor=#e0e0e0>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>Image Box 기능 사용 </td>
   <td >&nbsp;&nbsp;
-    <input type=checkbox name=use_showip value='<?=$image_box_level?>' <?echo $check;?>> 
-	Image Box 기능의 사용 유무를 선택 (<font color="#3300FF">현재 지정되어있는 사용자 권한: <b><? echo "$image_box_level" ?>레벨</b> 이상</font>) 
-  </td> 
+    <input type=checkbox name=use_showip value='<?=$image_box_level?>' <?echo $check;?>>
+	Image Box 기능의 사용 유무를 선택 (<font color="#3300FF">현재 지정되어있는 사용자 권한: <b><? echo "$image_box_level" ?>레벨</b> 이상</font>)
+  </td>
 </tr>
 <? if($data[use_comment]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
