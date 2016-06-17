@@ -669,7 +669,7 @@ function get_table_attrib($id) {
 	if($data[table_width]<=100) $data[table_width]=$data[table_width]."%"; 
 
 	// 원래는 IP를 보여주는 기능인데, DB 변경을 피하기 위해서 이미지 박스 사용 권한으로 변경하여 사용
-	if(!$data[use_showip]) $data[use_showip] = 1;
+	if(!$data[use_showip]) $data[use_showip] = 0;
 	$data[grant_imagebox] = $data[use_showip];
 
 	return $data;
