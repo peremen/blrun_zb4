@@ -125,6 +125,12 @@ if($use_html2<2) {
 	$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
 }
 
+// HTML 사용일 경우 현재 회원의 level이 익명사용자/게스트 레벨이라면 style 속성을 제거
+if($use_html2&&$member[level]>8) {
+	$style_pattern = "/(<[^>]*?)style([^>]*?)(>)/i";
+	$memo=preg_replace($style_pattern,"\\1\\3",$memo);
+}
+
 // html 이미지 리사이즈
 $imagePattern = "#<img(.+?)src=([^>]*?)>#i";
 $imagePattern2 = "#<div align=left><img name=zb_target_resize src=\"skin\/f2plus_gallery_3_0\/images\/emoticon\/([^>]*?)><\/div>#i";
