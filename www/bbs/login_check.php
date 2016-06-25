@@ -36,7 +36,7 @@ $member_data = mysql_fetch_array($result);
 // 회원로그인이 성공하였을 경우 세션을 생성하고 페이지를 이동함
 if($member_data[no]) {
 
-	//토큰 초기화
+	// 관리자모드 토큰 초기화
 	$_token2='';
 	session_register("_token2");
 	setCookie("token2","",0,"/","");
