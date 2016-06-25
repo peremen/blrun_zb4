@@ -22,7 +22,7 @@ for($i=0;$i<$_zb_c;$i++) {
 	else $_zboardis = FALSE;
 }
 
-//SyntaxHighlighter 코드 종류 변수
+// SyntaxHighlighter 코드 종류 변수
 $code=array("applescript","as3","bash","cf","csharp","cpp","css","delphi","diff","erl","groovy","js","java","jfx","perl","php","plain","ps","py","ruby","scss","scala","sql","vb","html");
 
 // 리스트 체크 함수 파일 include
@@ -291,7 +291,7 @@ if($id&&!preg_match("/".$id."/i", $s_url)) {
 $s_url = urlencode($s_url);
 
 if(!$member[no]) {
-	//토큰 초기화
+	// 토큰 초기화
 	$_token='';
 	session_register("_token");
 	setCookie("token","",0,"/","");
