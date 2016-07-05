@@ -1,6 +1,7 @@
 <?
-// ÀÚµ¿À¸·Î www ºÙ¿©ÁØ´Ù. 
-if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI); 
+// ÀÚµ¿À¸·Î www ºÙ¿©ÁØ´Ù.
+if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
+include "./bbs/include/get_url.php";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
 <html>
@@ -10,9 +11,9 @@ if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_
 <meta name="description" content="³×Æ¼ÁðÄ®·³¿¡ ¿À½Å °ÍÀ» È¯¿µÇÕ´Ï´Ù...">
 <meta name="keywords" content="³×Æ¼Áð,Ä®·³,Ä®·³´Ï½ºÆ®,ºí·Î±×,ÀÌÀ±Âù,blrun,Èñ¸ÁÀÇºû¢â,³×Æ¼Áð_Èñ¸Á,Æ¯¼ö¹®ÀÚºÒ°¡,°³ÀÎÄ®·³,³×Æ¼ÁðÄ®·³,Ä®·³°Ô½ÃÆÇ,Ä®·³ÀÚ·á½Ç">
 <meta name="viewport" content="width=device-width">
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="image_src" href="/blrun2_fb.jpg">
-<link rel="alternate" type="application/rss+xml" title="³×Æ¼Áð ¼¼»óÀ» À§ÇÏ¿©..." href="http://blrun.net/rss/">
+<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+<link rel="image_src" href="./blrun2_fb.jpg">
+<link rel="alternate" type="application/rss+xml" title="³×Æ¼Áð ¼¼»óÀ» À§ÇÏ¿©..." href="<?=str_replace("www.","",substr(zbUrl(),0,strpos(zbUrl(),"/bbs/")))."/rss/"?>">
 <script type="text/javascript">
 var uAgent = navigator.userAgent;
 if(uAgent.match(/iPhone|iPod|IEMobile|Mobile|lgtelecom|PPC/i))

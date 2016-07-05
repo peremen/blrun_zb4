@@ -52,7 +52,7 @@ $_startTime=getmicrotime();
 /*******************************************************************************
  * 기본 설정 파일을 읽음
  ******************************************************************************/
-include "include/get_url.php";
+include_once "include/get_url.php";
 $_zbDefaultSetup = getDefaultSetup();
 $_zb_url = zbUrl();
 $_zb_path = $config_dir;
@@ -398,7 +398,7 @@ function check_board_master($member, $board_num) {
 //  초기 헤더를 뿌려주는 부분;;;;
 function head($body="",$scriptfile="") {
 
-	global $group, $setup, $dir,$member, $PHP_SELF, $id, $_head_executived, $HTTP_COOKIE_VARS, $width, $_view_included;
+	global $group, $setup, $dir,$member, $PHP_SELF, $id, $_head_executived, $HTTP_COOKIE_VARS, $width, $_view_included, $_zbDefaultSetup;
 
 	if($_head_executived) return;
 	$_head_executived = true;
@@ -425,9 +425,9 @@ function head($body="",$scriptfile="") {
 <title><?=$setup[title]?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <meta name="viewport" content="width=device-width">
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="image_src" href="/blrun2_fb.jpg">
-<link rel="alternate" type="application/rss+xml" title="네티즌 세상을 위하여..." href="http://blrun.net/rss/">
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+<link rel="image_src" href="../blrun2_fb.jpg">
+<link rel="alternate" type="application/rss+xml" title="<?=$_zbDefaultSetup[sitename]?>" href="<?=str_replace("www.","",substr(zbUrl(),0,strpos(zbUrl(),"/bbs/")))."/rss/"?>">
 <link rel=StyleSheet HREF=<?=$stylefile?> type=text/css title=style>
 
 <!-- SyntaxHighlighter 관련 헤더 -->
@@ -489,9 +489,9 @@ var imageBoxHandler;
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <meta name="viewport" content="width=device-width">
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="image_src" href="/blrun2_fb.jpg">
-<link rel="alternate" type="application/rss+xml" title="네티즌 세상을 위하여..." href="http://blrun.net/rss/">
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+<link rel="image_src" href="../blrun2_fb.jpg">
+<link rel="alternate" type="application/rss+xml" title="<?=$_zbDefaultSetup[sitename]?>" href="<?=str_replace("www.","",substr(zbUrl(),0,strpos(zbUrl(),"/bbs/")))."/rss/"?>">
 <link rel=StyleSheet HREF=style.css type=text/css title=style>
 <? if($scriptfile) include "script/".$scriptfile; ?>
 
@@ -572,7 +572,10 @@ addLoadEvent(zb_img_check);
 
 <!-- 접속통계 관련 헤더 -->
 <?
-$target="blrun";
+$_dbTimeStart = getmicrotime();
+$re=mysql_fetch_array(mysql_query("SELECT target from aokio_log_config"));
+$_dbTime += getmicrotime()-$_dbTimeStart;
+$target=$re[0];
 @include "aanalyzer/aokio_analyzer.php";
 ?>
 <script src="aanalyzer/screen.js" type="text/javascript"></script>

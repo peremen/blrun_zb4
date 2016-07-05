@@ -1,7 +1,7 @@
 <!DOCTYPE html>  
 <html>  
 <head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
 <title>XML - 네티즌 세상을 위하여...</title>
 <style type="text/css">
@@ -22,7 +22,8 @@ if(PHP_VERSION>='5')
 	require_once('domxml-php4-to-php5.php');
 
 // Get XML Data
-$url = "http://www.blrun.net/rss/zero_rss.php";
+include_once "../bbs/lib.php";
+$url = substr(zbUrl(),0,strpos(zbUrl(),"/bbs/"))."/rss/zero_rss.php";
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_URL, $url);
 curl_setopt($curl, CURLOPT_HEADER, 0);
@@ -49,7 +50,7 @@ if (!$doc = domxml_open_mem($xml)) {
 			if ($name != "#text") {
 				if($name=="title") {
 					$title1="제목";
-					$new1 = $child->get_content();  
+					$new1 = del_html(str_replace("\"","&quot;",$child->get_content()));
 				}elseif($name=="link") {
 					$title2="URL";
 					$new2 = $child->get_content();
@@ -58,7 +59,7 @@ if (!$doc = domxml_open_mem($xml)) {
 					$new3 = $child->get_content();
 				}elseif($name=="author") {
 					$title4="글쓴이";
-					$new4 = $child->get_content();
+					$new4 = del_html(str_replace("\"","&quot;",$child->get_content()));
 				}elseif($name=="pubDate") {
 					$title5="날짜";
 					$new5 = $child->get_content();
