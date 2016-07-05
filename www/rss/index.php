@@ -25,11 +25,13 @@ if (preg_match("/:\/\//i",$_zb_path) || (preg_match("/\.\./i",$_zb_path))) $_zb_
 *************************************/ 
 //제로보드 주소 끝에 /을 붙이세요.
 //(예제:http://test.com/bbs/)
-$_zb_url = "http://www.blrun.net/bbs/";
+include_once "../bbs/include/get_url.php";
+$_zb_url = zbUrl();
 
 //제로보드 절대경로 끝에 /을 붙이세요.
 //(예제:/home/www/bbs/)
-$_zb_path = "/home/hosting_users/blrun/www/bbs/";
+$main_dir = preg_replace("#index.php#","",realpath(__FILE__));
+$_zb_path = str_replace("/rss/","",$main_dir)."/bbs/";
 
 //홈 타이틀(예:우리집 등등,,,)
 $site_names = "네티즌 세상을 위하여...";
@@ -38,7 +40,7 @@ $site_names = "네티즌 세상을 위하여...";
 $site_names1 = "네티즌칼럼에 오신 것을 환영합니다! 우리 국민 모두가 주인인 세상, 우리 네티즌 모두가 참여하는 진정한 참여민주주의를 실현해 나갑시다. 이곳은 이런 모토에 관심있는 분들, 또 거기에 열성적으로 뜻을 같이할 분들을 위한 공간입니다.";
 
 //홈 주소(예:http://test.com/) 
-$home = "http://www.blrun.net/";
+$home = substr(zbUrl(),0,strpos(zbUrl(),"/bbs/"))."/";
 
 // 이건수정하지 않아도됨. 
 include $_zb_path."_head.php";
@@ -49,7 +51,7 @@ $nos = "100";
 // 배너가 있으면 배너이미지주소를 적어주세요,
 // 적지 않으면 출력안됩니다.(옵션)
 // 예로 http://test.com/banner.gif
-$banner_images = "http://blrun.net/rss/banner1.jpg";
+$banner_images = str_replace("www.","",substr(zbUrl(),0,strpos(zbUrl(),"/bbs/")))."/rss/banner1.jpg";
 // 배너의 가로사이즈
 $width_w = "197";
 // 배너의 세로사이즈 

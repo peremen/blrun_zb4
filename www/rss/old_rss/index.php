@@ -47,8 +47,11 @@
 	마지막으로, 손상모님 감사합니다.
 
 /////////////////////////////////////////////////////////////////*/
-	$_zb_url = "http://www.blrun.net/bbs/";			//	제로보드 주소입니다.
-	$_zb_path = "/home/hosting_users/blrun/www/bbs/";
+	//	제로보드 주소입니다.
+	include_once "../bbs/include/get_url.php";
+	$_zb_url = zbUrl();
+	$main_dir = preg_replace("#index.php#","",realpath(__FILE__));
+	$_zb_path = str_replace("/rss/","",$main_dir)."/bbs/";
 
 	require "./RSSWriter.class.php";
 	include $_zb_path."_head.php";
@@ -66,7 +69,7 @@
 	$des		= "네티즌칼럼에 오신 것을 환영합니다! 우리 국민 모두가 주인인 세상, 우리 네티즌 모두가 참여하는 진정한 참여민주주의를 실현해 나갑시다. 이곳은 이런 모토에 관심있는 분들, 또 거기에 열성적으로 뜻을 같이할 분들을 위한 공간입니다. 본인이 운영하는 블로그나 칼럼이 있으시면 우리모두 서로 공유합시다. 좌우 빈 여백은 그것을 위한 공간입니다. 많은 참여바랍니다. $id 게시판입니다.";						//	해당 게시판의 설명이 들어갑니다.
 	//////////   --- 여기까지 --- //////////////////////
 
-	$id="clmn1";	
+	$id="clmn1"; // 추출할 게시판 id를 적어 줌
 	$sql = "select * from $admin_table where name='$id'";
 	$result = mysql_query($sql,$connect) or die ("SQL Error : ". mysql_error());
 	
@@ -81,10 +84,9 @@
 	$rss->setLastBuildDate(date("Y/m/d H:i:s"));
 	$rss->setWebMaster($webMaster);
 
-	$sql = "select * from $t_board"."_$id where is_secret=0 order by no desc";
+	$sql = "select * from $t_board"."_$id where is_secret=0 order by no desc limit $max_count";
 	$result = mysql_query($sql,$connect) or die ("SQL Error : ". mysql_error());
 
-	$count = 0;
 	while($row = mysql_fetch_array($result)){
 		$file1=""; $file2="";
 		$link = sprintf("$link_root&no=%d" , $row[no]);
@@ -108,9 +110,7 @@
 		// rss의 setItem 인자들
 		//	$title,$link,$description ="",$author = "",$pubDate ="",$category ="",
 		//			$guid ="",$source ="",$comments ="",$enclosure =""
-		$rss->setItem(str_replace("\"","&quot;",$row[subject]),$link,$description,$row[name],date("Y/m/d H:i:s",$row[reg_date]),$cate[name]);
-		if ($count++ > $max_count)
-			break;
+		$rss->setItem(str_replace("\"","&quot;",$row[subject]),$link,$description,del_html(str_replace("\"","&quot;",$row[name])),date("Y/m/d H:i:s",$row[reg_date]),$cate[name]);
 	}
 	
 	$rss->println();

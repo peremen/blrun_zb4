@@ -2,8 +2,10 @@
 // 자동으로 www 붙여준다. 
 if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI); 
 
-$_zb_url = "http://www.blrun.net/bbs/";
-$_zb_path = "/home/hosting_users/blrun/www/bbs/";
+include_once "./bbs/include/get_url.php";
+$_zb_url = zbUrl();
+$main_dir = preg_replace("#main.php#","",realpath(__FILE__));
+$_zb_path = $main_dir."bbs/";
 include $_zb_path."outlogin.php";
 include $_zb_path."latest_gal.php";
 include $_zb_path."latest_skin/bes_latest_skin08/recent_bbs_skin08.php";
@@ -12,11 +14,11 @@ include $_zb_path."latest_skin/bes_latest_scroll/recent_bbs_scroll.php";
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>네티즌 세상을 위하여...</title>
+<title><?=$_zbDefaultSetup[sitename]?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <meta name="viewport" content="width=device-width">
-<link rel="image_src" href="/blrun2_fb.jpg">
-<link rel="alternate" type="application/rss+xml" title="네티즌 세상을 위하여..." href="http://blrun.net/rss/">
+<link rel="image_src" href="./blrun2_fb.jpg">
+<link rel="alternate" type="application/rss+xml" title="<?=$_zbDefaultSetup[sitename]?>" href="<?=str_replace("www.","",substr(zbUrl(),0,strpos(zbUrl(),"/bbs/")))."/rss/"?>">
 </head>
 
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
@@ -64,7 +66,7 @@ include $_zb_path."latest_skin/bes_latest_scroll/recent_bbs_scroll.php";
 </tr>
 <tr>
 	<td colspan="2" height="30">
-		<p style="line-height:100%; margin-top:0; margin-bottom:0;" align="center">&nbsp;<span style="font-family:굴림; font-size:9pt;">CopyRight&copy;<a href="mailto:blrun39@hanafos.com" style="color:black;text-decoration:none;"><b>Y.C.Lee</b></a> All Rights Reserved. Since 2007.12.13.</span>&nbsp;<a href="http://blrun.net/rss/" target="_blank"><img src="/rss/rss2.gif" border="0" align="absmiddle" vspace="5"></a></p>
+		<p style="line-height:100%; margin-top:0; margin-bottom:0;" align="center">&nbsp;<span style="font-family:굴림; font-size:9pt;">CopyRight&copy;<a href="mailto:blrun39@hanafos.com" style="color:black;text-decoration:none;"><b>Y.C.Lee</b></a> All Rights Reserved. Since 2007.12.13.</span>&nbsp;<a href="<?=str_replace("www.","",substr(zbUrl(),0,strpos(zbUrl(),"/bbs/")))."/rss/"?>" target="_blank"><img src="./rss/rss2.gif" border="0" align="absmiddle" vspace="5"></a></p>
 	</td>
 </tr>
 </table>

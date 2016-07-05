@@ -53,7 +53,9 @@ head(" bgcolor=444444 ");
       <td valign="top" colspan="2" align=right>
         <img src=images/t.gif border=0 height=5><br> 
 
-<? if($member[is_admin]==1) {?>
+<? if($member[is_admin]==1) {
+	$re=mysql_fetch_array(mysql_query("SELECT target from aokio_log_config"));
+?>
         <a href=admin_setup_bac.php?exec=uninstall><font color=white style=font-size:9pt onclick="return confirm('제로보드를 제거하시겠습니까?')"><b>Uninstall</b></font></a> &nbsp;|&nbsp;
         <a href=admin_setup_bac.php?exec=db_dump><font color=white style=font-size:9pt onclick="return confirm('백업하시겠습니까?')"><b>DB 백업</b></font></a> &nbsp;|&nbsp;
         <a href=admin_setup_bac.php?exec=db_status><font color=white style=font-size:9pt><b>DB 상태 보기</b></font></a> &nbsp;|&nbsp;
@@ -61,7 +63,7 @@ head(" bgcolor=444444 ");
         <a href=admin/delsession.php target=_blank onclick="return confirm('세션의 양이 많아지면 전체적인 속도가 느려질수 있습니다.\n\n세션 디렉토리를 정리하시겠습니까?')"><font color=white style=font-size:9pt><b>세션 비우기</b></font></a> &nbsp;|&nbsp;
         <a href=admin/trace.php target=_blank><font color=white style=font-size:9pt><b>게시물 추적</b></font></a> &nbsp;|&nbsp;
         <a href=zb4_manual/ target=_blank><font color=white style=font-size:9pt><b>매뉴얼</b></font></a>&nbsp;|&nbsp;
-        <a href=aanalyzer/view.php?id=blrun target=_blank><font color=white style=font-size:9pt><b>접속통계</b></font></a>&nbsp;&nbsp;
+        <a href=aanalyzer/view.php?id=<?=$re[0]?> target=_blank><font color=white style=font-size:9pt><b>접속통계</b></font></a>&nbsp;&nbsp;
 <? } ?>
 
       </td>

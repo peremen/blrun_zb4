@@ -12,7 +12,7 @@ email = blrun@daum.net
 url = http://www.blrun.net/
 
 ; 사이트 이름 (비밀번호 분실시 필요합니다)
-sitename = 희망의빛™님의 홈페이지
+sitename = 네티즌 세상을 위하여...
 
 ; 세션 디렉토리 (기본으로 제로보드의 data/__ZbSessionTMP 디렉토리입니다)
 session_path = data/__zbSessionTMP
