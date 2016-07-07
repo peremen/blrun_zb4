@@ -165,7 +165,7 @@ if($total_comment[0]>0){
 
 <table border=0 cellspacing=0 cellpadding=3 width=<?=$width?> align=center style=table-layout:fixed>
 <TR>
-<TD>&nbsp;<IMG height=30 src=<?=$dir?>/images/sell_foot_line.gif name=zb_target_resize width=612></TD>
+<TD align=left>&nbsp;<IMG height=30 src=<?=$dir?>/images/sell_foot_line.gif name=zb_target_resize width=612></TD>
 </TR>
 <TR>
 <TD><DIV style="MARGIN: 5pt; LINE-HEIGHT: 17pt" align=justify>&nbsp;&nbsp;<IMG height=11 src=<?=$dir?>/images/sell_foot_bt.gif width=12>배송지역 : 전국<BR>&nbsp;&nbsp;<IMG height=11 src=<?=$dir?>/images/sell_foot_bt.gif width=12>미국 직배송 상품으로 받아보시는데 7일에서 최고 15일 이내 소요</DIV></TD>
