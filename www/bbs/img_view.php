@@ -2,7 +2,7 @@
 @header("Content-Type: text/html; charset=ks_c_5601-1987");
 @extract($HTTP_GET_VARS);
 
-$img=str_replace('%2F', '/', urlencode("/bbs/".$img));
+$img=str_replace('%2F', '/', urlencode("./".$img));
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">

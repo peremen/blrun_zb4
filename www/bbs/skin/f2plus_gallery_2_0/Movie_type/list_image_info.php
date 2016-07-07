@@ -47,7 +47,7 @@ if($Thumbnail_use=="on"){
 		}
 
 	}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name1])){
-		$src_img1=str_replace("%2F", "/", urlencode($data[file_name1]));
+		$src_img1=$data[file_name1];
 		$thumb_img1=$src_img1;
 	}elseif(preg_match("#\.(gif|bmp)$#i",$out[0][1].".".$out[0][2])) {
 		$src_img1="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
@@ -94,7 +94,7 @@ if($Thumbnail_use=="on"){
 		}
 
 	}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name2])){
-		$src_img2=str_replace("%2F", "/", urlencode($data[file_name2]));
+		$src_img2=$data[file_name2];
 		$thumb_img2=$src_img2;
 	}elseif(preg_match("#\.(gif|bmp)$#i",$out[1][1].".".$out[1][2])) {
 		$src_img2="icon/member_image_box/".$data[ismember]."/".$out[1][1].".".$out[1][2];
@@ -110,12 +110,12 @@ if($Thumbnail_use=="on"){
 
 	if($thumb_img1){
 		$img_tag=$src_img1;
-		$img_info=@getImageSize(urldecode($src_img1));
+		$img_info=@getImageSize($src_img1);
 		$thumb_img=$thumb_img1;            //리스트 메인에서 보여질 75 X 56 사이즈의 썸네일
 	}                                                       //리스트 메인에서는 첫번째 파일의 썸네일만 보여짐
 	elseif($thumb_img2){   //업로드 이미지 2번 파일만 있을때
 		$img_tag=$src_img2;
-		$img_info=@getImageSize(urldecode($src_img2));
+		$img_info=@getImageSize($src_img2);
 		$thumb_img=$thumb_img2;
 	}
 	else{                                // 업로드 이미지 파일이 없을때
@@ -123,8 +123,6 @@ if($Thumbnail_use=="on"){
 		$thumb_img=$dir."/no_image.gif";     //없을경우 미리 지정된 이미지 파일 사용.변경하셔두 됩니다.
 		$img_info=@getImageSize($thumb_img);
 	}
-
-	$img_tag=str_replace("%2F", "/", urlencode($img_tag));
 
 	if($img_show=="on"){
 		$view_img="<a onclick=window.open('$dir/img_view.php?img=$img_tag&width=".($img_info[0]+10)."&height=".($img_info[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";

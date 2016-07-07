@@ -71,7 +71,7 @@ if($Thumbnail_use=="on"){
 
 	}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name1])){
 		$file1_check=1;
-		$src_img1=str_replace("%2F", "/", urlencode($data[file_name1]));
+		$src_img1=$data[file_name1];
 		$thumb_img1=$src_img1;
 		$thumb_img12=$src_img1;
 	}elseif(preg_match("#\.(gif|bmp)$#i",$out[0][1].".".$out[0][2])) {
@@ -166,7 +166,7 @@ if($Thumbnail_use=="on"){
 			$thumb_img22="";
 		}
 	}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name2])){
-		$src_img2=str_replace("%2F", "/", urlencode($data[file_name2]));
+		$src_img2=$data[file_name2];
 		$thumb_img2=$src_img2;
 		$thumb_img22=$src_img2;
 	}elseif($file1_check==1 && preg_match("#\.(gif|bmp)$#i",$out[0][1].".".$out[0][2])) {
@@ -219,7 +219,7 @@ if($Thumbnail_use=="on"){
 		$source_img=$ran_img2[2];
 	}
 
-    $img_info=@getimagesize(urldecode($source_img));
+    $img_info=@getimagesize($source_img);
 
 	$view_img="<span style=\"cursor:pointer\" onClick='transimg(\"image\",\"$img_tag\")'>";
 	$full_img="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=".($img_info[0]+10)."&height=".($img_info[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') onfocus=this.blur(); class=shadow style=cursor:pointer>";

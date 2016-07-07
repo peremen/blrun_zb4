@@ -3,7 +3,7 @@
 @extract($HTTP_GET_VARS);
 
 if(!preg_match("#http[s]?:\/\/#i",$img))
-	$img=str_replace('%2F', '/', urlencode("/bbs/".$img));
+	$img=str_replace('%2F', '/', urlencode("../../".$img));
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
