@@ -59,7 +59,7 @@ if(!$data[memo_num]) $data[memo_num]=20;
 <!-- 스킨 설정 -->
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>스킨 &nbsp;</td>
-  <td >&nbsp;&nbsp;
+  <td>&nbsp;&nbsp;
     <select name=skinname>
 <?
 // /skin 디렉토리에서 디렉토리를 구함
@@ -162,7 +162,7 @@ function check2()
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 상단에&nbsp;<br>불러올 파일&nbsp;</td>
-  <td >&nbsp;&nbsp; <input type=text name=header_url value='<?echo stripslashes($data[header_url]);?>' size=40 maxlength=255 class=input style=width:95%;border-color:#b0b0b0>
+  <td>&nbsp;&nbsp; <input type=text name=header_url value='<?echo stripslashes($data[header_url]);?>' size=40 maxlength=255 class=input style=width:95%;border-color:#b0b0b0>
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
@@ -359,7 +359,7 @@ else $image_box_level=$data[use_showip];
 </tr>
 <!-- Submit  -->
 <tr height=30 bgcolor=#ffffff>
-  <td colspan=2 align=right ><img src=images/t.gif height=5><br>
+  <td colspan=2 align=right><img src=images/t.gif height=5><br>
     <input type=image border=0 src=images/button_confirm.gif accesskey="s"> &nbsp;
     <img src=images/button_cancel.gif border=0 onClick=reset() style=cursor:hand>&nbsp;&nbsp;&nbsp;
   </td>
