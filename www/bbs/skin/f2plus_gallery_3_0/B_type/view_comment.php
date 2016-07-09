@@ -7,10 +7,10 @@ $a_del=str_replace("del_comment.php?","del_comment.php?_zb_url=$zb_url/&_zb_path
 <table id=comment_<?=$c_data[no]?> border=0 width=<?=$width?> cellspacing=0 cellpadding=0 style=table-layout:fixed>
 <tr><td>
 <a name="<?=$c_data[no]?>">
-<table border=0 width=<?=$width?> cellspacing=0 cellpadding=3 align=center style=table-layout:fixed>
+<table border=0 width=<?=$width?> cellspacing=0 cellpadding=0 align=center style=table-layout:fixed>
 <col width=10></col><col width=></col><col width=10></col>
 <tr valign=top>
-	<td background=<?=$dir?>/images/cc_head_bg1.gif></td>
+	<td height=9 background=<?=$dir?>/images/cc_head_bg1.gif></td>
 	<td background=<?=$dir?>/images/cc_head_bg2.gif></td>
 	<td background=<?=$dir?>/images/cc_head_bg3.gif></td>
 </tr>
@@ -41,10 +41,10 @@ $a_del=str_replace("del_comment.php?","del_comment.php?_zb_url=$zb_url/&_zb_path
 </tr>
 </table>
 </a>
-<table border=0 width=<?=$width?> cellspacing=0 cellpadding=3 align=center style=table-layout:fixed>
+<table border=0 width=<?=$width?> cellspacing=0 cellpadding=0 align=center style=table-layout:fixed>
 <col width=10></col><col width=></col><col width=70%></col><col width=10></col>
 <tr valign=bottom>
-	<td background=<?=$dir?>/images/cc_foot_bg1.gif height=45></td>
+	<td background=<?=$dir?>/images/cc_foot_bg1.gif height=9></td>
 	<td background=<?=$dir?>/images/cc_foot_bg2.gif align=left valign=top><BR><img src=images/t.gif height=4><BR><?=$c_face_image?> <font class=thm7pt><?=$comment_name?>&nbsp;</font><?=$a_comm_r?><img src=<?=$dir?>/reply.gif border=0 align=absmiddle></a></td>
 	<td background=<?=$dir?>/images/cc_foot_bg2.gif align=right><font class=com5><?=$show_comment_ip?></font><BR><img src=<?=$dir?>/images/t.gif height=7 align=absmiddle><BR><font class=com3><img src=<?=$dir?>/images/c_date.gif border=0 align=absmiddle> <?=date("Y-m-d",$c_data[reg_date])?>&nbsp;<?=date("H:i:s",$c_data[reg_date])?>&nbsp;</font> <?=$a_edit2?><img src=<?=$dir?>/images/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/images/edit.gif border=0 valign=absmiddle></a><font style=font-family:tahoma;color:f1f1f1;font-size:7pt><?=$a_del?><img id=deleteButton_<?=$c_data[no]?> src=<?=$dir?>/images/c_del.gif border=0 align=top></a></font></td>
 	<td background=<?=$dir?>/images/cc_foot_bg3.gif align=left></td>

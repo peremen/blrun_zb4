@@ -7,7 +7,7 @@ if (!$connect) $connect=dbconn();
 $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no=$data[ismember]"));
 ?>
 
-<table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed>
+<table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> align=center style=table-layout:fixed>
 <col width=5></col><col width=></col><col width=13></col>
 <tr align=left valign="middle" height=35>
 	<td align=left class=title1></td>

@@ -20,7 +20,7 @@
 	<td background=<?=$dir?>/images/c_middle_bg2.gif></td>
 </tr>
 </table>
-<table border=0 width=<?=$width?> cellspacing=0 cellpadding=3 align=center style=table-layout:fixed>
+<table border=0 width=<?=$width?> cellspacing=0 cellpadding=0 align=center style=table-layout:fixed>
 <col width=10></col><col width=></col><col width=200></col><col width=10></col>
 <tr valign=bottom height=9>
 	<td background=<?=$dir?>/images/c_foot_bg1-1.gif></td>

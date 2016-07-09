@@ -35,13 +35,13 @@ if(!$data[memo_num]) $data[memo_num]=20;
 <tr height=1><td bgcolor=#000000 style=padding:0px; colspan=2><img src=images/t.gif height=1></td>
 </tr>
 <tr height=30 bgcolor=white>
-  <td align=right colspan=8 style=font-family:Tahoma;font-size:9pt;>
+  <td align=right colspan=2 style=font-family:Tahoma;font-size:9pt;>
     그룹이름 : <b><?=$group_data[name]?></b> , 게시판 이름 : <b><a href=zboard.php?id=<?=$data[name]?> target=_blank><?=$data[name]?></a></b> &nbsp;&nbsp;&nbsp;
     <input type=button value='카테고리관리' class=input style=width=100px onclick=location.href="<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&exec2=category&no=<?=$no?>&page=<?=$page?>&page_num=<?=$page_num?>">
     <input type=button value='권한설정' class=input style=width=100px onclick=location.href="<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&exec2=grant&no=<?=$no?>&page=<?=$page?>&page_num=<?=$page_num?>"> &nbsp;&nbsp;&nbsp;
   </td>
 </tr>
-<tr height=1><td bgcolor=#000000 style=padding:0px; colspan=10><img src=images/t.gif height=1></td>
+<tr height=1><td bgcolor=#000000 style=padding:0px; colspan=2><img src=images/t.gif height=1></td>
 </tr>
 <form method=post action=<?=$PHP_SELF?> name=write onsubmit="return check_submit();">
 <input type=hidden name=no value=<?echo $data[no];?>>
@@ -108,101 +108,101 @@ function check2()
   </td>
 </tr>
 <!-- 게시판 속성 설정  -->
-<tr height=25 bgcolor=bbbbbb><td  colspan=2  align=center  style=font-family:Tahoma;font-size:9pt;><b>기본 설정</b></td>
+<tr height=25 bgcolor=bbbbbb><td colspan=2 align=center style=font-family:Tahoma;font-size:9pt;><b>기본 설정</b></td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>배경 그림 &nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=text  name=bg_image value='<?echo $data[bg_image];?>' size=50 maxlength=255 class=input style=width:95%;border-color:#b0b0b0>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>배경 그림 &nbsp;</td>
+  <td>&nbsp;&nbsp;
+    <input type=text name=bg_image value='<?echo $data[bg_image];?>' size=50 maxlength=255 class=input style=width:95%;border-color:#b0b0b0>
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>배경 색상 &nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=text  name=bg_color value='<?echo $data[bg_color];?>' size=20 maxlength=255 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>배경 색상 &nbsp;</td>
+  <td>&nbsp;&nbsp;
+    <input type=text name=bg_color value='<?echo $data[bg_color];?>' size=20 maxlength=255 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 가로 크기 &nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=text  name=table_width value='<?echo $data[table_width];?>' size=4 maxlength=4 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 가로 크기 &nbsp;</td>
+  <td>&nbsp;&nbsp;
+    <input type=text name=table_width value='<?echo $data[table_width];?>' size=4 maxlength=4 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
     게시판 가로크기 (100이하이면 %로 설정)
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>목록에서 제목 글자 제한&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=text  name=cut_length value='<?echo $data[cut_length];?>' size=11 maxlength=11 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>목록에서 제목 글자 제한&nbsp;</td>
+  <td>&nbsp;&nbsp;
+    <input type=text name=cut_length value='<?echo $data[cut_length];?>' size=11 maxlength=11 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
     지정된 길이 이상의 제목글은 ... 로 나머지 표시 (0:사용안함)
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>페이지당 목록 수&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=text  name=memo_num value='<?echo $data[memo_num];?>' size=3 maxlength=3 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>페이지당 목록 수&nbsp;</td>
+  <td>&nbsp;&nbsp;
+    <input type=text name=memo_num value='<?echo $data[memo_num];?>' size=3 maxlength=3 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
     한페이지당 출력될 목록의 수 (1~999)
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>페이지 표시 수&nbsp;</td>
-  <td >&nbsp;&nbsp;
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>페이지 표시 수&nbsp;</td>
+  <td>&nbsp;&nbsp;
     <input type=text name=page_num value='<?echo $data[page_num];?>' size=3 maxlength=3 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
     목록의 아래부분에 표시될 페이지의 갯수 (1~999)
   </td>
 </tr>
 <!-- 헤더, 푸터  -->
-<tr height=25 bgcolor=bbbbbb><td colspan=2  align=center  style=font-family:Tahoma;font-size:9pt;><b>게시판 상, 하단에 표시될 내용 설정</td>
+<tr height=25 bgcolor=bbbbbb><td colspan=2 align=center style=font-family:Tahoma;font-size:9pt;><b>게시판 상, 하단에 표시될 내용 설정</td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>타이틀 지정&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>타이틀 지정&nbsp;</td>
   <td height=40>&nbsp;&nbsp;
-    <input type=text  name=title value='<?echo stripslashes($data[title]);?>' size=20 maxlength=250 class=input style=width:95%;border-color:#b0b0b0><br>
+    <input type=text name=title value='<?echo stripslashes($data[title]);?>' size=20 maxlength=250 class=input style=width:95%;border-color:#b0b0b0><br>
 	&nbsp;&nbsp; 브라우저 상단의 타이틀을 지정
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>게시판 상단에&nbsp;<br>불러올 파일&nbsp;</td>
-  <td >&nbsp;&nbsp; <input type=text  name=header_url value='<?echo stripslashes($data[header_url]);?>' size=40 maxlength=255 class=input style=width:95%;border-color:#b0b0b0>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 상단에&nbsp;<br>불러올 파일&nbsp;</td>
+  <td >&nbsp;&nbsp; <input type=text name=header_url value='<?echo stripslashes($data[header_url]);?>' size=40 maxlength=255 class=input style=width:95%;border-color:#b0b0b0>
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>게시판 상단에&nbsp;<br>출력할 내용&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <textarea name=header cols=70 rows=10 class=textarea style=width:95%;border-color:b0b0b0><?echo stripslashes($data[header]);?></textarea>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 상단에&nbsp;<br>출력할 내용&nbsp;</td>
+  <td>&nbsp;&nbsp;
+    <textarea name=header cols=70 rows=10 class=textarea style=width:95%;border-color:#b0b0b0><?echo stripslashes($data[header]);?></textarea>
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 하단에&nbsp;<br>불러올 파일&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=text  name=footer_url value='<?echo stripslashes($data[footer_url]);?>' size=40 maxlength=255 class=input style=width:95%;border-color:#b0b0b0> &nbsp;&nbsp;
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 하단에&nbsp;<br>불러올 파일&nbsp;</td>
+  <td>&nbsp;&nbsp;
+    <input type=text name=footer_url value='<?echo stripslashes($data[footer_url]);?>' size=40 maxlength=255 class=input style=width:95%;border-color:#b0b0b0> &nbsp;&nbsp;
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 하단에&nbsp;<br>출력할 내용&nbsp;</td>
-  <td >&nbsp;&nbsp;
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 하단에&nbsp;<br>출력할 내용&nbsp;</td>
+  <td>&nbsp;&nbsp;
     <textarea name=footer cols=70 rows=10 class=textarea style=width:95%;border-color:#b0b0b0><?echo stripslashes($data[footer]);?></textarea>
   </td>
 </tr>
 <!-- 기능 선택  -->
-<tr height=25 bgcolor=#bbbbbb><td colspan=2  align=center  style=font-family:Tahoma;font-size:9pt;><b>추가 기능 설정</b></td></tr>
+<tr height=25 bgcolor=#bbbbbb><td colspan=2 align=center style=font-family:Tahoma;font-size:9pt;><b>추가 기능 설정</b></td></tr>
 <? unset($check);$check[$data[use_alllist]]="checked";?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>전체 목록 출력&nbsp;<br>(글내용 보기)&nbsp;</td>
-  <td >&nbsp;&nbsp;
+  <td>&nbsp;&nbsp;
     <input type=checkbox name=use_alllist value='1' <?echo $check[1];?>> 글내용볼때 아래에 전체 리스트 기능&nbsp;
   </td>
 </tr>
 <? unset($check);$check[$data[use_category]]="checked";?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>카테고리 사용&nbsp;</td>
-  <td >&nbsp;&nbsp;
+  <td>&nbsp;&nbsp;
     <input type=checkbox name=use_category value='1' <?echo $check[1];?>> 카테고리 기능사용 &nbsp;
   </td>
 </tr>
 <? unset($check);$check[$data[use_html]]="checked";?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>HTML 사용여부&nbsp;</td>
-  <td >&nbsp;&nbsp;
+  <td>&nbsp;&nbsp;
     <input type=radio name=use_html value='0' <?echo $check[0];?>> 모두막기 &nbsp;
     <input type=radio name=use_html value='1' <?echo $check[1];?>> 부분허용 &nbsp;
     <input type=radio name=use_html value='2' <?echo $check[2];?>> 모두허용 &nbsp;
@@ -211,81 +211,81 @@ function check2()
 <? unset($check);if($data[use_showreply]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>답변글을 목록에 출력&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=checkbox  name=use_showreply value='1' <?echo $check;?>> 답글보여주기
+  <td>&nbsp;&nbsp;
+    <input type=checkbox name=use_showreply value='1' <?echo $check;?>> 답글보여주기
   </td>
 </tr>
 <? if($data[use_filter]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>불량단어 필터링 사용&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=checkbox  name=use_filter value='1' <?echo $check;?>>
+  <td>&nbsp;&nbsp;
+    <input type=checkbox name=use_filter value='1' <?echo $check;?>>
     욕/비방글등에 대한 필터기능 사용
   </td>
 </tr>
 <? if($data[use_status]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>미리보기 기능&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=checkbox  name=use_status value='1' <?echo $check;?>>
+  <td>&nbsp;&nbsp;
+    <input type=checkbox name=use_status value='1' <?echo $check;?>>
 	미리보기 기능 사용 (제목에 간단하게 내용 요약 나오는 기능)
   </td>
 </tr>
 <? if($data[use_homelink]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>관련 사이트 링크 #1&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=checkbox  name=use_homelink value='1' <?echo $check;?>>
+  <td>&nbsp;&nbsp;
+    <input type=checkbox name=use_homelink value='1' <?echo $check;?>>
     링크 기능 사용
   </td>
 </tr>
 <? if($data[use_filelink]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>관련 사이트 링크 #2&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=checkbox  name=use_filelink value='1' <?echo $check;?>>
+  <td>&nbsp;&nbsp;
+    <input type=checkbox name=use_filelink value='1' <?echo $check;?>>
     링크 기능 사용
   </td>
 </tr>
 <? if($data[use_pds]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>자료실 기능&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=checkbox  name=use_pds value='1' <?echo $check;?>>
+  <td>&nbsp;&nbsp;
+    <input type=checkbox name=use_pds value='1' <?echo $check;?>>
     자료실 기능 사용
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>첨부파일 #1의&nbsp;<Br>허용 확장자&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=text  name=pds_ext1 value='<?echo stripslashes($data[pds_ext1]);?>' size=50 maxlength=250 class=input style=width:95%;border-color:#b0b0b0><br>&nbsp;&nbsp; 1번 업로드 가능 확장자 지정 (공백시 검사하지않음. 쉼표(,)로 구분)
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>첨부파일 #1의&nbsp;<Br>허용 확장자&nbsp;</td>
+  <td>&nbsp;&nbsp;
+    <input type=text name=pds_ext1 value='<?echo stripslashes($data[pds_ext1]);?>' size=140 maxlength=250 class=input style=border-color:#b0b0b0><br>&nbsp;&nbsp; 1번 업로드 가능 확장자 지정 (공백시 검사하지않음. 쉼표(,)로 구분)
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>첨부파일 #2의&nbsp;<br>허용 확장자&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=text  name=pds_ext2 value='<?echo stripslashes($data[pds_ext2]);?>' size=50 maxlength=250 class=input style=width:95%;border-color:#b0b0b0><br>&nbsp;&nbsp; 2번 업로드 가능 확장자 지정 (공백시 검사하지않음. 쉼표(,)로 구분)
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>첨부파일 #2의&nbsp;<br>허용 확장자&nbsp;</td>
+  <td>&nbsp;&nbsp;
+    <input type=text name=pds_ext2 value='<?echo stripslashes($data[pds_ext2]);?>' size=140 maxlength=250 class=input style=border-color:#b0b0b0><br>&nbsp;&nbsp; 2번 업로드 가능 확장자 지정 (공백시 검사하지않음. 쉼표(,)로 구분)
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>최고 업로드 가능 용량&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=text name=max_upload_size value="<?=$data[max_upload_size]?>" size=10  class=input style=border-color:#b0b0b0> byte &nbsp;&nbsp; (최고한도 : <?echo get_cfg_var("upload_max_filesize"); ?> byte)
+  <td>&nbsp;&nbsp;
+    <input type=text name=max_upload_size value="<?=$data[max_upload_size]?>" size=10 class=input style=border-color:#b0b0b0> byte &nbsp;&nbsp; (최고한도 : <?echo get_cfg_var("upload_max_filesize"); ?> byte)
   </td>
 </tr>
 <? if($data[use_cart]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>바구니 기능&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=checkbox  name=use_cart value='1' <?echo $check;?>>
+  <td>&nbsp;&nbsp;
+    <input type=checkbox name=use_cart value='1' <?echo $check;?>>
     바구니 기능 사용
   </td>
 </tr>
 <? if($data[use_autolink]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>자동링크 기능&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=checkbox  name=use_autolink value='1' <?echo $check;?>>
+  <td>&nbsp;&nbsp;
+    <input type=checkbox name=use_autolink value='1' <?echo $check;?>>
     자동링크 기능 사용
   </td>
 </tr>
@@ -296,7 +296,7 @@ else $image_box_level=$data[use_showip];
 ?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>Image Box 기능 사용 </td>
-  <td >&nbsp;&nbsp;
+  <td>&nbsp;&nbsp;
     <input type=checkbox name=use_showip value='<?=$image_box_level?>' <?echo $check;?>>
 	Image Box 기능의 사용 유무를 선택 (<font color="#3300FF">현재 지정되어있는 사용자 권한: <b><? echo "$image_box_level" ?>레벨</b> 이상</font>)
   </td>
@@ -304,30 +304,30 @@ else $image_box_level=$data[use_showip];
 <? if($data[use_comment]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>간단한 답글 기능&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=checkbox  name=use_comment value='1' <?echo $check;?>>
+  <td>&nbsp;&nbsp;
+    <input type=checkbox name=use_comment value='1' <?echo $check;?>>
     간단한 답글 기능 사용
   </td>
 </tr>
 <? if($data[use_formmail]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>글쓴이 서브메뉴 사용&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=checkbox  name=use_formmail value='1' <?echo $check;?>>
+  <td>&nbsp;&nbsp;
+    <input type=checkbox name=use_formmail value='1' <?echo $check;?>>
 	허용시 글쓴이의 이름 클릭시 서브 레이어 메뉴 표시
   </td>
 </tr>
 <? if($data[use_secret]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>비밀글 사용&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=checkbox  name=use_secret value='1' <?echo $check;?>>
+  <td>&nbsp;&nbsp;
+    <input type=checkbox name=use_secret value='1' <?echo $check;?>>
     비밀글 기능사용. 관리자와 비번 아는 사람만 볼수 있음
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>불량단어 등록 &nbsp;</td>
-  <td >&nbsp;&nbsp;
+  <td>&nbsp;&nbsp;
     <textarea name=filter cols=70 rows=6 class=textarea style=width:95%;border-color:#b0b0b0><?=stripslashes($data[filter])?></textarea><br> &nbsp;&nbsp;
     불량단어 필터링 목록입니다. <b>, (콤마)</b> 로 연결하세요
 <? if($member[is_admin]==1||$member[is_admin]==2){ ?>
@@ -337,7 +337,7 @@ else $image_box_level=$data[use_showip];
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>허용할 HTML태그&nbsp;</td>
-  <td >&nbsp;&nbsp;
+  <td>&nbsp;&nbsp;
     <textarea name=avoid_tag cols=70 rows=6 class=textarea style=width:95%;border-color:#b0b0b0><?=stripslashes($data[avoid_tag])?></textarea><br> &nbsp;&nbsp; HTML을 부분허용했을때 허용하여 주는 태그입니다.<br>
     &nbsp;&nbsp; &lt;,&gt;를 뺀 태그 이름만을 입력하세요.<br>
     &nbsp;&nbsp; <b>, (콤마)</b> 로 연결하세요. <font color="#3300FF"><b>iframe</b> 태그는 보안상 입력하지 마십시요!</font>
@@ -348,7 +348,7 @@ else $image_box_level=$data[use_showip];
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>IP 차단&nbsp;</td>
-  <td >&nbsp;&nbsp;
+  <td>&nbsp;&nbsp;
     <textarea name=avoid_ip cols=70 rows=4 class=textarea style=width:95%;border-color:#b0b0b0><?=stripslashes($data[avoid_ip])?></textarea>
 	<br> &nbsp;&nbsp; 차단을 원하는 특정 아이피가 있을때 등록하세요.&nbsp;&nbsp; <b>, (콤마)</b> 로 연결하세요
 	<br> &nbsp;&nbsp; 만약 123.456.789.* 등 123.456.789로 시작하는 IP 차단을 원하시면 123.456.789 만 적어주시면 됩니다
