@@ -17,7 +17,7 @@ function zb_formresize(obj) {
 }
 //-->
 </SCRIPT><br><br>
-<table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed>
+<table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> align=center style=table-layout:fixed>
 <col width=5></col><col width=></col><col width=13></col>
 <tr align=left valign="middle" height=35>
 	<td class=title1></td>

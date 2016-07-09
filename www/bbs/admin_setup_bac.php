@@ -175,7 +175,7 @@ if($member[is_admin]==1) {
    
 		echo "
     </table>
-		"; 
+"; 
 	} 
 } 
 
