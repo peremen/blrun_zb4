@@ -34,20 +34,20 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 			<col width=100%></col><?if($hide_name!="on"){?><? if($browser=="1"){ ?><col width=100></col><? } ?><?}?><?if($hide_date!="on"){?><? if($browser=="1"){ ?><col width=65></col><? } ?><?}?><?if($hide_vote!="on"){?><? if($browser=="1"){ ?><col width=35></col><? } ?><?}?><?if($hide_hit!="on"){?><? if($browser=="1"){ ?><col width=50></col><? } ?><?}?>
 
 			<tr>
-				<td align=left style=padding-bottom:5px nowrap><div style="overflow:hidden"><?=$hide_cart_start?><input type=checkbox name=cart value="<?=$data[no]?>"><?=$hide_cart_end?>&nbsp;&nbsp;<img src=<?=$dir?>/notice_fr2.gif align=absmiddle border=0>&nbsp;<?=$insert?><B><?=$subject?></B><?=$comment_new?></div></td>
+				<td align=left style=padding-bottom:7px nowrap><div style="overflow:hidden"><?=$hide_cart_start?><input type=checkbox name=cart value="<?=$data[no]?>"><?=$hide_cart_end?>&nbsp;&nbsp;<img src=<?=$dir?>/notice_fr2.gif align=absmiddle border=0>&nbsp;<?=$insert?><B><?=$subject?></B><?=$comment_new?></div></td>
 
-				<?if($hide_name!="on"){?><? if($browser=="1"){ ?><td nowrap align=center style=padding-bottom:5px><div style="overflow:hidden"><nobr><?=$face_image?><?=$name?></nobr></div></td><? } ?><?}?>
+				<?if($hide_name!="on"){?><? if($browser=="1"){ ?><td nowrap align=center style=padding-bottom:7px><div style="overflow:hidden"><nobr><?=$face_image?><?=$name?></nobr></div></td><? } ?><?}?>
 
-				<?if($hide_date!="on"){?><? if($browser=="1"){ ?><td nowrap class=list_eng align=center><?=$reg_date?></td><? } ?><?}?>
+				<?if($hide_date!="on"){?><? if($browser=="1"){ ?><td nowrap class=list_eng align=center style=padding-bottom:7px><?=$reg_date?></td><? } ?><?}?>
 
-				<?if($hide_vote!="on"){?><? if($browser=="1"){ ?><td nowrap class=list_eng align=center><?=$vote?></td><? } ?><?}?>
+				<?if($hide_vote!="on"){?><? if($browser=="1"){ ?><td nowrap class=list_eng align=center style=padding-bottom:7px><?=$vote?></td><? } ?><?}?>
 
-				<?if($hide_hit!="on"){?><? if($browser=="1"){ ?><td nowrap class=list_eng align=center><?=$hit?></td><? } ?><?}?>
+				<?if($hide_hit!="on"){?><? if($browser=="1"){ ?><td nowrap class=list_eng align=center style=padding-bottom:7px><?=$hit?></td><? } ?><?}?>
 
 			</tr>
 			<tr valign=bottom>
 				<td align=left style=padding-bottom:4px><div style="overflow:hidden"><nobr><font style=color:ffffff>&nbsp;&nbsp;&nbsp;<? if(!$data[is_secret]) echo del_html(substr($_name1[0],0,400)); else echo "비밀글입니다"; ?></font></nobr></div></td>
-				<?if($hide_name!="on"){?><? if($browser=="1"){ ?><td align=center class=com7 style=padding-bottom:2px><div style="overflow:hidden"><img src=<?=$dir?>/point.gif align=absmiddle>&nbsp;<?=($m_data[point1]*10+$m_data[point2])?></div></td><? } ?><?}?>
+				<?if($hide_name!="on"){?><? if($browser=="1"){ ?><td align=center class=com7 style=padding-bottom:4px><div style="overflow:hidden"><img src=<?=$dir?>/point.gif align=absmiddle>&nbsp;<?=($m_data[point1]*10+$m_data[point2])?></div></td><? } ?><?}?>
 
 				<?if($hide_date!="on"){?><? if($browser=="1"){ ?><td align=center style=padding-bottom:4px><font class=com7 color=#aaaaaa><?=date("H:i:s",$data[reg_date])?></font></td><? } ?><?}?>
 
