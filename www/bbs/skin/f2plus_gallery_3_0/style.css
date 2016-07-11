@@ -19,11 +19,11 @@ select,option {background-color:#FFFFFF; font-family:µ¸¿ò; font-size:9pt; color:
 
 .textarea {border:solid 1;border-color:#cccccc;font-size:10pt;color:#302404;background-color:#ffffff;background-image: url(images/textarea_bgline.gif); background-repeat-y;}
 .input {height:19px; border:1px solid #C4C4C4; background-color:#FFFFFF; font-family:µ¸¿ò; font-size:9pt; color:#444444; letter-spacing:normal; line-height:120%;}
-.submit {height:19px; border:1px solid #CCCCCC; background-color:#FFFFFF; background-image:url(images/sw_a_sback.gif); background-repeat:repeat-x; font-family:µ¸¿ò; font-size:9pt; color:#777777; letter-spacing:normal; line-height:140%; cursor:hand;}
-.button {height:19px; border:1px solid #CCCCCC; background-color:#FFFFFF; background-image:url(images/sw_a_sback.gif); background-repeat:repeat-x; font-family:µ¸¿ò; font-size:9pt; color:#777777; letter-spacing:normal; line-height:140%; cursor:hand;}
+.submit {height:19px; border:1px solid #CCCCCC; background-color:#FFFFFF; background-image:url(images/sw_a_sback.gif); background-repeat:repeat-x; font-family:µ¸¿ò; font-size:9pt; color:#777777; letter-spacing:normal; line-height:140%; cursor:pointer;}
+.button {height:19px; border:1px solid #CCCCCC; background-color:#FFFFFF; background-image:url(images/sw_a_sback.gif); background-repeat:repeat-x; font-family:µ¸¿ò; font-size:9pt; color:#777777; letter-spacing:normal; line-height:140%; cursor:pointer;}
 .witt {width:54px; height:17px; background-image:url(images/sw_wt_bgi.gif); background-repeat:repeat-x;}
 .title {height:25px; background-image:url(images/sw_title_bgi.gif); background-repeat:repeat-x;}
-.a_style_0 {cursor:hand;}
+.a_style_0 {cursor:pointer;}
 .sw_tr_style_0 {height:26;}
 .sw_tr_style_1 {height:26; background-color:#F5F5F5;}
 
