@@ -12,12 +12,12 @@ select,option {font-size:9pt;font-family:tahoma;color:#F7F7F7;background-color:#
 
 body {
 	scrollbar-face-color:#CCCCCC;
-	scrollbar-highlight-color: #DDDDDD;
-	scrollbar-3dlight-color: #EEEEEE;
-	scrollbar-shadow-color: #CCCCCC;
-	scrollbar-darkshadow-color: #EEEEEE;
-	scrollbar-track-color: #EFEFEF;
-	scrollbar-arrow-color: #DDDDDD;
+	scrollbar-highlight-color:#DDDDDD;
+	scrollbar-3dlight-color:#EEEEEE;
+	scrollbar-shadow-color:#CCCCCC;
+	scrollbar-darkshadow-color:#EEEEEE;
+	scrollbar-track-color:#EFEFEF;
+	scrollbar-arrow-color:#DDDDDD;
 }
 
 A:link    {color:#F2955C;text-decoration:none;}
