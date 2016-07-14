@@ -416,9 +416,19 @@ function head($body="",$scriptfile="") {
 		$zbLayerScript = fread($f, filesize("script/script_zbLayer.php"));
 		fclose($f);
 	}
-	
+
 	// html 시작부분 출력
 	if($setup[skinname]) {
+		// 랜덤하게 신택스하이라이트 테마 파일명 추출
+		$path = "syntaxhighlighter/styles";
+		$d = dir($path);
+		while($entry = $d->read()) {
+			if (preg_match("#^shTheme.+#i",$entry)) {
+				$file_list[] = $entry;
+			}
+		}
+		$total = count($file_list);
+		$i = mt_rand(0,$total-1);
 	?>
 <html> 
 <head>
@@ -431,7 +441,7 @@ function head($body="",$scriptfile="") {
 <link rel=StyleSheet HREF=<?=$stylefile?> type=text/css title=style>
 
 <!-- SyntaxHighlighter 관련 헤더 -->
-<link rel="stylesheet" type="text/css" href="syntaxhighlighter/styles/shThemeDefault.css" />
+<link rel="stylesheet" type="text/css" href="syntaxhighlighter/styles/<?=$file_list[$i]?>" />
 <link rel="stylesheet" type="text/css" href="syntaxhighlighter/styles/shCore.css" />
 <script type="text/javascript" src="syntaxhighlighter/scripts/jquery-1.6.1.min.js"></script>
 <script type="text/javascript" src="syntaxhighlighter/scripts/shCore.js"></script>
