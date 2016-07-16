@@ -39,7 +39,7 @@ if($emoticon_use=="on") $c_memo=str_to_emoticon($c_memo,$emoticon_url);
 </tr>
 </table>
 </a>
-<table border=0 width=<?=$width?> cellspacing=0 cellpadding=0 align=center style=table-layout:fixed>
+<table border=0 width=<?=$width?> height=45 cellspacing=0 cellpadding=0 align=center style=table-layout:fixed>
 <col width=10></col><col width=></col><col width=70%></col><col width=10></col>
 <tr valign=bottom>
 	<td background=<?=$dir?>/c_foot_bg1.gif height=9></td>
@@ -63,7 +63,7 @@ if (<?=$c_org?> > 0 && <?=$c_depth?> > 0)
 	//oCom.style.width = (100 - (5*<?=$c_depth?>)).toString() + "%";
 	var imgX = Math.round(40*(document.documentElement.clientWidth)/1132).toString()+"px";
 	var imgY = Math.round(28*(document.documentElement.clientWidth)/1132).toString()+"px";
-	oCur.innerHTML = "<table width=<?=$width?> border=0 cellspacing=0 cellpadding=0><tr><td width=5% valign=top><p align=right><br><img src=<?=$dir?>/reply_arrow.gif width=" + imgX +" height=" + imgY + " style=display:display></p></td><td width=95% align=right>" + oCur.innerHTML + "</td></tr></table>";
+	oCur.innerHTML = "<table width=<?=$width?> border=0 cellspacing=0 cellpadding=0><tr><td width=5% valign=top><p align=right><br><img src=<?=$dir?>/reply_arrow.gif width=" + imgX +" height=" + imgY + " style=display:block></p></td><td width=95% align=right>" + oCur.innerHTML + "</td></tr></table>";
     
     if (oOrg==null)
     {

@@ -53,7 +53,7 @@ if (<?=$c_org?> > 0 && <?=$c_depth?> > 0)
     var oCom = document.getElementById("comment_"+<?=$c_data[no]?>);
 
 	//oCom.style.width = (100 - (5*<?=$c_depth?>)).toString() + "%";
-	oCur.innerHTML = "<table width=<?=$width?> border=0 cellspacing=0 cellpadding=0><tr><td width=5% valign=top><p align=right><img src=<?=$dir?>/reply_arrow_s.gif style=display:display></p></td><td width=95% align=right>" + oCur.innerHTML + "</td></tr></table>";
+	oCur.innerHTML = "<table width=<?=$width?> border=0 cellspacing=0 cellpadding=0><tr><td width=5% valign=top><p align=right><img src=<?=$dir?>/reply_arrow_s.gif style=display:block></p></td><td width=95% align=right>" + oCur.innerHTML + "</td></tr></table>";
     
     if (oOrg==null)
     {
