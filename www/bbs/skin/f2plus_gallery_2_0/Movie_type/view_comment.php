@@ -85,7 +85,7 @@ if (<?=$c_org?> > 0 && <?=$c_depth?> > 0)
 	//oCom.style.width = (100 - (5*<?=$c_depth?>)).toString() + "%";
 	var imgX = Math.round(40*(document.documentElement.clientWidth)/1132).toString()+"px";
 	var imgY = Math.round(28*(document.documentElement.clientWidth)/1132).toString()+"px";
-	oCur.innerHTML = "<table width=<?=$width?> border=0 cellspacing=0 cellpadding=0><tr><td width=5% valign=top><p align=right><br><img src=<?=$dir?>/reply_arrow.gif width=" + imgX +" height=" + imgY + " style=display:display></p></td><td width=95% align=right>" + oCur.innerHTML + "</td></tr></table>";
+	oCur.innerHTML = "<table width=<?=$width?> border=0 cellspacing=0 cellpadding=0><tr><td width=5% valign=top><p align=right><br><img src=<?=$dir?>/reply_arrow.gif width=" + imgX +" height=" + imgY + " style=display:block></p></td><td width=95% align=right>" + oCur.innerHTML + "</td></tr></table>";
     
     if (oOrg==null)
     {
