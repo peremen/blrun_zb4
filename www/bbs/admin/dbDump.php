@@ -115,15 +115,15 @@ function all_Backup($host,$user,$password,$dbname,$filename) {
 	$connect = mysql_select_db($dbname,$db) or die(mysql_error());
 
 	session_start();
-	$HTTP_SESSION_VARS[HOST]=$host;
-	$HTTP_SESSION_VARS[DB]=$dbname;
-	$HTTP_SESSION_VARS[ID]=$user;
-	$HTTP_SESSION_VARS[PW]=$password;
+	$_SESSION['HOST']=$host;
+	$_SESSION['DB']=$dbname;
+	$_SESSION['ID']=$user;
+	$_SESSION['PW']=$password;
 
-	$myhost=$HTTP_SESSION_VARS[HOST];
-	$mydb=$HTTP_SESSION_VARS[DB];
-	$myid=$HTTP_SESSION_VARS[ID];
-	$mypw=$HTTP_SESSION_VARS[PW];
+	$myhost=$_SESSION['HOST'];
+	$mydb=$_SESSION['DB'];
+	$myid=$_SESSION['ID'];
+	$mypw=$_SESSION['PW'];
 
 	$connect=mysql_connect($myhost,$myid,$mypw) or die("sql erroe");
 	mysql_select_db($mydb,$connect);

@@ -27,7 +27,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	/***************************************************************************
 	 * 코멘트 수정 전처리기
 	 **************************************************************************/
-	if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
+	if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
 
 	if(preg_match("/:\/\//i",$dir)) $dir=".";
 
@@ -80,7 +80,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 				exit();
 			} else {
 				$secret_str = $setup[no]."_".$no;
-				$HTTP_SESSION_VARS['zb_s_check'] = $secret_str;
+				$_SESSION['zb_s_check'] = $secret_str;
 			}
 		}
 	}
@@ -89,9 +89,8 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	$num1 = mt_rand(1,1000);
 	$num2 = mt_rand(1,1000);
 	$num1num2 = $num1*10000 + $num2;
-	//글쓰기 보안을 위해 세션변수를 설정
-	$ZBRD_SS_VRS = $num1num2;
-	session_register("ZBRD_SS_VRS");
+	// 글쓰기 보안을 위해 세션변수를 설정
+	$_SESSION['ZBRD_SS_VRS'] = $num1num2;
 
 	if($mode=="modify"&&$s_data[use_html2]<2) {
 		$s_data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;","\t",$s_data[memo]);
@@ -272,8 +271,4 @@ function sendit() {
 }
 
 foot();
-
-$_skinTimeStart = getmicrotime();
-include "_foot.php";
-$_skinTime += getmicrotime()-$_skinTimeStart;
 ?>

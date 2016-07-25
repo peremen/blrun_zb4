@@ -44,9 +44,8 @@ if($password) {
   if(!member_secret.password.value) { alert("패스워드를 입력하세요"); member_secret.password.focus(); return false; }
 
   var f = document.forms["member_secret"];
-  //액션
-  if ( f.SSL_Login.checked ) { //보안접속 체크 판별
-	//보안접속을 체크했을 때의 액션
+  // 보안접속을 체크했을 때의 액션
+  if ( f.SSL_Login.checked ) {
 	f.action = sslUrl()+"member_modify.php";
   } else {
 	f.action = zbUrl()+"member_modify.php";
@@ -173,9 +172,8 @@ head();
   if(!write.email.value) {alert("E-Mail을 입력하여 주십시요.");write.email.focus(); return false;}
 
   var f = document.forms["write"];
-  //액션
-  if ( f.SSL_Login.checked ) { //보안접속 체크 판별
-	//보안접속을 체크했을 때의 액션
+  // 보안접속을 체크했을 때의 액션
+  if ( f.SSL_Login.checked ) {
 	f.action = sslUrl()+"member_modify_ok.php";
   } else {
 	f.action = zbUrl()+"member_modify_ok.php";
@@ -434,6 +432,5 @@ head();
 </div>
 
 <?
-@mysql_close($connect);
 foot();
 ?>

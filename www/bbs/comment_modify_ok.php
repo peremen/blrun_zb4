@@ -10,7 +10,7 @@ include "_head.php";
 // HTML 출력
 print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
 
-if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)||$ZBRD_SS_VRS!=$antispam) Error("정상적으로 글을 수정하여 주시기 바랍니다.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['ZBRD_SS_VRS']==""||$_SESSION['ZBRD_SS_VRS']!=$antispam) Error("정상적으로 글을 수정하여 주시기 바랍니다.");
 
 if($flag != ok) {
 	/***************************************************************************
@@ -221,11 +221,9 @@ if($flag != ok) {
 <div align="left"><?=$a_preview?>미리보기</a> <?=$a_imagebox?>그림창고</a> <?=$a_codebox?>코드삽입</a></div>
 <?
 	foot();
-	include "_foot.php";
 
 	// 세션이 초기화되는 버그 때문에 세션변수를 재설정
-	$ZBRD_SS_VRS = $antispam;
-	session_register("ZBRD_SS_VRS");
+	$_SESSION['ZBRD_SS_VRS'] = $antispam;
 
 } else {
 	// 각종 변수 검사;;
@@ -247,10 +245,10 @@ if($flag != ok) {
 	// 필터링;; 관리자가 아닐때;;
 	if(!$is_admin&&$setup[use_filter]) {
 		$filter=explode(",",$setup[filter]);
-		$f_memo=eregi_replace("([\_\-\./~@?=%&! ]+)","",strip_tags($memo));
+		$f_memo=preg_replace("#([\_\-\./~@?=%&! ]+)#i","",strip_tags($memo));
 		for($i=0;$i<count($filter);$i++)
 		if(!isblank($filter[$i])) {
-			if(eregi($filter[$i],$f_memo)) Error("'$filter[$i]' 은(는) 등록하기에 적합한 단어가 아닙니다");
+			if(preg_match("#".$filter[$i]."#i",$f_memo)) Error("'$filter[$i]' 은(는) 등록하기에 적합한 단어가 아닙니다");
 		}
 	}
 
@@ -281,9 +279,9 @@ if($flag != ok) {
 			$tag=explode(",",$setup[avoid_tag]);
 			for($i=0;$i<count($tag);$i++) {
 				if(!isblank($tag[$i])) {
-					$memo=eregi_replace("&lt;".$tag[$i]." ","<".$tag[$i]." ",$memo);
-					$memo=eregi_replace("&lt;".$tag[$i].">","<".$tag[$i].">",$memo);
-					$memo=eregi_replace("&lt;/".$tag[$i],"</".$tag[$i],$memo);
+					$memo=preg_replace("#&lt;".$tag[$i]." #i","<".$tag[$i]." ",$memo);
+					$memo=preg_replace("#&lt;".$tag[$i].">#i","<".$tag[$i].">",$memo);
+					$memo=preg_replace("#&lt;/".$tag[$i]."#i","</".$tag[$i],$memo);
 				}
 			}
 			// XSS 해킹 이벤트 핸들러 제거
@@ -421,8 +419,8 @@ if($flag != ok) {
 	}
 
 	if($file1_size>0&&$setup[use_pds]&&$file1) {
-		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$file1_name,$result); //특수문자가 들어갔는지 조사
-		if($result[0]!=$file1_name) Error("한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!"); //특수 문자가 들어갔으면
+		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$file1_name,$result); // 특수문자가 들어갔는지 조사
+		if($result[0]!=$file1_name) Error("한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!"); // 특수 문자가 들어갔으면
 
 		if(!is_uploaded_file($file1)) Error("정상적인 방법으로 업로드 해주세요");
 		if($file1_name==$file2_name) Error("같은 파일은 등록할수 없습니다");
@@ -443,7 +441,7 @@ if($flag != ok) {
 				if(!preg_match("/".$upload_check."/i",$setup[pds_ext1])||!$upload_check) Error("첫번째 업로드는 $setup[pds_ext1] 확장자만 가능합니다");
 			}
 
-			$file1=eregi_replace("\\\\","\\",$file1);
+			$file1=preg_replace("#\\\\#i","\\",$file1);
 			$s_file_name1=str_replace(" ","_",$s_file_name1);
 			$s_file_name1=str_replace("-","_",$s_file_name1);
 
@@ -469,8 +467,8 @@ if($flag != ok) {
 	}
 
 	if($file2_size>0&&$setup[use_pds]&&$file2) {
-		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$file2_name,$result); //특수문자가 들어갔는지 조사
-		if($result[0]!=$file2_name) Error("한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!"); //특수 문자가 들어갔으면
+		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$file2_name,$result); // 특수문자가 들어갔는지 조사
+		if($result[0]!=$file2_name) Error("한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!"); // 특수 문자가 들어갔으면
 
 		if(!is_uploaded_file($file2)) Error("정상적인 방법으로 업로드 해주세요");
 		$file2_size=filesize($file2);
@@ -487,7 +485,7 @@ if($flag != ok) {
 				if(!preg_match("/".$upload_check."/i",$setup[pds_ext2])||!$upload_check) Error("업로드는 $setup[pds_ext2] 확장자만 가능합니다");
 			}
 
-			$file2=eregi_replace("\\\\","\\",$file2);
+			$file2=preg_replace("#\\\\#i","\\",$file2);
 			$s_file_name2=str_replace(" ","_",$s_file_name2);
 			$s_file_name2=str_replace("-","_",$s_file_name2);
 
@@ -537,16 +535,14 @@ if($flag != ok) {
 
 	if($result) {
 		// 보안을 위해 세션변수 삭제
-		session_unregister("ZBRD_SS_VRS");
+		unset($_SESSION['ZBRD_SS_VRS']);
 		// 페이지 이동
 		if($setup[use_alllist]) movepage("zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&category=$category");
 		else movepage("view.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&category=$category");
 	}
 	else {
 		echo "<script>alert('코멘트 수정실패');</script>";
-		session_unregister("ZBRD_SS_VRS");
+		unset($_SESSION['ZBRD_SS_VRS']);
 	}
 }
-
-@mysql_close($connect);
 ?>

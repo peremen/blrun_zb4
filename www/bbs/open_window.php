@@ -13,8 +13,6 @@ if($member[is_admin]==1||$member[is_admin]==2||$member[group_no]==$setup[group_n
 
 if($is_admin&&($mode=="i"||$mode=="t")) $data = mysql_fetch_array(mysql_query("select * from $member_table where no='$str'"));
 
-mysql_close($connect);
-
 if(($mode=="i"||$mode=="t")&&$is_admin&&$data[user_id]) {
 	if($mode=="i") {
 		$href = "admin2.php?exec=view_member&group_no=$data[group_no]&exec2=modify&no=$data[no]";

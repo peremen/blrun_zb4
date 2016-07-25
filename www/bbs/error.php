@@ -34,4 +34,3 @@ if(!$url) {
 </div>
 <br>
 <br>
-<? @mysql_close($connect); ?>

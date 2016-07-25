@@ -35,7 +35,7 @@ for($i=1;$i<count($ip_array);$i++)
 
 if($rows) {
 	// 현재글의 Vote수 올림;;
-	if(!preg_match("/".$setup[no]."_".$no."/i",  $HTTP_SESSION_VARS[zb_vote])&&$no==$prev_no2&&$no==$next_no2) {
+	if(!preg_match("/".$setup[no]."_".$no."/i",$_SESSION['zb_vote'])&&$no==$prev_no2&&$no==$next_no2) {
 		// 아이피 테이블 만듦
 		unset($data);
 		$data = mysql_fetch_array(mysql_query("select memo from $t_board"."_$id where no='$no'",$connect));
@@ -45,16 +45,11 @@ if($rows) {
 		mysql_query("update $t_board"."_$id set vote=vote+1 where no='$sub_no'",$connect);
 		mysql_query("update $t_board"."_$id set memo='$memo',vote=vote+1 where no='$no'",$connect);
 
-		// 4.0x 용 세션 처리
-		$zb_vote = $HTTP_SESSION_VARS[zb_vote] . "," . $setup[no]."_".$no;
-		session_register("zb_vote");
+		// 5.3 이상용 세션 처리
+		$_SESSION['zb_vote'] = $_SESSION['zb_vote'].",".$setup[no]."_".$no;
 
-		// 기존 세션 처리 (4.0x용 세션 처리로 인하여 주석 처리)
-		//$HTTP_SESSION_VARS[zb_vote] = $HTTP_SESSION_VARS[zb_vote] . "," . $setup[no]."_".$no;
 	} else Error("이미 투표하셨습니다.");
 } else Error("이미 투표하셨습니다..");
-
-@mysql_close($connect);
 
 // 페이지 이동
 if($setup[use_alllist]) movepage("zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&category=$category&no=$no");

@@ -69,6 +69,5 @@ function check_submit()
 </table>
 <img src=images/t.gif border=0 height=5><br>
 <?
-@mysql_close($connect);
 foot();
 ?>

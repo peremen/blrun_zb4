@@ -4,15 +4,14 @@
 **************************************************************************/
 include "_head.php";
 
-if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 수정하여 주시기 바랍니다.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을 수정하여 주시기 바랍니다.");
 
-//랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입
+// 랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입
 $num1 = mt_rand(1,1000);
 $num2 = mt_rand(1,1000);
 $num1num2 = $num1*10000 + $num2;
-//코멘트 보안을 위해 세션변수를 설정
-$ZBRD_SS_VRS = $num1num2;
-session_register("ZBRD_SS_VRS");
+// 코멘트 보안을 위해 세션변수를 설정
+$_SESSION['ZBRD_SS_VRS'] = $num1num2;
 
 /***************************************************************************
 * 코멘트 수정 페이지 처리
@@ -79,6 +78,4 @@ if(!$member[no]) {
 </form>
 <?
 foot();
-
-include "_foot.php";
 ?>

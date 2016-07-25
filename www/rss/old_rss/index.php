@@ -114,6 +114,4 @@
 	}
 	
 	$rss->println();
-	
-	mysql_close($connect);
 ?>

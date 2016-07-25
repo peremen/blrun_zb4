@@ -33,6 +33,4 @@ if($kind==1&&$member[no]&&$data[no]) {
 	mysql_query("update $member_table set new_memo=1 where no='$data[no]'") or error(mysql_error());
 	echo "<script language='javascript'>alert('$data[name] 님께 쪽지를 보냈습니다');window.close();</script>";
 }
-
-mysql_close($connect);
 ?>

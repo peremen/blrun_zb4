@@ -148,10 +148,6 @@ while(list($key,$filename)=@each($difflist)) {
 
 
 </pre>
-<?
-mysql_close($connect);
-$connect="";
-?>
 <br><br><br>
 <?
 foot();

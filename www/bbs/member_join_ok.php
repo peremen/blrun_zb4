@@ -6,7 +6,7 @@ $group_no=(int)$group_no;
 // $HTTP_HOST 에서 포트번호 빼고 도메인 추출
 if($mypos=strrpos($HTTP_HOST,":")) // 마지막 : 위치 찾아 제거
 	$HTTP_HOST=substr($HTTP_HOST,0,$mypos);
-if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)||$WRT_SS_VRS!=$wantispam||$WRT_SPM_PWD!=$_POST['code']) Error("정상적으로 작성하여 주시기 바랍니다.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['WRT_SS_VRS']==""||$_SESSION['WRT_SS_VRS']!=$wantispam||$_SESSION['WRT_SPM_PWD']==""||$_SESSION['WRT_SPM_PWD']!=$_POST['code']) Error("정상적으로 작성하여 주시기 바랍니다.");
 if(!preg_match("/member_join.php/i",$HTTP_REFERER)) Error("정상적으로 작성하여 주시기 바랍니다","");
 if(getenv("REQUEST_METHOD") == 'GET' ) Error("정상적으로 글을 쓰시기 바랍니다","");
 
@@ -168,23 +168,16 @@ mysql_query("update $group_table set member_num=member_num+1 where no='$group_da
 if(!$mode) {
 	$member_data=mysql_fetch_array(mysql_query("select * from $member_table where user_id='$user_id' and password=password('$password')"));
 
-	// 4.0x 용 세션 처리
-	$zb_logged_no = $member_data[no];
-	$zb_logged_time = time();
-	$zb_logged_ip = $REMOTE_ADDR;
-	$zb_last_connect_check = '0';
-
-	session_register("zb_logged_no");
-	session_register("zb_logged_time");
-	session_register("zb_logged_ip");
-	session_register("zb_last_connect_check");
+	// 5.3 이상용 세션 처리
+	$_SESSION['zb_logged_no'] = $member_data[no];
+	$_SESSION['zb_logged_time'] = time();
+	$_SESSION['zb_logged_ip'] = $REMOTE_ADDR;
+	$_SESSION['zb_last_connect_check'] = '0';
 }
 
-mysql_close($connect);
-
 // 보안을 위해 세션변수 삭제
-session_unregister("WRT_SS_VRS");
-session_unregister("WRT_SPM_PWD");
+unset($_SESSION['WRT_SS_VRS']);
+unset($_SESSION['WRT_SPM_PWD']);
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <script>

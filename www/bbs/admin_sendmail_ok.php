@@ -57,8 +57,6 @@ if($total_member==0) thisError("메일을 보낼 회원이 없습니다");
 
 $result=mysql_query("select name, email, mailing from $member_table where group_no='$group_no' $s_que order by no limit $startnum, $sendnum",$connect) or thisError(addslashes(mysql_error()));
 
-mysql_close($connect);  
-
 head( "onload=window.resizeTo(550,420); bgcolor=white");
 ?>
 

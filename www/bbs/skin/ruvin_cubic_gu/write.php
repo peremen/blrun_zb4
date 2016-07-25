@@ -60,8 +60,7 @@ function sendit() {
 	$wnum2 = mt_rand(1,1000);
 	$wnum1num2 = $wnum1*10000 + $wnum2;
 	//글쓰기 보안을 위해 세션변수를 설정
-	$WRT_SS_VRS = $wnum1num2;
-	session_register("WRT_SS_VRS");
+	$_SESSION['WRT_SS_VRS'] = $wnum1num2;
 ?>
 
 <table border=0 cellspacing=0 cellpadding=0 class=width>

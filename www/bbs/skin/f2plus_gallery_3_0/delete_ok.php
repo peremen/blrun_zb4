@@ -20,11 +20,10 @@ history.back();
 //-->
 </script>
 <?
-	if($connect) @mysql_close($connect);
 	exit;
 }
 
-if(!eregi($HTTP_HOST,$HTTP_REFERER)) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
 if(getenv("REQUEST_METHOD") == 'GET' ) Error("정상적으로 글을 삭제하시기 바랍니다","");
 
 // 게시판 이름 지정이 안되어 있으면 경고;;;
@@ -52,7 +51,7 @@ if($member[is_admin]==1||$member[is_admin]==2&&$member[group_no]==$setup[group_n
 $avoid_ip=explode(",",$setup[avoid_ip]);
 for($i=0;$i<count($avoid_ip);$i++)
 {
-	if(!isblank($avoid_ip[$i])&&eregi($avoid_ip[$i],$REMOTE_ADDR)&&!$is_admin)
+	if(!isblank($avoid_ip[$i])&&preg_match("#".$avoid_ip[$i]."#i",$REMOTE_ADDR)&&!$is_admin)
 	Error1(" Access Denied ");
 }
 
@@ -167,10 +166,6 @@ if(!$s_data[child]) // 답글이 없을때;;
 	// 회원일 경우 해당 해원의 점수 주기
 	if($member[no]==$s_data[ismember]) @mysql_query("update $member_table set point1=point1-1 where no='$member[no]'",$connect) or Error1(mysql_error());
 }
-
-//////// MySQL 닫기 ///////////////////////////////////////////////
-if($connect) mysql_close($connect);
-$query_time=getmicrotime();
 
 movepage($zb_url."/zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&category=$category&sn1=$sn1&divpage=$divpage");
 ?>

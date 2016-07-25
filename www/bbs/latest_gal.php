@@ -33,7 +33,7 @@ function latest_thumb_del($path,$file,$reg_date){
 	for($i=0;$i<sizeof($file);$i++){
 		for($j=0;$j<sizeof($reg_date);$j++){
 			$count=0;
-			if(eregi($reg_date[$j],$file[$i])) {
+			if(preg_match("/".$reg_date[$j]."/i",$file[$i])) {
 				$count++;
 				break;
 			}
@@ -54,7 +54,7 @@ function thumbnail_make1($size,$source_file,$save_path,$small,$large,$ratio){
 		if($size[$i]!=0){
 		 	
 			if($i==sizeof($size)-1) {
-				//$ratio가 0으로 나누어지는 것 방지
+				// $ratio가 0으로 나누어지는 것 방지
 				if($img_info[0]!="")
 					$ratio=$img_info[1]/$img_info[0];
 			}
@@ -118,7 +118,7 @@ function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
 		if($size[$i]!=0){
 		 	
 			if($i==sizeof($size)-1) {
-				//$ratio가 0으로 나누어지는 것 방지
+				// $ratio가 0으로 나누어지는 것 방지
 				if($img_info[0]!="")
 					$ratio=$img_info[1]/$img_info[0];
 			}
@@ -165,7 +165,7 @@ function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
 }
 
 function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $datetype="m/d"){
-	global $_zb_path, $_zb_url, $connect, $HTTP_SESSION_VARS, $use_thumb;
+	global $_zb_path, $_zb_url, $connect, $use_thumb;
 	if(!$skinname||!$id) return;
 	
 	$str = zReadFile($_zb_path."latest_skin/".$skinname."/main.html");
@@ -210,7 +210,7 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 		$filename1=$_zb_url.$img1;
 		$filename2=$_zb_url.$img2;
 
-		//[img] 태그 파일 찾기
+		// [img] 태그 파일 찾기
 		$imagePattern="#\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,#i";
 		preg_match_all($imagePattern,$data[memo],$out,PREG_SET_ORDER);
 		$src_img="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];

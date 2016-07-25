@@ -13,7 +13,7 @@ $member=member_info();
 if(!$member[no]) Error("로그인후 사용하여주십시요","admin.php");
 
 if($member[is_admin]>=3&&!$member[board_name]) Error("관리자페이지를 사용할수 있는 권한이 없습니다","admin.php");
-if($member[no]&&($_token2!=$_COOKIE['token2']||$tokenID!=$REMOTE_ADDR)) Error("세션 하이재킹은 허용되지 않습니다.<br>세션이 해킹되어 해커가 관리자 로그인을 시도하고 있으니 브라우저의 쿠키를 지우고 재접속 바랍니다.<br>그 다음 해커가 계정을 사용하기 전에 즉시 관리자 비밀번호를 바꿔야 합니다!","window.close");
+if($member[no]&&($_SESSION['_token2']!=$_COOKIE['token2']||$tokenID!=$REMOTE_ADDR)) Error("세션 하이재킹은 허용되지 않습니다.<br>세션이 해킹되어 해커가 관리자 로그인을 시도하고 있으니 브라우저의 쿠키를 지우고 재접속 바랍니다.<br>그 다음 해커가 계정을 사용하기 전에 즉시 관리자 비밀번호를 바꿔야 합니다!","window.close");
 
 
 // 게시판 관리자일때
@@ -54,7 +54,7 @@ head(" bgcolor=444444 ");
         <img src=images/t.gif border=0 height=5><br> 
 
 <? if($member[is_admin]==1) {
-	$re=mysql_fetch_array(mysql_query("SELECT target from aokio_log_config"));
+	$re=mysql_fetch_array(mysql_query("SELECT target from aokio_log_config order by no desc limit 1"));
 ?>
         <a href=admin_setup_bac.php?exec=uninstall><font color=white style=font-size:9pt onclick="return confirm('제로보드를 제거하시겠습니까?')"><b>Uninstall</b></font></a> &nbsp;|&nbsp;
         <a href=admin_setup_bac.php?exec=db_dump><font color=white style=font-size:9pt onclick="return confirm('백업하시겠습니까?')"><b>DB 백업</b></font></a> &nbsp;|&nbsp;
@@ -313,6 +313,5 @@ if($member[is_admin]==1) {
 </table>
 
 <?
-mysql_close($connect);
 foot();
 ?>

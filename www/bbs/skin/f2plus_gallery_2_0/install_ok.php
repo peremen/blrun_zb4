@@ -32,7 +32,7 @@ if($vote_use==1){ $hide_vote="on"; $cols--; } else $hide_vote="off";
 if($hit_use==1){ $hide_hit="on"; $cols--; } else $hide_hit="off"; 
 			  
 
-//gd 체크 입니다.
+// gd 체크 입니다.
 if($gd_use>0){
 	if($thumb==1){ 
 		$Thumbnail_use="on";

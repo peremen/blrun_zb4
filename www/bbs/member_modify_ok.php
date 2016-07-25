@@ -50,7 +50,7 @@ $name = addslashes(del_html($name));
 if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>\.,\?\/\'\"]/i",$job)) Error("직업을 영문, 한글, 숫자등으로 입력하여 주십시요");
 $job = addslashes(del_html($job));
 
-preg_match('/[0-9a-zA-Z.\@\_]+/',$email,$result); //특수문자가 들어갔는지 조사
+preg_match('/[0-9a-zA-Z.\@\_]+/',$email,$result); // 특수문자가 들어갔는지 조사
 if($result[0]!=$email) Error("E-mail 문자를 확인하세요(영문자와 숫자, ., @, _만을 사용!)","");	
 $email = addslashes(del_html($email));
 if($_zbDefaultSetup[check_email]=="true"&&!mail_mx_check($email)) Error("입력하신 $email 은 존재하지 않는 메일주소입니다.<br>다시 한번 확인하여 주시기 바랍니다.");
@@ -137,7 +137,7 @@ if($HTTP_POST_FILES[picture]) {
 }
 
 if($picture_name) {
-	//특수문자가 들어갔는지 조사
+	// 특수문자가 들어갔는지 조사
 	preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$picture_name,$result);
 	if($result[0]!=$picture_name) Error("파일명은 한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!");
 
@@ -151,8 +151,6 @@ if($picture_name) {
 	if(!move_uploaded_file($picture,$path)) Error("사진 업로드가 제대로 되지 않았습니다");
 	@mysql_query("update $member_table set picture='$path' where no='$member[no]'") or Error("사진 자료 업로드시 에러가 발생하였습니다");
 }
-
-mysql_close($connect);
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <script>

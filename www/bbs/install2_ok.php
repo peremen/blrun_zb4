@@ -7,7 +7,6 @@ if(!$connect) $connect=dbConn();
 $temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where is_admin='1'",$connect));
 if($temp[0]) {
 	header("location:admin.php"); 
-	mysql_close($connect);
 	exit;
 }
 
@@ -20,8 +19,6 @@ if(isBlank($name)) Error("이름을 입력하셔야 합니다","");
 
 // 관리자 정보 입력
 @mysql_query("insert into $member_table (user_id,password,name,is_admin,reg_date,level) values ('$user_id',password('$password1'),'$name','1','".time()."','1')",$connect) or Error(mysql_error(),"");
-
-mysql_close($connect);
 
 header("location:admin.php");
 ?>

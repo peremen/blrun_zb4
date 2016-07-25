@@ -18,19 +18,17 @@ if(!empty($_POST['code'])) {
 		Error("스팸방지 코드를 잘못 입력하셨습니다.");
 	}
 	
-	if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
+	if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
 
 	// 스팸방지 보안 세션변수 설정
-	$WRT_SPM_PWD = $_POST['code'];
-	session_register("WRT_SPM_PWD");
+	$_SESSION['WRT_SPM_PWD'] = $_POST['code'];
 
 	// 랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입
 	$wnum1 = mt_rand(1,1000);
 	$wnum2 = mt_rand(1,1000);
 	$wnum1num2 = $wnum1*10000 + $wnum2;
-	//글쓰기 보안을 위해 세션변수를 설정
-	$WRT_SS_VRS = $wnum1num2;
-	session_register("WRT_SS_VRS");
+	// 글쓰기 보안을 위해 세션변수를 설정
+	$_SESSION['WRT_SS_VRS'] = $wnum1num2;
 
 	// DB 연결
 	if(!$connect) $connect=dbConn();
@@ -152,9 +150,8 @@ function check_submit()
   if(!write.name.value) { alert("이름을 입력하세요"); write.name.focus(); return false; }
 
   var f = document.forms["write"];
-  //액션
-  if ( f.SSL_Login.checked ) { //보안접속 체크 판별
-    //보안접속을 체크했을 때의 액션
+  // 보안접속을 체크했을 때의 액션
+  if ( f.SSL_Login.checked ) {
     f.action = sslUrl()+"member_join_ok.php";
   }
 
@@ -462,17 +459,14 @@ function check_SSL_Login() {
 
 <?
 	// 세션이 초기화되는 버그 때문에 세션변수를 재설정
-	$WRT_SPM_PWD = $_POST['code'];
-	session_register("WRT_SPM_PWD");
-
-	@mysql_close($connect);
+	$_SESSION['WRT_SPM_PWD'] = $_POST['code'];
 
 } else {
 ?>
 <script language="javascript">
 <!--
 function sendit() {
-	//스팸방지코드 입력 유무 체크
+	// 스팸방지코드 입력 유무 체크
 	if(document.myform.code.value=="") {
 		alert("스팸방지 코드를 입력해 주십시요");
 		document.myform.code.focus();

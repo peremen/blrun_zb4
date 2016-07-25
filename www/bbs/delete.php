@@ -4,7 +4,7 @@
 **************************************************************************/
 include "_head.php";
 
-if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
 
 /***************************************************************************
 * 게시물 삭제 처리
@@ -32,6 +32,4 @@ head();
 include $dir."/ask_password.php";
 
 foot();
-
-include "_foot.php";
 ?>

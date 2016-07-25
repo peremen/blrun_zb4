@@ -21,8 +21,6 @@ function error1($message, $url="") {
 	//-->
 </script>
 <?
-	if($connect) @mysql_close($connect);
-
 	exit;
 }
 
@@ -42,9 +40,6 @@ for($i=0;$i<=sizeof($whois)-1;$i++){
 if(!$vote_man) $vote_man=$who;
 else $vote_man=$vote_man."!*)".$who;
 mysql_query("update $table set vote=vote+1, who='$vote_man' where no='$c_no'");
-
-// MySQL 닫기 
-if($connect) mysql_close($connect);
 
 // 페이지 이동
 //if($setup[use_alllist]) $temp_href="zboard.php"; else $temp_href="view.php";

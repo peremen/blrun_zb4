@@ -110,7 +110,7 @@ elseif($exec=="delete_all") {
 			// 파일삭제
 			@z_unlink("./".$temp[file_name1]);
 			@z_unlink("./".$temp[file_name2]);
-			//빈 파일 폴더 삭제
+			// 빈 파일 폴더 삭제
 			if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$temp[file_name1],$out))
 				if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 			if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$temp[file_name2],$out))
@@ -159,7 +159,7 @@ elseif($exec=="delete_all") {
 				// 파일삭제
 				@z_unlink("./".$c_data[file_name1]);
 				@z_unlink("./".$c_data[file_name2]);
-				//빈 파일 폴더 삭제
+				// 빈 파일 폴더 삭제
 				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name1],$out))
 					if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name2],$out))
@@ -336,7 +336,4 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 		exit;
 	}
 }
-
-//MySQL 종료 /////////////////////////////////////
-if($connect) @mysql_close($connect); $connect="";
 ?>

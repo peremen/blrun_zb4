@@ -75,14 +75,13 @@ if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$s
 			foot();
 			exit();
 		} else {
-			$secret_str = $setup[no]."_".$no;
-			$HTTP_SESSION_VARS['zb_s_check'] = $secret_str;
+			$_SESSION['zb_s_check'] = $setup[no]."_".$no;
 		}
 	}
 }
 
 // 현재글의 HIT수를 올림;;
-if(!preg_match("/".$setup[no]."_".$no."/i",$HTTP_SESSION_VARS["zb_hit"])) {
+if(!preg_match("/".$setup[no]."_".$no."/i",$_SESSION['zb_hit'])) {
 	$_dbTimeStart = getmicrotime();
 //  mysql_query("update $t_board"."_$id set hit=hit+1 where no='$no'"); //아래 3행으로
 	if ($data[ismember]!=$member[no]) {
@@ -91,9 +90,8 @@ if(!preg_match("/".$setup[no]."_".$no."/i",$HTTP_SESSION_VARS["zb_hit"])) {
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 	$hitStr=",".$setup[no]."_".$no;
 	
-	// 4.0x 용 세션 처리
-	$zb_hit=$HTTP_SESSION_VARS["zb_hit"].$hitStr;
-	session_register("zb_hit");
+	// 5.3 이상용 세션 처리
+	$_SESSION['zb_hit']=$_SESSION['zb_hit'].$hitStr;
 }
 
 // 이전글 정리
@@ -196,8 +194,7 @@ if($data[next_no]&&!$setup[use_alllist]) {
 list_check($data,1);
 
 // list_check 안에서 설정한 코멘트와 아이피글 삭제를 위해 설정한 보안코드 글로벌 변수를 세션 등록
-$DEL_COMM_SEC = $cnum1num2;
-session_register("DEL_COMM_SEC");
+$_SESSION['DEL_COMM_SEC'] = $cnum1num2;
 
 /****************************************************************************************
 * 변수 설정
@@ -240,7 +237,7 @@ if($file_name1) $a_download1="<a onfocus=blur() href='download.php?$href$sort&no
 if($file_name2) $a_download2="<a onfocus=blur() href='download.php?$href$sort&no=$no&file=2'>"; else $a_download2="<Zeroboard ";
 
 // 추천버튼
-if(!preg_match("/".$setup[no]."_".$no."/i",$HTTP_SESSION_VARS["zb_vote"])) $a_vote="<a onfocus=blur() href='vote.php?$href$sort&no=$no'>";
+if(!preg_match("/".$setup[no]."_".$no."/i",$_SESSION['zb_vote'])) $a_vote="<a onfocus=blur() href='vote.php?$href$sort&no=$no'>";
 else $a_vote="<Zeroboard ";
 
 // 홈버튼
@@ -289,7 +286,7 @@ if($member[no]) {
 	if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>";
 	$temp_name = get_private_icon($member[no], "1");
 	if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>".$c_name;
-} else $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input value=\"".htmlspecialchars(stripslashes($HTTP_SESSION_VARS["zb_writer_name"]))."\" onkeyup='ajaxLoad2()'>";
+} else $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input value=\"".htmlspecialchars(stripslashes($_SESSION['zb_writer_name']))."\" onkeyup='ajaxLoad2()'>";
 
 /****************************************************************************************
 * 실제 출력 부분
@@ -363,7 +360,7 @@ if($setup[use_comment]) {
 		if($c_data[use_html2]<2) {
 			$c_memo=$c_data[memo]=nl2br($c_data[memo]);
 
-			//신택스하이라이트 처리 시작
+			// 신택스하이라이트 처리 시작
 			$codePattern = "#(<pre[^>]*?>|<\/pre>)#si";
 			$temp = preg_split($codePattern,$c_data[memo],-1,PREG_SPLIT_DELIM_CAPTURE);
 
@@ -383,7 +380,7 @@ if($setup[use_comment]) {
 			for($i=0;$i<count($temp);$i++) {
 				$c_data[memo] = $c_data[memo].$temp[$i];
 			}
-			//신택스하이라이트 처리 끝
+			// 신택스하이라이트 처리 끝
 		}
 		$c_memo=$c_data[memo];
 
@@ -424,7 +421,7 @@ if($setup[use_comment]) {
 		$c_file_name1=del_html($c_data[s_file_name1]);
 		$c_file_name2=del_html($c_data[s_file_name2]);
 
-		//hide 오동작 때문에 초기화
+		// hide 오동작 때문에 초기화
 		$c_hide_download1_start=$c_hide_download1_end=$c_hide_download2_start=$c_hide_download2_end=null;
 
 		// 파일 다운로드를 나타나게 하는 변수;;
@@ -526,7 +523,7 @@ if($setup[use_comment]) {
 	$value_use_html2 = 1;
 	$use_html2 = " value='$value_use_html2' onclick='check_use_html2(this)'><ZeroBoard";
 
-	//미리보기,그림창고,코드삽입 버튼 숨기고 보이게 하는 플래그 변수
+	// 미리보기,그림창고,코드삽입 버튼 숨기고 보이게 하는 플래그 변수
 	unset($box_view);
 	$box_view=false;
 	
@@ -576,14 +573,4 @@ if($zbLayer&&!$_view_included) {
 
 // 마지막 부분 출력
 if(!$_view_included) foot($max_depth,'');
-
-/***************************************************************************
-* 마무리 부분 include
-**************************************************************************/
-if(!$_view_included) { 
-	$_skinTimeStart = getmicrotime();
-	include "_foot.php"; 
-	$_skinTime += getmicrotime()-$_skinTimeStart;
-}
-
 ?>

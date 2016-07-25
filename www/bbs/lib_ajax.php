@@ -27,7 +27,7 @@ foreach($HTTP_GET_VARS as $key=>$val) $$key = del_html($val);
 $page = (int)$page;
 
 $temp_filename=realpath(__FILE__);
-if($temp_filename) $config_dir=eregi_replace("lib_ajax.php","",$temp_filename);
+if($temp_filename) $config_dir=preg_replace("#lib_ajax.php#i","",$temp_filename);
 else $config_dir="";
 
 /*******************************************************************************
@@ -99,13 +99,11 @@ if(!preg_match("/install/i",$PHP_SELF)&&file_exists($_zb_path."myZrCnf2019.php")
 	@session_start();
 
 	// 조회수 가 512byte를, 투표 세션변수가 256byte를 넘을시 리셋 (개인서버를 이용시에는 조금 더 늘려도 됨)
-	if(strlen($HTTP_SESSION_VARS[zb_hit])>$_zbDefaultSetup[session_view_size]) {
-		$zb_hit='';
-		session_register("zb_hit");
+	if(strlen($_SESSION['zb_hit'])>$_zbDefaultSetup[session_view_size]) {
+		$_SESSION['zb_hit']='';
 	}
-	if(strlen($HTTP_SESSION_VARS[zb_vote])>$_zbDefaultSetup[session_vote_size]) {
-		$zb_vote='';
-		session_register("zb_vote");
+	if(strlen($_SESSION['zb_vote'])>$_zbDefaultSetup[session_vote_size]) {
+		$_SESSION['zb_vote']='';
 	}
 
 	// 자동 로그인일때 제대로 된 자동 로그인인지 체크하는 부분
@@ -123,22 +121,17 @@ if(!preg_match("/install/i",$PHP_SELF)&&file_exists($_zb_path."myZrCnf2019.php")
 			$tokenID = $c_match[1]; // lib_ajax.php 에선 사용되지 않음.
 		}
 		// 자동로그인 세션 처리
-		$zb_logged_no=$autoLoginData[no];
-		$zb_logged_ip=$REMOTE_ADDR;
-		$zb_logged_time=time();
-		$_token=$_COOKIE['token'];
-		session_register("zb_logged_no");
-		session_register("zb_logged_ip");
-		session_register("zb_logged_time");
-		session_register("_token");
-		$HTTP_SESSION_VARS["zb_logged_no"] = $zb_logged_no;
+		$_SESSION['zb_logged_no']=$autoLoginData[no];
+		$_SESSION['zb_logged_ip']=$REMOTE_ADDR;
+		$_SESSION['zb_logged_time']=time();
+		$_SESSION['_token']=$_COOKIE['token'];
 	// 세션 값을 체크하여 로그인을 처리
-	} elseif($HTTP_SESSION_VARS["zb_logged_no"]) {
+	} elseif($_SESSION['zb_logged_no']) {
 		// DB 연결
 		if(!$connect) $connect=dbConn();
 		// 멤버 정보 구해오기
 		$_dbTimeStart = getmicrotime();
-		$m=mysql_fetch_array(mysql_query("select email from $member_table where no ='".$HTTP_SESSION_VARS["zb_logged_no"]."'"));
+		$m=mysql_fetch_array(mysql_query("select email from $member_table where no ='".$_SESSION['zb_logged_no']."'"));
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 		// email IP 표식 불러와 처리
 		if(preg_match("#\|\|\|([0-9.]{1,})$#",$m[email],$c_match)) {
@@ -146,24 +139,22 @@ if(!preg_match("/install/i",$PHP_SELF)&&file_exists($_zb_path."myZrCnf2019.php")
 		}
 		// 자동로그인이 아닐 때 세션 처리
 		// 유효할 경우 로그인 시간을 다시 설정
-		$zb_logged_time=time();
-		session_register("zb_logged_time");
+		$_SESSION['zb_logged_time']=time();
 	}
 	$_sessionEnd = getmicrotime();
 
 	// 현재 접속자의 데이타를 체크하여 파일로 저장 (회원, 비회원으로 구분해서 저장)
 	$_nowConnectStart = getmicrotime();
 	if($_zbDefaultSetup[nowconnect_enable]=="true") {
-		$_zb_now_check_intervalTime = time()-$HTTP_SESSION_VARS["zb_last_connect_check"];
+		$_zb_now_check_intervalTime = time()-$_SESSION['zb_last_connect_check'];
 
-		if(!$HTTP_SESSION_VARS["zb_last_connect_check"]||$_zb_now_check_intervalTime>$_zbDefaultSetup[nowconnect_refresh_time]) {
+		if(!$_SESSION['zb_last_connect_check']||$_zb_now_check_intervalTime>$_zbDefaultSetup[nowconnect_refresh_time]) {
 
-			// 4.0x 용 세션 처리
-			$zb_last_connect_check = time();
-			session_register("zb_last_connect_check");
+			// 5.3 이상용 세션 처리
+			$_SESSION['zb_last_connect_check'] = time();
 
-			if($HTTP_SESSION_VARS["zb_logged_no"]) {
-				$total_member_connect = $total_connect = getNowConnector($_zb_path."data/now_member_connect.php",$HTTP_SESSION_VARS[zb_logged_no]);
+			if($_SESSION['zb_logged_no']) {
+				$total_member_connect = $total_connect = getNowConnector($_zb_path."data/now_member_connect.php",$_SESSION['zb_logged_no']);
 				$total_guest_connect = getNowConnector_num($_zb_path."data/now_connect.php", TRUE);
 			} else {
 				$total_member_connect = $total_connect = getNowConnector_num($_zb_path."data/now_member_connect.php", TRUE);
@@ -182,7 +173,7 @@ $_nowConnectEnd = getmicrotime();
 
 // myZrCnf2019.php 파일의 위치를 구함;;
 $temp_filename=realpath(__FILE__);
-if($temp_filename) $config_dir=eregi_replace("lib_ajax.php","",$temp_filename);
+if($temp_filename) $config_dir=preg_replace("#lib_ajax.php#i","",$temp_filename);
 else $config_dir="";
 
 
@@ -260,15 +251,15 @@ function add_division($board_name="") {
 *****************************************************************************/
 function member_info() {
 
-	global $HTTP_SESSION_VARS, $member_table, $member, $connect;
+	global $member_table, $member, $connect;
 
 	if(defined("_member_info_included")&&$member[no]) return $member;
 	define("_member_info_included", true);
 
 	if($member[no]) return $member;
 
-	if($HTTP_SESSION_VARS["zb_logged_no"]) {
-		$member=mysql_fetch_array(mysql_query("select * from $member_table where no ='".$HTTP_SESSION_VARS["zb_logged_no"]."'"));
+	if($_SESSION['zb_logged_no']) {
+		$member=mysql_fetch_array(mysql_query("select * from $member_table where no ='".$_SESSION['zb_logged_no']."'"));
 		if(!$member[no]) {
 			unset($member);
 			$member[level] = 10;
@@ -367,7 +358,7 @@ function get_face($data, $check=0) {
 
 // 게시판 관리자인지 체크하는 부분
 function check_board_master($member, $board_num) {
-	$temp = split(",",$member[board_name]);
+	$temp = preg_split("/,/",$member[board_name]);
 	for($i=0;$i<count($temp);$i++) {
 		$t = trim($temp[$i]);
 		if($t&&$t==$board_num) return 1;
@@ -378,7 +369,7 @@ function check_board_master($member, $board_num) {
 //  초기 헤더를 뿌려주는 부분;;;;
 function head($body="",$scriptfile="") {
 
-	global $group, $setup, $dir,$member, $PHP_SELF, $id, $_head_executived, $HTTP_COOKIE_VARS, $width, $_view_included, $_zbDefaultSetup;
+	global $group, $setup, $dir, $member, $PHP_SELF, $id, $_head_executived, $HTTP_COOKIE_VARS, $width, $_view_included, $_zbDefaultSetup;
 
 	if($_head_executived) return;
 	$_head_executived = true;
@@ -553,7 +544,7 @@ addLoadEvent(zb_img_check);
 <!-- 접속통계 관련 헤더 -->
 <?
 $_dbTimeStart = getmicrotime();
-$re=mysql_fetch_array(mysql_query("SELECT target from aokio_log_config"));
+$re=mysql_fetch_array(mysql_query("SELECT target from `aokio_log_config` order by no desc limit 1"));
 $_dbTime += getmicrotime()-$_dbTimeStart;
 $target=$re[0];
 @include "aanalyzer/aokio_analyzer.php";
@@ -656,8 +647,6 @@ function error($message, $url="") {
 
 	}
 
-	if($connect) @mysql_close($connect);
-
 	exit;
 }
 
@@ -704,7 +693,7 @@ function check_blockip() {
 	$avoid_ip=explode(",",$setup[avoid_ip]);
 	$count = count($avoid_ip);
 	for($i=0;$i<$count;$i++) {
-		if(!isblank($avoid_ip[$i])&&eregi($avoid_ip[$i],$_SERVER['REMOTE_ADDR'])) Error("차단당한 IP 주소입니다.");
+		if(!isblank($avoid_ip[$i])&&preg_match("#".$avoid_ip[$i]."#i",$_SERVER['REMOTE_ADDR'])) Error("차단당한 IP 주소입니다.");
 	}
 }
 
@@ -991,7 +980,6 @@ function cut_str($msg,$cut_size) {
 function movepage($url) {
 	global $connect;
 	echo "<meta http-equiv=\"refresh\" content=\"0; url=$url\">";
-	if($connect) @mysql_close($connect);
 	exit;
 }
 

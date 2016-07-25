@@ -2,29 +2,23 @@
 include "lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
-if((($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$member[board_name]))&&$_token2) movepage("admin_setup_bac.php?_token2=$_token2");
+if((($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$member[board_name]))&&$_SESSION['_token2']) movepage("admin_setup_bac.php?_token2=".$_SESSION['_token2']);
 else {
 	if($member[no]) {
 		destroyZBSessionID($member[no]);
-		//토큰 초기화
-		$_token2='';
-		session_register("_token2");
+		// 토큰 초기화
+		$_SESSION['_token2']='';
 		setCookie("token2","",0,"/","");
-		// 4.0x 용 세션 처리
-		$zb_logged_no='';
-		$zb_logged_time='';
-		$zb_logged_ip='';
-		$zb_secret='';
-		$zb_last_connect_check = '0';
-		session_register("zb_logged_no");
-		session_register("zb_logged_time");
-		session_register("zb_logged_ip");
-		session_register("zb_secret");
-		session_register("zb_last_connect_check");
+		// 5.3 이상용 세션 처리
+		$_SESSION['zb_logged_no']='';
+		$_SESSION['zb_logged_time']='';
+		$_SESSION['zb_logged_ip']='';
+		$_SESSION['zb_secret']='';
+		$_SESSION['zb_last_connect_check']='0';
 	}
 }
 
-head("  bgcolor=444444  onload=write.user_id.focus()");
+head(" bgcolor=444444 onload=write.user_id.focus()");
 ?>
 
 <script src="script/get_url.php" type="text/javascript"></script>
@@ -41,9 +35,8 @@ function check_submit() {
 		return false;
 	}
 	var f = document.forms["write"];
-	//액션
-	if ( f.SSL_Login.checked ) { //보안접속 체크 판별
-		//보안접속을 체크했을 때의 액션
+	// 보안접속을 체크했을 때의 액션
+	if ( f.SSL_Login.checked ) {
 		f.action = sslUrl()+"login_check2.php";
 	}
 	check=confirm("자동 로그인 기능을 사용하시겠습니까?\n\n자동 로그인 사용시 다음 접속부터는 로그인을 하실필요가 없습니다.\n\n단, 게임방, 학교등 공공장소에서 이용시 개인정보가 유출될수 있으니 조심하여 주십시요");
@@ -73,7 +66,7 @@ function check_SSL_Login() {
 </tr>
 <tr height=25>
   <td align=right bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><b>User ID &nbsp;</b></td>
-  <td  bgcolor=#e0e0e0 align=left><input type=text name=user_id value='' size=20 maxlength=20 class=input style=border-color:#b0b0b0> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="보안접속 설정/해제"></td>
+  <td bgcolor=#e0e0e0 align=left><input type=text name=user_id value='' size=20 maxlength=20 class=input style=border-color:#b0b0b0> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="보안접속 설정/해제"></td>
 </tr>
 <tr height=25>
   <td align=right bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><b>Password &nbsp;</b></td>
@@ -88,6 +81,5 @@ function check_SSL_Login() {
 <form>
 
 <?
-mysql_close($connect);
 foot();
 ?>

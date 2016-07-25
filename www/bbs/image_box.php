@@ -64,7 +64,7 @@ if(!$maxDirSize) {
 
 // 입력된 이미지가 있으면 upload 시킴
 if($exec=="upload") {
-	if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 업로드를 하여 주시기 바랍니다.","window.close");
+	if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 업로드를 하여 주시기 바랍니다.","window.close");
 	if(!preg_match("/image_box.php/i",$HTTP_REFERER)) Error("정상적으로 업로드를 하여 주시기 바랍니다.","window.close");
 	if(getenv("REQUEST_METHOD") == 'GET' ) Error("정상적으로 업로드를 하여 주시기 바랍니다","window.close");
 
@@ -72,17 +72,17 @@ if($exec=="upload") {
 	for($i=0;$i<$num;$i++) {
 		$upload[$i] = $HTTP_POST_FILES[upload][tmp_name][$i];
 		$upload_name[$i]  = $HTTP_POST_FILES[upload][name][$i];
-		//특수문자가 들어갔는지 조사
+		// 특수문자가 들어갔는지 조사
 		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$upload_name[$i],$result);
 		
 		$upload_size[$i]  = $HTTP_POST_FILES[upload][size][$i];
 		$upload_type[$i]  = $HTTP_POST_FILES[upload][type][$i];
 
 		if($upload_name[$i]) {
-			//특수문자가 들어갔으면
+			// 특수문자가 들어갔으면
 			if($result[0]!=$upload_name[$i]) Error("한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!"); 
 
-			$upload[$i]=eregi_replace("\\\\","\\",$upload[$i]);
+			$upload[$i]=preg_replace("#\\\\#i","\\",$upload[$i]);
 			$upload_name[$i]=str_replace(" ","_",$upload_name[$i]);
 			$upload_name[$i]=str_replace("-","_",$upload_name[$i]);
 			
@@ -112,7 +112,7 @@ if($exec=="upload") {
 // 삭제 명령 실행시
 if($exec=="delete"&&strlen($no)&&$id) {
 	if(!z_unlink($path."/".$image_list[$no])) die("에러");
-	//각 게시판 자료실에서 멤버 썸네일 삭제
+	// 각 게시판 자료실에서 멤버 썸네일 삭제
 	$table_name_result=mysql_query("select name from $admin_table order by name") or error(mysql_error());
 	while($table_data=mysql_fetch_array($table_name_result)){
 		$table_name=$table_data[name];
@@ -479,5 +479,4 @@ for($i=$startPageNum;$i<=$endPageNum;$i++) {
 
 <?
 foot();
-include "_foot.php";
 ?>

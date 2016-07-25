@@ -36,8 +36,6 @@ else {
 
 	if(!zb_sendmail(0, $to, $name, $_from, "", $subject, $comment)) Error("메일 발송 에러");
 }
-
-@mysql_close($connect);
 ?>
 <script>
 	alert('변경된 비밀번호가 <?=$email?>로 발송되었습니다.\n\n메일을 확인하신후 곧 바로 로그인하여\n\n비밀번호를 변경하여 주시기 바라겠습니다');

@@ -24,14 +24,12 @@ if($exec=="del_all") {
 	for($i=0;$i<count($del);$i++) {
 		mysql_query("delete from $get_memo_table where no='$del[$i]' and member_no='$member[no]'");
 	}
-	mysql_close($connect);
 	movepage("$PHP_SELF?page=$page");
 }
 
 // 메모삭제
 if($exec=="del") {
 	mysql_query("delete from $get_memo_table where no='$no' and member_no='$member[no]'");
-	mysql_close($connect);
 	movepage("$PHP_SELF?page=$page");
 }
 
@@ -69,8 +67,6 @@ if($page>$total_page) $page=$total_page; // 페이지가 전체 페이지보다 크면 페이지
 $que="select a.no as no, a.subject as subject, a.reg_date as reg_date, a.readed as readed, b.name as name, b.user_id as user_id, a.member_from as member_from from $get_memo_table a ,$member_table b where a.member_no='$member[no]' and a.member_from=b.no  order by a.no desc limit $start_num,$page_num";
 $result=mysql_query($que) or Error(mysql_error());
 
-// MySQL 닫기 
-if($connect) mysql_close($connect);
 $query_time=getmicrotime();
 
 // 페이지 계산  $print_page 라는 변수에 저장 
@@ -156,7 +152,7 @@ if($now_data[no]) {
     <tr> 
       <td width="50" align="right"><img src="images/memo_from.gif" width="24" height="15"></td>
       <td><img src="images/t.gif" width="10" height="3"><br>
-        <a href=javascript:void(window.open('view_info.php?member_no=<?=$now_data[member_from]?>','view_info','width=400,height=500,toolbar=no,scrollbars=yes'))><?=stripslashes($now_data[name])?></a> <font style=font-size:9pt;>(<b>ID</b> : <?=$now_data['member_from']?>)
+        <a href="javascript:void(window.open('view_info.php?member_no=<?=$now_data[member_from]?>','view_info','width=400,height=500,toolbar=no,scrollbars=yes'))"><?=stripslashes($now_data[name])?></a> <font style=font-size:9pt;>(<b>ID</b> : <?=$now_data['member_from']?>)
       </td>
     </tr>
     <tr> 

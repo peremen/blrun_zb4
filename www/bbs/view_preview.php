@@ -1,7 +1,7 @@
 <?
 include "lib.php";
 
-if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.","window.close");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.","window.close");
 if(!preg_match("/write.php/i",$HTTP_REFERER)) Error("정상적으로 글을 쓰시기 바랍니다.","window.close");
 if(getenv("REQUEST_METHOD") == 'GET' ) Error("정상적으로 글을 쓰시기 바랍니다..","window.close");
 
@@ -49,10 +49,10 @@ if(!$is_admin&&$setup[grant_html]<$member[level]) {
 		$memo=str_replace("<","&lt;",$memo);
 		$tag=explode(",",$setup[avoid_tag]);
 		for($i=0;$i<count($tag);$i++) {
-			if(!isblank($tag[$i])) { 
-				$memo=eregi_replace("&lt;".$tag[$i]." ","<".$tag[$i]." ",$memo); 
-				$memo=eregi_replace("&lt;".$tag[$i].">","<".$tag[$i].">",$memo); 
-				$memo=eregi_replace("&lt;/".$tag[$i],"</".$tag[$i],$memo); 
+			if(!isblank($tag[$i])) {
+				$memo=preg_replace("#&lt;".$tag[$i]." #i","<".$tag[$i]." ",$memo);
+				$memo=preg_replace("#&lt;".$tag[$i].">#i","<".$tag[$i].">",$memo);
+				$memo=preg_replace("#&lt;/".$tag[$i]."#i","</".$tag[$i],$memo);
 			}
 		}
 		// XSS 해킹 이벤트 핸들러 제거
@@ -271,9 +271,5 @@ $memo=str_replace("<","&lt;",str_replace("&","&amp;",$memo));
 
 <?
 // 세션이 초기화되는 버그 때문에 세션변수를 재설정
-$WRT_SS_VRS = $wantispam;
-@session_register("WRT_SS_VRS");
-$WRT_SPM_PWD = "gg";
-@session_register("WRT_SPM_PWD");
-@mysql_close($connect);
+$_SESSION['WRT_SS_VRS'] = $wantispam;
 ?>

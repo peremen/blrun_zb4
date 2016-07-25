@@ -23,22 +23,14 @@ $ip_array = explode("|||",$data[memo]);
 // 현재글의 Vote수 올림;;
 if($setup[skinname]!="zero_vote") {
 	if(substr($ip_array[0],0,9)=="설문조사|") Error("정상적인 투표를 하지 않으셨습니다.");
-	if(!preg_match("/".$setup[no]."_".$no."/",$HTTP_SESSION_VARS["zb_vote"])) {
+	if(!preg_match("/".$setup[no]."_".$no."/",$_SESSION['zb_vote'])) {
 		mysql_query("update $t_board"."_$id set vote=vote+1 where no='$no'");
-		$vote_str =  "," . $setup[no]."_".$no;
-
-		// 기존 세션 처리 (4.0x용 세션 처리로 인하여 주석 처리)	
-		//$HTTP_SESSION_VARS["zb_vote"] = $HTTP_SESSION_VARS["zb_vote"] . $vote_str;
+		$vote_str =  ",".$setup[no]."_".$no;
 
 		// 4.0x 용 세션 처리
-		$zb_vote = $HTTP_SESSION_VARS["zb_vote"] . $vote_str;
-		session_register("zb_vote");
+		$_SESSION['zb_vote'] = $_SESSION['zb_vote'].$vote_str;
 	}
 } else Error("정상적인 투표를 하지 않으셨습니다..");
-
-// MySQL 닫기 
-
-if($connect) mysql_close($connect);
 
 // 페이지 이동
 if($setup[use_alllist]) $temp_href="zboard.php"; else $temp_href="view.php";

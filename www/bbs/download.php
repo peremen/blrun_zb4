@@ -6,7 +6,7 @@ ob_start(); //_head.php 파일에 이미 웹로그 분석 html 코드가 삽입돼 있어 경고에러
 **************************************************************************/
 include "_head.php";
 
-if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) die();
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) die();
 
 /***************************************************************************
 * 게시판 설정 체크
@@ -32,9 +32,4 @@ $filename=$data[$filename];
 header("Content-Type: application/force-download"); 
 header("Content-Disposition: attachment; filename=\"$filename\""); 
 readfile("$filepath");
-
-if($connect) {
-	@mysql_close($connect);
-	unset($connect);
-}
 ?>

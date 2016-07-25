@@ -257,12 +257,6 @@ while($bbs = mysql_fetch_array($result)) {
 	</form>
 
 </pre>
-
-<?
-mysql_close($connect);
-$connect="";
-?>
-
 <br><br><br>
 
 <?

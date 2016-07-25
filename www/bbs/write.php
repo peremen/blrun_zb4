@@ -28,7 +28,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
  * 게시판 설정 체크
  **************************************************************************/
 
- 	if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
+ 	if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
 
 	if(preg_match("/:\/\//i",$dir)) $dir=".";
 
@@ -44,8 +44,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	$wnum2 = mt_rand(1,1000);
 	$wnum1num2 = $wnum1*10000 + $wnum2;
 	//글쓰기 보안을 위해 세션변수를 설정
-	$WRT_SS_VRS = $wnum1num2;
-	session_register("WRT_SS_VRS");
+	$_SESSION['WRT_SS_VRS'] = $wnum1num2;
 
 // 변수 체크
 	if(!$mode||$mode=="write") {
@@ -106,7 +105,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 			} else {
 				// 세션이 초기화되는 버그 때문에 세션변수를 재설정
 				$secret_str = $setup[no]."_".$no;
-				$HTTP_SESSION_VARS['zb_s_check'] = $secret_str;
+				$_SESSION['zb_s_check'] = $secret_str;
 			}
 		}
 	}
@@ -136,9 +135,9 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	else $title = " 신규 글쓰기 "; 
 
 // 쿠키값을 이용;;
-	$name=htmlspecialchars(stripslashes($HTTP_SESSION_VARS["zb_writer_name"]));
-	$email=htmlspecialchars(stripslashes($HTTP_SESSION_VARS["zb_writer_email"]));
-	$homepage=htmlspecialchars(stripslashes($HTTP_SESSION_VARS["zb_writer_homepage"]));
+	$name=htmlspecialchars(stripslashes($_SESSION['zb_writer_name']));
+	$email=htmlspecialchars(stripslashes($_SESSION['zb_writer_email']));
+	$homepage=htmlspecialchars(stripslashes($_SESSION['zb_writer_homepage']));
 
 /******************************************************************************************
  * 글쓰기 모드에 따른 내용 체크
@@ -185,7 +184,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 		// 신택스하이라이트 헤더 처리 끝
 
 		// 비밀글이고 관리자가 아니고 멤버가 일치하지 않고 세션값이 틀리면 리턴
-		if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$HTTP_SESSION_VARS[zb_s_check]!=$zb_check) error("정상적인 방법으로 수정하세요");
+		if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$_SESSION['zb_s_check']!=$zb_check) error("정상적인 방법으로 수정하세요");
 
 		$name=htmlspecialchars($data[name]); // 이름
 		$email=htmlspecialchars($data[email]); // 메일
@@ -207,7 +206,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	} elseif($mode=="reply") {
 
 		// 비밀글이고 관리자가 아니고 멤버가 일치하지 않고 세션값이 틀리면 리턴
-		if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$HTTP_SESSION_VARS[zb_s_check]!=$zb_check) error("정상적인 방법으로 답글을 다세요");
+		if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$_SESSION['zb_s_check']!=$zb_check) error("정상적인 방법으로 답글을 다세요");
 
 		if($data[is_secret]) $secret=" checked ";
 
@@ -324,8 +323,4 @@ function sendit() {
 }
 
 foot();
-
-$_skinTimeStart = getmicrotime();
-include "_foot.php";
-$_skinTime += getmicrotime()-$_skinTimeStart;
 ?>

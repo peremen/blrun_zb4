@@ -102,90 +102,90 @@ class Aokio_Analyzer_Browser{
 //TODO 스트링 안에 istb 가 있으면 인포시크 툴바가 설치되어있음
 //Mozilla/5.0 (compatible; MSIE 6.0;Windows; U; Windows NT 5.0; ja-JP; rv:1.7.5) Gecko/20041108 Firefox/1.0
 // 이거 머야...? -,.- 머 이런넘이 다 있어....
-		if( (ereg('msie',$agent)||ereg('rv:11',$agent)||ereg('edge',$agent)) && 
-			!ereg('opr',$agent) && 
-			!ereg('avant browser',$agent) && 
-			!ereg('sleipnir',$agent) && 
-			!ereg('lunascape',$agent)&& 
-			!ereg('aol',$agent)&& 
-			!ereg('america online browser ',$agent)){
+		if( (preg_match("#msie#",$agent)||preg_match("#rv:11#",$agent)||preg_match("#edge#",$agent)) && 
+			!preg_match("#opr#",$agent) && 
+			!preg_match("#avant browser#",$agent) && 
+			!preg_match("#sleipnir#",$agent) && 
+			!preg_match("#lunascape#",$agent)&& 
+			!preg_match("#aol#",$agent)&& 
+			!preg_match("#america online browser #",$agent)){
 			$browser = "Internet Explorer";
 
 			$browser_type = TRIDENT;
-		}elseif(ereg('opr',$agent)){
+		}elseif(preg_match("#opr#",$agent)){
 			$browser = "Opera";
 
 			$browser_type = OTHERS;
-		}elseif(ereg('avant browser',$agent) || ereg('advanced browser',$agent)){
+		}elseif(preg_match("#avant browser#",$agent) || preg_match("#advanced browser#",$agent)){
 			$browser = "Avant Browser";
 
 			// 버젼 가져오기 힘드남?
 			$browser_type = TRIDENT;
-		}elseif(ereg('lunascape',$agent)){
+		}elseif(preg_match("#lunascape#",$agent)){
 			$browser = "Lunascape";
 			$browser_type = OTHERS;
 
-		}elseif(ereg('sleipnir',$agent)){
+		}elseif(preg_match("#sleipnir#",$agent)){
 			//TODO if os가 unknown 이면 윈도우로 설정...
 			$browser = "Sleipnir";
 			$browser_type = OTHERS;
 
-		}elseif(ereg('aol',$agent) || ereg('america online browser',$agent)){
+		}elseif(preg_match("#aol#",$agent) || preg_match("#america online browser#",$agent)){
 			$browser = "America Online Browser";
 			$browser_type = OTHERS;
 
-		}elseif( ereg('gecko',$agent) && ereg('opr',$agent)){
+		}elseif( preg_match("#gecko#",$agent) && preg_match("#opr#",$agent)){
 			$browser = "Opera";
 			$browser_type = GECKO;
 
-		}elseif( ereg('gecko',$agent) && ereg('swing',$agent)){
+		}elseif( preg_match("#gecko#",$agent) && preg_match("#swing#",$agent)){
 			$browser = "Swing Browser";
 			$browser_type = GECKO;
 
-		}elseif( ereg('gecko',$agent) && ereg('chrome',$agent)){
+		}elseif( preg_match("#gecko#",$agent) && preg_match("#chrome#",$agent)){
 			$browser = "Chrome";
 			$browser_type = GECKO;
 
-		}elseif( ereg('gecko',$agent) && ereg('firefox',$agent)){
+		}elseif( preg_match("#gecko#",$agent) && preg_match("#firefox#",$agent)){
 			$browser = "Firefox";
 			$browser_type = GECKO;
 
-		}elseif( ereg('gecko',$agent) && ereg('seamonkey',$agent)){
+		}elseif( preg_match("#gecko#",$agent) && preg_match("#seamonkey#",$agent)){
 			$browser = "SeaMonkey";
 			$browser_type = GECKO;
 
-		}elseif( ereg('gecko',$agent) && ereg('flock',$agent)){
+		}elseif( preg_match("#gecko#",$agent) && preg_match("#flock#",$agent)){
 			$browser = "Flock";
 			$browser_type = GECKO;
 
-		}elseif( ereg('gecko',$agent) && ereg('firebird',$agent)){
+		}elseif( preg_match("#gecko#",$agent) && preg_match("#firebird#",$agent)){
 			$browser = "Firebird";
 			$browser_type = GECKO;
 
-		}elseif(ereg('safari',$agent) ){
+		}elseif(preg_match("#safari#",$agent) ){
 			$browser = "Safari";
 			$browser_type = KHTML;
 
 		}elseif( 
-			ereg('mozilla',$agent )   &&
-			!ereg('spoofer',$agent)    &&
-			!ereg('compatible',$agent) &&
-			!ereg('hotjava',$agent)    &&
-			!ereg('opr',$agent)      &&
-			!ereg('webtv',$agent)      &&
-			!ereg('swing',$agent)      &&
-			!ereg('chrome',$agent)      &&
-			!ereg('firefox',$agent)    &&
-			!ereg('firebird',$agent)    &&
-			!ereg('safari',$agent)    &&
-			!ereg('seamonkey',$agent)  &&
-			!ereg('flock',$agent)){
+			preg_match("#mozilla#",$agent )   &&
+			!preg_match("#spoofer#",$agent)    &&
+			!preg_match("#compatible#",$agent) &&
+			!preg_match("#hotjava#",$agent)    &&
+			!preg_match("#opr#",$agent)      &&
+			!preg_match("#webtv#",$agent)      &&
+			!preg_match("#swing#",$agent)      &&
+			!preg_match("#chrome#",$agent)      &&
+			!preg_match("#firefox#",$agent)    &&
+			!preg_match("#firebird#",$agent)    &&
+			!preg_match("#safari#",$agent)    &&
+			!preg_match("#seamonkey#",$agent)  &&
+			!preg_match("#flock#",$agent)){
 
-				if(ereg('netscape',$agent) ){
+				if(preg_match("#netscape#",$agent) ){
 					//6. 대 이후?
 					$browser = "Netscape6up";
 
-				}elseif(ereg('gecko',$agent) ){
+				}elseif(preg_match("#gecko#",$agent) ){
 					$browser = "Mozilla";
 
 				}else{
@@ -193,24 +193,24 @@ class Aokio_Analyzer_Browser{
 					$browser = "Netscape";
 				}
 			$browser_type = TRIDENT;
-		}elseif(ereg('konqueror',$agent)){
+		}elseif(preg_match("#konqueror#",$agent)){
 			$browser = "Konqueror";
-		}elseif(ereg('shiira',$agent) ){
+		}elseif(preg_match("#shiira#",$agent) ){
 			$browser = "Shiira";
-		}elseif(ereg('camino',$agent)){
+		}elseif(preg_match("#camino#",$agent)){
 			$browser = "Camino";
-		}elseif(ereg('lynx',$agent)){
+		}elseif(preg_match("#lynx#",$agent)){
 			$browser = "Lynx";
-		}elseif(ereg('links',$agent)){
+		}elseif(preg_match("#links#",$agent)){
 			$browser = "Links";
-		}elseif(ereg('w3m',$agent)){
+		}elseif(preg_match("#w3m#",$agent)){
 			$browser = "W3M";
-		}elseif( ereg('amaya',$agent)){
+		}elseif( preg_match("#amaya#",$agent)){
 			$browser = "Amaya";
-		}elseif(ereg('kagetaka',$agent)){
+		}elseif(preg_match("#kagetaka#",$agent)){
 			$browser = "Kagetaka";
 
-		}elseif(ereg('omniweb',$agent)){
+		}elseif(preg_match("#omniweb#",$agent)){
 			$browser = "OmniWeb";
 		}else{
 			$browser = "Unknown Browser";
@@ -274,7 +274,7 @@ class Aokio_Analyzer_Browser{
 
 
 	function _setBrowserVersion($browser,$agent){
-		$temp_array=split(" ",eregi_replace("\(|/|;|:|)|-"," ",$agent));
+		$temp_array=preg_split("# #",preg_replace("#(\(|/|;|:|\)|-)#i"," ",$agent));
 //		echo "<pre>".nl2br(print_r($temp_array,true))."</pre>";
 		if($browser =="Firefox"){
 			$this->_setBrowserGeckoExtendedInfo("firefox",$temp_array);
@@ -289,7 +289,7 @@ class Aokio_Analyzer_Browser{
 		}elseif($browser =="Firebird"){
 			$this->_setBrowserGeckoExtendedInfo('firebird',$temp_array);
 		}elseif($browser =="Netscape6up"){
-			if(ereg('netscape6',$agent)){
+			if(preg_match("#netscape6#",$agent)){
 				$this->_setBrowserGeckoExtendedInfo('netscape6',$temp_array);
 			}else{
 				$this->_setBrowserGeckoExtendedInfo('netscape',$temp_array);
@@ -299,9 +299,9 @@ class Aokio_Analyzer_Browser{
 		}elseif($browser =="Safari"){
 			$this->_setBrowserSafariVersion('safari',$temp_array);
 		}elseif($browser =="Internet Explorer"){
-			if(ereg('rv:11',$agent))
+			if(preg_match("#rv:11#",$agent))
 				$this->_setBrowserCommonExtendedInfo('rv',$temp_array);
-			elseif(ereg('edge',$agent))
+			elseif(preg_match("#edge#",$agent))
 				$this->_setBrowserCommonExtendedInfo('edge',$temp_array);
 			else
 				$this->_setBrowserCommonExtendedInfo('msie',$temp_array);

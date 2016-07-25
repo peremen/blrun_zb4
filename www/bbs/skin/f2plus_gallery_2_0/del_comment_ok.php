@@ -8,7 +8,7 @@ if(file_exists($id."_config.php")){
 	include $id."_config.php";
 }
 
-if(!eregi($HTTP_HOST,$HTTP_REFERER)) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['DEL_COMM_SEC']==""||$_SESSION['DEL_COMM_SEC']!=$delsec) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
 
 /***************************************************************************
 * 코멘트 삭제 진행
@@ -28,7 +28,6 @@ history.back();
 //-->
 </script>
 <?
-	if($connect) @mysql_close($connect);
 	exit;
 }
 
@@ -75,7 +74,8 @@ mysql_query("update $t_board"."_$id set total_comment='$total[0]' where no='$no'
 // 회원일 경우 해당 해원의 점수 주기
 if($member[no]==$s_data[ismember]) @mysql_query("update $member_table set point2=point2-1 where no='$member[no]'",$connect) or Error1(mysql_error());
 
-@mysql_close($connect);
+// 보안을 위해 세션변수 삭제
+unset($_SESSION['DEL_COMM_SEC']);
 
 // 페이지 이동
 if($setup[use_alllist])

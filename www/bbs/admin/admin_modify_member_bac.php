@@ -116,7 +116,7 @@ if($member_data[is_admin]>2)
 {                                                                                                 
 
 	if(trim($member_data[board_name])) {
-		$manager_board_temp = split(",",$member_data[board_name]);
+		$manager_board_temp = preg_split("/,/",$member_data[board_name]);
 		$get_string .= " (no = '$manager_board_temp[0]') ";
 		for($__k=1;$__k<count($manager_board_temp);$__k++){
 			if(trim($manager_board_temp[$__k])) $get_string .= " or (no = '$manager_board_temp[$__k]') ";

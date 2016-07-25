@@ -67,9 +67,6 @@ while($table_data=mysql_fetch_array($table_name_result))
 }
 
 echo "모든 게시판/덧글 테이블에서 모두 {$hop}개 레코드가 변경되었습니다.";
-
-mysql_close($connect);
-$connect="";
 ?>
 <br><br><br>
 <script>
