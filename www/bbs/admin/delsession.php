@@ -15,7 +15,7 @@ if($exec=="delete") {
 	$directory = dir($path);
 	while($entry = $directory->read()) {
 		if ($entry != "." && $entry != "..") {
-			if(!eregi(session_id(), $entry)&&!eregi($HTTP_COOKIE_VARS[ZBSESSIONID], $entry)) {
+			if(!preg_match("#".session_id()."#i", $entry)&&!preg_match("#".$HTTP_COOKIE_VARS[ZBSESSIONID]."#i", $entry)) {
 				z_unlink($path."/".$entry);
 				$i++;
 				if($i%100==0) print(".");
@@ -97,10 +97,6 @@ $totallist = count($list);
 ?>
 </script>
 </div>
-<?
-mysql_close($connect);
-$connect="";
-?>
 <br><br><br>
 <?
 foot();

@@ -44,7 +44,7 @@
  * 외부로그인 모양을 바꾸시려면 outloing_skin 디렉토리 내의 README.TXT 파일을 꼭 읽어 주시기 바랍니다.
  *
  *******************************************************************************/
-global $member, $_head_php_excuted, $REQUEST_URI, $_zb_lib_included, $HTTP_SESSION_VARS, $total_member_connect, $total_guest_connect;
+global $member, $_head_php_excuted, $REQUEST_URI, $_zb_lib_included, $total_member_connect, $total_guest_connect;
 global $a_member_join, $a_member_modify, $a_member_memo, $member_memo_icon, $memo_on_sound, $a_logout, $a_login, $id, $PHP_SELF, $_outlogin_include;
 
 if(preg_match("/:\/\//i",$_zb_path)||preg_match("/\.\./i",$_zb_path)) $_zb_path ="./";
@@ -73,7 +73,7 @@ if(!$_head_php_excuted&&!$_zb_lib_included) {
 
 // 외부로그인 출력 함수
 function print_outlogin($skinname = "default", $group_no = 1, $level = "10") {
-	global $member, $_head_php_excuted, $REQUEST_URI, $HTTP_SESSION_VARS, $total_member_connect, $total_guest_connect, $_zb_path, $_zb_url;
+	global $member, $_head_php_excuted, $REQUEST_URI, $total_member_connect, $total_guest_connect, $_zb_path, $_zb_url;
 	global $a_member_join, $a_member_modify, $a_member_memo, $member_memo_icon, $memo_on_sound, $a_logout, $a_login, $id, $PHP_SELF;
 
 	if($level < $member[level]) {
@@ -252,7 +252,7 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 
 // 최근 설문조사 (일반 게시판 형)
 function print_survey($skinname, $title, $id, $textlen=30) {
-	global $_zb_path, $_zb_url, $connect, $t_board, $admin_table, $HTTP_SESSION_VARS;
+	global $_zb_path, $_zb_url, $connect, $t_board, $admin_table;
 
 	if(!$skinname||!$id) return;
 
@@ -302,7 +302,7 @@ function print_survey($skinname, $title, $id, $textlen=30) {
 
 // 갤러리 이미지 뽑아오는 스킨
 function print_gallery($skinname, $title, $id, $num=10, $xsize=80, $ysize=80, $xnum=10) {
-	global $_zb_path, $_zb_url, $connect, $t_board, $admin_table, $HTTP_SESSION_VARS;
+	global $_zb_path, $_zb_url, $connect, $t_board, $admin_table;
 
 	if(!$skinname||!$id) return;
 

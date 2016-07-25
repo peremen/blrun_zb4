@@ -2,7 +2,7 @@
 // 라이브러리 함수 파일 인크루드
 require "lib.php";
 
-if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
 if(getenv("REQUEST_METHOD") == 'GET' ) Error("정상적으로 글을 삭제하시기 바랍니다","");
 
 // 게시판 이름 지정이 안되어 있으면 경고;;;
@@ -30,7 +30,7 @@ if($member[is_admin]==1||$member[is_admin]==2&&$member[group_no]==$setup[group_n
 $avoid_ip=explode(",",$setup[avoid_ip]);
 for($i=0;$i<count($avoid_ip);$i++)
 {
-	if(!isblank($avoid_ip[$i])&&eregi($avoid_ip[$i],$REMOTE_ADDR)&&!$is_admin)
+	if(!isblank($avoid_ip[$i])&&preg_match("/".$avoid_ip[$i]."/i",$REMOTE_ADDR)&&!$is_admin)
 	Error(" Access Denied ");
 }
 
@@ -102,7 +102,7 @@ if(!$s_data[child]) // 답글이 없을때;;
 		// 파일삭제
 		@z_unlink("./".$c_data[file_name1]);
 		@z_unlink("./".$c_data[file_name2]);
-		//빈 파일 폴더 삭제
+		// 빈 파일 폴더 삭제
 		if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name1],$out))
 			if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 		if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name2],$out))
@@ -119,8 +119,6 @@ if(!$s_data[child]) // 답글이 없을때;;
 	if($member[no]==$s_data[ismember]) @mysql_query("update $member_table set point1=point1-1 where no='$member[no]'",$connect) or error(mysql_error());
 }
 
-//////// MySQL 닫기 ///////////////////////////////////////////////
-if($connect) mysql_close($connect);
 $query_time=getmicrotime();
 
 movepage("zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&category=$category&sn1=$sn1&divpage=$divpage");

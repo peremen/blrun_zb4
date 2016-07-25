@@ -14,12 +14,12 @@ include "$dir/member_icon.php";
 include $dir."/swe/memo_convert_js.php";  
 $a_install="$dir/install.php";
 
-if(!eregi("Zeroboard",$a_login)) $a_login= str_replace(">","><font class=com>",$a_login)."&nbsp;";
-if(!eregi("Zeroboard",$a_logout)) $a_logout= str_replace(">","><font class=com>",$a_logout)."&nbsp;";
-if(!eregi("Zeroboard",$a_setup)) $a_setup= str_replace(">","><font class=com>",$a_setup)."&nbsp;";
-if(!eregi("Zeroboard",$a_member_join)) $a_member_join= str_replace(">","><font class=com>",$a_member_join)."&nbsp;";
-if(!eregi("Zeroboard",$a_member_modify)) $a_member_modify= str_replace(">","><font class=com>",$a_member_modify)."&nbsp;";
-if(!eregi("Zeroboard",$a_member_memo)) $a_member_memo= str_replace(">","><font class=com>",$a_member_memo)."&nbsp;";
+if(!preg_match("/Zeroboard/i",$a_login)) $a_login= str_replace(">","><font class=com>",$a_login)."&nbsp;";
+if(!preg_match("/Zeroboard/i",$a_logout)) $a_logout= str_replace(">","><font class=com>",$a_logout)."&nbsp;";
+if(!preg_match("/Zeroboard/i",$a_setup)) $a_setup= str_replace(">","><font class=com>",$a_setup)."&nbsp;";
+if(!preg_match("/Zeroboard/i",$a_member_join)) $a_member_join= str_replace(">","><font class=com>",$a_member_join)."&nbsp;";
+if(!preg_match("/Zeroboard/i",$a_member_modify)) $a_member_modify= str_replace(">","><font class=com>",$a_member_modify)."&nbsp;";
+if(!preg_match("/Zeroboard/i",$a_member_memo)) $a_member_memo= str_replace(">","><font class=com>",$a_member_memo)."&nbsp;";
 if($setup[use_alllist]) $view_target="zboard.php"; else $view_target="view.php";
 ?>
 

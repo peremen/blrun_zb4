@@ -37,8 +37,7 @@ $member_data = mysql_fetch_array($result);
 if($member_data[no]) {
 
 	// 관리자모드 토큰 초기화
-	$_token2='';
-	session_register("_token2");
+	$_SESSION['_token2']='';
 	setCookie("token2","",0,"/","");
 
 	if($auto_login) {
@@ -53,7 +52,6 @@ if($member_data[no]) {
 
 	// 로그인시 토큰 생성
 	setCookie("token","$num123",0,"/","");
-	$_token = "$num123";
 	// email IP 표식 불러와 처리
 	unset($c_match);
 	if(preg_match("#\|\|\|([0-9.]{1,})$#",$member_data[email],$c_match)) {
@@ -62,18 +60,13 @@ if($member_data[no]) {
 	}
 	$member_data[email].="|||".$REMOTE_ADDR;
 	mysql_query("update $member_table set email='$member_data[email]' where user_id='$user_id'");
-	session_register("_token");
+	$_SESSION['_token'] = "$num123";
 
-	// 4.0x 용 세션 처리
-	$zb_logged_no = $member_data[no];
-	$zb_logged_time = time();
-	$zb_logged_ip = $REMOTE_ADDR;
-	$zb_last_connect_check = '0';
-
-	session_register("zb_logged_no");
-	session_register("zb_logged_time");
-	session_register("zb_logged_ip");
-	session_register("zb_last_connect_check");
+	// 5.3 이상용 세션 처리
+	$_SESSION['zb_logged_no'] = $member_data[no];
+	$_SESSION['zb_logged_time'] = time();
+	$_SESSION['zb_logged_ip'] = $REMOTE_ADDR;
+	$_SESSION['zb_last_connect_check'] = '0';
 
 	// 로그인 후 페이지 이동
 	if($mypos=strrpos($_zb_url,"/bbs/")) // 마지막 슬래쉬 위치 찾아 제거
@@ -91,6 +84,4 @@ if($member_data[no]) {
 	Error("로그인을 실패하였습니다");
 	foot();
 }
-
-@mysql_close($connect);
 ?>

@@ -74,7 +74,7 @@ if(isset($_REQUEST['config_page'])){
 }
 // 설정값 디비에서 가져와서 화면에 표시
 $conf_info = AokioConfigManager::getTargetConfigInfos($id);
-$tem_access_perm = split(",",$conf_info['access_permission']);
+$tem_access_perm = preg_split("#,#",$conf_info['access_permission']);
 
 $temp_api = $config_messages['access_permission_items'];
 $temp_arr = array();

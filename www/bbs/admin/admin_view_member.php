@@ -37,7 +37,7 @@ if($keyword&&$keykind) {
 $temp=mysql_fetch_array(mysql_query("select count(*) from $member_table $s_que"));
 $total=$temp[0];
 
-//페이지 구하는 부분
+// 페이지 구하는 부분
 if(!$page_num)$page_num=10;
 $href.="&page_num=$page_num";
 if(!$page) $page=1;
@@ -48,7 +48,7 @@ $total_page=(int)(($total-1)/$page_num)+1;
 // 멤버정보를 구해옴
 $result=@mysql_query("select * from $member_table $s_que order by no desc limit $start_num,$page_num",$connect) or Error(mysql_error(),"");
 
-//  앞에 붙는 가상번호
+// 앞에 붙는 가상번호
 $number=$total-($page-1)*$page_num;
 
 ?>
@@ -324,7 +324,7 @@ for($i=1;$i<=10;$i++) echo "<option value=$i $check[$i]>$i Level</option>";
 <br>
 <font color=#ffffff style=font-size:9pt;font-family:Tahoma;>
 <?
-//페이지 나타내는 부분
+// 페이지 나타내는 부분
 	$show_page_num=10;
 	$start_page=(int)(($page-1)/$show_page_num)*$show_page_num;
 	$i=1;
@@ -337,6 +337,6 @@ for($i=1;$i<=10;$i++) echo "<option value=$i $check[$i]>$i Level</option>";
 	 $i++;
 	}
 	if($total_page>$move_page){$next_page=$move_page+1; echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&page=$next_page$href><font color=#ffffff>[Next]</font></a>";}
-//페이지 나타내는 부분 끝
+// 페이지 나타내는 부분 끝
 ?>
 </font><br><br>

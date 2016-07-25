@@ -2,17 +2,21 @@
 unset ($_point);
 unset ($aver_point);
 $m_memo = explode("|||",$data[memo]);
-$_name1 = $m_memo[0];  
-$_name2 = $m_memo[1];  
-$_name3 = $m_memo[2]; 
-$_name4 = $m_memo[3]; 
-$_name5 = $m_memo[4];
-$_name6 = $m_memo[5]; 
-$_name7 = $m_memo[6];
-$_name8 = $m_memo[7];
-$_name9 = $m_memo[8];
-$_name10 = $m_memo[9];
+$_name1 = $m_memo[0]; 
 $_name1 = love_convert($_name1);
+// $_name1의 &를 &amp 로 치환 후 textarea 태그 안의 textarea 태그 깨짐 방지를 위해 < 를 &lt; 로 한번더 치환
+$_name1=str_replace("<","&lt;",str_replace("&","&amp;",$_name1));
+// view.php 창이 깨지지 않게 하기 위해 조립
+$_name1="<div id=MEMOCONT_$data[no]></div><textarea style='display:none' id=MEMOAREA_$data[no]>".$_name1."</textarea><script>document.getElementById('MEMOCONT_'+$data[no]).innerHTML = document.getElementById('MEMOAREA_'+$data[no]).value</script>";
+$_name2 = del_html($m_memo[1]);
+$_name3 = del_html($m_memo[2]);
+$_name4 = del_html($m_memo[3]);
+$_name5 = del_html($m_memo[4]);
+$_name6 = del_html($m_memo[5]);
+$_name7 = del_html($m_memo[6]);
+$_name8 = del_html($m_memo[7]);
+$_name9 = addslashes(htmlspecialchars($m_memo[8]));
+$_name10 = addslashes(htmlspecialchars($m_memo[9]));
 
 for($i=1;$i<=$_name6;$i++){
 	$_point.="★";
@@ -95,7 +99,7 @@ if($total_comment[0]>0){
 			<col width=></col><col width=140></col>
 			<tr bgcolor=#eeeeee>
 			<td>
-				<a href=<?=$data[sitelink1]?> target=_blank><font class=list_eng><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;공식홈페이지</font></a>
+				<a href="<?=del_html(str_replace("\"","&quot;",$data[sitelink1]))?>" target=_blank><font class=list_eng><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;공식홈페이지</font></a>
 			</td>
 			<td align=right><font class=list_eng><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;예고편 &nbsp;</font><a href=javascript: onclick="player('<?=$_name9?>','800','600')"><img src=<?=$dir?>/images/movie_view1.gif border=0 align=absmiddle></a> &nbsp;<a href=javascript: onclick="player('<?=$_name10?>','800','600')"><img src=<?=$dir?>/images/movie_view2.gif border=0 align=absmiddle></a></td>
 			</tr>
@@ -108,7 +112,7 @@ if($total_comment[0]>0){
 					<table border=0 width=100% cellspacing=0 cellpadding=0 align=center>
 					<col width=></col><col width=77></col>
 					<tr><td align=right>
-					<a href=<?=$data[sitelink2]?> target=_blank><font class=list_eng><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;관련홈페이지</font></a> <a href="#m_review_w"><font class=list_eng><img src=<?=$dir?>/images/m_review_w.gif border=0 align=absmiddle>영화평쓰기</font></a></td>
+					<a href="<?=del_html(str_replace("\"","&quot;",$data[sitelink2]))?>" target=_blank><font class=list_eng><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;관련홈페이지</font></a> <a href="#m_review_w"><font class=list_eng><img src=<?=$dir?>/images/m_review_w.gif border=0 align=absmiddle>영화평쓰기</font></a></td>
 					<td align=right><a href="#m_review_r"><font class=list_eng><img src=<?=$dir?>/images/m_review_r.gif border=0 align=absmiddle>영화평보기</font></a></td></tr>
 					</table>
 				</td>

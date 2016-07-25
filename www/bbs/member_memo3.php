@@ -218,8 +218,5 @@ while($data=mysql_fetch_array($result)) {
   </tr>
 </table>
 <?
-// MySQL ´Ý±â 
-if($connect) mysql_close($connect);
-
 foot();
 ?>

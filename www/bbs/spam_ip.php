@@ -4,7 +4,7 @@ include "lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
 $s_keyword = $keyword;
-if(!preg_match("/".$HTTP_HOST."/i",$HTTP_REFERER)||$DEL_COMM_SEC!=$delsec) Error("보안코드가 일치하지 않습니다.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['DEL_COMM_SEC']==""||$_SESSION['DEL_COMM_SEC']!=$delsec) Error("보안코드가 일치하지 않습니다.");
 if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
 // 실제 검색부분
 if($keyword) {
@@ -121,7 +121,7 @@ if($keyword&&$s_que)
 					// 파일삭제
 					@z_unlink("./".$c_data[file_name1]);
 					@z_unlink("./".$c_data[file_name2]);
-					//빈 파일 폴더 삭제
+					// 빈 파일 폴더 삭제
 					if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name1],$out))
 						if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 					if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name2],$out))
@@ -236,9 +236,6 @@ if($keyword&&$s_que)
 }
 
 echo "<br><br><br>{$keyword} 란 아이피의 모든 게시글/덧글이 모두 {$hop}개 삭제 후 차단되었습니다.\n차단해제는 게시판 관라자메뉴를 이용하십시요.";
-
-mysql_close($connect);
-$connect="";
 ?>
 <br><br><br>
 <script>

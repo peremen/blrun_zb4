@@ -78,7 +78,7 @@ class Aokio_Analyzer_Referer{
 	function isRefererServerSearchSite(){
 		include 'search_site_list.php';
 		foreach($search_site_list as $key => $value){
-			if(eregi($value['site_regex'],$this->referer_host)){
+			if(preg_match("#".$value['site_regex']."#i",$this->referer_host)){
 				$this->searchsite_array_key = $key;
 				return true;
 			}
@@ -98,7 +98,7 @@ class Aokio_Analyzer_Referer{
 			$temp_array=explode ("&",$this->referer_query);
 
 			foreach($temp_array as $key => $value){
-				if(ereg($query_key,$value)){
+				if(preg_match("#".$query_key."#",$value)){
 					$str = substr($value,strlen($query_key));
 					$str = urldecode($str);
 					$str = mb_convert_encoding($str,  "UTF-8",$search_site_list[$this->searchsite_array_key]['first_convert_encoding_code']);

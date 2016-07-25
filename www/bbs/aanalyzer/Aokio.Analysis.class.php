@@ -91,8 +91,8 @@ class AokioAnalysis{
 		$this->bottom_misc_counts = array(
 													'total'					=> $info['total_counts'],
 													'max'					=> $info['max_counts'],
-													'min'					=>  $info['min_counts'],
-													'average'			=> $info['avg_counts'],
+													'min'					=>  @$info['min_counts'],
+													'average'			=> @$info['avg_counts'],
 													'items_counts'	=>  sizeof($info_list),
 													);
 		$max_key = null;
@@ -263,29 +263,29 @@ class AokioAnalysis{
 			//icon 
 			foreach($final_analysis_info as $key => $value){
 				$final_analysis_info[$key]['br_icon'] = "no_browser_icon";
-				if(ereg( 'Opera',$value['browser_full_name'])){
+				if(preg_match("#Opera#",$value['browser_full_name'])){
 					$final_analysis_info[$key]['br_icon'] = "opera";
-				}elseif(ereg( 'Firefox',$value['browser_full_name'])){
+				}elseif(preg_match("#Firefox#",$value['browser_full_name'])){
 					$final_analysis_info[$key]['br_icon'] = "firefox";
-				}elseif(ereg( 'Flock',$value['browser_full_name'])){
+				}elseif(preg_match("#Flock#",$value['browser_full_name'])){
 					$final_analysis_info[$key]['br_icon'] = "flock";
-				}elseif(ereg( 'SeaMonkey',$value['browser_full_name'])){
+				}elseif(preg_match("#SeaMonkey#",$value['browser_full_name'])){
 					$final_analysis_info[$key]['br_icon'] = "seamonkey";
-				}elseif(ereg( 'Internet Explorer',$value['browser_full_name'])){
+				}elseif(preg_match("#Internet Explorer#",$value['browser_full_name'])){
 					$final_analysis_info[$key]['br_icon'] = "ie";
-				}elseif(ereg( 'Konqueror',$value['browser_full_name'])){
+				}elseif(preg_match("#Konqueror#",$value['browser_full_name'])){
 					$final_analysis_info[$key]['br_icon'] = "konqueror";
-				}elseif(ereg( 'Avant',$value['browser_full_name'])){
+				}elseif(preg_match("#Avant#",$value['browser_full_name'])){
 					$final_analysis_info[$key]['br_icon'] = "avant";
-				}elseif(ereg( 'Sleipnir',$value['browser_full_name'])){
+				}elseif(preg_match("#Sleipnir#",$value['browser_full_name'])){
 					$final_analysis_info[$key]['br_icon'] = "sleipnir";
-				}elseif(ereg( 'Netscape',$value['browser_full_name'])){
+				}elseif(preg_match("#Netscape#",$value['browser_full_name'])){
 					$final_analysis_info[$key]['br_icon'] = "netscape";
-				}elseif(ereg( 'Mozilla',$value['browser_full_name'])){
+				}elseif(preg_match("#Mozilla#",$value['browser_full_name'])){
 					$final_analysis_info[$key]['br_icon'] = "mozilla";
-				}elseif(ereg( 'Lunascape',$value['browser_full_name'])){
+				}elseif(preg_match("#Lunascape#",$value['browser_full_name'])){
 					$final_analysis_info[$key]['br_icon'] = "lunascape";
-				}elseif(ereg( 'Safari',$value['browser_full_name'])){
+				}elseif(preg_match("#Safari#",$value['browser_full_name'])){
 					$final_analysis_info[$key]['br_icon'] = "safari";
 				}
 			}

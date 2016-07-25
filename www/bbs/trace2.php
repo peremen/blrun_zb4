@@ -86,7 +86,7 @@ if($keyword&&$s_que)
 		while($data=mysql_fetch_array($result))
 		{
 			flush();
-			$data[subject] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html($data[subject]));
+			$data[subject] = preg_replace("#".$keyword."#i","<font color=red>$keyword</font>",del_html($data[subject]));
 ?>
 
 &nbsp;&nbsp; [<?=del_html($data[name])?>] &nbsp;
@@ -114,7 +114,7 @@ if($keyword&&$s_que)
 			while($data=mysql_fetch_array($result))
 			{
 				flush();
-				$data[memo] = eregi_replace($keyword,"<font color=red>$keyword</font>",del_html($data[memo]));
+				$data[memo] = preg_replace("#".$keyword."#i","<font color=red>$keyword</font>",del_html($data[memo]));
 				// 계층 코멘트 표식 불러와 처리
 				unset($c_match);
 				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
@@ -130,9 +130,6 @@ if($keyword&&$s_que)
 		}
 	}
 }
-
-mysql_close($connect);
-$connect="";
 ?>
 <br><br><br>
 <?

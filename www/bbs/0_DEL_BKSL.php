@@ -83,9 +83,6 @@ while($table_data=mysql_fetch_array($table_name_result))
 }
 
 echo "모든 게시판/덧글 테이블에서 모두 {$hop}개 백슬래쉬 제거를 하였습니다.";
-
-mysql_close($connect);
-$connect="";
 ?>
 <br><br><br>
 <script>

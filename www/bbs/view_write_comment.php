@@ -15,14 +15,13 @@ if(!empty($_POST['code']) || $member[no] || $data[is_secret] != 0) {
 		}
 	}
 
-	//랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입
+	// 랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입
 	$num1 = mt_rand(1,1000);
 	$num2 = mt_rand(1,1000);
 	$num1num2 = $num1*10000 + $num2;
-	//코멘트 보안을 위해 세션변수를 설정
-	$ZBRD_SS_VRS = $num1num2;
-	session_register("ZBRD_SS_VRS");
-	//미리보기, 그림창고, 코드삽입 버튼 보이게 하기
+	// 코멘트 보안을 위해 세션변수를 설정
+	$_SESSION['ZBRD_SS_VRS'] = $num1num2;
+	// 미리보기, 그림창고, 코드삽입 버튼 보이게 하기
 	$box_view=true;
 
 	include $dir."/view_write_comment.php";
@@ -33,7 +32,7 @@ if(!empty($_POST['code']) || $member[no] || $data[is_secret] != 0) {
 <script language="javascript">
 <!--
 function sendit() {
-	//패스워드
+	// 패스워드
 	if(document.myform.code.value=="") {
 		alert("스팸방지 코드를 입력해 주십시요");
 		document.myform.code.focus();

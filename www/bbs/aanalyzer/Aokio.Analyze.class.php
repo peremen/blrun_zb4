@@ -89,7 +89,7 @@ class Aokio_Analyzer{
 		include 'robot_list.php';
 		$agent = $this->lowercaseAgent;
 		foreach($robot_list as $key => $value){
-			if(eregi($value,$agent)){
+			if(preg_match("#".$value."#i",$agent)){
 				return true;
 			}
 		}
@@ -179,7 +179,7 @@ class Aokio_Analyzer{
 	function getAcceptLanguage(){
 		$language = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 		$this->language_info = $language;
-		$temp_array=split(" ",eregi_replace(",|;|-|_"," ",$language));
+		$temp_array=preg_split("# #",preg_replace("#(,|;|-|_)#i"," ",$language));
 		if (empty($temp_array[0]) || $temp_array[0] == "*") {	//2006-04-14 * 가 들어간넘이 접속..-,.-
 			$language = null;
 		}else{

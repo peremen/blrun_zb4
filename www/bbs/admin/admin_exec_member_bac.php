@@ -42,7 +42,7 @@ if($exec2=="modify_member_board_manager"&&$member[is_admin]<3) {
 
 	$_temp=mysql_fetch_array(mysql_query("select * from $member_table where no = '$member_no'",$connect));
 
-	$__temp = split(",",$_temp[board_name]);
+	$__temp = preg_split("/,/",$_temp[board_name]);
 
 	$_st = "";
 
@@ -251,7 +251,7 @@ if($exec2=="modify_member_ok") {
 			@chmod("icon/private_name",0707);
 		}
 
-		//한글문자가 들어갔는지 조사
+		// 한글문자가 들어갔는지 조사
 		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$private_name_name,$result);
 		if($result[0]!=$private_name_name) Error("이름을 대신하는 아이콘 파일명은 한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!");
 

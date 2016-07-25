@@ -35,27 +35,12 @@ while($data=mysql_fetch_array($result)) {
 // 肺弊酒眶 矫糯
 destroyZBSessionID($member[no]);
 
-// 扁粮 技记 贸府 (4.0x侩 技记 贸府肺 牢窍咯 林籍 贸府)
-//$HTTP_SESSION_VARS["zb_logged_no"]='';
-//$HTTP_SESSION_VARS["zb_logged_id"]='';
-//$HTTP_SESSION_VARS["zb_logged_time"]='';
-//$HTTP_SESSION_VARS["zb_logged_ip"]='';
-//$HTTP_SESSION_VARS["zb_secret"]='';
-//$HTTP_SESSION_VARS["zb_last_connect_check"] = '0';
-
-// 4.0x 侩 技记 贸府
-$zb_logged_no='';
-$zb_logged_time='';
-$zb_logged_ip='';
-$zb_secret='';
-$zb_last_connect_check = '0';
-session_register("zb_logged_no");
-session_register("zb_logged_time");
-session_register("zb_logged_ip");
-session_register("zb_secret");
-session_register("zb_last_connect_check");
-
-mysql_close($connect);
+// 5.3 捞惑侩 技记 贸府
+$_SESSION['zb_logged_no']='';
+$_SESSION['zb_logged_time']='';
+$_SESSION['zb_logged_ip']='';
+$_SESSION['zb_secret'];
+$_SESSION['zb_last_connect_check']='0';
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <script>

@@ -84,7 +84,7 @@ if($keyword&&$s_que)
 
 		mysql_free_result($result);
 
-		/// ÄÚ¸àÆ®
+		// ÄÚ¸àÆ®
 		if($comment_search)
 		{
 			$result=mysql_query("select * from $t_comment"."_$table_name $s_que", $connect) or error(mysql_error());
@@ -113,9 +113,6 @@ if($keyword&&$s_que)
 		}
 	}
 }
-
-mysql_close($connect);
-$connect="";
 ?>
 <br><br><br>
 <?

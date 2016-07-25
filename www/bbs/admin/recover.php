@@ -48,5 +48,4 @@ echo "<font color=yellow>¼º°ø</font>";
 <br><br><center><a href=# onclick=window.close()><font color=888888>[close windows]</font></a>
 <?
 foot();
-mysql_close($connect);
 ?>

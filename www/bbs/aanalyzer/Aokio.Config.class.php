@@ -95,7 +95,7 @@
 
 
 require_once 'Aokio.Config.Manager.php';
-define ('MYHOME' ,					'http://www.kmoc.or.kr');
+define ('MYHOME' ,					'http://www.blrun.net');
 define ('MYEMAIL' ,					'st.elmo@gmail.com');
 define ('APPLICATIONNAME' ,	'AokioAnalyzer');
 define ('SINCE' ,						'2006');

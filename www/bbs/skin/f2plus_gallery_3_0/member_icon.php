@@ -5,8 +5,8 @@ function member_icon($m_data){
 	if($m_data[no]){                              //회원일경우
 		if($Thumbnail_icon_use=="on"){                         //회원 사진을 썸네일을 사용할 경우
 			$str=str_replace("icon/","/icon/thumbnail/",$m_data[picture]);	
-			if(eregi("\.jpg",$str)) $str=str_replace(".jpg","",$str);
-			elseif(eregi("\.gif",$str)) $str=str_replace(".gif","",$str);
+			if(preg_match("#\.jpg#i",$str)) $str=str_replace(".jpg","",$str);
+			elseif(preg_match("#\.gif#i",$str)) $str=str_replace(".gif","",$str);
 
 			$icon_small=$str."_small.jpg";
 			$icon_large=$str."_large.jpg";
@@ -16,8 +16,8 @@ function member_icon($m_data){
 				thumbnail($size,$m_data[picture],$zb_path,$icon_small,$icon_large,3/4);
 
 			}
-			$member_icon_small= $zb_url.$icon_small;//이곳에 회원사진의 썸네일 작은것
-			$member_icon_large=$zb_url.$icon_large;//회원 사진 썸네일 사이즈 큰것
+			$member_icon_small= $zb_url.$icon_small; //이곳에 회원사진의 썸네일 작은것
+			$member_icon_large=$zb_url.$icon_large; //회원 사진 썸네일 사이즈 큰것
 			$img_tag=image_tag($member_icon_large,"");
 
 			$view_img="<a href=javascript:void(window.open('$zb_url/view_info2.php?member_no=$m_data[no]','view_info','width=400,height=410,toolbar=no,scrollbars=yes')) onfocus='this.blur();' onMouseMove=\"msgposit()\";  onMouseOver=\"msgset('$img_tag')\"; onMouseOut=\"msghide();\">";

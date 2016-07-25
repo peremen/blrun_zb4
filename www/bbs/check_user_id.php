@@ -25,6 +25,5 @@ else echo "$user_id 는 사용하실수 있습니다";
 </table>
 
 <? 
-@mysql_close($connect);
 foot(); 
 ?>

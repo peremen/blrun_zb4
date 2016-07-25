@@ -41,7 +41,7 @@ function swapImage() {
 </script>
 <!-- HTML ½ÃÀÛ -->
 <? 
-if(eregi(":\/\/",$dir)||eregi("\.\.",$dir)||eregi("^\/",$dir)||eregi("data:;",$dir)||eregi(":",$dir)) $dir="./";
+if(preg_match("#:\/\/#i",$dir)||preg_match("#\.\.#i",$dir)||preg_match("#^\/#i",$dir)||preg_match("#data:;#i",$dir)||preg_match("#:#i",$dir)) $dir="./";
 include "$dir/value.php3"; 
 ?>
 

@@ -16,8 +16,6 @@ unset($setup);
 
 if(!$is_admin) error("사용권한이 없습니다");
 
-mysql_close($connect);
-
 head();
 ?>
 

@@ -54,7 +54,7 @@ class AokioAuthManager{
 
 	function getAccessPermission($mode,$target){
 		$temp_info = AokioConfigManager::getTargetConfigInfos($target);
-		$temp_arr = split(",",$temp_info['access_permission']);
+		$temp_arr = preg_split("#,#",$temp_info['access_permission']);
 		$access_permission = array();
 
 		foreach($temp_arr as $key => $value){

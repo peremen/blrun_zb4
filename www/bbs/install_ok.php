@@ -85,8 +85,6 @@ function zbUrl() {
 
 $temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where is_admin = '1'",$connect));
 
-mysql_close($connect);
-
 if($temp[0]) {movepage("admin.php");}
 else {movepage("install2.php");} // 관리자 정보가 없을때 관리자 정보 입력
 ?>

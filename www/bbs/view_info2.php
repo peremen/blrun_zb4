@@ -37,8 +37,6 @@ $member=member_info();
 // 그룹데이타 읽어오기;;
 $group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$data[group_no]'"));
 
-mysql_close($connect);
-
 head("bgcolor=white","script_memo.php");
 ?>
 
