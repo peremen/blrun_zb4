@@ -89,9 +89,22 @@ if(!empty($_POST['code'])) {
 
 <script src="script/get_url.php" type="text/javascript"></script>
 <script>
+function jusoCallBack(roadFullAddr,zipNo,num)
+{
+	if(num == 1) {
+		var home_address = document.forms['write'].home_address;
+	} else {
+		var home_address = document.forms['write'].office_address;
+	}
+	
+	home_address.value = zipNo+" " +roadFullAddr;
+	home_address.focus();
+}
+
 function address_popup(num)
 {
-  window.open('zipcode/search_zipcode.php?num='+num,'searchaddress','width=440,height=230,scrollbars=yes');
+	//window.open('zipcode/search_zipcode.php?num='+num,'searchaddress','width=440,height=230,scrollbars=yes');
+	var pop = window.open("zipcode/jusoPopup.php?num="+num,"pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 }
 
 function check_submit()

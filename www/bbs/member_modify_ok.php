@@ -83,13 +83,13 @@ preg_match('/[0-9a-zA-Z.\@\_]+/',$msn,$result); //특수문자가 들어갔는지 조사
 if($result[0]!=$msn) Error("msn 아이디를 확인하세요(영문자와 숫자, ., @, _만을 사용!)","");
 $msn = addslashes(del_html($msn));
 
-if(preg_match("/[\!\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\/\'\"]/i",$home_address)) Error("주소를 영문, 한글, 숫자, @, . 등으로 입력하여 주십시요");
+if(preg_match("/[\!\\\#\$%\^&\+\|=\{\}\[\]\;<>\?\/\'\"]/i",$home_address)) Error("주소를 영문, 한글, 숫자, @, ( ), . , 등으로 입력하여 주십시요");
 $home_address = addslashes(del_html($home_address));
 
 if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>\.,\?\/\'\"]/i",$home_tel)) Error("집전화를 영문, 한글, 숫자등으로 입력하여 주십시요");
 $home_tel = addslashes(del_html($home_tel));
 
-if(preg_match("/[\!\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\/\'\"]/i",$office_address)) Error("사무실 주소를 영문, 한글, 숫자, @, . 등으로 입력하여 주십시요");
+if(preg_match("/[\!\\\#\$%\^&\+\|=\{\}\[\]\;<>\?\/\'\"]/i",$office_address)) Error("사무실 주소를 영문, 한글, 숫자, @, ( ), . , 등으로 입력하여 주십시요");
 $office_address = addslashes(del_html($office_address));
 
 if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>\.,\?\/\'\"]/i",$office_tel)) Error("사무실 전화번호를 영문, 한글, 숫자등으로 입력하여 주십시요");

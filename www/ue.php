@@ -1,10 +1,8 @@
 <?
+if($flag != ok) {
 header("Content-Type: text/html; charset=UTF-8");
 ?>
 <meta name="viewport" content="width=device-width">
-<?
-if($flag != ok) {
-?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
  <HEAD>
@@ -21,6 +19,10 @@ if($flag != ok) {
 </HTML>
 <?
 } else {
+	header("Content-Type: text/html; charset=EUC-KR");
+?>
+<meta name="viewport" content="width=device-width">
+<?
 	function JsUnescape($str){
 	 return urldecode(preg_replace_callback('/%u([[:alnum:]]{4})/', 'JsUnescapeFunc', $str));
 	}
@@ -36,8 +38,8 @@ if($flag != ok) {
 
 	$string = $_POST['str1'];
 	$time_start = getmicrotime();    
-	echo JsUnescape($string);
+	echo "urldecode: ".JsUnescape($string);
 	$time = getmicrotime() - $time_start;
-	print("<p>수행시간 ( $time 초)</p>");
+	print(iconv("utf-8","euc-kr","<p>수행시간 ( $time 초)</p>"));
 }
 ?>
