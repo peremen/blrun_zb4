@@ -93,13 +93,13 @@ if($result[0]!=$email) Error("E-mail 문자를 확인하세요(영문자와 숫자, ., @, _만�
 $email=addslashes($email);
 if($_zbDefaultSetup[check_email]=="true"&&!mail_mx_check($email)) Error("입력하신 $email 은 존재하지 않는 메일주소입니다.<br>다시 한번 확인하여 주시기 바랍니다.");
 
-if(preg_match("/[\!\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\/\'\"]/i",$home_address)) Error("주소를 영문, 한글, 숫자, @, . 등으로 입력하여 주십시요");
+if(preg_match("/[\!\\\#\$%\^&\+\|=\{\}\[\]\;<>\?\/\'\"]/i",$home_address)) Error("주소를 영문, 한글, 숫자, @, ( ), . , 등으로 입력하여 주십시요");
 $home_address=addslashes($home_address);
 
 if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>\.,\?\/\'\"]/i",$home_tel)) Error("집전화를 영문, 한글, 숫자등으로 입력하여 주십시요");
 $home_tel=addslashes($home_tel);
 
-if(preg_match("/[\!\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\/\'\"]/i",$office_address)) Error("사무실 주소를 영문, 한글, 숫자, @, . 등으로 입력하여 주십시요");
+if(preg_match("/[\!\\\#\$%\^&\+\|=\{\}\[\]\;<>\?\/\'\"]/i",$office_address)) Error("사무실 주소를 영문, 한글, 숫자, @, ( ), . , 등으로 입력하여 주십시요");
 $office_address=addslashes($office_address);
 
 if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>\.,\?\/\'\"]/i",$office_tel)) Error("사무실 전화번호를 영문, 한글, 숫자등으로 입력하여 주십시요");
