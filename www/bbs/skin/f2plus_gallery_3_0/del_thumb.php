@@ -46,6 +46,7 @@ $path=$zb_path."data/".$id."/thumbnail/";
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
+<meta http-equiv="content-type" content="text/html; charset=euc-kr">
 <TITLE>썸네일 삭제</TITLE>
 </HEAD>
 <BODY onLoad='window.close();'>

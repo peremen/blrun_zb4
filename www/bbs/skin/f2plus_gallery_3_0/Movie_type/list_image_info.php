@@ -18,6 +18,7 @@ if($Thumbnail_use=="on"){
 		if(!file_exists($Thumbnail_path.$Thumbnail_small1)){
 			thumbnail($min_width_size,$src_img1,$Thumbnail_path,$Thumbnail_small1,3/2);
 		}
+		$xy1=@getimagesize($src_img1);
 		$thumb_img1=$Thumbnail_url.$Thumbnail_small1;
 
 	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$out[0][1].".".$out[0][2])) {
@@ -32,14 +33,16 @@ if($Thumbnail_use=="on"){
 		}else{
 			$thumb_img1=$Thumbnail_url.$data[ismember]."/".str_replace("%2F", "/", urlencode($iThumbnail_small1));
 		}
+		$xy1=@getimagesize($src_img1);
 
 	}elseif(($src_img1=$img[0][1]) && !preg_match("#\.(gif|bmp)$#i",$src_img1)){
 		if(!file_exists($Thumbnail_path.$data[ismember]."/".$Thumbnail_small1)){
 			$zx=thumbnail($min_width_size,$src_img1,$Thumbnail_path.$data[ismember]."/",$Thumbnail_small1,3/2);
-			@mysql_query("update $t_board"."_$id set x='$zx' where no='$data[no]'") or error(mysql_error());
+			@mysql_query("update $t_board"."_$id set x=concat('$zx[0]','|||','$zx[1]') where no='$data[no]'") or error(mysql_error());
 		}
 		$re=mysql_fetch_array(mysql_query("select x from $t_board"."_$id where no='$data[no]'"));
-		if($re[x]){
+		$xy1=explode("|||",$re[x]);
+		if($xy1[0]){
 			$thumb_img1=$Thumbnail_url.$data[ismember]."/".str_replace("%2F", "/", urlencode($Thumbnail_small1));
 		}else{
 			$src_img1=$dir."/images/no_image.gif";
@@ -49,6 +52,7 @@ if($Thumbnail_use=="on"){
 	}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name1])){
 		$src_img1=$data[file_name1];
 		$thumb_img1=$src_img1;
+		$xy1=@getimagesize($src_img1);
 	}elseif(preg_match("#\.(gif|bmp)$#i",$out[0][1].".".$out[0][2])) {
 		$src_img1="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
 		if(!file_exists($src_img1)){
@@ -57,8 +61,10 @@ if($Thumbnail_use=="on"){
 		}else{
 			$thumb_img1=str_replace("%2F", "/", urlencode($src_img1));
 		}
+		$xy1=@getimagesize($src_img1);
 	}elseif(($src_img1=$img[0][1]) && preg_match("#\.(gif|bmp)$#i",$src_img1)){
 		$thumb_img1=$src_img1;
+		$xy1=@getimagesize($src_img1);
 	}
 
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name2])){
@@ -66,6 +72,7 @@ if($Thumbnail_use=="on"){
 		if(!file_exists($Thumbnail_path.$Thumbnail_small2)){
 			thumbnail($min_width_size,$src_img2,$Thumbnail_path,$Thumbnail_small2,3/2);
 		}
+		$xy2=@getimagesize($src_img2);
 		$thumb_img2=$Thumbnail_url.$Thumbnail_small2;
 	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$out[1][1].".".$out[1][2])) {
 
@@ -79,14 +86,16 @@ if($Thumbnail_use=="on"){
 		}else{
 			$thumb_img2=$Thumbnail_url.$data[ismember]."/".str_replace("%2F", "/", urlencode($iThumbnail_small2));
 		}
+		$xy2=@getimagesize($src_img2);
 
 	}elseif(($src_img2=$img[1][1]) && !preg_match("#\.(gif|bmp)$#i",$src_img2)){
 		if(!file_exists($Thumbnail_path.$data[ismember]."/".$Thumbnail_small2)){
 			$zy=thumbnail($min_width_size,$src_img2,$Thumbnail_path.$data[ismember]."/",$Thumbnail_small2,3/2);
-			@mysql_query("update $t_board"."_$id set y='$zy' where no='$data[no]'") or error(mysql_error());
+			@mysql_query("update $t_board"."_$id set y=concat('$zy[0]','|||','$zy[1]') where no='$data[no]'") or error(mysql_error());
 		}
 		$re=mysql_fetch_array(mysql_query("select y from $t_board"."_$id where no='$data[no]'"));
-		if($re[y]){
+		$xy2=explode("|||",$re[y]);
+		if($xy2[0]){
 			$thumb_img2=$Thumbnail_url.$data[ismember]."/".str_replace("%2F", "/", urlencode($Thumbnail_small2));
 		}else{
 			$src_img2=$dir."/images/no_image.gif";
@@ -96,6 +105,7 @@ if($Thumbnail_use=="on"){
 	}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name2])){
 		$src_img2=$data[file_name2];
 		$thumb_img2=$src_img2;
+		$xy2=@getimagesize($src_img2);
 	}elseif(preg_match("#\.(gif|bmp)$#i",$out[1][1].".".$out[1][2])) {
 		$src_img2="icon/member_image_box/".$data[ismember]."/".$out[1][1].".".$out[1][2];
 		if(!file_exists($src_img2)){
@@ -104,28 +114,30 @@ if($Thumbnail_use=="on"){
 		}else{
 			$thumb_img2=str_replace("%2F", "/", urlencode($src_img2));
 		}
+		$xy2=@getimagesize($src_img2);
 	}elseif(($src_img2=$img[1][1]) && preg_match("#\.(gif|bmp)$#i",$src_img2)){
 		$thumb_img2=$src_img2;
+		$xy2=@getimagesize($src_img2);
 	}
 
 	if($thumb_img1){
 		$img_tag=$src_img1;
-		$img_info=@getImageSize($src_img1);
+		$xy=$xy1;
 		$thumb_img=$thumb_img1;            //리스트 메인에서 보여질 75 X 56 사이즈의 썸네일
 	}                                                       //리스트 메인에서는 첫번째 파일의 썸네일만 보여짐
 	elseif($thumb_img2){   //업로드 이미지 2번 파일만 있을때
 		$img_tag=$src_img2;
-		$img_info=@getImageSize($src_img2);
+		$xy=$xy2;
 		$thumb_img=$thumb_img2;
 	}
 	else{                                // 업로드 이미지 파일이 없을때
 		$img_tag=$dir."/images/no_image.gif";
 		$thumb_img=$dir."/images/no_image.gif";     //없을경우 미리 지정된 이미지 파일 사용.변경하셔두 됩니다.
-		$img_info=@getImageSize($thumb_img);
+		$xy[0]=300; $xy[1]=200;
 	}
 
 	if($img_show=="on"){
-		$view_img="<a onclick=window.open('$dir/img_view.php?img=$img_tag&width=".($img_info[0]+10)."&height=".($img_info[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";
+		$view_img="<a onclick=window.open('$dir/img_view.php?img=$img_tag&width=".($xy[0]+10)."&height=".($xy[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";
 	}else{
 		$view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] class=shadow style='cursor:pointer'>";
 	}
@@ -152,20 +164,20 @@ if($Thumbnail_use=="on"){
 		$thumb_img2=$src_img2;
 
 	if($thumb_img1){                              //업로드 이미지 파일이 둘다 있을때
-		$img_info=@getImageSize(urldecode($thumb_img1));
+		$xy=@getImageSize(urldecode($thumb_img1));
 		$thumb_img=$thumb_img1;            //리스트 메인에서 보여질 75 X 56 사이즈의 썸네일
 	}                                                       //리스트 메인에서는 첫번째 파일의 썸네일만 보여짐
 	elseif($thumb_img2){   //업로드 이미지 2번 파일만 있을때
-		$img_info=@getImageSize(urldecode($thumb_img2));
+		$xy=@getImageSize(urldecode($thumb_img2));
 		$thumb_img=$thumb_img2;
 	}
 	else{                                // 업로드 이미지 파일이 없을때
 		$thumb_img=$dir."/images/no_image.gif";     //없을경우 미리 지정된 이미지 파일 사용.변경하셔두 됩니다.
-		$img_info=@getImageSize($thumb_img);
+		$xy=@getImageSize($thumb_img);
 	}
 
 	if($img_show=="on"){
-		$view_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=".($img_info[0]+10)."&height=".($img_info[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";
+		$view_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=".($xy[0]+10)."&height=".($xy[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";
 	}else{
 		$view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] class=shadow style='cursor:pointer'>";
 	}

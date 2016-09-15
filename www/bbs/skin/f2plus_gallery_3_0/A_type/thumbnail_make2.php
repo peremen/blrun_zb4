@@ -53,7 +53,7 @@ function thumbnail($size,$source_file,$save_path,$small,$large,$ratio){
 	}
 	@ImageDestroy($srcimg);
 
-	return $img_info[0];
+	return $img_info;
 }
 
 function thumbnail2($size,$source_file,$save_file){

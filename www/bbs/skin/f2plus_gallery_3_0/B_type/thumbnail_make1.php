@@ -27,6 +27,6 @@ function thumbnail($size,$source_file,$save_file){
 	@ImageDestroy($dstimg);
 	@ImageDestroy($srcimg);
 
-	return $img_info[0];
+	return $img_info;
 }
 ?>

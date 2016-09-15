@@ -84,10 +84,11 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		if(!file_exists($Thumbnail_path.$prev_data[ismember]."/".$Prev_thumb_small1)||!file_exists($Thumbnail_path.$prev_data[ismember]."/".$Prev_thumb_large1)){
 			$size=array($min_width_size,200);
 			$zx=thumbnail($size,$src_img1,$Thumbnail_path.$prev_data[ismember]."/",$Prev_thumb_small1,$Prev_thumb_large1,3/4);
-			@mysql_query("update $t_board"."_$id set x='$zx' where no='$prev_data[no]'") or error(mysql_error());
+			@mysql_query("update $t_board"."_$id set x=concat('$zx[0]','|||','$zx[1]') where no='$prev_data[no]'") or error(mysql_error());
 		}
 		$re=mysql_fetch_array(mysql_query("select x from $t_board"."_$id where no='$prev_data[no]'"));
-		if($re[x]){
+		$xy1=explode("|||",$re[x]);
+		if($xy1[0]){
 			$prev_thumb=$Thumbnail_url.$prev_data[ismember]."/".$Prev_thumb_large1;
 		}else{
 			$prev_thumb=$dir."/no_image.gif";
@@ -156,10 +157,11 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		if(!file_exists($Thumbnail_path.$next_data[ismember]."/".$Next_thumb_small1)||!file_exists($Thumbnail_path.$next_data[ismember]."/".$Next_thumb_large1)){
 			$size=array($min_width_size,200);
 			$zx=thumbnail($size,$src_img2,$Thumbnail_path.$next_data[ismember]."/",$Next_thumb_small1,$Next_thumb_large1,3/4);
-			@mysql_query("update $t_board"."_$id set x='$zx' where no='$next_data[no]'") or error(mysql_error());
+			@mysql_query("update $t_board"."_$id set x=concat('$zx[0]','|||','$zx[1]') where no='$next_data[no]'") or error(mysql_error());
 		}
 		$re=mysql_fetch_array(mysql_query("select x from $t_board"."_$id where no='$next_data[no]'"));
-		if($re[x]){
+		$xy1=explode("|||",$re[x]);
+		if($xy1[0]){
 			$next_thumb=$Thumbnail_url.$next_data[ismember]."/".$Next_thumb_large1;
 		}else{
 			$next_thumb=$dir."/no_image.gif";
