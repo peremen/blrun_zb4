@@ -103,7 +103,7 @@ function thumbnail_make1($size,$source_file,$save_path,$small,$large,$ratio){
 	}
 	@ImageDestroy($srcimg);
 
-	return $img_info[0];
+	return $img_info;
 }
 
 function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
@@ -161,7 +161,7 @@ function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
 	}
 	@ImageDestroy($srcimg);
 
-	return $img_info[0];
+	return $img_info;
 }
 
 function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $datetype="m/d"){
@@ -253,10 +253,11 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 					$size=array(52,200);
 					if($use_thumb==2) $zx=thumbnail_make1($size,$src_img1,$_zb_path,$img1,$img2,3/4);
 					else $zx=thumbnail_make2($size,$src_img1,$_zb_path,$img1,$img2,3/4);
-					@mysql_query("update zetyx_board"."_$id set x='$zx' where no='$data[no]'") or error(mysql_error());
+					@mysql_query("update zetyx_board"."_$id set x=concat('$zx[0]','|||','$zx[1]') where no='$data[no]'") or error(mysql_error());
 				}
 				$re=mysql_fetch_array(mysql_query("select x from zetyx_board"."_$id where no='$data[no]'"));
-				if(!$re[x]){
+				$xy1=explode("|||",$re[x]);
+				if(!$xy1[0]){
 					$filename1=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 					$filename2=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 				}
