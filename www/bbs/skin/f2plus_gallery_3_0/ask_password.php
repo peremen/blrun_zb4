@@ -2,8 +2,8 @@
 $input_password = str_replace("class=input","class='text'",$input_password);
 $input_password = str_replace(">"," style='width:90;'>",$input_password);
 
-if($target=="del_comment_ok.php"){
-	$target=$dir."/del_comment_ok.php";
+if($target=="del_comment_ok.php?delsec=$delsec"){
+	$target=$dir."/del_comment_ok.php?delsec=$delsec";
 }elseif($target=="delete_ok.php"){
 	$target=$dir."/delete_ok.php";
 }	
