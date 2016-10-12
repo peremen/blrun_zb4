@@ -63,7 +63,17 @@ head(" bgcolor=444444 ");
         <a href=admin/delsession.php target=_blank onclick="return confirm('세션의 양이 많아지면 전체적인 속도가 느려질수 있습니다.\n\n세션 디렉토리를 정리하시겠습니까?')"><font color=white style=font-size:9pt><b>세션 비우기</b></font></a> &nbsp;|&nbsp;
         <a href=admin/trace.php target=_blank><font color=white style=font-size:9pt><b>게시물 추적</b></font></a> &nbsp;|&nbsp;
         <a href=zb4_manual/ target=_blank><font color=white style=font-size:9pt><b>매뉴얼</b></font></a>&nbsp;|&nbsp;
-        <a href=aanalyzer/view.php?id=<?=$re[0]?> target=_blank><font color=white style=font-size:9pt><b>접속통계</b></font></a>&nbsp;&nbsp;
+<?
+	if($re[0]) {
+?>
+		<a href=aanalyzer/view.php?id=<?=$re[0]?> target=_blank><font color=white style=font-size:9pt><b>접속통계</b></font></a>&nbsp;&nbsp;
+<?
+	} else {
+?>
+		<a href=aanalyzer/install.php target=_blank><font color=white style=font-size:9pt><b>접속통계</b></font></a>&nbsp;&nbsp;
+<?
+	}
+?>
 <? } ?>
 
       </td>

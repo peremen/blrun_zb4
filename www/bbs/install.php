@@ -1,7 +1,34 @@
 <?
-include "lib.php";
-head();
-
+// 에러 메세지 출력
+function error($message, $url="") {
+?>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<?
+	if($url=="window.close") {
+		$message=str_replace("<br>","\\n",$message);
+		$message=str_replace("\"","\\\"",$message);
+?>
+<script>
+	alert("<?=$message?>");
+	window.close();
+</script>
+<?
+	} else {
+		include "error.php";
+	}
+	exit;
+}
+?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta name="viewport" content="width=device-width">
+<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+<link rel="image_src" href="../blrun2_fb.jpg">
+<link rel=StyleSheet HREF=style.css type=text/css title=style>
+</head>
+<body topmargin='0' leftmargin='0' marginwidth='0' marginheight='0'>
+<?
 if(file_exists("myZrCnf2019.php")) error("이미 myZrCnf2019.php가 생성되어 있습니다.<br><br>재설치하려면 해당 파일을 지우세요");
 ?>
 <body bgcolor=#000000 text=#ffffff>
@@ -73,7 +100,5 @@ else echo "
   </td>
 </tr>
 </table>
-
-<?
-foot();
-?>
+</body>
+</html>
