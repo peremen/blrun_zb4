@@ -1,5 +1,70 @@
 <?
-include "lib.php";
+// 에러 메세지 출력
+function error($message, $url="") {
+?>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<?
+	if($url=="window.close") {
+		$message=str_replace("<br>","\\n",$message);
+		$message=str_replace("\"","\\\"",$message);
+?>
+<script>
+	alert("<?=$message?>");
+	window.close();
+</script>
+<?
+	} else {
+		include "error.php";
+	}
+	exit;
+}
+
+// 게시판의 생성유무 검사
+function istable($str, $dbname='') {
+	if(!$dbname) {
+		$f=@file("myZrCnf2019.php") or error("myZrCnf2019.php파일이 없습니다.<br>DB설정을 먼저 하십시요","install.php");
+		for($i=1;$i<=4;$i++) $f[$i]=str_replace("\n","",$f[$i]);
+		$dbname=$f[4];
+	}
+
+	$result = mysql_list_tables($dbname) or error(mysql_error(),"");
+
+	$i=0;
+
+	while ($i < mysql_num_rows($result)) {
+		if($str==mysql_tablename ($result, $i)) return 1;
+		$i++;
+	}
+	return 0;
+}
+
+// 빈문자열 경우 1을 리턴
+function isblank($str) {
+	$temp=str_replace("　","",$str);
+	$temp=str_replace("\n","",$temp);
+	$temp=strip_tags($temp);
+	$temp=str_replace("&nbsp;","",$temp);
+	$temp=str_replace(" ","",$temp);
+	if(preg_match("/[^[:space:]]/i",$temp)) return 0;
+	return 1;
+}
+
+// 페이지 이동 스크립트
+function movepage($url) {
+	global $connect;
+	echo "<meta http-equiv=\"refresh\" content=\"0; url=$url\">";
+	exit;
+}
+
+// 관리자 테이블과 회원관리 테이블의 이름을 미리 변수로 정의
+$member_table = "zetyx_member_table";  // 회원들의 데이타가 들어 있는 직접적인 테이블
+$group_table = "zetyx_group_table";   // 그룹테이블
+$admin_table="zetyx_admin_table";     // 게시판의 관리자 테이블
+$board_imsi_table="zetyx_board_imsi"; // 게시판 임시저장 테이블
+$comment_imsi_table="zetyx_board_comment_imsi"; // 코멘트 임시저장 테이블
+$send_memo_table ="zetyx_send_memo";
+$get_memo_table ="zetyx_get_memo";
+
 include "schema.sql";
 
 if(file_exists("myZrCnf2019.php")) error("이미 myZrCnf2019.php가 생성되어 있습니다.<br><br>재설치하려면 해당 파일을 지우세요");
