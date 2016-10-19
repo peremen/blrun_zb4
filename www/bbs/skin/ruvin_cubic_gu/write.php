@@ -50,9 +50,9 @@ function sendit() {
 
 //스팸방지 보안 세션변수 설정과 Mode변수 로그인 유형별 넘겨받기 셋팅
 	if($member[no]) {
-		$mode = $HTTP_GET_VARS[mode];
+		$mode = $_GET[mode];
 	} else {
-		$mode = $HTTP_POST_VARS[mode];
+		$mode = $_POST[mode];
 	}
 
 //랜덤한 두 숫자를 발생(1-1000) 후 변수에 대입

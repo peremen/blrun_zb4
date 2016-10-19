@@ -129,11 +129,11 @@ if($del_picture) {
 	@mysql_query("update $member_table set picture='' where no='$member[no]'") or Error("사진 자료 업로드시 에러가 발생하였습니다");
 }
 
-if($HTTP_POST_FILES[picture]) {
-	$picture = $HTTP_POST_FILES[picture][tmp_name];
-	$picture_name = $HTTP_POST_FILES[picture][name];
-	$picture_type = $HTTP_POST_FILES[picture][type];
-	$picture_size = $HTTP_POST_FILES[picture][size];
+if($_FILES[picture]) {
+	$picture = $_FILES[picture][tmp_name];
+	$picture_name = $_FILES[picture][name];
+	$picture_type = $_FILES[picture][type];
+	$picture_size = $_FILES[picture][size];
 }
 
 if($picture_name) {

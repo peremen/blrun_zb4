@@ -1,5 +1,4 @@
 <?
-header("Content-Type: text/html; charset=EUC-KR");
 set_time_limit (0);
 $_zb_path="../";
 include "../lib.php";
@@ -15,7 +14,7 @@ if($exec=="delete") {
 	$directory = dir($path);
 	while($entry = $directory->read()) {
 		if ($entry != "." && $entry != "..") {
-			if(!preg_match("#".session_id()."#i", $entry)&&!preg_match("#".$HTTP_COOKIE_VARS[ZBSESSIONID]."#i", $entry)) {
+			if(!preg_match("#".session_id()."#i", $entry)&&!preg_match("#".$_COOKIE[ZBSESSIONID]."#i", $entry)) {
 				z_unlink($path."/".$entry);
 				$i++;
 				if($i%100==0) print(".");

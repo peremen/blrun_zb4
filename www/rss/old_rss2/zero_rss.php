@@ -1,5 +1,5 @@
 <?php
-if (!empty($HTTP_SERVER_VARS['SERVER_SOFTWARE']) && strstr($HTTP_SERVER_VARS['SERVER_SOFTWARE'], 'Apache/2')) 
+if (!empty($_SERVER['SERVER_SOFTWARE']) && strstr($_SERVER['SERVER_SOFTWARE'], 'Apache/2')) 
 {
 header ('Cache-Control: no-cache, pre-check=0, post-check=0, max-age=0');
 header ('Pragma: no-cache');
@@ -226,7 +226,7 @@ setlocale (LC_TIME,"ko");
 $name_sq = "<br /><br />작성자 : ".$name[$i]."<br />작성일자: ".strftime("%Y년 %m월 %d일 %A %p %I:%M:%S",$datetm[$i]).""; 
 ?>
 <item>
-<title><?=$name[$i]?> - <?=$subject[$i]?><?=$comments?></title>
+<title><?=$name[$i]?> - <?=htmlspecialchars($subject[$i])?><?=$comments?></title>
 <link><?=$target?>?id=<?=$bbs_tmp[$i]?>&amp;no=<?=$num[$i]?></link>
 <description><?=htmlspecialchars($memoss.$name_sq)?></description>
 <author><?=$name[$i]?></author>

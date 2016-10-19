@@ -8,9 +8,9 @@
  * by zero (zero@nzeo.com)
  *
  ******************************************************************************/
-
-// W3C P3P 규약설정
-@header ("P3P : CP=\"ALL CURa ADMa DEVa TAIa OUR BUS IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC OTC\"");
+// 한글 인코딩 및 W3C P3P 규약설정
+@header("Content-Type: text/html; charset=euc-kr");
+@header("P3P : CP=\"ALL CURa ADMa DEVa TAIa OUR BUS IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC OTC\"");
 
 // 현재 버젼
 $zb_version = "4.1 pl8";
@@ -19,10 +19,10 @@ $zb_version = "4.1 pl8";
  * 에러 리포팅 설정과 register_globals_on일때 변수 재 정의
  ******************************************************************************/
 @error_reporting(E_ALL ^ E_NOTICE);
-foreach($HTTP_GET_VARS as $key=>$val) $$key = del_html($val);
-@extract($HTTP_POST_VARS); 
-@extract($HTTP_SERVER_VARS); 
-@extract($HTTP_ENV_VARS);
+foreach($_GET as $key=>$val) $$key = del_html($val);
+@extract($_POST); 
+@extract($_SERVER); 
+@extract($_ENV);
 
 $page = (int)$page;
 
@@ -295,7 +295,7 @@ function group_info($no) {
 // MySQL 데이타 베이스에 접근
 function dbconn() {
 
-	global $connect, $config_dir, $autologin, $HTTP_COOKIE_VARS, $_dbconn_is_included;
+	global $connect, $config_dir, $autologin, $_COOKIE, $_dbconn_is_included;
 
 	if($_dbconn_is_included) return;
 	$_dbconn_is_included = true;
@@ -383,7 +383,7 @@ function check_board_master($member, $board_num) {
 //  초기 헤더를 뿌려주는 부분;;;;
 function head($body="",$scriptfile="") {
 
-	global $group, $setup, $dir, $member, $PHP_SELF, $id, $_head_executived, $HTTP_COOKIE_VARS, $width, $_view_included, $_zbDefaultSetup;
+	global $group, $setup, $dir, $member, $PHP_SELF, $id, $_head_executived, $_COOKIE, $width, $_view_included, $_zbDefaultSetup;
 
 	if($_head_executived) return;
 	$_head_executived = true;

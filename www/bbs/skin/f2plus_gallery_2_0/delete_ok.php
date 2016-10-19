@@ -1,6 +1,6 @@
 <?
-@extract($HTTP_GET_VARS); 
-@extract($HTTP_POST_VARS);
+@extract($_GET); 
+@extract($_POST);
 // 라이브러리 함수 파일 인크루드
 require $_zb_path."lib.php";
 

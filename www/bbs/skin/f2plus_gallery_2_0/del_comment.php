@@ -1,6 +1,6 @@
 <?
-@extract($HTTP_GET_VARS); 
-@extract($HTTP_POST_VARS);
+@extract($_GET); 
+@extract($_POST);
 
 /***************************************************************************
  * 공통 파일 include
@@ -12,7 +12,7 @@ if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['DEL_COMM_SEC']==""
 //  초기 헤더를 뿌려주는 부분;;;;
 function head1($body="",$scriptfile="") {
 
-	global $group, $setup, $dir,$member, $PHP_SELF, $id, $_head_executived, $HTTP_COOKIE_VARS, $width, $_zb_path, $_zb_url;
+	global $group, $setup, $dir,$member, $PHP_SELF, $id, $_head_executived, $_COOKIE, $width, $_zb_path, $_zb_url;
 
 	if($_head_executived) return;
 	$_head_executived = true;

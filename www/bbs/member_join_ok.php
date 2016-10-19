@@ -139,11 +139,11 @@ preg_match('/[0-9a-zA-Z.\@\_]+/',$msn,$result); //특수문자가 들어갔는지 조사
 if($result[0]!=$msn) Error("msn 아이디를 확인하세요(영문자와 숫자, ., @, _만을 사용!)","");
 $msn = addslashes($msn);
 
-if($HTTP_POST_FILES[picture]) {
-	$picture = $HTTP_POST_FILES[picture][tmp_name];
-	$picture_name = $HTTP_POST_FILES[picture][name];
-	$picture_type = $HTTP_POST_FILES[picture][type];
-	$picture_size = $HTTP_POST_FILES[picture][size];
+if($_FILES[picture]) {
+	$picture = $_FILES[picture][tmp_name];
+	$picture_name = $_FILES[picture][name];
+	$picture_type = $_FILES[picture][type];
+	$picture_size = $_FILES[picture][size];
 }
 
 if($picture_name) {
