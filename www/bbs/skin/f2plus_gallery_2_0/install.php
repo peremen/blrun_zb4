@@ -1,6 +1,6 @@
 <?
-@extract($HTTP_GET_VARS); 
-@extract($HTTP_POST_VARS); 
+@extract($_GET); 
+@extract($_POST); 
 
 include $zb_path."lib.php";
 if(!$connect) $connect=dbconn();

@@ -1,6 +1,6 @@
 <?
-@extract($HTTP_GET_VARS);
-@extract($HTTP_POST_VARS);
+@extract($_GET);
+@extract($_POST);
 
 //set_time_limit(0);
 $del_que1 = $del_que2 = null;
@@ -41,7 +41,7 @@ history.back(-1);
 **************************************************************************/
 
 // 편법을 이용한 글쓰기 방지
-$mode = $HTTP_POST_VARS[mode];
+$mode = $_POST[mode];
 if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['WRT_SS_VRS']==""||$_SESSION['WRT_SS_VRS']!=$wantispam) Error1("정상적으로 글을 작성하여 주시기 바랍니다.");
 if(getenv("REQUEST_METHOD") == 'GET' ) Error1("정상적으로 글을 쓰시기 바랍니다","");
 if(!$mode) $mode = "write";
@@ -291,15 +291,15 @@ if($mode=="modify"&&$no) {
 /***************************************************************************
 * 업로드가 있을때
 **************************************************************************/
-if($HTTP_POST_FILES[file1]) {
-	$file1 = $HTTP_POST_FILES[file1][tmp_name];
-	$file1_name = $HTTP_POST_FILES[file1][name];
-	$file1_size = $HTTP_POST_FILES[file1][size];
+if($_FILES[file1]) {
+	$file1 = $_FILES[file1][tmp_name];
+	$file1_name = $_FILES[file1][name];
+	$file1_size = $_FILES[file1][size];
 }
-if($HTTP_POST_FILES[file2]) {
-	$file2 = $HTTP_POST_FILES[file2][tmp_name];
-	$file2_name = $HTTP_POST_FILES[file2][name];
-	$file2_size = $HTTP_POST_FILES[file2][size];
+if($_FILES[file2]) {
+	$file2 = $_FILES[file2][tmp_name];
+	$file2_name = $_FILES[file2][name];
+	$file2_size = $_FILES[file2][size];
 }
 
 // 파일삭제

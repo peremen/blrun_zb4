@@ -68,15 +68,15 @@ if($exec=="upload") {
 	if(!preg_match("/image_box.php/i",$HTTP_REFERER)) Error("정상적으로 업로드를 하여 주시기 바랍니다.","window.close");
 	if(getenv("REQUEST_METHOD") == 'GET' ) Error("정상적으로 업로드를 하여 주시기 바랍니다","window.close");
 
-	$num = (int)count($HTTP_POST_FILES[upload][name]);
+	$num = (int)count($_FILES[upload][name]);
 	for($i=0;$i<$num;$i++) {
-		$upload[$i] = $HTTP_POST_FILES[upload][tmp_name][$i];
-		$upload_name[$i]  = $HTTP_POST_FILES[upload][name][$i];
+		$upload[$i] = $_FILES[upload][tmp_name][$i];
+		$upload_name[$i]  = $_FILES[upload][name][$i];
 		// 특수문자가 들어갔는지 조사
 		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$upload_name[$i],$result);
 		
-		$upload_size[$i]  = $HTTP_POST_FILES[upload][size][$i];
-		$upload_type[$i]  = $HTTP_POST_FILES[upload][type][$i];
+		$upload_size[$i]  = $_FILES[upload][size][$i];
+		$upload_type[$i]  = $_FILES[upload][type][$i];
 
 		if($upload_name[$i]) {
 			// 특수문자가 들어갔으면

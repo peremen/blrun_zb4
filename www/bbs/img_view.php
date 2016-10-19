@@ -1,6 +1,6 @@
 <?
-@header("Content-Type: text/html; charset=ks_c_5601-1987");
-@extract($HTTP_GET_VARS);
+@header("Content-Type: text/html; charset=euc-kr");
+@extract($_GET);
 
 $img=str_replace('%2F', '/', urlencode("./".$img));
 ?>
@@ -38,7 +38,7 @@ function scroll_img(img_width,img_height,myEvent)
 -->
 </script>
 <TITLE>큰 이미지 보기</TITLE>
-<meta meta http-equiv="Content-Type" content="text/html; charset=ks_c_5601-1987">
+<meta meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 </HEAD>
 <BODY topmargin='0' leftmargin='0' marginwidth='0' marginheight='0' onLoad="win_size('<?=$width?>','<?=$height?>')" onmousemove="scroll_img('<?=$width?>','<?=$height?>',event)">
 </BODY>

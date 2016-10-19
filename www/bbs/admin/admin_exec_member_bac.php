@@ -169,11 +169,11 @@ if($exec2=="modify_member_ok") {
 	@mysql_query($que) or Error("회원정보 수정시에 에러가 발생하였습니다 ".mysql_error());
 
 	// 회원의 소개 사진 
-	if($HTTP_POST_FILES[picture]) {
-		$picture = $HTTP_POST_FILES[picture][tmp_name];
-		$picture_name = $HTTP_POST_FILES[picture][name];
-		$picture_type = $HTTP_POST_FILES[picture][type];
-		$picture_size = $HTTP_POST_FILES[picture][size];
+	if($_FILES[picture]) {
+		$picture = $_FILES[picture][tmp_name];
+		$picture_name = $_FILES[picture][name];
+		$picture_type = $_FILES[picture][type];
+		$picture_size = $_FILES[picture][size];
 	}
 	if($picture_name) {
 		// 특수문자가 들어갔는지 조사
@@ -208,11 +208,11 @@ if($exec2=="modify_member_ok") {
 	// 이름앞에 붙는 아이콘 삭제시
 	if($delete_private_icon) @z_unlink("icon/private_icon/".$member_no.".gif");
 
-	if($HTTP_POST_FILES[private_icon]) {
-		$private_icon = $HTTP_POST_FILES[private_icon][tmp_name];
-		$private_icon_name = $HTTP_POST_FILES[private_icon][name];
-		$private_icon_type = $HTTP_POST_FILES[private_icon][type];
-		$private_icon_size = $HTTP_POST_FILES[private_icon][size];
+	if($_FILES[private_icon]) {
+		$private_icon = $_FILES[private_icon][tmp_name];
+		$private_icon_name = $_FILES[private_icon][name];
+		$private_icon_type = $_FILES[private_icon][type];
+		$private_icon_size = $_FILES[private_icon][size];
 	}
 	// 이름앞에 붙는 아이콘 업로드시 처리
 	if(@filesize($private_icon)) {
@@ -239,11 +239,11 @@ if($exec2=="modify_member_ok") {
 	if($delete_private_name) @z_unlink("icon/private_name/".$member_no.".gif");
 
 	// 이름을 대신하는 아이콘 업로드시 처리
-	if($HTTP_POST_FILES[private_name]) {
-		$private_name = $HTTP_POST_FILES[private_name][tmp_name];
-		$private_name_name = $HTTP_POST_FILES[private_name][name];
-		$private_name_type = $HTTP_POST_FILES[private_name][type];
-		$private_name_size = $HTTP_POST_FILES[private_name][size];
+	if($_FILES[private_name]) {
+		$private_name = $_FILES[private_name][tmp_name];
+		$private_name_name = $_FILES[private_name][name];
+		$private_name_type = $_FILES[private_name][type];
+		$private_name_size = $_FILES[private_name][size];
 	}
 	if(@filesize($private_name)) {
 		if(!is_dir("icon/private_name")) {

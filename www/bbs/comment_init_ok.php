@@ -1,6 +1,4 @@
 <?php
-header("Content-Type: text/html; charset=EUC-KR");
-
 include "lib_ajax.php";
 
 // DB 연결

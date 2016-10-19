@@ -230,15 +230,15 @@ elseif($mode=="reply"&&$c_no) {
 /***************************************************************************
 * 업로드가 있을때
 **************************************************************************/
-if($HTTP_POST_FILES[file1]) {
-	$file1 = $HTTP_POST_FILES[file1][tmp_name];
-	$file1_name = $HTTP_POST_FILES[file1][name];
-	$file1_size = $HTTP_POST_FILES[file1][size];
+if($_FILES[file1]) {
+	$file1 = $_FILES[file1][tmp_name];
+	$file1_name = $_FILES[file1][name];
+	$file1_size = $_FILES[file1][size];
 }
-if($HTTP_POST_FILES[file2]) {
-	$file2 = $HTTP_POST_FILES[file2][tmp_name];
-	$file2_name = $HTTP_POST_FILES[file2][name];
-	$file2_size = $HTTP_POST_FILES[file2][size];
+if($_FILES[file2]) {
+	$file2 = $_FILES[file2][tmp_name];
+	$file2_name = $_FILES[file2][name];
+	$file2_size = $_FILES[file2][size];
 }
 
 // 파일삭제

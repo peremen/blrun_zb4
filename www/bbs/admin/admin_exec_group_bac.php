@@ -30,11 +30,11 @@ if($exec=="add_group_ok") {
 	$check=mysql_fetch_array(mysql_query("select count(*) from $group_table where name='$name'"));
 	if($check[0]) Error("$name 이라는 이름의 그룹이 이미 있습니다");
 
-	if($HTTP_POST_FILES[icon]) {
-		$icon = $HTTP_POST_FILES[icon][tmp_name];
-		$icon_name = $HTTP_POST_FILES[icon][name];
-		$icon_type = $HTTP_POST_FILES[icon][type];
-		$icon_size = $HTTP_POST_FILES[icon][size];
+	if($_FILES[icon]) {
+		$icon = $_FILES[icon][tmp_name];
+		$icon_name = $_FILES[icon][name];
+		$icon_type = $_FILES[icon][type];
+		$icon_size = $_FILES[icon][size];
 	}
 
 	// 아이콘 파일 업로드시
@@ -82,11 +82,11 @@ elseif($exec=="modify_group_ok") {
 	if(isblank($name)) Error("그룹이름은 필수로 지정하셔야 합니다");
 	if($del_icon) $icon_sql=",icon=''";
 	// 아이콘 파일 업로드시
-	if($HTTP_POST_FILES[icon]) {
-		$icon = $HTTP_POST_FILES[icon][tmp_name];
-		$icon_name = $HTTP_POST_FILES[icon][name];
-		$icon_type = $HTTP_POST_FILES[icon][type];
-		$icon_size = $HTTP_POST_FILES[icon][size];
+	if($_FILES[icon]) {
+		$icon = $_FILES[icon][tmp_name];
+		$icon_name = $_FILES[icon][name];
+		$icon_type = $_FILES[icon][type];
+		$icon_size = $_FILES[icon][size];
 	}
 
 	if($icon_name) {
