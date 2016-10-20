@@ -1,10 +1,10 @@
 <?
 /////////////////////////////////////////////////////
-// ÇöÀç ÁöÁ¤µÈ ±×·ìÀÇ ³»¿ëÀ» º¸´Â °÷ÀÔ´Ï´Ù
+// í˜„ì¬ ì§€ì •ëœ ê·¸ë£¹ì˜ ë‚´ìš©ì„ ë³´ëŠ” ê³³ì…ë‹ˆë‹¤
 /////////////////////////////////////////////////////
 
-// ±×·ìÀÇ Á¤º¸¸¦ »Ì¾Æ¿È
-$result=@mysql_query("select * from $group_table where no='$group_no'") or Error("±×·ì¼±ÅÃ½Ã ¿¡·¯°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù");
+// ê·¸ë£¹ì˜ ì •ë³´ë¥¼ ë½‘ì•„ì˜´
+$result=@mysql_query("select * from $group_table where no='$group_no'") or Error("ê·¸ë£¹ì„ íƒì‹œ ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤");
 $data=mysql_fetch_array($result);
 ?>
 
@@ -19,31 +19,31 @@ $data=mysql_fetch_array($result);
 <tr>
   <td style=padding:0px;>
     <table border=0 cellspacing=1 cellpadding=3 width=100% bgcolor=#b0b0b0>
-    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold; width=40%>±×·ì ÀÌ¸§&nbsp;&nbsp;</font></td><td align=left width=80%><img src=images/t.gif height=3><br>&nbsp;<?=$data[name]?></td>
+    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold; width=40%>ê·¸ë£¹ ì´ë¦„&nbsp;&nbsp;</font></td><td align=left width=80%><img src=images/t.gif height=3><br>&nbsp;<?=$data[name]?></td>
     </tr>
-    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>±×·ì °ø°³ ¿©ºÎ&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;>&nbsp;<?if($data[is_open]==1) echo "°ø°³"; else echo "ºñ°ø°³";?></td>
+    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ê·¸ë£¹ ê³µê°œ ì—¬ë¶€&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;>&nbsp;<?if($data[is_open]==1) echo "ê³µê°œ"; else echo "ë¹„ê³µê°œ";?></td>
     </tr>
-    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>È¸¿ø°¡ÀÔ Çã¿ë&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;>&nbsp;<?if($data[use_join]) echo "Çã¿ë"; else echo "±İÁö";?></td>
+    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>íšŒì›ê°€ì… í—ˆìš©&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;>&nbsp;<?if($data[use_join]) echo "í—ˆìš©"; else echo "ê¸ˆì§€";?></td>
     </tr>
-    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>±×·ì ¾ÆÀÌÄÜ&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;>&nbsp;<?if($data[icon]) echo "<img src=icon/$data[icon] border=0 align=absmiddle>";?></td>
+    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ê·¸ë£¹ ì•„ì´ì½˜&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;>&nbsp;<?if($data[icon]) echo "<img src=icon/$data[icon] border=0 align=absmiddle>";?></td>
     </tr>
-    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>È¸¿ø ±¸ºĞÇü½Ä&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;>&nbsp;<?if($data[use_icon]==1) echo "ÁøÇÑÀÌ¸§"; elseif($data[use_icon]==2) echo "±¸ºĞ¾øÀ½"; else echo "·¹º§º° ¾ÆÀÌÄÜÀ¸·Î ±¸ºĞ";?></td>
+    <tr align=right bgcolor=#e0e0e0><td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>íšŒì› êµ¬ë¶„í˜•ì‹&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;>&nbsp;<?if($data[use_icon]==1) echo "ì§„í•œì´ë¦„"; elseif($data[use_icon]==2) echo "êµ¬ë¶„ì—†ìŒ"; else echo "ë ˆë²¨ë³„ ì•„ì´ì½˜ìœ¼ë¡œ êµ¬ë¶„";?></td>
     </tr>
     <tr align=right bgcolor=#e0e0e0>
       <td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>
-        È¸¿ø°¡ÀÔÈÄ ÀÌµ¿ÇÒ ÆäÀÌÁö&nbsp;&nbsp;</td>
+        íšŒì›ê°€ì…í›„ ì´ë™í•  í˜ì´ì§€&nbsp;&nbsp;</td>
       <td align=left style=font-family:Tahoma;font-size:9pt;>
         &nbsp;<?if($data[join_return_url]) echo "<a href=$data[join_return_url] target=_blank>$data[join_return_url]</a>";?></td>
     </tr>
     <tr align=right bgcolor=#e0e0e0>
       <td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>
-        È¸¿ø¼ö&nbsp;&nbsp;</td>
+        íšŒì›ìˆ˜&nbsp;&nbsp;</td>
       <td align=left style=font-family:Tahoma;font-size:9pt;>
-      &nbsp;<b><?=$data[member_num]?></b> ¸í</td>
+      &nbsp;<b><?=$data[member_num]?></b> ëª…</td>
     </tr>
     <tr align=right bgcolor=#e0e0e0>
       <td height=25 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>
-        »ı¼ºµÈ °Ô½ÃÆÇ¼ö&nbsp;&nbsp;</td>
+        ìƒì„±ëœ ê²Œì‹œíŒìˆ˜&nbsp;&nbsp;</td>
       <td align=left style=font-family:Tahoma;font-size:9pt;>
         &nbsp;<b><?=$data[board_num]?></b></td>
     </tr>

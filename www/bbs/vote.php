@@ -1,17 +1,17 @@
 <?
 /***************************************************************************
-* °øÅëÆÄÀÏ include
+* ê³µí†µíŒŒì¼ include
 **************************************************************************/
 include "_head.php";
 
 /***************************************************************************
-* ¼³Á¤ Ã¼Å©
+* ì„¤ì • ì²´í¬
 **************************************************************************/
 
-// »ç¿ë±ÇÇÑ Ã¼Å©
-if($setup[grant_view]<$member[level]&&!$is_admin) Error("»ç¿ë±ÇÇÑÀÌ ¾ø½À´Ï´Ù","login.php?id=$id&page=$page&page_num=$page_num&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&file=zboard.php");
+// ì‚¬ìš©ê¶Œí•œ ì²´í¬
+if($setup[grant_view]<$member[level]&&!$is_admin) Error("ì‚¬ìš©ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤","login.php?id=$id&page=$page&page_num=$page_num&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&file=zboard.php");
 
-// º¸¾ÈÇâ»ó
+// ë³´ì•ˆí–¥ìƒ
 if(!get_magic_quotes_gpc()) {
 	$no = addslashes($no);
 }
@@ -20,19 +20,19 @@ $result=@mysql_query("select * from $t_board"."_$id where no='$no'") or error(my
 $data=mysql_fetch_array($result);
 $ip_array = explode("|||",$data[memo]);
 
-// ÇöÀç±ÛÀÇ Vote¼ö ¿Ã¸²;;
+// í˜„ìž¬ê¸€ì˜ Voteìˆ˜ ì˜¬ë¦¼;;
 if($setup[skinname]!="zero_vote") {
-	if(substr($ip_array[0],0,9)=="¼³¹®Á¶»ç|") Error("Á¤»óÀûÀÎ ÅõÇ¥¸¦ ÇÏÁö ¾ÊÀ¸¼Ì½À´Ï´Ù.");
+	if(mb_substr($ip_array[0],0,5)=="ì„¤ë¬¸ì¡°ì‚¬|") Error("ì •ìƒì ì¸ íˆ¬í‘œë¥¼ í•˜ì§€ ì•Šìœ¼ì…¨ìŠµë‹ˆë‹¤.");
 	if(!preg_match("/".$setup[no]."_".$no."/",$_SESSION['zb_vote'])) {
 		mysql_query("update $t_board"."_$id set vote=vote+1 where no='$no'");
 		$vote_str =  ",".$setup[no]."_".$no;
 
-		// 4.0x ¿ë ¼¼¼Ç Ã³¸®
+		// 4.0x ìš© ì„¸ì…˜ ì²˜ë¦¬
 		$_SESSION['zb_vote'] = $_SESSION['zb_vote'].$vote_str;
 	}
-} else Error("Á¤»óÀûÀÎ ÅõÇ¥¸¦ ÇÏÁö ¾ÊÀ¸¼Ì½À´Ï´Ù..");
+} else Error("ì •ìƒì ì¸ íˆ¬í‘œë¥¼ í•˜ì§€ ì•Šìœ¼ì…¨ìŠµë‹ˆë‹¤..");
 
-// ÆäÀÌÁö ÀÌµ¿
+// íŽ˜ì´ì§€ ì´ë™
 if($setup[use_alllist]) $temp_href="zboard.php"; else $temp_href="view.php";
 movepage("$temp_href?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&category=$category&no=$no"); 
 ?>

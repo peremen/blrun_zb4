@@ -2,14 +2,14 @@
 unset($prev_thumb);
 unset($next_thumb);
 unset($alt1);
-unset($alt2);        //°¢Á¾ º¯¼öµé ÃÊ±âÈ­
+unset($alt2);        //ê°ì¢… ë³€ìˆ˜ë“¤ ì´ˆê¸°í™”
 
 if($Exif_use=="on"){
 	if($upload_image1) $alt1=exif_info($data[file_name1]);
 	if($upload_image2) $alt2=exif_info($data[file_name2]);
 }
 
-if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //½æ³×ÀÏ »ç¿ë½Ã
+if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //ì¸ë„¤ì¼ ì‚¬ìš©ì‹œ
 	if($upload_image1){
 		if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name1])){
 			if(!file_exists($Thumbnail_path.$view_large1)){
@@ -41,7 +41,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //½æ³×ÀÏ »ç¿ë½Ã
 		$print_img2="<a onclick=window.open('$dir/img_view.php?img=$data[file_name2]&width=".($img_info2[0]+10)."&height=".($img_info2[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
 
-	//ÀÌÀü ¹× ´ÙÀ½ µ¥ÀÌÅÍÀÇ ½æ³×ÀÏ Á¤º¸¸¦ ÀĞ¾î¿È
+	//ì´ì „ ë° ë‹¤ìŒ ë°ì´í„°ì˜ ì¸ë„¤ì¼ ì •ë³´ë¥¼ ì½ì–´ì˜´
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$prev_data[file_name1])){
 
 		if(!file_exists($Thumbnail_path.$Prev_thumb_small1)||!file_exists($Thumbnail_path.$Prev_thumb_large1)){
@@ -51,14 +51,14 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //½æ³×ÀÏ »ç¿ë½Ã
 		$prev_thumb=$Thumbnail_url.$Prev_thumb_large1;
 
 	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$out1[0][1].".".$out1[0][2])){
-		//½æ³×ÀÏ µğ·ºÅä¸® ³» °¢ È¸¿øº° µğ·ºÅä¸® »ı¼º
+		//ì¸ë„¤ì¼ ë””ë ‰í† ë¦¬ ë‚´ ê° íšŒì›ë³„ ë””ë ‰í† ë¦¬ ìƒì„±
 		$error_check=0;
 		if(!is_dir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/")) {
 			if(!@mkdir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0777,true)) $error_check+=1;
 			if(!@chmod($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0707)) $error_check+=2;
 		}
-		if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$prev_data[ismember]."/ µğ·ºÅä¸®ÀÇ ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
-		elseif($error_check==3) echo "<br> ".$zb_path."data/$id/thumbnail/ µğ·ºÅä¸® ³»¿¡ ".$prev_data[ismember]."¹ø È¸¿ø µğ·ºÅä¸® »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.<br> ÇØ´ç°æ·Î¿¡ µğ·ºÅä¸®¸¦ »ı¼º½ÃÄÑ ÁÖ½Ã°í ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
+		if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$prev_data[ismember]."/ ë””ë ‰í† ë¦¬ì˜ ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
+		elseif($error_check==3) echo "<br> ".$zb_path."data/$id/thumbnail/ ë””ë ‰í† ë¦¬ ë‚´ì— ".$prev_data[ismember]."ë²ˆ íšŒì› ë””ë ‰í† ë¦¬ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.<br> í•´ë‹¹ê²½ë¡œì— ë””ë ‰í† ë¦¬ë¥¼ ìƒì„±ì‹œì¼œ ì£¼ì‹œê³  ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
 
 		$src_img1="icon/member_image_box/".$prev_data[ismember]."/".$out1[0][1].".".$out1[0][2];
 		if(file_exists($src_img1) && (!file_exists($Thumbnail_path.$prev_data[ismember]."/".$iPrev_thumb_small1)||!file_exists($Thumbnail_path.$prev_data[ismember]."/".$iPrev_thumb_large1))){
@@ -72,14 +72,14 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //½æ³×ÀÏ »ç¿ë½Ã
 		}
 
 	}elseif(($src_img1=$img1[0][1]) && !preg_match("#\.(gif|bmp)$#i",$src_img1)){
-		//½æ³×ÀÏ µğ·ºÅä¸® ³» °¢ È¸¿øº° µğ·ºÅä¸® »ı¼º
+		//ì¸ë„¤ì¼ ë””ë ‰í† ë¦¬ ë‚´ ê° íšŒì›ë³„ ë””ë ‰í† ë¦¬ ìƒì„±
 		$error_check=0;
 		if(!is_dir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/")) {
 			if(!@mkdir($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0777,true)) $error_check+=1;
 			if(!@chmod($zb_path."data/$id/thumbnail/".$prev_data[ismember]."/",0707)) $error_check+=2;
 		}
-		if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$prev_data[ismember]."/ µğ·ºÅä¸®ÀÇ ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
-		elseif($error_check==3) echo "<br> ".$zb_path."data/$id/thumbnail/ µğ·ºÅä¸® ³»¿¡ ".$prev_data[ismember]."¹ø È¸¿ø µğ·ºÅä¸® »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.<br> ÇØ´ç°æ·Î¿¡ µğ·ºÅä¸®¸¦ »ı¼º½ÃÄÑ ÁÖ½Ã°í ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
+		if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$prev_data[ismember]."/ ë””ë ‰í† ë¦¬ì˜ ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
+		elseif($error_check==3) echo "<br> ".$zb_path."data/$id/thumbnail/ ë””ë ‰í† ë¦¬ ë‚´ì— ".$prev_data[ismember]."ë²ˆ íšŒì› ë””ë ‰í† ë¦¬ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.<br> í•´ë‹¹ê²½ë¡œì— ë””ë ‰í† ë¦¬ë¥¼ ìƒì„±ì‹œì¼œ ì£¼ì‹œê³  ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
 
 		if(!file_exists($Thumbnail_path.$prev_data[ismember]."/".$Prev_thumb_small1)||!file_exists($Thumbnail_path.$prev_data[ismember]."/".$Prev_thumb_large1)){
 			$size=array($min_width_size,200);
@@ -124,14 +124,14 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //½æ³×ÀÏ »ç¿ë½Ã
 		$next_thumb=$Thumbnail_url.$Next_thumb_large1;
 
 	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$out2[0][1].".".$out2[0][2])){
-		//½æ³×ÀÏ µğ·ºÅä¸® ³» °¢ È¸¿øº° µğ·ºÅä¸® »ı¼º
+		//ì¸ë„¤ì¼ ë””ë ‰í† ë¦¬ ë‚´ ê° íšŒì›ë³„ ë””ë ‰í† ë¦¬ ìƒì„±
 		$error_check=0;
 		if(!is_dir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/")) {
 			if(!@mkdir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0777,true)) $error_check+=1;
 			if(!@chmod($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0707)) $error_check+=2;
 		}
-		if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$next_data[ismember]."/ µğ·ºÅä¸®ÀÇ ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
-		elseif($error_check==3) echo "<br> ".$zb_path."data/$id/thumbnail/ µğ·ºÅä¸® ³»¿¡ ".$next_data[ismember]."¹ø È¸¿ø µğ·ºÅä¸® »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.<br> ÇØ´ç°æ·Î¿¡ µğ·ºÅä¸®¸¦ »ı¼º½ÃÄÑ ÁÖ½Ã°í ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
+		if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$next_data[ismember]."/ ë””ë ‰í† ë¦¬ì˜ ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
+		elseif($error_check==3) echo "<br> ".$zb_path."data/$id/thumbnail/ ë””ë ‰í† ë¦¬ ë‚´ì— ".$next_data[ismember]."ë²ˆ íšŒì› ë””ë ‰í† ë¦¬ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.<br> í•´ë‹¹ê²½ë¡œì— ë””ë ‰í† ë¦¬ë¥¼ ìƒì„±ì‹œì¼œ ì£¼ì‹œê³  ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
 
 		$src_img2="icon/member_image_box/".$next_data[ismember]."/".$out2[0][1].".".$out2[0][2];
 		if(!file_exists($Thumbnail_path.$next_data[ismember]."/".$iNext_thumb_small1)||!file_exists($Thumbnail_path.$next_data[ismember]."/".$iNext_thumb_large1)){
@@ -145,14 +145,14 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //½æ³×ÀÏ »ç¿ë½Ã
 		}
 
 	}elseif(($src_img2=$img2[0][1]) && !preg_match("#\.(gif|bmp)$#i",$src_img2)){
-		//½æ³×ÀÏ µğ·ºÅä¸® ³» °¢ È¸¿øº° µğ·ºÅä¸® »ı¼º
+		//ì¸ë„¤ì¼ ë””ë ‰í† ë¦¬ ë‚´ ê° íšŒì›ë³„ ë””ë ‰í† ë¦¬ ìƒì„±
 		$error_check=0;
 		if(!is_dir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/")) {
 			if(!@mkdir($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0777,true)) $error_check+=1;
 			if(!@chmod($zb_path."data/$id/thumbnail/".$next_data[ismember]."/",0707)) $error_check+=2;
 		}
-		if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$next_data[ismember]."/ µğ·ºÅä¸®ÀÇ ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
-		elseif($error_check==3) echo "<br> ".$zb_path."data/$id/thumbnail/ µğ·ºÅä¸® ³»¿¡ ".$next_data[ismember]."¹ø È¸¿ø µğ·ºÅä¸® »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.<br> ÇØ´ç°æ·Î¿¡ µğ·ºÅä¸®¸¦ »ı¼º½ÃÄÑ ÁÖ½Ã°í ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
+		if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$next_data[ismember]."/ ë””ë ‰í† ë¦¬ì˜ ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
+		elseif($error_check==3) echo "<br> ".$zb_path."data/$id/thumbnail/ ë””ë ‰í† ë¦¬ ë‚´ì— ".$next_data[ismember]."ë²ˆ íšŒì› ë””ë ‰í† ë¦¬ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.<br> í•´ë‹¹ê²½ë¡œì— ë””ë ‰í† ë¦¬ë¥¼ ìƒì„±ì‹œì¼œ ì£¼ì‹œê³  ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
 
 		if(!file_exists($Thumbnail_path.$next_data[ismember]."/".$Next_thumb_small1)||!file_exists($Thumbnail_path.$next_data[ismember]."/".$Next_thumb_large1)){
 			$size=array($min_width_size,200);
@@ -213,7 +213,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //½æ³×ÀÏ »ç¿ë½Ã
 		$print_img2="<a onclick=window.open('$dir/img_view.php?img=$data[file_name2]&width=".($img_info2[0]+10)."&height=".($img_info2[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
 
-	//½æ³×ÀÏ »ç¿ëÇÏÁö ¾ÊÀ»¶§ ÀÌÀüÆÄÀÏ¹× ´ÙÀ½ÆÄÀÏ Á¤º¸¸¦ ÀúÀå
+	//ì¸ë„¤ì¼ ì‚¬ìš©í•˜ì§€ ì•Šì„ë•Œ ì´ì „íŒŒì¼ë° ë‹¤ìŒíŒŒì¼ ì •ë³´ë¥¼ ì €ì¥
 	if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$prev_data[file_name1])){
 		$prev_thumb=$prev_data[file_name1];
 		$prev_thumb=str_replace("%2F", "/", urlencode($prev_thumb));

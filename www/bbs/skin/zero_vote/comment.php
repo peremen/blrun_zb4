@@ -1,19 +1,19 @@
 <?
- /* °£´ÜÇÑ ´ä±Û ¾²±â Ç¥½Ã
+ /* ê°„ë‹¨í•œ ë‹µê¸€ ì“°ê¸° í‘œì‹œ
 
-  -- °£´ÜÇÑ ´ä±Û °ü·Ã
-  <?=$hide_start?> <?=$hide_end?> : ¸â¹ö ¿©ºÎ¿¡ µû¶ó ÀÌ¸§°ú ÆÐ½º¿öµå º¸¿©ÁÖ±â/ ¼û±â±â
-  <?=$hide_secret_start?> <?=$hide_secret_end?> : ºñ¹Ð±Û Ã¼Å© º¸¿©ÁÖ±â/ ¼û±â±â;;
+  -- ê°„ë‹¨í•œ ë‹µê¸€ ê´€ë ¨
+  <?=$hide_start?> <?=$hide_end?> : ë©¤ë²„ ì—¬ë¶€ì— ë”°ë¼ ì´ë¦„ê³¼ íŒ¨ìŠ¤ì›Œë“œ ë³´ì—¬ì£¼ê¸°/ ìˆ¨ê¸°ê¸°
+  <?=$hide_secret_start?> <?=$hide_secret_end?> : ë¹„ë°€ê¸€ ì²´í¬ ë³´ì—¬ì£¼ê¸°/ ìˆ¨ê¸°ê¸°;;
 
-  <?=$name?> : ÄÚ¸àÆ®½Ã ÀÌ¸§ ÀÔ·ÂÇÏ´Â °÷;;
+  <?=$name?> : ì½”ë©˜íŠ¸ì‹œ ì´ë¦„ ìž…ë ¥í•˜ëŠ” ê³³;;
 
-  ** view.php Á¦ÀÏ ¾Æ·¡ÂÊ¿¡ °£´äÇÑ ´ä±ÛÀÌ ½ÃÀÛÇÏ´Â <table>ÅÂ±× ½ÃÀÛºÎºÐÀÌ ÀÖ½À´Ï´Ù.
-	 ±×¸®°í °£´ÜÇÑ ´ä±ÛÀÌ ÀÖÀ¸¸é view_comment.php ÆÄÀÏ¿¡¼­ Ãâ·ÂÀ» ÇÕ´Ï´Ù.
+  ** view.php ì œì¼ ì•„ëž˜ìª½ì— ê°„ë‹µí•œ ë‹µê¸€ì´ ì‹œìž‘í•˜ëŠ” <table>íƒœê·¸ ì‹œìž‘ë¶€ë¶„ì´ ìžˆìŠµë‹ˆë‹¤.
+	 ê·¸ë¦¬ê³  ê°„ë‹¨í•œ ë‹µê¸€ì´ ìžˆìœ¼ë©´ view_comment.php íŒŒì¼ì—ì„œ ì¶œë ¥ì„ í•©ë‹ˆë‹¤.
 
  */
 ?>
 
-<!-- °£´ÜÇÑ ´äº¯±Û ¾²±â -->
+<!-- ê°„ë‹¨í•œ ë‹µë³€ê¸€ ì“°ê¸° -->
 <tr>
 <td width=100%>
 <table border=0 width=100% cellspacing=0 cellpadding=0 height=30>
@@ -41,12 +41,12 @@
 <td align=center>
 <?=$hide_start?>
 
-	<font color=444444 >ÀÌ¸§ : </b></font><input type=text id=name name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> &nbsp; 
-	<font color=444444 >ºñ¹Ð¹øÈ£ : </b></font><input type=password id=password name=password <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> ºñ¹øÀ» ÀçÀÔ·ÂÇÏ¸é ÀÓ½ÃÀúÀåÀÌ º¹¿øµÊ.
+	<font color=444444 >ì´ë¦„ : </b></font><input type=text id=name name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> &nbsp; 
+	<font color=444444 >ë¹„ë°€ë²ˆí˜¸ : </b></font><input type=password id=password name=password <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> ë¹„ë²ˆì„ ìž¬ìž…ë ¥í•˜ë©´ ìž„ì‹œì €ìž¥ì´ ë³µì›ë¨.
 <?=$hide_end?>
 
-	<font color=444444 >ÀÇ°ß : </b></font><input type=text id=memo name=memo value="<?=$memo?>" <?=size(40)?> maxlength=3000 class=input onkeyup="addStroke()">
-	<?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1> ºñ¹Ð±Û <?=$hide_secret_end?> <input type=button value='ÀÓ½ÃÀúÀå' class=submit onclick=autoSave()>	<input type=submit value="ÀÔ·Â" class=submit> <font id="state"></font>
+	<font color=444444 >ì˜ê²¬ : </b></font><input type=text id=memo name=memo value="<?=$memo?>" <?=size(40)?> maxlength=3000 class=input onkeyup="addStroke()">
+	<?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1> ë¹„ë°€ê¸€ <?=$hide_secret_end?> <input type=button value='ìž„ì‹œì €ìž¥' class=submit onclick=autoSave()>	<input type=submit value="ìž…ë ¥" class=submit> <font id="state"></font>
 </td>
 </tr>
 </table>

@@ -1,24 +1,24 @@
 
-<!--========================[ ¿¡µðÅÍ ±â´É »ç¿ëÀ¯¹« Ã¼Å© ]=========================-->
+<!--========================[ ì—ë””í„° ê¸°ëŠ¥ ì‚¬ìš©ìœ ë¬´ ì²´í¬ ]=========================-->
 <!-- 
-»ç¿ëÀÚº¯¼ö chk_edit_use ´Â Á÷Á¢ ¸¸µé¾î¾ß ÇÕ´Ï´Ù.
-»ç¿ëÀÚº¯¼ö(chk_edit_use)¸¦ ¸¸µéÁö ¸øÇÑ´Ù¸é ¾Æ·¡Ã³·³ ¹Ù²Ù¼¼¿ä.
-if($chk_edit_use=="on")	¸¦ if(true) ·Î ¹Ù²ß´Ï´Ù.
+ì‚¬ìš©ìžë³€ìˆ˜ chk_edit_use ëŠ” ì§ì ‘ ë§Œë“¤ì–´ì•¼ í•©ë‹ˆë‹¤.
+ì‚¬ìš©ìžë³€ìˆ˜(chk_edit_use)ë¥¼ ë§Œë“¤ì§€ ëª»í•œë‹¤ë©´ ì•„ëž˜ì²˜ëŸ¼ ë°”ê¾¸ì„¸ìš”.
+if($chk_edit_use=="on")	ë¥¼ if(true) ë¡œ ë°”ê¿‰ë‹ˆë‹¤.
 -->
 
 <?	
-if($emoticon_use=="on")			//<!-- ¿¡µðÅÍ ±â´É »ç¿ëÀ¯¹« Ã¼Å© -->
+if($emoticon_use=="on")			//<!-- ì—ë””í„° ê¸°ëŠ¥ ì‚¬ìš©ìœ ë¬´ ì²´í¬ -->
 {
-	$sw_edit_yn = "Y";			//<!-- HTML Editer »ç¿ë¿©ºÎ -->
-	$sw_edit_tag_yn = "N";		//<!-- HTML/Visual ¸ðµå Åä±Û -->
+	$sw_edit_yn = "Y";			//<!-- HTML Editer ì‚¬ìš©ì—¬ë¶€ -->
+	$sw_edit_tag_yn = "N";		//<!-- HTML/Visual ëª¨ë“œ í† ê¸€ -->
 }else{
 	$sw_edit_yn = "N";
 	$sw_edit_tag_yn = "N";
 };
 ?>
-<!--========================[ ¿¡µðÅÍ ±â´É »ç¿ëÀ¯¹« Ã¼Å© ]=========================-->
+<!--========================[ ì—ë””í„° ê¸°ëŠ¥ ì‚¬ìš©ìœ ë¬´ ì²´í¬ ]=========================-->
 
-<!--====================[ sw_edit ÆÄÀÏ¸í: ed_seting_head.php ]====================-->
+<!--====================[ sw_edit íŒŒì¼ëª…: ed_seting_head.php ]====================-->
 
 <input type='hidden' id='use_category_yn' name='use_category_yn' value='<? if($setup['use_category']) { echo("Y"); }else{ echo("N"); } ?>'>
 <input type='hidden' id='member_yn' name='member_yn' value='<? if(!$member['no']) { echo("Y"); }else{ echo("N"); } ?>'>
@@ -67,4 +67,4 @@ include $dir."/swe/ed_seting_fileview.php";
 	imgViewReloadInterval = setInterval("imgViewReload()", 300);	
   //-->
 </SCRIPT>
-<!--====================[ sw_edit ÆÄÀÏ¸í: ed_seting_head.php ³¡]====================-->
+<!--====================[ sw_edit íŒŒì¼ëª…: ed_seting_head.php ë]====================-->

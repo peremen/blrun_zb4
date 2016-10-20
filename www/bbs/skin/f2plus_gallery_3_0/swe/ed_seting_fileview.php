@@ -1,10 +1,10 @@
 <?
-/* ====================[ sw_edit ÆÄÀÏ¸í: ed_seting_fileview.php ]==================== */
+/* ====================[ sw_edit íŒŒì¼ëª…: ed_seting_fileview.php ]==================== */
 
 function filebox_add($fnumber,$fname)
 { 		
-	$fname = str_replace("<br>","&nbsp;Ã·ºÎÆÄÀÏ:",$fname);
-	$fname = str_replace("ÀÌ µî·ÏµÇ¾î ÀÖ½À´Ï´Ù.","",$fname);
+	$fname = str_replace("<br>","&nbsp;ì²¨ë¶€íŒŒì¼:",$fname);
+	$fname = str_replace("ì´ ë“±ë¡ë˜ì–´ ìˆìŠµë‹ˆë‹¤.","",$fname);
 
 	$filebox_add="<table width='100%' cellpadding='0' cellspacing='0' style='border:0'><tr><td>";
 	$filebox_add=$filebox_add."<input type='file' name='file".$fnumber."' maxlength='255' class='input' style='width:100%;' onLoad='imgfile_ad_view()'>";

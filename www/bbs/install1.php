@@ -1,8 +1,8 @@
 <?
-// ¿¡·¯ ¸Ş¼¼Áö Ãâ·Â
+// ì—ëŸ¬ ë©”ì„¸ì§€ ì¶œë ¥
 function error($message, $url="") {
 ?>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <?
 	if($url=="window.close") {
 		$message=str_replace("<br>","\\n",$message);
@@ -19,9 +19,9 @@ function error($message, $url="") {
 	exit;
 }
 ?>
-<html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width">
 <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 <link rel="image_src" href="../blrun2_fb.jpg">
@@ -29,7 +29,7 @@ function error($message, $url="") {
 </head>
 <body topmargin='0' leftmargin='0' marginwidth='0' marginheight='0'>
 <?
-if(file_exists("myZrCnf2019.php")) error("ÀÌ¹Ì myZrCnf2019.php°¡ »ı¼ºµÇ¾î ÀÖ½À´Ï´Ù.<br><br>Àç¼³Ä¡ÇÏ·Á¸é ÇØ´ç ÆÄÀÏÀ» Áö¿ì¼¼¿ä");
+if(file_exists("myZrCnf2019.php")) error("ì´ë¯¸ myZrCnf2019.phpê°€ ìƒì„±ë˜ì–´ ìˆìŠµë‹ˆë‹¤.<br><br>ì¬ì„¤ì¹˜í•˜ë ¤ë©´ í•´ë‹¹ íŒŒì¼ì„ ì§€ìš°ì„¸ìš”");
 ?>
 <body bgcolor=#000000 text=#ffffff>
 <script>
@@ -37,19 +37,19 @@ if(file_exists("myZrCnf2019.php")) error("ÀÌ¹Ì myZrCnf2019.php°¡ »ı¼ºµÇ¾î ÀÖ½À´Ï
  {
   if(!write.hostname.value)
   {
-   alert("HostNameÀ» ÀÔ·ÂÇÏ¼¼¿ä");
+   alert("HostNameì„ ì…ë ¥í•˜ì„¸ìš”");
    write.hostname.focus();
    return false;
   }
   if(!write.user_id.value)
   {
-   alert("USER ID ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+   alert("USER ID ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
    write.user_id.focus();
    return false;
   }
   if(!write.dbname.value)
   {
-   alert("DB Name¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+   alert("DB Nameë¥¼ ì…ë ¥í•˜ì„¸ìš”");
    write.dbname.focus();
    return false;
   }
@@ -76,27 +76,27 @@ if(file_exists("myZrCnf2019.php")) error("ÀÌ¹Ì myZrCnf2019.php°¡ »ı¼ºµÇ¾î ÀÖ½À´Ï
 	<tr>
 		<td width=90 align=right style=font-family:Tahoma;font-size:9pt;>Host Name</td>
 		<td width=90><input type=text name=hostname value='localhost' style=font-family:Tahoma;font-size:9pt;></td>
-		<td width=300>MySQL DBÀÇ È£½ºÆ®³×ÀÓÀ» ÀÔ·ÂÇÏ¼¼¿ä.</font></td>
+		<td width=300>MySQL DBì˜ í˜¸ìŠ¤íŠ¸ë„¤ì„ì„ ì…ë ¥í•˜ì„¸ìš”.</font></td>
 	</tr>
 	<tr>
 		<td align=right style=font-family:Tahoma;font-size:9pt;>SQL User ID</td>
 		<td><input type=text name=user_id style=font-family:Tahoma;font-size:9pt;></td>
-		<td>MySQL°èÁ¤ÀÇ ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä</font></td>
+		<td>MySQLê³„ì •ì˜ IDë¥¼ ì…ë ¥í•˜ì„¸ìš”</font></td>
 	</tr>
 	<tr>
 		<td align=right style=font-family:Tahoma;font-size:9pt;>Password</td>
 		<td><input type=password name=password style=font-family:Tahoma;font-size:9pt;></td>
-		<td>Mysql DBÀÇ ÆĞ½º¿öµå¸¦ ÀÔ·ÂÇÏ¼¼¿ä</font></td>
+		<td>Mysql DBì˜ íŒ¨ìŠ¤ì›Œë“œë¥¼ ì…ë ¥í•˜ì„¸ìš”</font></td>
 	</tr>
 	<tr>
 		<td align=right style=font-family:Tahoma;font-size:9pt;>DB Name</td>
 		<td><input type=text name=dbname style=font-family:Tahoma;font-size:9pt;></td>
-		<td>Mysql DBÀÇ NameÀ» ÀÔ·ÂÇÏ¼¼¿ä</font></td>
+		<td>Mysql DBì˜ Nameì„ ì…ë ¥í•˜ì„¸ìš”</font></td>
 	</tr>
 	<tr>
-		<td align=right style=font-family:Tahoma;font-size:9pt;>º¸¾È¼­¹ö URL</td>
+		<td align=right style=font-family:Tahoma;font-size:9pt;>ë³´ì•ˆì„œë²„ URL</td>
 		<td><input type=text name=sslurl style=font-family:Tahoma;font-size:9pt;></td>
-		<td>Á¦·Îº¸µå SSL º¸¾È¼­¹ö Æ÷Æ®URLÀ» ÀÔ·Â..<br>¿¹) https://www.blrun.net:47006/bbs/ (³¡¿¡ / ºÙÀ½)</font></td>
+		<td>ì œë¡œë³´ë“œ SSL ë³´ì•ˆì„œë²„ í¬íŠ¸URLì„ ì…ë ¥..<br>ì˜ˆ) https://www.blrun.net:47006/bbs/ (ëì— / ë¶™ìŒ)</font></td>
 	</tr>
 	<tr>
 		<td colspan=3 align=center><br><br><input type=image src=images/inst_b_2.gif border=0 align=absmiddle></td>

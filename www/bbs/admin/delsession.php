@@ -5,8 +5,8 @@ include "../lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
 
-if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("ÃÖ°í °ü¸®ÀÚ¸¸ÀÌ »ç¿ëÇÒ¼ö ÀÖ½À´Ï´Ù");
-// ¼¼¼Ç »èÁ¦
+if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("ìµœê³  ê´€ë¦¬ìžë§Œì´ ì‚¬ìš©í• ìˆ˜ ìžˆìŠµë‹ˆë‹¤");
+// ì„¸ì…˜ ì‚­ì œ
 if($exec=="delete") {
 
 	$i=0;
@@ -22,7 +22,7 @@ if($exec=="delete") {
 			}
 		}
 	}
-	print("\n\n<script>\nalert('¼¼¼Ç µð·ºÅä¸®¸¦ Á¤¸®ÇÏ¿´½À´Ï´Ù');\nwindow.close();\n</script>");
+	print("\n\n<script>\nalert('ì„¸ì…˜ ë””ë ‰í† ë¦¬ë¥¼ ì •ë¦¬í•˜ì˜€ìŠµë‹ˆë‹¤');\nwindow.close();\n</script>");
 	exit();
 }
 
@@ -38,11 +38,11 @@ head(" bgcolor=white");
 </tr>
 <tr>
   <td colspan=3 style=padding:15px;line-height:160%>
-  	ÀÌ ÆäÀÌÁö´Â È¸¿ø ·Î±×ÀÎµî¿¡ ÇÊ¿äÇÑ ¼¼¼Ç µð·ºÅä¸®¸¦ Á¤¸®ÇÏ´Â °÷ÀÔ´Ï´Ù.<br>
-	¼¼¼ÇÀ» ¸ðµÎ Á¦°ÅÇÏ¸é ÇöÀç ·Î±×ÀÎÇÑ È¸¿øÀÌ ·Î±×¾Æ¿ôÀÌ µÇ¸ç, ÀÚµ¿ ·Î±×ÀÎÀ» ÁöÁ¤ÇÑ È¸¿øµéÀÇ °æ¿ì<br>
-	ÀÚµ¿·Î±×ÀÎÀÌ Ãë¼Ò°¡ µË´Ï´Ù<br>
-	ÇÏÁö¸¸  ¼¼¼Ç µð·ºÅä¸®ÀÇ ÆÄÀÏÀÌ ¸¹¾ÆÁö¸é ÀüÃ¼ÀûÀÎ ½Ã½ºÅÛ È¿À²¼ºÀ» ¶³¾î¶ß¸®¹Ç·Î,<br>
-	¾Æ·¡ ÇöÈ²À» ÆÄ¾ÇÇØ º¸½Ã°í ÇÑ¹ø¾¿ ºñ¿öÁÖ½Ã´Â °ÍÀÌ ÁÁ½À´Ï´Ù<br>
+  	ì´ íŽ˜ì´ì§€ëŠ” íšŒì› ë¡œê·¸ì¸ë“±ì— í•„ìš”í•œ ì„¸ì…˜ ë””ë ‰í† ë¦¬ë¥¼ ì •ë¦¬í•˜ëŠ” ê³³ìž…ë‹ˆë‹¤.<br>
+	ì„¸ì…˜ì„ ëª¨ë‘ ì œê±°í•˜ë©´ í˜„ìž¬ ë¡œê·¸ì¸í•œ íšŒì›ì´ ë¡œê·¸ì•„ì›ƒì´ ë˜ë©°, ìžë™ ë¡œê·¸ì¸ì„ ì§€ì •í•œ íšŒì›ë“¤ì˜ ê²½ìš°<br>
+	ìžë™ë¡œê·¸ì¸ì´ ì·¨ì†Œê°€ ë©ë‹ˆë‹¤<br>
+	í•˜ì§€ë§Œ  ì„¸ì…˜ ë””ë ‰í† ë¦¬ì˜ íŒŒì¼ì´ ë§Žì•„ì§€ë©´ ì „ì²´ì ì¸ ì‹œìŠ¤í…œ íš¨ìœ¨ì„±ì„ ë–¨ì–´ëœ¨ë¦¬ë¯€ë¡œ,<br>
+	ì•„ëž˜ í˜„í™©ì„ íŒŒì•…í•´ ë³´ì‹œê³  í•œë²ˆì”© ë¹„ì›Œì£¼ì‹œëŠ” ê²ƒì´ ì¢‹ìŠµë‹ˆë‹¤<br>
   </td>
 </tr>
 </table>
@@ -58,19 +58,19 @@ head(" bgcolor=white");
   <td colspan=2 align=center><b>Session diectory checking...</b></td>
 </tr>
 <tr bgcolor=white>
-  <td align=center>°¹¼ö</td><td><input type=input name=num value="" size=30 style=border:0;height:18px></td>
+  <td align=center>ê°¯ìˆ˜</td><td><input type=input name=num value="" size=30 style=border:0;height:18px></td>
 </tr>
 <tr bgcolor=white>
-  <td align=center>¿ë·®</td><td><input type=input name=size value="" size=30 style=border:0;height:18px></td>
+  <td align=center>ìš©ëŸ‰</td><td><input type=input name=size value="" size=30 style=border:0;height:18px></td>
 </tr>
 <tr bgcolor=cccccc>
-  <td align=center colspan=2><input type=submit value="¼¼¼Ç ÆÄÀÏ »èÁ¦" class=submit></td>
+  <td align=center colspan=2><input type=submit value="ì„¸ì…˜ íŒŒì¼ ì‚­ì œ" class=submit></td>
 </tr>
 </table>
 </form>
 <script>
 <?
-// ÀüÃ¼ ÆÄÀÏ ¸ñ·ÏÀ» ±¸ÇÔ
+// ì „ì²´ íŒŒì¼ ëª©ë¡ì„ êµ¬í•¨
 unset($list);
 $path = "../".$_zbDefaultSetup[session_path];
 $directory = dir($path);
@@ -82,14 +82,14 @@ while($entry = $directory->read()) {
 		$i++;
 		$totalsize += filesize($path."/".$entry);
 		if($i%100==0) {
-			print "document.sdc.num.value='".$i." °³';\n";
+			print "document.sdc.num.value='".$i." ê°œ';\n";
 			print "document.sdc.size.value='".getfilesize($totalsize)."';\n";
 		}
 		flush();
 	}
 }
 $directory->close();
-print "document.sdc.num.value='".number_format($i)." °³';\n";
+print "document.sdc.num.value='".number_format($i)." ê°œ';\n";
 print "document.sdc.size.value='".getfilesize($totalsize)."';\n";
 
 $totallist = count($list);

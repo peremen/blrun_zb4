@@ -1,5 +1,5 @@
 
-<!-- ÀÌ¸§ Å¬¸¯½Ã º¸ÀÌ´Â ·¹ÀÌ¾î °ü·Ã ½ºÅ©¸³Æ® -->
+<!-- ì´ë¦„ í´ë¦­ì‹œ ë³´ì´ëŠ” ë ˆì´ì–´ ê´€ë ¨ ìŠ¤í¬ë¦½íŠ¸ -->
 <script language='JavaScript'>
 var select_obj;
 var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
@@ -109,31 +109,31 @@ function print_ZBlayer(name, homepage, mail, member_no, boardID, writer, traceID
 	var printMain="";
 
 	if(homepage) {
-		printMain = "<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('"+homepage+"');><td align=left style=font-family:±¼¸²;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_homepage.gif border=0 align=absmiddle>&nbsp;&nbsp;È¨ÆäÀÌÁö&nbsp;&nbsp;</td></tr>";
+		printMain = "<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('"+homepage+"');><td align=left style=font-family:êµ´ë¦¼;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_homepage.gif border=0 align=absmiddle>&nbsp;&nbsp;í™ˆí˜ì´ì§€&nbsp;&nbsp;</td></tr>";
 		printHeight = printHeight + 16;
 	}
 	if(mail) {
-		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=location.href='mailto:"+htmlspecialchars_encode(decode64(mail))+"';><td align=left style=font-family:±¼¸²;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_mail.gif border=0 align=absmiddle>&nbsp;&nbsp;¸ŞÀÏ º¸³»±â&nbsp;&nbsp;</td></tr>";
+		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=location.href='mailto:"+htmlspecialchars_encode(decode64(mail))+"';><td align=left style=font-family:êµ´ë¦¼;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_mail.gif border=0 align=absmiddle>&nbsp;&nbsp;ë©”ì¼ ë³´ë‚´ê¸°&nbsp;&nbsp;</td></tr>";
 		printHeight = printHeight + 16;
 	}
 	if(member_no) {
 		if(isMember) {
-			printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('view_info.php?member_no="+member_no+"','view_info','width=400,height=510,toolbar=no,scrollbars=yes');><td align=left style=font-family:±¼¸²;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_memo.gif border=0 align=absmiddle>&nbsp;&nbsp;ÂÊÁö º¸³»±â&nbsp;&nbsp;</td></tr>";
+			printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('view_info.php?member_no="+member_no+"','view_info','width=400,height=510,toolbar=no,scrollbars=yes');><td align=left style=font-family:êµ´ë¦¼;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_memo.gif border=0 align=absmiddle>&nbsp;&nbsp;ìª½ì§€ ë³´ë‚´ê¸°&nbsp;&nbsp;</td></tr>";
 			printHeight = printHeight + 16;
 		}
-		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('view_info2.php?member_no="+member_no+"','view_info','width=400,height=510,toolbar=no,scrollbars=yes');><td align=left style=font-family:±¼¸²;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_information.gif border=0 align=absmiddle>&nbsp;&nbsp;È¸¿øÁ¤º¸ º¸±â&nbsp;&nbsp;</td></tr>";
+		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('view_info2.php?member_no="+member_no+"','view_info','width=400,height=510,toolbar=no,scrollbars=yes');><td align=left style=font-family:êµ´ë¦¼;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_information.gif border=0 align=absmiddle>&nbsp;&nbsp;íšŒì›ì •ë³´ ë³´ê¸°&nbsp;&nbsp;</td></tr>";
 		printHeight = printHeight + 16;
 	}
 	if(writer) {
-		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=location.href='zboard.php?id="+boardID+"&sn1=on&sn=on&ss=off&sc=off&keyword="+writer+"';><td align=left style=font-family:±¼¸²;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_search.gif border=0 align=absmiddle>&nbsp;&nbsp;ÀÌ¸§À¸·Î °Ë»ö&nbsp;&nbsp;</td></tr>";
+		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=location.href='zboard.php?id="+boardID+"&sn1=on&sn=on&ss=off&sc=off&keyword="+writer+"';><td align=left style=font-family:êµ´ë¦¼;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_search.gif border=0 align=absmiddle>&nbsp;&nbsp;ì´ë¦„ìœ¼ë¡œ ê²€ìƒ‰&nbsp;&nbsp;</td></tr>";
 		printHeight = printHeight + 16;
 	}
 	if(isAdmin) {
 		if(member_no) {
-			printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('open_window.php?mode=i&str="+member_no+"','ZBremote','width=1024,height=768,left=1,top=1,scrollbars=yes');><td align=left style=font-family:±¼¸²;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_modify.gif border=0 align=absmiddle>&nbsp;&nbsp;<font color=darkred>È¸¿øÁ¤º¸ º¯°æ&nbsp;&nbsp;</td></tr>";
+			printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('open_window.php?mode=i&str="+member_no+"','ZBremote','width=1024,height=768,left=1,top=1,scrollbars=yes');><td align=left style=font-family:êµ´ë¦¼;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_modify.gif border=0 align=absmiddle>&nbsp;&nbsp;<font color=darkred>íšŒì›ì •ë³´ ë³€ê²½&nbsp;&nbsp;</td></tr>";
 			printHeight = printHeight + 16;
 		}
-		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('open_window.php?mode="+traceType+"&str="+traceID+"','ZBremote','width=1024,height=768,left=1,top=1,toolbar=no,scrollbars=yes');><td align=left style=font-family:±¼¸²;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_relationlist.gif border=0 align=absmiddle>&nbsp;&nbsp;<font color=darkred>°ü·Ã±Û ÃßÀû</font>&nbsp;&nbsp;</td></tr>";
+		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('open_window.php?mode="+traceType+"&str="+traceID+"','ZBremote','width=1024,height=768,left=1,top=1,toolbar=no,scrollbars=yes');><td align=left style=font-family:êµ´ë¦¼;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_relationlist.gif border=0 align=absmiddle>&nbsp;&nbsp;<font color=darkred>ê´€ë ¨ê¸€ ì¶”ì </font>&nbsp;&nbsp;</td></tr>";
 		printHeight = printHeight + 16;
 	
 	}
@@ -143,4 +143,4 @@ function print_ZBlayer(name, homepage, mail, member_no, boardID, writer, traceID
 	document.writeln(printHeader+printMain+printFooter);
 }
 </script>
-<!-- ÀÌ¸§ Å¬¸¯½Ã º¸ÀÌ´Â ·¹ÀÌ¾î °ü·Ã ½ºÅ©¸³Æ® ³¡ -->
+<!-- ì´ë¦„ í´ë¦­ì‹œ ë³´ì´ëŠ” ë ˆì´ì–´ ê´€ë ¨ ìŠ¤í¬ë¦½íŠ¸ ë -->

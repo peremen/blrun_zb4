@@ -6,7 +6,7 @@ unset($print_img2);
 unset($view_img1);
 unset($view_img2);
 
-if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //½æ³×ÀÏ »ç¿ë½Ã
+if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //ì¸ë„¤ì¼ ì‚¬ìš©ì‹œ
 	if($upload_image1){
 		if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name1])){
 			if(!file_exists($Thumbnail_path.$view_large1)){
@@ -35,7 +35,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //½æ³×ÀÏ »ç¿ë½Ã
 		$img_info2=@getimagesize($data[file_name2]);
 		$print_img2="<a onclick=window.open('$dir/img_view.php?img=$data[file_name2]&width=".($img_info2[0]+10)."&height=".($img_info2[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
-	//ÀÌÀü ¹× ´ÙÀ½ µ¥ÀÌÅÍÀÇ ½æ³×ÀÏ Á¤º¸¸¦ ÀĞ¾î¿È
+	//ì´ì „ ë° ë‹¤ìŒ ë°ì´í„°ì˜ ì¸ë„¤ì¼ ì •ë³´ë¥¼ ì½ì–´ì˜´
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$prev_data[file_name1])){
 
 		if(!file_exists($Thumbnail_path.$Prev_thumb_small1)){
@@ -96,7 +96,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //½æ³×ÀÏ »ç¿ë½Ã
 		$print_img2="<a onclick=window.open('$dir/img_view.php?img=$data[file_name2]&width=".($img_info2[0]+10)."&height=".($img_info2[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
 
-	//½æ³×ÀÏ »ç¿ëÇÏÁö ¾ÊÀ»¶§ ÀÌÀüÆÄÀÏ¹× ´ÙÀ½ÆÄÀÏ Á¤º¸¸¦ ÀúÀå
+	//ì¸ë„¤ì¼ ì‚¬ìš©í•˜ì§€ ì•Šì„ë•Œ ì´ì „íŒŒì¼ë° ë‹¤ìŒíŒŒì¼ ì •ë³´ë¥¼ ì €ì¥
 	if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$prev_data[file_name1]))
 		$prev_thumb=$prev_data[file_name1];
   	elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$prev_data[file_name2]))

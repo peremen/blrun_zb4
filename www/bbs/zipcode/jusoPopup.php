@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>µµ·Î¸í ÁÖ¼Ò ÀÔ·ÂÃ¢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ë„ë¡œëª… ì£¼ì†Œ ì…ë ¥ì°½</title>
 <? 
 	$ADDR['inputYn'] = $_POST['inputYn'];
 	$ADDR['roadFullAddr'] = $_POST['roadFullAddr'];
@@ -22,15 +22,15 @@
 function init(){
 	var url = location.href;
 	var confmKey = "U01TX0FVVEgyMDE2MDgwMjE4MjMwODE0MjY4";
-	// php.ini ¿¡ short_open_tag °¡ On À¸·Î ¼³Á¤µÇ¾î µÇ¾î ÀÖ´Â °æ¿ì ¾Æ·¡ ¼Ò½º ÄÚµå »ç¿ë
+	// php.ini ì— short_open_tag ê°€ On ìœ¼ë¡œ ì„¤ì •ë˜ì–´ ë˜ì–´ ìˆëŠ” ê²½ìš° ì•„ë˜ ì†ŒìŠ¤ ì½”ë“œ ì‚¬ìš©
 	var inputYn = "<?=$ADDR['inputYn']?>";
 	var num = "<?=$ADDR['num']?>";
-	// php.ini ¿¡ short_open_tag °¡ Off À¸·Î ¼³Á¤µÇ¾î µÇ¾î ÀÖ´Â °æ¿ì ¾Æ·¡ ¼Ò½º ÄÚµå »ç¿ë
+	// php.ini ì— short_open_tag ê°€ Off ìœ¼ë¡œ ì„¤ì •ë˜ì–´ ë˜ì–´ ìˆëŠ” ê²½ìš° ì•„ë˜ ì†ŒìŠ¤ ì½”ë“œ ì‚¬ìš©
 	// var inputYn= "<?php echo $ADDR['inputYn']; ?>";
 	if(inputYn != "Y"){
 		document.form.confmKey.value = confmKey;
 		document.form.returnUrl.value = url;
-		document.form.action="http://www.juso.go.kr/addrlink/addrLinkUrl.do"; //ÀÎÅÍ³İ¸Á
+		document.form.action="http://www.juso.go.kr/addrlink/addrLinkUrl.do"; //ì¸í„°ë„·ë§
 		document.form.submit();
 	}else{
 		opener.jusoCallBack("<?=$ADDR[roadFullAddr]?>","<?=$ADDR[zipNo]?>",num);
@@ -42,9 +42,9 @@ function init(){
 	<form id="form" name="form" method="post">
 		<input type="hidden" id="confmKey" name="confmKey" value=""/>
 		<input type="hidden" id="returnUrl" name="returnUrl" value=""/>
-		<!-- ÇØ´ç½Ã½ºÅÛÀÇ ÀÎÄÚµùÅ¸ÀÔÀÌ EUC-KRÀÏ°æ¿ì¿¡¸¸ Ãß°¡ START-->
-		<input type="hidden" id="encodingType" name="encodingType" value="EUC-KR"/>
-		<!-- ÇØ´ç½Ã½ºÅÛÀÇ ÀÎÄÚµùÅ¸ÀÔÀÌ EUC-KRÀÏ°æ¿ì¿¡¸¸ Ãß°¡ END-->
+		<!-- í•´ë‹¹ì‹œìŠ¤í…œì˜ ì¸ì½”ë”©íƒ€ì…ì´ EUC-KRì¼ê²½ìš°ì—ë§Œ ì¶”ê°€ START-->
+		<!--<input type="hidden" id="encodingType" name="encodingType" value="EUC-KR"/>-->
+		<!-- í•´ë‹¹ì‹œìŠ¤í…œì˜ ì¸ì½”ë”©íƒ€ì…ì´ EUC-KRì¼ê²½ìš°ì—ë§Œ ì¶”ê°€ END-->
 	</form>
 </body>
 </html>

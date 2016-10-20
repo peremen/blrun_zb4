@@ -3,7 +3,7 @@ $data=mysql_fetch_array(mysql_query("select * from $group_table where no='$group
 $check_open[$data[is_open]]="checked";
 $check_join[$data[use_join]]="checked";
 
-// ÇöÀç ±×·ìµ¥ÀÌÅ¸ »Ì¾Æ¿È;;;
+// í˜„ì¬ ê·¸ë£¹ë°ì´íƒ€ ë½‘ì•„ì˜´;;;
 $temp=mysql_query("select no,name from $group_table where no!='$group_no'");
 while($temp2=mysql_fetch_array($temp))
 {
@@ -15,25 +15,25 @@ while($temp2=mysql_fetch_array($temp))
 </tr>
 <tr height=1><td bgcolor=#000000 style=padding:0px; colspan=2><img src=images/t.gif height=1></td>
 </tr>
-<form name=write method=post action=<?=$PHP_SELF?> enctype=multipart/form-data onsubmit="return confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')">
+<form name=write method=post action=<?=$PHP_SELF?> enctype=multipart/form-data onsubmit="return confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')">
 <input type=hidden name=exec value=del_group_ok>
 <input type=hidden name=group_no value=<?=$group_no?>>
 <tr align=center><td bgcolor=bbbbbb colspan=2 height=25 style=font-family:Tahoma;font-size:9pt;>Group Name : <b><?=$data[name]?></b></td>
 </tr>
 <tr align=center>
   <td colspan=2 style=line-height:180%; bgcolor=#e0e0e0><br>
-  ±×·ìÀ» »èÁ¦ÇÒ¶§´Â ÇØ´ç ±×·ì¿¡ ¼ÓÇØÀÖ´Â È¸¿øµé°ú <br>
-  ±×·ì¿¡¼­ »ı¼ºÇÑ °Ô½ÃÆÇµé¿¡ ´ëÇØ¼­ ÀÌµ¿À» ÇØÁÖ¾î¾ß ÇÕ´Ï´Ù.<br>
-  ½ÅÁßÇÏ°Ô ¼±ÅÃÀ» ÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.<br><br>
-  <B style=color:#cc0000>½ñ¾ÆÁø ¹°Àº ÁÖ¿ö´ãÀ»¼ö ¾ø½À´Ï´Ù -_-¤ğ</b><br><br>
+  ê·¸ë£¹ì„ ì‚­ì œí• ë•ŒëŠ” í•´ë‹¹ ê·¸ë£¹ì— ì†í•´ìˆëŠ” íšŒì›ë“¤ê³¼ <br>
+  ê·¸ë£¹ì—ì„œ ìƒì„±í•œ ê²Œì‹œíŒë“¤ì— ëŒ€í•´ì„œ ì´ë™ì„ í•´ì£¼ì–´ì•¼ í•©ë‹ˆë‹¤.<br>
+  ì‹ ì¤‘í•˜ê²Œ ì„ íƒì„ í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.<br><br>
+  <B style=color:#cc0000>ìŸì•„ì§„ ë¬¼ì€ ì£¼ì›Œë‹´ì„ìˆ˜ ì—†ìŠµë‹ˆë‹¤ -_-ã†€</b><br><br>
   </td>
 </tr>
 <tr align=right>
-  <td width=47%  style=font-family:Tahoma;font-size:9pt;><br>È¸¿øµéÀ» ÀÌµ¿½ÃÅ³ ±×·ì ÁöÁ¤ : &nbsp;</font></td>
+  <td width=47%  style=font-family:Tahoma;font-size:9pt;><br>íšŒì›ë“¤ì„ ì´ë™ì‹œí‚¬ ê·¸ë£¹ ì§€ì • : &nbsp;</font></td>
   <td align=left><br>&nbsp;<select name=member_move><?=$group_option?></select></td>
 </tr>
 <tr align=right>
-  <td style=font-family:Tahoma;font-size:9pt;>°Ô½ÃÆÇÀ» ÀÌµ¿½ÃÅ³ ±×·ì ÁöÁ¤ : &nbsp;<br><br></td>
+  <td style=font-family:Tahoma;font-size:9pt;>ê²Œì‹œíŒì„ ì´ë™ì‹œí‚¬ ê·¸ë£¹ ì§€ì • : &nbsp;<br><br></td>
   <td align=left>&nbsp;<select name=board_move><?=$group_option?></select><br><br></td>
 </tr>
 <tr align=center>

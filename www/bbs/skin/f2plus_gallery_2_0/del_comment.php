@@ -3,13 +3,13 @@
 @extract($_POST);
 
 /***************************************************************************
- * °øÅë ÆÄÀÏ include
+ * ê³µí†µ íŒŒì¼ include
  **************************************************************************/
 include $_zb_path."_head.php";
 
-if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['DEL_COMM_SEC']==""||$_SESSION['DEL_COMM_SEC']!=$delsec) Error("Á¤»óÀûÀ¸·Î ±ÛÀ» »èÁ¦ÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['DEL_COMM_SEC']==""||$_SESSION['DEL_COMM_SEC']!=$delsec) Error("ì •ìƒì ìœ¼ë¡œ ê¸€ì„ ì‚­ì œí•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.");
 
-//  ÃÊ±â Çì´õ¸¦ »Ñ·ÁÁÖ´Â ºÎºĞ;;;;
+//  ì´ˆê¸° í—¤ë”ë¥¼ ë¿Œë ¤ì£¼ëŠ” ë¶€ë¶„;;;;
 function head1($body="",$scriptfile="") {
 
 	global $group, $setup, $dir,$member, $PHP_SELF, $id, $_head_executived, $_COOKIE, $width, $_zb_path, $_zb_url;
@@ -31,13 +31,13 @@ function head1($body="",$scriptfile="") {
 		fclose($f);
 	}
 	
-	// html ½ÃÀÛºÎºĞ Ãâ·Â
+	// html ì‹œì‘ë¶€ë¶„ ì¶œë ¥
 	if($setup[skinname]) {
 ?>
-<html> 
+<html lang="ko"> 
 <head>
 <title>Delete</title>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width">
 <link rel=StyleSheet HREF=<?=$stylefile?> type=text/css title=style>
 <?if($setup[use_formmail]) echo $zbLayerScript;?>
@@ -57,9 +57,9 @@ function head1($body="",$scriptfile="") {
 	} else {
 
 ?>
-<html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width">
 <link rel=StyleSheet HREF=style.css type=text/css title=style>
 <?if($scriptfile) include $_zb_path."script/".$scriptfile;?>
@@ -73,7 +73,7 @@ function head1($body="",$scriptfile="") {
 
 }
 
-// ÇªÅÍ ºÎºĞ Ãâ·Â
+// í‘¸í„° ë¶€ë¶„ ì¶œë ¥
 function foot1() {
 
 	global $width, $group, $setup, $_startTime , $_queryTime , $_foot_executived, $_skinTime, $_sessionStart, $_sessionEnd, $_nowConnectStart, $_nowConnectEnd, $_dbTime, $_listCheckTime, $_zbResizeCheck, $_zb_path, $_zb_url;
@@ -90,8 +90,8 @@ function foot1() {
 
 <table border=0 cellpadding=0 cellspacing=0 height=20 width=<?=$width?>>
 <tr>
-	<td align=right style=font-family:tahoma,±¼¸²;font-size:8pt;line-height:150%;letter-spacing:0px>
-		<font style=font-size:7pt>Copyright 1999-<?=date("Y")?></font> <a href=http://www.zeroboard.com target=_blank onfocus=blur()><font style=font-family:tahoma,±¼¸²;font-size:8pt;>Zeroboard</a> <?=$maker?>
+	<td align=right style=font-family:tahoma,êµ´ë¦¼;font-size:8pt;line-height:150%;letter-spacing:0px>
+		<font style=font-size:7pt>Copyright 1999-<?=date("Y")?></font> <a href=http://www.zeroboard.com target=_blank onfocus=blur()><font style=font-family:tahoma,êµ´ë¦¼;font-size:8pt;>Zeroboard</a> <?=$maker?>
 	</td>   
 </tr>
 </table>
@@ -100,7 +100,7 @@ function foot1() {
 		if($_zbResizeCheck) {
 ?>
 
-<!-- ÀÌ¹ÌÁö ¸®»çÀÌÁî¸¦ À§ÇØ¼­ Ã³¸®ÇÏ´Â ºÎºĞ -->
+<!-- ì´ë¯¸ì§€ ë¦¬ì‚¬ì´ì¦ˆë¥¼ ìœ„í•´ì„œ ì²˜ë¦¬í•˜ëŠ” ë¶€ë¶„ -->
 <script>
 	function zb_img_check(){
 		var zb_main_table_width = document.zb_get_table_width.width*(100-4)/100;
@@ -141,7 +141,7 @@ function foot1() {
 	}
 
 	$_phpExcutedTime = (getmicrotime()-$_startTime)-($_sessionEnd-$_sessionStart)-($_nowConnectEnd-$_nowConnectStart)-$_dbTime-$_skinTime;
-	// ½ÇÇà½Ã°£ Ãâ·Â
+	// ì‹¤í–‰ì‹œê°„ ì¶œë ¥
 	echo "\n\n<!--"; 
 	if($_sessionStart&&$_sessionEnd)  		echo "\n Session Excuted  : ".sprintf("%0.4f",$_sessionEnd-$_sessionStart);
 	if($_nowConnectStart&&$_nowConnectEnd) 	echo "\n Connect Checked  : ".sprintf("%0.4f",$_nowConnectEnd-$_nowConnectStart);
@@ -154,17 +154,17 @@ function foot1() {
 }
 
 /***************************************************************************
- * ÄÚ¸àÆ® »èÁ¦ ÆäÀÌÁö Ã³¸®
+ * ì½”ë©˜íŠ¸ ì‚­ì œ í˜ì´ì§€ ì²˜ë¦¬
  **************************************************************************/
 
-// ¿øº»±ÛÀ» °¡Á®¿È
+// ì›ë³¸ê¸€ì„ ê°€ì ¸ì˜´
 $s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
 
 if($s_data[ismember]||$is_admin||$member[level]<=$setup[grant_delete]) {
-	if(!$is_admin&&$s_data[ismember]!=$member[no]) Error("»èÁ¦ÇÒ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
-	$title="±ÛÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?";
+	if(!$is_admin&&$s_data[ismember]!=$member[no]) Error("ì‚­ì œí•  ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
+	$title="ê¸€ì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 } else {
-	$title="±ÛÀ» »èÁ¦ÇÕ´Ï´Ù.<br>ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä";
+	$title="ê¸€ì„ ì‚­ì œí•©ë‹ˆë‹¤.<br>ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”";
 	$input_password="<input type=password name=password size=20 class=input>";
 }
 

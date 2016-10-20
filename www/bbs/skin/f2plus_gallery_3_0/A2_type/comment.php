@@ -48,7 +48,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 <table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0>
 <tr>
 	<td align=left width=200 height=40>
-		<?=$a_preview?>¹Ì¸®º¸±â</a><?=$a_imagebox?>±×¸²Ã¢°í</a><?=$a_codebox?>ÄÚµå»ðÀÔ</a>
+		<?=$a_preview?>ë¯¸ë¦¬ë³´ê¸°</a><?=$a_imagebox?>ê·¸ë¦¼ì°½ê³ </a><?=$a_codebox?>ì½”ë“œì‚½ìž…</a>
 	</td>
 </tr>
 </table>

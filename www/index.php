@@ -1,26 +1,30 @@
 <?
-// ÀÚµ¿À¸·Î www ºÙ¿©ÁØ´Ù.
-if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
+// mb_substr()ê³¼ mb_strlen(), mb_strpos()ê³¼ mb_strrpos() í•¨ìˆ˜ ì¸ì½”ë”© ì§€ì •
+mb_internal_encoding("UTF-8");
+
+// ìë™ìœ¼ë¡œ www ë¶™ì—¬ì¤€ë‹¤.
+//if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
+
 include "./bbs/include/get_url.php";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
-<html>
+<html lang="ko">
 <head>
-<title>³×Æ¼Áğ ¼¼»óÀ» À§ÇÏ¿©...</title>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
-<meta name="description" content="³×Æ¼ÁğÄ®·³¿¡ ¿À½Å °ÍÀ» È¯¿µÇÕ´Ï´Ù...">
-<meta name="keywords" content="³×Æ¼Áğ,Ä®·³,Ä®·³´Ï½ºÆ®,ºí·Î±×,ÀÌÀ±Âù,blrun,Èñ¸ÁÀÇºû¢â,³×Æ¼Áğ_Èñ¸Á,Æ¯¼ö¹®ÀÚºÒ°¡,°³ÀÎÄ®·³,³×Æ¼ÁğÄ®·³,Ä®·³°Ô½ÃÆÇ,Ä®·³ÀÚ·á½Ç">
+<title>ë„¤í‹°ì¦Œ ì„¸ìƒì„ ìœ„í•˜ì—¬...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="ë„¤í‹°ì¦Œì¹¼ëŸ¼ì— ì˜¤ì‹  ê²ƒì„ í™˜ì˜í•©ë‹ˆë‹¤...">
+<meta name="keywords" content="ë„¤í‹°ì¦Œ,ì¹¼ëŸ¼,ì¹¼ëŸ¼ë‹ˆìŠ¤íŠ¸,ë¸”ë¡œê·¸,ì´ìœ¤ì°¬,blrun,í¬ë§ì˜ë¹›â„¢,ë„¤í‹°ì¦Œ_í¬ë§,íŠ¹ìˆ˜ë¬¸ìë¶ˆê°€,ê°œì¸ì¹¼ëŸ¼,ë„¤í‹°ì¦Œì¹¼ëŸ¼,ì¹¼ëŸ¼ê²Œì‹œíŒ,ì¹¼ëŸ¼ìë£Œì‹¤">
 <meta name="viewport" content="width=device-width">
 <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 <link rel="image_src" href="./blrun2_fb.jpg">
-<link rel="alternate" type="application/rss+xml" title="³×Æ¼Áğ ¼¼»óÀ» À§ÇÏ¿©..." href="<?=str_replace("www.","",substr(zbUrl(),0,strpos(zbUrl(),"/bbs/")))."/rss/"?>">
+<link rel="alternate" type="application/rss+xml" title="ë„¤í‹°ì¦Œ ì„¸ìƒì„ ìœ„í•˜ì—¬..." href="<?=str_replace("www.","",mb_substr(zbUrl(),0,mb_strpos(zbUrl(),"/bbs/")))."/rss/"?>">
 <script type="text/javascript">
 var uAgent = navigator.userAgent;
 if(uAgent.match(/iPhone|iPod|IEMobile|Mobile|lgtelecom|PPC/i))
 {
-// ¸ğ¹ÙÀÏ ÁÖ¼Ò Ç¥½ÃÁÙ ¼û±â±â
+// ëª¨ë°”ì¼ ì£¼ì†Œ í‘œì‹œì¤„ ìˆ¨ê¸°ê¸°
   window.addEventListener('load', function(){ setTimeout(scrollTo, 0, 0, 1); }, false);
-  window.location.href="/m/"; // ÀúÁß ÇÏ³ª¶óµµ Á¶°ÇÀÌ ¸¸Á·ÇÏ¸é /m/index.html ·Î ÀÌµ¿ÇÑ´Ù.
+  window.location.href="/m/"; // ì €ì¤‘ í•˜ë‚˜ë¼ë„ ì¡°ê±´ì´ ë§Œì¡±í•˜ë©´ /m/index.html ë¡œ ì´ë™í•œë‹¤.
 }
 </script>
 </head>

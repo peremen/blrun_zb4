@@ -3,21 +3,21 @@ include "lib.php";
 
 if(!$connect) $connect=dbConn();
 
-// °ü¸®ÀÚ°¡ 1¸íÀÌ»ó ÀÖÀ»°æ¿ì ¹Ù·Î ·Î±×ÀÎ ÆäÀÌÁö·Î...
+// ê´€ë¦¬ìê°€ 1ëª…ì´ìƒ ìˆì„ê²½ìš° ë°”ë¡œ ë¡œê·¸ì¸ í˜ì´ì§€ë¡œ...
 $temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where is_admin='1'",$connect));
 if($temp[0]) {
 	header("location:admin.php"); 
 	exit;
 }
 
-// ºó¹®ÀÚ¿­ÀÎÁö¸¦ °Ë»ç
-if(isBlank($user_id)) Error("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù","");
-if(isBlank($password1)) Error("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù","");
-if(isBlank($password2)) Error("ºñ¹Ğ¹øÈ£ È®ÀÎÀ» ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù","");
-if($password1!=$password2) Error("ºñ¹Ğ¹øÈ£¿Í ºñ¹Ğ¹øÈ£ È®ÀÎÀÌ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù","");
-if(isBlank($name)) Error("ÀÌ¸§À» ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù","");
+// ë¹ˆë¬¸ìì—´ì¸ì§€ë¥¼ ê²€ì‚¬
+if(isBlank($user_id)) Error("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤","");
+if(isBlank($password1)) Error("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤","");
+if(isBlank($password2)) Error("ë¹„ë°€ë²ˆí˜¸ í™•ì¸ì„ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤","");
+if($password1!=$password2) Error("ë¹„ë°€ë²ˆí˜¸ì™€ ë¹„ë°€ë²ˆí˜¸ í™•ì¸ì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤","");
+if(isBlank($name)) Error("ì´ë¦„ì„ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤","");
 
-// °ü¸®ÀÚ Á¤º¸ ÀÔ·Â
+// ê´€ë¦¬ì ì •ë³´ ì…ë ¥
 @mysql_query("insert into $member_table (user_id,password,name,is_admin,reg_date,level) values ('$user_id',password('$password1'),'$name','1','".time()."','1')",$connect) or Error(mysql_error(),"");
 
 header("location:admin.php");

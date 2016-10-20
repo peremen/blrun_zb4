@@ -13,10 +13,10 @@
 </table>
 <? if(!$url) { ?>
 <br>
-<center><input type=button value="ÀÌÀü È­¸é" onclick=history.back() class=list_han></center>
+<center><input type=button value="ì´ì „ í™”ë©´" onclick=history.back() class=list_han></center>
 <? } else { ?>
 <br>
-<div align=center><input type=button value='ÆäÀÌÁö ÀÌµ¿' onclick=location.href="<?echo $url;?>" class=list_han></div>
+<div align=center><input type=button value='íŽ˜ì´ì§€ ì´ë™' onclick=location.href="<?echo $url;?>" class=list_han></div>
 <? } ?>
 </form>
 <br>

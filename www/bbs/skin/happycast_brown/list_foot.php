@@ -1,31 +1,31 @@
 <? /////////////////////////////////////////////////////////////////////////
   /*
-  ÀÌ ÆÄÀÏÀº ¸ñ·ÏÀ» ´Ù Ãâ·ÂÇÑ ´ÙÀ½ ¸¶¹«¸® Áþ´Â ºÎºÐÀÔ´Ï´Ù.
-  Å×ÀÌºíÀ» ´Ý°í ÆäÀÌÁö Ãâ·ÂÀÌ³ª °Ë»ö Ãâ·Â, ¹öÆ°µîÀ» Ãâ·ÂÇÏ¸é µË´Ï´Ù.
-  ¾Æ·¡ºÎºÐÀº ±×´ë·Î »ç¿ëÇÏ½Ã¸é µË´Ï´Ù.
+  ì´ íŒŒì¼ì€ ëª©ë¡ì„ ë‹¤ ì¶œë ¥í•œ ë‹¤ìŒ ë§ˆë¬´ë¦¬ ì§“ëŠ” ë¶€ë¶„ìž…ë‹ˆë‹¤.
+  í…Œì´ë¸”ì„ ë‹«ê³  íŽ˜ì´ì§€ ì¶œë ¥ì´ë‚˜ ê²€ìƒ‰ ì¶œë ¥, ë²„íŠ¼ë“±ì„ ì¶œë ¥í•˜ë©´ ë©ë‹ˆë‹¤.
+  ì•„ëž˜ë¶€ë¶„ì€ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ì‹œë©´ ë©ë‹ˆë‹¤.
 
 
-  <?=$a_1_prev_page?> : ÀÌÀüÆäÀÌÁö¸¦ Ãâ·ÂÇÕ´Ï´Ù. (ÇÑÆäÀÌÁö¾¿ ÀÌµ¿)
-  <?=$a_1_next_page?> : ´ÙÀ½ ÆäÀÌÁö¸¦ Ãâ·ÂÇÕ´Ï´Ù. (ÇÑÆäÀÌÁö¾¿ ÀÌµ¿)
-  <?=$a_prev_page?> : ÀÌÀüÆäÀÌÁö¸¦ Ãâ·ÂÇÕ´Ï´Ù.
-  <?=$a_next_page?> : ´ÙÀ½ ÆäÀÌÁö¸¦ Ãâ·ÂÇÕ´Ï´Ù.  
-  <?=$print_page?> : ÆäÀÌÁö¸¦ Ãâ·ÂÇÕ´Ï´Ù
-  <?=$a_write?> : ±Û¾²±â ¹öÆ°
-  <?=$a_list?> : ¸ñ·Ïº¸±â ¹öÆ°
-  <?=$a_cancel?> : Ãë¼Ò ¹öÆ°
-  <?=$a_reply?> : ´ä±Û¾²±â ¹öÆ°
-  <?=$a_delete?> : ±Û»èÁ¦ ¹öÆ°
-  <?=$a_modify?> : ±Û¼öÁ¤ ¹öÆ°
-  <?=$a_delete_all?> : °ü¸®ÀÚÀÏ¶§ ³ªÅ¸³ª´Â ¼±ÅÃµÈ ±Û »èÁ¦ ¹öÆ°;;
+  <?=$a_1_prev_page?> : ì´ì „íŽ˜ì´ì§€ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤. (í•œíŽ˜ì´ì§€ì”© ì´ë™)
+  <?=$a_1_next_page?> : ë‹¤ìŒ íŽ˜ì´ì§€ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤. (í•œíŽ˜ì´ì§€ì”© ì´ë™)
+  <?=$a_prev_page?> : ì´ì „íŽ˜ì´ì§€ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
+  <?=$a_next_page?> : ë‹¤ìŒ íŽ˜ì´ì§€ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.  
+  <?=$print_page?> : íŽ˜ì´ì§€ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤
+  <?=$a_write?> : ê¸€ì“°ê¸° ë²„íŠ¼
+  <?=$a_list?> : ëª©ë¡ë³´ê¸° ë²„íŠ¼
+  <?=$a_cancel?> : ì·¨ì†Œ ë²„íŠ¼
+  <?=$a_reply?> : ë‹µê¸€ì“°ê¸° ë²„íŠ¼
+  <?=$a_delete?> : ê¸€ì‚­ì œ ë²„íŠ¼
+  <?=$a_modify?> : ê¸€ìˆ˜ì • ë²„íŠ¼
+  <?=$a_delete_all?> : ê´€ë¦¬ìžì¼ë•Œ ë‚˜íƒ€ë‚˜ëŠ” ì„ íƒëœ ê¸€ ì‚­ì œ ë²„íŠ¼;;
   
   */
 ///////////////////////////////////////////////////////////////////////// ?>
 
-<!-- ¸¶¹«¸® ºÎºÐÀÔ´Ï´Ù -->
+<!-- ë§ˆë¬´ë¦¬ ë¶€ë¶„ìž…ë‹ˆë‹¤ -->
 <tr>
   <td colspan=10 bgcolor=<?=$list_footer_bg_color?>><img src=images/t.gif height=3></td></tr>
 </table>
-<!-- ¹öÆ° ºÎºÐ -->
+<!-- ë²„íŠ¼ ë¶€ë¶„ -->
 <table border=0 cellspacing=1 cellpadding=1 width=<?=$width?>>
 <tr>
   <td width=40% height=20 align=left nowrap> 
@@ -36,7 +36,7 @@
     <?=$a_1_next_page?><img src=<?=$dir?>/i_next.gif border=0 align=absmiddle></a>
   </td>
   <td align=center colspan=2 class=listnum nowrap>
-<!-- ÆäÀÌÁö Ãâ·Â ---------------------->
+<!-- íŽ˜ì´ì§€ ì¶œë ¥ ---------------------->
     <?=$a_prev_page?>[prev]</a>
     <?=$print_page?>
     <?=$a_next_page?>[next]</a>
@@ -47,8 +47,8 @@
 </tr>
 </table>
 </form>
-<!-- °Ë»öÆû ºÎºÐ ---------------------->
-<!-- ÆûÅÂ±× ºÎºÐ;; ¼öÁ¤ÇÏÁö ¾Ê´Â °ÍÀÌ ÁÁ½À´Ï´Ù -->
+<!-- ê²€ìƒ‰í¼ ë¶€ë¶„ ---------------------->
+<!-- í¼íƒœê·¸ ë¶€ë¶„;; ìˆ˜ì •í•˜ì§€ ì•ŠëŠ” ê²ƒì´ ì¢‹ìŠµë‹ˆë‹¤ -->
 <form method=post name=search action="zboard.php">
 <input type=hidden name=page value=<?=$page?>>
 <input type=hidden name=id value=<?=$id?>>

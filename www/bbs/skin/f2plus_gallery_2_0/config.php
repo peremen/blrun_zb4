@@ -11,7 +11,7 @@ if($_view_included==true){
 	if(preg_match_all($imagePattern,$data[memo],$out,PREG_SET_ORDER));
 	else preg_match_all($imagePattern2,$data[memo],$out,PREG_SET_ORDER);
 
-	//³Ñ°ÜÁÖ´Â out º¯¼ö ÅëÀÏ
+	//ë„˜ê²¨ì£¼ëŠ” out ë³€ìˆ˜ í†µì¼
 	$out[0][1]=urldecode($out[0][2]);
 	$out[1][1]=urldecode($out[1][2]);
 	$out[0][2]=$out[0][3];
@@ -33,7 +33,7 @@ if($_view_included==true){
 	$iThumbnail_large2="sl_".$out[1][1].".jpg";
 }
 
-// ¿ÜºÎ html <img> ÅÂ±× src url ÃßÃâ
+// ì™¸ë¶€ html <img> íƒœê·¸ src url ì¶”ì¶œ
 $imagePattern="#<img[^>]*src=[\']?[\"]?([^>\'\"]+)[\']?[\"]?[^>]*>#i";
 preg_match_all($imagePattern,$data[memo],$img,PREG_SET_ORDER);
 for($i=0;$i<2;$i++)

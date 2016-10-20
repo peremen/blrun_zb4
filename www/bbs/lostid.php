@@ -1,16 +1,16 @@
 <?
 include "lib.php";
 
-// À¥¸¶½ºÅÍ E-mail
+// ì›¹ë§ˆìŠ¤í„° E-mail
 $_from = $_zbDefaultSetup[email];
 
-// »çÀÌÆ® ÁÖ¼Ò
+// ì‚¬ì´íŠ¸ ì£¼ì†Œ
 $_homepage = $_zbDefaultSetup[url];
 
-// »çÀÌÆ® ÀÌ¸§
+// ì‚¬ì´íŠ¸ ì´ë¦„
 $_sitename = $_zbDefaultSetup[sitename];
 
-if(!$_from||!$_homepage||!$_sitename) error("°ü¸®ÀÚ Á¤º¸°¡ ÀÔ·ÂµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.<br>setup.php ÆÄÀÏÀ» °ü¸®ÀÚ°¡ ¼öÁ¤ÇÏ¿©¾ß ÇÕ´Ï´Ù");
+if(!$_from||!$_homepage||!$_sitename) error("ê´€ë¦¬ì ì •ë³´ê°€ ì…ë ¥ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.<br>setup.php íŒŒì¼ì„ ê´€ë¦¬ìê°€ ìˆ˜ì •í•˜ì—¬ì•¼ í•©ë‹ˆë‹¤");
 
 head();
 ?>
@@ -20,10 +20,10 @@ head();
 <script>
 function check_submit()
 {
- if(!lostid.email.value) {alert("E-MailÀ» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä"); lostid.email.focus(); return false; }
- if(!lostid.jumin1.value) {alert("ÁÖ¹Îµî·Ï¹øÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä"); lostid.jumin1.focus(); return false; }
- if(!lostid.jumin2.value) {alert("ÁÖ¹Îµî·Ï¹øÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä"); lostid.jumin2.focus(); return false; }
- return confirm("ID/Password¸¦ E-Mail·Î ¹Ş¾Æº¸½Ã°Ú½À´Ï±î?");
+ if(!lostid.email.value) {alert("E-Mailì„ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”"); lostid.email.focus(); return false; }
+ if(!lostid.jumin1.value) {alert("ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”"); lostid.jumin1.focus(); return false; }
+ if(!lostid.jumin2.value) {alert("ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”"); lostid.jumin2.focus(); return false; }
+ return confirm("ID/Passwordë¥¼ E-Mailë¡œ ë°›ì•„ë³´ì‹œê² ìŠµë‹ˆê¹Œ?");
 }
 </script>
 <form method=post action=lostid_search.php onsubmit="return check_submit()" name=lostid>
@@ -45,8 +45,8 @@ function check_submit()
 			<table border=0 cellspacing=0 cellpadding=3>
 			<tr>
 				<td style=line-height:160% colspan=2 style=padding:5px>
-					È¸¿ø´Ôµé²²¼­ ¾ÆÀÌµğ³ª ºñ¹Ğ¹øÈ£¸¦ ºĞ½ÇÇÏ¿´À»¶§ È¸¿ø´ÔÀÇ E-MAIL·Î ¾ÆÀÌµğ¿Í ºñ¹Ğ¹øÈ£¸¦ º¸³»µå¸³´Ï´Ù.<br>
-					ÀÌ¶§ ºñ¹Ğ¹øÈ£´Â DB¿¡ ¾ÏÈ£È­ µÇ¾î ÀúÀåÀÌ µÇ±â ¶§¹®¿¡ ¾Ë¼ö°¡ ¾ø¾î, ÀÓÀÇ·Î ºñ¹Ğ¹øÈ£¸¦ ¹Ù²Ù¾î¼­ º¸³»µå¸³´Ï´Ù<br>
+					íšŒì›ë‹˜ë“¤ê»˜ì„œ ì•„ì´ë””ë‚˜ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë¶„ì‹¤í•˜ì˜€ì„ë•Œ íšŒì›ë‹˜ì˜ E-MAILë¡œ ì•„ì´ë””ì™€ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³´ë‚´ë“œë¦½ë‹ˆë‹¤.<br>
+					ì´ë•Œ ë¹„ë°€ë²ˆí˜¸ëŠ” DBì— ì•”í˜¸í™” ë˜ì–´ ì €ì¥ì´ ë˜ê¸° ë•Œë¬¸ì— ì•Œìˆ˜ê°€ ì—†ì–´, ì„ì˜ë¡œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë°”ê¾¸ì–´ì„œ ë³´ë‚´ë“œë¦½ë‹ˆë‹¤<br>
 					<img src=images/t.gif border=0 height=4><br>
 					<center>
 					<img src=images/lo_email.gif border=0 align=absmiddle>&nbsp;<input type=text name=email size=17 class=input><br>

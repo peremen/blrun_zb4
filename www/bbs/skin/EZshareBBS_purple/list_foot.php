@@ -3,9 +3,9 @@
 </table>
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <tr>
-<!--∆‰¿Ã¬°-->    
-  <td height="40" align=left style="padding-left:10px;"><?=$a_prev_page?>[¿Ã¿¸<?=$setup[page_num]?>∞≥]</a> <?=$print_page?> <font class=zv3_normal><?=$a_next_page?>[¥Ÿ¿Ω<?=$setup[page_num]?>∞≥]</font></a></td>
-<!--∞Àªˆ-->
+<!--ÌéòÏù¥Ïßï-->    
+  <td height="40" align=left style="padding-left:10px;"><?=$a_prev_page?>[Ïù¥Ï†Ñ<?=$setup[page_num]?>Í∞ú]</a> <?=$print_page?> <font class=zv3_normal><?=$a_next_page?>[Îã§Ïùå<?=$setup[page_num]?>Í∞ú]</font></a></td>
+<!--Í≤ÄÏÉâ-->
   <td align=right>
     <table border=0 cellspacing=0 cellpadding=0>
     <form method=post name=search action="zboard.php"><input type=hidden name=page value=<?=$page?>><input type=hidden name=id value=<?=$id?>><input type=hidden name=select_arrange value=<?=$select_arrange?>><input type=hidden name=desc value=<?=$desc?>><input type=hidden name=page_num value=<?=$page_num?>><input type=hidden name=selected><input type=hidden name=exec><input type=hidden name=sn value="<?=$sn?>"><input type=hidden name=ss value="<?=$ss?>"><input type=hidden name=sc value="<?=$sc?>"><input type=hidden name=sm value="<?=$sm?>"><input type=hidden name=category value="<?=$category?>">
@@ -30,7 +30,7 @@
 </table>
 <table border=0 cellpadding=0 cellspacing=0 width=<?=$width?>>
 <tr>
-  <!--«œ¥‹πˆ∆∞µÈ-->
+  <!--ÌïòÎã®Î≤ÑÌäºÎì§-->
   <td width="80%" height="35" align=left>
     <?=$a_delete_all?><img src=<?=$dir?>/btn_admin.gif border=0 align=absmiddle></a>
     <?=$hide_cart_start?><?=$a_cart?><img src=<?=$dir?>/btn_list.gif border=0 align=absmiddle></a><?=$hide_cart_end?>

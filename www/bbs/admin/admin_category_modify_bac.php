@@ -1,5 +1,5 @@
 <?  
-// Ä«Å×°í¸® ¼öÁ¤ //////////////////////////////////////////////////////////////////////
+// ì¹´í…Œê³ ë¦¬ ìˆ˜ì • //////////////////////////////////////////////////////////////////////
 $table_data=mysql_fetch_array(mysql_query("select name from $admin_table where no='$no'"));
 $category_data=mysql_fetch_array(mysql_query("select * from $t_category"."_$table_data[name] where no='$category_no'"));
 ?>
@@ -20,9 +20,9 @@ $category_data=mysql_fetch_array(mysql_query("select * from $t_category"."_$tabl
   <td align=center>
     <table border=0 cellspacing=0 cellpadding=2>
     <tr>
-      <td align=center style=font-family:Tahoma;font-size:9pt;font-weight:bold>Ä«Å×°í¸® ÀÌ¸§ º¯°æ </td>
+      <td align=center style=font-family:Tahoma;font-size:9pt;font-weight:bold>ì¹´í…Œê³ ë¦¬ ì´ë¦„ ë³€ê²½ </td>
       <td>&nbsp;<input type=text name=name value="<?=$category_data[name]?>"></td>
-      <td><input type=submit value=' ÀÌ¸§ º¯°æ ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;> &nbsp; <input type=button value=" ÀÌÀüÈ­¸é " style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=history.back()></td>
+      <td><input type=submit value=' ì´ë¦„ ë³€ê²½ ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;> &nbsp; <input type=button value=" ì´ì „í™”ë©´ " style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=history.back()></td>
     </tr>
     </table>
   </td>

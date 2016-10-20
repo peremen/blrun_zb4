@@ -11,31 +11,31 @@ function exif_info($filename){
 	 
 		for($i=0;$i<=sizeof($value)-1;$i++){
 			$exif[$key[$i]]=$value[$i];
-			//echo $key[$i]." : ".$exif[$key[$i]]."<br>"; //ÀÌ¹ÌÁö¸¦ »ç¿ëÇÏÁö ¾ÊÀ»¶§´Â ÀÌ¿Í °°Àº Çü½ÄÀ¸·Î Ãâ·Â °¡´ÉÇÕ´Ï´Ù.
+			//echo $key[$i]." : ".$exif[$key[$i]]."<br>"; //ì´ë¯¸ì§€ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šì„ë•ŒëŠ” ì´ì™€ ê°™ì€ í˜•ì‹ìœ¼ë¡œ ì¶œë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 		}
-		//ÀÌ¹ÌÁö¸¦ »ç¿ëÇÏÁö ¾Ê°í ±×³É Ãâ·ÂÇÏ½Ç ¶§¿¡´Â 
+		//ì´ë¯¸ì§€ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šê³  ê·¸ëƒ¥ ì¶œë ¥í•˜ì‹¤ ë•Œì—ëŠ” 
 		if($exif["date-taken"]){ 
-			$date=substr($exif["date-taken"],0,4)."³â".substr($exif["date-taken"],5,2)."¿ù".substr($exif["date-taken"],8,2)."ÀÏ";
-			$str=$str."\nÂïÀº ³¯Â¥ : $date";  	
+			$date=substr($exif["date-taken"],0,4)."ë…„".substr($exif["date-taken"],5,2)."ì›”".substr($exif["date-taken"],8,2)."ì¼";
+			$str=$str."\nì°ì€ ë‚ ì§œ : $date";  	
 		}
 		if($exif["date-taken"]){
-			$time=substr($exif["date-taken"],11,2)."½Ã".substr($exif["date-taken"],14,2)."ºĞ".substr($exif["date-taken"],17,2)."ÃÊ";
-			$str=$str."\nÂïÀº ½Ã°£ : $time"; 
+			$time=substr($exif["date-taken"],11,2)."ì‹œ".substr($exif["date-taken"],14,2)."ë¶„".substr($exif["date-taken"],17,2)."ì´ˆ";
+			$str=$str."\nì°ì€ ì‹œê°„ : $time"; 
 		}
-		if($exif["flash"]) $str=$str."\nÇÃ·¡½Ã »ç¿ë : ".$exif["flash"];  //ÇÃ·¡½Ã 
+		if($exif["flash"]) $str=$str."\ní”Œë˜ì‹œ ì‚¬ìš© : ".$exif["flash"];  //í”Œë˜ì‹œ 
 
-		if($exif["exp-bias"]) $str=$str."\n³ëÃâ º¸Á¤ : ".$exif["exp-bias"]." EV";   //³ëÃâº¸Á¤
-		if($exif["shutter"])  $str=$str."\n¼ÅÅÍ ½ºÇÇµå : ".$exif["shutter"];   //¼ÅÅÍ ½ºÇÇµå
+		if($exif["exp-bias"]) $str=$str."\në…¸ì¶œ ë³´ì • : ".$exif["exp-bias"]." EV";   //ë…¸ì¶œë³´ì •
+		if($exif["shutter"])  $str=$str."\nì…”í„° ìŠ¤í”¼ë“œ : ".$exif["shutter"];   //ì…”í„° ìŠ¤í”¼ë“œ
 
-		if($exif["model"]) $str=$str."\nÄ«¸Ş¶ó  : ".$exif["model"];  //µğÄ« ¸ğµ¨ 
+		if($exif["model"]) $str=$str."\nì¹´ë©”ë¼  : ".$exif["model"];  //ë””ì¹´ ëª¨ë¸ 
 
-		if($exif["f-number"]) $str=$str."\nF-Number : ".$exif["f-number"];  //F ³Ñ¹ö
+		if($exif["f-number"]) $str=$str."\nF-Number : ".$exif["f-number"];  //F ë„˜ë²„
 
-		if($exif["meter-mode"]) $str=$str."\nÃø·® ¸ğµå : ".$exif["meter-mode"];    //Ãø·®¸ğµå
-		if($exif["focal-len"]) $str=$str."\nÃÊÁ¡ °Å¸® : ".$exif["focal-len"]." mm";	//ÃÊÁ¡ °Å¸®
-		if($exif["exp-time"]) $str=$str."\n³ëÃâ ½Ã°£ : ".$exif["exp-time"]." ÃÊ";   //³ëÃâ½Ã°£
-		if($exif[iso-speed]) $str=$str."\nISO °¨µµ : ".$exif["iso-speed"];    //ISO °¨µµ
-		if($exif["aperture"])  $str=$str."\nÁ¶¸®°³ : ".$exif["aperture"];   //Á¶¸®°³
+		if($exif["meter-mode"]) $str=$str."\nì¸¡ëŸ‰ ëª¨ë“œ : ".$exif["meter-mode"];    //ì¸¡ëŸ‰ëª¨ë“œ
+		if($exif["focal-len"]) $str=$str."\nì´ˆì  ê±°ë¦¬ : ".$exif["focal-len"]." mm";	//ì´ˆì  ê±°ë¦¬
+		if($exif["exp-time"]) $str=$str."\në…¸ì¶œ ì‹œê°„ : ".$exif["exp-time"]." ì´ˆ";   //ë…¸ì¶œì‹œê°„
+		if($exif[iso-speed]) $str=$str."\nISO ê°ë„ : ".$exif["iso-speed"];    //ISO ê°ë„
+		if($exif["aperture"])  $str=$str."\nì¡°ë¦¬ê°œ : ".$exif["aperture"];   //ì¡°ë¦¬ê°œ
 
 	}
 	return $str;

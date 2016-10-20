@@ -1,6 +1,6 @@
 <?
 /***************************************************************************
- * °ü¸®ÀÚ ÆäÀÌÁö
+ * ê´€ë¦¬ì í˜ì´ì§€
  **************************************************************************/
 
 include "lib.php";
@@ -9,16 +9,16 @@ if(!$connect) $connect=dbConn();
 
 $member=member_info();
 
-if(!$member[no]) Error("·Î±×ÀÎÈÄ »ç¿ëÇÏ¿©ÁÖ½Ê½Ã¿ä","admin.php");
+if(!$member[no]) Error("ë¡œê·¸ì¸í›„ ì‚¬ìš©í•˜ì—¬ì£¼ì‹­ì‹œìš”","admin.php");
 
-if($member[is_admin]>=3&&!$member[board_name]) Error("°ü¸®ÀÚÆäÀÌÁö¸¦ »ç¿ëÇÒ¼ö ÀÖ´Â ±ÇÇÑÀÌ ¾ø½À´Ï´Ù","admin.php");
-if($member[no]&&($_SESSION['_token2']!=$_COOKIE['token2']||$tokenID!=$REMOTE_ADDR)) Error("¼¼¼Ç ÇÏÀÌÀçÅ·Àº Çã¿ëµÇÁö ¾Ê½À´Ï´Ù.<br>¼¼¼ÇÀÌ ÇØÅ·µÇ¾î ÇØÄ¿°¡ °ü¸®ÀÚ ·Î±×ÀÎÀ» ½ÃµµÇÏ°í ÀÖÀ¸´Ï ºê¶ó¿ìÀúÀÇ ÄíÅ°¸¦ Áö¿ì°í ÀçÁ¢¼Ó ¹Ù¶ø´Ï´Ù.<br>±× ´ÙÀ½ ÇØÄ¿°¡ °èÁ¤À» »ç¿ëÇÏ±â Àü¿¡ Áï½Ã °ü¸®ÀÚ ºñ¹Ğ¹øÈ£¸¦ ¹Ù²ã¾ß ÇÕ´Ï´Ù!","window.close");
+if($member[is_admin]>=3&&!$member[board_name]) Error("ê´€ë¦¬ìí˜ì´ì§€ë¥¼ ì‚¬ìš©í• ìˆ˜ ìˆëŠ” ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤","admin.php");
+if($member[no]&&($_SESSION['_token2']!=$_COOKIE['token2']||$tokenID!=$REMOTE_ADDR)) Error("ì„¸ì…˜ í•˜ì´ì¬í‚¹ì€ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.<br>ì„¸ì…˜ì´ í•´í‚¹ë˜ì–´ í•´ì»¤ê°€ ê´€ë¦¬ì ë¡œê·¸ì¸ì„ ì‹œë„í•˜ê³  ìˆìœ¼ë‹ˆ ë¸Œë¼ìš°ì €ì˜ ì¿ í‚¤ë¥¼ ì§€ìš°ê³  ì¬ì ‘ì† ë°”ëë‹ˆë‹¤.<br>ê·¸ ë‹¤ìŒ í•´ì»¤ê°€ ê³„ì •ì„ ì‚¬ìš©í•˜ê¸° ì „ì— ì¦‰ì‹œ ê´€ë¦¬ì ë¹„ë°€ë²ˆí˜¸ë¥¼ ë°”ê¿”ì•¼ í•©ë‹ˆë‹¤!","window.close");
 
 
-// °Ô½ÃÆÇ °ü¸®ÀÚÀÏ¶§
+// ê²Œì‹œíŒ ê´€ë¦¬ìì¼ë•Œ
 if($member[is_admin]>=3&&$member[board_name]&&$exec!="logout") $exec="view_board";
 
-// DB ¹é¾÷ÀÏ¶§
+// DB ë°±ì—…ì¼ë•Œ
 if($member[is_admin]==1&&$exec=="db_dump") {
 	set_time_limit(0);
 	include "admin/dbDump.php";
@@ -34,7 +34,7 @@ if($member[is_admin]==1&&$exec=="db_dump") {
 	exit();
 }
 
-// °¢ ±â´Éº° ÆÄÀÏ È£Ãâ
+// ê° ê¸°ëŠ¥ë³„ íŒŒì¼ í˜¸ì¶œ
 if($exec=="view_board") { include "admin/admin_exec_board_bac.php"; }
 elseif($exec=="view_member") { include "admin/admin_exec_member_bac.php"; }
 else { include "admin/admin_exec_group_bac.php"; }
@@ -55,21 +55,21 @@ head(" bgcolor=444444 ");
 <? if($member[is_admin]==1) {
 	$re=mysql_fetch_array(mysql_query("SELECT target from aokio_log_config order by no desc limit 1"));
 ?>
-        <a href=admin_setup_bac.php?exec=uninstall><font color=white style=font-size:9pt onclick="return confirm('Á¦·Îº¸µå¸¦ Á¦°ÅÇÏ½Ã°Ú½À´Ï±î?')"><b>Uninstall</b></font></a> &nbsp;|&nbsp;
-        <a href=admin_setup_bac.php?exec=db_dump><font color=white style=font-size:9pt onclick="return confirm('¹é¾÷ÇÏ½Ã°Ú½À´Ï±î?')"><b>DB ¹é¾÷</b></font></a> &nbsp;|&nbsp;
-        <a href=admin_setup_bac.php?exec=db_status><font color=white style=font-size:9pt><b>DB »óÅÂ º¸±â</b></font></a> &nbsp;|&nbsp;
-        <a href=admin/arrangefile.php target=_blank onclick="return confirm('Ã·ºÎÆÄÀÏ Á¤¸®½Ã¿¡´Â Ã·ºÎÆÄÀÏÀÇ Á¾·ù¿¡ µû¶ó¼­ ½Ã°£ÀÌ ¿À·¡ °É¸±¼ö ÀÖ½À´Ï´Ù\n\n½ÇÇàÇÏ½Ã°Ú½À´Ï±î?')"><font color=white style=font-size:9pt><b>Ã·ºÎÆÄÀÏ Á¤¸®</b></font></a> &nbsp;|&nbsp;
-        <a href=admin/delsession.php target=_blank onclick="return confirm('¼¼¼ÇÀÇ ¾çÀÌ ¸¹¾ÆÁö¸é ÀüÃ¼ÀûÀÎ ¼Óµµ°¡ ´À·ÁÁú¼ö ÀÖ½À´Ï´Ù.\n\n¼¼¼Ç µğ·ºÅä¸®¸¦ Á¤¸®ÇÏ½Ã°Ú½À´Ï±î?')"><font color=white style=font-size:9pt><b>¼¼¼Ç ºñ¿ì±â</b></font></a> &nbsp;|&nbsp;
-        <a href=admin/trace.php target=_blank><font color=white style=font-size:9pt><b>°Ô½Ã¹° ÃßÀû</b></font></a> &nbsp;|&nbsp;
-        <a href=zb4_manual/ target=_blank><font color=white style=font-size:9pt><b>¸Å´º¾ó</b></font></a>&nbsp;|&nbsp;
+        <a href=admin_setup_bac.php?exec=uninstall><font color=white style=font-size:9pt onclick="return confirm('ì œë¡œë³´ë“œë¥¼ ì œê±°í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')"><b>Uninstall</b></font></a> &nbsp;|&nbsp;
+        <a href=admin_setup_bac.php?exec=db_dump><font color=white style=font-size:9pt onclick="return confirm('ë°±ì—…í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')"><b>DB ë°±ì—…</b></font></a> &nbsp;|&nbsp;
+        <a href=admin_setup_bac.php?exec=db_status><font color=white style=font-size:9pt><b>DB ìƒíƒœ ë³´ê¸°</b></font></a> &nbsp;|&nbsp;
+        <a href=admin/arrangefile.php target=_blank onclick="return confirm('ì²¨ë¶€íŒŒì¼ ì •ë¦¬ì‹œì—ëŠ” ì²¨ë¶€íŒŒì¼ì˜ ì¢…ë¥˜ì— ë”°ë¼ì„œ ì‹œê°„ì´ ì˜¤ë˜ ê±¸ë¦´ìˆ˜ ìˆìŠµë‹ˆë‹¤\n\nì‹¤í–‰í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')"><font color=white style=font-size:9pt><b>ì²¨ë¶€íŒŒì¼ ì •ë¦¬</b></font></a> &nbsp;|&nbsp;
+        <a href=admin/delsession.php target=_blank onclick="return confirm('ì„¸ì…˜ì˜ ì–‘ì´ ë§ì•„ì§€ë©´ ì „ì²´ì ì¸ ì†ë„ê°€ ëŠë ¤ì§ˆìˆ˜ ìˆìŠµë‹ˆë‹¤.\n\nì„¸ì…˜ ë””ë ‰í† ë¦¬ë¥¼ ì •ë¦¬í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')"><font color=white style=font-size:9pt><b>ì„¸ì…˜ ë¹„ìš°ê¸°</b></font></a> &nbsp;|&nbsp;
+        <a href=admin/trace.php target=_blank><font color=white style=font-size:9pt><b>ê²Œì‹œë¬¼ ì¶”ì </b></font></a> &nbsp;|&nbsp;
+        <a href=zb4_manual/ target=_blank><font color=white style=font-size:9pt><b>ë§¤ë‰´ì–¼</b></font></a>&nbsp;|&nbsp;
 <?
 	if($re[0]) {
 ?>
-		<a href=aanalyzer/view.php?id=<?=$re[0]?> target=_blank><font color=white style=font-size:9pt><b>Á¢¼ÓÅë°è</b></font></a>&nbsp;&nbsp;
+		<a href=aanalyzer/view.php?id=<?=$re[0]?> target=_blank><font color=white style=font-size:9pt><b>ì ‘ì†í†µê³„</b></font></a>&nbsp;&nbsp;
 <?
 	} else {
 ?>
-		<a href=aanalyzer/install.php target=_blank><font color=white style=font-size:9pt><b>Á¢¼ÓÅë°è</b></font></a>&nbsp;&nbsp;
+		<a href=aanalyzer/install.php target=_blank><font color=white style=font-size:9pt><b>ì ‘ì†í†µê³„</b></font></a>&nbsp;&nbsp;
 <?
 	}
 ?>
@@ -89,19 +89,19 @@ head(" bgcolor=444444 ");
           <td nowrap='nowrap' style="font-family:Tahoma;font-size:9pt;">
 
 <?
-// ÃÖ°í°ü¸®ÀÚÀÏ¶§
+// ìµœê³ ê´€ë¦¬ìì¼ë•Œ
 if($member[is_admin]==1) 
 	echo "<b><font color=#ffffff>Super Administrator</font></b> <a href=$PHP_SELF?exec=view_member&exec2=modify&no=$member[no]><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
 
-// ±×·ì°ü¸®ÀÚÀÏ¶§
+// ê·¸ë£¹ê´€ë¦¬ìì¼ë•Œ
 elseif($member[is_admin]==2) 
 	echo "<b><font color=#ffffff>Group Administrator</font></b> <a href=$PHP_SELF?exec=view_member&group_no=$member[group_no]&exec2=modify&no=$member[no]><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
 
-// °Ô½ÃÆÇ °ü¸®ÀÚÀÏ¶§
+// ê²Œì‹œíŒ ê´€ë¦¬ìì¼ë•Œ
 elseif($member[board_name])
 	echo "<b><font color=#ffffff>Board Administrator</font></b>";
 
-// ±âÅ¸ÀÏ¶§;; -_-;;
+// ê¸°íƒ€ì¼ë•Œ;; -_-;;
 else
 	echo "<b><font color=#ffffff>Normal Member</font></b> <a href=$PHP_SELF?exec=view_member&group_no=$member[group_no]&exec2=modify&no=$member[no]><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
 ?>
@@ -118,18 +118,18 @@ else
 </tr>
 <tr bgcolor="#FFFFFF"> 
 
-<!-- ±×·ìÀ» °ü¸®ÇÏ´Â ºÎºĞ -->
+<!-- ê·¸ë£¹ì„ ê´€ë¦¬í•˜ëŠ” ë¶€ë¶„ -->
   <td bgcolor="#3F3F3F" valign="top">  
 
-<!-- ±×·ì°ü¸® -->
+<!-- ê·¸ë£¹ê´€ë¦¬ -->
 
 <?
 
-// ÃÖ°í°ü¸®ÀÚÀÎ°æ¿ì ¸ğµç ±×·ì º¸¿©ÁÖ°í Ãß°¡/»èÁ¦ °¡´É
+// ìµœê³ ê´€ë¦¬ìì¸ê²½ìš° ëª¨ë“  ê·¸ë£¹ ë³´ì—¬ì£¼ê³  ì¶”ê°€/ì‚­ì œ ê°€ëŠ¥
 
 if($member[is_admin]==1) {
 
-	// ¸ğµç±×·ìÀÇ µ¥ÀÌÅ¸ °®°í¿È;;
+	// ëª¨ë“ ê·¸ë£¹ì˜ ë°ì´íƒ€ ê°–ê³ ì˜´;;
 	$result=mysql_query("select * from $group_table order by no ");
 ?>
     <table width=100% border=0 cellspacing=0 cellpadding=0>
@@ -150,7 +150,7 @@ if($member[is_admin]==1) {
 
 		if($group_data[no]==$group_no) $b="<b>"; else $b="";
 
-		// ±×·ìÀÌ¸§ Ãâ·Â
+		// ê·¸ë£¹ì´ë¦„ ì¶œë ¥
 ?>
     <table width=100% border=0 cellspacing=0 cellpadding=0>
     <tr> 
@@ -158,25 +158,25 @@ if($member[is_admin]==1) {
     </tr>
 <?
 
-		// ÇöÀç ¼±ÅÃµÈ ±×·ì°ú ·çÇÎµÇ´Â ±×·ì°ú ¸ÅÄ¡µÉ¶§;;
+		// í˜„ì¬ ì„ íƒëœ ê·¸ë£¹ê³¼ ë£¨í•‘ë˜ëŠ” ê·¸ë£¹ê³¼ ë§¤ì¹˜ë ë•Œ;;
 		if($group_no==$group_data[no]) {
 ?>
     <tr> 
       <td bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><img src=images/g_top.gif width=38 height=14><br>
-        <a href=<?=$PHP_SELF?>?group_no=<?=$group_data[no]?>&exec=modify_group><img src=images/g_properties.gif border=0 alt="±×·ì ¼³Á¤"></a>
+        <a href=<?=$PHP_SELF?>?group_no=<?=$group_data[no]?>&exec=modify_group><img src=images/g_properties.gif border=0 alt="ê·¸ë£¹ ì„¤ì •"></a>
 <?
 			if($member[is_admin]==1) 
 				echo "
-        <a href=$PHP_SELF?group_no=$group_data[no]&exec=del_group><img src=images/g_delete.gif border=0 alt=\"±×·ì »èÁ¦\"></a>
+        <a href=$PHP_SELF?group_no=$group_data[no]&exec=del_group><img src=images/g_delete.gif border=0 alt=\"ê·¸ë£¹ ì‚­ì œ\"></a>
 "; 
 ?>
         <img src=images/t.gif width=10 height=5><br>
         <img src=images/m_top1.gif width=51 height=14 align=absmiddle><b><font color=#FFFFFF><?=$group_data[member_num]?></font></b><img src=images/m_top2.gif width=6 height=14 align=absmiddle><br>
-        <a href=<?=$PHP_SELF?>?exec=view_member&group_no=<?=$group_data[no]?>><img src=images/m_manage.gif border=0 alt="È¸¿ø °ü¸®"></a><a href=<?=$PHP_SELF?>?exec=modify_member_join&group_no=<?=$group_data[no]?>><img src=images/m_joinform.gif border=0 alt="°¡ÀÔ¾ç½Ä ¼³Á¤"></a><br>
+        <a href=<?=$PHP_SELF?>?exec=view_member&group_no=<?=$group_data[no]?>><img src=images/m_manage.gif border=0 alt="íšŒì› ê´€ë¦¬"></a><a href=<?=$PHP_SELF?>?exec=modify_member_join&group_no=<?=$group_data[no]?>><img src=images/m_joinform.gif border=0 alt="ê°€ì…ì–‘ì‹ ì„¤ì •"></a><br>
         <img src=images/t.gif width=10 height=5><br>
         <img src=images/w_top1.gif width=58 height=14 align=absmiddle><b><font color=#FFFFFF><?=$group_data[board_num]?></font></b><img src=images/w_top2.gif width=4 height=14 align=absmiddle> 
         <br>
-        <a href=<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_data[no]?>&page=<?=$page?>&page_num=<?=$page_num?>><img src=images/w_manage.gif alt="°Ô½ÃÆÇ °ü¸®" border=0></a><a href=<?=$PHP_SELF?>?exec=view_board&exec2=add&group_no=<?=$group_data[no]?>><img src=images/w_add.gif alt="°Ô½ÃÆÇ Ãß°¡" border=0></a> 
+        <a href=<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_data[no]?>&page=<?=$page?>&page_num=<?=$page_num?>><img src=images/w_manage.gif alt="ê²Œì‹œíŒ ê´€ë¦¬" border=0></a><a href=<?=$PHP_SELF?>?exec=view_board&exec2=add&group_no=<?=$group_data[no]?>><img src=images/w_add.gif alt="ê²Œì‹œíŒ ì¶”ê°€" border=0></a> 
       </td>
     </tr>
 <?
@@ -189,7 +189,7 @@ if($member[is_admin]==1) {
 } 
 
 
-// ÃÖ°í°ü¸®ÀÚ°¡¾Æ´Ò¶§;;
+// ìµœê³ ê´€ë¦¬ìê°€ì•„ë‹ë•Œ;;
 
 else {  
 
@@ -208,19 +208,19 @@ else {
       </td>
     </tr>
 <?
-	// ¸Ş´ºÃâ·Â
+	// ë©”ë‰´ì¶œë ¥
 	if($member[is_admin]==2) {
 ?>
     <tr>
       <td bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><img src=images/g_top.gif width=38 height=14><br>
-        <a href=<?=$PHP_SELF?>?group_no=<?=$group_data[no]?>&exec=modify_group><img src=images/g_properties.gif width=60 height=12 border=0 alt="±×·ì ¼³Á¤"></a><br>
+        <a href=<?=$PHP_SELF?>?group_no=<?=$group_data[no]?>&exec=modify_group><img src=images/g_properties.gif width=60 height=12 border=0 alt="ê·¸ë£¹ ì„¤ì •"></a><br>
         <img src=images/t.gif width=10 height=5><br>
         <img src=images/m_top1.gif width=51 height=14 align=absmiddle><b><font color=#FFFFFF><?=$group_data[member_num]?></font></b><img src=images/m_top2.gif width=6 height=14 align=absmiddle><br>
-        <a href=<?=$PHP_SELF?>?exec=view_member&group_no=<?=$group_data[no]?>><img src=images/m_manage.gif width=73 height=12 border=0 alt="È¸¿ø °ü¸®"></a><a href=<?=$PHP_SELF?>?exec=modify_member_join&group_no=<?=$group_data[no]?>><img src=images/m_joinform.gif width=55 height=12 border=0 alt="°¡ÀÔÆû¼³Á¤"></a><br>
+        <a href=<?=$PHP_SELF?>?exec=view_member&group_no=<?=$group_data[no]?>><img src=images/m_manage.gif width=73 height=12 border=0 alt="íšŒì› ê´€ë¦¬"></a><a href=<?=$PHP_SELF?>?exec=modify_member_join&group_no=<?=$group_data[no]?>><img src=images/m_joinform.gif width=55 height=12 border=0 alt="ê°€ì…í¼ì„¤ì •"></a><br>
         <img src=images/t.gif width=10 height=5><br>
         <img src=images/w_top1.gif width=58 height=14 align=absmiddle><b><font color=#FFFFFF><?=$group_data[board_num]?></font></b><img src=images/w_top2.gif width=4 height=14 align=absmiddle>
         <br>
-        <a href=<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_data[no]?>><img src=images/w_manage.gif width=73 height=12 alt="°Ô½ÃÆÇ °ü¸®" border=0></a><a href=<?=$PHP_SELF?>?exec=view_board&exec2=add&group_no=<?=$group_data[no]?>><img src=images/w_add.gif width=29 height=12 alt="°Ô½ÃÆÇ Ãß°¡" border=0></a>
+        <a href=<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_data[no]?>><img src=images/w_manage.gif width=73 height=12 alt="ê²Œì‹œíŒ ê´€ë¦¬" border=0></a><a href=<?=$PHP_SELF?>?exec=view_board&exec2=add&group_no=<?=$group_data[no]?>><img src=images/w_add.gif width=29 height=12 alt="ê²Œì‹œíŒ ì¶”ê°€" border=0></a>
       </td>
     </tr>
 <?
@@ -230,7 +230,7 @@ else {
 } 
 ?>
 
-<!-- Ä«ÇÇ¶óÀÌÆ® -->
+<!-- ì¹´í”¼ë¼ì´íŠ¸ -->
     <table width=100% border=0 cellspacing=0 cellpadding=0>
     <tr>
       <td bgcolor=666666 height=1><img src=images/t.gif border=0 height=1></td>
@@ -255,11 +255,11 @@ if($member[is_admin]==1) {
 
   </td>
 
-<!-- Á÷Á¢ÀûÀÎ È°µ¿¹«´ë~~ ³ÄÇÏÇÖ~ -->
+<!-- ì§ì ‘ì ì¸ í™œë™ë¬´ëŒ€~~ ëƒí•˜í•«~ -->
   <td width=100% align=center valign=top bgcolor=#3d3d3d>
 
 <?
-// ÃÖ°í°ü¸®ÀÚÀÏ¶§
+// ìµœê³ ê´€ë¦¬ìì¼ë•Œ
 if($member[is_admin]==1) {
 	if($exec=="add_group") { include "admin/admin_add_group_bac.php"; }
 	elseif($exec=="uninstall") { include "admin/admin_uninstall.php"; }
@@ -281,7 +281,7 @@ if($member[is_admin]==1) {
 		else {include "admin/admin_board_list.php";}
 	} else {include "admin/readme.php";}
 
-// ±×·ì °ü¸®ÀÚÀÏ °æ¿ì
+// ê·¸ë£¹ ê´€ë¦¬ìì¼ ê²½ìš°
 } elseif($member[is_admin]==2) {
 	$group_no=$group_data[no];
 	if($exec=="modify_group") { include "admin/admin_modify_group_bac.php";}
@@ -308,7 +308,7 @@ if($member[is_admin]==1) {
 		else {include "admin/admin_board_list.php";}
 	} 
 
-// °Ô½ÃÆÇ °ü¸®ÀÚÀÏ¶§
+// ê²Œì‹œíŒ ê´€ë¦¬ìì¼ë•Œ
 } elseif($member[board_name]&&exec=="view_board") {
 		if($exec2=="modify") {include "admin/admin_modify_board_bac.php";}
 		elseif($exec2=="category") {include "admin/admin_category_bac.php";}

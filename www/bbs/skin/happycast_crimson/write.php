@@ -18,36 +18,36 @@ function formresize(mode) {
 <br>
 <?
   /*
-  write.php �� �۾��� ���Դϴ�.
-  �Ʒ� ������ ����մϴ�.
+  write.php 는 글쓰기 폼입니다.
+  아래 변수를 사용합니다.
 
-  ȸ���϶� ��Ÿ���� �ʴ� �κ��� ó���ϴ� �κ��Դϴ�. �����ָ� ȸ���϶��� ��Ÿ���� �ʽ��ϴ�.
-  <?=$hide_start?> : ȸ���϶� �۾������ ��Ÿ���� �ʰ� �ϴ� �κ��Դϴ�;; ȸ���϶��� �ڵ� �ּ�(<!--)�� ���ϴ�.  
-  <?=$hide_end?>  : ȸ���϶� ������ �ʰ� �մϴ�. <?=$hide_start?>�� �����ϰ� <?=$hide_end?> �� �����ָ� �˴ϴ�.
+  회원일때 나타나지 않는 부분을 처리하는 부분입니다. 감싸주면 회원일때는 나타나지 않습니다.
+  <?=$hide_start?> : 회원일때 글쓰기등을 나타나지 않게 하는 부분입니다;; 회원일때는 자동 주석(<!--)이 들어갑니다.  
+  <?=$hide_end?>  : 회원일때 보이지 않게 합니다. <?=$hide_start?>로 시작하고 <?=$hide_end?> 로 감싸주면 됩니다.
 
-  <?=$hide_sitelink1_start?>, <?=$hide_sitelink1_end?> : ����Ʈ��ũ 1���� ����ϴ��� ���ϴ��� ǥ��
-  <?=$hide_sitelink2_start?>, <?=$hide_sitelink2_end?> : ����Ʈ��ũ 2���� ����ϴ��� ���ϴ��� ǥ��
-  <?=$hide_pds_start?>, <?=$hide_pds_end?> : �ڷ���� ����ϴ��� ���ϴ��� ǥ��
-  <?=$hide_html_start?>, <?=$hide_html_end?> : HTML üũ�ڽ� ǥ�� 
+  <?=$hide_sitelink1_start?>, <?=$hide_sitelink1_end?> : 싸이트링크 1번을 사용하는지 않하는지 표시
+  <?=$hide_sitelink2_start?>, <?=$hide_sitelink2_end?> : 싸이트링크 2번을 사용하는지 않하는지 표시
+  <?=$hide_pds_start?>, <?=$hide_pds_end?> : 자료실을 사용하는지 않하는지 표시
+  <?=$hide_html_start?>, <?=$hide_html_end?> : HTML 체크박스 표시 
 
 
-  <?=$title?> : �ű�, ����, ����϶��� ���� ǥ��
+  <?=$title?> : 신규, 수정, 답글일때의 제목 표시
 
-  �Ʒ������� �ش����� �ִ°��� �״�� ���νø� �˴ϴ�.
-  <?=$name?> : ���� �̸��Դϴ�.
-  <?=$subject?> : ���� �����Դϴ�.
-  <?=$email?> : ���� �����Դϴ�.
-  <?=$homepage?> : Ȩ�������Դϴ�.
-  <?=$memo?> : ���� �����Դϴ�.
-  <?=$sitelink1?> : ����Ʈ ��ũ 1���Դϴ�
-  <?=$sitelink2?> : ����Ʈ ��ũ 2���Դϴ�
-  <?=$file_name1?> : ���ε�� ���� 1���Դϴ�.
-  <?=$file_name2?> : ���ε�� ���� 2���Դϴ�.
-  <?=$category_kind?> : ī�װ��� ����Ʈ �ڽ�
-  <?=$use_html?> : HTML üũ ǥ��;; �� htmlüũ������(����) checked �� �� ����;;
-  <?=$reply_mail?> : �亯���� üũ ǥ��;;
-  <?=$secret?> : ��б� ǥ��
-  <?=$upload_limit?> : ���ε� �뷮
+  아래변수는 해당폼에 있는것을 그대로 놔두시면 됩니다.
+  <?=$name?> : 원본 이름입니다.
+  <?=$subject?> : 원본 제목입니다.
+  <?=$email?> : 원본 메일입니다.
+  <?=$homepage?> : 홈페이지입니다.
+  <?=$memo?> : 원본 내용입니다.
+  <?=$sitelink1?> : 싸이트 링크 1번입니다
+  <?=$sitelink2?> : 싸이트 링크 2번입니다
+  <?=$file_name1?> : 업로드된 파일 1번입니다.
+  <?=$file_name2?> : 업로드된 파일 2번입니다.
+  <?=$category_kind?> : 카테고리 셀렉트 박스
+  <?=$use_html?> : HTML 체크 표시;; 즉 html체크였을때(수정) checked 가 들어가 있음;;
+  <?=$reply_mail?> : 답변메일 체크 표시;;
+  <?=$secret?> : 비밀글 표시
+  <?=$upload_limit?> : 업로드 용량
   */
   include "$dir/value.php3";
 
@@ -83,7 +83,7 @@ function formresize(mode) {
       <td width=80 align=right class=listnum><b>Name&nbsp;</b></td>
       <td align=left><img src=images/t.gif width=1 align=absmiddle><input type=text id=name name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>;border-style:solid;" onkeyup="ajaxLoad2()"></td>
       <td width=80 align=right class=listnum><b>Password&nbsp;</b></td>
-      <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;" onkeyup="ajaxLoad2()"> ����� ���Է��ϸ� �ӽ������� ������</td>
+      <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;" onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
     </tr>
     </table>
   </td>
@@ -108,10 +108,10 @@ function formresize(mode) {
     <table border=0 cellpadding=0 cellspacing=0>
     <tr>
       <td><?=$category_kind?></td>
-      <td><?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1></td><td class=listnum>��������<?=$hide_notice_end?></td>
+      <td><?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1></td><td class=listnum>공지사항<?=$hide_notice_end?></td>
       <td><?=$hide_html_start?> <input type=checkbox id=use_html name=use_html <?=$use_html?> value=1></td><td class=listnum>HTML<?=$hide_html_end?></td>
-      <td><input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1></td><td class=listnum>�亯���� �ޱ�</td>  
-      <td><?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1></td><td class=listnum>��б�<?=$hide_secret_end?> <font id="state"></font></td>
+      <td><input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1></td><td class=listnum>답변메일 받기</td>  
+      <td><?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1></td><td class=listnum>비밀글<?=$hide_secret_end?> <font id="state"></font></td>
     </tr>
     </table>
   </td>
@@ -171,9 +171,9 @@ function formresize(mode) {
 <table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0>
 <tr>
 	<td width=200 height=40 align=left>
-		<?=$a_preview?>�̸�����</a>
-		<?=$a_imagebox?>�׸�â��</a>
-		<?=$a_codebox?>�ڵ����</a>
+		<?=$a_preview?>미리보기</a>
+		<?=$a_imagebox?>그림창고</a>
+		<?=$a_codebox?>코드삽입</a>
 	</td>
 	<td align=right>
 		<img src=<?=$dir?>/btn_save.gif border=0 accesskey="a" onclick=autoSave() style=cursor:pointer>

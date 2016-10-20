@@ -18,12 +18,12 @@ if($result[0]==1){
 	}
 ?>
 
-<html>
+<html lang="ko">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=euc-kr">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>f2plus gallery ver.2.0 install page</title>
 <style>
-BODY,TD {font-size:9pt;font-family:±¼¸²;color:ffffff;line-height:160%}
+BODY,TD {font-size:9pt;font-family:êµ´ë¦¼;color:ffffff;line-height:160%}
 
 .thm7pt {font-family:tahoma;font-size:8pt}
 
@@ -76,7 +76,7 @@ A:hover   {color:ffffff;text-decoration:underline}
 			<td>
 				<table border="0" cellpadding="0" cellspacing="0" width="98%" align=center>
 				<col width=></col><col align=right width=100></col>
-				<tr valign=bottom><td align=left class=com>¢Æ <B>°øÅë»çÇ×</B></td><td><a href=<?=urlencode('¸Å´º¾ó.txt')?> target=_blank><font class=han3><U>¸Å´º¾ó/¹Ì¸®º¸±â</U></font></a></td>
+				<tr valign=bottom><td align=left class=com>â–’ <B>ê³µí†µì‚¬í•­</B></td><td><a href=<?=urlencode('ë§¤ë‰´ì–¼.txt')?> target=_blank><font class=han3><U>ë§¤ë‰´ì–¼/ë¯¸ë¦¬ë³´ê¸°</U></font></a></td>
 				</tr>
 				</table>
 			</td>
@@ -88,15 +88,15 @@ A:hover   {color:ffffff;text-decoration:underline}
 			<td>
 				<table border="0" cellpadding="1" cellspacing="0" width="95%" align=center>
 				<col width=140></col><col align=right width=></col>
-				<tr valign=top><td class=han2>1. ½æ³×ÀÏ »ç¿ë </td><?if($Thumbnail_use=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=thumb <?=$select?>></td></tr>
+				<tr valign=top><td class=han2>1. ì¸ë„¤ì¼ ì‚¬ìš© </td><?if($Thumbnail_use=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=thumb <?=$select?>></td></tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-				<tr valign=top><td class=han2>2. Exif Á¤º¸ </td><?if($Exif_use=="off") $select=""; else $select="checked";?><td><input type="checkbox"  value=1 name=exif <?=$select?>></td></tr>
+				<tr valign=top><td class=han2>2. Exif ì •ë³´ </td><?if($Exif_use=="off") $select=""; else $select="checked";?><td><input type="checkbox"  value=1 name=exif <?=$select?>></td></tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-				<tr valign=top><td class=han2>3. ÀÌ¸ğÆ¼ÄÜ »ç¿ë </td><?if($emoticon_use=="off") $select=""; else $select="checked";?><td><input type="checkbox"  value=1 name=emouse <?=$select?>></td></tr>
+				<tr valign=top><td class=han2>3. ì´ëª¨í‹°ì½˜ ì‚¬ìš© </td><?if($emoticon_use=="off") $select=""; else $select="checked";?><td><input type="checkbox"  value=1 name=emouse <?=$select?>></td></tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-				<tr valign=top><td class=han2>4. ¸ŞÀÎ½æ³×ÀÏ »ç¿ë </td><?if($Thumbnail_view=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=viewthumb <?=$select?>></td></tr>
+				<tr valign=top><td class=han2>4. ë©”ì¸ì¸ë„¤ì¼ ì‚¬ìš© </td><?if($Thumbnail_view=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=viewthumb <?=$select?>></td></tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-				<tr valign=top><td class=han2>5. ÃÖ´ë ½æ³×ÀÏ °¡·ÎÅ©±â </td><td><input type="text" class=textarea name=maxwidth size=5 value=<?=$max_width_size?>></td></tr>
+				<tr valign=top><td class=han2>5. ìµœëŒ€ ì¸ë„¤ì¼ ê°€ë¡œí¬ê¸° </td><td><input type="text" class=textarea name=maxwidth size=5 value=<?=$max_width_size?>></td></tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
 				</table>
 			</td>
@@ -108,15 +108,15 @@ A:hover   {color:ffffff;text-decoration:underline}
 				<table border="0" cellpadding="1" cellspacing="0" width="95%" align=center>
 				<col width=140></col><col align=right width=></col>
 				<tr><td></td></tr>	
-				<tr valign=top><td class=han2>1. No(±Û¼ø¹ø) »èÁ¦</td><?if($hide_no=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=no_use <?=$select?>></td></tr>
+				<tr valign=top><td class=han2>1. No(ê¸€ìˆœë²ˆ) ì‚­ì œ</td><?if($hide_no=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=no_use <?=$select?>></td></tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-				<tr valign=top><td class=han2>2. ÀÌ¸§ »èÁ¦ </td><?if($hide_name=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=name_use <?=$select?>></td></tr>
+				<tr valign=top><td class=han2>2. ì´ë¦„ ì‚­ì œ </td><?if($hide_name=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=name_use <?=$select?>></td></tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-				<tr valign=top><td class=han2>3. Date »èÁ¦ </td><?if($hide_date=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=date_use <?=$select?>></td></tr>
+				<tr valign=top><td class=han2>3. Date ì‚­ì œ </td><?if($hide_date=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=date_use <?=$select?>></td></tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-				<tr valign=top><td class=han2>4. ÃßÃµ±â´É »èÁ¦ </td><?if($hide_vote=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=vote_use <?=$select?>></td></tr>
+				<tr valign=top><td class=han2>4. ì¶”ì²œê¸°ëŠ¥ ì‚­ì œ </td><?if($hide_vote=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=vote_use <?=$select?>></td></tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-				<tr valign=top><td class=han2>5. Á¶È¸¼ö »èÁ¦ </td><?if($hide_hit=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=hit_use <?=$select?>></td></tr>
+				<tr valign=top><td class=han2>5. ì¡°íšŒìˆ˜ ì‚­ì œ </td><?if($hide_hit=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=hit_use <?=$select?>></td></tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
 				</table>
 			</td>
@@ -127,19 +127,19 @@ A:hover   {color:ffffff;text-decoration:underline}
 			<td align=left>
 				<table border="0" cellpadding="1" cellspacing="0" width="95%" align=center>
 				<col width=95></col><col width=></col>
-				<tr valign=top><td class=han2>1. Á¦·Îº¸µå °æ·Î </td>
-				<td class=han2><input type="text" class=textarea name=zburl size=38 value=<?=$zb_url?>>	³¡¿¡ "/" ³ÖÁö¸¶¼¼¿ä</td>
+				<tr valign=top><td class=han2>1. ì œë¡œë³´ë“œ ê²½ë¡œ </td>
+				<td class=han2><input type="text" class=textarea name=zburl size=38 value=<?=$zb_url?>>	ëì— "/" ë„£ì§€ë§ˆì„¸ìš”</td>
 				</tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-				<tr valign=top><td class=han2>2. Àı´ë °æ·Î </td>
+				<tr valign=top><td class=han2>2. ì ˆëŒ€ ê²½ë¡œ </td>
 				<td><input type="text" class=textarea name=zbpath size=38 value=<?=$zb_path?>></td></tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td>
 				</tr>
-				<tr valign=top><td class=han2>3. ÀÌ¸ğÆ¼ÄÜ °æ·Î </td>
-				<td class=han2><input type="text" class=textarea name=emoticon_url size=38 value=<?=$emoticon_url?>>	³¡¿¡ "/" ³ÖÁö¸¶¼¼¿ä</td>
+				<tr valign=top><td class=han2>3. ì´ëª¨í‹°ì½˜ ê²½ë¡œ </td>
+				<td class=han2><input type="text" class=textarea name=emoticon_url size=38 value=<?=$emoticon_url?>>	ëì— "/" ë„£ì§€ë§ˆì„¸ìš”</td>
 				</tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-				<tr valign=top><td class=han2>4. °Ô½ÃÆÇ ÀÌ¸§ </td>
+				<tr valign=top><td class=han2>4. ê²Œì‹œíŒ ì´ë¦„ </td>
 				<td><input type="text" class=textarea name=board_id size=25 value=<?=$id?>></td>
 				</tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
@@ -147,7 +147,7 @@ A:hover   {color:ffffff;text-decoration:underline}
 <?$select1=""; $select2=""; $select3="";
 if($gd_use==0) $select1="checked"; elseif($gd_use==1) $select2="checked"; else $select3="checked";
 ?>
-				<tr><td colspan=2 align=left class=han3>¡İ GD Version ¼±ÅÃ&nbsp;&nbsp;<INPUT TYPE="radio" NAME="gd_use" value=2 <?=$select3?>>2.0ÀÌ»ó<INPUT TYPE="radio" NAME="gd_use" value=1 <?=$select2?>>2.0ÀÌÇÏ<INPUT TYPE="radio" NAME="gd_use" value=0 <?=$select1?>>»ç¿ë¾ÊÇÔ</td>
+				<tr><td colspan=2 align=left class=han3>â— GD Version ì„ íƒ&nbsp;&nbsp;<INPUT TYPE="radio" NAME="gd_use" value=2 <?=$select3?>>2.0ì´ìƒ<INPUT TYPE="radio" NAME="gd_use" value=1 <?=$select2?>>2.0ì´í•˜<INPUT TYPE="radio" NAME="gd_use" value=0 <?=$select1?>>ì‚¬ìš©ì•Ší•¨</td>
 				</tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
 				</table>
@@ -155,12 +155,12 @@ if($gd_use==0) $select1="checked"; elseif($gd_use==1) $select2="checked"; else $
 		</tr>
 		<tr valign=top>
 <?$select1=""; $select2=""; if($category_use==1) $select1="checked"; else $select2="checked";?>
-			<td class=han2 align=left colspan=2>&nbsp;&nbsp;¡İ Ä«Å×°í¸® ¼±ÅÃ :
-				<INPUT TYPE="radio" NAME=category_use value=1 <?=$select1?>>»ç¿ë&nbsp;&nbsp;<INPUT TYPE="radio" NAME=category_use value=2 <?=$select2?>>¹Ì»ç¿ë</td>
+			<td class=han2 align=left colspan=2>&nbsp;&nbsp;â— ì¹´í…Œê³ ë¦¬ ì„ íƒ :
+				<INPUT TYPE="radio" NAME=category_use value=1 <?=$select1?>>ì‚¬ìš©&nbsp;&nbsp;<INPUT TYPE="radio" NAME=category_use value=2 <?=$select2?>>ë¯¸ì‚¬ìš©</td>
 <?$select1=""; $select2="";	if($img_show=="on") $select1="checked"; else $select2="checked";?>
-			<td colspan=3 align=left class=han2>&nbsp;&nbsp;¡İ ¸ñ·ÏÀÌ¹ÌÁöÅ¬¸¯½Ã(D_type Á¦¿Ü) : <INPUT TYPE="radio" NAME=img_show value=on <?=$select1?>>¿ø·¡Å©±âÀÇ ÀÌ¹ÌÁö·Î(»õÃ¢)&nbsp;&nbsp;<INPUT TYPE="radio" NAME=img_show value=off <?=$select2?>>±Û³»¿ëÀ¸·Î 
+			<td colspan=3 align=left class=han2>&nbsp;&nbsp;â— ëª©ë¡ì´ë¯¸ì§€í´ë¦­ì‹œ(D_type ì œì™¸) : <INPUT TYPE="radio" NAME=img_show value=on <?=$select1?>>ì›ë˜í¬ê¸°ì˜ ì´ë¯¸ì§€ë¡œ(ìƒˆì°½)&nbsp;&nbsp;<INPUT TYPE="radio" NAME=img_show value=off <?=$select2?>>ê¸€ë‚´ìš©ìœ¼ë¡œ 
 				<table border=0 cellspacing=0 cellpadding=0 width=100% align=100%>
-				<tr><td align=right style=padding-right=5px>¡Ø <U><B>°æ·Î¸¦ Á¤È®È÷ ÀÔ·ÂÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.</B></U></td>
+				<tr><td align=right style=padding-right=5px>â€» <U><B>ê²½ë¡œë¥¼ ì •í™•íˆ ì…ë ¥í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.</B></U></td>
 				</tr>
 				</table>
 			</td>
@@ -174,7 +174,7 @@ if($gd_use==0) $select1="checked"; elseif($gd_use==1) $select2="checked"; else $
 		<tr>
 			<td>
 				<table border="0" cellpadding="5" cellspacing="0" width="98%" align=center>
-				<tr valign=bottom><td align=left class=com>¢Æ <B>ÇüÅÂ¼±ÅÃ</B></td>
+				<tr valign=bottom><td align=left class=com>â–’ <B>í˜•íƒœì„ íƒ</B></td>
 				</tr>
 				</table>
 				<table border="0" cellpadding="5" cellspacing="0" width="98%" align=center class=border>
@@ -183,17 +183,17 @@ if($gd_use==0) $select1="checked"; elseif($gd_use==1) $select2="checked"; else $
 					<td>
 						<table border="0" cellpadding="1" cellspacing="0" width="95%" align=center>
 						<col width=90></col><col align=left width=></col>
-						<tr valign=top><td class=han2>1. A_type :</td><td class=han2>°Ô½ÃÆÇÇü</td></tr>
+						<tr valign=top><td class=han2>1. A_type :</td><td class=han2>ê²Œì‹œíŒí˜•</td></tr>
 						<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-						<tr valign=top><td class=han2>2. A2_type :</td><td class=han2>°Ô½ÃÆÇÇü(Graphical)</td></tr>
+						<tr valign=top><td class=han2>2. A2_type :</td><td class=han2>ê²Œì‹œíŒí˜•(Graphical)</td></tr>
 						<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-						<tr valign=top><td class=han2>3. B_type :</td><td class=han2>Àü½ÃÈ¸Çü</td></tr>
+						<tr valign=top><td class=han2>3. B_type :</td><td class=han2>ì „ì‹œíšŒí˜•</td></tr>
 						<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-						<tr valign=top><td class=han2>4. C_type :</td><td class=han2>¼¼·Î ¿À¹öÇü</td></tr>
+						<tr valign=top><td class=han2>4. C_type :</td><td class=han2>ì„¸ë¡œ ì˜¤ë²„í˜•</td></tr>
 						<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-						<tr valign=top><td class=han2>5. D_type :</td><td class=han2>°¡·Î Å¬¸¯Çü</td></tr>
+						<tr valign=top><td class=han2>5. D_type :</td><td class=han2>ê°€ë¡œ í´ë¦­í˜•</td></tr>
 						<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
-						<tr valign=top><td class=han2>6. Movie_type :</td><td class=han2>¿µÈ­ °¶·¯¸®</td></tr>
+						<tr valign=top><td class=han2>6. Movie_type :</td><td class=han2>ì˜í™” ê°¤ëŸ¬ë¦¬</td></tr>
 						<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
 						</table>
 					</td>
@@ -238,22 +238,22 @@ if($gd_use==0) $select1="checked"; elseif($gd_use==1) $select2="checked"; else $
 						<table border="0" cellpadding="0" cellspacing="0" width="100%" align=center>
 						<col width=100></col><col width=></col>
 						<tr valign=top>
-							<td align=left class=com colspan=2>¢Æ <B>Æ¯º°»çÇ×1</B> <font class=han4>(<B>A-type,A2-type Á¦¿Ü</B>)</font></td>
+							<td align=left class=com colspan=2>â–’ <B>íŠ¹ë³„ì‚¬í•­1</B> <font class=han4>(<B>A-type,A2-type ì œì™¸</B>)</font></td>
 						</tr>
 						<tr><td height=7 colspan=2></td></tr>
 						<tr>
-							<td class=han2>¡¤ °¡·Î Ãâ·Â°³¼ö :</td><td><input type="text" class=textarea2 name=num size=3 value=<?=$num?>> °³  (¸®½ºÆ®¸ŞÀÎ¿¡¼­ º¸¿©Áú ÀÛÀºÀÌ¹ÌÁö°³¼ö)</td>
+							<td class=han2>Â· ê°€ë¡œ ì¶œë ¥ê°œìˆ˜ :</td><td><input type="text" class=textarea2 name=num size=3 value=<?=$num?>> ê°œ  (ë¦¬ìŠ¤íŠ¸ë©”ì¸ì—ì„œ ë³´ì—¬ì§ˆ ì‘ì€ì´ë¯¸ì§€ê°œìˆ˜)</td>
 						</tr>
 						<tr><td height=7 colspan=2></td></tr>
-							<td class=han2>¡¤ °¡·Î Å©±â :</td><td><input type="text" class=textarea2 name=min_width_size size=5 value=<?=$min_width_size?>> ÇÈ¼¿  (¸®½ºÆ®¸ŞÀÎ¿¡¼­ º¸¿©Áú ÀÛÀºÀÌ¹ÌÁö °¡·ÎÅ©±â)</td>
+							<td class=han2>Â· ê°€ë¡œ í¬ê¸° :</td><td><input type="text" class=textarea2 name=min_width_size size=5 value=<?=$min_width_size?>> í”½ì…€  (ë¦¬ìŠ¤íŠ¸ë©”ì¸ì—ì„œ ë³´ì—¬ì§ˆ ì‘ì€ì´ë¯¸ì§€ ê°€ë¡œí¬ê¸°)</td>
 						</tr>
 						<tr><td height=7 colspan=2></td></tr>
 						<tr><td height=1 colspan=2 bgcolor=333333></td></tr>
 						<tr><td height=7 colspan=2></td></tr>
-						<tr><td align=left colspan=2 class=com>¢Æ <B>±âÅ¸»çÇ×</B></td></tr>
+						<tr><td align=left colspan=2 class=com>â–’ <B>ê¸°íƒ€ì‚¬í•­</B></td></tr>
 						<tr><td height=7 colspan=2></td></tr>
 						<tr>
-							<td colspan=2><font class=han4> »ı¼ºµÈ ½æ³×ÀÏ ÀÌ¹ÌÁö¸¦ »èÁ¦ÇÕ´Ï´Ù.</font>&nbsp;&nbsp;<a href=del_thumb.php?id=<?=$id?>&zb_path=<?=$zb_path?> target=_blank>"<B><U>»èÁ¦ÇÏ±â</U></B>"&nbsp;&nbsp;</a><font class=han3>(¡ØÁÖÀÇ : Å¬¸¯ÇÏ½Ã¸é ¹Ù·Î »èÁ¦µË´Ï´Ù.)</font></td>
+							<td colspan=2><font class=han4> ìƒì„±ëœ ì¸ë„¤ì¼ ì´ë¯¸ì§€ë¥¼ ì‚­ì œí•©ë‹ˆë‹¤.</font>&nbsp;&nbsp;<a href=del_thumb.php?id=<?=$id?>&zb_path=<?=$zb_path?> target=_blank>"<B><U>ì‚­ì œí•˜ê¸°</U></B>"&nbsp;&nbsp;</a><font class=han3>(â€»ì£¼ì˜ : í´ë¦­í•˜ì‹œë©´ ë°”ë¡œ ì‚­ì œë©ë‹ˆë‹¤.)</font></td>
 						</tr>
 						</table>
 					</td>
@@ -263,20 +263,20 @@ if($gd_use==0) $select1="checked"; elseif($gd_use==1) $select2="checked"; else $
 					<td valign=top>
 						<table border="0" cellpadding="0" cellspacing="0" width="100%" align=center>
 						<col width=150></col><col width=></col>
-						<tr valign=top><td align=left class=com colspan=2>¢Æ <B>Æ¯º°»çÇ×2</B> <font class=han4>(<B>A-type,A2-type ÀÏ°æ¿ì</B>)</font></td>
+						<tr valign=top><td align=left class=com colspan=2>â–’ <B>íŠ¹ë³„ì‚¬í•­2</B> <font class=han4>(<B>A-type,A2-type ì¼ê²½ìš°</B>)</font></td>
 						</tr>
 						<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
 						<tr><td height=7 colspan=2></td></tr>
-						<tr><td class=han2>¡¤ Á¶È¸±×·¡ÇÁ(¬‚´ëÁ¶È¸¼ö°ª)&nbsp;: <input type="text" class=textarea2 name=max_hit size=4 value=<?=$max_hit?>> °³</td>
+						<tr><td class=han2>Â· ì¡°íšŒê·¸ë˜í”„(ìµ€ëŒ€ì¡°íšŒìˆ˜ê°’)&nbsp;: <input type="text" class=textarea2 name=max_hit size=4 value=<?=$max_hit?>> ê°œ</td>
 						</tr>
-						<tr><td class=han2>¸®½ºÆ®¸ŞÀÎ¿¡¼­ ¿ìÃø¿¡ Á¶È¸±×·¡ÇÁÀÇ ÃÖ´ëÁ¶È¸°ªÀ» ÀÌ¾ß±âÇÕ´Ï´Ù.</td>
+						<tr><td class=han2>ë¦¬ìŠ¤íŠ¸ë©”ì¸ì—ì„œ ìš°ì¸¡ì— ì¡°íšŒê·¸ë˜í”„ì˜ ìµœëŒ€ì¡°íšŒê°’ì„ ì´ì•¼ê¸°í•©ë‹ˆë‹¤.</td>
 						</tr>
 						</table><BR><BR>
 						<table border="0" cellpadding="0" cellspacing="0" width="100%" align=center>
 						<tr valign=middle>
 							<td colspan=3 align=right>
-								<input type=submit class=submit value="[È® ÀÎ]" name=ok>&nbsp;&nbsp;&nbsp;
-								<input type=reset class=button value="[ÀÌÀü°ª]" name=cancel>&nbsp;&nbsp;&nbsp;
+								<input type=submit class=submit value="[í™• ì¸]" name=ok>&nbsp;&nbsp;&nbsp;
+								<input type=reset class=button value="[ì´ì „ê°’]" name=cancel>&nbsp;&nbsp;&nbsp;
 							</td>
 						</tr>
 						</table>
@@ -304,5 +304,5 @@ if($gd_use==0) $select1="checked"; elseif($gd_use==1) $select2="checked"; else $
 </form>
 </table>
 <?
-}else echo "¼³Á¤À» º¯°æÇÏ½Ç ±ÇÇÑÀÌ ¾ø³×¿ä";
+}else echo "ì„¤ì •ì„ ë³€ê²½í•˜ì‹¤ ê¶Œí•œì´ ì—†ë„¤ìš”";
 ?>

@@ -11,78 +11,78 @@ header ('Pragma: no-cache');
 }
 header ('Expires: '.$lastBuildDate.'');
 header ('Last-Modified: '.$lastBuildDate.'');
-header ('Content-Type: text/xml; charset=EUC-KR');
+header ('Content-Type: text/xml; charset=utf-8');
 $lastBuildDate = date('D, d M Y H:i:s').' +0900';
 if (preg_match("/:\/\//i",$_zb_path) || (preg_match("/\.\./i",$_zb_path))) $_zb_path="";
 /************************************* 
-* ¸¸µçÀÌ:ÅäÅä·ç(http://www.rwapm.server.ne.kr) 
-* ¾Æ·¡ ¼³Á¤À» º»ÀÎÀÇ È¨¿¡ ¸Â°Ô ¼öÁ¤ÇÏ¼¼¿ä. 
-* ÅëÇÕÃßÃâÀº.. 
-* http://È¨ÁÖ¼Ò/zero_rss.php 
+* ë§Œë“ ì´:í† í† ë£¨(http://www.rwapm.server.ne.kr) 
+* ì•„ë˜ ì„¤ì •ì„ ë³¸ì¸ì˜ í™ˆì— ë§ê²Œ ìˆ˜ì •í•˜ì„¸ìš”. 
+* í†µí•©ì¶”ì¶œì€.. 
+* http://í™ˆì£¼ì†Œ/zero_rss.php 
 * 
-* °³º°ÃßÃâÀº.. 
-* http://È¨ÁÖ¼Ò/zero_rss.php?id=°Ô½ÃÆÇ¾ÆÀÌµğ 
+* ê°œë³„ì¶”ì¶œì€.. 
+* http://í™ˆì£¼ì†Œ/zero_rss.php?id=ê²Œì‹œíŒì•„ì´ë”” 
 *************************************/ 
-//Á¦·Îº¸µå ÁÖ¼Ò ³¡¿¡ /À» ºÙÀÌ¼¼¿ä.
-//(¿¹Á¦:http://test.com/bbs/)
+//ì œë¡œë³´ë“œ ì£¼ì†Œ ëì— /ì„ ë¶™ì´ì„¸ìš”.
+//(ì˜ˆì œ:http://test.com/bbs/)
 include_once "../bbs/include/get_url.php";
 $_zb_url = zbUrl();
 
-//Á¦·Îº¸µå Àı´ë°æ·Î ³¡¿¡ /À» ºÙÀÌ¼¼¿ä.
-//(¿¹Á¦:/home/www/bbs/)
+//ì œë¡œë³´ë“œ ì ˆëŒ€ê²½ë¡œ ëì— /ì„ ë¶™ì´ì„¸ìš”.
+//(ì˜ˆì œ:/home/www/bbs/)
 $main_dir = preg_replace("#index.php#","",realpath(__FILE__));
 $_zb_path = str_replace("/rss/","",$main_dir)."/bbs/";
 
-//È¨ Å¸ÀÌÆ²(¿¹:¿ì¸®Áı µîµî,,,)
-$site_names = "³×Æ¼Áğ ¼¼»óÀ» À§ÇÏ¿©...";
+//í™ˆ íƒ€ì´í‹€(ì˜ˆ:ìš°ë¦¬ì§‘ ë“±ë“±,,,)
+$site_names = "ë„¤í‹°ì¦Œ ì„¸ìƒì„ ìœ„í•˜ì—¬...";
 
-//È¨ÁÖÁ¦(¿¹:³ª¸¸ÀÇ ºí·Î±×¼¼»ó..µîµî) 
-$site_names1 = "³×Æ¼ÁğÄ®·³¿¡ ¿À½Å °ÍÀ» È¯¿µÇÕ´Ï´Ù! ¿ì¸® ±¹¹Î ¸ğµÎ°¡ ÁÖÀÎÀÎ ¼¼»ó, ¿ì¸® ³×Æ¼Áğ ¸ğµÎ°¡ Âü¿©ÇÏ´Â ÁøÁ¤ÇÑ Âü¿©¹ÎÁÖÁÖÀÇ¸¦ ½ÇÇöÇØ ³ª°©½Ã´Ù. ÀÌ°÷Àº ÀÌ·± ¸ğÅä¿¡ °ü½ÉÀÖ´Â ºĞµé, ¶Ç °Å±â¿¡ ¿­¼ºÀûÀ¸·Î ¶æÀ» °°ÀÌÇÒ ºĞµéÀ» À§ÇÑ °ø°£ÀÔ´Ï´Ù.";
+//í™ˆì£¼ì œ(ì˜ˆ:ë‚˜ë§Œì˜ ë¸”ë¡œê·¸ì„¸ìƒ..ë“±ë“±) 
+$site_names1 = "ë„¤í‹°ì¦Œì¹¼ëŸ¼ì— ì˜¤ì‹  ê²ƒì„ í™˜ì˜í•©ë‹ˆë‹¤! ìš°ë¦¬ êµ­ë¯¼ ëª¨ë‘ê°€ ì£¼ì¸ì¸ ì„¸ìƒ, ìš°ë¦¬ ë„¤í‹°ì¦Œ ëª¨ë‘ê°€ ì°¸ì—¬í•˜ëŠ” ì§„ì •í•œ ì°¸ì—¬ë¯¼ì£¼ì£¼ì˜ë¥¼ ì‹¤í˜„í•´ ë‚˜ê°‘ì‹œë‹¤. ì´ê³³ì€ ì´ëŸ° ëª¨í† ì— ê´€ì‹¬ìˆëŠ” ë¶„ë“¤, ë˜ ê±°ê¸°ì— ì—´ì„±ì ìœ¼ë¡œ ëœ»ì„ ê°™ì´í•  ë¶„ë“¤ì„ ìœ„í•œ ê³µê°„ì…ë‹ˆë‹¤.";
 
-//È¨ ÁÖ¼Ò(¿¹:http://test.com/) 
-$home = substr(zbUrl(),0,strpos(zbUrl(),"/bbs/"))."/";
-
-// ÀÌ°Ç¼öÁ¤ÇÏÁö ¾Ê¾ÆµµµÊ. 
+// ì´ê±´ìˆ˜ì •í•˜ì§€ ì•Šì•„ë„ë¨. 
 include $_zb_path."_head.php";
 
-// ÃßÃâ°³¼ö¸¦ Àû¾îÁÖ¼¼¿ä.
+//í™ˆ ì£¼ì†Œ(ì˜ˆ:http://test.com/) 
+$home = mb_substr(zbUrl(),0,mb_strpos(zbUrl(),"/bbs/"))."/";
+
+// ì¶”ì¶œê°œìˆ˜ë¥¼ ì ì–´ì£¼ì„¸ìš”.
 $nos = "100";
 
-// ¹è³Ê°¡ ÀÖÀ¸¸é ¹è³ÊÀÌ¹ÌÁöÁÖ¼Ò¸¦ Àû¾îÁÖ¼¼¿ä,
-// ÀûÁö ¾ÊÀ¸¸é Ãâ·Â¾ÈµË´Ï´Ù.(¿É¼Ç)
-// ¿¹·Î http://test.com/banner.gif
-$banner_images = str_replace("www.","",substr(zbUrl(),0,strpos(zbUrl(),"/bbs/")))."/rss/banner1.jpg";
-// ¹è³ÊÀÇ °¡·Î»çÀÌÁî
+// ë°°ë„ˆê°€ ìˆìœ¼ë©´ ë°°ë„ˆì´ë¯¸ì§€ì£¼ì†Œë¥¼ ì ì–´ì£¼ì„¸ìš”,
+// ì ì§€ ì•Šìœ¼ë©´ ì¶œë ¥ì•ˆë©ë‹ˆë‹¤.(ì˜µì…˜)
+// ì˜ˆë¡œ http://test.com/banner.gif
+$banner_images = str_replace("www.","",mb_substr(zbUrl(),0,mb_strpos(zbUrl(),"/bbs/")))."/rss/banner1.jpg";
+// ë°°ë„ˆì˜ ê°€ë¡œì‚¬ì´ì¦ˆ
 $width_w = "197";
-// ¹è³ÊÀÇ ¼¼·Î»çÀÌÁî 
+// ë°°ë„ˆì˜ ì„¸ë¡œì‚¬ì´ì¦ˆ 
 $height_h = "141";
-$site_names2 = "¾È³çÇÏ¼¼¿ä ÀÌÀ±ÂùÀÔ´Ï´Ù. ½Å·Ú°¡ ³ÑÄ¡´Â ³×Æ®¿öÅ© ¼¼»ó, ¿ì¸® ³×Æ¼ÁğµéÀÌ ¸¸µé¾î³ª°¡¾ß ÇÕ´Ï´Ù.";
+$site_names2 = "ì•ˆë…•í•˜ì„¸ìš” ì´ìœ¤ì°¬ì…ë‹ˆë‹¤. ì‹ ë¢°ê°€ ë„˜ì¹˜ëŠ” ë„¤íŠ¸ì›Œí¬ ì„¸ìƒ, ìš°ë¦¬ ë„¤í‹°ì¦Œë“¤ì´ ë§Œë“¤ì–´ë‚˜ê°€ì•¼ í•©ë‹ˆë‹¤.";
 
-// ÀúÀÛ±Ç Ç¥½Ã¸¦ ÇÏ½Ã°Ú´Ù¸é Ä«ÇÇ¶óÀÌÆ®¸¦ Àû¾îÁÖ¼¼¿ä.
-// ¿¹·Î Copyright 2004 - 2005 rwapm
-// ÀûÁö ¾ÊÀ¸¸é Ãâ·Â¾ÈµË´Ï´Ù.(¿É¼Ç)
+// ì €ì‘ê¶Œ í‘œì‹œë¥¼ í•˜ì‹œê² ë‹¤ë©´ ì¹´í”¼ë¼ì´íŠ¸ë¥¼ ì ì–´ì£¼ì„¸ìš”.
+// ì˜ˆë¡œ Copyright 2004 - 2005 rwapm
+// ì ì§€ ì•Šìœ¼ë©´ ì¶œë ¥ì•ˆë©ë‹ˆë‹¤.(ì˜µì…˜)
 $copyright_s = "Copyright 2008 - ".date("Y")." blrun";
 
-// À¥¸¶½ºÅÍ(°ü¸®ÀÚ) ÀÌ¸ŞÀÏ ÁÖ¼Ò
-// ¿¹·Î test@test.com
-// ÀûÁö ¾ÊÀ¸¸é Ãâ·Â¾ÈµË´Ï´Ù.(¿É¼Ç)
+// ì›¹ë§ˆìŠ¤í„°(ê´€ë¦¬ì) ì´ë©”ì¼ ì£¼ì†Œ
+// ì˜ˆë¡œ test@test.com
+// ì ì§€ ì•Šìœ¼ë©´ ì¶œë ¥ì•ˆë©ë‹ˆë‹¤.(ì˜µì…˜)
 $webMaster_q = "blrun39@hanafos.com";
 
-// ÅëÇÕÃßÃâ °Ô½ÃÆÇ ¾ÆÀÌµğ¸¦ Àû¾îÁÖ¼¼¿ä.
-// ¾ÆÀÌµğ|¾ÆÀÌµğ|¾ÆÀÌµğ Çü½ÄÀ¸·Î Ãß°¡°¡´É.
+// í†µí•©ì¶”ì¶œ ê²Œì‹œíŒ ì•„ì´ë””ë¥¼ ì ì–´ì£¼ì„¸ìš”.
+// ì•„ì´ë””|ì•„ì´ë””|ì•„ì´ë”” í˜•ì‹ìœ¼ë¡œ ì¶”ê°€ê°€ëŠ¥.
 $boardzero = "clmn1|blrun1|cap1|basket1|bug1|blog1";
 
-// ±İÁö½ÃÅ³ °Ô½ÃÆÇ ¾ÆÀÌµğ
-// ¾ÆÀÌµğ|¾ÆÀÌµğ|¾ÆÀÌµğ Çü½ÄÀ¸·Î Ãß°¡°¡´É.
+// ê¸ˆì§€ì‹œí‚¬ ê²Œì‹œíŒ ì•„ì´ë””
+// ì•„ì´ë””|ì•„ì´ë””|ì•„ì´ë”” í˜•ì‹ìœ¼ë¡œ ì¶”ê°€ê°€ëŠ¥.
 $board_close = "/add1|visit1|poll1|gal1|mov1|mov2|sell1|past1/i";
 
-// ¾Æ·¡ºÎÅÍ´Â ¼öÁ¤ ¾ÊÇÏ¼ÅµµµË´Ï´Ù.
+// ì•„ë˜ë¶€í„°ëŠ” ìˆ˜ì • ì•Ší•˜ì…”ë„ë©ë‹ˆë‹¤.
 if(preg_match($board_close,$id)) {
-echo "<?xml version=\"1.0\" encoding=\"euc-kr\"?>\n";
+echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 echo "<rss version=\"2.0\">";
 echo "<response>";
 echo "<error>1</error>";
-echo "<message>Àß¸øµÈ Á¢±Ù. ÇØ´ç °Ô½ÃÆÇÀº ÃßÃâÇÒ ¼ö ¾ø½À´Ï´Ù.</message>";
+echo "<message>ì˜ëª»ëœ ì ‘ê·¼. í•´ë‹¹ ê²Œì‹œíŒì€ ì¶”ì¶œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.</message>";
 echo "</response>";
 echo "</rss>";
 exit;
@@ -132,7 +132,7 @@ $grant_list[] = $setup0[grant_list];
 $li++;
 }
 }
-?><?="<?xml version=\"1.0\" encoding=\"EUC-KR\"?>\n" ?>
+?><?="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" ?>
 <rss version="2.0" xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
 <channel>
 <?if($copyright_s !=''){?><copyright><?=$copyright_s?></copyright><?}?>
@@ -174,12 +174,12 @@ if($title[$i]) $title_bbs = "".$title[$i].""; else $title_bbs = "".$bbs_tmp[$i].
 if($category[$i]) $use_category = "<category>".$title_bbs." > ".$category_name[$i]."</category>"; else $use_category = "";
 $memos = str_replace("\n", "<br />", $memo[$i]);
 $h_memos = $memo[$i];
-$file_name100 = str_replace("%2F","/",htmlspecialchars(urlencode($file_name1[$i])));
-$file_name200 = str_replace("%2F","/",htmlspecialchars(urlencode($file_name2[$i])));
-$file1_s = substr(strrchr($file_name1[$i], '.'), 1);
-$file2_s = substr(strrchr($file_name2[$i], '.'), 1);
-if(preg_match("#(jpg|png|gif|jpeg|bmp)$#i",$file1_s)) $file_name11="<img src=\"".$_zb_url.$file_name100."\" border=\"0\"><br /><br />"; elseif(preg_match("#(zip|exe|rar|alz|hwp|pdf|psd|ppt|txt|xls|fla|swf|ttf|asf|wma|avi|mp3|wmv)$#i",$file1_s)) $file_name11="´Ù¿î·Îµå1:<a href=\"".$_zb_url.$file_name100."\">".urldecode(basename($file_name100))."</a><br /><br />"; else $file_name11 = "";
-if(preg_match("#(jpg|png|gif|jpeg|bmp)$#i",$file2_s)) $file_name22="<img src=\"".$_zb_url.$file_name200."\" border=\"0\"><br /><br />"; elseif(preg_match("#(zip|exe|rar|alz|hwp|pdf|psd|ppt|txt|xls|fla|swf|ttf|asf|wma|avi|mp3|wmv)$#i",$file2_s)) $file_name22="´Ù¿î·Îµå2:<a href=\"".$_zb_url.$file_name200."\">".urldecode(basename($file_name200))."</a><br /><br />"; else $file_name22 = "";
+$file_name100 = str_replace("%2F","/",htmlspecialchars($file_name1[$i]));
+$file_name200 = str_replace("%2F","/",htmlspecialchars($file_name2[$i]));
+$file1_s = mb_substr(strrchr($file_name1[$i], '.'), 1);
+$file2_s = mb_substr(strrchr($file_name2[$i], '.'), 1);
+if(preg_match("#(jpg|png|gif|jpeg|bmp)$#i",$file1_s)) $file_name11="<img src=\"".$_zb_url.$file_name100."\" border=\"0\"><br /><br />"; elseif(preg_match("#(zip|exe|rar|alz|hwp|pdf|psd|ppt|txt|xls|fla|swf|ttf|asf|wma|avi|mp3|wmv)$#i",$file1_s)) $file_name11="ë‹¤ìš´ë¡œë“œ1:<a href=\"".$_zb_url.$file_name100."\">".basename($file_name100)."</a><br /><br />"; else $file_name11 = "";
+if(preg_match("#(jpg|png|gif|jpeg|bmp)$#i",$file2_s)) $file_name22="<img src=\"".$_zb_url.$file_name200."\" border=\"0\"><br /><br />"; elseif(preg_match("#(zip|exe|rar|alz|hwp|pdf|psd|ppt|txt|xls|fla|swf|ttf|asf|wma|avi|mp3|wmv)$#i",$file2_s)) $file_name22="ë‹¤ìš´ë¡œë“œ2:<a href=\"".$_zb_url.$file_name200."\">".basename($file_name200)."</a><br /><br />"; else $file_name22 = "";
 
 $sf1 = @filesize($file_name1[$i]);
 $sf2 = @filesize($file_name2[$i]);
@@ -214,13 +214,13 @@ elseif(preg_match("#(asf|wma|wmv)$#i",$file2_s)) $enclosure2 ="<enclosure url=\"
 else $enclosure2 ="";
 
 if($grant_list[$i]<$member[level] && !$is_admin) {
-$subject[$i] = "»ç¿ë±ÇÇÑÀÌ ¾ø½À´Ï´Ù.·Î±×ÀÎ ÇØÁÖ¼¼¿ä.";}
+$subject[$i] = "ì‚¬ìš©ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤.ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”.";}
 
 if($use_htmls[$i]==0) $memoss = "".$file_name11.$file_name22.$memos.""; else $memoss = "".$file_name11.$file_name22.$h_memos."";
 if($grant_view[$i]<$member[level]&&!$is_admin) {
-$memoss="³»¿ëº¸±â ±ÇÇÑÀÌ ¾ø½À´Ï´Ù.·Î±×ÀÎ ÇØÁÖ¼¼¿ä.";}
+$memoss="ë‚´ìš©ë³´ê¸° ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤.ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”.";}
 setlocale (LC_TIME,"ko");
-$name_sq = "<br /><br />ÀÛ¼ºÀÚ : ".$name[$i]."<br />ÀÛ¼ºÀÏÀÚ: ".strftime("%Y³â %m¿ù %dÀÏ %A %p %I:%M:%S",$datetm[$i]).""; 
+$name_sq = "<br /><br />ì‘ì„±ì : ".$name[$i]."<br />ì‘ì„±ì¼ì: ".strftime("%Yë…„ %mì›” %dì¼ %A %p %I:%M:%S",$datetm[$i]).""; 
 ?>
 <item>
 <title><?=$name[$i]?> - <?=htmlspecialchars($subject[$i])?><?=$comments?></title>

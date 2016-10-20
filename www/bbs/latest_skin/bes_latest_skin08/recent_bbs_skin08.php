@@ -1,6 +1,6 @@
 <?
 //////////////////////////////////////////////////
-// ÅëÇÕÄÚ¸àÆ® ½ºÅ²¹öÀü
+// í†µí•©ì½”ë©˜íŠ¸ ìŠ¤í‚¨ë²„ì „
 ///////////////////////////////////////////////////
 
 function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, $datetype="Y/m/d"){
@@ -8,7 +8,7 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 
 	$str = zReadFile($_zb_path."latest_skin/".$skinname."/main.html");
 	if(!$str) { 
-		echo "ÁöÁ¤ÇÏ½Å $skinname ÀÌ¶ó´Â ÃÖ±Ù¸ñ·Ï ½ºÅ²ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù<br>";
+		echo "ì§€ì •í•˜ì‹  $skinname ì´ë¼ëŠ” ìµœê·¼ëª©ë¡ ìŠ¤í‚¨ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤<br>";
 		return;
 	}
 	$tmpStr = explode("[loop]",$str);
@@ -20,7 +20,7 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 	$id=explode(",", $id_array);
 	$n=$num;
 
-	// ³¯Â¥¸¦ ¹è¿­·Î ¸¸µé¾î ³»¸²¼øÀ¸·Î Á¤¿­
+	// ë‚ ì§œë¥¼ ë°°ì—´ë¡œ ë§Œë“¤ì–´ ë‚´ë¦¼ìˆœìœ¼ë¡œ ì •ì—´
 	for($i=0;$i<count($id);$i++){
 		$result = mysql_query("select * from $t_comment"."_$id[$i]  order by no desc limit $num", $connect) or die(mysql_error());
 
@@ -29,18 +29,18 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 		}
 	}
 
-	// ³»¸²¼øÀ¸·Î µÈ ³¯Â¥¹è¿­
+	// ë‚´ë¦¼ìˆœìœ¼ë¡œ ëœ ë‚ ì§œë°°ì—´
 	$re_date=explode("|", $r_date);
 	rsort($re_date);
 
-	// »õ·Î Á¤¿­µÈ ³¯Â¥·Î µ¥ÀÌÅÍ¸¦ »Ì¾Æ¿Â´Ù
+	// ìƒˆë¡œ ì •ì—´ëœ ë‚ ì§œë¡œ ë°ì´í„°ë¥¼ ë½‘ì•„ì˜¨ë‹¤
 	for($j=0;$j<$n;$j++){
 		$_date=explode(";", $re_date[$j]);
 		// get memo data
 
 		$result = mysql_query("select * from $t_comment"."_$_date[1] where reg_date='$_date[0]'", $connect) or die(mysql_error());
 		if($data=mysql_fetch_array($result)){
-			// °Ô½ÃÆÇÅ¸ÀÌÆ² ¾øÀ¸¸é °Ô½ÃÆÇ¾ÆÀÌµğ Ãâ·Â
+			// ê²Œì‹œíŒíƒ€ì´í‹€ ì—†ìœ¼ë©´ ê²Œì‹œíŒì•„ì´ë”” ì¶œë ¥
 			$set=mysql_fetch_array(mysql_query("select * from zetyx_admin_table where name='$_date[1]'", $connect));
 			if(!$set[title])$subject=$_date[1];
 			else $subject = $set[title];
@@ -50,9 +50,9 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 			$name = del_html($data[name]);
 			$date = date($datetype, $data[reg_date]);
 			if($data[is_secret])
-				$memo = "<font color='gray'>ºñ¹Ğ µ¡±ÛÀÔ´Ï´Ù</font>";
+				$memo = "<font color='gray'>ë¹„ë°€ ë§ê¸€ì…ë‹ˆë‹¤</font>";
 			else {
-				// °èÃş ÄÚ¸àÆ® Ç¥½Ä ºÒ·¯¿Í Ã³¸®
+				// ê³„ì¸µ ì½”ë©˜íŠ¸ í‘œì‹ ë¶ˆëŸ¬ì™€ ì²˜ë¦¬
 				unset($c_match);
 				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
 					$data[memo] = str_replace($c_match[0],"",$data[memo]);
@@ -66,7 +66,7 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 			$main = str_replace("[date]",$date,$main);
 			$main = str_replace("[subject]","<a href='".$_zb_url.$target."&no=".$parent."' target=_self>[".$subject."]</a>",$main);
 			$main = str_replace("[comment]","<a href='".$_zb_url.$target."&no=".$parent."#$data[no]' target=_self>".$memo."</a>",$main);
-			// new ¾ÆÀÌÄÜ ´Ş±â 
+			// new ì•„ì´ì½˜ ë‹¬ê¸° 
 			$check_time=(time()-$data[reg_date])/60/60; 
 			if ($check_time<=48) 
 			{ 
@@ -78,7 +78,7 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 				$main = str_replace("[new]", "",$main); 
 			} 
 
-			// ¾ÆÀÌÄÜ ³¡ 
+			// ì•„ì´ì½˜ ë 
 			$main = str_replace("[name]","<a href='".$_zb_url.$target."&no=".$parent."#$data[no]' target=_self>".$name."</a>",$main);
 			$main = str_replace("[date]","<a href='".$_zb_url.$target."&no=".$parent."#$data[no]' target=_self>".$date."</a>",$main);
 			$main_data .= "".$main;

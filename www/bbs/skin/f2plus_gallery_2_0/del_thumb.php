@@ -44,10 +44,10 @@ $path=$zb_path."data/".$id."/thumbnail/";
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
+<HTML lang="ko">
 <HEAD>
-<meta http-equiv="content-type" content="text/html; charset=euc-kr">
-<TITLE>½æ³×ÀÏ »èÁ¦</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<TITLE>ì¸ë„¤ì¼ ì‚­ì œ</TITLE>
 </HEAD>
 <BODY onLoad='window.close();'>
 </BODY>

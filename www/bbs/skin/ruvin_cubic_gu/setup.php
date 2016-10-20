@@ -35,7 +35,7 @@ function show(down){
 </tr>
 <tr>
 	<td valign=bottom align=left class=cub>&nbsp;<span class=top>* Beautiful ones</span></td>
-	<td valign=bottom align=right class=cub><span class=v7><font title="È¸¿ø°¡ÀÔ"><?=$a_member_join?>*&nbsp;&nbsp;</font></a><font title="Á¤º¸¼öÁ¤"><?=$a_member_modify?>*&nbsp;&nbsp;</font></a><font title="ÂÊÁö»ç¿ë"><?=$a_member_memo?>*&nbsp;&nbsp;</font></a><font title="·Î±×ÀÎ"><?=$a_login?>*&nbsp;&nbsp;</font></a><font title="·Î±×¾Æ¿ô"><?=$a_logout?>*&nbsp;&nbsp;</font></a><font title="°ü¸®ÀÚ"><?=$a_setup?>*&nbsp;</font></a></span></td>
+	<td valign=bottom align=right class=cub><span class=v7><font title="íšŒì›ê°€ìž…"><?=$a_member_join?>*&nbsp;&nbsp;</font></a><font title="ì •ë³´ìˆ˜ì •"><?=$a_member_modify?>*&nbsp;&nbsp;</font></a><font title="ìª½ì§€ì‚¬ìš©"><?=$a_member_memo?>*&nbsp;&nbsp;</font></a><font title="ë¡œê·¸ì¸"><?=$a_login?>*&nbsp;&nbsp;</font></a><font title="ë¡œê·¸ì•„ì›ƒ"><?=$a_logout?>*&nbsp;&nbsp;</font></a><font title="ê´€ë¦¬ìž"><?=$a_setup?>*&nbsp;</font></a></span></td>
 </tr>
 <tr>
 	<td colspan=10 class=line1 height=1></td>

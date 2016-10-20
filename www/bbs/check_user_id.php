@@ -11,8 +11,8 @@ head();
 <tr>
   <td align=center>
 <?
-if($check[0]) echo "$user_id ´Â ÀÌ¹Ì µî·ÏµÈ<br> ¾ÆÀÌµğÀÔ´Ï´Ù";
-else echo "$user_id ´Â »ç¿ëÇÏ½Ç¼ö ÀÖ½À´Ï´Ù";
+if($check[0]) echo "$user_id ëŠ” ì´ë¯¸ ë“±ë¡ëœ<br> ì•„ì´ë””ì…ë‹ˆë‹¤";
+else echo "$user_id ëŠ” ì‚¬ìš©í•˜ì‹¤ìˆ˜ ìˆìŠµë‹ˆë‹¤";
 ?>
 
 </td>

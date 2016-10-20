@@ -1,5 +1,5 @@
 
-//====================[ sw_edit ÆÄÀÏ¸í: img_preview.js ]====================
+//====================[ sw_edit íŒŒì¼ëª…: img_preview.js ]====================
 
 var sw_newImg = new Image();
 var sw_fstr = /(.JPG|.JPEG|.GIF|.PNG|.BMP)$/i;

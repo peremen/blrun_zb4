@@ -1,47 +1,47 @@
 <?
 /*******************************************************************************
- * Zeroboard 4.1 pl2 ¿ÜºÎ ·Î±×ÀÎ ÆÄÀÏ
+ * Zeroboard 4.1 pl2 ì™¸ë¶€ ë¡œê·¸ì¸ íŒŒì¼
  *
- * ÀÌ ÆÄÀÏÀº ¿ÜºÎ·Î±×ÀÎÀ¸·Î »ç¿ëÇÒ½Ã¿¡ »ç¿ëÇÏ½Ã¸é µË´Ï´Ù.
+ * ì´ íŒŒì¼ì€ ì™¸ë¶€ë¡œê·¸ì¸ìœ¼ë¡œ ì‚¬ìš©í• ì‹œì— ì‚¬ìš©í•˜ì‹œë©´ ë©ë‹ˆë‹¤.
  *
- * »ç¿ë¹æ¹ıÀº ´ÙÀ½°ú °°½À´Ï´Ù.
+ * ì‚¬ìš©ë°©ë²•ì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤.
  *
- * ¿ÜºÎ·Î±×ÀÎÀ» ¿øÇÏ½Ã´Â ¹®¼­ÀÇ Á¦ÀÏ »ó´Ü¿¡ ´ÙÀ½°ú °°ÀÌ ÀÔ·ÂÇÏ¼¼¿ä
+ * ì™¸ë¶€ë¡œê·¸ì¸ì„ ì›í•˜ì‹œëŠ” ë¬¸ì„œì˜ ì œì¼ ìƒë‹¨ì— ë‹¤ìŒê³¼ ê°™ì´ ì…ë ¥í•˜ì„¸ìš”
  *
  * <? 
- *   $_zb_url = "http://µµ¸ŞÀÎ/Á¦·Îº¸µå°æ·Î/";                 // ³¡¿¡ ²À / ¸¦ ½áÁÖ¼¼¿ä
- *   $_zb_path = "/home/°èÁ¤¾ÆÀÌµğ/public_html/Á¦·Îº¸µå°æ·Î/"; // ³¡¿¡ ²À / ¸¦ ½áÁÖ¼¼¿ä
+ *   $_zb_url = "http://ë„ë©”ì¸/ì œë¡œë³´ë“œê²½ë¡œ/";                 // ëì— ê¼­ / ë¥¼ ì¨ì£¼ì„¸ìš”
+ *   $_zb_path = "/home/ê³„ì •ì•„ì´ë””/public_html/ì œë¡œë³´ë“œê²½ë¡œ/"; // ëì— ê¼­ / ë¥¼ ì¨ì£¼ì„¸ìš”
  *   include $_zb_path."outlogin.php"; 
  * ?>
  * 
  *
- * ±×·±ÈÄ ¿ÜºÎ·Î±×ÀÎ ÆûÀÌ³ª ·Î±×ÀÎ »óÅÂ¸¦ Ç¥½ÃÇÏ°í ½ÍÀº°÷¿¡ ´ÙÀ½°ú °°ÀÌ ÀÔ·ÂÇÏ¼¼¿ä
+ * ê·¸ëŸ°í›„ ì™¸ë¶€ë¡œê·¸ì¸ í¼ì´ë‚˜ ë¡œê·¸ì¸ ìƒíƒœë¥¼ í‘œì‹œí•˜ê³  ì‹¶ì€ê³³ì— ë‹¤ìŒê³¼ ê°™ì´ ì…ë ¥í•˜ì„¸ìš”
  *
- * <?print_outlogin("½ºÅ²ÀÌ¸§","±×·ì¹øÈ£","Çã¿ë·¹º§");?>
+ * <?print_outlogin("ìŠ¤í‚¨ì´ë¦„","ê·¸ë£¹ë²ˆí˜¸","í—ˆìš©ë ˆë²¨");?>
  *
  *
- * À§¿¡¼­ "/home/°èÁ¤ ¾ÆÀÌµğ/public_html/Á¦·Îº¸µå °æ·Î/" ¶ó´Â °ÍÀº Á¦·Îº¸µåÀÇ Àı´ë °æ·Î¸¦ ³ªÅ¸³À´Ï´Ù.
+ * ìœ„ì—ì„œ "/home/ê³„ì • ì•„ì´ë””/public_html/ì œë¡œë³´ë“œ ê²½ë¡œ/" ë¼ëŠ” ê²ƒì€ ì œë¡œë³´ë“œì˜ ì ˆëŒ€ ê²½ë¡œë¥¼ ë‚˜íƒ€ëƒ…ë‹ˆë‹¤.
  * 
- * À§¿¡¼­ $_zb_url °ú $_zb_path ´Â ²À Àû¾î ÁÖ¼Å¾ß ÇÕ´Ï´Ù.
+ * ìœ„ì—ì„œ $_zb_url ê³¼ $_zb_path ëŠ” ê¼­ ì ì–´ ì£¼ì…”ì•¼ í•©ë‹ˆë‹¤.
  *
- * Àı´ë°æ·Î´Â °ü¸®ÀÚ ÆäÀÌÁö ¸ŞÀÎ Á¦ÀÏ ¾Æ·¡¿¡ ÀÖ½À´Ï´Ù
+ * ì ˆëŒ€ê²½ë¡œëŠ” ê´€ë¦¬ì í˜ì´ì§€ ë©”ì¸ ì œì¼ ì•„ë˜ì— ìˆìŠµë‹ˆë‹¤
  *
- * À§¿Í °°ÀÌ ÇÏ¸é ·Î±×ÀÎÀÌ µÇ¾úÀ»¶§´Â ·Î±×ÀÎ Á¤º¸°¡, ±×·¸Áö ¾ÊÀº °æ¿ì¿¡´Â ·Î±×ÀÎ ÆûÀÌ ³ªÅ¸³³´Ï´Ù.
+ * ìœ„ì™€ ê°™ì´ í•˜ë©´ ë¡œê·¸ì¸ì´ ë˜ì—ˆì„ë•ŒëŠ” ë¡œê·¸ì¸ ì •ë³´ê°€, ê·¸ë ‡ì§€ ì•Šì€ ê²½ìš°ì—ëŠ” ë¡œê·¸ì¸ í¼ì´ ë‚˜íƒ€ë‚©ë‹ˆë‹¤.
  *
- * ·Î±×ÀÎ Á¤º¸¿Í ·Î±×ÀÎ ÆûÀ» ¼öÁ¤ÇÏ½Ç¶§¿¡´Â Á¦·Îº¸µå°æ·Î/outlogin_skin/ ¿¡ ÀÖ´Â ÆÄÀÏÀ» ¼öÁ¤ÇÏ½Ã¸é µË´Ï´Ù.
+ * ë¡œê·¸ì¸ ì •ë³´ì™€ ë¡œê·¸ì¸ í¼ì„ ìˆ˜ì •í•˜ì‹¤ë•Œì—ëŠ” ì œë¡œë³´ë“œê²½ë¡œ/outlogin_skin/ ì— ìˆëŠ” íŒŒì¼ì„ ìˆ˜ì •í•˜ì‹œë©´ ë©ë‹ˆë‹¤.
  *
- * ·Î±×ÀÎ µÇ¾î ÀÖ´Â »óÅÂ : logged.html
- * ·Î±×ÀÎ Æû : login.html
+ * ë¡œê·¸ì¸ ë˜ì–´ ìˆëŠ” ìƒíƒœ : logged.html
+ * ë¡œê·¸ì¸ í¼ : login.html
  *
- * À§ÀÇ µÎ ÆÄÀÏÀ» ¼öÁ¤ ÇÏ½Ã¸é µË´Ï´Ù.
+ * ìœ„ì˜ ë‘ íŒŒì¼ì„ ìˆ˜ì • í•˜ì‹œë©´ ë©ë‹ˆë‹¤.
  *
- * ±×¸®°í ¸¸¾à ¿øÇÏ´Â html ÆÄÀÏ¿¡¼­ ·¹º§¿¡ µû¸¥ ±ÇÇÑÀ» Á¦ÇÑ ÇÏ°í ½ÍÀ»¶§¿¡´Â $level º¯¼ö¸¦ ¼öÁ¤ÇÏ½Ã¸é µË´Ï´Ù.
+ * ê·¸ë¦¬ê³  ë§Œì•½ ì›í•˜ëŠ” html íŒŒì¼ì—ì„œ ë ˆë²¨ì— ë”°ë¥¸ ê¶Œí•œì„ ì œí•œ í•˜ê³  ì‹¶ì„ë•Œì—ëŠ” $level ë³€ìˆ˜ë¥¼ ìˆ˜ì •í•˜ì‹œë©´ ë©ë‹ˆë‹¤.
  *
- * ¶ó°í ÇÏ½Ã¸é 9ÀÌÇÏÀÇ ·¹º§¸¸ ÇØ´ç ÆäÀÌÁö¿¡ Á¢¼ÓÀÌ °¡´ÉÇÕ´Ï´Ù.
+ * ë¼ê³  í•˜ì‹œë©´ 9ì´í•˜ì˜ ë ˆë²¨ë§Œ í•´ë‹¹ í˜ì´ì§€ì— ì ‘ì†ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.
  *
- * ½ÇÁ¦ Àû¿ë ÆÄÀÏÀ» º¸½Ã·Á¸é outlogin_skin µğ·ºÅä¸®³»ÀÇ index.html ÆÄÀÏÀ» ¿­¾îº¸¼¼¿ä.
+ * ì‹¤ì œ ì ìš© íŒŒì¼ì„ ë³´ì‹œë ¤ë©´ outlogin_skin ë””ë ‰í† ë¦¬ë‚´ì˜ index.html íŒŒì¼ì„ ì—´ì–´ë³´ì„¸ìš”.
  *
- * ¿ÜºÎ·Î±×ÀÎ ¸ğ¾çÀ» ¹Ù²Ù½Ã·Á¸é outloing_skin µğ·ºÅä¸® ³»ÀÇ README.TXT ÆÄÀÏÀ» ²À ÀĞ¾î ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.
+ * ì™¸ë¶€ë¡œê·¸ì¸ ëª¨ì–‘ì„ ë°”ê¾¸ì‹œë ¤ë©´ outloing_skin ë””ë ‰í† ë¦¬ ë‚´ì˜ README.TXT íŒŒì¼ì„ ê¼­ ì½ì–´ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.
  *
  *******************************************************************************/
 global $member, $_head_php_excuted, $REQUEST_URI, $_zb_lib_included, $total_member_connect, $total_guest_connect;
@@ -50,44 +50,44 @@ global $a_member_join, $a_member_modify, $a_member_memo, $member_memo_icon, $mem
 if(preg_match("/:\/\//i",$_zb_path)||preg_match("/\.\./i",$_zb_path)) $_zb_path ="./";
 
 
-// outlogin.php ÆÄÀÏÀÌ include µÇ¾ú´ÂÁö¸¦ Ã¼Å©
+// outlogin.php íŒŒì¼ì´ include ë˜ì—ˆëŠ”ì§€ë¥¼ ì²´í¬
 if(!$_outlogin_include) {
 	$_outlogin_include = TRUE;
 } else {
 	return FALSE;
 }
 
-// Ã³À½¿¡ include µÇ¾úÀ»¶§ ÇÊ¿äÇÑ ÆÄÀÏÀ» include ÇÏ´Â ºÎºĞ
+// ì²˜ìŒì— include ë˜ì—ˆì„ë•Œ í•„ìš”í•œ íŒŒì¼ì„ include í•˜ëŠ” ë¶€ë¶„
 if(!$_head_php_excuted&&!$_zb_lib_included) {
 
-	// Á¦·Îº¸µå µğ·ºÅä¸® ÀÎÁö Ã¼Å©
+	// ì œë¡œë³´ë“œ ë””ë ‰í† ë¦¬ ì¸ì§€ ì²´í¬
 	if(!file_exists($_zb_path."lib.php")) {
-		echo "Á¦·Îº¸µå µğ·ºÅä¸®°¡ ¾Æ´Õ´Ï´Ù";
+		echo "ì œë¡œë³´ë“œ ë””ë ‰í† ë¦¬ê°€ ì•„ë‹™ë‹ˆë‹¤";
 		return;
 	}
 
-	// _head.php ÀĞÀ½
+	// _head.php ì½ìŒ
 	@include $_zb_path."_head.php";
 
 }
 
-// ¿ÜºÎ·Î±×ÀÎ Ãâ·Â ÇÔ¼ö
+// ì™¸ë¶€ë¡œê·¸ì¸ ì¶œë ¥ í•¨ìˆ˜
 function print_outlogin($skinname = "default", $group_no = 1, $level = "10") {
 	global $member, $_head_php_excuted, $REQUEST_URI, $total_member_connect, $total_guest_connect, $_zb_path, $_zb_url;
 	global $a_member_join, $a_member_modify, $a_member_memo, $member_memo_icon, $memo_on_sound, $a_logout, $a_login, $id, $PHP_SELF;
 
 	if($level < $member[level]) {
 ?>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script>
-	alert("ÀÎÁõµÈ È¸¿ø¸¸ Á¢±Ù °¡´ÉÇÕ´Ï´Ù");
+	alert("ì¸ì¦ëœ íšŒì›ë§Œ ì ‘ê·¼ ê°€ëŠ¥í•©ë‹ˆë‹¤");
 	history.back();
 </script>
 <?
 		exit;
 	}
 
-	// È¸¿ø Á¤º¸°¡ ÀÖ´ÂÁö ¾ø´ÂÁö¸¦ Ã¼Å©ÇØ¼­ ÇØ´ç ½ºÅ² ÆÄÀÏÀ» ÀĞÀ½
+	// íšŒì› ì •ë³´ê°€ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ë¥¼ ì²´í¬í•´ì„œ í•´ë‹¹ ìŠ¤í‚¨ íŒŒì¼ì„ ì½ìŒ
 	if(!$member[no]) {
 
 		$f = fopen($_zb_path."script/outlogin_script.php",r);
@@ -180,10 +180,10 @@ function print_outlogin($skinname = "default", $group_no = 1, $level = "10") {
 }
 
 /*******************************************************
- * ÃÖ±Ù¸ñ·Ï º¸¿©ÁÖ±â¸¦ À§ÇÑ ÇÔ¼ö ÁöÁ¤
+ * ìµœê·¼ëª©ë¡ ë³´ì—¬ì£¼ê¸°ë¥¼ ìœ„í•œ í•¨ìˆ˜ ì§€ì •
  ******************************************************/
 
-// ÃÖ±Ù ±Û ¸ñ·Ï (ÀÏ¹İ °Ô½ÃÆÇ Çü)
+// ìµœê·¼ ê¸€ ëª©ë¡ (ì¼ë°˜ ê²Œì‹œíŒ í˜•)
 function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d") {
 	global $_zb_path, $_zb_url, $connect, $t_board, $admin_table;
 
@@ -191,7 +191,7 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 
 	$str = zReadFile($_zb_path."latest_skin/".$skinname."/main.html");
 	if(!$str) { 
-		echo "ÁöÁ¤ÇÏ½Å $skinname ÀÌ¶ó´Â ÃÖ±Ù¸ñ·Ï ½ºÅ²ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù<br>";
+		echo "ì§€ì •í•˜ì‹  $skinname ì´ë¼ëŠ” ìµœê·¼ëª©ë¡ ìŠ¤í‚¨ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤<br>";
 		return;
 	}
 
@@ -207,7 +207,7 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 	$loop = $tmpStr2[0];
 	$footer = $tmpStr2[1];
 
-	// °øÁö»çÇ× Çü½ÄÀ» ¸¸µé¶§ »ç¿ë
+	// ê³µì§€ì‚¬í•­ í˜•ì‹ì„ ë§Œë“¤ë•Œ ì‚¬ìš©
 	if(preg_match("/\[notice\_/i",$header)) {
 		$data=mysql_fetch_array($result);
 		$memo = strip_tags($data[memo]);
@@ -250,7 +250,7 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 	echo $list;
 }
 
-// ÃÖ±Ù ¼³¹®Á¶»ç (ÀÏ¹İ °Ô½ÃÆÇ Çü)
+// ìµœê·¼ ì„¤ë¬¸ì¡°ì‚¬ (ì¼ë°˜ ê²Œì‹œíŒ í˜•)
 function print_survey($skinname, $title, $id, $textlen=30) {
 	global $_zb_path, $_zb_url, $connect, $t_board, $admin_table;
 
@@ -258,7 +258,7 @@ function print_survey($skinname, $title, $id, $textlen=30) {
 
 	$str = zReadFile($_zb_path."latest_skin/".$skinname."/main.html");
 	if(!$str) { 
-		echo "ÁöÁ¤ÇÏ½Å $skinname ÀÌ¶ó´Â ÃÖ±Ù¸ñ·Ï ½ºÅ²ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù<br>";
+		echo "ì§€ì •í•˜ì‹  $skinname ì´ë¼ëŠ” ìµœê·¼ëª©ë¡ ìŠ¤í‚¨ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤<br>";
 		return;
 	}
 
@@ -272,7 +272,7 @@ function print_survey($skinname, $title, $id, $textlen=30) {
 	$no = $tmpData[no];
 	$headnum = $tmpData[headnum];
 	$main_subject="<a href='".$_zb_url.$target."&no=$no'>".del_html(strip_tags($tmpData[subject]))."</a>";
-	if($tmpData[vote]) $main_vote = "[ÃÑ ".$tmpData[vote]."Ç¥]"; else $main_vote="";
+	if($tmpData[vote]) $main_vote = "[ì´ ".$tmpData[vote]."í‘œ]"; else $main_vote="";
 
 	$result = mysql_query("select * from $t_board"."_$id where headnum='$headnum' and arrangenum > 0 order by arrangenum", $connect) or die(mysql_error());
 
@@ -285,7 +285,7 @@ function print_survey($skinname, $title, $id, $textlen=30) {
 	$main_data = "";
 	while($data=mysql_fetch_array($result)) {
 		$subject = del_html(cut_str(strip_tags($data[subject]),$textlen))."</font></b>";
-		if($data[vote]) $vote = "[".$data[vote]."Ç¥]"; else $vote="";
+		if($data[vote]) $vote = "[".$data[vote]."í‘œ]"; else $vote="";
 		$main = $loop;
 		$main = str_replace("[subject]","<a href='".$_zb_url."apply_vote.php?id=$id&no=$no&sub_no=$data[no]'>".$subject."</a>",$main);
 		$main = str_replace("[vote]",$vote,$main);
@@ -300,7 +300,7 @@ function print_survey($skinname, $title, $id, $textlen=30) {
 	echo $list;
 }
 
-// °¶·¯¸® ÀÌ¹ÌÁö »Ì¾Æ¿À´Â ½ºÅ²
+// ê°¤ëŸ¬ë¦¬ ì´ë¯¸ì§€ ë½‘ì•„ì˜¤ëŠ” ìŠ¤í‚¨
 function print_gallery($skinname, $title, $id, $num=10, $xsize=80, $ysize=80, $xnum=10) {
 	global $_zb_path, $_zb_url, $connect, $t_board, $admin_table;
 
@@ -308,7 +308,7 @@ function print_gallery($skinname, $title, $id, $num=10, $xsize=80, $ysize=80, $x
 
 	$str = zReadFile($_zb_path."latest_skin/".$skinname."/main.html");
 	if(!$str) { 
-		echo "ÁöÁ¤ÇÏ½Å $skinname ÀÌ¶ó´Â ÃÖ±Ù¸ñ·Ï ½ºÅ²ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù<br>";
+		echo "ì§€ì •í•˜ì‹  $skinname ì´ë¼ëŠ” ìµœê·¼ëª©ë¡ ìŠ¤í‚¨ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤<br>";
 		return;
 	}
 

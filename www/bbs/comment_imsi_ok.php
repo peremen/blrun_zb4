@@ -16,7 +16,6 @@ if($member[no]) {
 	if(!get_magic_quotes_gpc()) {
 		$password = addslashes($password);
 	}
-	$name=iconv("utf-8","euc-kr",$name);
 	if(!get_magic_quotes_gpc()) {
 		$name= addslashes($name);
 	}
@@ -24,15 +23,10 @@ if($member[no]) {
 }
 
 // 패스워드를 암호화
-if(strlen($password)) {
+if(mb_strlen($password)) {
 	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
 	$password=$temp[0];   
 }
-
-$memo=iconv("utf-8","euc-kr",$memo);
-
-// 자동 저장 잘림 방지
-$memo=str_replace("&#160;"," ",$memo);
 
 if(!get_magic_quotes_gpc()) {
 	// 각종 변수의 addslashes 시킴;;
@@ -83,9 +77,6 @@ if($mode=="write"||($mode=="reply"&&$c_no)) {
 		$jsontable=comment_imsi_info($id,$c_no,$no,$ismember,$name,$password);
 	}
 }
-
-foreach($jsontable as $key=>$value)
-	$jsontable[$key]=iconv("euc-kr","utf-8",$value);
 
 print json_encode($jsontable);
 ?>

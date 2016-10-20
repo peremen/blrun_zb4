@@ -1,16 +1,16 @@
 <?
-/* Áö³­ ¹èÆ÷ ¹öÀü(1.2.7.4897 ¹öÀü)¿¡¼­ ¾È³»ÇØ µå¸°´ë·Î ¹é½½·¡½¬¸¦ DB¿¡¼­ ÇÑ¹ø ¸ðµç Å×ÀÌºí¿¡¼­ Á¦°ÅÇÏ½Å ºÐµéÀº 
-ÀÌ ½ºÅ©¸³Æ®¸¦ ½ÇÇàÇÏ½Ã¸é ¾ÈµË´Ï´Ù. ¹é½½·¡½¬´Â ÇÑ¹ø Á¦°ÅÇÒ ¶§¸¶´Ù HTMLÀÌ ´Ù¸£°Ô Ç¥½ÃµÇ¹Ç·Î ÁÖÀÇÇØ¾ß ÇÕ´Ï´Ù. ÀÌ
-½ºÅ©¸³Æ®´Â Á¦·Îº¸µå4.1pl8 ¹öÀüÀ» ¼³Ä¡ ÈÄ ÇÑ¹øµµ "¿ÀÇÂ¼Ò½º °Ô½ÃÆÇ ¼öÁ¤Áõº¸ÆÇ" À» ¼³Ä¡ÇÏÁö ¾Ê¾Ò´ø ºÐµéÀ» À§ÇÑ °Í
-ÀÌ¸ç ¶Ç ¼öÁ¤Áõº¸ÆÇÀÌ¶ó°í ÇÏ´õ¶óµµ 1.2.6.110 ¹öÀü Æ÷ÇÔ ÀÌÀü ¹öÀü ¼³Ä¡ÀÚµéÀº ÇØ´ç»çÇ×ÀÌ ¾øÀ¸¸ç 1.2.7.XXXX Æ÷ÇÔ 
-ÀÌÈÄ ¹öÀüºÎÅÍ Àû¿ëÇÏ±â À§ÇÑ ½ºÅ©¸³Æ®ÀÔ´Ï´Ù. ²À À¯³äÇÏ½Ã±â ¹Ù¶ø´Ï´Ù. ^^; */
+/* ì§€ë‚œ ë°°í¬ ë²„ì „(1.2.7.4897 ë²„ì „)ì—ì„œ ì•ˆë‚´í•´ ë“œë¦°ëŒ€ë¡œ ë°±ìŠ¬ëž˜ì‰¬ë¥¼ DBì—ì„œ í•œë²ˆ ëª¨ë“  í…Œì´ë¸”ì—ì„œ ì œê±°í•˜ì‹  ë¶„ë“¤ì€ 
+ì´ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì‹¤í–‰í•˜ì‹œë©´ ì•ˆë©ë‹ˆë‹¤. ë°±ìŠ¬ëž˜ì‰¬ëŠ” í•œë²ˆ ì œê±°í•  ë•Œë§ˆë‹¤ HTMLì´ ë‹¤ë¥´ê²Œ í‘œì‹œë˜ë¯€ë¡œ ì£¼ì˜í•´ì•¼ í•©ë‹ˆë‹¤. ì´
+ìŠ¤í¬ë¦½íŠ¸ëŠ” ì œë¡œë³´ë“œ4.1pl8 ë²„ì „ì„ ì„¤ì¹˜ í›„ í•œë²ˆë„ "ì˜¤í”ˆì†ŒìŠ¤ ê²Œì‹œíŒ ìˆ˜ì •ì¦ë³´íŒ" ì„ ì„¤ì¹˜í•˜ì§€ ì•Šì•˜ë˜ ë¶„ë“¤ì„ ìœ„í•œ ê²ƒ
+ì´ë©° ë˜ ìˆ˜ì •ì¦ë³´íŒì´ë¼ê³  í•˜ë”ë¼ë„ 1.2.6.110 ë²„ì „ í¬í•¨ ì´ì „ ë²„ì „ ì„¤ì¹˜ìžë“¤ì€ í•´ë‹¹ì‚¬í•­ì´ ì—†ìœ¼ë©° 1.2.7.XXXX í¬í•¨ 
+ì´í›„ ë²„ì „ë¶€í„° ì ìš©í•˜ê¸° ìœ„í•œ ìŠ¤í¬ë¦½íŠ¸ìž…ë‹ˆë‹¤. ê¼­ ìœ ë…í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤. ^^; */
 
 $_zb_path="./";
 include "lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
-if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("ÃÖ°í °ü¸®ÀÚ¸¸ÀÌ »ç¿ëÇÒ¼ö ÀÖ½À´Ï´Ù");
-// ½ÇÁ¦ °Ë»öºÎºÐ
+if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("ìµœê³  ê´€ë¦¬ìžë§Œì´ ì‚¬ìš©í• ìˆ˜ ìžˆìŠµë‹ˆë‹¤");
+// ì‹¤ì œ ê²€ìƒ‰ë¶€ë¶„
 $table_name_result=mysql_query("select name from $admin_table order by name",$connect) or error(mysql_error());
 
 head(" bgcolor=white");
@@ -33,19 +33,19 @@ while($table_data=mysql_fetch_array($table_name_result))
 	$table_name=$table_data[name];
 	$cnt1=0;
 
-	#\' ¸¦ ' ·Î Ä¡È¯
+	#\' ë¥¼ ' ë¡œ ì¹˜í™˜
 	mysql_query("UPDATE $t_board"."_$table_name SET subject=REPLACE(subject,\"\\\\'\",\"\\'\") where subject like \"%\\\\'%\"", $connect) or error(mysql_error());
 	$cnt1 += mysql_affected_rows();
 	mysql_query("UPDATE $t_board"."_$table_name SET memo=REPLACE(memo,\"\\\\'\",\"\\'\") where memo like \"%\\\\'%\"", $connect) or error(mysql_error());
 	$cnt1 += mysql_affected_rows();
 
-	#\" ¸¦ " ·Î Ä¡È¯
+	#\" ë¥¼ " ë¡œ ì¹˜í™˜
 	mysql_query("UPDATE $t_board"."_$table_name SET subject=REPLACE(subject,'\\\\\"','\\\"') where subject like '%\\\\\"%'", $connect) or error(mysql_error());
 	$cnt1 += mysql_affected_rows();
 	mysql_query("UPDATE $t_board"."_$table_name SET memo=REPLACE(memo,'\\\\\"','\\\"') where memo like '%\\\\\"%'", $connect) or error(mysql_error());
 	$cnt1 += mysql_affected_rows();
 
-	#\\ ¸¦ \ ·Î Ä¡È¯
+	#\\ ë¥¼ \ ë¡œ ì¹˜í™˜
 	mysql_query("UPDATE $t_board"."_$table_name SET subject=REPLACE(subject,'\\\\\\\\','\\\\') where subject like '%\\\\\\\\%'", $connect) or error(mysql_error());
 	$cnt1 += mysql_affected_rows();
 	mysql_query("UPDATE $t_board"."_$table_name SET memo=REPLACE(memo,'\\\\\\\\','\\\\') where memo like '%\\\\\\\\%'", $connect) or error(mysql_error());
@@ -53,40 +53,40 @@ while($table_data=mysql_fetch_array($table_name_result))
 ?>
 
 <br><br><br>
-&nbsp;&nbsp;<font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>°Ô½ÃÆÇ</b> <?=$cnt1?>°³ ¹é½½·¡½¬ Á¦°Å ¼º°ø!</font><br>
+&nbsp;&nbsp;<font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>ê²Œì‹œíŒ</b> <?=$cnt1?>ê°œ ë°±ìŠ¬ëž˜ì‰¬ ì œê±° ì„±ê³µ!</font><br>
 <br><img src=images/t.gif border=0 height=5><Br>
 <?
 	$cnt2=0;
 	
-	#\' ¸¦ ' ·Î Ä¡È¯
+	#\' ë¥¼ ' ë¡œ ì¹˜í™˜
 	mysql_query("UPDATE $t_comment"."_$table_name SET memo=REPLACE(memo,\"\\\\'\",\"\\'\") where memo like \"%\\\\'%\"", $connect) or error(mysql_error());
 	$cnt2 += mysql_affected_rows();
 
-	#\" ¸¦ " ·Î Ä¡È¯
+	#\" ë¥¼ " ë¡œ ì¹˜í™˜
 	mysql_query("UPDATE $t_comment"."_$table_name SET memo=REPLACE(memo,'\\\\\"','\\\"') where memo like '%\\\\\"%'", $connect) or error(mysql_error());
 	$cnt2 += mysql_affected_rows();
 
-	#\\ ¸¦ \ ·Î Ä¡È¯
+	#\\ ë¥¼ \ ë¡œ ì¹˜í™˜
 	mysql_query("UPDATE $t_comment"."_$table_name SET memo=REPLACE(memo,'\\\\\\\\','\\\\') where memo like '%\\\\\\\\%'", $connect) or error(mysql_error());
 	$cnt2 += mysql_affected_rows();
 ?>
 
 <br><br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<font size=3 style=font-family:tahoma;><?=$table_name?><b>°Ô½ÃÆÇÀÇ °£´ÜÇÑ ´ä±Û</b> <?=$cnt2?>°³ ¹é½½·¡½¬ Á¦°Å ¼º°ø!</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font size=3 style=font-family:tahoma;><?=$table_name?><b>ê²Œì‹œíŒì˜ ê°„ë‹¨í•œ ë‹µê¸€</b> <?=$cnt2?>ê°œ ë°±ìŠ¬ëž˜ì‰¬ ì œê±° ì„±ê³µ!</font><br>
 <img src=images/t.gif border=0 height=20><Br>
 
 <?
 
-	// º¯°æµÈ ·¹ÄÚµå ¼ö Ä«¿îÆ®
+	// ë³€ê²½ëœ ë ˆì½”ë“œ ìˆ˜ ì¹´ìš´íŠ¸
 	$hop += $cnt1+$cnt2;
 	$cnt1=0; $cnt2=0;
 }
 
-echo "¸ðµç °Ô½ÃÆÇ/µ¡±Û Å×ÀÌºí¿¡¼­ ¸ðµÎ {$hop}°³ ¹é½½·¡½¬ Á¦°Å¸¦ ÇÏ¿´½À´Ï´Ù.";
+echo "ëª¨ë“  ê²Œì‹œíŒ/ë§ê¸€ í…Œì´ë¸”ì—ì„œ ëª¨ë‘ {$hop}ê°œ ë°±ìŠ¬ëž˜ì‰¬ ì œê±°ë¥¼ í•˜ì˜€ìŠµë‹ˆë‹¤.";
 ?>
 <br><br><br>
 <script>
-alert("¸ðµç °Ô½ÃÆÇ/µ¡±Û Å×ÀÌºí¿¡¼­ ¸ðµÎ "+<?=$hop?>+"°³ ¹é½½·¡½¬ Á¦°Å¸¦ ÇÏ¿´½À´Ï´Ù.");
+alert("ëª¨ë“  ê²Œì‹œíŒ/ë§ê¸€ í…Œì´ë¸”ì—ì„œ ëª¨ë‘ "+<?=$hop?>+"ê°œ ë°±ìŠ¬ëž˜ì‰¬ ì œê±°ë¥¼ í•˜ì˜€ìŠµë‹ˆë‹¤.");
 </script>
 <?
 foot();

@@ -1,5 +1,5 @@
 
-<!--°¡·ÎÁ¡¼± -->
+<!--ê°€ë¡œì ì„  -->
 <table class=zv3_table width=<?=$width?> cellspacing=0 cellpadding=0 style=table-layout:fixed>
 <tr>
   <td colspan=2 height=1 background=<?=$dir?>/dot_line.gif></td>
@@ -30,17 +30,17 @@
     <col width=80></col><col width=></col><col width=80></col>
     <tr>
       <td align=center style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br><b>Option</b></td>
-      <td align=left style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTML»ç¿ë<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>ºñ¹Ð±Û<?=$hide_secret_end?> <font id="state"></font></td>
+      <td align=left style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTMLì‚¬ìš©<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>ë¹„ë°€ê¸€<?=$hide_secret_end?> <font id="state"></font></td>
       <td width=80>&nbsp;</td>
     </tr>
     <tr align=center> 
-<!--ÄÚ¸àÆ® ÀÌ¸§, ºñ¹ø, ³»¿ë ½ÃÀÛ-->
-      <td height=20 style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br><b>ÀÌ¸§</b></td>
-      <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>ÄÚ¸àÆ®</b> &nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick=zb_formresize(document.write.memo)></td>
+<!--ì½”ë©˜íŠ¸ ì´ë¦„, ë¹„ë²ˆ, ë‚´ìš© ì‹œìž‘-->
+      <td height=20 style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br><b>ì´ë¦„</b></td>
+      <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>ì½”ë©˜íŠ¸</b> &nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick=zb_formresize(document.write.memo)></td>
       <td>&nbsp;</td>
     </tr>
     <tr align=center valign=top>
-      <td width=80><?=$c_name?><?=$hide_c_password_start?><br><img src=images/t.gif border=0 height=10><br><font style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>ÆÐ½º¿öµå</b></font><br><img src=images/t.gif border=0 height=5><br><input type=password id=password name=password <?=size(8)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()"><br>ºñ¹øÀ» ÀçÀÔ·ÂÇÏ¸é ÀÓ½ÃÀúÀåÀÌ º¹¿øµÊ<?=$hide_c_password_end?></td>
+      <td width=80><?=$c_name?><?=$hide_c_password_start?><br><img src=images/t.gif border=0 height=10><br><font style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>íŒ¨ìŠ¤ì›Œë“œ</b></font><br><img src=images/t.gif border=0 height=5><br><input type=password id=password name=password <?=size(8)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()"><br>ë¹„ë²ˆì„ ìž¬ìž…ë ¥í•˜ë©´ ìž„ì‹œì €ìž¥ì´ ë³µì›ë¨<?=$hide_c_password_end?></td>
       <td>
         <table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
         <tr><td width=100% valign=top>
@@ -48,7 +48,7 @@
         </tr>
         </table>
       </td>
-      <td valign=middle><input type=button class=zv3_submit value='ÀÓ½ÃÀúÀå' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit <?if($browser){?>class=zv3_submit<?}?> value='ÀÛ¼º¿Ï·á' accesskey="s" style="height:50%"></td>
+      <td valign=middle><input type=button class=zv3_submit value='ìž„ì‹œì €ìž¥' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit <?if($browser){?>class=zv3_submit<?}?> value='ìž‘ì„±ì™„ë£Œ' accesskey="s" style="height:50%"></td>
     </tr>
     </table>
     <table border=0 cellspacing=2 cellpadding=0 width=100% height=20>

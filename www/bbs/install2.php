@@ -15,31 +15,31 @@ head();
   </td>
 </tr>
 </table>
-<!-- ±âº» Á¤º¸ ÀÔ·Â¹Ş´Â°÷ -->
+<!-- ê¸°ë³¸ ì •ë³´ ì…ë ¥ë°›ëŠ”ê³³ -->
 <script>
  function check_submit()
  {
   if(!write.user_id.value)
   {
-   alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+   alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
    write.user_id.focus();
    return false;
   }
   if(!write.password1.value)
   {
-   alert("Password¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+   alert("Passwordë¥¼ ì…ë ¥í•˜ì„¸ìš”");
    write.password1.focus();
    return false;
   }
   if(!write.password2.value)
   {
-   alert("Confirm Password¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+   alert("Confirm Passwordë¥¼ ì…ë ¥í•˜ì„¸ìš”");
    write.password2.focus();
    return false;
   }
   if(write.password1.value!=write.password2.value)
   {
-   alert("Password°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù");
+   alert("Passwordê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
    write.password1.value="";
    write.password2.value="";
    write.password1.focus();
@@ -47,7 +47,7 @@ head();
   }
   if(!write.name.value)
   {
-   alert("Name¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
+   alert("Nameë¥¼ ì…ë ¥í•˜ì„¸ìš”");
    write.name.focus();
    return false;
   }

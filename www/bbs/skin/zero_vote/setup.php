@@ -1,27 +1,27 @@
 <? 
   /*
-  ÀÌ ÆÄÀÏÀº °Ô½ÃÆÇ¿¡¼­ »ó´ÜÀÇ »óÅÂ¸¦ º¸¿©ÁÝ´Ï´Ù.
+  ì´ íŒŒì¼ì€ ê²Œì‹œíŒì—ì„œ ìƒë‹¨ì˜ ìƒíƒœë¥¼ ë³´ì—¬ì¤ë‹ˆë‹¤.
   
-  <?=$width?> : °Ô½ÃÆÇÀÇ °¡·ÎÅ©±â
-  <?=$dir?> : ½ºÅ²µð·ºÅä¸®¸¦ °¡¸®Åµ´Ï´Ù.
-  <?=$total?> : ÀüÃ¼ ±Û¼ö
-  <?=$total_page?> : ÀüÃ¼ ÆäÀÌÁö¼ö
-  <?=$a_status?> : Åë°è¸µÅ©
-  <?=$a_login?> : ·Î±×ÀÎ ¹öÆ°
-  <?=$a_logout?> : ·Î±×¿ÀÇÁ¹öÆ°
-  <?=$page?> : ÇöÀçÆäÀÌÁö Ç¥½Ã
+  <?=$width?> : ê²Œì‹œíŒì˜ ê°€ë¡œí¬ê¸°
+  <?=$dir?> : ìŠ¤í‚¨ë””ë ‰í† ë¦¬ë¥¼ ê°€ë¦¬í‚µë‹ˆë‹¤.
+  <?=$total?> : ì „ì²´ ê¸€ìˆ˜
+  <?=$total_page?> : ì „ì²´ íŽ˜ì´ì§€ìˆ˜
+  <?=$a_status?> : í†µê³„ë§í¬
+  <?=$a_login?> : ë¡œê·¸ì¸ ë²„íŠ¼
+  <?=$a_logout?> : ë¡œê·¸ì˜¤í”„ë²„íŠ¼
+  <?=$page?> : í˜„ìž¬íŽ˜ì´ì§€ í‘œì‹œ
 
-  <?=$a_member_join?> : È¸¿ø°¡ÀÔ
-  <?=$a_member_modify?> : È¸¿øÁ¤º¸¼öÁ¤
-  <?=$a_member_memo?> : ÂÊÁö;;
-  <?=$member_memo_icon?> : ÂÊÁö¾ÆÀÌÄÜ;;
-  <?=$memo_on_sound?> : ÂÊÁö°¡ ¿ÔÀ»¶§ ¼Ò¸® ³ª¿À´Â º¯¼ö memo_on.swf
+  <?=$a_member_join?> : íšŒì›ê°€ìž…
+  <?=$a_member_modify?> : íšŒì›ì •ë³´ìˆ˜ì •
+  <?=$a_member_memo?> : ìª½ì§€;;
+  <?=$member_memo_icon?> : ìª½ì§€ì•„ì´ì½˜;;
+  <?=$memo_on_sound?> : ìª½ì§€ê°€ ì™”ì„ë•Œ ì†Œë¦¬ ë‚˜ì˜¤ëŠ” ë³€ìˆ˜ memo_on.swf
 
-  <?=$total_connect?> : ÇöÀç ÀüÃ¼ È¸¿ø ·Î±×ÀÎ¼ö
-  <?=$group_connect?> : ÇöÀç ±×·ì ·Î±×ÀÎ¼ö
+  <?=$total_connect?> : í˜„ìž¬ ì „ì²´ íšŒì› ë¡œê·¸ì¸ìˆ˜
+  <?=$group_connect?> : í˜„ìž¬ ê·¸ë£¹ ë¡œê·¸ì¸ìˆ˜
 
-  * ÂÊÁö¾ÆÀÌÄÜÀº member_memo_on.gif, member_memo_off.gif ÆÄÀÏÀÌ ÀÖ½À´Ï´Ù. (±âº»)
-    member_memo_on.gif´Â »õ·Î¿î ÂÊÁö°¡ ÀÖÀ»¶§, ±Û°í member_memo_off.gif´Â »õÂÊÁö°¡ ¾øÀ»¶§ÀÔ´Ï´Ù;;
+  * ìª½ì§€ì•„ì´ì½˜ì€ member_memo_on.gif, member_memo_off.gif íŒŒì¼ì´ ìžˆìŠµë‹ˆë‹¤. (ê¸°ë³¸)
+    member_memo_on.gifëŠ” ìƒˆë¡œìš´ ìª½ì§€ê°€ ìžˆì„ë•Œ, ê¸€ê³  member_memo_off.gifëŠ” ìƒˆìª½ì§€ê°€ ì—†ì„ë•Œìž…ë‹ˆë‹¤;;
 
   */ 
 ?>
@@ -39,7 +39,7 @@ function swapImage() {
    if ((x=findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
 }
 </script>
-<!-- HTML ½ÃÀÛ -->
+<!-- HTML ì‹œìž‘ -->
 <? 
 if(preg_match("#:\/\/#i",$dir)||preg_match("#\.\.#i",$dir)||preg_match("#^\/#i",$dir)||preg_match("#data:;#i",$dir)||preg_match("#:#i",$dir)) $dir="./";
 include "$dir/value.php3"; 

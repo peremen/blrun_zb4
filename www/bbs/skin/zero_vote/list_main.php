@@ -49,9 +49,9 @@ else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$commen
 		<td background=<?=$dir?>/4.gif><img src=<?=$dir?>/4.gif border=0></td>
 		<td style='word-break:break-all;'>
 	<?
-	//// »èÁ¦ÇÏÁö ¸¶¼¼¿ä;; ¼³¹®Á¶»ç¸¦ À§ÇÑ ÇÁ·Î±×·¥ ºÒ·¯¿À´Â ºÎºĞÀÔ´Ï´Ù //////
+	//// ì‚­ì œí•˜ì§€ ë§ˆì„¸ìš”;; ì„¤ë¬¸ì¡°ì‚¬ë¥¼ ìœ„í•œ í”„ë¡œê·¸ë¨ ë¶ˆëŸ¬ì˜¤ëŠ” ë¶€ë¶„ì…ë‹ˆë‹¤ //////
 	include "include/vote_check.php";
-	//// À§ÀÇ ÆÄÀÏ¿¡¼­´Â ÇöÀç ½ºÅ²µğ·ºÅä¸®ÀÇ vote_list.phpÆÄÀÏÀ» ºÒ·¯¾¹´Ï´Ù///
+	//// ìœ„ì˜ íŒŒì¼ì—ì„œëŠ” í˜„ì¬ ìŠ¤í‚¨ë””ë ‰í† ë¦¬ì˜ vote_list.phpíŒŒì¼ì„ ë¶ˆëŸ¬ì”ë‹ˆë‹¤///
 	?>
 
 		</td>
@@ -59,7 +59,7 @@ else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$commen
 	</tr>
 	<tr>
 		<td background=<?=$dir?>/4.gif><img src=<?=$dir?>/4.gif border=0></td>
-		<td align=left><font color="blue">ÅõÇ¥ÇÕ°è °ËÁõ: </font>°³º°ÅõÇ¥¼ö¿Í ÀüÃ¼ ÅõÇ¥¼ö°¡ <? if(($data[vote]==1&&$hop_vote==0)||$data[vote]==$hop_vote) echo "ÀÏÄ¡ÇÔ"; else echo "<font color='red'>ÀÏÄ¡ÇÏÁö ¾ÊÀ½!</font>"; ?></td>
+		<td align=left><font color="blue">íˆ¬í‘œí•©ê³„ ê²€ì¦: </font>ê°œë³„íˆ¬í‘œìˆ˜ì™€ ì „ì²´ íˆ¬í‘œìˆ˜ê°€ <? if(($data[vote]==1&&$hop_vote==0)||$data[vote]==$hop_vote) echo "ì¼ì¹˜í•¨"; else echo "<font color='red'>ì¼ì¹˜í•˜ì§€ ì•ŠìŒ!</font>"; ?></td>
 		<td background=<?=$dir?>/6.gif><img src=<?=$dir?>/6.gif border=0></td>
 	</tr>
 	<tr>

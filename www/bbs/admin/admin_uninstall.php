@@ -1,9 +1,9 @@
 <?
 if($exec=="uninstall"&&$uninstall=="ok"&&$member[is_admin]==1) {
-	if(!$u_hostname) Error("HostnameÀ» ÀÔ·ÂÇÏ¼¼¿ä");
-	if(!$u_userid) Error("User ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-	if(!$u_password) Error("Password¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-	if(!$u_dbname) Error("DB NameÀ» ÀÔ·ÂÇÏ¼¼¿ä");
+	if(!$u_hostname) Error("Hostnameì„ ìž…ë ¥í•˜ì„¸ìš”");
+	if(!$u_userid) Error("User IDë¥¼ ìž…ë ¥í•˜ì„¸ìš”");
+	if(!$u_password) Error("Passwordë¥¼ ìž…ë ¥í•˜ì„¸ìš”");
+	if(!$u_dbname) Error("DB Nameì„ ìž…ë ¥í•˜ì„¸ìš”");
 
 	mysql_close($connect);
 
@@ -19,28 +19,28 @@ if($exec=="uninstall"&&$uninstall=="ok"&&$member[is_admin]==1) {
 	zRmDir("./icon");
 	z_unlink("./myZrCnf2019.php");
 
-	error("Á¦·Îº¸µå°¡ ¼­¹ö¿¡¼­ ¿ÏÀüÈ÷ Á¦°ÅµÇ¾ú½À´Ï´Ù","install.php"); 
+	error("ì œë¡œë³´ë“œê°€ ì„œë²„ì—ì„œ ì™„ì „ížˆ ì œê±°ë˜ì—ˆìŠµë‹ˆë‹¤","install.php"); 
 	exit();
 }
 ?>
 
 <table border=0 cellspacing=0 cellpadding=10 bgcolor=eeeeee width=100% height=100%>
-<form name=uninstall method=post onsubmit="return confirm('Á¦°ÅÇÏ½Ã°Ú½À´Ï±î?')">
+<form name=uninstall method=post onsubmit="return confirm('ì œê±°í•˜ì‹œê² ìŠµë‹ˆê¹Œ?')">
 <input type=hidden name=exec value="uninstall">
 <input type=hidden name=uninstall value="ok">
 <tr>
 	<td valign=top style=line-height:160% align=center>
 	<br>
-	<font size=4 color=black><b>Á¦·Îº¸µå Á¦°Å</b><br></font>
+	<font size=4 color=black><b>ì œë¡œë³´ë“œ ì œê±°</b><br></font>
 	<br>
 	<font color=black>
 	<table border=0>
 	<tr>
 		<td style=line-height:160%;color=black>
-			Á¦·Îº¸µå¸¦ Á¦°ÅÇÏ½Ã±â Àü¿¡ ²À DB ¹é¾÷À» ÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br>
-			»ó´ÜÀÇ <b>DB ¹é¾÷</b> ¹öÆ°À» ´©¸£¸é ÇöÀç Á¦·Îº¸µåÀÇ ¸ðµç Å×ÀÌºíÀ» ¹é¾÷ ¹ÞÀ¸½Ç¼ö ÀÖ½À´Ï´Ù.<br>
-			¹é¾÷À» ¹ÞÀ¸¼Ì´Ù¸é ¾Æ·¡ÀÇ DB Á¤º¸¸¦ ÀÔ·ÂÇÏ½Ã°í È®ÀÎ ¹öÆ°À» ´©¸£½Ã¸é Á¦·Îº¸µå´Â Á¦°Å°¡ µË´Ï´Ù.<br>
-			Á¦·Îº¸µå Á¦°Å½Ã DBÀÇ Á¤º¸¿Í data, icon, myZrCnf2019.php µîÀÇ ÆÄÀÏ±îÁö ¸ðµÎ »èÁ¦°¡ µË´Ï´Ù.<br>
+			ì œë¡œë³´ë“œë¥¼ ì œê±°í•˜ì‹œê¸° ì „ì— ê¼­ DB ë°±ì—…ì„ í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.<br>
+			ìƒë‹¨ì˜ <b>DB ë°±ì—…</b> ë²„íŠ¼ì„ ëˆ„ë¥´ë©´ í˜„ìž¬ ì œë¡œë³´ë“œì˜ ëª¨ë“  í…Œì´ë¸”ì„ ë°±ì—… ë°›ìœ¼ì‹¤ìˆ˜ ìžˆìŠµë‹ˆë‹¤.<br>
+			ë°±ì—…ì„ ë°›ìœ¼ì…¨ë‹¤ë©´ ì•„ëž˜ì˜ DB ì •ë³´ë¥¼ ìž…ë ¥í•˜ì‹œê³  í™•ì¸ ë²„íŠ¼ì„ ëˆ„ë¥´ì‹œë©´ ì œë¡œë³´ë“œëŠ” ì œê±°ê°€ ë©ë‹ˆë‹¤.<br>
+			ì œë¡œë³´ë“œ ì œê±°ì‹œ DBì˜ ì •ë³´ì™€ data, icon, myZrCnf2019.php ë“±ì˜ íŒŒì¼ê¹Œì§€ ëª¨ë‘ ì‚­ì œê°€ ë©ë‹ˆë‹¤.<br>
 		</td>
 	</tr>
 	</table>
@@ -63,7 +63,7 @@ if($exec=="uninstall"&&$uninstall=="ok"&&$member[is_admin]==1) {
 		<td bgcolor=f3f3f3><input type=input name=u_dbname value="" class=input size=20></td>
 	</tr>
 	<tr>
-		<td colspan=2 bgcolor=555555 align=center><input type=submit value="    È®        ÀÎ    " style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;></td>
+		<td colspan=2 bgcolor=555555 align=center><input type=submit value="    í™•        ì¸    " style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;></td>
 	</tr>
 	</table>
 	</td>

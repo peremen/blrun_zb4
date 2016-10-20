@@ -8,10 +8,10 @@ $a_c_vote="$dir/vote.php?id=$id&no=$data[no]&c_no=$t_c[no]&who=$member[no]";
 $c_vote=$t_c[vote];
 if ($t_c[point1]!=0){
 	for($i=1;$i<=$t_c[point1];$i++){
-		$_point.="°⁄";
+		$_point.="‚òÖ";
 	}
 }
-if($t_c[point2]==1) $_point=$_point."°Ÿ";
+if($t_c[point2]==1) $_point=$_point."‚òÜ";
 $c_colspan=2;
 if($member[no]){
 	$c_colspan=3;
@@ -40,7 +40,7 @@ if($member[no]){
 		<?
 		if($o_data[ismember]=="") $ismember0="0"; else $ismember0=$o_data[ismember];
 		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$ismember0!=$member[no]&&$member[level]>$setup[grant_view_secret])
-			echo "<span style='color:gray;font-size:10pt'>∫Òπ– µ°±€¿‘¥œ¥Ÿ</span>";
+			echo "<span style='color:gray;font-size:10pt'>ÎπÑÎ∞Ä ÎçßÍ∏ÄÏûÖÎãàÎã§</span>";
 		else {
 		?>
 
@@ -50,11 +50,11 @@ if($member[no]){
 
 		<br><font class=com2><?if($c_data[is_secret]) echo "<img src=".$dir."/images/post_security.gif border=0>";?><?if(preg_match("#\|\|\|[0-9]{1,}\|[0-9]{1,10}$#",$o_data[memo])) echo "<font color=blue>To $o_data[name]</font>";?>
 
-		<!-- µ°±€ ≥ªøÎ Ω√¿€ -->
+		<!-- ÎçßÍ∏Ä ÎÇ¥Ïö© ÏãúÏûë -->
 		<div id=IAMCONT_<?=$c_data[no]?>></div>
 		<textarea style='display:none' id=IAMAREA_<?=$c_data[no]?>><?=$c_memo?></textarea>
 		<script>document.getElementById("IAMCONT_"+<?=$c_data[no]?>).innerHTML = document.getElementById("IAMAREA_"+<?=$c_data[no]?>).value</script>
-		<!-- µ°±€ ≥ªøÎ ≥° -->
+		<!-- ÎçßÍ∏Ä ÎÇ¥Ïö© ÎÅù -->
 		</font>
 		<? } ?>
 

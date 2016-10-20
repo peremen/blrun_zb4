@@ -1,13 +1,13 @@
 <?
 include "lib.php";
 
-// DB ¿¬°á
+// DB ì—°ê²°
 if(!$connect) $connect=dbConn();
 
-// ¸â¹ö Á¤º¸ ±¸ÇØ¿À±â
+// ë©¤ë²„ ì •ë³´ êµ¬í•´ì˜¤ê¸°
 $member=member_info();
 
-if(!$member[no]) Error("·Î±×ÀÎ »óÅÂ°¡ ¾Æ´Õ´Ï´Ù");
+if(!$member[no]) Error("ë¡œê·¸ì¸ ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤");
 
 if(!$group_no) $group_no=$member[group_no];
 
@@ -18,12 +18,12 @@ if($setup[group_no]&&!$group_no) $group_no=$setup[group_no];
 mysql_close($connect);
 
 destroyZBSessionID($member[no]);
-// ÅäÅ« ÃÊ±âÈ­
+// í† í° ì´ˆê¸°í™”
 $_SESSION['_token']='';
 setCookie("token","",0,"/","");
 $_SESSION['_token2']='';
 setCookie("token2","",0,"/","");
-// 5.3 ÀÌ»ó¿ë ¼¼¼Ç Ã³¸®
+// 5.3 ì´ìƒìš© ì„¸ì…˜ ì²˜ë¦¬
 $_SESSION['zb_logged_no']='';
 $_SESSION['zb_logged_time']='';
 $_SESSION['zb_logged_ip']='';

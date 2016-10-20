@@ -1,31 +1,31 @@
 <?
 /**********************************************************************************
-* °øÅë ÆÄÀÏ include
+* ê³µí†µ íŒŒì¼ include
 *********************************************************************************/
 include "_head.php";
 
 /**********************************************************************************
-* ¼³Á¤ Ã¼Å©
+* ì„¤ì • ì²´í¬
 *********************************************************************************/
-// ±×·ì Á¤º¸ ±¸ÇØ¿À±â
+// ê·¸ë£¹ ì •ë³´ êµ¬í•´ì˜¤ê¸°
 $setup=get_table_attrib($id);
 
-// »ç¿ë±ÇÇÑ Ã¼Å©
-if($exec=="view_all"&&$setup[grant_view]<$member[level]&&!$is_admin) Error("»ç¿ë±ÇÇÑÀÌ ¾ø½À´Ï´Ù","login.php?id=$id&page=$page&page_num=$page_num&category=$category&keykind=$keykind&keyword=$keyword&no=$no&file=zboard.php");
+// ì‚¬ìš©ê¶Œí•œ ì²´í¬
+if($exec=="view_all"&&$setup[grant_view]<$member[level]&&!$is_admin) Error("ì‚¬ìš©ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤","login.php?id=$id&page=$page&page_num=$page_num&category=$category&keykind=$keykind&keyword=$keyword&no=$no&file=zboard.php");
 
 if($exec!="view_all") unset($setup);
 
-if(!$is_admin&&$exec!="view_all") Error("»ç¿ë±ÇÇÑÀÌ ¾ø½À´Ï´Ù","login.php?id=$id&page=$page&page_num=$page_num&category=$category&keykind=$keykind&keyword=$keyword&no=$no&file=zboard.php");
+if(!$is_admin&&$exec!="view_all") Error("ì‚¬ìš©ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤","login.php?id=$id&page=$page&page_num=$page_num&category=$category&keykind=$keykind&keyword=$keyword&no=$no&file=zboard.php");
 
 $select_list=$selected; 
 $selected=explode(";",$selected);
 
-if($exec=="copy_all") $_kind = "º¹»ç";
-elseif($exec=="move_all") $_kind = "ÀÌµ¿";
-elseif($exec=="delete_all") $_kind = "»èÁ¦";
+if($exec=="copy_all") $_kind = "ë³µì‚¬";
+elseif($exec=="move_all") $_kind = "ì´ë™";
+elseif($exec=="delete_all") $_kind = "ì‚­ì œ";
 
 /**********************************************************************************
-* ÂÊÁö º¸³»´Â ÇÔ¼ö °£´ÜÇÏ°Ô »ç¿ëÇÒ¼ö ÀÖ´Â °Í
+* ìª½ì§€ ë³´ë‚´ëŠ” í•¨ìˆ˜ ê°„ë‹¨í•˜ê²Œ ì‚¬ìš©í• ìˆ˜ ìˆëŠ” ê²ƒ
 *********************************************************************************/
 function _send_message($to, $from, $subject, $memo) {
 
@@ -43,7 +43,7 @@ function _send_message($to, $from, $subject, $memo) {
 }
 
 /**********************************************************************************
-* View_All ÀÏ¶§ (¼±ÅÃµÈ °Ô½Ã¹° º¸±â)
+* View_All ì¼ë•Œ (ì„ íƒëœ ê²Œì‹œë¬¼ ë³´ê¸°)
 *********************************************************************************/
 
 if($exec=="view_all") {
@@ -56,7 +56,7 @@ if($exec=="view_all") {
 
 	//global $max_depth;
 
-	// »ó´Ü ÇöÈ² ºÎºĞ Ãâ·Â
+	// ìƒë‹¨ í˜„í™© ë¶€ë¶„ ì¶œë ¥
 	include "$dir/setup.php";
 
 	$all_depth = 0;
@@ -67,7 +67,7 @@ if($exec=="view_all") {
 		if($all_depth<$max_depth) $all_depth=$max_depth;
 	}
 
-	// layer Ãâ·Â
+	// layer ì¶œë ¥
 	if($zbLayer) {
 		echo "\n<script>".$zbLayer."\n</script>";
 		unset($zbLayer);
@@ -75,12 +75,12 @@ if($exec=="view_all") {
 
 	foot('',$all_depth);
 ?>
-<!-- ºê¶ó¿ìÀú ·Îµù½Ã°£ ±¸ÇÏ±â ½ºÅ©¸³Æ® Ãâ·Â -->
+<!-- ë¸Œë¼ìš°ì € ë¡œë”©ì‹œê°„ êµ¬í•˜ê¸° ìŠ¤í¬ë¦½íŠ¸ ì¶œë ¥ -->
 <script>
 function Result() {
 	var nEnd =  new Date().getTime();
 	var nDiff = nEnd - <?=$nStart?>;
-	document.getElementById('print').innerHTML = 'Ä«Æ® ¸ñ·Ï ÀüÃ¼ ÆäÀÌÁö¸¦ ·ÎµùÇÏ´Âµ¥ ' + nDiff + 'ms(' + nDiff/1000 + 'ÃÊ) ½Ã°£ÀÌ °É·È½À´Ï´Ù!';
+	document.getElementById('print').innerHTML = 'ì¹´íŠ¸ ëª©ë¡ ì „ì²´ í˜ì´ì§€ë¥¼ ë¡œë”©í•˜ëŠ”ë° ' + nDiff + 'ms(' + nDiff/1000 + 'ì´ˆ) ì‹œê°„ì´ ê±¸ë ¸ìŠµë‹ˆë‹¤!';
 }
 addLoadEvent(Result);
 </script>
@@ -89,7 +89,7 @@ addLoadEvent(Result);
 }
 
 /**********************************************************************************
-* Delete_All ÀÏ¶§ (¼±ÅÃµÈ °Ô½Ã¹° »èÁ¦)
+* Delete_All ì¼ë•Œ (ì„ íƒëœ ê²Œì‹œë¬¼ ì‚­ì œ)
 *********************************************************************************/
 
 elseif($exec=="delete_all") {
@@ -98,24 +98,24 @@ elseif($exec=="delete_all") {
 
 		$temp=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$selected[$i]'"));
 
-		// ´ä±ÛÀÌ ¾øÀ»¶§ 
+		// ë‹µê¸€ì´ ì—†ì„ë•Œ 
 		if(!$temp[child]) {
 
-			// ±Û»èÁ¦
+			// ê¸€ì‚­ì œ
 			mysql_query("delete from $t_board"."_$id where no='$selected[$i]'") or Error(mysql_error()); 
 
-			// Ä«Å×°í¸®¿¡¼­ ¼ıÀÚ ÇÏ³ª »­
+			// ì¹´í…Œê³ ë¦¬ì—ì„œ ìˆ«ì í•˜ë‚˜ ëºŒ
 			mysql_query("update $t_category"."_$id set num=num-1 where no='$temp[category]'",$connect);
 
-			// ÆÄÀÏ»èÁ¦
+			// íŒŒì¼ì‚­ì œ
 			@z_unlink("./".$temp[file_name1]);
 			@z_unlink("./".$temp[file_name2]);
-			// ºó ÆÄÀÏ Æú´õ »èÁ¦
+			// ë¹ˆ íŒŒì¼ í´ë” ì‚­ì œ
 			if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$temp[file_name1],$out))
 				if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 			if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$temp[file_name2],$out))
 				if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
-			// ½æ³×ÀÏ»èÁ¦
+			// ì¸ë„¤ì¼ì‚­ì œ
 			if(preg_match("#\.(jpg|jpeg|png)$#i",$temp[file_name1])){ 
 				@z_unlink("./"."data/".$id."/thumbnail/fs_".$temp[reg_date].".jpg");
 				@z_unlink("./"."data/".$id."/thumbnail/fl_".$temp[reg_date].".jpg");
@@ -127,7 +127,7 @@ elseif($exec=="delete_all") {
 				@z_unlink("./"."data/".$id."/thumbnail/sXL_".$temp[reg_date].".jpg");
 			}
 
-			// ±âÁ¸ ¿ÜºÎ html ½æ³×ÀÏ »èÁ¦
+			// ê¸°ì¡´ ì™¸ë¶€ html ì¸ë„¤ì¼ ì‚­ì œ
 			if(file_exists("./"."data/".$id."/thumbnail/".$temp[ismember]."/fs_".$temp[reg_date].".jpg")){ 
 				@z_unlink("./"."data/".$id."/thumbnail/".$temp[ismember]."/fs_".$temp[reg_date].".jpg");
 				@z_unlink("./"."data/".$id."/thumbnail/".$temp[ismember]."/fl_".$temp[reg_date].".jpg");
@@ -137,29 +137,29 @@ elseif($exec=="delete_all") {
 				@z_unlink("./"."data/".$id."/thumbnail/".$temp[ismember]."/sl_".$temp[reg_date].".jpg");
 			}
 
-			// Divison Á¤¸®
+			// Divison ì •ë¦¬
 			minus_division($temp[division]);
 
-			// ÀÌÀü, ´ÙÀ½±Û¿¡ ´ëÇÑ Á¤¸®
+			// ì´ì „, ë‹¤ìŒê¸€ì— ëŒ€í•œ ì •ë¦¬
 			if($temp[depth]==0) {
-				// ÀÌÀü±ÛÀÌ ÀÖÀ¸¸é ºóÀÚ¸® ¸Ş²Ş;;;
+				// ì´ì „ê¸€ì´ ìˆìœ¼ë©´ ë¹ˆìë¦¬ ë©”ê¿ˆ;;;
 				if($temp[prev_no]) mysql_query("update $t_board"."_$id set next_no='$temp[next_no]' where next_no='$temp[no]'"); 
-				// ´ÙÀ½±ÛÀÌ ÀÖÀ¸¸é ºóÀÚ¸® ¸Ş²Ş;;;
+				// ë‹¤ìŒê¸€ì´ ìˆìœ¼ë©´ ë¹ˆìë¦¬ ë©”ê¿ˆ;;;
 				if($temp[next_no]) mysql_query("update $t_board"."_$id set prev_no='$temp[prev_no]' where prev_no='$temp[no]'"); 
 			} else {
 				$temp2=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where father='$temp[father]'"));
-				// ¿øº»±ÛÀÌ ÀÖÀ¸¸é ¿øº»±ÛÀÇ ÀÚ½Ä ±ÛÀ» ¾ø¾Ú;;;
+				// ì›ë³¸ê¸€ì´ ìˆìœ¼ë©´ ì›ë³¸ê¸€ì˜ ìì‹ ê¸€ì„ ì—†ì•°;;;
 				if(!$temp2[0]) mysql_query("update $t_board"."_$id set child='0' where no='$temp[father]'"); 
 			}
 
-			// °£´ÜÇÑ ´ä±Û(ÄÚ¸àÆ®) »èÁ¦
+			// ê°„ë‹¨í•œ ë‹µê¸€(ì½”ë©˜íŠ¸) ì‚­ì œ
 			$del_comment_result=mysql_query("select * from $t_comment"."_$id where parent='$selected[$i]'");
 			mysql_query("delete from $t_comment"."_$id where parent='$selected[$i]'") or Error(mysql_error());
 			while($c_data=mysql_fetch_array($del_comment_result)) {
-				// ÆÄÀÏ»èÁ¦
+				// íŒŒì¼ì‚­ì œ
 				@z_unlink("./".$c_data[file_name1]);
 				@z_unlink("./".$c_data[file_name2]);
-				// ºó ÆÄÀÏ Æú´õ »èÁ¦
+				// ë¹ˆ íŒŒì¼ í´ë” ì‚­ì œ
 				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name1],$out))
 					if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name2],$out))
@@ -167,13 +167,13 @@ elseif($exec=="delete_all") {
 			}
 			@mysql_query("delete from $t_comment"."_$id"."_movie where parent='$selected[$i]'");
 
-			// ¸Ş½ÃÁö º¸³»´Â ºÎºĞ
+			// ë©”ì‹œì§€ ë³´ë‚´ëŠ” ë¶€ë¶„
 			if($notice_user) {
 				if($temp[ismember]) {
 					$_to = $temp[ismember];
 					$_from = $member[no];	
-					$_subject = del_html($temp[name])." ´ÔÀÇ °Ô½Ã¹°ÀÌ ".$_kind."µÇ¾ú½À´Ï´Ù";
-					$_memo = del_html($temp[name])." ´Ô²²¼­ ¾²½Å \"".del_html($temp[subject])."\" ±ÛÀÌ $member[name]´Ô¿¡ ÀÇÇØ¼­ °Ô½ÃÆÇ ¼º°İ¿¡ ÀûÇÕÇÏÁö ¾Ê¾Æ¼­ ".$_kind." µÇ¾ú½À´Ï´Ù\n";
+					$_subject = del_html($temp[name])." ë‹˜ì˜ ê²Œì‹œë¬¼ì´ ".$_kind."ë˜ì—ˆìŠµë‹ˆë‹¤";
+					$_memo = del_html($temp[name])." ë‹˜ê»˜ì„œ ì“°ì‹  \"".del_html($temp[subject])."\" ê¸€ì´ $member[name]ë‹˜ì— ì˜í•´ì„œ ê²Œì‹œíŒ ì„±ê²©ì— ì í•©í•˜ì§€ ì•Šì•„ì„œ ".$_kind." ë˜ì—ˆìŠµë‹ˆë‹¤\n";
 					_send_message($_to,$_from,$_subject,$_memo);
 				}
 			}
@@ -186,7 +186,7 @@ elseif($exec=="delete_all") {
 }
 
 /**********************************************************************************
-* Copy All ÀÏ¶§ (¼±ÅÃµÈ °Ô½Ã¹° ÀÌµ¿)
+* Copy All ì¼ë•Œ (ì„ íƒëœ ê²Œì‹œë¬¼ ì´ë™)
 *********************************************************************************/
 
 elseif($exec=="copy_all"||$exec=="move_all") {
@@ -195,10 +195,10 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 		$s_data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$selected[$i]'"));
 
 		
-		// ´ä±ÛÀÌ ¾øÀ»¶§;; 
+		// ë‹µê¸€ì´ ì—†ì„ë•Œ;; 
 		if($s_data[arrangenum]==0) {
 
-			// ¿øº»±ÛÀ» ¸ğµÎ ±¸ÇÔ
+			// ì›ë³¸ê¸€ì„ ëª¨ë‘ êµ¬í•¨
 			$result=mysql_query("select * from $t_board"."_$id where headnum='$s_data[headnum]' order by arrangenum",$connect) or error(mysql_error());
 
 			$temp=mysql_fetch_array(mysql_query("select max(division) from $t_division"."_$board_name",$connect));
@@ -206,12 +206,12 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 			$temp=mysql_fetch_array(mysql_query("select max(division) from $t_division"."_$board_name where num>0 and division!='$max_division'",$connect));
 			if(!$temp[0]) $second_division=0; else $second_division=$temp[0];
 
-			// ÀÌµ¿ÇÒ °Ô½ÃÆÇÀÇ ÃÖ°í headnumÀ» ±¸ÇÔ
+			// ì´ë™í•  ê²Œì‹œíŒì˜ ìµœê³  headnumì„ êµ¬í•¨
 			$max_headnum=mysql_fetch_array(mysql_query("select min(headnum) from $t_board"."_$board_name where (division='$max_division' or division='$second_division') and headnum>-2000000000",$connect));
 			if(!$max_headnum[0]) $max_headnum[0]=0;
 			$headnum=$max_headnum[0]-1;
 			
-			// ÀÌµ¿ÇÒ °Ô½ÃÆÇÀÇ ÀÌÀü, ÀÌÈÄ±ÛÀ» ±¸ÇÔ
+			// ì´ë™í•  ê²Œì‹œíŒì˜ ì´ì „, ì´í›„ê¸€ì„ êµ¬í•¨
 			$next_data=mysql_fetch_array(mysql_query("select division,headnum,arrangenum from $t_board"."_$board_name where (division='$max_division' or division='$second_division') and headnum>-2000000000 order by headnum limit 1"));
 			if(!$next_data[0]) $next_data[0]="0";
 			else $next_data=mysql_fetch_array(mysql_query("select no,headnum,division from $t_board"."_$board_name where division='$next_data[division]' and headnum='$next_data[headnum]' and arrangenum='$next_data[arrangenum]'"));
@@ -224,14 +224,14 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 			$term_father=0;
 			$root_no=0;
 
-			// looping ÇÏ¸é¼­ µ¥ÀÌÅ¸ ÀÔ·Â
+			// looping í•˜ë©´ì„œ ë°ì´íƒ€ ì…ë ¥
 			while($data=mysql_fetch_array($result)) {
 
 				if(!is_dir("./data/$board_name")) {
 					@mkdir("./data/$board_name",0777,true);
 				}
 
-				// ¾÷·ÎµåµÈ ÆÄÀÏÀÌ ÀÖÀ»°æ¿ì Ã³¸® #1		
+				// ì—…ë¡œë“œëœ íŒŒì¼ì´ ìˆì„ê²½ìš° ì²˜ë¦¬ #1		
 				if($data[s_file_name1]) {
 					$temp_ext=time();
 					@mkdir("./data/$board_name/".$temp_ext,0777);
@@ -240,7 +240,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 					@chmod("./".$data[file_name1],0706);
 					@chmod("./data/$board_name/".$temp_ext,0707);
 				}
-				// ¾÷·ÎµåµÈ ÆÄÀÏÀÌ ÀÖÀ»°æ¿ì Ã³¸® #2	
+				// ì—…ë¡œë“œëœ íŒŒì¼ì´ ìˆì„ê²½ìš° ì²˜ë¦¬ #2	
 				if($data[s_file_name2]) {
 					$temp_ext=time();
 					@mkdir("./data/$board_name/".$temp_ext,0777);
@@ -266,9 +266,9 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 				$data[father]=$data[father]+$term_father;
 				$data[child]=$data[child]+$term_child;
 
-				// °Ô½Ã¹° º¹»ç, ÀÌµ¿½Ã ±â·Ï ³²±æ °æ¿ì
+				// ê²Œì‹œë¬¼ ë³µì‚¬, ì´ë™ì‹œ ê¸°ë¡ ë‚¨ê¸¸ ê²½ìš°
 				if($notice_bbs) {
-					$data[memo] .= "\n\n* $member[name]´Ô¿¡ ÀÇÇØ¼­ °Ô½Ã¹°ÀÌ ".$_kind."µÇ¾ú½À´Ï´Ù (".date("Y-m-d H:i").")";
+					$data[memo] .= "\n\n* $member[name]ë‹˜ì— ì˜í•´ì„œ ê²Œì‹œë¬¼ì´ ".$_kind."ë˜ì—ˆìŠµë‹ˆë‹¤ (".date("Y-m-d H:i").")";
 				}
 
 				mysql_query("insert into $t_board"."_$board_name (division,headnum,arrangenum,depth,prev_no,next_no,father,child,ismember,memo,ip,password,name,homepage,email,subject,use_html,reply_mail,category,is_secret,sitelink1,sitelink2,file_name1,file_name2,s_file_name1,s_file_name2,x,y,reg_date,islevel,hit,vote,download1,download2,total_comment) values ('$data[division]','$data[headnum]','$data[arrangenum]','$data[depth]','$data[prev_no]','$data[next_no]','$data[father]','$data[child]','$data[ismember]','$data[memo]','$data[ip]','$data[password]','$data[name]','$data[homepage]','$data[email]','$data[subject]','$data[use_html]','$data[reply_mail]','$data[category]','$data[is_secret]','$data[sitelink1]','$data[sitelink2]','$data[file_name1]','$data[file_name2]','$data[s_file_name1]','$data[s_file_name2]','$data[x]','$data[y]','$data[reg_date]','$data[islevel]','$data[hit]','$data[vote]','$data[download1]','$data[download2]','$data[total_comment]')") or error(mysql_error());
@@ -280,10 +280,10 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 					$term_father=$data[no]-$no;
 				}
 
-				// Comment Á¤¸®
+				// Comment ì •ë¦¬
 				$comment_result=mysql_query("select * from $t_comment"."_$id where parent='$data[no]' order by reg_date",$connect) or error(mysql_error());
 				while($comment_data=mysql_fetch_array($comment_result)) {
-					// ¾÷·ÎµåµÈ ÆÄÀÏÀÌ ÀÖÀ»°æ¿ì Ã³¸® #1		
+					// ì—…ë¡œë“œëœ íŒŒì¼ì´ ìˆì„ê²½ìš° ì²˜ë¦¬ #1		
 					if($comment_data[s_file_name1]) {
 						$temp_ext=time();
 						@mkdir("./data/$board_name/".$temp_ext,0777);
@@ -292,7 +292,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 						@chmod("./".$comment_data[file_name1],0706);
 						@chmod("./data/$board_name/".$temp_ext,0707);
 					}
-					// ¾÷·ÎµåµÈ ÆÄÀÏÀÌ ÀÖÀ»°æ¿ì Ã³¸® #2	
+					// ì—…ë¡œë“œëœ íŒŒì¼ì´ ìˆì„ê²½ìš° ì²˜ë¦¬ #2	
 					if($comment_data[s_file_name2]) {
 						$temp_ext=time();
 						@mkdir("./data/$board_name/".$temp_ext,0777);
@@ -312,14 +312,14 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 			mysql_query("update $t_board"."_$board_name set prev_no='$root_no' where headnum='$prev_data[0]'",$connect) or Error(mysql_error());
 
 
-			// ¸Ş½ÃÁö º¸³»´Â ºÎºĞ
+			// ë©”ì‹œì§€ ë³´ë‚´ëŠ” ë¶€ë¶„
 			if($notice_user) {
 				if($s_data[ismember]) {
 					$_to = $s_data[ismember];
 					$_from = $member[no];	
-					$_subject = del_html($s_data[name])." ´ÔÀÇ °Ô½Ã¹°ÀÌ ".$_kind."µÇ¾ú½À´Ï´Ù";
-					$_memo = del_html($s_data[name])." ´Ô²²¼­ ¾²½Å \"".del_html($s_data[subject])."\" ±ÛÀÌ $member[name]´Ô¿¡ ÀÇÇØ¼­ ".$_kind." µÇ¾ú½À´Ï´Ù\n";
-					$_memo .= " ¿Å°ÜÁø À§Ä¡ : zboard.php?id=".$board_name."&no=".$no;
+					$_subject = del_html($s_data[name])." ë‹˜ì˜ ê²Œì‹œë¬¼ì´ ".$_kind."ë˜ì—ˆìŠµë‹ˆë‹¤";
+					$_memo = del_html($s_data[name])." ë‹˜ê»˜ì„œ ì“°ì‹  \"".del_html($s_data[subject])."\" ê¸€ì´ $member[name]ë‹˜ì— ì˜í•´ì„œ ".$_kind." ë˜ì—ˆìŠµë‹ˆë‹¤\n";
+					$_memo .= " ì˜®ê²¨ì§„ ìœ„ì¹˜ : zboard.php?id=".$board_name."&no=".$no;
 					_send_message($_to,$_from,$_subject,$_memo);
 				}
 			}

@@ -16,7 +16,6 @@ if($member[no]) {
 	if(!get_magic_quotes_gpc()) {
 		$password = addslashes($password);
 	}
-	$name=iconv("utf-8","euc-kr",$name);
 	if(!get_magic_quotes_gpc()) {
 		$name= addslashes($name);
 	}
@@ -24,7 +23,7 @@ if($member[no]) {
 }
 
 // 패스워드를 암호화
-if(strlen($password)) {
+if(mb_strlen($password)) {
 	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
 	$password=$temp[0];   
 }
@@ -52,9 +51,6 @@ if($mode!="modify") {
 	if($re[0]>0)
 		$jsontable=board_imsi_info($id,$no,$ismember,$name,$password);
 }
-
-foreach($jsontable as $key=>$value)
-	$jsontable[$key]=iconv("euc-kr","utf-8",$value);
 
 print json_encode($jsontable);
 ?>

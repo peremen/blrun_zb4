@@ -34,8 +34,8 @@ if($counter%$num==1){
 			<tr><td height=3></td></tr>
 			</table>
 			<table cellspacing=0 cellpadding=0 align=center width=130>
-			<tr><td align=center><nobr>¡¤ <B><?=$str3?></B></nobr><?=$comment_new?></td></tr>
-			<tr><td align=center><?if($hide_name=="off"){?>¡¤ <font class=com2><?=$name?></font>&nbsp;<?if($hide_date=="off"){?><font class=com3>(<?=date("m-d",$data[reg_date])?>) </font><?}?><?}?><?=$hide_cart_start?><input type=checkbox name=cart value="<?=$data[no]?>"><?=$hide_cart_end?></td></tr>
+			<tr><td align=center><nobr>Â· <B><?=$str3?></B></nobr><?=$comment_new?></td></tr>
+			<tr><td align=center><?if($hide_name=="off"){?>Â· <font class=com2><?=$name?></font>&nbsp;<?if($hide_date=="off"){?><font class=com3>(<?=date("m-d",$data[reg_date])?>) </font><?}?><?}?><?=$hide_cart_start?><input type=checkbox name=cart value="<?=$data[no]?>"><?=$hide_cart_end?></td></tr>
 			</table>
 		</td>
 <?if($counter%$num==0){?>

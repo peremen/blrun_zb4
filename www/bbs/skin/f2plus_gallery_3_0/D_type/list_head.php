@@ -26,7 +26,7 @@
 			<?=$a_write?><img src=<?=$dir?>/images/bt_write.gif border=0></a>
 		</td>
 		<td align=right>
-			<?=$a_prev_page?>[ÀÌÀü <?=$setup[page_num]?>°³]</font></a><?=$print_page?></font><?=$a_next_page?>[´ÙÀ½ <?=$setup[page_num]?>°³]</font></a><br>
+			<?=$a_prev_page?>[ì´ì „ <?=$setup[page_num]?>ê°œ]</font></a><?=$print_page?></font><?=$a_next_page?>[ë‹¤ìŒ <?=$setup[page_num]?>ê°œ]</font></a><br>
 		<td>
 	</tr>
 	</table>

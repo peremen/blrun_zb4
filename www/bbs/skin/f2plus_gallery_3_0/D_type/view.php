@@ -62,7 +62,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 		<table border=0 cellspacing=0 cellpadding=10 width=100% style=table-layout:fixed>
 		<tr>
 			<td align=left class=memo>
-				<!--¿©±âºÎÅÍ º»¹® ³»¿ë ½ÃÀÛÀÔ´Ï´Ù-->
+				<!--ì—¬ê¸°ë¶€í„° ë³¸ë¬¸ ë‚´ìš© ì‹œìž‘ìž…ë‹ˆë‹¤-->
 				<?=$memo?><BR><BR>
 				<? include "script/sns.php"; ?>
 				<table width=100% border=0>
@@ -71,7 +71,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 				<a href="http://www.ntzn.net/" target="_blank" style="color:blue;">http://www.ntzn.net/</a>
 				</td></tr>
 				</table>
-				<!--¿©±â±îÁö º»¹® ³»¿ë ³¡ÀÔ´Ï´Ù-->
+				<!--ì—¬ê¸°ê¹Œì§€ ë³¸ë¬¸ ë‚´ìš© ëìž…ë‹ˆë‹¤-->
 			</td>
 		</tr>
 		</table>

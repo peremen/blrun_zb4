@@ -1,36 +1,36 @@
-0. Á¦·Îº¸µå¸¦ »õ °èÁ¤¿¡ ¿Å±â°í ³ª¼­´Â ¸ÕÀú www/bbs/myZrCnf2019.php ÆÄÀÏ¾ÈÀÇ Á¤º¸¸¦ ÀûÀýÇÏ°Ô ¼öÁ¤ÇØ ÁØ´Ù. µÎ¹øÂ° ÁÙÀº DB À¯Àú³×ÀÓ, ¼¼¹øÂ° ÁÙÀº DB À¯Àú ÆÐ½º¿öµå, ³×¹øÂ° ÁÙÀº DB ÀÌ¸§ÀÌ´Ù. ¸®´ª½º¿¡¼­ myZrCnf2019.php ÆÄÀÏÀÇ chmod ¼Ó¼ºÀº 604(-rw----r--)·Î ¹Ù²ãÁÖ¼¼¿ä.
+0. ì œë¡œë³´ë“œë¥¼ ìƒˆ ê³„ì •ì— ì˜®ê¸°ê³  ë‚˜ì„œëŠ” ë¨¼ì € www/bbs/myZrCnf2019.php íŒŒì¼ì•ˆì˜ ì •ë³´ë¥¼ ì ì ˆí•˜ê²Œ ìˆ˜ì •í•´ ì¤€ë‹¤. ë‘ë²ˆì§¸ ì¤„ì€ DB ìœ ì €ë„¤ìž„, ì„¸ë²ˆì§¸ ì¤„ì€ DB ìœ ì € íŒ¨ìŠ¤ì›Œë“œ, ë„¤ë²ˆì§¸ ì¤„ì€ DB ì´ë¦„ì´ë‹¤. ë¦¬ëˆ…ìŠ¤ì—ì„œ myZrCnf2019.php íŒŒì¼ì˜ chmod ì†ì„±ì€ 604(-rw----r--)ë¡œ ë°”ê¿”ì£¼ì„¸ìš”.
 
-0.3 /index.php ÆÄÀÏ 14, 15Çà Âë, /m/index.php ÆÄÀÏ 14, 15Çà Âë ÀÌ¹ÌÁö¿Í °æ·Î¸¦ È®ÀÎÇÑ´Ù.
-(³ªÁß¿¡ ¹öÀü¾÷À» À§ÇØ ÆÄÀÏ¸íÀº ±×´ë·Î »ç¿ëÇÏ°í ÀÌ¹ÌÁö ÆÄÀÏ¸¸ ±³Ã¼ÇØ »ç¿ëÇØµµ µÈ´Ù)
+0.3 /index.php íŒŒì¼ 18, 19í–‰ ì¯¤, /m/index.php íŒŒì¼ 18, 19í–‰ ì¯¤ ì´ë¯¸ì§€ì™€ ê²½ë¡œë¥¼ í™•ì¸í•œë‹¤.
+(ë‚˜ì¤‘ì— ë²„ì „ì—…ì„ ìœ„í•´ íŒŒì¼ëª…ì€ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ê³  ì´ë¯¸ì§€ íŒŒì¼ë§Œ êµì²´í•´ ì‚¬ìš©í•´ë„ ëœë‹¤)
 
-0.4 /main.php ÆÄÀÏ, /m/main.php ÆÄÀÏ 20Çà Âë ÀÌ¹ÌÁö¿Í °æ·Î¸¦ È®ÀÎÇÑ´Ù.
-(³ªÁß¿¡ ¹öÀü¾÷À» À§ÇØ ÆÄÀÏ¸íÀº ±×´ë·Î »ç¿ëÇÏ°í ÀÌ¹ÌÁö ÆÄÀÏ¸¸ ±³Ã¼ÇØ »ç¿ëÇØµµ µÈ´Ù)
+0.4 /main.php íŒŒì¼, /m/main.php íŒŒì¼ 20í–‰ ì¯¤ ì´ë¯¸ì§€ì™€ ê²½ë¡œë¥¼ í™•ì¸í•œë‹¤.
+(ë‚˜ì¤‘ì— ë²„ì „ì—…ì„ ìœ„í•´ íŒŒì¼ëª…ì€ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ê³  ì´ë¯¸ì§€ íŒŒì¼ë§Œ êµì²´í•´ ì‚¬ìš©í•´ë„ ëœë‹¤)
 
-0.5 lib.php ÆÄÀÏÀÇ 309Çà ÂëÀÇ @mysql_query("set names euckr",$connect); ¿¡¼­ DB Ä³¸¯ÅÍ¼ÂÀ» È®ÀÎÇÑ´Ù.
-0.7 lib.php ÆÄÀÏÀÇ 423Çà, 424Çà, 487Çà, 488Çà ÂëÀÇ ÀÌ¹ÌÁö¿Í °æ·Î¸¦ È®ÀÎÇÑ´Ù.
-(³ªÁß¿¡ ¹öÀü¾÷À» À§ÇØ ÆÄÀÏ¸íÀº ±×´ë·Î »ç¿ëÇÏ°í ÀÌ¹ÌÁö ÆÄÀÏ¸¸ ±³Ã¼ÇØ »ç¿ëÇØµµ µÈ´Ù)
-0.9 lib.php ÆÄÀÏÀÇ 573Çà $target º¯¼ö´Â aanalyzer ¸¦ ¼³Ä¡ÇØ »õ·Î Åë°è¸¦ ÀÛ¼ºÇØ¾ß »ç¿ëÀÌ °¡´ÉÇÏ´Ù.
+0.5 lib.php íŒŒì¼ì˜ 312í–‰ ì¯¤ì˜ @mysql_query("set names utf8",$connect); ì—ì„œ DB ìºë¦­í„°ì…‹ì„ í™•ì¸í•œë‹¤.
+0.7 lib.php íŒŒì¼ì˜ 426í–‰, 427í–‰, 490í–‰, 491í–‰ ì¯¤ì˜ ì´ë¯¸ì§€ì™€ ê²½ë¡œë¥¼ í™•ì¸í•œë‹¤.
+(ë‚˜ì¤‘ì— ë²„ì „ì—…ì„ ìœ„í•´ íŒŒì¼ëª…ì€ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ê³  ì´ë¯¸ì§€ íŒŒì¼ë§Œ êµì²´í•´ ì‚¬ìš©í•´ë„ ëœë‹¤)
+0.9 lib.php íŒŒì¼ì˜ 576í–‰ $target ë³€ìˆ˜ëŠ” aanalyzer ë¥¼ ì„¤ì¹˜í•´ ìƒˆë¡œ í†µê³„ë¥¼ ìž‘ì„±í•´ì•¼ ì‚¬ìš©ì´ ê°€ëŠ¥í•˜ë‹¤.
 
-3. https º¸¾È¼­¹öÀÎÁõ¼­¸¦ ¼³Ä¡ÇÏÁö ¾ÊÀº »ç¿ëÀÚ´Â Àß¸ø ÀúÀåµÈ www/bbs/include/get_url.php ÆÄÀÏÀÇ url Á¤º¸¸¦ ÀÏ¹Ý url·Î ¸ðµÎ ¼öÁ¤ÇØ »ç¿ëÇÑ´Ù.
-(ssl url Á¤º¸µµ ¸ðµÎ ÀÏ¹Ý url·Î ¼³Á¤ÇÑ´Ù. ´Ü º¸¾È¼­¹öÀÎÁõ¼­ ÀÌ¿ëÀÚ´Â ¼³Ä¡½Ã ÀÔ·ÂÇß´ø Æ÷Æ® ¹øÈ£¸¦ ±×´ë·Î »ç¿ëÇÑ´Ù)
+3. https ë³´ì•ˆì„œë²„ì¸ì¦ì„œë¥¼ ì„¤ì¹˜í•˜ì§€ ì•Šì€ ì‚¬ìš©ìžëŠ” ìž˜ëª» ì €ìž¥ëœ www/bbs/include/get_url.php íŒŒì¼ì˜ url ì •ë³´ë¥¼ ì¼ë°˜ urlë¡œ ëª¨ë‘ ìˆ˜ì •í•´ ì‚¬ìš©í•œë‹¤.
+(ssl url ì •ë³´ë„ ëª¨ë‘ ì¼ë°˜ urlë¡œ ì„¤ì •í•œë‹¤. ë‹¨ ë³´ì•ˆì„œë²„ì¸ì¦ì„œ ì´ìš©ìžëŠ” ì„¤ì¹˜ì‹œ ìž…ë ¥í–ˆë˜ í¬íŠ¸ ë²ˆí˜¸ë¥¼ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•œë‹¤)
 
-3.5 https º¸¾È¼­¹öÀÎÁõ¼­¸¦ ¼³Ä¡ÇÏÁö ¾ÊÀº »ç¿ëÀÚ´Â Àß¸ø ÀúÀåµÈ www/bbs/script/get_url.php ÆÄÀÏÀÇ url Á¤º¸¸¦ ÀÏ¹Ý url·Î ¸ðµÎ ¼öÁ¤ÇØ »ç¿ëÇÑ´Ù.
-(ssl url Á¤º¸µµ ¸ðµÎ ÀÏ¹Ý url·Î ¼³Á¤ÇÑ´Ù. ´Ü º¸¾È¼­¹öÀÎÁõ¼­ ÀÌ¿ëÀÚ´Â ¼³Ä¡½Ã ÀÔ·ÂÇß´ø Æ÷Æ® ¹øÈ£¸¦ ±×´ë·Î »ç¿ëÇÑ´Ù)
+3.5 https ë³´ì•ˆì„œë²„ì¸ì¦ì„œë¥¼ ì„¤ì¹˜í•˜ì§€ ì•Šì€ ì‚¬ìš©ìžëŠ” ìž˜ëª» ì €ìž¥ëœ www/bbs/script/get_url.php íŒŒì¼ì˜ url ì •ë³´ë¥¼ ì¼ë°˜ urlë¡œ ëª¨ë‘ ìˆ˜ì •í•´ ì‚¬ìš©í•œë‹¤.
+(ssl url ì •ë³´ë„ ëª¨ë‘ ì¼ë°˜ urlë¡œ ì„¤ì •í•œë‹¤. ë‹¨ ë³´ì•ˆì„œë²„ì¸ì¦ì„œ ì´ìš©ìžëŠ” ì„¤ì¹˜ì‹œ ìž…ë ¥í–ˆë˜ í¬íŠ¸ ë²ˆí˜¸ë¥¼ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•œë‹¤)
 
-4.5 www/bbs/admin/dbDump.php ÆÄÀÏ 136Çà Âë "bin/" ¸¦ ¿ìºÐÅõ¿¡¼­´Â "/bin/" À¸·Î °íÃÄÁà¾ß DB°¡ Á¦´ë·Î ·çÆ® Æú´õ¿¡ »ý¼ºÀÌ µÈ´Ù. ¸®´ª½º ¼­¹ö¿¡¼± ¼öÁ¤¾øÀÌ ±×´ë·Î »ç¿ëÇÑ´Ù!
+4.5 www/bbs/admin/dbDump.php íŒŒì¼ 136í–‰ ì¯¤ "bin/" ë¥¼ ìš°ë¶„íˆ¬ì—ì„œëŠ” "/bin/" ìœ¼ë¡œ ê³ ì³ì¤˜ì•¼ DBê°€ ì œëŒ€ë¡œ ë£¨íŠ¸ í´ë”ì— ìƒì„±ì´ ëœë‹¤. ë¦¬ëˆ…ìŠ¤ ì„œë²„ì—ì„  ìˆ˜ì •ì—†ì´ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•œë‹¤!
 
-5. www/rss/old_rss2/ Æú´õ ¾ÈÀÇ zero_rss.php, www/rss/old_rss3/ Æú´õ ¾ÈÀÇ index.php ÆÄÀÏ 54ÇàÀÇ ÀÌ¹ÌÁö¿Í °æ·Î¸¦ È®ÀÎÇÑ´Ù.
-(³ªÁß¿¡ ¹öÀü¾÷À» À§ÇØ ÆÄÀÏ¸íÀº ±×´ë·Î »ç¿ëÇÏ°í ÀÌ¹ÌÁö ÆÄÀÏ¸¸ ±³Ã¼ÇØ »ç¿ëÇØµµ µÈ´Ù. rss »ç¿ë¹ýÀº old_rss Æú´õ¾ÈÀÇ ÆÄÀÏµéÀ» www/rss ·çÆ® Æú´õ·Î ÀÌµ¿½ÃÄÑ ÇÑ°¡Áö¸¸ »ç¿ëÇÏ¸é µÈ´Ù)
+5. www/rss/old_rss2/ í´ë” ì•ˆì˜ zero_rss.php, www/rss/old_rss3/ í´ë” ì•ˆì˜ index.php íŒŒì¼ 54í–‰ì˜ ì´ë¯¸ì§€ì™€ ê²½ë¡œë¥¼ í™•ì¸í•œë‹¤.
+(ë‚˜ì¤‘ì— ë²„ì „ì—…ì„ ìœ„í•´ íŒŒì¼ëª…ì€ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ê³  ì´ë¯¸ì§€ íŒŒì¼ë§Œ êµì²´í•´ ì‚¬ìš©í•´ë„ ëœë‹¤. rss ì‚¬ìš©ë²•ì€ old_rss í´ë”ì•ˆì˜ íŒŒì¼ë“¤ì„ www/rss ë£¨íŠ¸ í´ë”ë¡œ ì´ë™ì‹œì¼œ í•œê°€ì§€ë§Œ ì‚¬ìš©í•˜ë©´ ëœë‹¤)
 
-5.5 www/bbs/setup.php ÆÄÀÏ 12Çà Âë url Á¤º¸¸¦ ¼öÁ¤ÇØ ÁØ´Ù.
-(ÀÌ°Ç ¼öÁ¤ÇÏÁö ¾Ê¾Æµµ ¼öÁ¤Áõº¸ÆÇÀ» »ç¿ëÇÏ´Â µ¥ ÁöÀåÀÌ ¾ø´Ù)
+5.5 www/bbs/setup.php íŒŒì¼ 12í–‰ ì¯¤ url ì •ë³´ë¥¼ ìˆ˜ì •í•´ ì¤€ë‹¤.
+(ì´ê±´ ìˆ˜ì •í•˜ì§€ ì•Šì•„ë„ ìˆ˜ì •ì¦ë³´íŒì„ ì‚¬ìš©í•˜ëŠ” ë° ì§€ìž¥ì´ ì—†ë‹¤)
 
-6. www/fr_right.htm www/m/favorite.htmÀÇ Ã¤ÆÃ¹æ ¼Ò½º´Â chatroom=blrun ºÎºÐÀ» ÀÚ½ÅÀÇ °íÀ¯ ¾ÆÀÌµð·Î ¹Ù²Ù¾î »ç¿ëÇÕ´Ï´Ù.
+6. www/fr_right.htm www/m/favorite.htmì˜ ì±„íŒ…ë°© ì†ŒìŠ¤ëŠ” chatroom=blrun2 ë¶€ë¶„ì„ ìžì‹ ì˜ ê³ ìœ  ì•„ì´ë””ë¡œ ë°”ê¾¸ì–´ ì‚¬ìš©í•©ë‹ˆë‹¤.
 
-7. lib_ajax.php ÆÄÀÏÀÇ 295Çà ÂëÀÇ @mysql_query("set names euckr",$connect); ¿¡¼­ DB Ä³¸¯ÅÍ¼ÂÀ» È®ÀÎÇÑ´Ù.
-9. lib_ajax.php ÆÄÀÏÀÇ 399Çà, 400Çà, 463Çà, 464Çà ÂëÀÇ ÀÌ¹ÌÁö¿Í °æ·Î¸¦ È®ÀÎÇÑ´Ù.
-(³ªÁß¿¡ ¹öÀü¾÷À» À§ÇØ ÆÄÀÏ¸íÀº ±×´ë·Î »ç¿ëÇÏ°í ÀÌ¹ÌÁö ÆÄÀÏ¸¸ ±³Ã¼ÇØ »ç¿ëÇØµµ µÈ´Ù)
-10. lib_ajax.php ÆÄÀÏÀÇ 549Çà $target º¯¼ö¸¦ aanalyzer ¸¦ ¼³Ä¡ÇØ »õ·Î Åë°è¸¦ ÀÛ¼ºÇØ¾ß »ç¿ëÀÌ °¡´ÉÇÏ´Ù.
+7. lib_ajax.php íŒŒì¼ì˜ 298í–‰ ì¯¤ì˜ @mysql_query("set names utf8",$connect); ì—ì„œ DB ìºë¦­í„°ì…‹ì„ í™•ì¸í•œë‹¤.
+9. lib_ajax.php íŒŒì¼ì˜ 402í–‰, 403í–‰, 466í–‰, 467í–‰ ì¯¤ì˜ ì´ë¯¸ì§€ì™€ ê²½ë¡œë¥¼ í™•ì¸í•œë‹¤.
+(ë‚˜ì¤‘ì— ë²„ì „ì—…ì„ ìœ„í•´ íŒŒì¼ëª…ì€ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ê³  ì´ë¯¸ì§€ íŒŒì¼ë§Œ êµì²´í•´ ì‚¬ìš©í•´ë„ ëœë‹¤)
+10. lib_ajax.php íŒŒì¼ì˜ 552í–‰ $target ë³€ìˆ˜ë¥¼ aanalyzer ë¥¼ ì„¤ì¹˜í•´ ìƒˆë¡œ í†µê³„ë¥¼ ìž‘ì„±í•´ì•¼ ì‚¬ìš©ì´ ê°€ëŠ¥í•˜ë‹¤.
 
-¡Ø È¸¿øÁß¿¡ sprdrg ¶õ ¾ÆÀÌµð¸¦ ¸¸µé¾î ·¹º§ 9ÀÇ °Ô½ºÆ® °èÁ¤À» ¸¸µé°í È¸¿ø°¡ÀÔÇÑ ºÐµéÀ» ·¹º§8·Î ¼³Á¤ÇÏ¸é ·Î±×ÀÎ ¿ëµµ·Î¸¸ »ç¿ëÇÒ ¼ö ÀÖ´Â °Ô½ºÆ® °èÁ¤À» ¿î¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù. Âü°í ¹Ù¶ø´Ï´Ù. ^^;
-¶Ç bbs/skin µð·ºÅä¸® ¾È¿¡ ÀÖ´Â Æú´õ¸íÀº º¯°æÇÏÁö ¸¶½Ã±â ¹Ù¶ø´Ï´Ù. ºÎµæÀÌÇÏ°Ô À¥¼Ò½º ³»¿¡¼­ Æú´õ ½ºÅ²¸íÀ» ±×´ë·Î »ç¿ëÇÏ´Â ÄÚµå°¡ ÀÖ¾î¼­ º¯°æÀ» ÇÏ°Ô µÇ¸é ÀÏºÎ ±â´É¿¡¼­ ¿Àµ¿ÀÛÀ» ÇÏ°Ô µË´Ï´Ù.
+â€» íšŒì›ì¤‘ì— sprdrg ëž€ ì•„ì´ë””ë¥¼ ë§Œë“¤ì–´ ë ˆë²¨ 9ì˜ ê²ŒìŠ¤íŠ¸ ê³„ì •ì„ ë§Œë“¤ê³  íšŒì›ê°€ìž…í•œ ë¶„ë“¤ì„ ë ˆë²¨8ë¡œ ì„¤ì •í•˜ë©´ ë¡œê·¸ì¸ ìš©ë„ë¡œë§Œ ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” ê²ŒìŠ¤íŠ¸ ê³„ì •ì„ ìš´ìš©í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. ì°¸ê³  ë°”ëžë‹ˆë‹¤. ^^;
+ë˜ bbs/skin ë””ë ‰í† ë¦¬ ì•ˆì— ìžˆëŠ” í´ë”ëª…ì€ ë³€ê²½í•˜ì§€ ë§ˆì‹œê¸° ë°”ëžë‹ˆë‹¤. ë¶€ë“ì´í•˜ê²Œ ì›¹ì†ŒìŠ¤ ë‚´ì—ì„œ í´ë” ìŠ¤í‚¨ëª…ì„ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ëŠ” ì½”ë“œê°€ ìžˆì–´ì„œ ë³€ê²½ì„ í•˜ê²Œ ë˜ë©´ ì¼ë¶€ ê¸°ëŠ¥ì—ì„œ ì˜¤ë™ìž‘ì„ í•˜ê²Œ ë©ë‹ˆë‹¤.

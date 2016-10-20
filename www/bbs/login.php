@@ -1,21 +1,21 @@
 <?
-// ÀÚµ¿À¸·Î www ºÙ¿©ÁØ´Ù. 
-if(!preg_match("/www/i",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
+// ìë™ìœ¼ë¡œ www ë¶™ì—¬ì¤€ë‹¤. 
+//if(!preg_match("/www/i",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
 
 include "lib.php";
 
-if(!$id&&!$group_no) Error("°Ô½ÃÆÇ ÀÌ¸§ÀÌ³ª ±×·ì¹øÈ£¸¦ ÁöÁ¤ÇÏ¿© ÁÖ¼Å¾ß ÇÕ´Ï´Ù.<br><br>(login.php?id=°Ô½ÃÆÇÀÌ¸§   ¶Ç´Â  login.php?group_no=¹øÈ£)","");
+if(!$id&&!$group_no) Error("ê²Œì‹œíŒ ì´ë¦„ì´ë‚˜ ê·¸ë£¹ë²ˆí˜¸ë¥¼ ì§€ì •í•˜ì—¬ ì£¼ì…”ì•¼ í•©ë‹ˆë‹¤.<br><br>(login.php?id=ê²Œì‹œíŒì´ë¦„   ë˜ëŠ”  login.php?group_no=ë²ˆí˜¸)","");
 
 if(!$connect) $connect=dbConn();
 
-// ÇöÀç °Ô½ÃÆÇ ¼³Á¤ ÀĞ¾î ¿À±â
+// í˜„ì¬ ê²Œì‹œíŒ ì„¤ì • ì½ì–´ ì˜¤ê¸°
 if($id) {
 	$setup=get_table_attrib($id);
 
-	// ¼³Á¤µÇÁö ¾ÊÀº °Ô½ÃÆÇÀÏ¶§ ¿¡·¯ Ç¥½Ã
-	if(!$setup[name]) Error("»ı¼ºµÇÁö ¾ÊÀº °Ô½ÃÆÇÀÔ´Ï´Ù.<br><br>°Ô½ÃÆÇÀ» »ı¼ºÈÄ »ç¿ëÇÏ½Ê½Ã¿ä","");
+	// ì„¤ì •ë˜ì§€ ì•Šì€ ê²Œì‹œíŒì¼ë•Œ ì—ëŸ¬ í‘œì‹œ
+	if(!$setup[name]) Error("ìƒì„±ë˜ì§€ ì•Šì€ ê²Œì‹œíŒì…ë‹ˆë‹¤.<br><br>ê²Œì‹œíŒì„ ìƒì„±í›„ ì‚¬ìš©í•˜ì‹­ì‹œìš”","");
 
-	// ÇöÀç °Ô½ÃÆÇÀÇ ±×·ìÀÇ ¼³Á¤ ÀĞ¾î ¿À±â
+	// í˜„ì¬ ê²Œì‹œíŒì˜ ê·¸ë£¹ì˜ ì„¤ì • ì½ì–´ ì˜¤ê¸°
 	$group=group_info($setup[group_no]);
 	$dir="skin/".$setup[skinname];
 	$file="skin/".$setup[skinname]."/login.php";
@@ -23,7 +23,7 @@ if($id) {
 } else {
 
 	if($group_no) $group=mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
-	if(!$group[no]) Error("ÁöÁ¤µÈ ±×·ìÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
+	if(!$group[no]) Error("ì§€ì •ëœ ê·¸ë£¹ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
 }
 
 head();
@@ -34,30 +34,30 @@ head();
 function check_submit()
 {
 	if(!login.user_id.value) {
-		alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¿© ÁÖ¼¼¿ä");
+		alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì„¸ìš”");
 		login.user_id.focus();
 		return false;
 	}
 	if(!login.password.value) {
-		alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ¼¼¿ä");
+		alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì„¸ìš”");
 		login.password.focus();
 		return false;
 	}
 	var f = document.forms["login"];
-	// º¸¾ÈÁ¢¼ÓÀ» Ã¼Å©ÇßÀ» ¶§ÀÇ ¾×¼Ç
+	// ë³´ì•ˆì ‘ì†ì„ ì²´í¬í–ˆì„ ë•Œì˜ ì•¡ì…˜
 	if ( f.SSL_Login.checked ) {
 		f.action = sslUrl()+"login_check.php";
 	}
-	check=confirm("ÀÚµ¿ ·Î±×ÀÎ ±â´ÉÀ» »ç¿ëÇÏ½Ã°Ú½À´Ï±î?\n\nÀÚµ¿ ·Î±×ÀÎ »ç¿ë½Ã ´ÙÀ½ Á¢¼ÓºÎÅÍ´Â ·Î±×ÀÎÀ» ÇÏ½ÇÇÊ¿ä°¡ ¾ø½À´Ï´Ù.\n\n´Ü, °ÔÀÓ¹æ, ÇĞ±³µî °ø°øÀå¼Ò¿¡¼­ ÀÌ¿ë½Ã °³ÀÎÁ¤º¸°¡ À¯ÃâµÉ¼ö ÀÖÀ¸´Ï Á¶½ÉÇÏ¿© ÁÖ½Ê½Ã¿ä");
+	check=confirm("ìë™ ë¡œê·¸ì¸ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n\nìë™ ë¡œê·¸ì¸ ì‚¬ìš©ì‹œ ë‹¤ìŒ ì ‘ì†ë¶€í„°ëŠ” ë¡œê·¸ì¸ì„ í•˜ì‹¤í•„ìš”ê°€ ì—†ìŠµë‹ˆë‹¤.\n\në‹¨, ê²Œì„ë°©, í•™êµë“± ê³µê³µì¥ì†Œì—ì„œ ì´ìš©ì‹œ ê°œì¸ì •ë³´ê°€ ìœ ì¶œë ìˆ˜ ìˆìœ¼ë‹ˆ ì¡°ì‹¬í•˜ì—¬ ì£¼ì‹­ì‹œìš”");
 	if(check) {login.auto_login.value=1;}
 	return true;
 }
 
 function check_SSL_Login() { 
 	if (document.login.SSL_Login.checked==true) {
-		alert("SSL ¾ÏÈ£È­ º¸¾ÈÁ¢¼ÓÀ» ¼³Á¤ÇÕ´Ï´Ù");
+		alert("SSL ì•”í˜¸í™” ë³´ì•ˆì ‘ì†ì„ ì„¤ì •í•©ë‹ˆë‹¤");
 	} else {
-		alert("SSL ¾ÏÈ£È­ º¸¾ÈÁ¢¼ÓÀ» ÇØÁ¦ÇÕ´Ï´Ù");
+		alert("SSL ì•”í˜¸í™” ë³´ì•ˆì ‘ì†ì„ í•´ì œí•©ë‹ˆë‹¤");
 	}
 } 
 </script>

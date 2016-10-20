@@ -1,23 +1,23 @@
 <?
 /*///////////////////////////////////////////////////////////////
 
-	ÇÁ·Î±×·¥¸í	: RSSWriter.class
-	¹öÀü		: 0.9
-	ÀÛ¼ºÀÚ		: ¼Õ»ó¸ğ
-	ÃÖÃÊÀÛ¼ºÀÏ	: 2004.10.20
+	í”„ë¡œê·¸ë¨ëª…	: RSSWriter.class
+	ë²„ì „		: 0.9
+	ì‘ì„±ì		: ì†ìƒëª¨
+	ìµœì´ˆì‘ì„±ì¼	: 2004.10.20
 
-	*** ¼³¸í ***
+	*** ì„¤ëª… ***
 
 	RSS(Real Simple Syndication,Rich Site Summary) Writer
 
-	1. RSS 2.0 Specification Áö¿ø
+	1. RSS 2.0 Specification ì§€ì›
 
-	*** º¯°æ ³»¿ª ***
+	*** ë³€ê²½ ë‚´ì—­ ***
 
 /////////////////////////////////////////////////////////////////*/
 
 class RSSWriter {
-	var $charset = "euc-kr";
+	var $charset = "utf-8";
 	var $title;
 	var $link;
 	var $description;
@@ -71,14 +71,14 @@ class RSSWriter {
 		$this->ChannelOptionalElements["webMaster"] = $webMaster;
 	}
 
-	// date format YYYY-MM-DD HH:mm:ss ¶Ç´Â YYYY-MM-DD (¿¹ : 2000-11-01 00:00:00)
+	// date format YYYY-MM-DD HH:mm:ss ë˜ëŠ” YYYY-MM-DD (ì˜ˆ : 2000-11-01 00:00:00)
 	function setPubDate($pubDate){
 		$this->ChannelOptionalElements["pubDate"] 
 			= sprintf("%s KST",date("Y-m-d H:i:s",$this->GetTimeStamp($pubDate)));
 	}
 
 
-	// date format YYYY-MM-DD HH:mm:ss ¶Ç´Â YYYY-MM-DD (¿¹ : 2000-11-01 00:00:00)
+	// date format YYYY-MM-DD HH:mm:ss ë˜ëŠ” YYYY-MM-DD (ì˜ˆ : 2000-11-01 00:00:00)
 	function setLastBuildDate($lastBuildDate){
 		$this->ChannelOptionalElements["lastBuildDate"] 
 			= sprintf("%s KST",date("Y-m-d H:i:s",$this->GetTimeStamp($lastBuildDate)));
@@ -186,15 +186,15 @@ class RSSWriter {
 
 	function GetTimeStamp($date) 
 	{
-		/* ÀÎÀÚ Çü½ÄÃ³¸®
+		/* ì¸ì í˜•ì‹ì²˜ë¦¬
 		YYYY-MM-DD
 		YYYY-MM-DD HH:mm:ss
 		*/
-		if (strlen($DATE) == 10) {
-			$time = mktime(0,0,0,(int)substr($date,5,2),(int)substr($date,8,2),(int)substr($date,0,4));
+		if (mb_strlen($DATE) == 10) {
+			$time = mktime(0,0,0,(int)mb_substr($date,5,2),(int)mb_substr($date,8,2),(int)mb_substr($date,0,4));
 		} else {
-			$time = mktime((int)substr($date,11,2),(int)substr($date,14,2),
-			(int)substr($date,17,2),(int)substr($date,5,2),(int)substr($date,8,2),(int)substr($date,0,4));
+			$time = mktime((int)mb_substr($date,11,2),(int)mb_substr($date,14,2),
+			(int)mb_substr($date,17,2),(int)mb_substr($date,5,2),(int)mb_substr($date,8,2),(int)mb_substr($date,0,4));
 		}
 		return $time;
 	}

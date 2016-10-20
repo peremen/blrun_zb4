@@ -10,7 +10,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 <col width=5></col><col width=></col><col width=13></col>
 <tr align=left valign="middle" height=35>
 	<td class=title1></td>
-	<td class=title2><font class=title_font>&nbsp;¡¤ &nbsp;Subject : </font><font class=title_font2><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?></font></td>
+	<td class=title2><font class=title_font>&nbsp;Â· &nbsp;Subject : </font><font class=title_font2><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?></font></td>
 	<td class=title3></td>
 </tr>
 </table>
@@ -63,7 +63,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 		<table border=0 cellspacing=0 cellpadding=10 width=100% style=table-layout:fixed>
 		<tr>
 			<td align=left class=memo>
-				<!--¿©±âºÎÅÍ º»¹® ³»¿ë ½ÃÀÛÀÔ´Ï´Ù-->
+				<!--ì—¬ê¸°ë¶€í„° ë³¸ë¬¸ ë‚´ìš© ì‹œìž‘ìž…ë‹ˆë‹¤-->
 				<?=$memo?><BR><BR>
 				<? include "script/sns.php"; ?>
 				<table width=100% border=0>
@@ -72,7 +72,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 				<a href="http://www.ntzn.net/" target="_blank" style="color:blue;">http://www.ntzn.net/</a>
 				</td></tr>
 				</table>
-				<!--¿©±â±îÁö º»¹® ³»¿ë ³¡ÀÔ´Ï´Ù-->
+				<!--ì—¬ê¸°ê¹Œì§€ ë³¸ë¬¸ ë‚´ìš© ëìž…ë‹ˆë‹¤-->
 			</td>
 		</tr>
 		</table>

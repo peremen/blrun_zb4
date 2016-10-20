@@ -24,7 +24,7 @@
 		<?
 		if($o_data[ismember]=="") $ismember0="0"; else $ismember0=$o_data[ismember];
 		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$ismember0!=$member[no]&&$member[level]>$setup[grant_view_secret])
-			echo "<span style='color:gray;font-size:10pt'>ºñ¹Ğ µ¡±ÛÀÔ´Ï´Ù</span>";
+			echo "<span style='color:gray;font-size:10pt'>ë¹„ë°€ ë§ê¸€ì…ë‹ˆë‹¤</span>";
 		else {
 		?>
 
@@ -34,11 +34,11 @@
 
 		<br><?if($c_data[is_secret]) echo "<img src=".$dir."/post_security.gif border=0>";?><?if(preg_match("#\|\|\|[0-9]{1,}\|[0-9]{1,10}$#",$o_data[memo])) echo "<font color=blue>To $o_data[name]</font>";?>
 
-		<!-- µ¡±Û ³»¿ë ½ÃÀÛ -->
+		<!-- ë§ê¸€ ë‚´ìš© ì‹œì‘ -->
 		<div id=IAMCONT_<?=$c_data[no]?>></div>
 		<textarea style='display:none' id=IAMAREA_<?=$c_data[no]?>><?=$c_memo?></textarea>
 		<script>document.getElementById("IAMCONT_"+<?=$c_data[no]?>).innerHTML = document.getElementById("IAMAREA_"+<?=$c_data[no]?>).value</script>
-		<!-- µ¡±Û ³»¿ë ³¡ -->
+		<!-- ë§ê¸€ ë‚´ìš© ë -->
 		<? } ?>
 
 	</td>

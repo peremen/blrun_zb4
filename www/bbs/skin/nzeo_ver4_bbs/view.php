@@ -15,7 +15,7 @@
 				<div style="overflow:hidden;" class=list_han><?=$face_image?> <?=$name?>&nbsp;
 				<? if($data['homepage']) { ?><a href="<?=$data['homepage']?>" target=_blank><font class=list_eng>(Homepage)</font></a><? } ?></div>
 			</td>
-			<td align=right style=padding-right:10px class=list_eng><?=$date?>, Á¶È¸ : <b><?=number_format($hit)?></b>, ÃßÃµ : <b><?=$vote?></b></td>
+			<td align=right style=padding-right:10px class=list_eng><?=$date?>, ì¡°íšŒ : <b><?=number_format($hit)?></b>, ì¶”ì²œ : <b><?=$vote?></b></td>
 		</tr>
 		</table>
 		<table border=0 cellspacing=0 cellpadding=10 width=100% padding=8 style=table-layout:fixed>
@@ -30,12 +30,12 @@
 				<?=$hide_download2_start?><font class=list_eng>- <b>Download #2</b> : <?=$a_file_link2?><?=$file_name2?> (<?=$file_size2?>)</a>, Download : <?=$file_download2?></font><br><?=$upload_image2?><br><?=$hide_download2_end?>
 		
 				<img src=<?=$dir?>/t.gif border=0 width=10><br>
-				<!--¿©±âºÎÅÍ º»¹® ³»¿ë ½ÃÀÛÀÔ´Ï´Ù-->
+				<!--ì—¬ê¸°ë¶€í„° ë³¸ë¬¸ ë‚´ìš© ì‹œìž‘ìž…ë‹ˆë‹¤-->
 				<?=$memo?><br><br>
 				<? include "script/sns.php"; ?>
 				<br><div align=right class=list_eng><?=$ip?></div><br>
 				<a href="http://www.ntzn.net/" target="_blank" style="color:blue;">http://www.ntzn.net/</a>
-				<!--¿©±â±îÁö º»¹® ³»¿ë ³¡ÀÔ´Ï´Ù-->
+				<!--ì—¬ê¸°ê¹Œì§€ ë³¸ë¬¸ ë‚´ìš© ëìž…ë‹ˆë‹¤-->
 			</td>
 		</tr>
 		</table>

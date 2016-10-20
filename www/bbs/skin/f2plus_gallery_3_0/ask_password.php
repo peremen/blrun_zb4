@@ -36,13 +36,13 @@ if($target=="del_comment_ok.php?delsec=$delsec"){
 		</tr>
 <? if(!$member['no']) { ?>
 		<tr><td class='sw_bg_style_0'></td></tr>
-		<tr><td align='center' style='padding:7;' class='sw_ft_style_0'>ºñ¹Ð¹øÈ£ <?=$input_password?></td></tr>
+		<tr><td align='center' style='padding:7;' class='sw_ft_style_0'>ë¹„ë°€ë²ˆí˜¸ <?=$input_password?></td></tr>
 <? } ?>
 		<tr><td class='sw_bg_style_0'></td></tr>
 		<tr>
 			<td align='center' style='padding:7 0 7 0;'>
-				<input type='submit' class='submit' value='È®&nbsp;&nbsp;&nbsp;ÀÎ' accesskey='s' style='margin:0 5 0 0;'>
-				<input type='button' class='button' value='Ãë&nbsp;&nbsp;&nbsp;¼Ò' onClick='history.back();'>
+				<input type='submit' class='submit' value='í™•&nbsp;&nbsp;&nbsp;ì¸' accesskey='s' style='margin:0 5 0 0;'>
+				<input type='button' class='button' value='ì·¨&nbsp;&nbsp;&nbsp;ì†Œ' onClick='history.back();'>
 			</td>
 		</tr>
 		<tr><td><img src='<?=$dir?>/images/sw_window_b.gif' border='0'></td></tr>

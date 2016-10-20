@@ -1,5 +1,5 @@
 
-<!--====================[ sw_edit ÆÄÀÏ¸í: ed_seting_option_comment.php ]====================-->
+<!--====================[ sw_edit íŒŒì¼ëª…: ed_seting_option_comment.php ]====================-->
 <table border='0' cellpadding='0' cellspacing='0' width='100%'>
 <tr height='21'>
 <? if($sw_edit_yn == "N") { ?>
@@ -17,26 +17,26 @@
 	<td align='left' style='padding:0 0 0 10;'>
 		<label for='htChk'> <input type='checkbox' id='htChk' name='htChk' style='cursor:pointer;' value=1 checked disabled><font class='sw_ft_style_1'>HTML</font></label>
 <? } ?>
-		<label for='use_html2'> <input type='checkbox' id='use_html2' name='use_html2' <?=$use_html2?>><font class='sw_ft_style_1'>HTMLÀû¿ë</font></label>
-		<?=$hide_secret_start?><label for='is_secret'> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1><font class='sw_ft_style_1'>ºñ¹Ð±Û</font></label><?=$hide_secret_end?>
+		<label for='use_html2'> <input type='checkbox' id='use_html2' name='use_html2' <?=$use_html2?>><font class='sw_ft_style_1'>HTMLì ìš©</font></label>
+		<?=$hide_secret_start?><label for='is_secret'> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1><font class='sw_ft_style_1'>ë¹„ë°€ê¸€</font></label><?=$hide_secret_end?>
 
 	</td>
 	<td align='right'>
 	<table border='0' cellpadding='0' cellspacing='0'>
 	<tr height='21'>
-		<td colspan='3' align='right'><font id="state"></font><font color=orange> ºñ¹øÀ» ÀçÀÔ·ÂÇÏ¸é ÀÓ½ÃÀúÀåÀÌ º¹¿øµÊ! </font></td>
+		<td colspan='3' align='right'><font id="state"></font><font color=orange> ë¹„ë²ˆì„ ìž¬ìž…ë ¥í•˜ë©´ ìž„ì‹œì €ìž¥ì´ ë³µì›ë¨! </font></td>
 	</tr>
 	<tr height='21'>
 <? if(!$member['no']) { ?>
 		<td style='padding:0 10 0 0;'>
-			<font class='sw_ft_style_1'>ÀÌ¸§</font><?=$c_name?>
+			<font class='sw_ft_style_1'>ì´ë¦„</font><?=$c_name?>
 
 		</td>
 <? } ?>
 <?=$hide_c_password_start?>
 
 		<td style='padding:0 13 0 0;'>
-			<font class='sw_ft_style_1'>¾ÏÈ£</font>
+			<font class='sw_ft_style_1'>ì•”í˜¸</font>
 			<input type='password' id='password' name='password' size='8' maxlength='20' class='input' onkeyup="ajaxLoad2()">
 		</td>
 <?=$hide_c_password_end?>
@@ -47,4 +47,4 @@
 	</td>
 </tr>
 </table>
-<!--====================[ sw_edit ÆÄÀÏ¸í: ed_seting_option_comment.php ³¡]====================-->
+<!--====================[ sw_edit íŒŒì¼ëª…: ed_seting_option_comment.php ë]====================-->

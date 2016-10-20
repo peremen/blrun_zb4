@@ -2,7 +2,7 @@
 </td>
 </tr>
 </table>
-<!-- ¹öÆ° ºÎºÐ -->
+<!-- ë²„íŠ¼ ë¶€ë¶„ -->
 <table border=0 cellspacing=1 cellpadding=1 width=<?=$width?>>
 <tr>
 <td align=right>
@@ -18,8 +18,8 @@
 </tr>
 <tr>
 <td>
-	<!-- °Ë»öÆû ºÎºÐ ---------------------->
-	<!-- ÆûÅÂ±× ºÎºÐ;; ¼öÁ¤ÇÏÁö ¾Ê´Â °ÍÀÌ ÁÁ½À´Ï´Ù -->
+	<!-- ê²€ìƒ‰í¼ ë¶€ë¶„ ---------------------->
+	<!-- í¼íƒœê·¸ ë¶€ë¶„;; ìˆ˜ì •í•˜ì§€ ì•ŠëŠ” ê²ƒì´ ì¢‹ìŠµë‹ˆë‹¤ -->
 	<form method=post name=search action=<?=$PHP_SELF?>>
 	<input type=hidden name=page value=<?=$page?>>
 	<input type=hidden name=id value=<?=$id?>>

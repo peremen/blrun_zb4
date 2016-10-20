@@ -44,7 +44,7 @@ function zbDB_getSchema($tableName) {
 	$fields = zbDB_getFields($tableName);
 	$key = zbDB_getKeys($tableName);
 	$schema = $fields."\n".$key;
-	$schema = substr($schema,0,strlen($schema)-2);
+	$schema = mb_substr($schema,0,mb_strlen($schema)-2);
 	$schema = "\nCREATE TABLE $tableName ( \n".$schema." \n) ENGINE=MyISAM; ";
 	echo $schema;
 	flush();
@@ -56,7 +56,7 @@ function zbDB_getDataList($tableName) {
 	while($data=mysql_fetch_array($result)) {
 		$field .= $data["Field"].",";
 	}
-	$field = substr($field,0,strlen($field)-1);
+	$field = mb_substr($field,0,mb_strlen($field)-1);
 	$field_array = explode(",",$field);
 	$field_count = count($field_array);
 
@@ -67,7 +67,7 @@ function zbDB_getDataList($tableName) {
 		for($i=0;$i<$field_count;$i++) {
 			$str .= " '".addslashes($data[$field_array[$i]])."',";
 		}
-		$str = substr($str,0,strlen($str)-1);
+		$str = mb_substr($str,0,mb_strlen($str)-1);
 		echo "INSERT INTO ".$tableName." VALUES (".$str.");\n";
 		flush();
 	}
@@ -135,6 +135,6 @@ function all_Backup($host,$user,$password,$dbname,$filename) {
 		if($rowArray[0]=="basedir")
 			$bindir=$rowArray[1]."bin/";
 	}
-	passthru($bindir."mysqldump --user=$myid --password=$mypw $dbname --default-character-set=euckr > ../$filename");
+	passthru($bindir."mysqldump --user=$myid --password=$mypw $dbname --default-character-set=utf8 > ../$filename");
 }
 ?>

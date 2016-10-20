@@ -19,7 +19,7 @@ if($emoticon_use=="on") $c_memo=str_to_emoticon($c_memo,$emoticon_url);
 		<?
 		if($o_data[ismember]=="") $ismember0="0"; else $ismember0=$o_data[ismember];
 		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$ismember0!=$member[no]&&$member[level]>$setup[grant_view_secret])
-			echo "<span style='color:gray;font-size:10pt'>∫Òπ– µ°±€¿‘¥œ¥Ÿ</span>";
+			echo "<span style='color:gray;font-size:10pt'>ÎπÑÎ∞Ä ÎçßÍ∏ÄÏûÖÎãàÎã§</span>";
 		else {
 		?>
 
@@ -29,11 +29,11 @@ if($emoticon_use=="on") $c_memo=str_to_emoticon($c_memo,$emoticon_url);
 
 		<br><font class=com2><?if($c_data[is_secret]) echo "<img src=".$dir."/post_security.gif border=0>";?><?if(preg_match("#\|\|\|[0-9]{1,}\|[0-9]{1,10}$#",$o_data[memo])) echo "<font color=blue>To $o_data[name]</font>";?>
 
-		<!-- µ°±€ ≥ªøÎ Ω√¿€ -->
+		<!-- ÎçßÍ∏Ä ÎÇ¥Ïö© ÏãúÏûë -->
 		<div id=IAMCONT_<?=$c_data[no]?>></div>
 		<textarea style='display:none' id=IAMAREA_<?=$c_data[no]?>><?=$c_memo?></textarea>
 		<script>document.getElementById("IAMCONT_"+<?=$c_data[no]?>).innerHTML = document.getElementById("IAMAREA_"+<?=$c_data[no]?>).value</script>
-		<!-- µ°±€ ≥ªøÎ ≥° -->
+		<!-- ÎçßÍ∏Ä ÎÇ¥Ïö© ÎÅù -->
 		<? } ?></td>
 	<td background=<?=$dir?>/cc_middle_bg2.gif></td>
 </tr>

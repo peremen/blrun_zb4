@@ -1,9 +1,9 @@
 <?
 /**************************************************************************
-* È¸¿ø ¸ñ·Ï º¸´Â ÆäÀÌÁö
+* íšŒì› ëª©ë¡ ë³´ëŠ” í˜ì´ì§€
 *************************************************************************/
 
-// ÀüÃ¼ ±×·ì¼ö¿Í ÇöÀç ±×·ìÀÇ Á¤º¸¸¦ ÃßÃâ
+// ì „ì²´ ê·¸ë£¹ìˆ˜ì™€ í˜„ì¬ ê·¸ë£¹ì˜ ì •ë³´ë¥¼ ì¶”ì¶œ
 $tmpResult = mysql_fetch_array(mysql_query("select count(*) from $group_table"));
 $total_group_num = $tmpResult[0];
 $group_data = mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
@@ -11,7 +11,7 @@ $group_data = mysql_fetch_array(mysql_query("select * from $group_table where no
 $temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where group_no='$group_no'"));
 $total_member=$temp[0];
 
-// °Ë»ö¾î¿¡ ´ëÇØ¼­ Ã³¸®
+// ê²€ìƒ‰ì–´ì— ëŒ€í•´ì„œ ì²˜ë¦¬
 $s_que="";
 $href="&keykind=$keykind&like=$like";
 
@@ -37,7 +37,7 @@ if($keyword&&$keykind) {
 $temp=mysql_fetch_array(mysql_query("select count(*) from $member_table $s_que"));
 $total=$temp[0];
 
-// ÆäÀÌÁö ±¸ÇÏ´Â ºÎºĞ
+// í˜ì´ì§€ êµ¬í•˜ëŠ” ë¶€ë¶„
 if(!$page_num)$page_num=10;
 $href.="&page_num=$page_num";
 if(!$page) $page=1;
@@ -45,10 +45,10 @@ $start_num=($page-1)*$page_num;
 $total_page=(int)(($total-1)/$page_num)+1;
 
 
-// ¸â¹öÁ¤º¸¸¦ ±¸ÇØ¿È
+// ë©¤ë²„ì •ë³´ë¥¼ êµ¬í•´ì˜´
 $result=@mysql_query("select * from $member_table $s_que order by no desc limit $start_num,$page_num",$connect) or Error(mysql_error(),"");
 
-// ¾Õ¿¡ ºÙ´Â °¡»ó¹øÈ£
+// ì•ì— ë¶™ëŠ” ê°€ìƒë²ˆí˜¸
 $number=$total-($page-1)*$page_num;
 
 ?>
@@ -60,9 +60,9 @@ $number=$total-($page-1)*$page_num;
 </tr>
 <tr bgcolor=bbbbbb>
   <td align=right colspan=10 height=25 colspan=2 style=font-family:Tahoma;font-size:9pt;>
-    ±×·ìÀÌ¸§ : <b><?=$group_data[name]?></b> , ÀüÃ¼ È¸¿ø¼ö : <b><?echo $total_member;?></b> , <b><?echo $total;?></b> °³ °Ë»ö&nbsp;&nbsp;&nbsp;</td>
+    ê·¸ë£¹ì´ë¦„ : <b><?=$group_data[name]?></b> , ì „ì²´ íšŒì›ìˆ˜ : <b><?echo $total_member;?></b> , <b><?echo $total;?></b> ê°œ ê²€ìƒ‰&nbsp;&nbsp;&nbsp;</td>
 </tr>
-<!-- ¸ğµÎ»èÁ¦ÇÏ´Â °Å¶û, º¯ÇÑº¯°æ, ±×·ìÀÌµ¿ ¹öÆ° Ç¥½Ã -->
+<!-- ëª¨ë‘ì‚­ì œí•˜ëŠ” ê±°ë‘, ë³€í•œë³€ê²½, ê·¸ë£¹ì´ë™ ë²„íŠ¼ í‘œì‹œ -->
 <script>
 
   function select() {
@@ -109,11 +109,11 @@ $number=$total-($page-1)*$page_num;
    }
    if(k<1)
    {
-    alert("¼±ÅÃÀ» ÇÏ¿© ÁÖ¼¼¿ä");
+    alert("ì„ íƒì„ í•˜ì—¬ ì£¼ì„¸ìš”");
     return false;
    }
 
-   if(confirm("¼±ÅÃµÈ ¸â¹ö¸¦ ¸ğµÎ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?"))
+   if(confirm("ì„ íƒëœ ë©¤ë²„ë¥¼ ëª¨ë‘ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?"))
    {
     write.exec2.value="deleteall";
     write.submit();
@@ -132,12 +132,12 @@ $number=$total-($page-1)*$page_num;
    }
    if(k<1)
    {
-    alert("¼±ÅÃÀ» ÇÏ¿© ÁÖ¼¼¿ä");
+    alert("ì„ íƒì„ í•˜ì—¬ ì£¼ì„¸ìš”");
     return false;
    }
 
 
-   if(confirm("¼±ÅÃµÈ ¸â¹ö¸¦ ¸ğµÎ "+write.movelevel.value+"·Î º¯°æÇÏ½Ã°Ú½À´Ï±î?"))
+   if(confirm("ì„ íƒëœ ë©¤ë²„ë¥¼ ëª¨ë‘ "+write.movelevel.value+"ë¡œ ë³€ê²½í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"))
    {
     write.exec2.value="moveall";
     write.submit();
@@ -157,12 +157,12 @@ $number=$total-($page-1)*$page_num;
    }
    if(k<1)
    {
-    alert("¼±ÅÃÀ» ÇÏ¿© ÁÖ¼¼¿ä");
+    alert("ì„ íƒì„ í•˜ì—¬ ì£¼ì„¸ìš”");
     return false;
    }
 
 
-   if(confirm("¼±ÅÃµÈ ¸â¹ö¸¦ ¼±ÅÃµÈ ±×·ìÀ¸·Î ÀÌµ¿ÇÏ½Ã°Ú½À´Ï±î?"))
+   if(confirm("ì„ íƒëœ ë©¤ë²„ë¥¼ ì„ íƒëœ ê·¸ë£¹ìœ¼ë¡œ ì´ë™í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"))
    {
     write.exec2.value="move_group";
     write.submit();
@@ -174,15 +174,15 @@ $number=$total-($page-1)*$page_num;
 </script>
 
 <tr align=center height=25 bgcolor=#a0a0a0>
-  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>¹øÈ£</td>
-  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;><a href=javascript: onclick="return select();">¼±ÅÃ</a></td>
-  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>À¯Àú¸í</td>
-  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ÀÌ¸§</td>
-  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>·¹º§</td>
-  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>Á¡¼ö</td>
-  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>°¡ÀÔÀÏÀÚ</td>
-  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>¼öÁ¤</td>
-  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>»èÁ¦</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ë²ˆí˜¸</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;><a href=javascript: onclick="return select();">ì„ íƒ</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ìœ ì €ëª…</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì´ë¦„</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ë ˆë²¨</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì ìˆ˜</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ê°€ì…ì¼ì</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ìˆ˜ì •</td>
+  <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì‚­ì œ</td>
 </tr>
 
 <form method=post action=<?=$PHP_SELF?> name=write>
@@ -213,7 +213,7 @@ while($data=mysql_fetch_array($result))
   <td style=font-family:Tahoma;font-size:9pt;>".date("Y-m-d",$data[reg_date])."</td>
   <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=$exec&group_no=$group_no&exec2=modify&page=$page&no=$data[no]&keyword=$keyword&keykind=$keykind&like=$like&page_num=$page_num>Modify</a></td>
   <td style=font-family:Tahoma;font-size:9pt;>";
-	if($data[no]>1) echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&exec2=del&keyword=$keyword&page=$page&no=$data[no]$href onclick=\"return confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')\">Delete</a>"; else echo "&nbsp;";
+	if($data[no]>1) echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&exec2=del&keyword=$keyword&page=$page&no=$data[no]$href onclick=\"return confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')\">Delete</a>"; else echo "&nbsp;";
 	echo "</td>
 </tr>
 ";
@@ -223,7 +223,7 @@ while($data=mysql_fetch_array($result))
 <tr>
   <td height=30 align=right  colspan=9>
 
-<!-- »èÁ¦, º¯°æ ¹öÆ° ºÎºĞ -->
+<!-- ì‚­ì œ, ë³€ê²½ ë²„íŠ¼ ë¶€ë¶„ -->
     <table border=0 cellspacing=0 cellpadding=1>
     <tr>
       <td width=20>&nbsp;</td>
@@ -238,8 +238,8 @@ echo "
 
         </select>
       </td>
-      <td><input type=button value='·¹º§º¯°æ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=move_all()></td>
-      <td><input type=button value='¼±ÅÃµÈ È¸¿ø »èÁ¦' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=delete_all()></td>
+      <td><input type=button value='ë ˆë²¨ë³€ê²½' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=move_all()></td>
+      <td><input type=button value='ì„ íƒëœ íšŒì› ì‚­ì œ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=delete_all()></td>
 <?
 if($member[is_admin]==1)
 {
@@ -261,7 +261,7 @@ if($member[is_admin]==1)
 
         </select>
       </td>
-      <td><input type=button value='±×·ì º¯°æ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=move_group()>&nbsp;</td>
+      <td><input type=button value='ê·¸ë£¹ ë³€ê²½' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=move_group()>&nbsp;</td>
 <?
 }
 ?>
@@ -273,7 +273,7 @@ if($member[is_admin]==1)
 <tr>
 <td colspan=9 align=right bgcolor=666666>
   <table border=0 cellpadding=2 cellspacing=0 width=100%>
-  <!-- °Ë»öÇÏ´Â ºÎºĞ;;;; -->
+  <!-- ê²€ìƒ‰í•˜ëŠ” ë¶€ë¶„;;;; -->
   <form method=post action=<?=$PHP_SELF?> name=search>
   <input type=hidden name=exec2 value="">
   <input type=hidden name=s_que value="<?=$s_que?>">
@@ -283,13 +283,13 @@ if($member[is_admin]==1)
   <input type=hidden name=cart value=''>
   <tr>
     <td rowspan=2 align=left>
-      <input type=button value="¸ŞÀÏ¸µ ¸®½ºÆ® ¹ß¼Û" style=line-height:150%;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:50px; onclick="sendmail();">&nbsp;
-      <input type=button value="È¸¿ø Ãß°¡" style=line-height:150%;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:50px; onclick="window.open('member_join.php?mode=admin&group_no=<?=$group_no?>','zbMemberJoin','width=560,height=590,toolbars=no,resizable=yes,scrollbars=yes')">&nbsp;
+      <input type=button value="ë©”ì¼ë§ ë¦¬ìŠ¤íŠ¸ ë°œì†¡" style=line-height:150%;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:50px; onclick="sendmail();">&nbsp;
+      <input type=button value="íšŒì› ì¶”ê°€" style=line-height:150%;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:50px; onclick="window.open('member_join.php?mode=admin&group_no=<?=$group_no?>','zbMemberJoin','width=560,height=590,toolbars=no,resizable=yes,scrollbars=yes')">&nbsp;
     </td>
     <td align=right height=30 nowrap='nowrap'>
       <img src=images/t.gif height=2><br>
       <select name=level_search>
-      <option>·¹º§°Ë»ö</option>
+      <option>ë ˆë²¨ê²€ìƒ‰</option>
 <?
 $check[$level_search]="selected";
 for($i=1;$i<=10;$i++) echo "<option value=$i $check[$i]>$i Level</option>";
@@ -305,14 +305,14 @@ for($i=1;$i<=10;$i++) echo "<option value=$i $check[$i]>$i Level</option>";
       <option value="comment" <?if($keykind=="comment") echo "selected";?>>Comment</option>
       </select>
       <input type=text name=keyword value='<?echo $keyword;?>'>
-      <input type=checkbox name=like value=1 <?if($like) echo "checked";?> onclick='alert("Include Ã¼Å©½Ã °Ë»ö¾î¸¦ Æ÷ÇÔÇÏ´Â ´ë»óÀ» °Ë»öÇÕ´Ï´Ù.\n\nÃ¼Å©½Ã : *°Ë»ö¾î*\n\nÃ¼Å©¸¦ ÇÏÁö ¾ÊÀ»°æ¿ì ¿ÏÀüÇÑ ´ë»óÀ» °Ë»öÇÏ¸ç ´õ ºü¸¨´Ï´Ù\n\nComment¸¦ Á¦¿ÜÇÏ°í´Â Ã¼Å©ÇÏÁö ¾Ê´Â °ÍÀ» ±ÇÇØµå¸³´Ï´Ù")'> <font style=color:#ffffff;font-size:9pt;font-family:Tahoma;>Include</font> &nbsp;
-      <input type=submit value=' °Ë»ö '  style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; >
-      <input type=button value=' Ã³À½À¸·Î ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=location.href="<?=$PHP_SELF?>?exec=<?=$exec?>&group_no=<?=$group_no?>">
+      <input type=checkbox name=like value=1 <?if($like) echo "checked";?> onclick='alert("Include ì²´í¬ì‹œ ê²€ìƒ‰ì–´ë¥¼ í¬í•¨í•˜ëŠ” ëŒ€ìƒì„ ê²€ìƒ‰í•©ë‹ˆë‹¤.\n\nì²´í¬ì‹œ : *ê²€ìƒ‰ì–´*\n\nì²´í¬ë¥¼ í•˜ì§€ ì•Šì„ê²½ìš° ì™„ì „í•œ ëŒ€ìƒì„ ê²€ìƒ‰í•˜ë©° ë” ë¹ ë¦…ë‹ˆë‹¤\n\nCommentë¥¼ ì œì™¸í•˜ê³ ëŠ” ì²´í¬í•˜ì§€ ì•ŠëŠ” ê²ƒì„ ê¶Œí•´ë“œë¦½ë‹ˆë‹¤")'> <font style=color:#ffffff;font-size:9pt;font-family:Tahoma;>Include</font> &nbsp;
+      <input type=submit value=' ê²€ìƒ‰ '  style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; >
+      <input type=button value=' ì²˜ìŒìœ¼ë¡œ ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=location.href="<?=$PHP_SELF?>?exec=<?=$exec?>&group_no=<?=$group_no?>">
     </td>
   </tr>
   <tr>
     <td style=font-family:Tahoma;font-size:9pt;font-weight:bold; align=right>
-      ÇÑ ÆäÀÌÁö´ç Ç¥½ÃµÉ È¸¿ø¼ö   
+      í•œ í˜ì´ì§€ë‹¹ í‘œì‹œë  íšŒì›ìˆ˜   
       <input type=text name=page_num value='<?echo $page_num;?>' style=width:30px;>
     </td>
   </tr>
@@ -324,7 +324,7 @@ for($i=1;$i<=10;$i++) echo "<option value=$i $check[$i]>$i Level</option>";
 <br>
 <font color=#ffffff style=font-size:9pt;font-family:Tahoma;>
 <?
-// ÆäÀÌÁö ³ªÅ¸³»´Â ºÎºĞ
+// í˜ì´ì§€ ë‚˜íƒ€ë‚´ëŠ” ë¶€ë¶„
 	$show_page_num=10;
 	$start_page=(int)(($page-1)/$show_page_num)*$show_page_num;
 	$i=1;
@@ -337,6 +337,6 @@ for($i=1;$i<=10;$i++) echo "<option value=$i $check[$i]>$i Level</option>";
 	 $i++;
 	}
 	if($total_page>$move_page){$next_page=$move_page+1; echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&page=$next_page$href><font color=#ffffff>[Next]</font></a>";}
-// ÆäÀÌÁö ³ªÅ¸³»´Â ºÎºĞ ³¡
+// í˜ì´ì§€ ë‚˜íƒ€ë‚´ëŠ” ë¶€ë¶„ ë
 ?>
 </font><br><br>

@@ -1,8 +1,8 @@
 <?
-// ¿¡·¯ ¸Þ¼¼Áö Ãâ·Â
+// ì—ëŸ¬ ë©”ì„¸ì§€ ì¶œë ¥
 function error($message, $url="") {
 ?>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <?
 	if($url=="window.close") {
 		$message=str_replace("<br>","\\n",$message);
@@ -19,9 +19,9 @@ function error($message, $url="") {
 	exit;
 }
 ?>
-<html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width">
 <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 <link rel="image_src" href="../blrun2_fb.jpg">
@@ -29,13 +29,13 @@ function error($message, $url="") {
 </head>
 <body topmargin='0' leftmargin='0' marginwidth='0' marginheight='0'>
 <?
-if(file_exists("myZrCnf2019.php")) error("ÀÌ¹Ì myZrCnf2019.php°¡ »ý¼ºµÇ¾î ÀÖ½À´Ï´Ù.<br><br>Àç¼³Ä¡ÇÏ·Á¸é ÇØ´ç ÆÄÀÏÀ» Áö¿ì¼¼¿ä");
+if(file_exists("myZrCnf2019.php")) error("ì´ë¯¸ myZrCnf2019.phpê°€ ìƒì„±ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.<br><br>ìž¬ì„¤ì¹˜í•˜ë ¤ë©´ í•´ë‹¹ íŒŒì¼ì„ ì§€ìš°ì„¸ìš”");
 ?>
 <body bgcolor=#000000 text=#ffffff>
 <script>
 function check_submit() {
 	if(!document.license.accept.checked) {
-		alert("¶óÀÌ¼¾½º¸¦ ÀÐÀ¸½Ã°í µ¿ÀÇÇÏ½Ã´Â ºÐ¸¸ Á¦·Îº¸µå¸¦ »ç¿ëÇÏ½Ç¼ö ÀÖ½À´Ï´Ù.\n\n¶óÀÌ¼¾½º¸¦ ¸ðµÎ ÀÐÀ¸½ÅÈÄ ¶óÀÌ¼¾½º¿¡ µ¿ÀÇÇÏ½Ã¸é Ã¼Å©¸¦ ÇÏ½ÅÈÄ ¼³Ä¡½ÃÀÛÇÏ¼¼¿ä");
+		alert("ë¼ì´ì„¼ìŠ¤ë¥¼ ì½ìœ¼ì‹œê³  ë™ì˜í•˜ì‹œëŠ” ë¶„ë§Œ ì œë¡œë³´ë“œë¥¼ ì‚¬ìš©í•˜ì‹¤ìˆ˜ ìžˆìŠµë‹ˆë‹¤.\n\në¼ì´ì„¼ìŠ¤ë¥¼ ëª¨ë‘ ì½ìœ¼ì‹ í›„ ë¼ì´ì„¼ìŠ¤ì— ë™ì˜í•˜ì‹œë©´ ì²´í¬ë¥¼ í•˜ì‹ í›„ ì„¤ì¹˜ì‹œìž‘í•˜ì„¸ìš”");
 		return false;
 	}
 	return true;
@@ -43,7 +43,7 @@ function check_submit() {
 
 function check_view() {
 	if(document.license.accept.checked) {
-		if(confirm("¶óÀÌ¼¾½º¸¦ ¸ðµÎ ÀÐÀ¸½Ã°í µ¿ÀÇ¸¦ ÇÏ½Ê´Ï±î?")) {
+		if(confirm("ë¼ì´ì„¼ìŠ¤ë¥¼ ëª¨ë‘ ì½ìœ¼ì‹œê³  ë™ì˜ë¥¼ í•˜ì‹­ë‹ˆê¹Œ?")) {
 			return true;
 		} else {
 			return false;
@@ -63,7 +63,7 @@ function check_view() {
     <img src=images/inst_step1.gif>
     <textarea cols=90 rows=15 readonly><? include "license.txt"; ?></textarea>
 	<br>
-	<input type=checkbox name=accept value=1 onclick="return check_view()"> À§ÀÇ ¶óÀÌ¼¾½º¸¦ ¸ðµÎ ÀÐ¾úÀ¸¸ç µ¿ÀÇÇÕ´Ï´Ù
+	<input type=checkbox name=accept value=1 onclick="return check_view()"> ìœ„ì˜ ë¼ì´ì„¼ìŠ¤ë¥¼ ëª¨ë‘ ì½ì—ˆìœ¼ë©° ë™ì˜í•©ë‹ˆë‹¤
   </td>
 </tr>
 </form>
@@ -74,13 +74,13 @@ function check_view() {
 <?
 if(fileperms(".")==16839||fileperms(".")==16895) $check="1";
 if(!$check) echo "
-	<font color=red>ÇöÀç 707·Î ÆÛ¹Ì¼ÇÀÌ µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù. ÅÚ³ÝÀÌ³ª FTP¿¡¼­ ÆÛ¹Ì¼ÇÀ» Á¶Á¤ÇÏ¼¼¿ä.<font>
+	<font color=red>í˜„ìž¬ 707ë¡œ í¼ë¯¸ì…˜ì´ ë˜ì–´ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤. í…”ë„·ì´ë‚˜ FTPì—ì„œ í¼ë¯¸ì…˜ì„ ì¡°ì •í•˜ì„¸ìš”.<font>
     </div><br><br>
     <div align=center>
     <table border=0>
     <form method=post action=$PHP_SELF>
     <tr>
-      <td align=center height=30><input type=submit value='ÆÛ¹Ì¼Ç Á¶Á¤ÇÏ¿´½À´Ï´Ù' style=height:20px;></td>
+      <td align=center height=30><input type=submit value='í¼ë¯¸ì…˜ ì¡°ì •í•˜ì˜€ìŠµë‹ˆë‹¤' style=height:20px;></td>
     </tr>
 	</form>
     </table>";

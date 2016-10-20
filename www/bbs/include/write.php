@@ -2,15 +2,15 @@
 if(!defined("_zb_lib_included")) return;
 if(preg_match("/:\/\//i",$dir)||preg_match("/\.\./i",$dir)) $dir ="./";
 
-// ÄíÅ°°ªÀ» ÀÌ¿ë;;
+// ì¿ í‚¤ê°’ì„ ì´ìš©;;
 $name=$zetyx[name];
 $email=$zetyx[email];
 $homepage=$zetyx[homepage];
 
-// È¸¿øÀÏ¶§´Â ±âº» ÀÔ·Â»çÇ× ¾Èº¸ÀÌ°Ô;;
+// íšŒì›ì¼ë•ŒëŠ” ê¸°ë³¸ ì…ë ¥ì‚¬í•­ ì•ˆë³´ì´ê²Œ;;
 if($member[no]) { $hide_start="<!--"; $hide_end="-->"; }
 
-// HTML »ç¿ë Ã¼Å©¸¦ È®Àå½ÃÅ´
+// HTML ì‚¬ìš© ì²´í¬ë¥¼ í™•ì¥ì‹œí‚´
 if($mode!="reply") {
 	if(!$data[use_html]) $value_use_html = 1;
 	else $value_use_html=$data[use_html];
@@ -19,10 +19,10 @@ if($mode!="reply") {
 }
 $use_html .= " value='$value_use_html' onclick='check_use_html(this)'><ZeroBoard";
 
-// ºñ¹Ğ±Û »ç¿ë;;
+// ë¹„ë°€ê¸€ ì‚¬ìš©;;
 if(!$setup[use_secret]) { $hide_secret_start="<!--"; $hide_secret_end="-->"; }
 
-// °øÁö±â´É »ç¿ëÇÏ´ÂÁö ¾ÊÇÏ´ÂÁö Ç¥½Ã;;
+// ê³µì§€ê¸°ëŠ¥ ì‚¬ìš©í•˜ëŠ”ì§€ ì•Ší•˜ëŠ”ì§€ í‘œì‹œ;;
 if(!$is_admin||$mode=="reply") { $hide_notice_start="<!--";$hide_notice_end="-->"; }
 
 include $dir."/write.php";

@@ -3,16 +3,16 @@ $_zb_path = "../";
 include "../lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
-if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("ÃÖ°í °ü¸®ÀÚ¸¸ÀÌ »ç¿ëÇÒ¼ö ÀÖ½À´Ï´Ù");
+if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("ìµœê³  ê´€ë¦¬ìë§Œì´ ì‚¬ìš©í• ìˆ˜ ìˆìŠµë‹ˆë‹¤");
 $board_info=mysql_fetch_array(mysql_query("select * from $admin_table where no='$no'",$connect));
 $id=$board_info[name];
 
 head("bgcolor=black")
 ?>
 <img src=../images/t.gif border=0 width=1 height=8><Br>
-<u><center><font color=aaaaaa>[<b><?=$id?></b>] °Ô½ÃÆÇ Á¤¸®</font></center></u><Br>
+<u><center><font color=aaaaaa>[<b><?=$id?></b>] ê²Œì‹œíŒ ì •ë¦¬</font></center></u><Br>
 <img src=../images/t.gif border=0 width=1 height=8><Br>
-<font color=white>&nbsp;&nbsp;&nbsp;&nbsp;Category Á¤¸® :
+<font color=white>&nbsp;&nbsp;&nbsp;&nbsp;Category ì •ë¦¬ :
 <?
 $s_que="";
 $f_cn="";
@@ -31,9 +31,9 @@ while($no=mysql_fetch_array($temp))
 	$c=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where category='$no[no]'",$connect));
 	mysql_query("update $t_category"."_$id set num='$c[0]' where no='$no[no]'",$connect) or error(mysql_error());
 }
-echo "<font color=yellow>¼º°ø</font>";
+echo "<font color=yellow>ì„±ê³µ</font>";
 ?>
-<font color=white>&nbsp;&nbsp;&nbsp;&nbsp;Division Á¤¸® :
+<font color=white>&nbsp;&nbsp;&nbsp;&nbsp;Division ì •ë¦¬ :
 <?
 $temp=mysql_query("select * from $t_division"."_$id order by no asc",$connect);
 while($data=mysql_fetch_array($temp))
@@ -43,7 +43,7 @@ while($data=mysql_fetch_array($temp))
 }
 $temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id",$connect));
 mysql_query("update $admin_table set total_article='$temp[0]' where no='$no'",$connect) or Error(mysql_error());
-echo "<font color=yellow>¼º°ø</font>";
+echo "<font color=yellow>ì„±ê³µ</font>";
 ?>
 <br><br><center><a href=# onclick=window.close()><font color=888888>[close windows]</font></a>
 <?

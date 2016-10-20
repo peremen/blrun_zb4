@@ -1,7 +1,7 @@
 <?
 include "lib.php";
 
-// DB ¿¬°á
+// DB ì—°ê²°
 if(!$connect) $connect=dbConn();
 
 @mysql_query("delete from $board_imsi_table where reg_date < ".strtotime('-1 week'),$connect);

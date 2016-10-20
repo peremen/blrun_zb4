@@ -34,8 +34,8 @@ if(!$member[no]) {
 ?>
 <tr class=list0 height=30>
 	<td align=center>
-		<input type=submit class=submit value=" È®  ÀÎ " border=0 accesskey="s">
-		<input type=button class=button value="ÀÌÀüÈ­¸é" onclick=history.back()>
+		<input type=submit class=submit value=" í™•  ì¸ " border=0 accesskey="s">
+		<input type=button class=button value="ì´ì „í™”ë©´" onclick=history.back()>
 	</td>
 </tr>
 </table>

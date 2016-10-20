@@ -14,8 +14,8 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 	<td colspan=2><img src=<?=$dir?>/t.gif height=1></td>
 </tr>
 <tr>
-	<td height=30 align=left><?=$a_list?><img src=<?=$dir?>/btn_list.gif border=0 align=absmiddle></a> <?=$a_write?><img src=<?=$dir?>/btn_write.gif border=0 align=absmiddle></a> <? if($box_view) { echo $a_preview."<img src=$dir/btn_preview.gif border=0 align=absmiddle></a> ".$a_imagebox."<img src=$dir/btn_imagebox.gif border=0 align=absmiddle></a> ".$a_codebox."ÄÚµå»ðÀÔ</a>"; }?></td>
-	<td align=right><?=$a_home?>[HOME]</a> <?=$a_bitly?>[bitly]</a> <?=$a_keyword?>[¹ÝÀüÇØÁ¦]</a> <?=$a_reply?><img src=<?=$dir?>/btn_reply.gif border=0 align=absmiddle></a> <?=$a_vote?><img src=<?=$dir?>/btn_vote.gif border=0 align=absmiddle></a> <?=$a_modify?><img src=<?=$dir?>/btn_modify.gif border=0 align=absmiddle></a> <?=$a_delete?><img src=<?=$dir?>/btn_delete.gif	border=0 align=absmiddle></a></td>
+	<td height=30 align=left><?=$a_list?><img src=<?=$dir?>/btn_list.gif border=0 align=absmiddle></a> <?=$a_write?><img src=<?=$dir?>/btn_write.gif border=0 align=absmiddle></a> <? if($box_view) { echo $a_preview."<img src=$dir/btn_preview.gif border=0 align=absmiddle></a> ".$a_imagebox."<img src=$dir/btn_imagebox.gif border=0 align=absmiddle></a> ".$a_codebox."ì½”ë“œì‚½ìž…</a>"; }?></td>
+	<td align=right><?=$a_home?>[HOME]</a> <?=$a_bitly?>[bitly]</a> <?=$a_keyword?>[ë°˜ì „í•´ì œ]</a> <?=$a_reply?><img src=<?=$dir?>/btn_reply.gif border=0 align=absmiddle></a> <?=$a_vote?><img src=<?=$dir?>/btn_vote.gif border=0 align=absmiddle></a> <?=$a_modify?><img src=<?=$dir?>/btn_modify.gif border=0 align=absmiddle></a> <?=$a_delete?><img src=<?=$dir?>/btn_delete.gif	border=0 align=absmiddle></a></td>
 </tr>
 </table>
 <table border=0	cellspacing=0 cellpadding=0 width=<?=$width?> height=2>
@@ -28,7 +28,7 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 
 <table width=<?=$width?>>
 <tr>
-	<td align=left style='word-break:break-all;'>¡â <?=$a_prev?><?=$prev_subject?></a></td>
+	<td align=left style='word-break:break-all;'>â–³ <?=$a_prev?><?=$prev_subject?></a></td>
 </tr>
 </table>
 <?=$hide_prev_end?>
@@ -37,7 +37,7 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 
 <table width=<?=$width?>>
 <tr>
-	<td align=left style='word-break:break-all;'>¡ä <?=$a_next?><?=$next_subject?></a></td>
+	<td align=left style='word-break:break-all;'>â–½ <?=$a_next?><?=$next_subject?></a></td>
 </tr>
 </table>
 <?=$hide_next_end?>

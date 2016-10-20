@@ -3,8 +3,8 @@ $_zb_path="./";
 include "lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
-if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("ÃÖ°í °ü¸®ÀÚ¸¸ÀÌ »ç¿ëÇÒ¼ö ÀÖ½À´Ï´Ù");
-// ½ÇÁ¦ °Ë»öºÎºÐ
+if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("ìµœê³  ê´€ë¦¬ìžë§Œì´ ì‚¬ìš©í• ìˆ˜ ìžˆìŠµë‹ˆë‹¤");
+// ì‹¤ì œ ê²€ìƒ‰ë¶€ë¶„
 $table_name_result=mysql_query("select name from $admin_table order by name",$connect) or error(mysql_error());
 
 head(" bgcolor=white");
@@ -30,7 +30,7 @@ while($table_data=mysql_fetch_array($table_name_result))
 	unset($temp); unset($data);
 	$temp=mysql_query("select no,level from $member_table order by no", $connect) or error(mysql_error());
 	while($data=mysql_fetch_array($temp)) {
-		// °Ô½ÃÆÇ Å×ÀÌºí islevel ÀÏ°ý º¯°æ
+		// ê²Œì‹œíŒ í…Œì´ë¸” islevel ì¼ê´„ ë³€ê²½
 		mysql_query("update $t_board"."_$table_name set islevel='$data[level]' where ismember='$data[no]'", $connect) or error(mysql_error());
 		$cnt1 += mysql_affected_rows();
 	}
@@ -39,7 +39,7 @@ while($table_data=mysql_fetch_array($table_name_result))
 ?>
 
 <br><br><br>
-&nbsp;&nbsp;<font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>°Ô½ÃÆÇ</b> <?=$cnt1?>°³ ·¹ÄÚµå ¾÷µ¥ÀÌÆ® ¼º°ø!</font><br>
+&nbsp;&nbsp;<font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>ê²Œì‹œíŒ</b> <?=$cnt1?>ê°œ ë ˆì½”ë“œ ì—…ë°ì´íŠ¸ ì„±ê³µ!</font><br>
 <br><img src=images/t.gif border=0 height=5><Br>
 <?
 	$cnt2=0;
@@ -47,7 +47,7 @@ while($table_data=mysql_fetch_array($table_name_result))
 	unset($temp); unset($data);
 	$temp=mysql_query("select no,level from $member_table order by no", $connect) or error(mysql_error());
 	while($data=mysql_fetch_array($temp)) {
-		// µ¡±Û Å×ÀÌºí islevel ÀÏ°ý º¯°æ
+		// ë§ê¸€ í…Œì´ë¸” islevel ì¼ê´„ ë³€ê²½
 		mysql_query("update $t_comment"."_$table_name set islevel='$data[level]' where ismember='$data[no]'", $connect) or error(mysql_error());
 		$cnt2 += mysql_affected_rows();
 	}
@@ -56,21 +56,21 @@ while($table_data=mysql_fetch_array($table_name_result))
 ?>
 
 <br><br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<font size=3 style=font-family:tahoma;><?=$table_name?><b>°Ô½ÃÆÇÀÇ °£´ÜÇÑ ´ä±Û</b> <?=$cnt2?>°³ ·¹ÄÚµå ¾÷µ¥ÀÌÆ® ¼º°ø!</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font size=3 style=font-family:tahoma;><?=$table_name?><b>ê²Œì‹œíŒì˜ ê°„ë‹¨í•œ ë‹µê¸€</b> <?=$cnt2?>ê°œ ë ˆì½”ë“œ ì—…ë°ì´íŠ¸ ì„±ê³µ!</font><br>
 <img src=images/t.gif border=0 height=20><Br>
 
 <?
 
-	// º¯°æµÈ ·¹ÄÚµå ¼ö Ä«¿îÆ®
+	// ë³€ê²½ëœ ë ˆì½”ë“œ ìˆ˜ ì¹´ìš´íŠ¸
 	$hop += $cnt1+$cnt2;
 	$cnt1=0; $cnt2=0;
 }
 
-echo "¸ðµç °Ô½ÃÆÇ/µ¡±Û Å×ÀÌºí¿¡¼­ ¸ðµÎ {$hop}°³ ·¹ÄÚµå°¡ º¯°æµÇ¾ú½À´Ï´Ù.";
+echo "ëª¨ë“  ê²Œì‹œíŒ/ë§ê¸€ í…Œì´ë¸”ì—ì„œ ëª¨ë‘ {$hop}ê°œ ë ˆì½”ë“œê°€ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.";
 ?>
 <br><br><br>
 <script>
-alert("¸ðµç °Ô½ÃÆÇ/µ¡±Û Å×ÀÌºí¿¡¼­ ¸ðµÎ "+<?=$hop?>+"°³ ·¹ÄÚµå°¡ º¯°æµÇ¾ú½À´Ï´Ù.");
+alert("ëª¨ë“  ê²Œì‹œíŒ/ë§ê¸€ í…Œì´ë¸”ì—ì„œ ëª¨ë‘ "+<?=$hop?>+"ê°œ ë ˆì½”ë“œê°€ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤.");
 </script>
 <?
 foot();

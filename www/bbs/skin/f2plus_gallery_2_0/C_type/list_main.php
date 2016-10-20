@@ -4,20 +4,20 @@ $temp=str_replace("\"","&quot;",$data[subject]);
 if($keyword != "")
 {
 	if(preg_match(" <img src='images/ico_file.gif' border=0>",$subject)) {
-		$link=str_replace(" <img src='images/ico_file.gif' border=0></a>","<img src=$dir/detail.gif border=0 align=absmiddle alt=\"Ã£Àº¹®ÀÚ¿­ : $keyword\"> <img src='images/ico_file.gif' border=0></a>",$subject);
+		$link=str_replace(" <img src='images/ico_file.gif' border=0></a>","<img src=$dir/detail.gif border=0 align=absmiddle alt=\"ì°¾ì€ë¬¸ìì—´ : $keyword\"> <img src='images/ico_file.gif' border=0></a>",$subject);
 	}
 	else {
-		$link=str_replace("</a>","<img src=$dir/detail.gif border=0 align=absmiddle alt=\"Ã£Àº¹®ÀÚ¿­ : $keyword\"></a>",$subject);
+		$link=str_replace("</a>","<img src=$dir/detail.gif border=0 align=absmiddle alt=\"ì°¾ì€ë¬¸ìì—´ : $keyword\"></a>",$subject);
 	}
 }
 else
 {
 	if(preg_match(" <img src='images/ico_file.gif' border=0>",$subject)) {
 		$subject=str_replace(" <img src='images/ico_file.gif' border=0>","",$subject);
-		$link=str_replace("$temp</a>","<img src=$dir/detail.gif border=0 align=absmiddle alt=\"Á¦¸ñ : $temp\"> <img src='images/ico_file.gif' border=0></a>",$subject);
+		$link=str_replace("$temp</a>","<img src=$dir/detail.gif border=0 align=absmiddle alt=\"ì œëª© : $temp\"> <img src='images/ico_file.gif' border=0></a>",$subject);
 	}
 	else {
-		$link=str_replace("$temp</a>","<img src=$dir/detail.gif border=0 align=absmiddle alt=\"Á¦¸ñ : $temp\"></a>",$subject);
+		$link=str_replace("$temp</a>","<img src=$dir/detail.gif border=0 align=absmiddle alt=\"ì œëª© : $temp\"></a>",$subject);
 	}
 }
 
@@ -33,9 +33,9 @@ include "list_image_info.php";
 if($Exif_use=="on") {
 	$memo=explode("|||",$data[memo]);
 	$str=htmlspecialchars(cut_str(strip_tags($memo[0]),200));
-	$str="Á¦¸ñ : ".$temp."\n³»¿ë : ".$str."\n";
-	if($hide_date=="off") $str="ÀÛ¼ºÀÏ : ".date("m-d",$data[reg_date])."\n".$str;
-	if($hide_name=="off") $str="ÀÛ¼ºÀÚ : ".htmlspecialchars($data[name])."\n".$str;
+	$str="ì œëª© : ".$temp."\në‚´ìš© : ".$str."\n";
+	if($hide_date=="off") $str="ì‘ì„±ì¼ : ".date("m-d",$data[reg_date])."\n".$str;
+	if($hide_name=="off") $str="ì‘ì„±ì : ".htmlspecialchars($data[name])."\n".$str;
 }
 else $str="";
 

@@ -11,8 +11,8 @@ if(!get_magic_quotes_gpc()) {
   $password = addslashes($password);
 }
 
-if(!$user_id) Error("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");
-if(!$password) Error("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");
+if(!$user_id) Error("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");
+if(!$password) Error("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");
 
 if($id) {
 	$setup=get_table_attrib($id);
@@ -21,7 +21,7 @@ if($id) {
 
 if($setup[group_no]) $group_no=$setup[group_no];
 
-// ÆĞ½º¿öµå¸¦ ¾ÏÈ£È­
+// íŒ¨ìŠ¤ì›Œë“œë¥¼ ì•”í˜¸í™”
 if($password){
 	if($password) {
 		$temp=mysql_fetch_array(mysql_query("select password('$password')"));
@@ -29,14 +29,14 @@ if($password){
 	}
 }
 
-// È¸¿ø ·Î±×ÀÎ Ã¼Å©
+// íšŒì› ë¡œê·¸ì¸ ì²´í¬
 $result = mysql_query("select * from $member_table where user_id='$user_id' and password='$password'") or error(mysql_error());
 $member_data = mysql_fetch_array($result);
 
-// È¸¿ø·Î±×ÀÎÀÌ ¼º°øÇÏ¿´À» °æ¿ì ¼¼¼ÇÀ» »ı¼ºÇÏ°í ÆäÀÌÁö¸¦ ÀÌµ¿ÇÔ
+// íšŒì›ë¡œê·¸ì¸ì´ ì„±ê³µí•˜ì˜€ì„ ê²½ìš° ì„¸ì…˜ì„ ìƒì„±í•˜ê³  í˜ì´ì§€ë¥¼ ì´ë™í•¨
 if($member_data[no]) {
 
-	// °ü¸®ÀÚ¸ğµå ÅäÅ« ÃÊ±âÈ­
+	// ê´€ë¦¬ìëª¨ë“œ í† í° ì´ˆê¸°í™”
 	$_SESSION['_token2']='';
 	setCookie("token2","",0,"/","");
 
@@ -44,15 +44,15 @@ if($member_data[no]) {
 		makeZBSessionID($member_data[no]);
 	}
 
-	// ·£´ıÇÑ ¼¼ ¼ıÀÚ¸¦ ¹ß»ı(°¢1000-9999±îÁö) ÈÄ ÅäÅ«º¯¼ö¿¡ ´ëÀÔ
+	// ëœë¤í•œ ì„¸ ìˆ«ìë¥¼ ë°œìƒ(ê°1000-9999ê¹Œì§€) í›„ í† í°ë³€ìˆ˜ì— ëŒ€ì…
 	$num1 = mt_rand(1000,9999);
 	$num2 = mt_rand(1000,9999);
 	$num3 = mt_rand(1000,9999);
 	$num123 = $num1.$num2.$num3;
 
-	// ·Î±×ÀÎ½Ã ÅäÅ« »ı¼º
+	// ë¡œê·¸ì¸ì‹œ í† í° ìƒì„±
 	setCookie("token","$num123",0,"/","");
-	// email IP Ç¥½Ä ºÒ·¯¿Í Ã³¸®
+	// email IP í‘œì‹ ë¶ˆëŸ¬ì™€ ì²˜ë¦¬
 	unset($c_match);
 	if(preg_match("#\|\|\|([0-9.]{1,})$#",$member_data[email],$c_match)) {
 		//$tokenID = $c_match[1];
@@ -62,15 +62,15 @@ if($member_data[no]) {
 	mysql_query("update $member_table set email='$member_data[email]' where user_id='$user_id'");
 	$_SESSION['_token'] = "$num123";
 
-	// 5.3 ÀÌ»ó¿ë ¼¼¼Ç Ã³¸®
+	// 5.3 ì´ìƒìš© ì„¸ì…˜ ì²˜ë¦¬
 	$_SESSION['zb_logged_no'] = $member_data[no];
 	$_SESSION['zb_logged_time'] = time();
 	$_SESSION['zb_logged_ip'] = $REMOTE_ADDR;
 	$_SESSION['zb_last_connect_check'] = '0';
 
-	// ·Î±×ÀÎ ÈÄ ÆäÀÌÁö ÀÌµ¿
-	if($mypos=strrpos($_zb_url,"/bbs/")) // ¸¶Áö¸· ½½·¡½¬ À§Ä¡ Ã£¾Æ Á¦°Å
-		$s_url=substr($_zb_url,0,$mypos).urldecode($s_url);
+	// ë¡œê·¸ì¸ í›„ í˜ì´ì§€ ì´ë™
+	if($mypos=mb_strrpos($_zb_url,"/bbs/")) // ë§ˆì§€ë§‰ ìŠ¬ë˜ì‰¬ ìœ„ì¹˜ ì°¾ì•„ ì œê±°
+		$s_url=mb_substr($_zb_url,0,$mypos).urldecode($s_url);
 	if(!$s_url&&$id) $s_url=$_zb_url."zboard.php?id=$id";
 	if($s_url) movepage($s_url);
 	elseif($id) movepage($_zb_url."zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&category=$category&no=$no");
@@ -78,10 +78,10 @@ if($member_data[no]) {
 	elseif($referer) movepage($referer);
 	else echo "<script>location.href=document.referrer;</script>";
 
-// È¸¿ø·Î±×ÀÎÀÌ ½ÇÆĞÇÏ¿´À» °æ¿ì ¿¡·¯ Ç¥½Ã
+// íšŒì›ë¡œê·¸ì¸ì´ ì‹¤íŒ¨í•˜ì˜€ì„ ê²½ìš° ì—ëŸ¬ í‘œì‹œ
 } else {
 	head();
-	Error("·Î±×ÀÎÀ» ½ÇÆĞÇÏ¿´½À´Ï´Ù");
+	Error("ë¡œê·¸ì¸ì„ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤");
 	foot();
 }
 ?>

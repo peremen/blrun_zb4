@@ -32,18 +32,18 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
     <tr>
       <td align=center style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br><b>Option</b></td>
       <td align=left style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;>
-        <?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTML»ç¿ë<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>ºñ¹Ğ±Û<?=$hide_secret_end?> <font id="state"></font></td>
+        <?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTMLì‚¬ìš©<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>ë¹„ë°€ê¸€<?=$hide_secret_end?> <font id="state"></font></td>
       <td width=80>&nbsp;</td>
     </tr>
     <tr align=center> 
-<!--ÄÚ¸àÆ® ÀÌ¸§, ºñ¹ø, ³»¿ë ½ÃÀÛ-->
-      <td height=20 style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br><b>ÀÌ¸§</b></td>
-      <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>ÄÚ¸àÆ®</b> &nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+3"></td>
+<!--ì½”ë©˜íŠ¸ ì´ë¦„, ë¹„ë²ˆ, ë‚´ìš© ì‹œì‘-->
+      <td height=20 style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br><b>ì´ë¦„</b></td>
+      <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>ì½”ë©˜íŠ¸</b> &nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+3"></td>
       <td>&nbsp;</td>
     </tr>
     <tr align=center valign=top>
       <td width=80>
-        <? $c_name=stripslashes($c_name); echo $c_name; ?><?=$hide_c_password_start?><br><img src=images/t.gif border=0 height=10><br><font style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>ÆĞ½º¿öµå</b></font><br><img src=images/t.gif border=0 height=5><br><input type=password id=password name=password <?=size(8)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()"><br>ºñ¹øÀ» ÀçÀÔ·ÂÇÏ¸é ÀÓ½ÃÀúÀåÀÌ º¹¿øµÊ<?=$hide_c_password_end?></td>
+        <? $c_name=stripslashes($c_name); echo $c_name; ?><?=$hide_c_password_start?><br><img src=images/t.gif border=0 height=10><br><font style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>íŒ¨ìŠ¤ì›Œë“œ</b></font><br><img src=images/t.gif border=0 height=5><br><input type=password id=password name=password <?=size(8)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()"><br>ë¹„ë²ˆì„ ì¬ì…ë ¥í•˜ë©´ ì„ì‹œì €ì¥ì´ ë³µì›ë¨<?=$hide_c_password_end?></td>
       <td>
         <table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
         <tr>
@@ -53,7 +53,7 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
         </tr>
         </table>
       </td>
-      <td valign=middle><input type=button class=zv3_submit value='ÀÓ½ÃÀúÀå' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit <?if($browser){?>class=zv3_submit<?}?> value='ÀÛ¼º¿Ï·á' accesskey="s" style="height:50%"></td>
+      <td valign=middle><input type=button class=zv3_submit value='ì„ì‹œì €ì¥' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit <?if($browser){?>class=zv3_submit<?}?> value='ì‘ì„±ì™„ë£Œ' accesskey="s" style="height:50%"></td>
     </tr>
     </table>
     <table border=0 cellspacing=2 cellpadding=0 width=100% height=20>
@@ -75,7 +75,7 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
   <td align=left>
     <?=$a_preview?><img src=<?=$dir?>/btn_preview.gif border=0></a>
     <?=$a_imagebox?><img src=<?=$dir?>/btn_imagebox.gif border=0></a>
-    <?=$a_codebox?>ÄÚµå»ğÀÔ</a>
+    <?=$a_codebox?>ì½”ë“œì‚½ì…</a>
   </td>
 </tr>
 </table>

@@ -3,32 +3,32 @@ function del_member($no) {
 	global $group_no, $member_table, $get_memo_table,  $send_memo_table,$admin_table, $t_board, $t_comment, $connect, $group_table, $member;
 
 	$member_data = mysql_fetch_array(mysql_query("select * from $member_table where no = '$no'"));
-	if($member[is_admin]>1&&$member[no]!=$member_data[no]&&$member_data[level]<=$member[level]&&$member_data[is_admin]<=$member[is_admin]) error("¼±ÅÃÇÏ½Å È¸¿øÀÇ Á¤º¸¸¦ º¯°æÇÒ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
+	if($member[is_admin]>1&&$member[no]!=$member_data[no]&&$member_data[level]<=$member[level]&&$member_data[is_admin]<=$member[is_admin]) error("ì„ íƒí•˜ì‹  íšŒì›ì˜ ì •ë³´ë¥¼ ë³€ê²½í•  ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
 
-	// ¸â¹ö Á¤º¸ »èÁ¦
+	// ë©¤ë²„ ì •ë³´ ì‚­ì œ
 	@mysql_query("delete from $member_table where no='$no'") or error(mysql_error());
 
-	// ÂÊÁö Å×ÀÌºí¿¡¼­ ¸â¹ö Á¤º¸ »èÁ¦
+	// ìª½ì§€ í…Œì´ë¸”ì—ì„œ ë©¤ë²„ ì •ë³´ ì‚­ì œ
 	@mysql_query("delete from $get_memo_table where member_no='$no'") or error(mysql_error());
 	@mysql_query("delete from $send_memo_table where member_no='$no'") or error(mysql_error());
 
-	// ±×·ìÅ×ÀÌºí¿¡¼­ È¸¿ø¼ö -1
+	// ê·¸ë£¹í…Œì´ë¸”ì—ì„œ íšŒì›ìˆ˜ -1
 	@mysql_query("update $group_table set member_num=member_num-1 where no = '$group_no'") or error(mysql_error());
 
-	// ÀÌ¸§ ±×¸², ¾ÆÀÌÄÜ, ÀÌ¹ÌÁö ¹Ú½º »ç¿ë¿ë·® ÆÄÀÏ »èÁ¦
+	// ì´ë¦„ ê·¸ë¦¼, ì•„ì´ì½˜, ì´ë¯¸ì§€ ë°•ìŠ¤ ì‚¬ìš©ìš©ëŸ‰ íŒŒì¼ ì‚­ì œ
 	@z_unlink("icon/private_name/".$no.".gif");
 	@z_unlink("icon/private_icon/".$no.".gif");
 	@z_unlink("icon/member_image_box/".$no."_maxsize.php");
 }
 
 
-// ±×·ìÃß°¡
+// ê·¸ë£¹ì¶”ê°€
 if($exec=="add_group_ok") {
-	if($member[is_admin]>1) Error("±×·ì»ı¼º ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
-	if(isblank($name)) Error("±×·ìÀÌ¸§Àº ÇÊ¼ö·Î ÁöÁ¤ÇÏ¼Å¾ß ÇÕ´Ï´Ù");
-	// Áßº¹ ÀÌ¸§ °Ë»ç
+	if($member[is_admin]>1) Error("ê·¸ë£¹ìƒì„± ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
+	if(isblank($name)) Error("ê·¸ë£¹ì´ë¦„ì€ í•„ìˆ˜ë¡œ ì§€ì •í•˜ì…”ì•¼ í•©ë‹ˆë‹¤");
+	// ì¤‘ë³µ ì´ë¦„ ê²€ì‚¬
 	$check=mysql_fetch_array(mysql_query("select count(*) from $group_table where name='$name'"));
-	if($check[0]) Error("$name ÀÌ¶ó´Â ÀÌ¸§ÀÇ ±×·ìÀÌ ÀÌ¹Ì ÀÖ½À´Ï´Ù");
+	if($check[0]) Error("$name ì´ë¼ëŠ” ì´ë¦„ì˜ ê·¸ë£¹ì´ ì´ë¯¸ ìˆìŠµë‹ˆë‹¤");
 
 	if($_FILES[icon]) {
 		$icon = $_FILES[icon][tmp_name];
@@ -37,51 +37,51 @@ if($exec=="add_group_ok") {
 		$icon_size = $_FILES[icon][size];
 	}
 
-	// ¾ÆÀÌÄÜ ÆÄÀÏ ¾÷·Îµå½Ã
+	// ì•„ì´ì½˜ íŒŒì¼ ì—…ë¡œë“œì‹œ
 	if($icon_name) {
-		// Æ¯¼ö¹®ÀÚ°¡ µé¾î°¬´ÂÁö Á¶»ç
+		// íŠ¹ìˆ˜ë¬¸ìê°€ ë“¤ì–´ê°”ëŠ”ì§€ ì¡°ì‚¬
 		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$icon_name,$result);
-		if($result[0]!=$icon_name) Error("ÆÄÀÏ¸íÀº ÇÑ±Û,¿µ¹®ÀÚ,¼ıÀÚ,°ıÈ£,°ø¹é,+,-,_ ¸¸À» »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù!");
+		if($result[0]!=$icon_name) Error("íŒŒì¼ëª…ì€ í•œê¸€,ì˜ë¬¸ì,ìˆ«ì,ê´„í˜¸,ê³µë°±,+,-,_ ë§Œì„ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤!");
 
-		if(!preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$icon_name)) Error("¾ÆÀÌÄÜÀº jpg(jepg)/png/gif/bmp ÆÄÀÏÀ» ¿Ã·ÁÁÖ¼¼¿ä");
+		if(!preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$icon_name)) Error("ì•„ì´ì½˜ì€ jpg(jepg)/png/gif/bmp íŒŒì¼ì„ ì˜¬ë ¤ì£¼ì„¸ìš”");
 		$size=GetImageSize($icon);
-		if($size[0]>24||$size[1]>24) Error("¾ÆÀÌÄÜÀÇ Å©±â´Â 24*24ÀÌÇÏ¿©¾ß ÇÕ´Ï´Ù");
+		if($size[0]>24||$size[1]>24) Error("ì•„ì´ì½˜ì˜ í¬ê¸°ëŠ” 24*24ì´í•˜ì—¬ì•¼ í•©ë‹ˆë‹¤");
 		$kind=array("","jpg","jepg","png","gif","bmp");
 		$n=$size[2];
 		@copy($icon,"icon/group_".$group_no.".".$kind[$n]);
 		$icon_name="group_$group_no.".$kind[$n];
 	}
 
-	// È¸¿ø°¡ÀÔ, ·Î±×ÀÎ½Ã ÀÌµ¿ÇÒ URL
-	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$join_return_url)) Error("È¸¿ø°¡ÀÔ, ·Î±×ÀÎ½Ã ÀÌµ¿ÇÒ URLÀ» ¿µ¹®, ÇÑ±Û, ¼ıÀÚ, -, ., / µîÀ¸·Î ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");
+	// íšŒì›ê°€ì…, ë¡œê·¸ì¸ì‹œ ì´ë™í•  URL
+	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$join_return_url)) Error("íšŒì›ê°€ì…, ë¡œê·¸ì¸ì‹œ ì´ë™í•  URLì„ ì˜ë¬¸, í•œê¸€, ìˆ«ì, -, ., / ë“±ìœ¼ë¡œ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");
 	$join_return_url=addslashes($join_return_url);
 	
-	// Çì´õÇªÅÍ
-	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$header_url)) Error("»ó´Ü ÆÄÀÏ¸íÀ» ¿µ¹®, ÇÑ±Û, ¼ıÀÚ, -, ., / µîÀ¸·Î ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");
+	// í—¤ë”í‘¸í„°
+	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$header_url)) Error("ìƒë‹¨ íŒŒì¼ëª…ì„ ì˜ë¬¸, í•œê¸€, ìˆ«ì, -, ., / ë“±ìœ¼ë¡œ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");
 	$header_url=addslashes($header_url);
 
-	if(preg_match("/[@\\\#\$&\(\)\+\|\{\}\;\'\"]/i",$header)) Error("»ó´Ü¿¡ Ãâ·ÂÇÒ ³»¿ëÀ» ¿µ¹®, ÇÑ±Û, ¼ıÀÚ, !, %, =, ^, -, _, ?, [], <>, ., / µîÀ¸·Î ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä. °ıÈ£³ª ±×¹ÛÀÇ Æ¯¼ö¹®ÀÚ, µû¿ÈÇ¥ µîÀº Çã¿ëµÇÁö ¾Ê½À´Ï´Ù!");
+	if(preg_match("/[@\\\#\$&\(\)\+\|\{\}\;\'\"]/i",$header)) Error("ìƒë‹¨ì— ì¶œë ¥í•  ë‚´ìš©ì„ ì˜ë¬¸, í•œê¸€, ìˆ«ì, !, %, =, ^, -, _, ?, [], <>, ., / ë“±ìœ¼ë¡œ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”. ê´„í˜¸ë‚˜ ê·¸ë°–ì˜ íŠ¹ìˆ˜ë¬¸ì, ë”°ì˜´í‘œ ë“±ì€ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤!");
 	$header=addslashes($header);
 	
-	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$footer_url)) Error("ÇÏ´Ü ÆÄÀÏ¸íÀ» ¿µ¹®, ÇÑ±Û, ¼ıÀÚ, -, ., / µîÀ¸·Î ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");
+	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$footer_url)) Error("í•˜ë‹¨ íŒŒì¼ëª…ì„ ì˜ë¬¸, í•œê¸€, ìˆ«ì, -, ., / ë“±ìœ¼ë¡œ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");
 	$footer_url=addslashes($footer_url);
 	
-	if(preg_match("/[@\\\#\$&\(\)\+\|\{\}\;\'\"]/i",$footer)) Error("ÇÏ´Ü¿¡ Ãâ·ÂÇÒ ³»¿ëÀ» ¿µ¹®, ÇÑ±Û, ¼ıÀÚ, !, %, =, ^, -, _, ?, [], <>, ., / µîÀ¸·Î ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä. °ıÈ£³ª ±×¹ÛÀÇ Æ¯¼ö¹®ÀÚ, È¬µû¿ÈÇ¥ µîÀº Çã¿ëµÇÁö ¾Ê½À´Ï´Ù!");
+	if(preg_match("/[@\\\#\$&\(\)\+\|\{\}\;\'\"]/i",$footer)) Error("í•˜ë‹¨ì— ì¶œë ¥í•  ë‚´ìš©ì„ ì˜ë¬¸, í•œê¸€, ìˆ«ì, !, %, =, ^, -, _, ?, [], <>, ., / ë“±ìœ¼ë¡œ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”. ê´„í˜¸ë‚˜ ê·¸ë°–ì˜ íŠ¹ìˆ˜ë¬¸ì, í™‘ë”°ì˜´í‘œ ë“±ì€ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤!");
 	$footer=addslashes($footer);
 
-	// DB¿¡ ÀÔ·Â
+	// DBì— ì…ë ¥
 	@mysql_query("insert into $group_table (name,is_open,icon,use_join,join_return_url, use_icon, header,footer,header_url,footer_url)
-					values ('$name','$is_open','$icon_name','$use_join','$join_return_url','$use_icon','$header','$footer','$header_url','$footer_url')") or Error("±×·ì»ı¼º ¿¡·¯°¡ ³µ½À´Ï´Ù");
+					values ('$name','$is_open','$icon_name','$use_join','$join_return_url','$use_icon','$header','$footer','$header_url','$footer_url')") or Error("ê·¸ë£¹ìƒì„± ì—ëŸ¬ê°€ ë‚¬ìŠµë‹ˆë‹¤");
 	$group_no=mysql_insert_id();
 	movepage("$PHP_SELF?exec=view_group&group_no=$group_no");
 }
-// ±×·ì¼öÁ¤ ¿Ï·á
+// ê·¸ë£¹ìˆ˜ì • ì™„ë£Œ
 elseif($exec=="modify_group_ok") {
-	if($member[is_admin]>2) Error("±×·ì¼öÁ¤ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
-	if($member[is_admin]==2&&$member[group_no]!=$group_no) Error("±×·ì¼öÁ¤ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
-	if(isblank($name)) Error("±×·ìÀÌ¸§Àº ÇÊ¼ö·Î ÁöÁ¤ÇÏ¼Å¾ß ÇÕ´Ï´Ù");
+	if($member[is_admin]>2) Error("ê·¸ë£¹ìˆ˜ì • ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
+	if($member[is_admin]==2&&$member[group_no]!=$group_no) Error("ê·¸ë£¹ìˆ˜ì • ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
+	if(isblank($name)) Error("ê·¸ë£¹ì´ë¦„ì€ í•„ìˆ˜ë¡œ ì§€ì •í•˜ì…”ì•¼ í•©ë‹ˆë‹¤");
 	if($del_icon) $icon_sql=",icon=''";
-	// ¾ÆÀÌÄÜ ÆÄÀÏ ¾÷·Îµå½Ã
+	// ì•„ì´ì½˜ íŒŒì¼ ì—…ë¡œë“œì‹œ
 	if($_FILES[icon]) {
 		$icon = $_FILES[icon][tmp_name];
 		$icon_name = $_FILES[icon][name];
@@ -90,91 +90,91 @@ elseif($exec=="modify_group_ok") {
 	}
 
 	if($icon_name) {
-		// Æ¯¼ö¹®ÀÚ°¡ µé¾î°¬´ÂÁö Á¶»ç
+		// íŠ¹ìˆ˜ë¬¸ìê°€ ë“¤ì–´ê°”ëŠ”ì§€ ì¡°ì‚¬
 		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$icon_name,$result);
-		if($result[0]!=$icon_name) Error("ÆÄÀÏ¸íÀº ÇÑ±Û,¿µ¹®ÀÚ,¼ıÀÚ,°ıÈ£,°ø¹é,+,-,_ ¸¸À» »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù!");
+		if($result[0]!=$icon_name) Error("íŒŒì¼ëª…ì€ í•œê¸€,ì˜ë¬¸ì,ìˆ«ì,ê´„í˜¸,ê³µë°±,+,-,_ ë§Œì„ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤!");
 
-		if(!preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$icon_name)) Error("¾ÆÀÌÄÜÀº jpg(jepg)/png/gif/bmp ÆÄÀÏÀ» ¿Ã·ÁÁÖ¼¼¿ä");
+		if(!preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$icon_name)) Error("ì•„ì´ì½˜ì€ jpg(jepg)/png/gif/bmp íŒŒì¼ì„ ì˜¬ë ¤ì£¼ì„¸ìš”");
 		$size=GetImageSize($icon);
-		if($size[0]>24||$size[1]>24) Error("¾ÆÀÌÄÜÀÇ Å©±â´Â 24*24ÀÌÇÏ¿©¾ß ÇÕ´Ï´Ù");
+		if($size[0]>24||$size[1]>24) Error("ì•„ì´ì½˜ì˜ í¬ê¸°ëŠ” 24*24ì´í•˜ì—¬ì•¼ í•©ë‹ˆë‹¤");
 		$kind=array("","jpg","jepg","png","gif","bmp");
 		$n=$size[2];
 		@copy($icon,"icon/group_".$group_no.".".$kind[$n]);
 		$icon_name="group_$group_no.".$kind[$n];
 		$icon_sql=",icon='$icon_name'";
 	}
-	// È¸¿ø°¡ÀÔ, ·Î±×ÀÎ½Ã ÀÌµ¿ÇÒ URL
-	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$join_return_url)) Error("È¸¿ø°¡ÀÔ, ·Î±×ÀÎ½Ã ÀÌµ¿ÇÒ URLÀ» ¿µ¹®, ÇÑ±Û, ¼ıÀÚ, -, ., / µîÀ¸·Î ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");
+	// íšŒì›ê°€ì…, ë¡œê·¸ì¸ì‹œ ì´ë™í•  URL
+	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$join_return_url)) Error("íšŒì›ê°€ì…, ë¡œê·¸ì¸ì‹œ ì´ë™í•  URLì„ ì˜ë¬¸, í•œê¸€, ìˆ«ì, -, ., / ë“±ìœ¼ë¡œ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");
 	$join_return_url=addslashes($join_return_url);
 	
-	// Çì´õÇªÅÍ
-	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$header_url)) Error("»ó´Ü ÆÄÀÏ¸íÀ» ¿µ¹®, ÇÑ±Û, ¼ıÀÚ, -, ., / µîÀ¸·Î ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");
+	// í—¤ë”í‘¸í„°
+	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$header_url)) Error("ìƒë‹¨ íŒŒì¼ëª…ì„ ì˜ë¬¸, í•œê¸€, ìˆ«ì, -, ., / ë“±ìœ¼ë¡œ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");
 	$header_url=addslashes($header_url);
 
-	if(preg_match("/[@\\\#\$&\(\)\+\|\{\}\;\'\"]/i",$header)) Error("»ó´Ü¿¡ Ãâ·ÂÇÒ ³»¿ëÀ» ¿µ¹®, ÇÑ±Û, ¼ıÀÚ, !, %, =, ^, -, _, ?, [], <>, ., / µîÀ¸·Î ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä. °ıÈ£³ª ±×¹ÛÀÇ Æ¯¼ö¹®ÀÚ, µû¿ÈÇ¥ µîÀº Çã¿ëµÇÁö ¾Ê½À´Ï´Ù!");
+	if(preg_match("/[@\\\#\$&\(\)\+\|\{\}\;\'\"]/i",$header)) Error("ìƒë‹¨ì— ì¶œë ¥í•  ë‚´ìš©ì„ ì˜ë¬¸, í•œê¸€, ìˆ«ì, !, %, =, ^, -, _, ?, [], <>, ., / ë“±ìœ¼ë¡œ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”. ê´„í˜¸ë‚˜ ê·¸ë°–ì˜ íŠ¹ìˆ˜ë¬¸ì, ë”°ì˜´í‘œ ë“±ì€ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤!");
 	$header=addslashes($header);
 	
-	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$footer_url)) Error("ÇÏ´Ü ÆÄÀÏ¸íÀ» ¿µ¹®, ÇÑ±Û, ¼ıÀÚ, -, ., / µîÀ¸·Î ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");
+	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$footer_url)) Error("í•˜ë‹¨ íŒŒì¼ëª…ì„ ì˜ë¬¸, í•œê¸€, ìˆ«ì, -, ., / ë“±ìœ¼ë¡œ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");
 	$footer_url=addslashes($footer_url);
 	
-	if(preg_match("/[@\\\#\$&\(\)\+\|\{\}\;\'\"]/i",$footer)) Error("ÇÏ´Ü¿¡ Ãâ·ÂÇÒ ³»¿ëÀ» ¿µ¹®, ÇÑ±Û, ¼ıÀÚ, !, %, =, ^, -, _, ?, [], <>, ., / µîÀ¸·Î ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä. °ıÈ£³ª ±×¹ÛÀÇ Æ¯¼ö¹®ÀÚ, È¬µû¿ÈÇ¥ µîÀº Çã¿ëµÇÁö ¾Ê½À´Ï´Ù!");
+	if(preg_match("/[@\\\#\$&\(\)\+\|\{\}\;\'\"]/i",$footer)) Error("í•˜ë‹¨ì— ì¶œë ¥í•  ë‚´ìš©ì„ ì˜ë¬¸, í•œê¸€, ìˆ«ì, !, %, =, ^, -, _, ?, [], <>, ., / ë“±ìœ¼ë¡œ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”. ê´„í˜¸ë‚˜ ê·¸ë°–ì˜ íŠ¹ìˆ˜ë¬¸ì, í™‘ë”°ì˜´í‘œ ë“±ì€ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤!");
 	$footer=addslashes($footer);
 
-	// DB¿¡ ÀÔ·Â
+	// DBì— ì…ë ¥
 	@mysql_query("update $group_table set
 					use_hobby='$use_hobby',name='$name',is_open='$is_open' $icon_sql ,use_join='$use_join',join_return_url='$join_return_url',use_icon='$use_icon',
 					header='$header',footer='$footer',footer_url='$footer_url',header_url='$header_url' 
-					where no='$group_no'") or Error("±×·ì¼öÁ¤ ¿¡·¯°¡ ³µ½À´Ï´Ù");
+					where no='$group_no'") or Error("ê·¸ë£¹ìˆ˜ì • ì—ëŸ¬ê°€ ë‚¬ìŠµë‹ˆë‹¤");
 	movepage("$PHP_SELF?exec=view_group&group_no=$group_no&exec=modify_group");
 }
-// ±×·ì»èÁ¦ ¿Ï·á
+// ê·¸ë£¹ì‚­ì œ ì™„ë£Œ
 elseif($exec=="del_group_ok") {
-	if($member[is_admin]>1) Error("±×·ì»èÁ¦ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
-	// »èÁ¦ÇÒ ±×·ìÀÇ È¸¿ø¼ö¿Í °Ô½ÃÆÇ ¼ö¸¦ ±¸ÇÔ
+	if($member[is_admin]>1) Error("ê·¸ë£¹ì‚­ì œ ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
+	// ì‚­ì œí•  ê·¸ë£¹ì˜ íšŒì›ìˆ˜ì™€ ê²Œì‹œíŒ ìˆ˜ë¥¼ êµ¬í•¨
 	$num=mysql_fetch_array(mysql_query("select member_num, board_num from $group_table where no='$group_no'"));
 
-	// ¸â¹ö ÀÌµ¿
+	// ë©¤ë²„ ì´ë™
 	if($member_move) {
-		@mysql_query("update $member_table set group_no='$member_move' where group_no='$group_no'") or Error("È¸¿ø ÀÌµ¿½Ã¿¡ ¿¡·¯°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù");
+		@mysql_query("update $member_table set group_no='$member_move' where group_no='$group_no'") or Error("íšŒì› ì´ë™ì‹œì— ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤");
 		mysql_query("update $group_table set member_num=member_num+".$num[member_num]." where no='$member_move'");
 	} else {
-		$result = mysql_query("select no from $member_table where group_no='$group_no'") or Error("È¸¿ø ÀÌµ¿½Ã¿¡ ¿¡·¯°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù");
+		$result = mysql_query("select no from $member_table where group_no='$group_no'") or Error("íšŒì› ì´ë™ì‹œì— ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤");
 		while($data=mysql_fetch_array($result)) {
 			$no = $data['no'];
 			del_member($no);
 		}
 	}
 
-	// °Ô½ÃÆÇÀÌµ¿
+	// ê²Œì‹œíŒì´ë™
 	if($board_move) {
-		@mysql_query("update $admin_table set group_no='$board_move' where group_no='$group_no'") or Error("°Ô½ÃÆÇ ÀÌµ¿½Ã¿¡ ¿¡·¯°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù");
+		@mysql_query("update $admin_table set group_no='$board_move' where group_no='$group_no'") or Error("ê²Œì‹œíŒ ì´ë™ì‹œì— ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤");
 		mysql_query("update $group_table set board_num=board_num+".$num[board_num]." where no='$board_move'");
 	} else {
 		$temp=mysql_query("select name from $admin_table where group_no='$group_no'");
 		while($data=mysql_fetch_array($temp)) {
 			$table_name=$data[name];
-			$tmpData = mysql_query("select file_name1, file_name2 from $t_board"."_$table_name") or die("Ã·ºÎÆÄÀÏ »èÁ¦ Ã³¸®Áß ¿¡·¯°¡ ¹ß»ıÇß½À´Ï´Ù");
+			$tmpData = mysql_query("select file_name1, file_name2 from $t_board"."_$table_name") or die("ì²¨ë¶€íŒŒì¼ ì‚­ì œ ì²˜ë¦¬ì¤‘ ì—ëŸ¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤");
 			while($data=mysql_fetch_array($tmpData)) {
 				if($data[file_name1]) @z_unlink("./".$data[file_name1]);
 				if($data[file_name2]) @z_unlink("./".$data[file_name2]);
 			}
 			if(is_dir("./data/".$table_name)) zRmDir("./data/".$table_name);
-			mysql_query("delete from $admin_table where no='$no'") or Error("°Ô½ÃÆÇ »èÁ¦½Ã °ü¸®ÀÚ Å×ÀÌºí¿¡¼­ ¿¡·¯°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù");
-			mysql_query("drop table $t_board"."_$table_name") or Error("°Ô½ÃÆÇÀÇ ¸ŞÀÎ Å×ÀÌºí »èÁ¦ ¿¡·¯°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù");
-			mysql_query("drop table $t_division"."_$table_name") or Error("°Ô½ÃÆÇÀÇ Division Å×ÀÌºí »èÁ¦ ¿¡·¯°¡ ¹ß»ıÇß½À´Ï´Ù");
-			mysql_query("drop table $t_comment"."_$table_name") or Error("°Ô½ÃÆÇÀÇ ÄÚ¸àÆ® Å×ÀÌºí »èÁ¦ ¿¡·¯°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù");
-			mysql_query("drop table $t_category"."_$table_name") or Error("°Ô½ÃÆÇÀÇ Ä«Å×°í¸® Å×ÀÌºí »èÁ¦ ¿¡·¯°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù");
+			mysql_query("delete from $admin_table where no='$no'") or Error("ê²Œì‹œíŒ ì‚­ì œì‹œ ê´€ë¦¬ì í…Œì´ë¸”ì—ì„œ ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤");
+			mysql_query("drop table $t_board"."_$table_name") or Error("ê²Œì‹œíŒì˜ ë©”ì¸ í…Œì´ë¸” ì‚­ì œ ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤");
+			mysql_query("drop table $t_division"."_$table_name") or Error("ê²Œì‹œíŒì˜ Division í…Œì´ë¸” ì‚­ì œ ì—ëŸ¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤");
+			mysql_query("drop table $t_comment"."_$table_name") or Error("ê²Œì‹œíŒì˜ ì½”ë©˜íŠ¸ í…Œì´ë¸” ì‚­ì œ ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤");
+			mysql_query("drop table $t_category"."_$table_name") or Error("ê²Œì‹œíŒì˜ ì¹´í…Œê³ ë¦¬ í…Œì´ë¸” ì‚­ì œ ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤");
 			mysql_query("update $group_table set board_num=board_num-1 where no='$group_no'");
 		}
 		@mysql_query("delete from $admin_table where group_no='$group_no'");
 	}
 
-	// ±×·ì»èÁ¦                                                                                                
-	@mysql_query("delete from $group_table where no='$group_no'") or Error("±×·ì»èÁ¦½Ã ¿¡·¯°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù");
+	// ê·¸ë£¹ì‚­ì œ                                                                                                
+	@mysql_query("delete from $group_table where no='$group_no'") or Error("ê·¸ë£¹ì‚­ì œì‹œ ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤");
 																										  
 	movepage("$PHP_SELF");                                                                                     
 }                                                                                                           
-// °¡ÀÔ¾ç½Ä º¯°æ                                                                                            
+// ê°€ì…ì–‘ì‹ ë³€ê²½                                                                                            
 elseif($exec=="modify_member_join_ok")                                                                      {                                                                                                           
 	mysql_query("update $group_table set join_level='$join_level',use_icq='$use_icq',use_aol='$use_aol',use_msn='$use_msn',   
 	use_jumin='$use_jumin',use_comment='$use_comment',use_job='$use_job',use_hobby='$use_hobby',          

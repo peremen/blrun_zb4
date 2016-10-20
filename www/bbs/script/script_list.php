@@ -1,5 +1,5 @@
 
-<!-- zboard.php °ü·Ã ½ºÅ©¸³Æ® Çì´õ -->
+<!-- zboard.php ê´€ë ¨ ìŠ¤í¬ë¦½íŠ¸ í—¤ë” -->
 <script language="javascript">
 browserName = navigator.appName;
 browserVer = parseInt(navigator.appVersion);
@@ -49,7 +49,7 @@ if(((init == "net")&&(browserVer >=3))||((init == "ie")&&(browserVer >= 4))) {
 
 function reverse() {
 	var i, chked=0;
-	if(confirm('¸ñ·ÏÀ» ¹İÀüÇÏ½Ã°Ú½À´Ï±î?\n\n¹İÀüÀ» ¿øÇÏÁö ¾Ê´Â´Ù¸é Ãë¼Ò¸¦ ´©¸£½Ã¸é ´ÙÀ½À¸·Î ³Ñ¾î°©´Ï´Ù'))
+	if(confirm('ëª©ë¡ì„ ë°˜ì „í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n\në°˜ì „ì„ ì›í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ ì·¨ì†Œë¥¼ ëˆ„ë¥´ì‹œë©´ ë‹¤ìŒìœ¼ë¡œ ë„˜ì–´ê°‘ë‹ˆë‹¤'))
 	{
 		for(i=0;i<document.list.length;i++)
 		{
@@ -68,9 +68,9 @@ function reverse() {
 		}
 	}
 	if(chked) {
-		if(confirm('¼±ÅÃµÈ Ç×¸ñÀ» º¸½Ã°Ú½À´Ï±î?'))
+		if(confirm('ì„ íƒëœ í•­ëª©ì„ ë³´ì‹œê² ìŠµë‹ˆê¹Œ?'))
 		{
-		  //½ÇÇà½Ã°£ ½ºÅ¸Æ® Å¸ÀÓ ÀúÀå
+		  //ì‹¤í–‰ì‹œê°„ ìŠ¤íƒ€íŠ¸ íƒ€ì„ ì €ì¥
 		  var nStart = new Date().getTime();
 		  document.getElementById('nStart').value = nStart;
 
@@ -115,9 +115,9 @@ function delete_all() {
 		  }
 		 }
 		}
-		window.open("select_list_all.php?id=<?=$id?>&page="+document.list.page.value+"&page_num="+document.list.page_num.value+"&select_arrange="+document.list.select_arrange.value+"&desc="+document.list.desc.value+"&sn="+document.list.sn.value+"&ss="+document.list.ss.value+"&sc="+document.list.sc.value+"&sm="+document.list.sm.value+"&keyword="+document.list.keyword.value+"&category="+document.search.category.value+"&selected="+document.list.selected.value,"°Ô½Ã¹°Á¤¸®","width=260,height=180,toolbars=no,resize=no,scrollbars=no");
+		window.open("select_list_all.php?id=<?=$id?>&page="+document.list.page.value+"&page_num="+document.list.page_num.value+"&select_arrange="+document.list.select_arrange.value+"&desc="+document.list.desc.value+"&sn="+document.list.sn.value+"&ss="+document.list.ss.value+"&sc="+document.list.sc.value+"&sm="+document.list.sm.value+"&keyword="+document.list.keyword.value+"&category="+document.search.category.value+"&selected="+document.list.selected.value,"ê²Œì‹œë¬¼ì •ë¦¬","width=260,height=180,toolbars=no,resize=no,scrollbars=no");
 	}
-	else {alert('Á¤¸®ÇÒ °Ô½Ã¹°À» ¼±ÅÃÇÏ¿© ÁÖ½Ê½Ã¿ä');}
+	else {alert('ì •ë¦¬í•  ê²Œì‹œë¬¼ì„ ì„ íƒí•˜ì—¬ ì£¼ì‹­ì‹œìš”');}
 }
 
 function unlock2() {
@@ -153,4 +153,4 @@ function hideImageBox2() {
 	}
 }
 </script>
-<!-- zboard.php °ü·Ã ½ºÅ©¸³Æ® Çì´õ ³¡ -->
+<!-- zboard.php ê´€ë ¨ ìŠ¤í¬ë¦½íŠ¸ í—¤ë” ë -->

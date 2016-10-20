@@ -38,16 +38,16 @@ if($total_comment[0]>0){
 	}
 	$aver=$total_point/$total_comment[0];
 	$aver=$aver / 2;
-	for($i=1;$i<=floor($aver);$i++) $aver_point.="¡Ú";
-	if(round($aver)==ceil($aver)&&ceil($aver)!=$aver) $aver_point=$aver_point."¡Ù";
+	for($i=1;$i<=floor($aver);$i++) $aver_point.="â˜…";
+	if(round($aver)==ceil($aver)&&ceil($aver)!=$aver) $aver_point=$aver_point."â˜†";
 }
 
 include "list_image_info.php";
 
 for($i=1;$i<=$_name6;$i++){
-	$_point.="¡Ú";
+	$_point.="â˜…";
 }
-if($_name7==1) $_point=$_point."¡Ù";
+if($_name7==1) $_point=$_point."â˜†";
 
 if($counter%$num==1){?>
 	<tr><?}?>
@@ -66,22 +66,22 @@ if($counter%$num==1){?>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr></table>
-			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>Á¦Á¶»ç</B> :&nbsp;<?=$_name2?><BR>
+			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>ì œì¡°ì‚¬</B> :&nbsp;<?=$_name2?><BR>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr></table>
-			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>¿ø»êÁö</B> :&nbsp;<?=$_name3?><BR>
+			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>ì›ì‚°ì§€</B> :&nbsp;<?=$_name3?><BR>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr></table>
-			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>»óÇ°¼ö</B> :&nbsp;<?=$_name4?><BR>
+			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>ìƒí’ˆìˆ˜</B> :&nbsp;<?=$_name4?><BR>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr></table>
-			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>ÆÇ¸Å°¡</B> :&nbsp;<?=$_name8?>¿ø<BR>
+			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>íŒë§¤ê°€</B> :&nbsp;<?=$_name8?>ì›<BR>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
@@ -97,13 +97,13 @@ if($counter%$num==1){?>
 		<tr>
 		<td align=left>
 			<table border=0 cellspacing=0 cellpadding=2 width=100%>
-			<tr><td><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>¿É¼Ç</B>(Á¾·ù)
+			<tr><td><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>ì˜µì…˜</B>(ì¢…ë¥˜)
 			<BR> &nbsp;<?=$_name5?></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr>
 			</table>
 			<table border=0 cellspacing=0 cellpadding=3 width=100% height=80 style=border-width:1px;border-color:#eeeeee;border-style:solid;>
-			<tr><td valign=top><div style="overflow:hidden"><B>¡¤ »óÇ°¼³¸í</B> :&nbsp;<?=del_html($tmp_memo)?><?=$comment_new?></td></tr>
+			<tr><td valign=top><div style="overflow:hidden"><B>Â· ìƒí’ˆì„¤ëª…</B> :&nbsp;<?=del_html($tmp_memo)?><?=$comment_new?></td></tr>
 			</table>
 		</td>
 		</tr>

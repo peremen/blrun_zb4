@@ -4,12 +4,12 @@ include "../lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
 $s_keyword = $keyword;
-if(!$member[no]||$member[is_admin]>1||$member[level]>2) Error("·¹º§2 ÀÌ»óÀÇ ÃÖ°í °ü¸®ÀÚ¸¸ÀÌ »ç¿ëÇÒ¼ö ÀÖ½À´Ï´Ù");
+if(!$member[no]||$member[is_admin]>1||$member[level]>2) Error("ë ˆë²¨2 ì´ìƒì˜ ìµœê³  ê´€ë¦¬ìë§Œì´ ì‚¬ìš©í• ìˆ˜ ìˆìŠµë‹ˆë‹¤");
 if($keykind[5]) {
 	$userno = mysql_Fetch_array(mysql_query("select no from zetyx_member_table where user_id='$keyword'", $connect));
 	$userno = $userno[0];
 }
-// ½ÇÁ¦ °Ë»öºÎºĞ
+// ì‹¤ì œ ê²€ìƒ‰ë¶€ë¶„
 if($keyword)
 {
 	$comment_search=1;
@@ -53,19 +53,19 @@ head(" bgcolor=white");
     <table border=0>
     <tr>
       <td style=line-height:180% height=40 align=right>
-        <input type=checkbox name=keykind[0] value="name" <?if($keykind[0]) echo "checked";?>> ÀÌ¸§ &nbsp;
+        <input type=checkbox name=keykind[0] value="name" <?if($keykind[0]) echo "checked";?>> ì´ë¦„ &nbsp;
         <input type=checkbox name=keykind[1] value="email" <?if($keykind[1]) echo "checked";?>> E-Mail &nbsp;
-        <input type=checkbox name=keykind[2] value="ip" <?if($keykind[2]) echo "checked";?>> ¾ÆÀÌÇÇ &nbsp;
-        <input type=checkbox name=keykind[3] value="subject" <?if($keykind[3]) echo "checked";?>> Á¦¸ñ &nbsp;
-        <input type=checkbox name=keykind[4] value="memo" <?if($keykind[4]) echo "checked";?>> ³»¿ë &nbsp;
-        <input type=checkbox name=keykind[5] value="ismember" <?if($keykind[5]) echo "checked";?>> ¾ÆÀÌµğ &nbsp;
+        <input type=checkbox name=keykind[2] value="ip" <?if($keykind[2]) echo "checked";?>> ì•„ì´í”¼ &nbsp;
+        <input type=checkbox name=keykind[3] value="subject" <?if($keykind[3]) echo "checked";?>> ì œëª© &nbsp;
+        <input type=checkbox name=keykind[4] value="memo" <?if($keykind[4]) echo "checked";?>> ë‚´ìš© &nbsp;
+        <input type=checkbox name=keykind[5] value="ismember" <?if($keykind[5]) echo "checked";?>> ì•„ì´ë”” &nbsp;
       </td>
       <td><input type=text name=keyword value="<?=$s_keyword?>" size=20 class=input>&nbsp;</td>
       <td><input type=image src=../images/trace_search.gif border=0 valign=absmiddle></td>
     </tr>
     <tr>
       <td colspan=3 align=right>
-        <font color=darkred>* Ã¼Å©µÈ Ç×¸ñÀº AND ¿¬»êµË´Ï´Ù, Áï ¼±ÅÃµÈ Ç×¸ñÀÌ ¸ğµÎ ÇØ´çµÉ¶§ÀÔ´Ï´Ù.</font>
+        <font color=darkred>* ì²´í¬ëœ í•­ëª©ì€ AND ì—°ì‚°ë©ë‹ˆë‹¤, ì¦‰ ì„ íƒëœ í•­ëª©ì´ ëª¨ë‘ í•´ë‹¹ë ë•Œì…ë‹ˆë‹¤.</font>
       </td>
     </tr>
     </form>
@@ -83,12 +83,12 @@ if($keyword&&$s_que)
 		$table_name=$table_data[name];
 		if($table_data[use_alllist]) $file="zboard.php"; else $file="view.php";
 
-		// º»¹®
+		// ë³¸ë¬¸
 		$result=mysql_query("select * from $t_board"."_$table_name $s_que order by no desc", $connect) or error(mysql_error());
 ?>
 
 <br><br><br>
-&nbsp;&nbsp;<a href=../zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>°Ô½ÃÆÇ</b></font></a><br>
+&nbsp;&nbsp;<a href=../zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>ê²Œì‹œíŒ</b></font></a><br>
 <?
 		while($data=mysql_fetch_array($result))
 		{
@@ -106,21 +106,21 @@ if($keyword&&$s_que)
 
 		mysql_free_result($result);
 
-		/// ÄÚ¸àÆ®
+		/// ì½”ë©˜íŠ¸
 		if($comment_search)
 		{
 			$result=mysql_query("select * from $t_comment"."_$table_name $s_que order by no desc", $connect) or error(mysql_error());
 ?>
 
 <br><br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href=../zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>°Ô½ÃÆÇ</b> ÀÇ °£´ÜÇÑ ´ä±Û</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href=../zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>ê²Œì‹œíŒ</b> ì˜ ê°„ë‹¨í•œ ë‹µê¸€</font></a>
 <br>
 <?
 			while($data=mysql_fetch_array($result))
 			{
 				flush();
 				$data[memo] = preg_replace("#".$keyword."#i","<font color=red>$keyword</font>",del_html($data[memo]));
-				// °èÃş ÄÚ¸àÆ® Ç¥½Ä ºÒ·¯¿Í Ã³¸®
+				// ê³„ì¸µ ì½”ë©˜íŠ¸ í‘œì‹ ë¶ˆëŸ¬ì™€ ì²˜ë¦¬
 				unset($c_match);
 				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
 					$data[memo] = str_replace($c_match[0],"",$data[memo]);

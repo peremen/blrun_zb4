@@ -32,12 +32,12 @@ function check_submit_y() {
 
 <? if(!$member[no]) { ?>
 	if(!rName.value){
-		alert('ÀÌ¸§À» ÀÔ·ÂÇÏ¿© ÁÖ¼¼¿ä.');
+		alert('ì´ë¦„ì„ ì…ë ¥í•˜ì—¬ ì£¼ì„¸ìš”.');
 		rName.focus();
 		return false;
 	}
 	if(!rPass.value){
-		alert('¾ÏÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ¼¼¿ä.\n\n¾ÏÈ£¸¦ ÀÔ·ÂÇÏ¼Å¾ß ¼öÁ¤/»èÁ¦¸¦ ÇÒ¼ö ÀÖ½À´Ï´Ù');
+		alert('ì•”í˜¸ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì„¸ìš”.\n\nì•”í˜¸ë¥¼ ì…ë ¥í•˜ì…”ì•¼ ìˆ˜ì •/ì‚­ì œë¥¼ í• ìˆ˜ ìˆìŠµë‹ˆë‹¤');
 		rPass.focus();
 		return false;
 	}
@@ -48,13 +48,13 @@ function check_submit_y() {
 
 	if(!rStr.value)
 	{
-		alert('µ¡±Û ³»¿ëÀ» ÀÔ·ÂÇÏ¿© ÁÖ¼¼¿ä.');
+		alert('ë§ê¸€ ë‚´ìš©ì„ ì…ë ¥í•˜ì—¬ ì£¼ì„¸ìš”.');
 		rStr.focus();
 		return false;
 	}
 
 	if(rStr.value.match(rPattern)!= null){
-		alert('¿¹¾àµÈ ¹®ÀÚ¿­Àº »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.');
+		alert('ì˜ˆì•½ëœ ë¬¸ìì—´ì€ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.');
 		rStr.focus();
 		return false;
 	}
@@ -70,13 +70,13 @@ function preview_m() {
 
 	if(!rStr.value)
 	{
-		alert('µ¡±Û ³»¿ëÀ» ÀÔ·ÂÇÏ¿© ÁÖ¼¼¿ä..');
+		alert('ë§ê¸€ ë‚´ìš©ì„ ì…ë ¥í•˜ì—¬ ì£¼ì„¸ìš”..');
 		rStr.focus();
 		return false;
 	}
 
 	if(rStr.value.match(rPattern)!= null){
-		alert('¿¹¾àµÈ ¹®ÀÚ¿­Àº »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù..');
+		alert('ì˜ˆì•½ëœ ë¬¸ìì—´ì€ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤..');
 		rStr.focus();
 		return false;
 	}
@@ -99,7 +99,7 @@ function preview_m() {
 	<td align=right class=list_eng><b>Name</b></td><td align=left class=list_han><input type=text id=name name=name value="<?=$name?>" <?=size(8)?> maxlength=20 class=input></td>
 	<td align=left class=list_eng><b>Password</b></td><td align=left class=list_han><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input onkeyup="ajaxLoad2()"></td>
 <?=$hide_end?>
-	<td width="100%" align=left><div align=<?=$align?>>ºñ¹øÀ» ÀçÀÔ·ÂÇÏ¸é ÀÓ½ÃÀúÀåÀÌ º¹¿øµÊ<?if ($emoticon_use=="on"){?><input onclick='showEmoticon()' type=checkbox name=Emoticons value='yes'><img src=<?=$dir?>/use_emo.gif></div><?}?></td>
+	<td width="100%" align=left><div align=<?=$align?>>ë¹„ë²ˆì„ ì¬ì…ë ¥í•˜ë©´ ì„ì‹œì €ì¥ì´ ë³µì›ë¨<?if ($emoticon_use=="on"){?><input onclick='showEmoticon()' type=checkbox name=Emoticons value='yes'><img src=<?=$dir?>/use_emo.gif></div><?}?></td>
 <?if($s_data[ismember]){?>
 	<td align=right>
 		<table border=0 cellspacing=0 cellpadding=3 width=100%>
@@ -108,20 +108,20 @@ function preview_m() {
 			<select name="_point1" value=<?=$_point1?>>
 <? $checked=array("","","","","","");$checked[$_point1]="selected";?>
 
-				<option value=0 style=background-color:#ffffff;color:#555555 <?=$checked[0]?>>Æ÷ÀÎÆ®</option>
-				<option value=1 style=background-color:#ffffff;color:#888888 <?=$checked[1]?>>¡Ú</option>
-				<option value=2 style=background-color:#ffffff;color:#666666 <?=$checked[2]?>>¡Ú¡Ú</option>
-				<option value=3 style=background-color:#ffffff;color:#444444 <?=$checked[3]?>>¡Ú¡Ú¡Ú</option>
-				<option value=4 style=background-color:#ffffff;color:#222222 <?=$checked[4]?>>¡Ú¡Ú¡Ú¡Ú</option>
-				<option value=5 style=background-color:#ffffff;color:#000000 <?=$checked[5]?>>¡Ú¡Ú¡Ú¡Ú¡Ú</option>
+				<option value=0 style=background-color:#ffffff;color:#555555 <?=$checked[0]?>>í¬ì¸íŠ¸</option>
+				<option value=1 style=background-color:#ffffff;color:#888888 <?=$checked[1]?>>â˜…</option>
+				<option value=2 style=background-color:#ffffff;color:#666666 <?=$checked[2]?>>â˜…â˜…</option>
+				<option value=3 style=background-color:#ffffff;color:#444444 <?=$checked[3]?>>â˜…â˜…â˜…</option>
+				<option value=4 style=background-color:#ffffff;color:#222222 <?=$checked[4]?>>â˜…â˜…â˜…â˜…</option>
+				<option value=5 style=background-color:#ffffff;color:#000000 <?=$checked[5]?>>â˜…â˜…â˜…â˜…â˜…</option>
 			</select>
 			</td>
 			<td valign=top>
 			<select name="_point2" value=<?=$_point2?>>
 <? $checked=array("",""); $checked[$_point2]="selected";?>
 
-				<option value=0 style=background-color:#ffffff;color:#555555 <?=$checked[0]?>>Àı¹İ</option>
-				<option value=1 style=background-color:#ffffff;color:black <?=$checked[1]?>>¡Ù</option>
+				<option value=0 style=background-color:#ffffff;color:#555555 <?=$checked[0]?>>ì ˆë°˜</option>
+				<option value=1 style=background-color:#ffffff;color:black <?=$checked[1]?>>â˜†</option>
 			</select>
 			</td>
 		</tr>
@@ -134,7 +134,7 @@ function preview_m() {
 	<td height=1 colspan=5 background=<?=$dir?>/dot.gif></td>
 </tr>
 <tr>
-	<td colspan=5 align=right class=list_eng><font id="state"></font> <?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTML»ç¿ë <?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>ºñ¹Ğ±Û <?=$hide_secret_end?></td>
+	<td colspan=5 align=right class=list_eng><font id="state"></font> <?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTMLì‚¬ìš© <?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>ë¹„ë°€ê¸€ <?=$hide_secret_end?></td>
 </tr>
 <tr>
 	<td bgcolor=white height=3 colspan=5></td>
@@ -146,13 +146,13 @@ function preview_m() {
 	<table border=0 cellspacing=1 cellpadding=0 width=100% height=120>
 	<col width=5 align=center><col width=></col>
 	<tr> 
-		<td onclick="document.write.memo.rows=document.write.memo.rows+4" style=cursor:pointer valign=top align=right>¡é</td>
+		<td onclick="document.write.memo.rows=document.write.memo.rows+4" style=cursor:pointer valign=top align=right>â†“</td>
 		<td align=left>
 			<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
 			<col width=></col><col width=90></col>
 			<tr>
 				<td width=100% valign=top><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);' onkeyup="addStroke()"><?=$memo?></textarea></td>
-				<td width=90><input type=button class=submit value=' ÀÓ½Ã ÀúÀå ' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit class=submit value='¿µÈ­Æò¾²±â' accesskey="s" style=height:50%></td>
+				<td width=90><input type=button class=submit value=' ì„ì‹œ ì €ì¥ ' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit class=submit value='ì˜í™”í‰ì“°ê¸°' accesskey="s" style=height:50%></td>
 			</tr>
 			</table>
 			<table border=0 cellspacing=2 cellpadding=0 width=100% height=20>
@@ -183,6 +183,6 @@ function preview_m() {
 </TABLE>
 <table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0>
 <tr>
-	<td width=200 height=40><?=$a_preview?>¹Ì¸®º¸±â</a><?=$a_imagebox?>±×¸²Ã¢°í</a><?=$a_codebox?>ÄÚµå»ğÀÔ</a></td>
+	<td width=200 height=40><?=$a_preview?>ë¯¸ë¦¬ë³´ê¸°</a><?=$a_imagebox?>ê·¸ë¦¼ì°½ê³ </a><?=$a_codebox?>ì½”ë“œì‚½ì…</a></td>
 </tr>
 </table>

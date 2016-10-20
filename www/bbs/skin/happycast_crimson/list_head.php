@@ -1,37 +1,37 @@
 <? /////////////////////////////////////////////////////////////////////////
   /*
-  ÀÌ ÆÄÀÏÀº ¸®½ºÆ®ÀÇ »ó´Ü ºÎºÐÀ» º¸¿©ÁÖ´Â °÷ÀÔ´Ï´Ù
-  <?=$a_ ·Î ½ÃÀÛµÇ´Â Ç×¸ñÀº HTMLÀÇ <a ¶ó°í »ý°¢ÇÏ½Ã¸é µË´Ï´Ù.
-  µÚ¿¡ </a>¸¦ ºÙ¿©ÁÖ¸é µÇÁÒ;
-  ´ÙÀ½Àº ½ºÅ² Á¦ÀÛ½Ã ¸¸µé¼ö ÀÖ´Â º¯¼ö ÀÔ´Ï´Ù. ±×´ë·Î »ç¿ëÇÏ½Ã¸é µË´Ï´Ù;;;;
+  ì´ íŒŒì¼ì€ ë¦¬ìŠ¤íŠ¸ì˜ ìƒë‹¨ ë¶€ë¶„ì„ ë³´ì—¬ì£¼ëŠ” ê³³ìž…ë‹ˆë‹¤
+  <?=$a_ ë¡œ ì‹œìž‘ë˜ëŠ” í•­ëª©ì€ HTMLì˜ <a ë¼ê³  ìƒê°í•˜ì‹œë©´ ë©ë‹ˆë‹¤.
+  ë’¤ì— </a>ë¥¼ ë¶™ì—¬ì£¼ë©´ ë˜ì£ ;
+  ë‹¤ìŒì€ ìŠ¤í‚¨ ì œìž‘ì‹œ ë§Œë“¤ìˆ˜ ìžˆëŠ” ë³€ìˆ˜ ìž…ë‹ˆë‹¤. ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ì‹œë©´ ë©ë‹ˆë‹¤;;;;
 
-  <?=$width?> : °Ô½ÃÆÇÀÇ °¡·ÎÅ©±â
-  <?=$dir?> : ½ºÅ²µð·ºÅä¸®¸¦ °¡¸®Åµ´Ï´Ù.
-  <?=$print_page?> : ÆäÀÌÁö¸¦ º¸¿©ÁÝ´Ï´Ù
-  <?=$a_status?> : Åë°è¸µÅ©
-  <?=$a_login?> : ·Î±×ÀÎ ¹öÆ°
-  <?=$a_logout?> : ·Î±×¿ÀÇÁ¹öÆ°
-  <?=$a_no?> : ¿ø·¡¼ø¼­.. Áï ¼ø¼­´ë·Î Á¤·Ä
-  <?=$a_subject?> : Á¦¸ñÁ¤·Ä
-  <?=$a_name?> : ÀÌ¸§Á¤·Ä
-  <?=$a_hit?> : Á¶È¸¼ö Á¤·Ä
-  <?=$a_vote?> : ÃßÃµ¼ö Á¤·Ä
-  <?=$a_date?> : ³¯ÀÚº° Á¤·Ä
-  <?=$a_download1?> : Ã¹¹øÀç Ç×¸ñÀÇ ÀÚ·á ´Ù¿î·Îµå ¼ø¼­ Á¤·Ä
-  <?=$a_download2?> : µÎ¹øÂ° Ç×¸ñÀÇ ÀÚ·á ´Ù¿î·Îµå ¼ø¼­ Á¤·Ä
-  <?=$a_cart?> : ¹Ù±¸´Ï ¼±ÅÃ ¸µÅ©
-  <?=$a_category?> : Ä«Å×°í¸® Á¤·Ä
+  <?=$width?> : ê²Œì‹œíŒì˜ ê°€ë¡œí¬ê¸°
+  <?=$dir?> : ìŠ¤í‚¨ë””ë ‰í† ë¦¬ë¥¼ ê°€ë¦¬í‚µë‹ˆë‹¤.
+  <?=$print_page?> : íŽ˜ì´ì§€ë¥¼ ë³´ì—¬ì¤ë‹ˆë‹¤
+  <?=$a_status?> : í†µê³„ë§í¬
+  <?=$a_login?> : ë¡œê·¸ì¸ ë²„íŠ¼
+  <?=$a_logout?> : ë¡œê·¸ì˜¤í”„ë²„íŠ¼
+  <?=$a_no?> : ì›ëž˜ìˆœì„œ.. ì¦‰ ìˆœì„œëŒ€ë¡œ ì •ë ¬
+  <?=$a_subject?> : ì œëª©ì •ë ¬
+  <?=$a_name?> : ì´ë¦„ì •ë ¬
+  <?=$a_hit?> : ì¡°íšŒìˆ˜ ì •ë ¬
+  <?=$a_vote?> : ì¶”ì²œìˆ˜ ì •ë ¬
+  <?=$a_date?> : ë‚ ìžë³„ ì •ë ¬
+  <?=$a_download1?> : ì²«ë²ˆìž¬ í•­ëª©ì˜ ìžë£Œ ë‹¤ìš´ë¡œë“œ ìˆœì„œ ì •ë ¬
+  <?=$a_download2?> : ë‘ë²ˆì§¸ í•­ëª©ì˜ ìžë£Œ ë‹¤ìš´ë¡œë“œ ìˆœì„œ ì •ë ¬
+  <?=$a_cart?> : ë°”êµ¬ë‹ˆ ì„ íƒ ë§í¬
+  <?=$a_category?> : ì¹´í…Œê³ ë¦¬ ì •ë ¬
 
-  <?=$a_write?> : ±Û¾²±â ¹öÆ°
-  <?=$a_list?> : ¸ñ·Ïº¸±â ¹öÆ°
-  <?=$a_reply?> : ´ä±Û¾²±â ¹öÆ°
-  <?=$a_delete?> : ±Û»èÁ¦ ¹öÆ°
-  <?=$a_modify?> : ±Û¼öÁ¤ ¹öÆ°
-  <?=$a_delete_all?> : °ü¸®ÀÚÀÏ¶§ ³ªÅ¸³ª´Â ¼±ÅÃµÈ ±Û »èÁ¦ ¹öÆ°;;
+  <?=$a_write?> : ê¸€ì“°ê¸° ë²„íŠ¼
+  <?=$a_list?> : ëª©ë¡ë³´ê¸° ë²„íŠ¼
+  <?=$a_reply?> : ë‹µê¸€ì“°ê¸° ë²„íŠ¼
+  <?=$a_delete?> : ê¸€ì‚­ì œ ë²„íŠ¼
+  <?=$a_modify?> : ê¸€ìˆ˜ì • ë²„íŠ¼
+  <?=$a_delete_all?> : ê´€ë¦¬ìžì¼ë•Œ ë‚˜íƒ€ë‚˜ëŠ” ì„ íƒëœ ê¸€ ì‚­ì œ ë²„íŠ¼;;
 
-  ¹Ù±¸´Ï¿Í Ä«Å×°í¸®ÀÇ °æ¿ì »ç¿ëÇÏÁö ¾Ê´Â ¼ö°¡ ÀÖÀ¸¹Ç·Î ¼û°Ü³õÀ»¶§ ¾²´Â º¯¼ö;;
-  <?=$hide_cart_start?> ³»¿ë <?=$hide_cart_end?> : start ¿Í end »çÀÌ¿¡´Â »ç¶óÁü;; ¹Ù±¸´Ï
-  <?=$hide_category_start?> ³»¿ë <?=$hide_category_end?> : Start¿Í end »çÀÌ¿¡´Â »ç¶óÁü;; ¹Ù±¸´Ï
+  ë°”êµ¬ë‹ˆì™€ ì¹´í…Œê³ ë¦¬ì˜ ê²½ìš° ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ìˆ˜ê°€ ìžˆìœ¼ë¯€ë¡œ ìˆ¨ê²¨ë†“ì„ë•Œ ì“°ëŠ” ë³€ìˆ˜;;
+  <?=$hide_cart_start?> ë‚´ìš© <?=$hide_cart_end?> : start ì™€ end ì‚¬ì´ì—ëŠ” ì‚¬ë¼ì§;; ë°”êµ¬ë‹ˆ
+  <?=$hide_category_start?> ë‚´ìš© <?=$hide_category_end?> : Startì™€ end ì‚¬ì´ì—ëŠ” ì‚¬ë¼ì§;; ë°”êµ¬ë‹ˆ
   */ 
 ?>
 

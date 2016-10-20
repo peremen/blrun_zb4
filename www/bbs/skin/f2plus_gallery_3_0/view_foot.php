@@ -29,14 +29,14 @@ if(!preg_match("/Zeroboard/i",$a_delete)) $a_delete=str_replace("delete.php?","d
   </td>
   <td align=left>
     <table border=0>
-    <tr><td><? if($box_view) { echo $a_preview."¹Ì¸®º¸±â</a>"."&nbsp;&nbsp;".$a_imagebox."±×¸²Ã¢°í</a>"."&nbsp;&nbsp;".$a_codebox."ÄÚµå»ðÀÔ</a>"; }?></td>
+    <tr><td><? if($box_view) { echo $a_preview."ë¯¸ë¦¬ë³´ê¸°</a>"."&nbsp;&nbsp;".$a_imagebox."ê·¸ë¦¼ì°½ê³ </a>"."&nbsp;&nbsp;".$a_codebox."ì½”ë“œì‚½ìž…</a>"; }?></td>
     </tr>
     </table>
   </td>
   <td align=right>
     <table border=0 cellpadding=0 cellspacing=0>
     <tr>
-      <td><?=$a_home?>[HOME]</a></td><td><?=$a_bitly?>[bitly]</a></td><td nowrap><?=$a_keyword?>[¹ÝÀüÇØÁ¦]</a></td>
+      <td><?=$a_home?>[HOME]</a></td><td><?=$a_bitly?>[bitly]</a></td><td nowrap><?=$a_keyword?>[ë°˜ì „í•´ì œ]</a></td>
       <td><?=$a_list?><img src=<?=$dir?>/images/bt_list.gif border=0></a><?=$a_write?><img src=<?=$dir?>/images/bt_write.gif border=0></a></td>
     </tr>
     </table>
@@ -54,7 +54,7 @@ if(!preg_match("/Zeroboard/i",$a_delete)) $a_delete=str_replace("delete.php?","d
 
 <table width=<?=$width?>>
 <tr>
-  <td align=left style='word-break:break-all;'>¡ã <?=$a_prev?><?=$prev_subject?></a></td>
+  <td align=left style='word-break:break-all;'>â–² <?=$a_prev?><?=$prev_subject?></a></td>
 </tr>
 </table>
 <?=$hide_prev_end?>
@@ -63,7 +63,7 @@ if(!preg_match("/Zeroboard/i",$a_delete)) $a_delete=str_replace("delete.php?","d
 
 <table width=<?=$width?>>
 <tr>
-  <td align=left style='word-break:break-all;'>¡å <?=$a_next?><?=$next_subject?></a></td>
+  <td align=left style='word-break:break-all;'>â–¼ <?=$a_next?><?=$next_subject?></a></td>
 </tr>
 </table>
 <?=$hide_next_end?>

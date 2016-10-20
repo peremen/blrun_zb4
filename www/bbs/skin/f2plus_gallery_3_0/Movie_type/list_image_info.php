@@ -5,13 +5,13 @@ unset($thumb_img2);
 unset($img_info);
 
 if($Thumbnail_use=="on"){
-	//½æ³×ÀÏ µğ·ºÅä¸® ³» °¢ È¸¿øº° µğ·ºÅä¸® »ı¼º
+	//ì¸ë„¤ì¼ ë””ë ‰í† ë¦¬ ë‚´ ê° íšŒì›ë³„ ë””ë ‰í† ë¦¬ ìƒì„±
 	if(!is_dir($zb_path."data/$id/thumbnail/".$data[ismember]."/")) {
 		if(!@mkdir($zb_path."data/$id/thumbnail/".$data[ismember]."/",0777,true)) $error_check+=1;
 		if(!@chmod($zb_path."data/$id/thumbnail/".$data[ismember]."/",0707)) $error_check+=2;
 	}
-	if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$data[ismember]."/ µğ·ºÅä¸®ÀÇ ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
-	elseif($error_check==3) echo "<br> ".$zb_path."data/$id/thumbnail/ µğ·ºÅä¸® ³»¿¡ ".$data[ismember]."¹ø È¸¿ø µğ·ºÅä¸® »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.<br> ÇØ´ç°æ·Î¿¡ µğ·ºÅä¸®¸¦ »ı¼º½ÃÄÑ ÁÖ½Ã°í ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
+	if($error_check==2) echo "<br> ".$zb_path."data/$id/thumbnail/".$data[ismember]."/ ë””ë ‰í† ë¦¬ì˜ ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
+	elseif($error_check==3) echo "<br> ".$zb_path."data/$id/thumbnail/ ë””ë ‰í† ë¦¬ ë‚´ì— ".$data[ismember]."ë²ˆ íšŒì› ë””ë ‰í† ë¦¬ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.<br> í•´ë‹¹ê²½ë¡œì— ë””ë ‰í† ë¦¬ë¥¼ ìƒì„±ì‹œì¼œ ì£¼ì‹œê³  ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
 
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name1])){
 		$src_img1=$data[file_name1];
@@ -123,16 +123,16 @@ if($Thumbnail_use=="on"){
 	if($thumb_img1){
 		$img_tag=$src_img1;
 		$xy=$xy1;
-		$thumb_img=$thumb_img1;            //¸®½ºÆ® ¸ŞÀÎ¿¡¼­ º¸¿©Áú 75 X 56 »çÀÌÁîÀÇ ½æ³×ÀÏ
-	}                                                       //¸®½ºÆ® ¸ŞÀÎ¿¡¼­´Â Ã¹¹øÂ° ÆÄÀÏÀÇ ½æ³×ÀÏ¸¸ º¸¿©Áü
-	elseif($thumb_img2){   //¾÷·Îµå ÀÌ¹ÌÁö 2¹ø ÆÄÀÏ¸¸ ÀÖÀ»¶§
+		$thumb_img=$thumb_img1;            //ë¦¬ìŠ¤íŠ¸ ë©”ì¸ì—ì„œ ë³´ì—¬ì§ˆ 75 X 56 ì‚¬ì´ì¦ˆì˜ ì¸ë„¤ì¼
+	}                                                       //ë¦¬ìŠ¤íŠ¸ ë©”ì¸ì—ì„œëŠ” ì²«ë²ˆì§¸ íŒŒì¼ì˜ ì¸ë„¤ì¼ë§Œ ë³´ì—¬ì§
+	elseif($thumb_img2){   //ì—…ë¡œë“œ ì´ë¯¸ì§€ 2ë²ˆ íŒŒì¼ë§Œ ìˆì„ë•Œ
 		$img_tag=$src_img2;
 		$xy=$xy2;
 		$thumb_img=$thumb_img2;
 	}
-	else{                                // ¾÷·Îµå ÀÌ¹ÌÁö ÆÄÀÏÀÌ ¾øÀ»¶§
+	else{                                // ì—…ë¡œë“œ ì´ë¯¸ì§€ íŒŒì¼ì´ ì—†ì„ë•Œ
 		$img_tag=$dir."/images/no_image.gif";
-		$thumb_img=$dir."/images/no_image.gif";     //¾øÀ»°æ¿ì ¹Ì¸® ÁöÁ¤µÈ ÀÌ¹ÌÁö ÆÄÀÏ »ç¿ë.º¯°æÇÏ¼ÅµÎ µË´Ï´Ù.
+		$thumb_img=$dir."/images/no_image.gif";     //ì—†ì„ê²½ìš° ë¯¸ë¦¬ ì§€ì •ëœ ì´ë¯¸ì§€ íŒŒì¼ ì‚¬ìš©.ë³€ê²½í•˜ì…”ë‘ ë©ë‹ˆë‹¤.
 		$xy[0]=300; $xy[1]=200;
 	}
 
@@ -141,7 +141,7 @@ if($Thumbnail_use=="on"){
 	}else{
 		$view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] class=shadow style='cursor:pointer'>";
 	}
-			 // ÀÚ¹Ù ½ºÅ©¸³Æ®¸¦ ÀÌ¿ëÇØ ¸¶¿ì½º ¿À¹ö½Ã ¼­ºê·¹ÀÌ¾î Ã¢À¸·Î ÀÌ¹ÌÁö Ãâ·Â
+			 // ìë°” ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì´ìš©í•´ ë§ˆìš°ìŠ¤ ì˜¤ë²„ì‹œ ì„œë¸Œë ˆì´ì–´ ì°½ìœ¼ë¡œ ì´ë¯¸ì§€ ì¶œë ¥
 }else{
 	if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name1])){
 		$thumb_img1=$data[file_name1];
@@ -163,16 +163,16 @@ if($Thumbnail_use=="on"){
 	}elseif($src_img2=$img[1][1])
 		$thumb_img2=$src_img2;
 
-	if($thumb_img1){                              //¾÷·Îµå ÀÌ¹ÌÁö ÆÄÀÏÀÌ µÑ´Ù ÀÖÀ»¶§
+	if($thumb_img1){                              //ì—…ë¡œë“œ ì´ë¯¸ì§€ íŒŒì¼ì´ ë‘˜ë‹¤ ìˆì„ë•Œ
 		$xy=@getImageSize(urldecode($thumb_img1));
-		$thumb_img=$thumb_img1;            //¸®½ºÆ® ¸ŞÀÎ¿¡¼­ º¸¿©Áú 75 X 56 »çÀÌÁîÀÇ ½æ³×ÀÏ
-	}                                                       //¸®½ºÆ® ¸ŞÀÎ¿¡¼­´Â Ã¹¹øÂ° ÆÄÀÏÀÇ ½æ³×ÀÏ¸¸ º¸¿©Áü
-	elseif($thumb_img2){   //¾÷·Îµå ÀÌ¹ÌÁö 2¹ø ÆÄÀÏ¸¸ ÀÖÀ»¶§
+		$thumb_img=$thumb_img1;            //ë¦¬ìŠ¤íŠ¸ ë©”ì¸ì—ì„œ ë³´ì—¬ì§ˆ 75 X 56 ì‚¬ì´ì¦ˆì˜ ì¸ë„¤ì¼
+	}                                                       //ë¦¬ìŠ¤íŠ¸ ë©”ì¸ì—ì„œëŠ” ì²«ë²ˆì§¸ íŒŒì¼ì˜ ì¸ë„¤ì¼ë§Œ ë³´ì—¬ì§
+	elseif($thumb_img2){   //ì—…ë¡œë“œ ì´ë¯¸ì§€ 2ë²ˆ íŒŒì¼ë§Œ ìˆì„ë•Œ
 		$xy=@getImageSize(urldecode($thumb_img2));
 		$thumb_img=$thumb_img2;
 	}
-	else{                                // ¾÷·Îµå ÀÌ¹ÌÁö ÆÄÀÏÀÌ ¾øÀ»¶§
-		$thumb_img=$dir."/images/no_image.gif";     //¾øÀ»°æ¿ì ¹Ì¸® ÁöÁ¤µÈ ÀÌ¹ÌÁö ÆÄÀÏ »ç¿ë.º¯°æÇÏ¼ÅµÎ µË´Ï´Ù.
+	else{                                // ì—…ë¡œë“œ ì´ë¯¸ì§€ íŒŒì¼ì´ ì—†ì„ë•Œ
+		$thumb_img=$dir."/images/no_image.gif";     //ì—†ì„ê²½ìš° ë¯¸ë¦¬ ì§€ì •ëœ ì´ë¯¸ì§€ íŒŒì¼ ì‚¬ìš©.ë³€ê²½í•˜ì…”ë‘ ë©ë‹ˆë‹¤.
 		$xy=@getImageSize($thumb_img);
 	}
 
@@ -181,6 +181,6 @@ if($Thumbnail_use=="on"){
 	}else{
 		$view_img="<a href=$zb_url/$view_target?$href$sort&no=$data[no] class=shadow style='cursor:pointer'>";
 	}
-			 // ÀÚ¹Ù ½ºÅ©¸³Æ®¸¦ ÀÌ¿ëÇØ ¸¶¿ì½º ¿À¹ö½Ã ¼­ºê·¹ÀÌ¾î Ã¢À¸·Î ÀÌ¹ÌÁö Ãâ·Â
+			 // ìë°” ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì´ìš©í•´ ë§ˆìš°ìŠ¤ ì˜¤ë²„ì‹œ ì„œë¸Œë ˆì´ì–´ ì°½ìœ¼ë¡œ ì´ë¯¸ì§€ ì¶œë ¥
 }
 ?>

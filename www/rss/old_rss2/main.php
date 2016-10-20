@@ -1,5 +1,5 @@
 <!DOCTYPE html>  
-<html>  
+<html lang="ko">  
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
@@ -23,7 +23,7 @@ if(PHP_VERSION>='5')
 
 // Get XML Data
 include_once "../bbs/lib.php";
-$url = substr(zbUrl(),0,strpos(zbUrl(),"/bbs/"))."/rss/zero_rss.php";
+$url = mb_substr(zbUrl(),0,mb_strpos(zbUrl(),"/bbs/"))."/rss/zero_rss.php";
 $curl = curl_init();
 curl_setopt($curl, CURLOPT_URL, $url);
 curl_setopt($curl, CURLOPT_HEADER, 0);

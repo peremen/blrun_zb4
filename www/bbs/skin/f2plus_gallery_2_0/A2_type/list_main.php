@@ -16,7 +16,7 @@ unset($line);
 $_m = explode("\n",strip_tags($data['memo']));	
 for($i=0;$i<count($_m);$i++) 
 if(trim($_m[$i])) $line[] = $_m[$i];
-$tmp_memo=$line[0]."".$line[1]."".$line[2]."".$line[3]."".$line[4]."".$line[5]."".$line[6]."".$line[7]."".$line[8]."".$line[9]."".$line[10];// ÀÌºÎºÐÀÌ ¹Ì¸®³ª¿À´Â ³»¿ë ÀÔ´Ï´Ù. ¶óÀÎ 1,2,3 Àû¿ë	if($line[11]) $tmp_memo.="..."; 
+$tmp_memo=$line[0]."".$line[1]."".$line[2]."".$line[3]."".$line[4]."".$line[5]."".$line[6]."".$line[7]."".$line[8]."".$line[9]."".$line[10];// ì´ë¶€ë¶„ì´ ë¯¸ë¦¬ë‚˜ì˜¤ëŠ” ë‚´ìš© ìž…ë‹ˆë‹¤. ë¼ì¸ 1,2,3 ì ìš©	if($line[11]) $tmp_memo.="..."; 
 $_name1=explode("|||",$tmp_memo);
 if($emoticon_use=="on") $_name1[0]=str_to_emoticon($_name1[0],$emoticon_url);
 
@@ -48,7 +48,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 
 			</tr>
 			<tr valign=bottom>
-				<td align=left style=padding-bottom:4px><div style="overflow:hidden"><nobr><font style=color:#8D8D8D>&nbsp;&nbsp;&nbsp;<? if(!$data[is_secret]) echo del_html(substr($_name1[0],0,400)); else echo "ºñ¹Ð±ÛÀÔ´Ï´Ù"; ?></font></nobr></div></td>
+				<td align=left style=padding-bottom:4px><div style="overflow:hidden"><nobr><font style=color:#8D8D8D>&nbsp;&nbsp;&nbsp;<? if(!$data[is_secret]) echo del_html(mb_substr($_name1[0],0,300)); else echo "ë¹„ë°€ê¸€ìž…ë‹ˆë‹¤"; ?></font></nobr></div></td>
 				<?if($hide_name!="on"){?><? if($browser=="1"){ ?><td align=center class=com8 style=padding-bottom:4px><div style="overflow:hidden"><img src=<?=$dir?>/point.gif align=absmiddle>&nbsp;<?=($m_data[point1]*10+$m_data[point2])?></div></td><? } ?><?}?>
 
 				<?if($hide_date!="on"){?><? if($browser=="1"){ ?><td align=center style=padding-bottom:4px><font class=com8 color=#aaaaaa><?=date("H:i:s",$data[reg_date])?></font></td><? } ?><?}?>

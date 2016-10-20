@@ -12,30 +12,30 @@ elseif(time()-$last_comment_time<60*60*48) $comment_new = "&nbsp;<font color=blu
 else $comment_new = "&nbsp;<font class=zv3_comment style='font-size:8pt;'>".$comment_num."</font>";
 ?>
 <tr align=center class=zv3_listBox>
-<!--Ä«Æ®-->
+<!--ì¹´íŠ¸-->
 <?=$hide_cart_start?>
 
   <td><input type=checkbox name=cart value="<?=$data[no]?>"></td>
 <?=$hide_cart_end?>
 
-<!--°Ô½Ã¹°¹øÈ£-->
+<!--ê²Œì‹œë¬¼ë²ˆí˜¸-->
   <? if($browser=="1"){ ?><td class=zv3_small height=25><?=$number?></td><? } ?>
 
-<!--°Ô½Ã¹°¾ÆÀÌÄÜ, Ä«Å×°í¸®,Á¦¸ñ, ´äº¯±Û¼ö-->    
+<!--ê²Œì‹œë¬¼ì•„ì´ì½˜, ì¹´í…Œê³ ë¦¬,ì œëª©, ë‹µë³€ê¸€ìˆ˜-->    
   <td align=left nowrap='nowrap' <?=$td_bg?>><div style="overflow:hidden"><?=$insert?><?=$icon?><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?><?=$comment_new?><?=$new?></div></td> 
-<!--ÀÛ¼ºÀÚ-->
+<!--ìž‘ì„±ìž-->
   <? if($browser=="1"){ ?><td nowrap='nowrap'><div style="overflow:hidden"><?=$face_image?>&nbsp;<?=$name?></div></td><? } ?>
 
-<!--ÀÛ¼ºÀÏ-->
+<!--ìž‘ì„±ì¼-->
   <? if($browser=="1"){ ?><td nowrap='nowrap' class=zv3_small><?=$reg_date?></td><? } ?>
 
-<!--Á¶È¸--><!--ÃßÃµ-->
+<!--ì¡°íšŒ--><!--ì¶”ì²œ-->
 <? if($browser=="1"){ ?>
   <td nowrap class=zv3_small><?=$hit?></td>
   <td nowrap class=zv3_small><?=$vote?></td>
 <? } ?>
 </tr>
-<!--°Ô½Ã¹°°ú °Ô½Ã¹° »çÀÌÀÇ Á¡¼±-->
+<!--ê²Œì‹œë¬¼ê³¼ ê²Œì‹œë¬¼ ì‚¬ì´ì˜ ì ì„ -->
 <tr>
   <td colspan=<?=$colspanNum?> background=<?=$dir?>/dot_line.gif height=1></td>
 </tr>

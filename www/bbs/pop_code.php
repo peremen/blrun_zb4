@@ -1,18 +1,18 @@
 
-<html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width">
 <title></title>
 <style type="text/css">
 <!--
-	body, table, tr, td, ul, li {FONT-SIZE: 9pt; FONT-FAMILY: "³ª´®°íµñ","µ¸¿ò",gulim,arial;}
+	body, table, tr, td, ul, li {FONT-SIZE: 9pt; FONT-FAMILY: "ë‚˜ëˆ”ê³ ë”•","ë‹ì›€",gulim,arial;}
 	h3 {
 		height:25px;
 		padding-left:15px;
 		background-repeat:no-repeat;
 		padding-bottom:5px;
-		font-family:"³ª´®°íµñ",dotum;
+		font-family:"ë‚˜ëˆ”ê³ ë”•",dotum;
 		font-size:15px;
 		color:#006600;
 		width:200px;
@@ -44,29 +44,29 @@ function insertCode() {
 	var code_type = f.code_type.value;
 
 	if(!title) {
-		alert("¶óº§À» ÀÔ·ÂÇÏ¼¼¿ä!");
+		alert("ë¼ë²¨ì„ ì…ë ¥í•˜ì„¸ìš”!");
 		f.code_sbj.focus();
 		return false;
 	}
 	else if(title.indexOf("\"")>=0) {
-		alert("\" ´Â »ç¿ëºÒ°¡ÀÔ´Ï´Ù!");
+		alert("\" ëŠ” ì‚¬ìš©ë¶ˆê°€ì…ë‹ˆë‹¤!");
 		f.code_sbj.value="";
 		f.code_sbj.focus();
 		return false;
 	}
 	else if(title.indexOf("\{")>=0 || title.indexOf("\}")>=0) {
-		alert("{ ³ª } ´Â »ç¿ëºÒ°¡ÀÔ´Ï´Ù!");
+		alert("{ ë‚˜ } ëŠ” ì‚¬ìš©ë¶ˆê°€ì…ë‹ˆë‹¤!");
 		f.code_sbj.value="";
 		f.code_sbj.focus();
 		return false;
 	}
 	else if(!rownum) {
-		alert("½ÃÀÛ Çà¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä!");
+		alert("ì‹œì‘ í–‰ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”!");
 		f.code_row.focus();
 		return false;
 	}
 	else if(!content) {
-		alert("¼Ò½º ÄÚµå ³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä!");
+		alert("ì†ŒìŠ¤ ì½”ë“œ ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”!");
 		f.source.focus();
 		return false;
 	}
@@ -89,7 +89,7 @@ function insertCode() {
 <table cellspacing="0" class="tb_line" width="800">
 <col width="100"></col><col width="700"></col>
 <tr>
-	<th>¾ğ¾î Á¾·ù</th>
+	<th>ì–¸ì–´ ì¢…ë¥˜</th>
 	<td>
 		<select id="code_type" name="code_type">
 			<option value="applescript">AppleScript</option>
@@ -121,27 +121,27 @@ function insertCode() {
 	</td>
 </tr>
 <tr>
-	<th>Å¸ÀÌÆ²(¶óº§)</th>
+	<th>íƒ€ì´í‹€(ë¼ë²¨)</th>
 	<td>
 		<input type="text" id="code_sbj" name="code_sbj" size="40" value="">
 	</td>
 </tr>
 <tr>
-	<th>½ÃÀÛ Çà¹øÈ£</th>
+	<th>ì‹œì‘ í–‰ë²ˆí˜¸</th>
 	<td>
 		<input type="text" id="code_row" name="code_row" name="code_row" size="10" value="1">
 	</td>
 </tr>
 <tr>
-	<th onclick=document.getElementById('source').rows=document.getElementById('source').rows+4 style=cursor:pointer>¼Ò½º ±â¼ú ¡å</th>
+	<th onclick=document.getElementById('source').rows=document.getElementById('source').rows+4 style=cursor:pointer>ì†ŒìŠ¤ ê¸°ìˆ  â–¼</th>
 	<td>
 		<textarea id="source" name="source" cols="20" rows="20" style="width:100%" onkeydown='return doTab(event);'></textarea>
 	</td>
 </tr>
 </table>
 
-<input type="submit" value=" Ãß°¡ ">
-<input type="button" onclick="window.close();return false;" value=" ´İ±â ">
+<input type="submit" value=" ì¶”ê°€ ">
+<input type="button" onclick="window.close();return false;" value=" ë‹«ê¸° ">
 
 </form>
 </center>

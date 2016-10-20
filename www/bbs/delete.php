@@ -1,23 +1,23 @@
 <?
 /***************************************************************************
-* °øÅë ÆÄÀÏ include
+* ê³µí†µ íŒŒì¼ include
 **************************************************************************/
 include "_head.php";
 
-if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("Á¤»óÀûÀ¸·Î ±ÛÀ» »èÁ¦ÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("ì •ìƒì ìœ¼ë¡œ ê¸€ì„ ì‚­ì œí•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.");
 
 /***************************************************************************
-* °Ô½Ã¹° »èÁ¦ Ã³¸®
+* ê²Œì‹œë¬¼ ì‚­ì œ ì²˜ë¦¬
 **************************************************************************/
 
-// ¿øº»±ÛÀ» °¡Á®¿È
+// ì›ë³¸ê¸€ì„ ê°€ì ¸ì˜´
 $s_data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$no'"));
 
 if($s_data[ismember]||$is_admin||$member[level]<=$setup[grant_delete]) {
-	if($s_data[ismember]!=$member[no]&&!$is_admin&&$member[level]>$setup[grant_delete]) Error("»èÁ¦ÇÒ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
-	$title="±ÛÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?";
+	if($s_data[ismember]!=$member[no]&&!$is_admin&&$member[level]>$setup[grant_delete]) Error("ì‚­ì œí•  ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
+	$title="ê¸€ì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 } else {
-	$title=del_html(str_replace("&rlm;","",$s_data[name]))."´ÔÀÇ ±ÛÀ» »èÁ¦ÇÕ´Ï´Ù.<br>ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä";
+	$title=del_html(str_replace("&rlm;","",$s_data[name]))."ë‹˜ì˜ ê¸€ì„ ì‚­ì œí•©ë‹ˆë‹¤.<br>ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”";
 	$input_password="<input type=password name=password size=20 maxlength=20 class=input>";
 }
 

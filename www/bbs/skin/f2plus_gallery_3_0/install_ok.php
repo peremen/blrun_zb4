@@ -32,7 +32,7 @@ if($vote_use==1){ $hide_vote="on"; $cols--; } else $hide_vote="off";
 if($hit_use==1){ $hide_hit="on"; $cols--; } else $hide_hit="off"; 
 			  
 
-// gd Ã¼Å© ÀÔ´Ï´Ù.
+// gd ì²´í¬ ìž…ë‹ˆë‹¤.
 if($gd_use>0){
 	if($thumb==1){ 
 		$Thumbnail_use="on";
@@ -124,14 +124,14 @@ $setup_file=$board_id."_config.php";
 $file=@fopen($setup_file,"w");
 ?>
 
-<html>
+<html lang="ko">
 
 <head>
-<meta http-equiv="content-type" content="text/html; charset=euc-kr">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>f2plus gallery ver3.0 install page</title>
 <meta name="generator" content="Namo WebEditor v5.0">
 <style>
-BODY,TD {font-size:9pt;font-family:±¼¸²;color:ffffff;line-height:160%}
+BODY,TD {font-size:9pt;font-family:êµ´ë¦¼;color:ffffff;line-height:160%}
 
 .thm7pt {font-family:tahoma;font-size:7pt}
 
@@ -151,7 +151,7 @@ A:hover   {color:cccccc;text-decoration:underline}
 		</tr>
 		</table>
 		<table border="0" cellpadding="10" cellspacing="0" width="80%" align=center>
-		<tr valign=center><td><a href=<?=urlencode("¸Å´º¾ó.txt")?> target=_blank><U>¡Ø " ¼³Á¤ÇÏ½Ã±â Àü¿¡ ÀÌ°÷À» Å¬¸¯ÇØ ²À ¸Þ´º¾óÀ» ÂüÁ¶ÇÏ¼¼¿ä."</U></a></td>
+		<tr valign=center><td><a href=<?=urlencode("ë§¤ë‰´ì–¼.txt")?> target=_blank><U>â€» " ì„¤ì •í•˜ì‹œê¸° ì „ì— ì´ê³³ì„ í´ë¦­í•´ ê¼­ ë©”ë‰´ì–¼ì„ ì°¸ì¡°í•˜ì„¸ìš”."</U></a></td>
 		</tr>
 		</table>
 
@@ -162,13 +162,13 @@ A:hover   {color:cccccc;text-decoration:underline}
 			<td>
 <?
 if(!$file){ 
-	echo "config.php ÆÄÀÏ ¾²±â¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.<br> ½ºÅ²Æú´õÀÇ ÆÛ¹Ì¼ÇÀ» <font color=FF2400><B>707</B></font>·Î Á¶Á¤ÇÏ°í ´Ù½Ã ÀÎ½ºÅçÇÏ¼¼¿ä<br>";
+	echo "config.php íŒŒì¼ ì“°ê¸°ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.<br> ìŠ¤í‚¨í´ë”ì˜ í¼ë¯¸ì…˜ì„ <font color=FF2400><B>707</B></font>ë¡œ ì¡°ì •í•˜ê³  ë‹¤ì‹œ ì¸ìŠ¤í†¨í•˜ì„¸ìš”<br>";
 }else{
 	fwrite($file,$str);
 
 	if(!is_dir($zbpath."data/$board_id/")) { 
-		if(!@mkdir($zbpath."data/$board_id/",0777)) echo "Á¦·Îº¸µåÀÇ Àý´ë°æ·Î¸¦ ¹Ù¸£°Ô ÀÔ·ÂÇÏ¼¼¿ä<br>";
-		if(!@chmod($zbpath."data/$board_id/",0707)) echo "ÆÛ¹Ì¼Ç Á¶Á¤¿¡ ½ÇÆÐÇß½À´Ï´Ù.<br>$zb_path/data/$board_id ÀÇ ÆÛ¹Ì¼ÇÀ» 707 ·Î Á¶Á¤ÇÏ¼¼¿ä<br><br>";
+		if(!@mkdir($zbpath."data/$board_id/",0777)) echo "ì œë¡œë³´ë“œì˜ ì ˆëŒ€ê²½ë¡œë¥¼ ë°”ë¥´ê²Œ ìž…ë ¥í•˜ì„¸ìš”<br>";
+		if(!@chmod($zbpath."data/$board_id/",0707)) echo "í¼ë¯¸ì…˜ ì¡°ì •ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.<br>$zb_path/data/$board_id ì˜ í¼ë¯¸ì…˜ì„ 707 ë¡œ ì¡°ì •í•˜ì„¸ìš”<br><br>";
 	}
 	$error_check1=0;
 	$error_check2=0;
@@ -184,26 +184,26 @@ if(!$file){
 		}
 	}
 
-	if($error_check1==2) echo "<br> ".$zb_path."data/$board_id/thumbnail/ µð·ºÅä¸®ÀÇ ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br> ";
-	elseif($error_check1==3) echo "<br> ".$zb_path."data/$board_id/ µð·ºÅä¸® ³»¿¡ thumbnail µð·ºÅä¸® »ý¼º¿¡ ½ÇÆÐÇß½À´Ï´Ù.<br> ÇØ´ç°æ·Î¿¡ µð·ºÅä¸®¸¦ »ý¼º½ÃÄÑ ÁÖ½Ã°í ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
+	if($error_check1==2) echo "<br> ".$zb_path."data/$board_id/thumbnail/ ë””ë ‰í† ë¦¬ì˜ ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br> ";
+	elseif($error_check1==3) echo "<br> ".$zb_path."data/$board_id/ ë””ë ‰í† ë¦¬ ë‚´ì— thumbnail ë””ë ‰í† ë¦¬ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.<br> í•´ë‹¹ê²½ë¡œì— ë””ë ‰í† ë¦¬ë¥¼ ìƒì„±ì‹œì¼œ ì£¼ì‹œê³  ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
 
-	if($error_check2==2) echo "<br> ".$zb_path."icon/thumbnail/ µð·ºÅä¸®ÀÇ ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
-	elseif($error_check2==3) echo "<br> ".$zb_path."icon µð·ºÅä¸® ³»¿¡ thumbnail µð·ºÅä¸® »ý¼º¿¡ ½ÇÆÐÇß½À´Ï´Ù.<br> ÇØ´ç°æ·Î¿¡ µð·ºÅä¸®¸¦ »ý¼º½ÃÄÑ ÁÖ½Ã°í ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
+	if($error_check2==2) echo "<br> ".$zb_path."icon/thumbnail/ ë””ë ‰í† ë¦¬ì˜ ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
+	elseif($error_check2==3) echo "<br> ".$zb_path."icon ë””ë ‰í† ë¦¬ ë‚´ì— thumbnail ë””ë ‰í† ë¦¬ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.<br> í•´ë‹¹ê²½ë¡œì— ë””ë ‰í† ë¦¬ë¥¼ ìƒì„±ì‹œì¼œ ì£¼ì‹œê³  ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
 
 	if($exif==1){
 		if(file_exists("exiflist")){
 			if(!@chmod("exiflist",0505)){
-				echo "<br>exiflist ÆÄÀÏÀÇ ÆÛ¹Ì¼Ç ÀÚµ¿ Á¶Á¤¿¡ ½ÇÆÐ Çß½À´Ï´Ù.<br>exiflist ÆÄÀÏÀÇ ÆÛ¹Ì¼ÇÀ» <font color=FF2400><B>505</B></font> ·Î ¼öÁ¤ÇÏ¼¼¿ä<br>¹Ýµå½Ã ÆÛ¹Ì¼ÇÀ» Á¶Á¤ÇÏ¼Å¾ß ÇÕ´Ï´Ù. ÀÌ ÆÄÀÏÀÇ °æ¿ì´Â ¼öµ¿À¸·Î ¼³Á¤ ÆÛ¹Ì¼ÇÀ» ¼³Á¤ÇÏ¼Å¾ß ÇÕ´Ï´Ù.<br>¼öµ¿À¸·Î exiflist ÆÄÀÏÀÇ ÆÛ¹Ì¼ÇÀ» <font color=FF2400><B>505</B></font>·Î ¹Ù²Ù¼Ì´Ù¸é ÀÌ ¸Þ¼¼Áö´Â ¹«½ÃÇÏ¼Åµµ µË´Ï´Ù.<BR>";
-			}else echo "ÆÛ¹Ì¼Ç Á¶Á¤¿¡ ¼º°øÇÏ¿´½À´Ï´Ù.";
+				echo "<br>exiflist íŒŒì¼ì˜ í¼ë¯¸ì…˜ ìžë™ ì¡°ì •ì— ì‹¤íŒ¨ í–ˆìŠµë‹ˆë‹¤.<br>exiflist íŒŒì¼ì˜ í¼ë¯¸ì…˜ì„ <font color=FF2400><B>505</B></font> ë¡œ ìˆ˜ì •í•˜ì„¸ìš”<br>ë°˜ë“œì‹œ í¼ë¯¸ì…˜ì„ ì¡°ì •í•˜ì…”ì•¼ í•©ë‹ˆë‹¤. ì´ íŒŒì¼ì˜ ê²½ìš°ëŠ” ìˆ˜ë™ìœ¼ë¡œ ì„¤ì • í¼ë¯¸ì…˜ì„ ì„¤ì •í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.<br>ìˆ˜ë™ìœ¼ë¡œ exiflist íŒŒì¼ì˜ í¼ë¯¸ì…˜ì„ <font color=FF2400><B>505</B></font>ë¡œ ë°”ê¾¸ì…¨ë‹¤ë©´ ì´ ë©”ì„¸ì§€ëŠ” ë¬´ì‹œí•˜ì…”ë„ ë©ë‹ˆë‹¤.<BR>";
+			}else echo "í¼ë¯¸ì…˜ ì¡°ì •ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤.";
 
-		}else echo "exiflist ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù. ÆÄÀÏÀÌ ¾÷·Îµå µÇ¾ú´ÂÁö È®ÀÎÇÏ¼¼¿ä";
+		}else echo "exiflist íŒŒì¼ì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. íŒŒì¼ì´ ì—…ë¡œë“œ ë˜ì—ˆëŠ”ì§€ í™•ì¸í•˜ì„¸ìš”";
 	}
 
-	if(($error_check1+$error_check2)>0) echo "<br><br><font color=red>¼³Ä¡°¡ Á¦´ë·Î ÀÌ·ç¾î ÁöÁö ¾Ê¾Ò½À´Ï´Ù.<br> ¼öµ¿À¸·Î µð·ºÅä¸®¸¦ »ý¼º½ÃÄÑ ÁÖ½Ã°í ±ÇÇÑÀ» ¼³Á¤ÇØÁÖ½Ã°Å³ª<br> ¾Æ·¡ÀÇ ¼³Á¤ÇÏ±â¸¦ ´©¸£¼Å¼­ Á¤È®ÇÑ °æ·Î¸¦ ÀÔ·ÂÇÏ½Ã°í ´Ù½Ã ¼³Ä¡ÇÏ¿© ÁÖ½Ê½Ã¿À</font><br>";
-	else echo "<br><font color=yellow>¸ðµç ¼³Ä¡°¡ ¼º°øÀûÀ¸·Î ³¡ÀÌ ³µ½À´Ï´Ù.<br>¾Æ·¡ÀÇ °Ô½ÃÆÇÀ¸·Î °¡±â¸¦ Å¬¸¯ÇÏ½Ã¸é ÇØ´ç °Ô½ÃÆÇÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù.</font><br>";
+	if(($error_check1+$error_check2)>0) echo "<br><br><font color=red>ì„¤ì¹˜ê°€ ì œëŒ€ë¡œ ì´ë£¨ì–´ ì§€ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.<br> ìˆ˜ë™ìœ¼ë¡œ ë””ë ‰í† ë¦¬ë¥¼ ìƒì„±ì‹œì¼œ ì£¼ì‹œê³  ê¶Œí•œì„ ì„¤ì •í•´ì£¼ì‹œê±°ë‚˜<br> ì•„ëž˜ì˜ ì„¤ì •í•˜ê¸°ë¥¼ ëˆ„ë¥´ì…”ì„œ ì •í™•í•œ ê²½ë¡œë¥¼ ìž…ë ¥í•˜ì‹œê³  ë‹¤ì‹œ ì„¤ì¹˜í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤</font><br>";
+	else echo "<br><font color=yellow>ëª¨ë“  ì„¤ì¹˜ê°€ ì„±ê³µì ìœ¼ë¡œ ëì´ ë‚¬ìŠµë‹ˆë‹¤.<br>ì•„ëž˜ì˜ ê²Œì‹œíŒìœ¼ë¡œ ê°€ê¸°ë¥¼ í´ë¦­í•˜ì‹œë©´ í•´ë‹¹ ê²Œì‹œíŒìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.</font><br>";
 
 
-	echo "<br><br><br><br><a href=$zburl/zboard.php?id=$board_id><font color=4EFF00><B>°Ô½ÃÆÇÀ¸·Î ÀÌµ¿</B></font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:history.back(-1)'>¼³Á¤À¸·Î°¡±â</a>";
+	echo "<br><br><br><br><a href=$zburl/zboard.php?id=$board_id><font color=4EFF00><B>ê²Œì‹œíŒìœ¼ë¡œ ì´ë™</B></font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:history.back(-1)'>ì„¤ì •ìœ¼ë¡œê°€ê¸°</a>";
 }
 ?>
 

@@ -33,14 +33,14 @@ $iNext_thumb_small2="ss_".$out2[1][1].".jpg";
 $iNext_thumb_large1="fl_".$out2[0][1].".jpg";
 $iNext_thumb_large2="sl_".$out2[1][1].".jpg";
 
-// ¿ÜºÎ html <img> ÅÂ±× src url ÃßÃâ (Prev)
+// ì™¸ë¶€ html <img> íƒœê·¸ src url ì¶”ì¶œ (Prev)
 $imagePattern="#<img[^>]*src=[\']?[\"]?([^>\'\"]+)[\']?[\"]?[^>]*>#i";
 preg_match_all($imagePattern,$prev_data[memo],$img1,PREG_SET_ORDER);
 for($i=0;$i<2;$i++)
 	if(($mypos=strrpos($img1[$i][1],"http://"))||($mypos=strrpos($img1[$i][1],"https://")))
 		$img1[$i][1]=substr($img1[$i][1],$mypos);
 
-// ¿ÜºÎ html <img> ÅÂ±× src url ÃßÃâ (Next)
+// ì™¸ë¶€ html <img> íƒœê·¸ src url ì¶”ì¶œ (Next)
 $imagePattern="#<img[^>]*src=[\']?[\"]?([^>\'\"]+)[\']?[\"]?[^>]*>#i";
 preg_match_all($imagePattern,$next_data[memo],$img2,PREG_SET_ORDER);
 for($i=0;$i<2;$i++)

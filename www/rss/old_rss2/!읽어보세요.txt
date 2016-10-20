@@ -1,1 +1,1 @@
-¼­ºê Æú´õ´Â ÇÊ¿ä¾ø°í domxml-php4-to-php5.php ¸¸ ÀÎÅ¬·çµå½ÃÅ°¸é µÊ
+ì„œë¸Œ í´ë”ëŠ” í•„ìš”ì—†ê³  domxml-php4-to-php5.php ë§Œ ì¸í´ë£¨ë“œì‹œí‚¤ë©´ ë¨

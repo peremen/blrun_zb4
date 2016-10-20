@@ -1,5 +1,5 @@
 
-<!--====================[ sw_edit ÆÄÀÏ¸í: ed_seting_substyle.php ]====================-->
+<!--====================[ sw_edit íŒŒì¼ëª…: ed_seting_substyle.php ]====================-->
 <? if($mode == "write" && $is_admin && $sw_edit_yn == "Y") { ?>
 <input type='hidden' id='sub_style_S' name='sub_style_S' value="">
 <input type='hidden' id='sub_style_E' name='sub_style_E' value="</font>">
@@ -20,13 +20,13 @@
   </select>
  </td>
  <td width='4'></td>
- <td><img src='<?=$dir?>/images/edbtn/ed_fontcolor.gif' border='0' alt='±ÛÀÚ»ö'></td>
+ <td><img src='<?=$dir?>/images/edbtn/ed_fontcolor.gif' border='0' alt='ê¸€ìžìƒ‰'></td>
  <td style='padding:0 4 0 6;'><img src='<?=$dir?>/images/spacer_0.gif' border='0' width='1' height='20'></td>
  <td><input type='checkbox' id='sub_fwet' name='sub_fwet'></td>
- <td><img src='<?=$dir?>/images/edbtn/ed_bold.gif' border='0' alt='±½°Ô'></td>
+ <td><img src='<?=$dir?>/images/edbtn/ed_bold.gif' border='0' alt='êµµê²Œ'></td>
  <td style='padding:0 4 0 6;'><img src='<?=$dir?>/images/spacer_0.gif' border='0' width='1' height='20'></td>
  <td><input type='checkbox' id='sub_funderl' name='sub_funderl'></td>
- <td><img src='<?=$dir?>/images/edbtn/ed_underline.gif' border='0' alt='¹ØÁÙ'></td>
+ <td><img src='<?=$dir?>/images/edbtn/ed_underline.gif' border='0' alt='ë°‘ì¤„'></td>
  <td style='padding:0 4 0 6;'><img src='<?=$dir?>/images/spacer_0.gif' border='0' width='1' height='20'></td>
  <td><input type='checkbox' id='sub_fmarq' name='sub_fmarq'></td>
  <td style='padding:3 0 0 2;' class='sw_ft_style_1'>MARQUEE</td>
@@ -41,4 +41,4 @@
 <td><input type='text' id='subject' name='subject' value="<?=$subject?>" maxlength='200' style='width:100%' class='input' onkeyup="addStroke()"></td>
 </tr>
 </table>
-<!--====================[ sw_edit ÆÄÀÏ¸í: ed_seting_substyle.php ³¡]====================-->
+<!--====================[ sw_edit íŒŒì¼ëª…: ed_seting_substyle.php ë]====================-->

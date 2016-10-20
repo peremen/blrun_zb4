@@ -2,8 +2,8 @@
 function member_icon($m_data){
 	global $dir,$zb_url,$zb_path,$Thumbnamil_icon_use;
 
-	if($m_data[no]){                              //È¸¿øÀÏ°æ¿ì
-		if($Thumbnail_icon_use=="on"){                         //È¸¿ø »çÁøÀ» ½æ³×ÀÏÀ» »ç¿ëÇÒ °æ¿ì
+	if($m_data[no]){                              //íšŒì›ì¼ê²½ìš°
+		if($Thumbnail_icon_use=="on"){                         //íšŒì› ì‚¬ì§„ì„ ì¸ë„¤ì¼ì„ ì‚¬ìš©í•  ê²½ìš°
 			$str=str_replace("icon/","/icon/thumbnail/",$m_data[picture]);	
 			if(preg_match("#\.jpg#i",$str)) $str=str_replace(".jpg","",$str);
 			elseif(preg_match("#\.gif#i",$str)) $str=str_replace(".gif","",$str);
@@ -16,8 +16,8 @@ function member_icon($m_data){
 				thumbnail($size,$m_data[picture],$zb_path,$icon_small,$icon_large,3/4);
 
 			}
-			$member_icon_small= $zb_url.$icon_small; //ÀÌ°÷¿¡ È¸¿ø»çÁøÀÇ ½æ³×ÀÏ ÀÛÀº°Í
-			$member_icon_large=$zb_url.$icon_large; //È¸¿ø »çÁø ½æ³×ÀÏ »çÀÌÁî Å«°Í
+			$member_icon_small= $zb_url.$icon_small; //ì´ê³³ì— íšŒì›ì‚¬ì§„ì˜ ì¸ë„¤ì¼ ì‘ì€ê²ƒ
+			$member_icon_large=$zb_url.$icon_large; //íšŒì› ì‚¬ì§„ ì¸ë„¤ì¼ ì‚¬ì´ì¦ˆ í°ê²ƒ
 			$img_tag=image_tag($member_icon_large,"");
 
 			$view_img="<a href=javascript:void(window.open('$zb_url/view_info2.php?member_no=$m_data[no]','view_info','width=400,height=410,toolbar=no,scrollbars=yes')) onfocus='this.blur();' onMouseMove=\"msgposit()\";  onMouseOver=\"msgset('$img_tag')\"; onMouseOut=\"msghide();\">";
@@ -25,7 +25,7 @@ function member_icon($m_data){
 
 			return $result;
 
-		}else{                                     //½æ³×ÀÏ »ç¿ë ÇÏÁö ¾ÊÀ» °æ¿ì
+		}else{                                     //ì¸ë„¤ì¼ ì‚¬ìš© í•˜ì§€ ì•Šì„ ê²½ìš°
 			$member_icon=$m_data[picture];
 			$img_tag=image_tag($member_icon,"");
 			$view_img="<a href=javascript:void(window.open('$zb_url/view_info2.php?member_no=$m_data[no]','view_info','width=400,height=410,toolbar=no,scrollbars=yes')) onfocus='this.blur();' onMouseMove=\"msgposit()\";  onMouseOver=\"msgset('$img_tag')\"; onMouseOut=\"msghide();\">";
@@ -33,7 +33,7 @@ function member_icon($m_data){
 
 			return $result;
 		}
-	}else{                   //È¸¿øÀÌ ¾Æ´Ò°æ¿ì
+	}else{                   //íšŒì›ì´ ì•„ë‹ê²½ìš°
 		$member_icon=$dir."/images/no_images2.gif";
 		$img_tag=image_tag($dir."/images/matrix.gif","");
 		$view_img="<a href=javascript:void(window.open('$dir/no_member.php','view_info','width=270,height=120')) onfocus='this.blur();' onMouseMove=\"msgposit()\";  onMouseOver=\"msgset('$img_tag')\"; onMouseOut=\"msghide();\">";

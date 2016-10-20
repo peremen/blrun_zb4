@@ -1,8 +1,11 @@
 <?
-// ¿¡·¯ ¸Ş¼¼Áö Ãâ·Â
+// mb_substr()ê³¼ mb_strlen(), mb_strpos()ê³¼ mb_strrpos() í•¨ìˆ˜ ì¸ì½”ë”© ì§€ì •
+mb_internal_encoding("UTF-8");
+
+// ì—ëŸ¬ ë©”ì„¸ì§€ ì¶œë ¥
 function error($message, $url="") {
 ?>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <?
 	if($url=="window.close") {
 		$message=str_replace("<br>","\\n",$message);
@@ -19,10 +22,10 @@ function error($message, $url="") {
 	exit;
 }
 
-// °Ô½ÃÆÇÀÇ »ı¼ºÀ¯¹« °Ë»ç
+// ê²Œì‹œíŒì˜ ìƒì„±ìœ ë¬´ ê²€ì‚¬
 function istable($str, $dbname='') {
 	if(!$dbname) {
-		$f=@file("myZrCnf2019.php") or error("myZrCnf2019.phpÆÄÀÏÀÌ ¾ø½À´Ï´Ù.<br>DB¼³Á¤À» ¸ÕÀú ÇÏ½Ê½Ã¿ä","install.php");
+		$f=@file("myZrCnf2019.php") or error("myZrCnf2019.phpíŒŒì¼ì´ ì—†ìŠµë‹ˆë‹¤.<br>DBì„¤ì •ì„ ë¨¼ì € í•˜ì‹­ì‹œìš”","install.php");
 		for($i=1;$i<=4;$i++) $f[$i]=str_replace("\n","",$f[$i]);
 		$dbname=$f[4];
 	}
@@ -38,9 +41,9 @@ function istable($str, $dbname='') {
 	return 0;
 }
 
-// ºó¹®ÀÚ¿­ °æ¿ì 1À» ¸®ÅÏ
+// ë¹ˆë¬¸ìì—´ ê²½ìš° 1ì„ ë¦¬í„´
 function isblank($str) {
-	$temp=str_replace("¡¡","",$str);
+	$temp=str_replace("ã€€","",$str);
 	$temp=str_replace("\n","",$temp);
 	$temp=strip_tags($temp);
 	$temp=str_replace("&nbsp;","",$temp);
@@ -49,65 +52,65 @@ function isblank($str) {
 	return 1;
 }
 
-// ÆäÀÌÁö ÀÌµ¿ ½ºÅ©¸³Æ®
+// í˜ì´ì§€ ì´ë™ ìŠ¤í¬ë¦½íŠ¸
 function movepage($url) {
 	global $connect;
 	echo "<meta http-equiv=\"refresh\" content=\"0; url=$url\">";
 	exit;
 }
 
-// °ü¸®ÀÚ Å×ÀÌºí°ú È¸¿ø°ü¸® Å×ÀÌºíÀÇ ÀÌ¸§À» ¹Ì¸® º¯¼ö·Î Á¤ÀÇ
-$member_table = "zetyx_member_table";  // È¸¿øµéÀÇ µ¥ÀÌÅ¸°¡ µé¾î ÀÖ´Â Á÷Á¢ÀûÀÎ Å×ÀÌºí
-$group_table = "zetyx_group_table";   // ±×·ìÅ×ÀÌºí
-$admin_table="zetyx_admin_table";     // °Ô½ÃÆÇÀÇ °ü¸®ÀÚ Å×ÀÌºí
-$board_imsi_table="zetyx_board_imsi"; // °Ô½ÃÆÇ ÀÓ½ÃÀúÀå Å×ÀÌºí
-$comment_imsi_table="zetyx_board_comment_imsi"; // ÄÚ¸àÆ® ÀÓ½ÃÀúÀå Å×ÀÌºí
+// ê´€ë¦¬ì í…Œì´ë¸”ê³¼ íšŒì›ê´€ë¦¬ í…Œì´ë¸”ì˜ ì´ë¦„ì„ ë¯¸ë¦¬ ë³€ìˆ˜ë¡œ ì •ì˜
+$member_table = "zetyx_member_table";  // íšŒì›ë“¤ì˜ ë°ì´íƒ€ê°€ ë“¤ì–´ ìˆëŠ” ì§ì ‘ì ì¸ í…Œì´ë¸”
+$group_table = "zetyx_group_table";   // ê·¸ë£¹í…Œì´ë¸”
+$admin_table="zetyx_admin_table";     // ê²Œì‹œíŒì˜ ê´€ë¦¬ì í…Œì´ë¸”
+$board_imsi_table="zetyx_board_imsi"; // ê²Œì‹œíŒ ì„ì‹œì €ì¥ í…Œì´ë¸”
+$comment_imsi_table="zetyx_board_comment_imsi"; // ì½”ë©˜íŠ¸ ì„ì‹œì €ì¥ í…Œì´ë¸”
 $send_memo_table ="zetyx_send_memo";
 $get_memo_table ="zetyx_get_memo";
 
 include "schema.sql";
 
-if(file_exists("myZrCnf2019.php")) error("ÀÌ¹Ì myZrCnf2019.php°¡ »ı¼ºµÇ¾î ÀÖ½À´Ï´Ù.<br><br>Àç¼³Ä¡ÇÏ·Á¸é ÇØ´ç ÆÄÀÏÀ» Áö¿ì¼¼¿ä");
+if(file_exists("myZrCnf2019.php")) error("ì´ë¯¸ myZrCnf2019.phpê°€ ìƒì„±ë˜ì–´ ìˆìŠµë‹ˆë‹¤.<br><br>ì¬ì„¤ì¹˜í•˜ë ¤ë©´ í•´ë‹¹ íŒŒì¼ì„ ì§€ìš°ì„¸ìš”");
 
-// È£½ºÆ®³×ÀÓ, ¾ÆÀÌµğ, DB³×ÀÓ, ºñ¹Ğ¹øÈ£ÀÇ °ø¹é¿©ºÎ °Ë»ç
-if(isBlank($hostname)) Error("HostNameÀ» ÀÔ·ÂÇÏ¼¼¿ä","");
-if(isBlank($user_id)) Error("User ID ¸¦ ÀÔ·ÂÇÏ¼¼¿ä","");
-if(isBlank($dbname)) Error("DB NAMEÀ» ÀÔ·ÂÇÏ¼¼¿ä","");
+// í˜¸ìŠ¤íŠ¸ë„¤ì„, ì•„ì´ë””, DBë„¤ì„, ë¹„ë°€ë²ˆí˜¸ì˜ ê³µë°±ì—¬ë¶€ ê²€ì‚¬
+if(isBlank($hostname)) Error("HostNameì„ ì…ë ¥í•˜ì„¸ìš”","");
+if(isBlank($user_id)) Error("User ID ë¥¼ ì…ë ¥í•˜ì„¸ìš”","");
+if(isBlank($dbname)) Error("DB NAMEì„ ì…ë ¥í•˜ì„¸ìš”","");
 
-// DB¿¡ Ä¿³ØÆ® ÇÏ°í DB NAMEÀ¸·Î select DB
+// DBì— ì»¤ë„¥íŠ¸ í•˜ê³  DB NAMEìœ¼ë¡œ select DB
 $connect = @mysql_connect($hostname,$user_id,$password) or Error("MySQL-DB Connect<br>Error!!!","");
 if(mysql_error()) Error(mysql_error(),"");
 mysql_select_db($dbname, $connect ) or Error("MySQL-DB Select<br>Error!!!","");
 
-// °ü¸®ÀÚ Å×ÀÌºí »ı¼º
-if(!isTable($admin_table,$dbname)) @mysql_query($admin_table_schema, $connect) or Error("°ü¸®ÀÚ Å×ÀÌºí »ı¼º ½ÇÆĞ","");
+// ê´€ë¦¬ì í…Œì´ë¸” ìƒì„±
+if(!isTable($admin_table,$dbname)) @mysql_query($admin_table_schema, $connect) or Error("ê´€ë¦¬ì í…Œì´ë¸” ìƒì„± ì‹¤íŒ¨","");
 else $admin_table_exist=1;
 
-// ±×·ìÅ×ÀÌºí »ı¼º
-if(!isTable($group_table,$dbname)) @mysql_query($group_table_schema, $connect) or Error("±×·ì Å×ÀÌºí »ı¼º ½ÇÆĞ","");
+// ê·¸ë£¹í…Œì´ë¸” ìƒì„±
+if(!isTable($group_table,$dbname)) @mysql_query($group_table_schema, $connect) or Error("ê·¸ë£¹ í…Œì´ë¸” ìƒì„± ì‹¤íŒ¨","");
 else $group_table_exist=1;
 
-// È¸¿ø°ü¸® Å×ÀÌºí »ı¼º
-if(!istable($member_table,$dbname)) @mysql_query($member_table_schema, $connect) or Error("È¸¿ø°ü¸® Å×ÀÌºí »ı¼º ½ÇÆĞ","");
+// íšŒì›ê´€ë¦¬ í…Œì´ë¸” ìƒì„±
+if(!istable($member_table,$dbname)) @mysql_query($member_table_schema, $connect) or Error("íšŒì›ê´€ë¦¬ í…Œì´ë¸” ìƒì„± ì‹¤íŒ¨","");
 else $member_table_exist=1;
 
-// °Ô½ÃÆÇ ÀÓ½ÃÀúÀå Å×ÀÌºí »ı¼º
-if(!istable($board_imsi_table,$dbname)) @mysql_query($board_table_imsi_schema, $connect) or Error("°Ô½ÃÆÇ ÀÓ½ÃÀúÀå Å×ÀÌºí »ı¼º ½ÇÆĞ","");
+// ê²Œì‹œíŒ ì„ì‹œì €ì¥ í…Œì´ë¸” ìƒì„±
+if(!istable($board_imsi_table,$dbname)) @mysql_query($board_table_imsi_schema, $connect) or Error("ê²Œì‹œíŒ ì„ì‹œì €ì¥ í…Œì´ë¸” ìƒì„± ì‹¤íŒ¨","");
 else $board_imsi_table_exist=1;
 
-// ÄÚ¸àÆ® ÀÓ½ÃÀúÀå Å×ÀÌºí »ı¼º
-if(!istable($comment_imsi_table,$dbname)) @mysql_query($board_comment_imsi_schema, $connect) or Error("ÄÚ¸àÆ® ÀÓ½ÃÀúÀå Å×ÀÌºí »ı¼º ½ÇÆĞ","");
+// ì½”ë©˜íŠ¸ ì„ì‹œì €ì¥ í…Œì´ë¸” ìƒì„±
+if(!istable($comment_imsi_table,$dbname)) @mysql_query($board_comment_imsi_schema, $connect) or Error("ì½”ë©˜íŠ¸ ì„ì‹œì €ì¥ í…Œì´ë¸” ìƒì„± ì‹¤íŒ¨","");
 else $comment_imsi_table_exist=1;
 
-// ÂÊÁöÅ×ÀÌºí
-if(!istable($get_memo_table,$dbname))  @mysql_query($get_memo_table_schema, $connect) or Error("¹ŞÀº ÂÊÁö Å×ÀÌºí »ı¼º ½ÇÆĞ");
+// ìª½ì§€í…Œì´ë¸”
+if(!istable($get_memo_table,$dbname))  @mysql_query($get_memo_table_schema, $connect) or Error("ë°›ì€ ìª½ì§€ í…Œì´ë¸” ìƒì„± ì‹¤íŒ¨");
 else $get_memo_table_exists=1;
-if(!istable($send_memo_table,$dbname)) @mysql_query($send_memo_table_schema, $connect) or Error("º¸³½ ÂÊÁö Å×ÀÌºí »ı¼º ½ÇÆĞ");
+if(!istable($send_memo_table,$dbname)) @mysql_query($send_memo_table_schema, $connect) or Error("ë³´ë‚¸ ìª½ì§€ í…Œì´ë¸” ìƒì„± ì‹¤íŒ¨");
 else $send_memo_table_exist=1;
 
-// ÆÄÀÏ·Î DB Á¤º¸ ÀúÀå
-$file=@fopen("myZrCnf2019.php","w") or Error("myZrCnf2019.php ÆÄÀÏ »ı¼º ½ÇÆĞ<br><br>µğ·ºÅä¸®ÀÇ ÆÛ¹Ì¼ÇÀ» 707·Î ÁÖ½Ê½Ã¿ä","");
-@fwrite($file,"<?php /*\n$hostname\n$user_id\n$password\n$dbname\n*/ ?>\n") or Error("myZrCnf2019.php ÆÄÀÏ »ı¼º ½ÇÆĞ<br><br>µğ·ºÅä¸®ÀÇ ÆÛ¹Ì¼ÇÀ» 707·Î ÁÖ½Ê½Ã¿ä","");
+// íŒŒì¼ë¡œ DB ì •ë³´ ì €ì¥
+$file=@fopen("myZrCnf2019.php","w") or Error("myZrCnf2019.php íŒŒì¼ ìƒì„± ì‹¤íŒ¨<br><br>ë””ë ‰í† ë¦¬ì˜ í¼ë¯¸ì…˜ì„ 707ë¡œ ì£¼ì‹­ì‹œìš”","");
+@fwrite($file,"<?php /*\n$hostname\n$user_id\n$password\n$dbname\n*/ ?>\n") or Error("myZrCnf2019.php íŒŒì¼ ìƒì„± ì‹¤íŒ¨<br><br>ë””ë ‰í† ë¦¬ì˜ í¼ë¯¸ì…˜ì„ 707ë¡œ ì£¼ì‹­ì‹œìš”","");
 @fclose($file);
 @mkdir("data",0707);
 @mkdir("icon",0707);
@@ -121,10 +124,10 @@ $file=@fopen("myZrCnf2019.php","w") or Error("myZrCnf2019.php ÆÄÀÏ »ı¼º ½ÇÆĞ<br>
 @chmod("icon",0707);
 @chmod("myZrCnf2019.php",0707);
 
-// º¸¾È ¼­¹ö Á¤º¸ ÀúÀå
-$zburl="http://".substr($sslurl,8,strrpos($sslurl,':')-8).substr($sslurl,strpos($sslurl,'/',strrpos($sslurl,':')));
+// ë³´ì•ˆ ì„œë²„ ì •ë³´ ì €ì¥
+$zburl="http://".mb_substr($sslurl,8,mb_strrpos($sslurl,':')-8).mb_substr($sslurl,mb_strpos($sslurl,'/',mb_strrpos($sslurl,':')));
 
-$file=@fopen("include/get_url.php","w") or Error("get_url.php ÆÄÀÏ »ı¼º ½ÇÆĞ<br><br>bbs/includeµğ·ºÅä¸®ÀÇ ÆÛ¹Ì¼ÇÀ» 707·Î ÁÖ½Ê½Ã¿ä","");
+$file=@fopen("include/get_url.php","w") or Error("get_url.php íŒŒì¼ ìƒì„± ì‹¤íŒ¨<br><br>bbs/includeë””ë ‰í† ë¦¬ì˜ í¼ë¯¸ì…˜ì„ 707ë¡œ ì£¼ì‹­ì‹œìš”","");
 $str1='<?
 function sslUrl() {
 	return "'.$sslurl.'";
@@ -133,23 +136,23 @@ function zbUrl() {
 	return "'.$zburl.'";
 }
 '.'?>';
-@fwrite($file,$str1) or Error("get_url.php ÆÄÀÏ »ı¼º ½ÇÆĞ<br><br>bbs/include µğ·ºÅä¸®ÀÇ ÆÛ¹Ì¼ÇÀ» 707·Î ÁÖ½Ê½Ã¿ä","");
+@fwrite($file,$str1) or Error("get_url.php íŒŒì¼ ìƒì„± ì‹¤íŒ¨<br><br>bbs/include ë””ë ‰í† ë¦¬ì˜ í¼ë¯¸ì…˜ì„ 707ë¡œ ì£¼ì‹­ì‹œìš”","");
 @fclose($file);
 @chmod("include/get_url.php",0707);
 
-$file=@fopen("script/get_url.php","w") or Error("get_url.php ÆÄÀÏ »ı¼º ½ÇÆĞ<br><br>bbs/scriptµğ·ºÅä¸®ÀÇ ÆÛ¹Ì¼ÇÀ» 707·Î ÁÖ½Ê½Ã¿ä","");
+$file=@fopen("script/get_url.php","w") or Error("get_url.php íŒŒì¼ ìƒì„± ì‹¤íŒ¨<br><br>bbs/scriptë””ë ‰í† ë¦¬ì˜ í¼ë¯¸ì…˜ì„ 707ë¡œ ì£¼ì‹­ì‹œìš”","");
 $str1='function sslUrl() {
 	return "'.$sslurl.'";
 }
 function zbUrl() {
 	return "'.$zburl.'";
 }';
-@fwrite($file,$str1) or Error("get_url.php ÆÄÀÏ »ı¼º ½ÇÆĞ<br><br>bbs/script µğ·ºÅä¸®ÀÇ ÆÛ¹Ì¼ÇÀ» 707·Î ÁÖ½Ê½Ã¿ä","");
+@fwrite($file,$str1) or Error("get_url.php íŒŒì¼ ìƒì„± ì‹¤íŒ¨<br><br>bbs/script ë””ë ‰í† ë¦¬ì˜ í¼ë¯¸ì…˜ì„ 707ë¡œ ì£¼ì‹­ì‹œìš”","");
 @fclose($file);
 @chmod("script/get_url.php",0707);
 
 $temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where is_admin = '1'",$connect));
 
 if($temp[0]) {movepage("admin.php");}
-else {movepage("install2.php");} // °ü¸®ÀÚ Á¤º¸°¡ ¾øÀ»¶§ °ü¸®ÀÚ Á¤º¸ ÀÔ·Â
+else {movepage("install2.php");} // ê´€ë¦¬ì ì •ë³´ê°€ ì—†ì„ë•Œ ê´€ë¦¬ì ì •ë³´ ì…ë ¥
 ?>

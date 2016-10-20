@@ -12,28 +12,28 @@ elseif(time()-$last_comment_time<60*60*48) $comment_new = "&nbsp;<font color=blu
 else $comment_new = "&nbsp;<font class=zv3_comment style='font-size:8pt;'>".$comment_num."</font>";
 ?>
 <tr align=center class=zv3_listBox onMouseOver=this.style.backgroundColor='#FBFBFB' onMouseOut=this.style.backgroundColor=''>
-<!--Ä«Æ®-->
+<!--ì¹´íŠ¸-->
 <?=$hide_cart_start?>
 
   <td><input type=checkbox name=cart value="<?=$data[no]?>"></td>
 <?=$hide_cart_end?>
 
-<!--°Ô½ÃÆÇ °øÁö±Û ¾ÕÀÇ °øÁöÇ¥½Ã-->
+<!--ê²Œì‹œíŒ ê³µì§€ê¸€ ì•žì˜ ê³µì§€í‘œì‹œ-->
   <? if($browser=="1"){ ?><td height=25 align="center"><?=$icon?></td><? } ?>
 
-<!--°øÁö¾ÆÀÌÄÜ,Ä«Å×°í¸®,Á¦¸ñ, °£´ÜÇÑ ´ä±Û¼ö-->
-  <td align=left nowrap='nowrap'><div style="overflow:hidden">&nbsp;(°øÁö)&nbsp;<?=$insert?><b><?=$subject?></b> <?=$comment_new?><?=$new?></div></td> 
-<!--È¸¿ø¾ÆÀÌÄÜ, ÀÛ¼ºÀÚ-->
+<!--ê³µì§€ì•„ì´ì½˜,ì¹´í…Œê³ ë¦¬,ì œëª©, ê°„ë‹¨í•œ ë‹µê¸€ìˆ˜-->
+  <td align=left nowrap='nowrap'><div style="overflow:hidden">&nbsp;(ê³µì§€)&nbsp;<?=$insert?><b><?=$subject?></b> <?=$comment_new?><?=$new?></div></td> 
+<!--íšŒì›ì•„ì´ì½˜, ìž‘ì„±ìž-->
   <? if($browser=="1"){ ?><td nowrap='nowrap'><div style="overflow:hidden"><?=$face_image?>&nbsp;<?=$name?>&nbsp;</div></td><? } ?>
 
-<!--ÀÛ¼ºÀÏ-->
+<!--ìž‘ì„±ì¼-->
   <? if($browser=="1"){ ?><td nowrap='nowrap' class=zv3_small><?=$reg_date?></td><? } ?>
 
-<!--Á¶È¸--><!--ÃßÃµ-->
+<!--ì¡°íšŒ--><!--ì¶”ì²œ-->
   <? if($browser=="1"){ ?><td nowrap='nowrap' class=zv3_small><?=$hit?></td><td nowrap='nowrap' class=zv3_small><?=$vote?></td><? } ?>
 
 </tr>
 <tr>
-<!--°Ô½Ã¹°°ú °Ô½Ã¹°»çÀÌÀÇ Á¡¼±-->
+<!--ê²Œì‹œë¬¼ê³¼ ê²Œì‹œë¬¼ì‚¬ì´ì˜ ì ì„ -->
   <td colspan=<?=$colspanNum?>><img src=<?=$dir?>/line.gif width=100% height=2></td>
 </tr>

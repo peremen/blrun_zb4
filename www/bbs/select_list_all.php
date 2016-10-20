@@ -3,18 +3,18 @@ include "lib.php";
 if(!$connect) $connect=dbconn();
 $result=mysql_query("select name from $admin_table order by name");
 
-// ¸â¹ö Á¤º¸ ±¸ÇØ¿À±â;;; ¸â¹ö°¡ ÀÖÀ»¶§
+// ë©¤ë²„ ì •ë³´ êµ¬í•´ì˜¤ê¸°;;; ë©¤ë²„ê°€ ìˆì„ë•Œ
 $member=member_info();
 
-// ±×·ì Á¤º¸ ±¸ÇØ¿À±â
+// ê·¸ë£¹ ì •ë³´ êµ¬í•´ì˜¤ê¸°
 $setup=get_table_attrib($id);
 
-// ÇöÀç ·Î±×ÀÎµÇ¾î ÀÖ´Â ¸â¹ö°¡ ÀüÃ¼, ¶Ç´Â ±×·ì°ü¸®ÀÚÀÎÁö °Ë»ç
+// í˜„ì¬ ë¡œê·¸ì¸ë˜ì–´ ìˆëŠ” ë©¤ë²„ê°€ ì „ì²´, ë˜ëŠ” ê·¸ë£¹ê´€ë¦¬ìì¸ì§€ ê²€ì‚¬
 if($member[is_admin]==1||$member[is_admin]==2&&$member[group_no]==$setup[group_no]||$member[board_name]) $is_admin=1; else $is_admin="";
 
 unset($setup);
 
-if(!$is_admin) error("»ç¿ë±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
+if(!$is_admin) error("ì‚¬ìš©ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
 
 head();
 ?>
@@ -29,7 +29,7 @@ function board_delete()
 {
  var check;
  select.exec.value="delete_all";
- check=confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?");
+ check=confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
  if(check==true) {document.select.submit();}
 }
 
@@ -37,7 +37,7 @@ function board_copy()
 {
  var check;
  select.exec.value="copy_all";
- check=confirm(select.board_name.value+"°Ô½ÃÆÇÀ¸·Î º¹»ç ÇÏ½Ã°Ú½À´Ï±î?");
+ check=confirm(select.board_name.value+"ê²Œì‹œíŒìœ¼ë¡œ ë³µì‚¬ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
  if(check==true) {document.select.submit();}
 }
 
@@ -45,7 +45,7 @@ function board_move()
 {
  var check;
  select.exec.value="move_all";
- check=confirm(select.board_name.value+"°Ô½ÃÆÇÀ¸·Î ÀÌµ¿ÇÏ½Ã°Ú½À´Ï±î?");
+ check=confirm(select.board_name.value+"ê²Œì‹œíŒìœ¼ë¡œ ì´ë™í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
  if(check==true) {document.select.submit();}
 }
 </script>
@@ -70,8 +70,8 @@ function board_move()
 </tr>
 <tr>
 	<td align=center>
-		<input type=checkbox name=notice_user value=1> È¸¿ø¿¡°Ô Åëº¸
-		<input type=checkbox name=notice_bbs value=1 checked> °Ô½Ã¹°¿¡ ±â·Ï
+		<input type=checkbox name=notice_user value=1> íšŒì›ì—ê²Œ í†µë³´
+		<input type=checkbox name=notice_bbs value=1 checked> ê²Œì‹œë¬¼ì— ê¸°ë¡
 </tr>
 <tr>
 	<td><img src=images/m_top.gif border=0></td>

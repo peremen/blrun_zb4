@@ -35,7 +35,7 @@ function thumbnail($size,$source_file,$save_path,$small,$large,$ratio){
 					$max_height=ceil($size[$i]*$ratio);
 					$new_width=$max_width;
 					$new_height=$max_height;
-				}elseif($img_info[0]==""){  // getimagesize∞° 0¿œ ∂ß √≥∏Æ
+				}elseif($img_info[0]==""){  // getimagesizeÍ∞Ä 0Ïùº Îïå Ï≤òÎ¶¨
 					$max_width=$size[$i];
 					$max_height=ceil($size[$i]*$ratio);
 					$new_width=$max_width;

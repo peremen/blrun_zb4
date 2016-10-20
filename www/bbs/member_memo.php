@@ -1,25 +1,25 @@
 <?
-// ¶óÀÌºê·¯¸® ÇÔ¼ö ÆÄÀÏ ÀÎÅ©·çµå
+// ë¼ì´ë¸ŒëŸ¬ë¦¬ í•¨ìˆ˜ íŒŒì¼ ì¸í¬ë£¨ë“œ
 include "lib.php";
 
-// DB ¿¬°á
+// DB ì—°ê²°
 if(!$connect) $connect=dbConn();
 
-// ¸â¹öÁ¤º¸ ±¸ÇÏ±â
+// ë©¤ë²„ì •ë³´ êµ¬í•˜ê¸°
 $member=member_info();
 
-if(!$member[no]) Error("·Î±×ÀÎµÈ È¸¿ø¸¸ÀÌ »ç¿ëÇÒ¼ö ÀÖ½À´Ï´Ù","window.close");
+if(!$member[no]) Error("ë¡œê·¸ì¸ëœ íšŒì›ë§Œì´ ì‚¬ìš©í• ìˆ˜ ìˆìŠµë‹ˆë‹¤","window.close");
 
-// ±×·ìµ¥ÀÌÅ¸ ÀĞ¾î¿À±â;;
+// ê·¸ë£¹ë°ì´íƒ€ ì½ì–´ì˜¤ê¸°;;
 $group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$member[group_no]'"));
 
-// »õÂÊÁö ¿Ô½À´Ï´Ù;; ¾Ë¶÷ ¾ø¾Ö±â
+// ìƒˆìª½ì§€ ì™”ìŠµë‹ˆë‹¤;; ì•ŒëŒ ì—†ì• ê¸°
 mysql_query("update $member_table set new_memo='0' where no='$member[no]'");
 
-// ÁöÁ¤ ³ÑÀº ±Û »èÁ¦;;
+// ì§€ì • ë„˜ì€ ê¸€ ì‚­ì œ;;
 mysql_query("delete from $get_memo_table where member_no='$member[no]' and (".time()." - reg_date) >= ".$_zbDefaultSetup[memo_limit_time]) or error(mysql_error());
 
-// ¼±ÅÃµÈ ¸Ş¸ğ »èÁ¦;;;
+// ì„ íƒëœ ë©”ëª¨ ì‚­ì œ;;;
 if($exec=="del_all") {
 	for($i=0;$i<count($del);$i++) {
 		mysql_query("delete from $get_memo_table where no='$del[$i]' and member_no='$member[no]'");
@@ -27,13 +27,13 @@ if($exec=="del_all") {
 	movepage("$PHP_SELF?page=$page");
 }
 
-// ¸Ş¸ğ»èÁ¦
+// ë©”ëª¨ì‚­ì œ
 if($exec=="del") {
 	mysql_query("delete from $get_memo_table where no='$no' and member_no='$member[no]'");
 	movepage("$PHP_SELF?page=$page");
 }
 
-// ¼±ÅÃµÈ ¸Ş¸ğ°¡ ÀÖÀ»½Ã µ¥ÀÌÅ¸ »Ì¾Æ¿À±â;;
+// ì„ íƒëœ ë©”ëª¨ê°€ ìˆì„ì‹œ ë°ì´íƒ€ ë½‘ì•„ì˜¤ê¸°;;
 if($no) {
 	$now_data=mysql_fetch_array(mysql_query("select * from $get_memo_table where no='$no' and member_no='$member[no]'"));
 	if($now_data[readed]==1) {
@@ -44,32 +44,32 @@ if($no) {
 	}
 }
 
-// ÀĞÁö ¾ÊÀº ÂÊÁöÀÇ °¹¼ö ±¸ÇÏ±â
+// ì½ì§€ ì•Šì€ ìª½ì§€ì˜ ê°¯ìˆ˜ êµ¬í•˜ê¸°
 $temp1=mysql_fetch_array(mysql_query("select count(*) from $get_memo_table where readed='1' and member_no='$member[no]'"));
 
 $new_total=$temp1[0];
 
-// ÀüÃ¼ ÂÊÁöÀÇ °¹¼ö
+// ì „ì²´ ìª½ì§€ì˜ ê°¯ìˆ˜
 $temp2=mysql_fetch_array(mysql_query("select count(*) from $get_memo_table  where member_no='$member[no]'"));
 
 $total=$temp2[0];
 
-// ÆäÀÌÁö °è»ê
+// í˜ì´ì§€ ê³„ì‚°
 if(!$page) $page=1;
 $page_num=13;
-$start_num=($page-1)*$page_num; // ÆäÀÌÁö ¼ö¿¡ µû¸¥ Ãâ·Â½Ã Ã¹¹øÂ°°¡ µÉ ±ÛÀÇ ¹øÈ£ ±¸ÇÔ
+$start_num=($page-1)*$page_num; // í˜ì´ì§€ ìˆ˜ì— ë”°ë¥¸ ì¶œë ¥ì‹œ ì²«ë²ˆì§¸ê°€ ë  ê¸€ì˜ ë²ˆí˜¸ êµ¬í•¨
 
-$total_page=(int)(($total-1)/$page_num)+1; // ÀüÃ¼ ÆäÀÌÁö ±¸ÇÔ
+$total_page=(int)(($total-1)/$page_num)+1; // ì „ì²´ í˜ì´ì§€ êµ¬í•¨
 
-if($page>$total_page) $page=$total_page; // ÆäÀÌÁö°¡ ÀüÃ¼ ÆäÀÌÁöº¸´Ù Å©¸é ÆäÀÌÁö ¹øÈ£ ¹Ù²Ş
+if($page>$total_page) $page=$total_page; // í˜ì´ì§€ê°€ ì „ì²´ í˜ì´ì§€ë³´ë‹¤ í¬ë©´ í˜ì´ì§€ ë²ˆí˜¸ ë°”ê¿ˆ
 
-// µ¥ÀÌÅ¸ »Ì¾Æ¿À´Â ºÎºĞ... 
+// ë°ì´íƒ€ ë½‘ì•„ì˜¤ëŠ” ë¶€ë¶„... 
 $que="select a.no as no, a.subject as subject, a.reg_date as reg_date, a.readed as readed, b.name as name, b.user_id as user_id, a.member_from as member_from from $get_memo_table a ,$member_table b where a.member_no='$member[no]' and a.member_from=b.no  order by a.no desc limit $start_num,$page_num";
 $result=mysql_query($que) or Error(mysql_error());
 
 $query_time=getmicrotime();
 
-// ÆäÀÌÁö °è»ê  $print_page ¶ó´Â º¯¼ö¿¡ ÀúÀå 
+// í˜ì´ì§€ ê³„ì‚°  $print_page ë¼ëŠ” ë³€ìˆ˜ì— ì €ì¥ 
 $print_page="";
 $show_page_num=10;
 $start_page=(int)(($page-1)/$show_page_num)*$show_page_num;
@@ -116,19 +116,19 @@ head("bgcolor=white");
   <td width="15"><img src="images/memo_topleft.gif" width="15" height="50"></td>
   <td background="images/memo_topbg.gif">
     <img src="images/t.gif" width="10" height="2"><br>
-    <font style=font-size:11pt;font-weight:bold>&nbsp;¹ŞÀºÂÊÁöÇÔ</font></td>
+    <font style=font-size:11pt;font-weight:bold>&nbsp;ë°›ì€ìª½ì§€í•¨</font></td>
   <td width="15"><img src="images/memo_topright.gif" width="156" height="50"></td>
 </tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="5">
 <tr>
   <td>&nbsp;&nbsp;&nbsp;<a href=member_memo.php><img src=images/vi_B_inbox.gif border=0></a> <a href=member_memo2.php><img src=images/vi_B_sent.gif border=0></a> <a href=member_memo3.php><img src=images/vi_B_write.gif border=0></a></td>
-  <td align=right><img src="images/t.gif" width="10" height="10"><font color="#666666">ÀüÃ¼ :
-    <b><?=$total?></b> , »õ ÂÊÁö : <b><?=$new_total?></b></font>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td align=right><img src="images/t.gif" width="10" height="10"><font color="#666666">ì „ì²´ :
+    <b><?=$total?></b> , ìƒˆ ìª½ì§€ : <b><?=$new_total?></b></font>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 </table>
 
-<!-- ¼±ÅÃµÈ ¸Ş¸ğ°¡ ÀÖÀ»¶§;; -->
+<!-- ì„ íƒëœ ë©”ëª¨ê°€ ìˆì„ë•Œ;; -->
 <?
 if($now_data[no]) {
 
@@ -169,7 +169,7 @@ if($now_data[no]) {
     </tr>
     <tr> 
       <td width="50" align="right"><img src="images/memo_date.gif" width="23" height="15"></td>
-      <td><img src="images/t.gif" width="10" height="3"><br><?=date("Y³â m¿ù dÀÏ H½Ã iºĞ",$now_data[reg_date])?></td>
+      <td><img src="images/t.gif" width="10" height="3"><br><?=date("Yë…„ mì›” dì¼ Hì‹œ ië¶„",$now_data[reg_date])?></td>
     </tr>
     <tr> 
       <td colspan="2" bgcolor="#EBD9D9" align="center" style=padding:0px;><img src="images/t.gif" width="10" height="1"></td>
@@ -183,7 +183,7 @@ if($now_data[no]) {
     </tr>
     <tr>
       <td align="right" valign="top">&nbsp;</td>
-      <td><a href=javascript:void(window.open('view_info.php?member_no=<?=$now_data[member_from]?>','view_info','width=400,height=500,toolbar=no,scrollbars=yes'))><img src="images/memo_reply.gif" width="28" height="15" border=0></a> <a href=<?=$PHP_SELF?>?exec=del&no=<?=$no?>&page=<?=$page?> onclick="return confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')"><img src="images/memo_delete2.gif" width="31" height="15" border=0></a> <a href=<?=$PHP_SELF?>><img src="images/memo_list.gif" width="18" height="15" border=0></a> </td>
+      <td><a href=javascript:void(window.open('view_info.php?member_no=<?=$now_data[member_from]?>','view_info','width=400,height=500,toolbar=no,scrollbars=yes'))><img src="images/memo_reply.gif" width="28" height="15" border=0></a> <a href=<?=$PHP_SELF?>?exec=del&no=<?=$no?>&page=<?=$page?> onclick="return confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')"><img src="images/memo_delete2.gif" width="31" height="15" border=0></a> <a href=<?=$PHP_SELF?>><img src="images/memo_list.gif" width="18" height="15" border=0></a> </td>
     </tr>
     </table>
   </td>
@@ -208,7 +208,7 @@ if($now_data[no]) {
 </tr>
 </table>
 <table border=0 width=100% cellpadding=0 cellspacing=0>
-<form method=post name=list action=<?=$PHP_SELF?> onsubmit="return confirm('»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')">
+<form method=post name=list action=<?=$PHP_SELF?> onsubmit="return confirm('ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')">
 <input type=hidden name=exec value=del_all>
 <input type=hidden name=page value=<?=$page?>>
 <tr>
@@ -226,7 +226,7 @@ if($now_data[no]) {
           <td width="60" align="center"><img src="images/memo_date.gif" width="23" height="15"></td>
         </tr>
 <?
-// Ãâ·Â
+// ì¶œë ¥
 $loop_number=$total-($page-1)*$page_num;
 while($data=mysql_fetch_array($result)) {
 	$data[name]=stripslashes($data[name]);

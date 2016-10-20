@@ -6,7 +6,7 @@ if($cart) {
 	$s_que.=" or no='$temp[$i]' ";
 	$s_que.=" )";
 }
-// Á÷Á¢ ¼±ÅÃÀÌ ¾øÀ»¶§
+// ì§ì ‘ ì„ íƒì´ ì—†ì„ë•Œ
 else {
 	$s_que=stripslashes($s_que); 
 	$s_que = str_replace("where","and", $s_que);
@@ -15,17 +15,17 @@ else {
 $temp=@mysql_fetch_array(@mysql_query("select count(*) from $member_table where group_no='$group_no' $s_que",$connect));
 $total_member=$temp[0];
 
-if($total_member==0) Error("¼±ÅÃµÈ È¸¿øÀÌ ¾ø½À´Ï´Ù");
+if($total_member==0) Error("ì„ íƒëœ íšŒì›ì´ ì—†ìŠµë‹ˆë‹¤");
 ?>
 
 <script>
  function check_submit()
  {
-  if(!write.from.value) {alert("º¸³»´Â ÀÌÀÇ ¸ŞÀÏÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ¼¼¿ä");write.from.focus();return false;}
-  if(!write.name.value) {alert("º¸³»´Â ÀÌÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä");write.name.focus();return false;}
-  if(!write.subject.value) {alert("¸ŞÀÏÀÇ Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä");write.subject.focus();return false;}
-  if(!write.comment.value) {alert("³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä");write.comment.focus();return false;}
-  if(confirm("<?=$total_member?>¸íÀÇ È¸¿ø¿¡°Ô ¸ŞÀÏÀ» º¸³»°Ú½À´Ï±î?\n\n¸ŞÀÏ¾ç½ÄÀ» Á¦´ë·Î ¼±ÅÃÇÏ¿´´ÂÁö¸¦ È®ÀÎÇÏ¼¼¿ä"))
+  if(!write.from.value) {alert("ë³´ë‚´ëŠ” ì´ì˜ ë©”ì¼ì£¼ì†Œë¥¼ ì…ë ¥í•˜ì„¸ìš”");write.from.focus();return false;}
+  if(!write.name.value) {alert("ë³´ë‚´ëŠ” ì´ì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”");write.name.focus();return false;}
+  if(!write.subject.value) {alert("ë©”ì¼ì˜ ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”");write.subject.focus();return false;}
+  if(!write.comment.value) {alert("ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”");write.comment.focus();return false;}
+  if(confirm("<?=$total_member?>ëª…ì˜ íšŒì›ì—ê²Œ ë©”ì¼ì„ ë³´ë‚´ê² ìŠµë‹ˆê¹Œ?\n\në©”ì¼ì–‘ì‹ì„ ì œëŒ€ë¡œ ì„ íƒí•˜ì˜€ëŠ”ì§€ë¥¼ í™•ì¸í•˜ì„¸ìš”"))
   {
     history.back();
     return true;
@@ -41,7 +41,7 @@ if($total_member==0) Error("¼±ÅÃµÈ È¸¿øÀÌ ¾ø½À´Ï´Ù");
 <input type=hidden name=s_que value="<?=$s_que?>">
 <input type=hidden name=exec2 value="">
 <tr align=center bgcolor=a0a0a0 height=30>
-  <td colspan=2><b><?echo number_format($total_member);?> ¸íÀÇ ¸â¹ö¿¡°Ô ¸ŞÀÏ¸µ º¸³»±â</td>
+  <td colspan=2><b><?echo number_format($total_member);?> ëª…ì˜ ë©¤ë²„ì—ê²Œ ë©”ì¼ë§ ë³´ë‚´ê¸°</td>
 </tr>
 <tr>
   <td bgcolor=bbbbbb style=font-family:Tahoma;font-size:9pt; align=right width=100><b>E-Mail&nbsp;</td>
@@ -61,12 +61,12 @@ if($total_member==0) Error("¼±ÅÃµÈ È¸¿øÀÌ ¾ø½À´Ï´Ù");
 </tr>
 <tr>
   <td bgcolor=bbbbbb style=font-family:Tahoma;font-size:9pt; align=right width=100><b>Size</b>&nbsp;</td>
-  <td>&nbsp; <select name=sendnum><option value=1>1</optoin><option value=10>10</option><option value=100 selected>100</option><option value=200>200</option><option value=300>300</option><option value=400>400</option><option valut=500>500</option></select> ¸í ´ÜÀ§·Î Àß¶ó¼­ ¸ŞÀÏÀ» º¸³À´Ï´Ù</td>
+  <td>&nbsp; <select name=sendnum><option value=1>1</optoin><option value=10>10</option><option value=100 selected>100</option><option value=200>200</option><option value=300>300</option><option value=400>400</option><option valut=500>500</option></select> ëª… ë‹¨ìœ„ë¡œ ì˜ë¼ì„œ ë©”ì¼ì„ ë³´ëƒ…ë‹ˆë‹¤</td>
 </tr>
 <tr bgcolor=bbbbbb>
   <td align=center colspan=2>
-    <input type=submit value="¸ŞÀÏº¸³»±â" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px;>&nbsp;&nbsp;
-    <input type=button value=" ÀÌÀü È­¸é " style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px; onclick=history.back()>
+    <input type=submit value="ë©”ì¼ë³´ë‚´ê¸°" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px;>&nbsp;&nbsp;
+    <input type=button value=" ì´ì „ í™”ë©´ " style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px; onclick=history.back()>
   </td>
 </tr>
 </form>

@@ -1,13 +1,13 @@
 <?
-// ¶óÀÌºê·¯¸® ÇÔ¼ö ÆÄÀÏ ÀÎÅ©·çµå
+// ë¼ì´ë¸ŒëŸ¬ë¦¬ í•¨ìˆ˜ íŒŒì¼ ì¸í¬ë£¨ë“œ
 include "lib.php";
 
-// HTML Ãâ·Â
+// HTML ì¶œë ¥
 head();
 
 if(!empty($_POST['code'])) {
 
-	// ½ºÆÔ¹æÁöÄÚµå Ã¼Å© °ü·Ã
+	// ìŠ¤íŒ¸ë°©ì§€ì½”ë“œ ì²´í¬ ê´€ë ¨
 	include("securimage/securimage.php");
 	$img = new Securimage();
 	$valid = $img->check($_POST['code']);
@@ -15,50 +15,50 @@ if(!empty($_POST['code'])) {
 	if($valid == true) {
 
 	} else {
-		Error("½ºÆÔ¹æÁö ÄÚµå¸¦ Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+		Error("ìŠ¤íŒ¸ë°©ì§€ ì½”ë“œë¥¼ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 	}
 	
-	if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("Á¤»óÀûÀ¸·Î ±ÛÀ» ÀÛ¼ºÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
+	if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("ì •ìƒì ìœ¼ë¡œ ê¸€ì„ ì‘ì„±í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.");
 
-	// ½ºÆÔ¹æÁö º¸¾È ¼¼¼Çº¯¼ö ¼³Á¤
+	// ìŠ¤íŒ¸ë°©ì§€ ë³´ì•ˆ ì„¸ì…˜ë³€ìˆ˜ ì„¤ì •
 	$_SESSION['WRT_SPM_PWD'] = $_POST['code'];
 
-	// ·£´ıÇÑ µÎ ¼ıÀÚ¸¦ ¹ß»ı(1-1000) ÈÄ º¯¼ö¿¡ ´ëÀÔ
+	// ëœë¤í•œ ë‘ ìˆ«ìë¥¼ ë°œìƒ(1-1000) í›„ ë³€ìˆ˜ì— ëŒ€ì…
 	$wnum1 = mt_rand(1,1000);
 	$wnum2 = mt_rand(1,1000);
 	$wnum1num2 = $wnum1*10000 + $wnum2;
-	// ±Û¾²±â º¸¾ÈÀ» À§ÇØ ¼¼¼Çº¯¼ö¸¦ ¼³Á¤
+	// ê¸€ì“°ê¸° ë³´ì•ˆì„ ìœ„í•´ ì„¸ì…˜ë³€ìˆ˜ë¥¼ ì„¤ì •
 	$_SESSION['WRT_SS_VRS'] = $wnum1num2;
 
-	// DB ¿¬°á
+	// DB ì—°ê²°
 	if(!$connect) $connect=dbConn();
 
-	// ±×·ì ¹øÈ£ Ã¼Å©
+	// ê·¸ë£¹ ë²ˆí˜¸ ì²´í¬
 	$group_no=(int)$group_no;
 	if(!$group_no) {
 		list($group_no) = mysql_fetch_row(mysql_query("select `no` from `$group_table` order by `no` limit 1;"));
 	}
 
-	// ¸â¹ö Á¤º¸ ±¸ÇØ¿À±â;;; ¸â¹ö°¡ ÀÖÀ»¶§
+	// ë©¤ë²„ ì •ë³´ êµ¬í•´ì˜¤ê¸°;;; ë©¤ë²„ê°€ ìˆì„ë•Œ
 	$member=member_info();
 
 	if($mode=="admin"&&($member[is_admin]==1||($member[is_admin]==2&&$member[group_no]==$group_no))) $mode = "admin";
 	else $mode = "";
 
-	if($member[no]&&!$mode) Error("ÀÌ¹Ì °¡ÀÔÀÌ µÇ¾î ÀÖ½À´Ï´Ù.","window.close");
+	if($member[no]&&!$mode) Error("ì´ë¯¸ ê°€ì…ì´ ë˜ì–´ ìˆìŠµë‹ˆë‹¤.","window.close");
 
 
-	// °Ô½ÃÆÇ°ú ±×·ì¼³Á¤¿¡ µû¶ó¼­ È¸¿ø °¡ÀÔ ¼³Á¤
+	// ê²Œì‹œíŒê³¼ ê·¸ë£¹ì„¤ì •ì— ë”°ë¼ì„œ íšŒì› ê°€ì… ì„¤ì •
 	if($id) {
-		// ÇöÀç °Ô½ÃÆÇ ¼³Á¤ ÀĞ¾î ¿À±â
+		// í˜„ì¬ ê²Œì‹œíŒ ì„¤ì • ì½ì–´ ì˜¤ê¸°
 		$setup=get_table_attrib($id);
 
-		// ¼³Á¤µÇÁö ¾ÊÀº °Ô½ÃÆÇÀÏ¶§ ¿¡·¯ Ç¥½Ã
-		if(!$setup[name]) Error("»ı¼ºµÇÁö ¾ÊÀº °Ô½ÃÆÇÀÔ´Ï´Ù.<br><br>°Ô½ÃÆÇÀ» »ı¼ºÈÄ »ç¿ëÇÏ½Ê½Ã¿ä","window.close");
+		// ì„¤ì •ë˜ì§€ ì•Šì€ ê²Œì‹œíŒì¼ë•Œ ì—ëŸ¬ í‘œì‹œ
+		if(!$setup[name]) Error("ìƒì„±ë˜ì§€ ì•Šì€ ê²Œì‹œíŒì…ë‹ˆë‹¤.<br><br>ê²Œì‹œíŒì„ ìƒì„±í›„ ì‚¬ìš©í•˜ì‹­ì‹œìš”","window.close");
 
-		// ÇöÀç °Ô½ÃÆÇÀÇ ±×·ìÀÇ ¼³Á¤ ÀĞ¾î ¿À±â
+		// í˜„ì¬ ê²Œì‹œíŒì˜ ê·¸ë£¹ì˜ ì„¤ì • ì½ì–´ ì˜¤ê¸°
 		$group=group_info($setup[group_no]);
-		if(!$group[use_join]&&!$mode) Error("ÇöÀç ÁöÁ¤µÈ ±×·ìÀº Ãß°¡ È¸¿øÀ» ¸ğÁıÇÏÁö ¾Ê½À´Ï´Ù","window.close");
+		if(!$group[use_join]&&!$mode) Error("í˜„ì¬ ì§€ì •ëœ ê·¸ë£¹ì€ ì¶”ê°€ íšŒì›ì„ ëª¨ì§‘í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤","window.close");
 
 	} else {
 
@@ -66,8 +66,8 @@ if(!empty($_POST['code'])) {
 			$group_name=mysql_real_escape_string($group_name);
 			$group=mysql_fetch_assoc(mysql_query("select * from $group_table where name='$group_name' limit 1;"));
 		}elseif($group_no) $group=mysql_fetch_assoc(mysql_query("select * from $group_table where no='$group_no' limit 1;"));
-		if(!$group[no]) Error("ÁöÁ¤µÈ ±×·ìÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
-		if(!$group[use_join]&&!$mode) Error("ÇöÀç ÁöÁ¤µÈ ±×·ìÀº Ãß°¡ È¸¿øÀ» ¸ğÁıÇÏÁö ¾Ê½À´Ï´Ù");
+		if(!$group[no]) Error("ì§€ì •ëœ ê·¸ë£¹ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
+		if(!$group[use_join]&&!$mode) Error("í˜„ì¬ ì§€ì •ëœ ê·¸ë£¹ì€ ì¶”ê°€ íšŒì›ì„ ëª¨ì§‘í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
 
 	}
 
@@ -115,21 +115,21 @@ function check_submit()
 ?>
 
   if(!write.accept.checked) {
-    alert("°¡ÀÔ¾à°ü¿¡ µ¿ÀÇÇÏ¼Å¾ß È¸¿ø°¡ÀÔÀ» ÇÒ¼ö ÀÖ½À´Ï´Ù");
+    alert("ê°€ì…ì•½ê´€ì— ë™ì˜í•˜ì…”ì•¼ íšŒì›ê°€ì…ì„ í• ìˆ˜ ìˆìŠµë‹ˆë‹¤");
     return false;
   }
 
 <?
 	}
 ?>
-  if(!write.user_id.value) {alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä.");write.user_id.focus(); return false;}
+  if(!write.user_id.value) {alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”.");write.user_id.focus(); return false;}
 <?
 	if($_zbDefaultSetup[enable_hangul_id]=="false") {
 ?>
 
   // ID Check
   if(write.user_id.value.length<4||write.user_id.value.length>40) {
-    alert("¾ÆÀÌµğ´Â 4ÀÚ ÀÌ»ó, 40ÀÚ ÀÌÇÏ¿©¾ß ÇÕ´Ï´Ù.");
+    alert("ì•„ì´ë””ëŠ” 4ì ì´ìƒ, 40ì ì´í•˜ì—¬ì•¼ í•©ë‹ˆë‹¤.");
     write.user_id.focus();
     return false;
   }
@@ -139,7 +139,7 @@ function check_submit()
   write.user_id.value = write.user_id.value.toLowerCase(); 
   temp = write.user_id.value.substring(0,1); 
   if (startChar.indexOf(temp) == "-1") {
-    alert("¾ÆÀÌµğÀÇ Ã¹ ±ÛÀÚ´Â ¿µ¹®ÀÌ¾î¾ß ÇÕ´Ï´Ù.");
+    alert("ì•„ì´ë””ì˜ ì²« ê¸€ìëŠ” ì˜ë¬¸ì´ì–´ì•¼ í•©ë‹ˆë‹¤.");
     write.user_id.value = ""; 
     write.user_id.focus(); 
     return false;
@@ -147,7 +147,7 @@ function check_submit()
   for (var i=0; i<write.user_id.value.length; i++) { 
     temp = "" + write.user_id.value.substring(i, i+1); 
     if (valid.indexOf(temp) == "-1") { 
-      alert("¾ÆÀÌµğ´Â ¿µ¹®°ú ¼ıÀÚ, _ ·Î¸¸ ÀÌ·ç¾îÁú¼ö ÀÖ½À´Ï´Ù.");
+      alert("ì•„ì´ë””ëŠ” ì˜ë¬¸ê³¼ ìˆ«ì, _ ë¡œë§Œ ì´ë£¨ì–´ì§ˆìˆ˜ ìˆìŠµë‹ˆë‹¤.");
       write.user_id.value = "";
       write.user_id.focus(); 
       return false;
@@ -157,43 +157,43 @@ function check_submit()
 	}
 ?>
 
-  if(!write.password.value) {alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä.");write.password.focus(); return false;}
-  if(!write.password1.value) {alert("ºñ¹Ğ¹øÈ£ È®ÀÎÀ» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä.");write.password1.focus(); return false;}
-  if(write.password.value!=write.password1.value) {alert("ÆĞ½º¿öµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");write.password.value="";write.password1.value=""; write.password.focus(); return false;}
-  if(!write.name.value) { alert("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä"); write.name.focus(); return false; }
+  if(!write.password.value) {alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”.");write.password.focus(); return false;}
+  if(!write.password1.value) {alert("ë¹„ë°€ë²ˆí˜¸ í™•ì¸ì„ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”.");write.password1.focus(); return false;}
+  if(write.password.value!=write.password1.value) {alert("íŒ¨ìŠ¤ì›Œë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");write.password.value="";write.password1.value=""; write.password.focus(); return false;}
+  if(!write.name.value) { alert("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”"); write.name.focus(); return false; }
 
   var f = document.forms["write"];
-  // º¸¾ÈÁ¢¼ÓÀ» Ã¼Å©ÇßÀ» ¶§ÀÇ ¾×¼Ç
+  // ë³´ì•ˆì ‘ì†ì„ ì²´í¬í–ˆì„ ë•Œì˜ ì•¡ì…˜
   if ( f.SSL_Login.checked ) {
     f.action = sslUrl()+"member_join_ok.php";
   }
 
 <? if($group[use_birth]) { ?>
   if ( write.birth_1.value < 1000 || write.birth_1.value <= 0 )  {
-    alert('»ı³âÀÌ Àß¸øÀÔ·ÂµÇ¾ú½À´Ï´Ù.');
+    alert('ìƒë…„ì´ ì˜ëª»ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.');
     write.birth_1.value='';
     write.birth_1.focus();
     return false;
   }
   if ( write.birth_2.value > 12 || write.birth_2.value <= 0 ) {
-    alert('»ı¿ùÀÌ Àß¸øÀÔ·ÂµÇ¾ú½À´Ï´Ù.');
+    alert('ìƒì›”ì´ ì˜ëª»ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.');
     write.birth_2.value='';
     write.birth_2.focus();
     return false;
   }
   if ( write.birth_3.value > 31 || write.birth_3.value <= 0 )  {
-    alert('»ıÀÏÀÌ Àß¸øÀÔ·ÂµÇ¾ú½À´Ï´Ù.');
+    alert('ìƒì¼ì´ ì˜ëª»ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.');
     write.birth_3.value='';
     write.birth_3.focus();
     return false;
   }
 <? } ?>
 
-  if(!write.email.value) {alert("E-MailÀ» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä.");write.email.focus(); return false;}
+  if(!write.email.value) {alert("E-Mailì„ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”.");write.email.focus(); return false;}
 
 <? if($group[use_jumin]&&!$mode) { ?>
-  if(!write.jumin1.value) {alert("ÁÖ¹Îµî·Ï¹øÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");write.jumin1.focus(); return false;}
-  if(!write.jumin2.value) {alert("ÁÖ¹Îµî·Ï¹øÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");write.jumin2.focus(); return false;}
+  if(!write.jumin1.value) {alert("ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");write.jumin1.focus(); return false;}
+  if(!write.jumin2.value) {alert("ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");write.jumin2.focus(); return false;}
 <? } ?>
 
   return true;
@@ -204,7 +204,7 @@ function check_id()
   var id = document.getElementById("user_id").value;
   if(!id)
   {
-    alert('¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä');
+    alert('ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”');
   }
   else
   {
@@ -213,14 +213,14 @@ function check_id()
 }
 
 function check_accept() {
-  return confirm("À§ÀÇ °¡ÀÔ ¾à°üÀ» ¸ğµÎ º¸¾ÒÀ¸¸ç, µ¿ÀÇÇÏ½Ê´Ï±î?");
+  return confirm("ìœ„ì˜ ê°€ì… ì•½ê´€ì„ ëª¨ë‘ ë³´ì•˜ìœ¼ë©°, ë™ì˜í•˜ì‹­ë‹ˆê¹Œ?");
 }
 
 function check_SSL_Login() { 
   if (document.write.SSL_Login.checked==true) {
-    alert("SSL ¾ÏÈ£È­ º¸¾ÈÁ¢¼ÓÀ» ¼³Á¤ÇÕ´Ï´Ù");
+    alert("SSL ì•”í˜¸í™” ë³´ì•ˆì ‘ì†ì„ ì„¤ì •í•©ë‹ˆë‹¤");
   } else {
-    alert("SSL ¾ÏÈ£È­ º¸¾ÈÁ¢¼ÓÀ» ÇØÁ¦ÇÕ´Ï´Ù");
+    alert("SSL ì•”í˜¸í™” ë³´ì•ˆì ‘ì†ì„ í•´ì œí•©ë‹ˆë‹¤");
   }
 }
 </script>
@@ -252,7 +252,7 @@ function check_SSL_Login() {
   </td>
 </tr>
 <tr>
-  <td colspan=2>&nbsp;&nbsp;&nbsp;<input type=checkbox name=accept value=1 onclick="return check_accept()"> À§ÀÇ °¡ÀÔ ¾à°ü¿¡ µ¿ÀÇÇÕ´Ï´Ù</td>
+  <td colspan=2>&nbsp;&nbsp;&nbsp;<input type=checkbox name=accept value=1 onclick="return check_accept()"> ìœ„ì˜ ê°€ì… ì•½ê´€ì— ë™ì˜í•©ë‹ˆë‹¤</td>
 </tr>
 <?
 	}
@@ -262,14 +262,14 @@ function check_SSL_Login() {
 </tr>
 <tr align=right>
   <td width=25% style=font-family:Tahoma;font-size:9pt;><b>ID&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=user_id id=user_id size=20 maxlength=20 style=border-color:#d8b3b3 class=input> <input type=button value='Check ID' style=color:#000000;border-color:#dfb8b8;background-color:#f0f0f0;font-size:9pt;font-family:Tahoma;height:20px; onclick=check_id()> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="º¸¾ÈÁ¢¼Ó ¼³Á¤/ÇØÁ¦"><br><img src=images/t.gif border=0 height=4><? if($_zbDefaultSetup[enable_hangul_id]=="false") {?><br>&nbsp;(¿µ¹®,¼ıÀÚ,_·Î¸¸ ¾ÆÀÌµğ¸¦ ÀÛ¼ºÇÏ¼¼¿ä)<? } ?></td>
+  <td align=left>&nbsp;<input type=text name=user_id id=user_id size=20 maxlength=20 style=border-color:#d8b3b3 class=input> <input type=button value='Check ID' style=color:#000000;border-color:#dfb8b8;background-color:#f0f0f0;font-size:9pt;font-family:Tahoma;height:20px; onclick=check_id()> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="ë³´ì•ˆì ‘ì† ì„¤ì •/í•´ì œ"><br><img src=images/t.gif border=0 height=4><? if($_zbDefaultSetup[enable_hangul_id]=="false") {?><br>&nbsp;(ì˜ë¬¸,ìˆ«ì,_ë¡œë§Œ ì•„ì´ë””ë¥¼ ì‘ì„±í•˜ì„¸ìš”)<? } ?></td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
 </tr>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;><B>Password&nbsp;</td>
-  <td align=left>&nbsp;<input type=password name=password size=20 maxlength=20 style=border-color:#d8b3b3 class=input> È®ÀÎ : <input type=password name=password1 size=20 maxlength=20 style=border-color:#d8b3b3 class=input></td>
+  <td align=left>&nbsp;<input type=password name=password size=20 maxlength=20 style=border-color:#d8b3b3 class=input> í™•ì¸ : <input type=password name=password1 size=20 maxlength=20 style=border-color:#d8b3b3 class=input></td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -285,10 +285,10 @@ function check_SSL_Login() {
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;><b>Birthday&nbsp;</td>
   <td align=left>
-    &nbsp;<input type=text name=birth_1 size=4 maxlength=4 style=border-color:#d8b3b3 class=input> ³â 
-    &nbsp;<input type=text name=birth_2 size=2 maxlength=2 style=border-color:#d8b3b3 class=input> ¿ù
-    &nbsp;<input type=text name=birth_3 size=2 maxlength=2 style=border-color:#d8b3b3 class=input> ÀÏ
-    <input type=checkbox value=1 checked name=open_birth> °ø°³
+    &nbsp;<input type=text name=birth_1 size=4 maxlength=4 style=border-color:#d8b3b3 class=input> ë…„ 
+    &nbsp;<input type=text name=birth_2 size=2 maxlength=2 style=border-color:#d8b3b3 class=input> ì›”
+    &nbsp;<input type=text name=birth_3 size=2 maxlength=2 style=border-color:#d8b3b3 class=input> ì¼
+    <input type=checkbox value=1 checked name=open_birth> ê³µê°œ
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -297,14 +297,14 @@ function check_SSL_Login() {
 
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;><b>E-mail&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=email size=50 maxlength=200 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_email checked> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=email size=50 maxlength=200 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_email checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
 </tr>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Homepage&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=homepage size=50 maxlength=255 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_homepage checked> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=homepage size=50 maxlength=255 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_homepage checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -313,7 +313,7 @@ function check_SSL_Login() {
 <? if($group[use_icq]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>ICQ&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=icq size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_icq checked> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=icq size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_icq checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -323,7 +323,7 @@ function check_SSL_Login() {
 <? if($group[use_aol]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>AIM&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=aol size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_aol checked> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=aol size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_aol checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -333,7 +333,7 @@ function check_SSL_Login() {
 <? if($group[use_msn]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>MSN&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=msn size=20 maxlength=250 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_msn checked> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=msn size=20 maxlength=250 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_msn checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -342,8 +342,8 @@ function check_SSL_Login() {
 
 <? if($group[use_jumin]) { ?>
 <tr align=right height=28>
-  <td style=font-family:Tahoma;font-size:9pt; valign=top><table border=0 cellspacing=0 cellpadding=0 height=4><tr><td></td></tr></table><b>ÁÖ¹Îµî·Ï¹øÈ£ &nbsp;</td>
-  <td align=left>&nbsp<input type=text name=jumin1 size=6 maxlength=6 style=border-color:#d8b3b3 class=input>-<input type=text name=jumin2 size=7 maxlength=7 style=border-color:#d8b3b3 class=input> <br>* ÁÖ¹Îµî·Ï¹øÈ£´Â ¾ÏÈ£È­µÇ¾î ÀúÀåÀÌ µÇ¹Ç·Î °ü¸®ÀÚµµ ¾Ë¼ö ¾ø½À´Ï´Ù<br>&nbsp; (È¸¿ø Áßº¹°¡ÀÔÀ» ¸·±â À§ÇÑ °Ë»ç¼ö´ÜÀ¸·Î¸¸ »ç¿ëÀÌ µË´Ï´Ù)</td>
+  <td style=font-family:Tahoma;font-size:9pt; valign=top><table border=0 cellspacing=0 cellpadding=0 height=4><tr><td></td></tr></table><b>ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ &nbsp;</td>
+  <td align=left>&nbsp<input type=text name=jumin1 size=6 maxlength=6 style=border-color:#d8b3b3 class=input>-<input type=text name=jumin2 size=7 maxlength=7 style=border-color:#d8b3b3 class=input> <br>* ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ëŠ” ì•”í˜¸í™”ë˜ì–´ ì €ì¥ì´ ë˜ë¯€ë¡œ ê´€ë¦¬ìë„ ì•Œìˆ˜ ì—†ìŠµë‹ˆë‹¤<br>&nbsp; (íšŒì› ì¤‘ë³µê°€ì…ì„ ë§‰ê¸° ìœ„í•œ ê²€ì‚¬ìˆ˜ë‹¨ìœ¼ë¡œë§Œ ì‚¬ìš©ì´ ë©ë‹ˆë‹¤)</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -353,7 +353,7 @@ function check_SSL_Login() {
 <? if($group[use_hobby]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Hobby&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=hobby size=50 maxlength=50 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_hobby checked> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=hobby size=50 maxlength=50 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_hobby checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -363,7 +363,7 @@ function check_SSL_Login() {
 <? if($group[use_job]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Occupation(Job)&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=job size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_job checked> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=job size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_job checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -373,7 +373,7 @@ function check_SSL_Login() {
 <? if($group[use_home_address]) { ?> 
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Home Address&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=home_address size=40 maxlength=255 style=border-color:#d8b3b3 class=input><input type=button value='°Ë»ö' class=input style=border-color:#d8b3b3 onclick=address_popup(1)><input type=checkbox value=1 name=open_home_address checked> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=home_address size=40 maxlength=255 style=border-color:#d8b3b3 class=input><input type=button value='ê²€ìƒ‰' class=input style=border-color:#d8b3b3 onclick=address_popup(1)><input type=checkbox value=1 name=open_home_address checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -383,7 +383,7 @@ function check_SSL_Login() {
 <? if($group[use_home_tel]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Home Phone&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=home_tel size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_home_tel checked> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=home_tel size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_home_tel checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -393,7 +393,7 @@ function check_SSL_Login() {
 <? if($group[use_office_address]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Office Address&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=office_address size=40 maxlength=255 style=border-color:#d8b3b3 class=input><input type=button value='°Ë»ö' class=input style=border-color:#d8b3b3 onclick=address_popup(2)><input type=checkbox value=1 name=open_office_address checked> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=office_address size=40 maxlength=255 style=border-color:#d8b3b3 class=input><input type=button value='ê²€ìƒ‰' class=input style=border-color:#d8b3b3 onclick=address_popup(2)><input type=checkbox value=1 name=open_office_address checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -403,7 +403,7 @@ function check_SSL_Login() {
 <? if($group[use_office_tel]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Office Phone&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=office_tel size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_office_tel checked> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=office_tel size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_office_tel checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -413,7 +413,7 @@ function check_SSL_Login() {
 <? if($group[use_handphone]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Cellular&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=handphone size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_handphone checked> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=handphone size=20 maxlength=20 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_handphone checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -423,7 +423,7 @@ function check_SSL_Login() {
 <? if($group[use_mailing]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;><b>Mailling List&nbsp;</td>
-  <td align=left>&nbsp;<input type=checkbox name=mailing value=1 checked> ¸ŞÀÏ¸µ °¡ÀÔ</td>
+  <td align=left>&nbsp;<input type=checkbox name=mailing value=1 checked> ë©”ì¼ë§ ê°€ì…</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -433,7 +433,7 @@ function check_SSL_Login() {
 <? if($group[use_picture]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Photo&nbsp;</td>
-  <td align=left>&nbsp;<input type=file name=picture size=35 maxlength=255 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_picture checked> °ø°³ (480X480 ÀÌÇÏ)
+  <td align=left>&nbsp;<input type=file name=picture size=35 maxlength=255 style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_picture checked> ê³µê°œ (480X480 ì´í•˜)
   </td>
 </tr>
 <tr>
@@ -443,8 +443,8 @@ function check_SSL_Login() {
 
 <? if($group[use_comment]) { ?>
 <tr align=right height=28>
-  <td style=font-family:Tahoma;font-size:9pt;>ÀÚ±â ¼Ò°³¼­</td>
-  <td align=left>&nbsp;<textarea cols=50 rows=4 name=comment style=border-color:#d8b3b3 class=textarea></textarea><br>&nbsp;<input type=checkbox value=1 name=open_comment checked> °ø°³</td>
+  <td style=font-family:Tahoma;font-size:9pt;>ìê¸° ì†Œê°œì„œ</td>
+  <td align=left>&nbsp;<textarea cols=50 rows=4 name=comment style=border-color:#d8b3b3 class=textarea></textarea><br>&nbsp;<input type=checkbox value=1 name=open_comment checked> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -452,8 +452,8 @@ function check_SSL_Login() {
 <? } ?>
 
 <tr align=right height=28>
-  <td style=font-family:Tahoma;font-size:9pt;><b>°³ÀÎÁ¤º¸ °ø°³</td>
-  <td align=left>&nbsp;<input type=checkbox name=openinfo value=1 checked> Á¤º¸ °ø°³</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>ê°œì¸ì •ë³´ ê³µê°œ</td>
+  <td align=left>&nbsp;<input type=checkbox name=openinfo value=1 checked> ì •ë³´ ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -471,7 +471,7 @@ function check_SSL_Login() {
 </div>
 
 <?
-	// ¼¼¼ÇÀÌ ÃÊ±âÈ­µÇ´Â ¹ö±× ¶§¹®¿¡ ¼¼¼Çº¯¼ö¸¦ Àç¼³Á¤
+	// ì„¸ì…˜ì´ ì´ˆê¸°í™”ë˜ëŠ” ë²„ê·¸ ë•Œë¬¸ì— ì„¸ì…˜ë³€ìˆ˜ë¥¼ ì¬ì„¤ì •
 	$_SESSION['WRT_SPM_PWD'] = $_POST['code'];
 
 } else {
@@ -479,9 +479,9 @@ function check_SSL_Login() {
 <script language="javascript">
 <!--
 function sendit() {
-	// ½ºÆÔ¹æÁöÄÚµå ÀÔ·Â À¯¹« Ã¼Å©
+	// ìŠ¤íŒ¸ë°©ì§€ì½”ë“œ ì…ë ¥ ìœ ë¬´ ì²´í¬
 	if(document.myform.code.value=="") {
-		alert("½ºÆÔ¹æÁö ÄÚµå¸¦ ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿ä");
+		alert("ìŠ¤íŒ¸ë°©ì§€ ì½”ë“œë¥¼ ì…ë ¥í•´ ì£¼ì‹­ì‹œìš”");
 		document.myform.code.focus();
 		return false;
 	}
@@ -513,13 +513,13 @@ function sendit() {
 			<a tabindex="-1" style="border-style: none" href="#" title="Refresh Image" onclick="document.getElementById('siimage').src = 'securimage/securimage_show.php?sid=' + Math.random(); return false"><img src="securimage/images/refresh.gif" width="33" height="33" alt="Reload Image" border="0" onclick="this.blur()" align="bottom" /></a></p>
 			</div>
 			<div style="clear: both"></div>
-			<b>½ºÆÔ¹æÁöÄÚµå ÀÔ·Â:</b>
+			<b>ìŠ¤íŒ¸ë°©ì§€ì½”ë“œ ì…ë ¥:</b>
 			<!-- NOTE: the "name" attribute is "code" so that $img->check($_POST['code']) will check the submitted form field -->
 			<input type="text" name="code" size="12" /><br /><br />
 		</td>
 	</tr>
 	<tr class=list0>
-		<td align=center><input type=button value=" È® ÀÎ " onClick="javascript:sendit()"></td>
+		<td align=center><input type=button value=" í™• ì¸ " onClick="javascript:sendit()"></td>
 	</tr>
 	</table>
 	</form>

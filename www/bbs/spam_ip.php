@@ -4,9 +4,9 @@ include "lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
 $s_keyword = $keyword;
-if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['DEL_COMM_SEC']==""||$_SESSION['DEL_COMM_SEC']!=$delsec) Error("º¸¾ÈÄÚµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
-if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("ÃÖ°í °ü¸®ÀÚ¸¸ÀÌ »ç¿ëÇÒ¼ö ÀÖ½À´Ï´Ù");
-// ½ÇÁ¦ °Ë»öºÎºÐ
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['DEL_COMM_SEC']==""||$_SESSION['DEL_COMM_SEC']!=$delsec) Error("ë³´ì•ˆì½”ë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("ìµœê³  ê´€ë¦¬ìžë§Œì´ ì‚¬ìš©í• ìˆ˜ ìžˆìŠµë‹ˆë‹¤");
+// ì‹¤ì œ ê²€ìƒ‰ë¶€ë¶„
 if($keyword) {
 	$comment_search=1;
 	$s_que = "";
@@ -33,14 +33,14 @@ head(" bgcolor=white");
   <Table border=0>
 	<tr>
   	<td style=line-height:180% height=40 align=right>
-  		<input type=checkbox name=keykind value="ip" <?if($keykind) echo "checked";?>> ¾ÆÀÌÇÇ &nbsp;
+  		<input type=checkbox name=keykind value="ip" <?if($keykind) echo "checked";?>> ì•„ì´í”¼ &nbsp;
   	</td>
   	<td><input type=text name=keyword value="<?=$s_keyword?>" size=20 class=input>&nbsp;</td>
   	<td><input type=image src=images/trace_search.gif border=0 valign=absmiddle></td>
 	</tr>
 	<tr>
   	<td colspan=3 align=right>
-		<font color=darkred>* ip·Î °Ë»öµÈ °á°ú´Â ºñ¹Ð±Ûµµ ¸ðµÎ º¸¿©Áý´Ï´Ù.</font>
+		<font color=darkred>* ipë¡œ ê²€ìƒ‰ëœ ê²°ê³¼ëŠ” ë¹„ë°€ê¸€ë„ ëª¨ë‘ ë³´ì—¬ì§‘ë‹ˆë‹¤.</font>
   	</td>
 	</tr>
 	</form>
@@ -53,14 +53,14 @@ head(" bgcolor=white");
 <?
 if($keyword&&$s_que)
 {
-	$hop = 0; // »èÁ¦ÇÒ ÃÑ ·¹ÄÚµå °¹¼ö Ä«¿îÆ®
+	$hop = 0; // ì‚­ì œí•  ì´ ë ˆì½”ë“œ ê°¯ìˆ˜ ì¹´ìš´íŠ¸
 	while($table_data=mysql_fetch_array($table_name_result))
 	{
 
 		$table_name=$table_data[name];
 		if($table_data[use_alllist]) $file="zboard.php"; else $file="view.php";
 
-		// ½ºÆÔ ¾ÆÀÌÇÇ ÀÏ°ý Â÷´Ü
+		// ìŠ¤íŒ¸ ì•„ì´í”¼ ì¼ê´„ ì°¨ë‹¨
 		$setup = get_table_attrib($table_name);
 		$avoid_ip=explode(",",$setup[avoid_ip]);
 		$Blocked = 0;
@@ -76,22 +76,22 @@ if($keyword&&$s_que)
 			$avoid_ip = $keyword.", ".$setup[avoid_ip];
 			mysql_query("update $admin_table set avoid_ip='$avoid_ip' where name='$table_name'",$connect) or error(mysql_error());
 		}
-		// ½ºÆÔ ¾ÆÀÌÇÇ ±Û ÀÏ°ý »èÁ¦
+		// ìŠ¤íŒ¸ ì•„ì´í”¼ ê¸€ ì¼ê´„ ì‚­ì œ
 		unset($result);unset($data);
 		$result=mysql_query("select * from $t_board"."_$table_name $s_que", $connect) or error(mysql_error());
 
-		$cnt1 = 0; $cnt2 = 0; // °Ô½ÃÆÇ¿¡¼­ »èÁ¦ÇÒ ·¹ÄÚµå °¹¼ö Ä«¿îÆ®
+		$cnt1 = 0; $cnt2 = 0; // ê²Œì‹œíŒì—ì„œ ì‚­ì œí•  ë ˆì½”ë“œ ê°¯ìˆ˜ ì¹´ìš´íŠ¸
 		
 		while($data=mysql_fetch_array($result))
 		{
-			if(!$data[child]) // ´ä±ÛÀÌ ¾øÀ»¶§;;
+			if(!$data[child]) // ë‹µê¸€ì´ ì—†ì„ë•Œ;;
 			{
 				mysql_query("delete from $t_board"."_$table_name where no='$data[no]'", $connect) or error(mysql_error());
 				$cnt1 += mysql_affected_rows();
-				// ÆÄÀÏ»èÁ¦
+				// íŒŒì¼ì‚­ì œ
 				@z_unlink("./".$data[file_name1]);
 				@z_unlink("./".$data[file_name2]);
-				// ºó ÆÄÀÏ Æú´õ »èÁ¦
+				// ë¹ˆ íŒŒì¼ í´ë” ì‚­ì œ
 				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$data[file_name1],$out))
 					if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$data[file_name2],$out))
@@ -101,50 +101,50 @@ if($keyword&&$s_que)
 
 				if($data[depth]==0)
 				{
-					if($data[prev_no]) mysql_query("update $t_board"."_$table_name set next_no='$data[next_no]' where next_no='$data[no]'",$connect) or error(mysql_error()); // ÀÌÀü±ÛÀÌ ÀÖÀ¸¸é ºóÀÚ¸® ¸Þ²Þ;;;
-					if($data[next_no]) mysql_query("update $t_board"."_$table_name set prev_no='$data[prev_no]' where prev_no='$data[no]'",$connect) or error(mysql_error()); // ´ÙÀ½±ÛÀÌ ÀÖÀ¸¸é ºóÀÚ¸® ¸Þ²Þ;;;
+					if($data[prev_no]) mysql_query("update $t_board"."_$table_name set next_no='$data[next_no]' where next_no='$data[no]'",$connect) or error(mysql_error()); // ì´ì „ê¸€ì´ ìžˆìœ¼ë©´ ë¹ˆìžë¦¬ ë©”ê¿ˆ;;;
+					if($data[next_no]) mysql_query("update $t_board"."_$table_name set prev_no='$data[prev_no]' where prev_no='$data[no]'",$connect) or error(mysql_error()); // ë‹¤ìŒê¸€ì´ ìžˆìœ¼ë©´ ë¹ˆìžë¦¬ ë©”ê¿ˆ;;;
 				}
 				else
 				{
 					$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$table_name where father='$data[father]'"));
-					if(!$temp[0]) mysql_query("update $t_board"."_$table_name set child='0' where no='$data[father]'",$connect) or error(mysql_error()); // ¿øº»±ÛÀÌ ÀÖÀ¸¸é ¿øº»±ÛÀÇ ÀÚ½Ä±ÛÀ» ¾ø¾Ú;;;
+					if(!$temp[0]) mysql_query("update $t_board"."_$table_name set child='0' where no='$data[father]'",$connect) or error(mysql_error()); // ì›ë³¸ê¸€ì´ ìžˆìœ¼ë©´ ì›ë³¸ê¸€ì˜ ìžì‹ê¸€ì„ ì—†ì•°;;;
 				}
 
-				// °£´ÜÇÑ ´ä±Û(ÄÚ¸àÆ®) »èÁ¦
+				// ê°„ë‹¨í•œ ë‹µê¸€(ì½”ë©˜íŠ¸) ì‚­ì œ
 				unset($del_comment_result);unset($c_data);
 				$del_comment_result=mysql_query("select * from $t_comment"."_$table_name where parent='$data[no]'",$connect) or error(mysql_error());
 				mysql_query("delete from $t_comment"."_$table_name where parent='$data[no]'",$connect) or error(mysql_error());
 				$cnt2 += mysql_affected_rows();
 				while($c_data=mysql_fetch_array($del_comment_result)) {
-					// Movie, Sell µ¡±Û Æ÷ÀÎÆ® Å×ÀÌºí »èÁ¦
+					// Movie, Sell ë§ê¸€ í¬ì¸íŠ¸ í…Œì´ë¸” ì‚­ì œ
 					@mysql_query("delete from $t_comment"."_$table_name"."_movie where parent='$data[no]' and reg_date='$c_data[reg_date]'");
-					// ÆÄÀÏ»èÁ¦
+					// íŒŒì¼ì‚­ì œ
 					@z_unlink("./".$c_data[file_name1]);
 					@z_unlink("./".$c_data[file_name2]);
-					// ºó ÆÄÀÏ Æú´õ »èÁ¦
+					// ë¹ˆ íŒŒì¼ í´ë” ì‚­ì œ
 					if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name1],$out))
 						if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 					if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name2],$out))
 						if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 				}
 
-				// Ä«Å×°í¸® ÇÊµå Á¶Àý
+				// ì¹´í…Œê³ ë¦¬ í•„ë“œ ì¡°ì ˆ
 				mysql_query("update $t_category"."_$table_name set num=num-1 where no='$data[category]'",$connect) or error(mysql_error());
 			}
 		}
 
-		// ÀüÃ¼±Û¼ö Á¶Á¤
+		// ì „ì²´ê¸€ìˆ˜ ì¡°ì •
 		$total=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$table_name "));
 		mysql_query("update $admin_table set total_article='$total[0]' where name='$table_name'",$connect) or error(mysql_error());
 
 		unset($result);unset($data);
-		// º»¹®
+		// ë³¸ë¬¸
 		$result=mysql_query("select * from $t_board"."_$table_name $s_que", $connect) or error(mysql_error());
 ?>
 
 <br><br><br>
 
-&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>°Ô½ÃÆÇ</b>¿¡¼­ ÃÑ<?=$cnt1?>°³ÀÇ ·¹ÄÚµå°¡ »èÁ¦µÇ¾ú½À´Ï´Ù</font></a><br>
+&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>ê²Œì‹œíŒ</b>ì—ì„œ ì´<?=$cnt1?>ê°œì˜ ë ˆì½”ë“œê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤</font></a><br>
 <?
 		while($data=mysql_fetch_array($result))
 		{
@@ -164,26 +164,26 @@ if($keyword&&$s_que)
 
 		mysql_free_result($result);
 
-		/// ÄÚ¸àÆ®
+		/// ì½”ë©˜íŠ¸
 		if($comment_search)
 		{
 			unset($result);unset($c_data);
-			// ½ºÆÔ ¾ÆÀÌÇÇ µ¡±Û ÀÏ°ý »èÁ¦
+			// ìŠ¤íŒ¸ ì•„ì´í”¼ ë§ê¸€ ì¼ê´„ ì‚­ì œ
 			$result=mysql_query("select * from $t_comment"."_$table_name $s_que", $connect) or error(mysql_error());
 			while($c_data=mysql_fetch_array($result)) {
-				// ÄÚ¸àÆ® °¹¼ö Á¤¸®¸¦ À§ÇØ ¹è¿­ ÀúÀå
+				// ì½”ë©˜íŠ¸ ê°¯ìˆ˜ ì •ë¦¬ë¥¼ ìœ„í•´ ë°°ì—´ ì €ìž¥
 				$table_name_array[] = $table_name;
 				$parent_no_array[] = $c_data[parent];
-				// ÄÚ¸àÆ® »èÁ¦
+				// ì½”ë©˜íŠ¸ ì‚­ì œ
 				mysql_query("delete from $t_comment"."_$table_name where no='$c_data[no]'",$connect) or error(mysql_error());
 				$cnt2 += mysql_affected_rows();
-				// Movie, Sell µ¡±Û Æ÷ÀÎÆ® Å×ÀÌºí »èÁ¦
+				// Movie, Sell ë§ê¸€ í¬ì¸íŠ¸ í…Œì´ë¸” ì‚­ì œ
 				@mysql_query("delete from $t_comment"."_$table_name"."_movie where reg_date='$c_data[reg_date]'");
 
-				// ÆÄÀÏ»èÁ¦
+				// íŒŒì¼ì‚­ì œ
 				@z_unlink("./".$c_data[file_name1]);
 				@z_unlink("./".$c_data[file_name2]);
-				// ºó ÆÄÀÏ Æú´õ »èÁ¦
+				// ë¹ˆ íŒŒì¼ í´ë” ì‚­ì œ
 				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name1],$out))
 					if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name2],$out))
@@ -192,17 +192,17 @@ if($keyword&&$s_que)
 ?>
 
 <br><br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>°Ô½ÃÆÇ</b> ÀÇ °£´ÜÇÑ ´ä±Û¿¡¼­ ÃÑ<?=$cnt2?>°³ÀÇ ·¹ÄÚµå°¡ »èÁ¦µÇ¾ú½À´Ï´Ù</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>ê²Œì‹œíŒ</b> ì˜ ê°„ë‹¨í•œ ë‹µê¸€ì—ì„œ ì´<?=$cnt2?>ê°œì˜ ë ˆì½”ë“œê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤</font></a>
 <br>
 <?
 			unset($result);unset($data);
-			// ½ºÆÔ ¾ÆÀÌÇÇ µ¡±Û ÀÏ°ý »èÁ¦ ÈÄ µ¡±Û Ç×¸ñ Ç¥½Ã
+			// ìŠ¤íŒ¸ ì•„ì´í”¼ ë§ê¸€ ì¼ê´„ ì‚­ì œ í›„ ë§ê¸€ í•­ëª© í‘œì‹œ
 			$result=mysql_query("select * from $t_comment"."_$table_name $s_que", $connect) or error(mysql_error());
 			while($data=mysql_fetch_array($result))
 			{
 				flush();
 				$data[memo] = del_html(strip_tags($data[memo]));
-				// °èÃþ ÄÚ¸àÆ® Ç¥½Ä ºÒ·¯¿Í Ã³¸®
+				// ê³„ì¸µ ì½”ë©˜íŠ¸ í‘œì‹ ë¶ˆëŸ¬ì™€ ì²˜ë¦¬
 				unset($c_match);
 				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
 					$data[memo] = str_replace($c_match[0],"",$data[memo]);
@@ -215,13 +215,13 @@ if($keyword&&$s_que)
 <?
 			}
 		}
-		// »èÁ¦µÈ ·¹ÄÚµå ¼ö Ä«¿îÆ® ÃÊ±âÈ­
+		// ì‚­ì œëœ ë ˆì½”ë“œ ìˆ˜ ì¹´ìš´íŠ¸ ì´ˆê¸°í™”
 		$hop += $cnt1+$cnt2;
 		$cnt1=0; $cnt2=0;
 	}
 }
 
-// ÄÚ¸àÆ® °¹¼ö Á¤¸® ½ÃÀÛ
+// ì½”ë©˜íŠ¸ ê°¯ìˆ˜ ì •ë¦¬ ì‹œìž‘
 if($keyword&&$s_que)
 {
 	unset($total);
@@ -229,17 +229,17 @@ if($keyword&&$s_que)
 	{
 
 		$table_name=$table_name_array[$i];
-		// ÄÚ¸àÆ® °¹¼ö¸¦ ±¸ÇØ¼­ Á¤¸®
+		// ì½”ë©˜íŠ¸ ê°¯ìˆ˜ë¥¼ êµ¬í•´ì„œ ì •ë¦¬
 		$total=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$table_name where parent='$parent_no_array[$i]'"));
 		mysql_query("update $t_board"."_$table_name set total_comment='$total[0]' where no='$parent_no_array[$i]'",$connect) or error(mysql_error());
 	}
 }
 
-echo "<br><br><br>{$keyword} ¶õ ¾ÆÀÌÇÇÀÇ ¸ðµç °Ô½Ã±Û/µ¡±ÛÀÌ ¸ðµÎ {$hop}°³ »èÁ¦ ÈÄ Â÷´ÜµÇ¾ú½À´Ï´Ù.\nÂ÷´ÜÇØÁ¦´Â °Ô½ÃÆÇ °ü¶óÀÚ¸Þ´º¸¦ ÀÌ¿ëÇÏ½Ê½Ã¿ä.";
+echo "<br><br><br>{$keyword} ëž€ ì•„ì´í”¼ì˜ ëª¨ë“  ê²Œì‹œê¸€/ë§ê¸€ì´ ëª¨ë‘ {$hop}ê°œ ì‚­ì œ í›„ ì°¨ë‹¨ë˜ì—ˆìŠµë‹ˆë‹¤.\nì°¨ë‹¨í•´ì œëŠ” ê²Œì‹œíŒ ê´€ë¼ìžë©”ë‰´ë¥¼ ì´ìš©í•˜ì‹­ì‹œìš”.";
 ?>
 <br><br><br>
 <script>
-alert("<?=$keyword?> ¶õ ¾ÆÀÌÇÇÀÇ ¸ðµç °Ô½Ã±Û/µ¡±ÛÀÌ ¸ðµÎ <?=$hop?>°³ »èÁ¦ ÈÄ Â÷´ÜµÇ¾ú½À´Ï´Ù.\nÂ÷´ÜÇØÁ¦´Â °Ô½ÃÆÇ °ü¶óÀÚ¸Þ´º¸¦ ÀÌ¿ëÇÏ½Ê½Ã¿ä.");
+alert("<?=$keyword?> ëž€ ì•„ì´í”¼ì˜ ëª¨ë“  ê²Œì‹œê¸€/ë§ê¸€ì´ ëª¨ë‘ <?=$hop?>ê°œ ì‚­ì œ í›„ ì°¨ë‹¨ë˜ì—ˆìŠµë‹ˆë‹¤.\nì°¨ë‹¨í•´ì œëŠ” ê²Œì‹œíŒ ê´€ë¼ìžë©”ë‰´ë¥¼ ì´ìš©í•˜ì‹­ì‹œìš”.");
 </script>
 <?
 foot();

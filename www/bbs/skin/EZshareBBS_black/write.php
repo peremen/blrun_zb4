@@ -34,7 +34,7 @@ function zb_formresize(obj) {
 </tr>
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_password.gif></td></tr></table></td>
-  <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()"> ºñ¹øÀ» ÀçÀÔ·ÂÇÏ¸é ÀÓ½ÃÀúÀåÀÌ º¹¿øµÊ</td>
+  <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()"> ë¹„ë²ˆì„ ìž¬ìž…ë ¥í•˜ë©´ ìž„ì‹œì €ìž¥ì´ ë³µì›ë¨</td>
 </tr>
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_email.gif></td></tr></table></td>
@@ -48,7 +48,7 @@ function zb_formresize(obj) {
 
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_select.gif></td></tr></table></td>
-  <td align=left class=zv3_comment><?=$category_kind?><?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1>°øÁö»çÇ×<?=$hide_notice_end?><?=$hide_html_start?> <input type=checkbox id=use_html name=use_html <?=$use_html?> value=1>HTML»ç¿ë<?=$hide_html_end?><input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1>´äº¯¸ÞÀÏ¹Þ±â<?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>ºñ¹Ð±Û<?=$hide_secret_end?>&nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick=zb_formresize(document.write.memo)> <font id="state"></font></td>
+  <td align=left class=zv3_comment><?=$category_kind?><?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1>ê³µì§€ì‚¬í•­<?=$hide_notice_end?><?=$hide_html_start?> <input type=checkbox id=use_html name=use_html <?=$use_html?> value=1>HTMLì‚¬ìš©<?=$hide_html_end?><input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1>ë‹µë³€ë©”ì¼ë°›ê¸°<?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>ë¹„ë°€ê¸€<?=$hide_secret_end?>&nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick=zb_formresize(document.write.memo)> <font id="state"></font></td>
 </tr>
 <tr valign=top>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_subject.gif></td></tr></table></td>
@@ -94,7 +94,7 @@ function zb_formresize(obj) {
     </table>
     <table border=0 cellspacing=1 cellpadding=2 width=100% height=40>
     <tr>
-      <td align=left><?=$a_preview?><img src=<?=$dir?>/btn_preview.gif border=0></a> <?=$a_imagebox?><img src=<?=$dir?>/btn_imagebox.gif border=0></a> <?=$a_codebox?>ÄÚµå»ðÀÔ</a>&nbsp;</td>
+      <td align=left><?=$a_preview?><img src=<?=$dir?>/btn_preview.gif border=0></a> <?=$a_imagebox?><img src=<?=$dir?>/btn_imagebox.gif border=0></a> <?=$a_codebox?>ì½”ë“œì‚½ìž…</a>&nbsp;</td>
       <td align=right>
         <img src=<?=$dir?>/btn_save.gif border=0 accesskey="a" onclick=autoSave() style=cursor:pointer>
         <input type=image src=<?=$dir?>/btn_writeok.gif border=0 onfocus=blur() border=0 accesskey="s">

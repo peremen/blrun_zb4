@@ -1,5 +1,5 @@
 <?
-// °Ë»ö¾î¿¡ ÇØ´çÇÏ´Â ±ÛÀÚ¸¦ »¡°£;; »öÀ¸·Î ¹Ù²Ù¾îÁÜ;;
+// ê²€ìƒ‰ì–´ì— í•´ë‹¹í•˜ëŠ” ê¸€ìë¥¼ ë¹¨ê°„;; ìƒ‰ìœ¼ë¡œ ë°”ê¾¸ì–´ì¤Œ;;
 if($keyword) {
 	if($sn=="on") $reply_data[name]=str_replace($keyword,"<font color=red>$keyword</font>",$reply_data[name]);
 	if($ss=="on") $reply_data[subject]=str_replace($keyword,"<font color=red>$keyword</font>",$reply_data[subject]);
@@ -7,20 +7,20 @@ if($keyword) {
 	if($ss=="on"&&$setup[cut_length]>0) $setup[cut_length]=$setup[cut_length]+16;
 }
 
-// ' " \ µîÀÇ Æ¯¼ö¹®ÀÚ¶§¹®¿¡ del_html ¸¦ ÇØÁØ´Ù
-$name=$reply_data[name]=del_html($reply_data[name]);  // ÀÌ¸§
-$email=$reply_data[email]=del_html($reply_data[email]);  // ¸ŞÀÏ
-$subject=$reply_data[subject]=del_html($reply_data[subject]); // Á¦¸ñ
-$subject=cut_str($subject,$setup[cut_length]); // Á¦¸ñ ÀÚ¸£´Â ºÎºĞ
-if($member[level]<=$setup[grant_view]) $subject="<a href=view.php?$href$sort&no=$reply_data[no]>".$subject."</a>"; // Á¦¸ñ¿¡ ¸µÅ© °Å´Â ºÎºĞ;
+// ' " \ ë“±ì˜ íŠ¹ìˆ˜ë¬¸ìë•Œë¬¸ì— del_html ë¥¼ í•´ì¤€ë‹¤
+$name=$reply_data[name]=del_html($reply_data[name]);  // ì´ë¦„
+$email=$reply_data[email]=del_html($reply_data[email]);  // ë©”ì¼
+$subject=$reply_data[subject]=del_html($reply_data[subject]); // ì œëª©
+$subject=cut_str($subject,$setup[cut_length]); // ì œëª© ìë¥´ëŠ” ë¶€ë¶„
+if($member[level]<=$setup[grant_view]) $subject="<a href=view.php?$href$sort&no=$reply_data[no]>".$subject."</a>"; // ì œëª©ì— ë§í¬ ê±°ëŠ” ë¶€ë¶„;
 $homepage=$reply_data[homepage]=del_html($reply_data[homepage]);
 if($homepage) $homepage="<a href=$homepage target=_blank>$homepage</a>";
-$memo=$reply_data[memo]=nl2br($reply_data[memo]); // ³»¿ë
-$memo=autolink($memo); // ÀÚµ¿¸µÅ© °Å´Â ºÎºĞ;;
-$hit=$reply_data[hit];  // Á¶È¸¼ö
-$vote=$reply_data[vote];  // ÅõÇ¥¼ö
-if($setup[use_showip]||$is_admin)$ip="IP Address : ".$reply_data[ip]."&nbsp;";  // ¾ÆÀÌÇÇ
-$comment_num="[".$reply_data[total_comment]."]"; // °£´ÜÇÑ ´ä±Û ¼ö
+$memo=$reply_data[memo]=nl2br($reply_data[memo]); // ë‚´ìš©
+$memo=autolink($memo); // ìë™ë§í¬ ê±°ëŠ” ë¶€ë¶„;;
+$hit=$reply_data[hit];  // ì¡°íšŒìˆ˜
+$vote=$reply_data[vote];  // íˆ¬í‘œìˆ˜
+if($setup[use_showip]||$is_admin)$ip="IP Address : ".$reply_data[ip]."&nbsp;";  // ì•„ì´í”¼
+$comment_num="[".$reply_data[total_comment]."]"; // ê°„ë‹¨í•œ ë‹µê¸€ ìˆ˜
 $sitelink1=$reply_data[sitelink1]=del_html($reply_data[sitelink1]);
 $sitelink2=$reply_data[sitelink2]=del_html($reply_data[sitelink2]);
 if($sitelink1)$sitelink1="<a href=$sitelink1 target=_blank>$sitelink1</a>";
@@ -47,38 +47,38 @@ $upload_image1=$upload_image2="";
 if(preg_match("/\.jpg/i",$file_name1)||preg_match("/\.gif/i",$file_name1)||preg_match("/\.png/i",$file_name1)) $upload_image1="<img src=$reply_data[file_name1] border=0><br>";
 if(preg_match("/\.jpg/i",$file_name2)||preg_match("/\.gif/i",$file_name2)||preg_match("/\.png/i",$file_name2)) $upload_image2="<img src=$reply_data[file_name2] border=0><br>";
 
-// Ä«Å×°í¸®ÀÇ ÀÌ¸§À» ±¸ÇÔ
+// ì¹´í…Œê³ ë¦¬ì˜ ì´ë¦„ì„ êµ¬í•¨
 if($reply_data[category]&&$setup[use_category]) $category_name=$category_data[$reply_data[category]];
 else $category_name="&nbsp;";
 
-// ±Û¾´ ½Ã°£À» ³â¿ùÀÏ ½ÃºĞÃÊ ·Î º¯È¯ÇÔ
-$reg_date="<span title='".date("Y³â m¿ù dÀÏ H½Ã iºĞ sÃÊ", $reply_data[reg_date])."'>".date("Y/m/d", $reply_data[reg_date])."</span>";
+// ê¸€ì“´ ì‹œê°„ì„ ë…„ì›”ì¼ ì‹œë¶„ì´ˆ ë¡œ ë³€í™˜í•¨
+$reg_date="<span title='".date("Yë…„ mì›” dì¼ Hì‹œ ië¶„ sì´ˆ", $reply_data[reg_date])."'>".date("Y/m/d", $reply_data[reg_date])."</span>";
 
 $temp_name = get_private_icon($reply_data[ismember], "2");
 if($temp_name) $name="<img src='$temp_name' border=0 align=absmiddle>";
 
-// ¸ŞÀÏÁÖ¼Ò°¡ ÀÖÀ¸¸é ÀÌ¸§¿¡ ¸ŞÀÏ ¸µÅ©½ÃÅ´
+// ë©”ì¼ì£¼ì†Œê°€ ìˆìœ¼ë©´ ì´ë¦„ì— ë©”ì¼ ë§í¬ì‹œí‚´
 if(!isBlank($email)||$reply_data[ismember]) {
 	if(!$setup[use_formmail]) $name="<a href=mailto:$email>$name</a>";
 	else $name="<a href=javascript:void(window.open('view_info.php?to=$email&id=$id&member_no=$reply_data[ismember]','mailform','width=400,height=500,statusbar=no,scrollbars=yes,toolbar=no'))>$name</a>";
 }
 
-// Depth¿¡ ÀÇÇÑ µéÀÓ°ªÀ» Á¤ÇÔ
+// Depthì— ì˜í•œ ë“¤ì„ê°’ì„ ì •í•¨
 $insert="";
 for($z=0;$z<$reply_data[depth];$z++) $insert .="&nbsp; ";
 
 $icon=get_icon($reply_data);
 
-// ÀÌ¸§¾Õ¿¡ ºÙ´Â ¾ÆÀÌÄÜ Á¤ÀÇ;;
+// ì´ë¦„ì•ì— ë¶™ëŠ” ì•„ì´ì½˜ ì •ì˜;;
 $face_image=get_face($reply_data);
 
-// ¹Ù·Î Àü¿¡ º» ±ÛÀÎ °æ¿ì ¹øÈ£¸¦ ¾ÆÀÌÄÜÀ¸·Î ¹Ù²Ş
+// ë°”ë¡œ ì „ì— ë³¸ ê¸€ì¸ ê²½ìš° ë²ˆí˜¸ë¥¼ ì•„ì´ì½˜ìœ¼ë¡œ ë°”ê¿ˆ
 if($no==$reply_data[no]) $number="<img src=$dir/arrow.gif border=0 align=absmiddle>"; elseif($number!="&nbsp;") $number=$roop_number;
 
-// ´ä±Û ¹öÆ°
+// ë‹µê¸€ ë²„íŠ¼
 if(($is_admin||$member[level]<=$setup[grant_reply])&&$reply_data[headnum]>-2000000000&&$reply_data[headnum]!=-1) $a_reply="<a href=write.php?$href$sort&no=$reply_data[no]&mode=reply>"; else $a_reply="<Zeroboard";
-// »èÁ¦¹öÆ°
+// ì‚­ì œë²„íŠ¼
 if(($is_admin||$member[level]<=$setup[grant_delete]||$reply_data[ismember]==$member[no]||!$reply_data[ismember])&&!$reply_data[child]) $a_delete="<a href=delete.php?$href$sort&no=$reply_data[no]>"; else $a_delete="<Zeroboard";
-// ¼öÁ¤¹öÆ°
+// ìˆ˜ì •ë²„íŠ¼
 if(($is_admin||$member[level]<=$setup[grant_delete]||$reply_data[ismember]==$member[no]||!$reply_data[ismember])) $a_modify="<a href=write.php?$href$sort&no=$reply_data[no]&mode=modify>"; else $a_modify="<Zeroboard";
 ?>

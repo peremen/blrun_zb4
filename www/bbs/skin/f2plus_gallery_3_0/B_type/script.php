@@ -12,7 +12,7 @@ function swapImage() {
    if ((x=findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
 }
 </script>
-<!-----------------ÀÌ¹ÌÁö ¹Ì¸®º¸±â-------------------->
+<!-----------------ì´ë¯¸ì§€ ë¯¸ë¦¬ë³´ê¸°-------------------->
 <div id="message" style="border-width:0px; border-style:none; position:absolute; left:0px; top:0px; z-index:1;" class=shadow></div>
 <script language="javascript">
 <!--
@@ -21,8 +21,8 @@ function msgposit(x, y, myEvent) {
 	var scrollLeft = (document.documentElement && document.documentElement.scrollLeft) || document.body.scrollLeft;
 	var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
 
-	element.style.left = ((myEvent.clientX - x) + scrollLeft) + "px"; //¿À¹öµÉ¶§ º¸¿©Áú ÀÌ¹ÌÁöÀÇ x ÁÂÇ¥
-	element.style.top = ((myEvent.clientY - y) + scrollTop) + "px"; //¿À¹öµÉ¶§ º¸¿©Áú ÀÌ¹ÌÁöÀÇ y ÁÂÇ¥
+	element.style.left = ((myEvent.clientX - x) + scrollLeft) + "px"; //ì˜¤ë²„ë ë•Œ ë³´ì—¬ì§ˆ ì´ë¯¸ì§€ì˜ x ì¢Œí‘œ
+	element.style.top = ((myEvent.clientY - y) + scrollTop) + "px"; //ì˜¤ë²„ë ë•Œ ë³´ì—¬ì§ˆ ì´ë¯¸ì§€ì˜ y ì¢Œí‘œ
 }
 
 function msgset(str){
@@ -37,7 +37,7 @@ function msghide(){
 }
 -->
 </script>
-<!-----------------¸¶¿ì½º À§Ä¡°ª ¾Ë¾Æ³»±â-------------------->
+<!-----------------ë§ˆìš°ìŠ¤ ìœ„ì¹˜ê°’ ì•Œì•„ë‚´ê¸°-------------------->
 <script language="javascript">
 <!--
 var IE = document.all?true:false;

@@ -9,7 +9,7 @@
 </tr>
 <tr>
   <td align=right height=26><font class=list_eng>User ID</font></td>
-  <td align=left><input type=text name=user_id size=20 maxlength=20 class=input style=width:80%> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="º¸¾ÈÁ¢¼Ó ¼³Á¤/ÇØÁ¦"></td>
+  <td align=left><input type=text name=user_id size=20 maxlength=20 class=input style=width:80%> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="ë³´ì•ˆì ‘ì† ì„¤ì •/í•´ì œ"></td>
 </tr>
 <tr>
   <td align=right height=26><font class=list_eng>Password</font></td>
@@ -17,6 +17,6 @@
 </tr>
 </table>
 <br>
-<input type=submit value="·Î±×ÀÎ" class=submit> <input type=button class=button value="ÀÌÀüÈ­¸é" onclick=history.back()>
+<input type=submit value="ë¡œê·¸ì¸" class=submit> <input type=button class=button value="ì´ì „í™”ë©´" onclick=history.back()>
 </div>
 <BR>

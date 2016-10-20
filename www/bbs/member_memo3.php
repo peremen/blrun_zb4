@@ -1,27 +1,27 @@
 <?
-// ¶óÀÌºê·¯¸® ÇÔ¼ö ÆÄÀÏ ÀÎÅ©·çµå
+// ë¼ì´ë¸ŒëŸ¬ë¦¬ í•¨ìˆ˜ íŒŒì¼ ì¸í¬ë£¨ë“œ
 require "lib.php";
 
-// DB ¿¬°á
+// DB ì—°ê²°
 if(!$connect) $connect=dbConn();
 
-// ¸â¹öÁ¤º¸ ±¸ÇÏ±â
+// ë©¤ë²„ì •ë³´ êµ¬í•˜ê¸°
 $member=member_info();
 
-if(!$member[no]) Error("·Î±×ÀÎµÈ È¸¿ø¸¸ÀÌ »ç¿ëÇÒ¼ö ÀÖ½À´Ï´Ù","window.close");
+if(!$member[no]) Error("ë¡œê·¸ì¸ëœ íšŒì›ë§Œì´ ì‚¬ìš©í• ìˆ˜ ìˆìŠµë‹ˆë‹¤","window.close");
 
 if(!$page&&!$status) $status=1;
 
-// ±×·ìµ¥ÀÌÅ¸ ÀĞ¾î¿À±â;;
+// ê·¸ë£¹ë°ì´íƒ€ ì½ì–´ì˜¤ê¸°;;
 $group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$member[group_no]'"));
 
-// °Ë»ö¾î Ã³¸®;;
+// ê²€ìƒ‰ì–´ ì²˜ë¦¬;;
 if($keyword) {
 	$keyword=mysql_real_escape_string($keyword);
 	if(!$status) $s_que=" where user_id like '%$keyword%' or name like '%$keyword%' ";
 }
 
-// ÀüÃ¼ È¸¿øÀÇ ¼ö
+// ì „ì²´ íšŒì›ì˜ ìˆ˜
 $temp2=mysql_fetch_array(mysql_query("select count(*) from $member_table  $s_que"));
 $total_member=$temp2[0];
 
@@ -36,28 +36,28 @@ if($status) {
 	}
 } else $total=$total_member;
 
-// ÆäÀÌÁö °è»ê
+// í˜ì´ì§€ ê³„ì‚°
 $page_num=10;
-$total_page=(int)(($total-1)/$page_num)+1; // ÀüÃ¼ ÆäÀÌÁö ±¸ÇÔ
+$total_page=(int)(($total-1)/$page_num)+1; // ì „ì²´ í˜ì´ì§€ êµ¬í•¨
 
 if(!$page) $page=1;
-if($page>$total_page) $page=1; // ÆäÀÌÁö°¡ ÀüÃ¼ ÆäÀÌÁöº¸´Ù Å©¸é ÆäÀÌÁö ¹øÈ£ ¹Ù²Ş
+if($page>$total_page) $page=1; // í˜ì´ì§€ê°€ ì „ì²´ í˜ì´ì§€ë³´ë‹¤ í¬ë©´ í˜ì´ì§€ ë²ˆí˜¸ ë°”ê¿ˆ
 
-$start_num=($page-1)*$page_num; // ÆäÀÌÁö ¼ö¿¡ µû¸¥ Ãâ·Â½Ã Ã¹¹øÂ°°¡ µÉ ±ÛÀÇ ¹øÈ£ ±¸ÇÔ
+$start_num=($page-1)*$page_num; // í˜ì´ì§€ ìˆ˜ì— ë”°ë¥¸ ì¶œë ¥ì‹œ ì²«ë²ˆì§¸ê°€ ë  ê¸€ì˜ ë²ˆí˜¸ êµ¬í•¨
 
-// µ¥ÀÌÅ¸ »Ì¾Æ¿À´Â ºÎºĞ
+// ë°ì´íƒ€ ë½‘ì•„ì˜¤ëŠ” ë¶€ë¶„
 
-// ¿ÀÇÁ¶óÀÎ ¸â¹ö
+// ì˜¤í”„ë¼ì¸ ë©¤ë²„
 if(!$status) {
 	$que="select * from $member_table $s_que order by no desc limit $start_num,$page_num";
 	$result=mysql_query($que) or Error(mysql_error());
-// ¿Â¶óÀÎ ¸â¹ö
+// ì˜¨ë¼ì¸ ë©¤ë²„
 } else {
 	$endnum = $start_num + $page_num;
 	if($endnum>$total) $endnum=$total;
 	unset($s_que);
 	for($i=$start_num;$i<$endnum;$i++) {
-		$member_no = substr($_connector[$i],12);
+		$member_no = mb_substr($_connector[$i],12);
 		if($s_que) $s_que .= " or no = '$member_no' "; else $s_que = " where no = '$member_no' ";
 	}
 	$que = "select * from $member_table $s_que";
@@ -65,7 +65,7 @@ if(!$status) {
 
 }
 
-// ÆäÀÌÁö °è»ê  $print_page ¶ó´Â º¯¼ö¿¡ ÀúÀå 
+// í˜ì´ì§€ ê³„ì‚°  $print_page ë¼ëŠ” ë³€ìˆ˜ì— ì €ì¥ 
 $print_page="";
 $show_page_num=10;
 $start_page=(int)(($page-1)/$show_page_num)*$show_page_num;
@@ -97,14 +97,14 @@ head("bgcolor=white");
   <td width="15"><img src="images/memo_topleft.gif" width="15" height="50"></td>
   <td background="images/memo_topbg.gif">
     <img src="images/t.gif" width="10" height="2"><br>
-    <font style=font-size:11pt;font-weight:bold>&nbsp;ÂÊÁöº¸³»±â</font></td>
+    <font style=font-size:11pt;font-weight:bold>&nbsp;ìª½ì§€ë³´ë‚´ê¸°</font></td>
   <td width="15"><img src="images/memo_topright.gif" width="156" height="50"></td>
 </tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="5">
 <tr>
   <td>&nbsp;&nbsp;&nbsp;<a href=member_memo.php><img src=images/vi_B_inbox.gif border=0></a> <a href=member_memo2.php><img src=images/vi_B_sent.gif border=0></a> <a href=member_memo3.php><img src=images/vi_B_write.gif border=0></a></td>
-  <td align=right><font color="#666666">ÀüÃ¼È¸¿ø¼ö : <?=$total?></font>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td align=right><font color="#666666">ì „ì²´íšŒì›ìˆ˜ : <?=$total?></font>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 </tr>
 </table>
 
@@ -125,7 +125,7 @@ head("bgcolor=white");
  {
  	if(document.list.status.checked) {
 		if(document.list.keyword.value) {
-			alert("¿Â¶óÀÎ »óÅÂ¿¡¼­´Â °Ë»öÇÒ¼ö°¡ ¾ø½À´Ï´Ù");
+			alert("ì˜¨ë¼ì¸ ìƒíƒœì—ì„œëŠ” ê²€ìƒ‰í• ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤");
 			return false;
 		}
 	}
@@ -144,7 +144,7 @@ head("bgcolor=white");
 
     </tr>
 <?
-// Ãâ·Â
+// ì¶œë ¥
 $loop_number=$total-($page-1)*$page_num;
 while($data=mysql_fetch_array($result)) {
 	$name=stripslashes($data[name]);

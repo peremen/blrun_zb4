@@ -1,32 +1,32 @@
-/* jQuery ºÎºĞ  */
-jQuery(document).ready(function(){  // ¹®¼­°¡ ¸ğµÎ ÀĞÈù ÈÄ¿¡ ´ÙÀ½À» ½ÇÇà
-    jQuery("blockquote").each( function() {  //blokquote¸¦ »ç¿ëÇÑ ÅÂ±×
+/* jQuery ë¶€ë¶„  */
+jQuery(document).ready(function(){  // ë¬¸ì„œê°€ ëª¨ë‘ ì½íŒ í›„ì— ë‹¤ìŒì„ ì‹¤í–‰
+    jQuery("blockquote").each( function() {  //blokquoteë¥¼ ì‚¬ìš©í•œ íƒœê·¸
         var class_attr = jQuery(this).attr('class');
         if (class_attr && class_attr.substr(0,5)=='brush')
-        // ±×Áß Å¬·¡½º¸íÀÌ brush·Î ½ÃÀÛÇÏ´Â °ÍÀ» Ã£¾Æ Àû¿ë
+        // ê·¸ì¤‘ í´ë˜ìŠ¤ëª…ì´ brushë¡œ ì‹œì‘í•˜ëŠ” ê²ƒì„ ì°¾ì•„ ì ìš©
         {
-            var temp = jQuery(this).html(); //  ³»¿ë º¹»ç
+            var temp = jQuery(this).html(); //  ë‚´ìš© ë³µì‚¬
             temp = temp.replace(/\n/gi, "");
             temp = temp.replace(/<br \/>/gi, "\n");
-            /* ´ÙÀ½ ¼¼ ÁÙÀº È¯°æ ¼³Á¤ > ±âÅ¸ ¼³Á¤ > ±Û¾²±â È¯°æ > ¿£ÅÍÅ° ¼³Á¤ > 
-           <p>¹®´Ü ¹Ù²Ş (Shift+Enter½Ã ÁÙ ¹Ù²Ş) À» ¼±ÅÃÇßÀ» ¶§ ÇÊ¿äÇÑ ÄÚµåÀÌ´Ù. */
+            /* ë‹¤ìŒ ì„¸ ì¤„ì€ í™˜ê²½ ì„¤ì • > ê¸°íƒ€ ì„¤ì • > ê¸€ì“°ê¸° í™˜ê²½ > ì—”í„°í‚¤ ì„¤ì • > 
+           <p>ë¬¸ë‹¨ ë°”ê¿ˆ (Shift+Enterì‹œ ì¤„ ë°”ê¿ˆ) ì„ ì„ íƒí–ˆì„ ë•Œ í•„ìš”í•œ ì½”ë“œì´ë‹¤. */
             temp = temp.replace(/<BR>/gi, "\n");
             temp = temp.replace(/<P>/gi, "");
             temp = temp.replace(/<\/P>/gi, "\n");
             //temp = '<pre class="'+ jQuery(this).attr('class') + '">'+temp+'</pre>'
             temp = '<script type="syntaxhighlighter" class="'+ jQuery(this).attr('class') + '"><![CDATA['+temp+']]><\/script>'
             jQuery(this).after(temp);
-            // µÚ¿¡ »õ·Î ÀÛ¼ºµÈ pre ¶Ç´Â script ÅÂ±×·Î ºÙÀÎ´Ù.
-            jQuery(this).remove(); //  ±âÁ¸ÀÇ ÀÎ¿ëÅÂ±× »èÁ¦
+            // ë’¤ì— ìƒˆë¡œ ì‘ì„±ëœ pre ë˜ëŠ” script íƒœê·¸ë¡œ ë¶™ì¸ë‹¤.
+            jQuery(this).remove(); //  ê¸°ì¡´ì˜ ì¸ìš©íƒœê·¸ ì‚­ì œ
         }
     });
   
-    jQuery("pre").each( function() {  //pre¸¦ »ç¿ëÇÑ ÅÂ±×
+    jQuery("pre").each( function() {  //preë¥¼ ì‚¬ìš©í•œ íƒœê·¸
         var class_attr = jQuery(this).attr('class');
         if (class_attr && class_attr.substr(0,5)=='brush')
-        // ±×Áß Å¬·¡½º¸íÀÌ brush·Î ½ÃÀÛÇÏ´Â °ÍÀ» Ã£¾Æ Àû¿ë
+        // ê·¸ì¤‘ í´ë˜ìŠ¤ëª…ì´ brushë¡œ ì‹œì‘í•˜ëŠ” ê²ƒì„ ì°¾ì•„ ì ìš©
         {
-            var temp = jQuery(this).html(); //  ³»¿ë º¹»ç
+            var temp = jQuery(this).html(); //  ë‚´ìš© ë³µì‚¬
             temp = temp.replace(/</g, "&lt;");
             jQuery(this).html = temp;
         }
@@ -62,7 +62,7 @@ SyntaxHighlighter.autoloader(
   'xml xhtml xslt html    syntaxhighlighter/scripts/shBrushXml.js'
   );      
 //]]> 
-    /*  SyntaxHighlighter »ç¿ëºÎºĞ  */
-    SyntaxHighlighter.defaults['toolbar'] = false; // Åø¹Ù ¾È º¸±â
+    /*  SyntaxHighlighter ì‚¬ìš©ë¶€ë¶„  */
+    SyntaxHighlighter.defaults['toolbar'] = false; // íˆ´ë°” ì•ˆ ë³´ê¸°
     SyntaxHighlighter.all();
 });

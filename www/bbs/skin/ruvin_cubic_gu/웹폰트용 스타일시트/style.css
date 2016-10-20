@@ -1,6 +1,6 @@
-@font-face {font-family:¿•∆˘∆Æ¿Ã∏ß;src:url(http://»®¡÷º“(¿•∆˘∆Æ∞Ê∑Œ)/¿•∆˘∆Æ¿Ã∏ß.mwf);}
+@font-face {font-family:ÏõπÌè∞Ìä∏Ïù¥Î¶Ñ;src:url(http://ÌôàÏ£ºÏÜå(ÏõπÌè∞Ìä∏Í≤ΩÎ°ú)/ÏõπÌè∞Ìä∏Ïù¥Î¶Ñ.mwf);}
 
-BODY,TD,SELECT,input,DIV,form,TEXTAREA,center,option,pre,blockquote {font-size:9pt;font-family:¿•∆˘∆Æ¿Ã∏ß;color:#696756;line-height:170%}
+BODY,TD,SELECT,input,DIV,form,TEXTAREA,center,option,pre,blockquote {font-size:9pt;font-family:ÏõπÌè∞Ìä∏Ïù¥Î¶Ñ;color:#696756;line-height:170%}
 
 body
 {scrollbar-3dlight-color:#E6E7E1;
@@ -16,15 +16,15 @@ A:visited {color:#696756;text-decoration:none}
 A:active  {color:#696756;text-decoration:none}
 A:hover   {color:#A4A28E;text-decoration:none}
 
-.text   {border: solid 1;border-top-color:#BEC0B1;border-right-color:#FFFFFF;border-left-color:#BEC0B1;border-bottom-color:#FFFFFF; background-color:#E6E7E1;font-family:¿•∆˘∆Æ¿Ã∏ß;font-size:9pt;width:100%;height:80;overflow-x:hidden;overflow-y:auto}
+.text   {border: solid 1;border-top-color:#BEC0B1;border-right-color:#FFFFFF;border-left-color:#BEC0B1;border-bottom-color:#FFFFFF; background-color:#E6E7E1;font-family:ÏõπÌè∞Ìä∏Ïù¥Î¶Ñ;font-size:9pt;width:100%;height:80;overflow-x:hidden;overflow-y:auto}
 .input  {border: solid 1;border-top-color:#BEC0B1;border-right-color:#FFFFFF;border-left-color:#BEC0B1;border-bottom-color:#FFFFFF; background-color:#E6E7E1;height:19px}
 .input2 {border: solid 1;border-top-color:#BEC0B1;border-right-color:#FFFFFF;border-left-color:#BEC0B1;border-bottom-color:#FFFFFF; background-color:#E6E7E1;height:16px}
 .submit {border-width:1;border-style:solid;font-weight:bold;font-family:verdana;font-size:7pt;color:#696756;border-top-color:#FFFFFF;border-right-color:#BEC0B1;border-left-color:#FFFFFF;border-bottom-color:#BEC0B1; background-color:#E6E7E1;height:19px}
 .line1  {background-color:#BEC0B1}
 .line2  {background-color:#FFFFFF}
 
-.cu     {font-size:9pt;width:100%;font-family:¿•∆˘∆Æ¿Ã∏ß;filter:dropshadow(color=#FFFFFF,offX=1,offY=1,positive=1);line-height:170%}
-.cub    {font-weight:bold;font-size:9pt;width:100%;font-family:¿•∆˘∆Æ¿Ã∏ß;filter:dropshadow(color=#FFFFFF,offX=1,offY=1,positive=1);line-height:170%}
+.cu     {font-size:9pt;width:100%;font-family:ÏõπÌè∞Ìä∏Ïù¥Î¶Ñ;filter:dropshadow(color=#FFFFFF,offX=1,offY=1,positive=1);line-height:170%}
+.cub    {font-weight:bold;font-size:9pt;width:100%;font-family:ÏõπÌè∞Ìä∏Ïù¥Î¶Ñ;filter:dropshadow(color=#FFFFFF,offX=1,offY=1,positive=1);line-height:170%}
 .t7     {font-family:tahoma;font-size:7pt;color:#696756}
 .v7     {font-family:verdana;font-size:7pt;color:#696756}
 .re   {border: solid 1;border-top-color:#FFFFFF;border-right-color:#BEC0B1;border-left-color:#FFFFFF;border-bottom-color:#BEC0B1;background-color:#E6E7E1;width:60%}

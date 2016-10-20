@@ -24,44 +24,44 @@ $social_ref = stripslashes($_zb_url.$_GET['social_ref']);
 if($flag != ok) {
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
+<HTML lang="ko">
 <HEAD>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <TITLE> blrun's Short_URL for bit.ly</TITLE>
 <script language="javascript">
 /*
 ' ------------------------------------------------------------------
 ' Function    : fc_chk_byte(aro_name)
-' Description : ÀÔ·ÂÇÑ ±ÛÀÚ¼ö¸¦ Ã¼Å©
-' Argument    : Object Name(±ÛÀÚ¼ö¸¦ Á¦ÇÑÇÒ ÄÁÆ®·Ñ)
+' Description : ì…ë ¥í•œ ê¸€ììˆ˜ë¥¼ ì²´í¬
+' Argument    : Object Name(ê¸€ììˆ˜ë¥¼ ì œí•œí•  ì»¨íŠ¸ë¡¤)
 ' Return      : 
 ' ------------------------------------------------------------------
 */
 function fc_chk_byte(aro_name,ari_max)
 {
 
-   var ls_str     = aro_name.value; // ÀÌº¥Æ®°¡ ÀÏ¾î³­ ÄÁÆ®·ÑÀÇ value °ª
-   var li_str_len = ls_str.length;  // ÀüÃ¼±æÀÌ
+   var ls_str     = aro_name.value; // ì´ë²¤íŠ¸ê°€ ì¼ì–´ë‚œ ì»¨íŠ¸ë¡¤ì˜ value ê°’
+   var li_str_len = ls_str.length;  // ì „ì²´ê¸¸ì´
 
-   // º¯¼öÃÊ±âÈ­
-   var li_max      = ari_max; // Á¦ÇÑÇÒ ±ÛÀÚ¼ö Å©±â
-   var i           = 0;  // for¹®¿¡ »ç¿ë
-   var li_gap     = 0;  // Ä³¸¯ÅÍÀÏ °æ¿ì´Â 1 ¹ÙÀÌÆ®ÀÏ °æ¿ì´Â 2¸¦ ´õÇÔ
-   var li_len      = 0;  // substringÇÏ±â À§ÇØ¼­ »ç¿ë
-   var ls_one_char = ""; // ÇÑ±ÛÀÚ¾¿ °Ë»çÇÑ´Ù
-   var ls_str2     = ""; // ±ÛÀÚ¼ö¸¦ ÃÊ°úÇÏ¸é Á¦ÇÑÇÒ¼ö ±ÛÀÚÀü±îÁö¸¸ º¸¿©ÁØ´Ù.
+   // ë³€ìˆ˜ì´ˆê¸°í™”
+   var li_max      = ari_max; // ì œí•œí•  ê¸€ììˆ˜ í¬ê¸°
+   var i           = 0;  // forë¬¸ì— ì‚¬ìš©
+   var li_gap     = 0;  // ìºë¦­í„°ì¼ ê²½ìš°ëŠ” 1 ë°”ì´íŠ¸ì¼ ê²½ìš°ëŠ” 2ë¥¼ ë”í•¨
+   var li_len      = 0;  // substringí•˜ê¸° ìœ„í•´ì„œ ì‚¬ìš©
+   var ls_one_char = ""; // í•œê¸€ìì”© ê²€ì‚¬í•œë‹¤
+   var ls_str2     = ""; // ê¸€ììˆ˜ë¥¼ ì´ˆê³¼í•˜ë©´ ì œí•œí• ìˆ˜ ê¸€ìì „ê¹Œì§€ë§Œ ë³´ì—¬ì¤€ë‹¤.
 
    for(i=0; i< li_str_len; i++)
    {
-	  // ÇÑ±ÛÀÚÃßÃâ
+	  // í•œê¸€ìì¶”ì¶œ
 	  ls_one_char = ls_str.charAt(i);
 
-	  /*// ÇÑ±ÛÀÌ¸é 2¸¦ ´õÇÑ´Ù.
+	  /*// í•œê¸€ì´ë©´ 2ë¥¼ ë”í•œë‹¤.
 	  if (escape(ls_one_char).length > 4)
 	  {
 		 li_gap += 2;
 	  }
-	  // ±×¹ÜÀÇ °æ¿ì´Â 1À» ´õÇÑ´Ù.
+	  // ê·¸ë°—ì˜ ê²½ìš°ëŠ” 1ì„ ë”í•œë‹¤.
 	  else
 	  {
 		 li_gap++;
@@ -69,18 +69,18 @@ function fc_chk_byte(aro_name,ari_max)
 
 	  li_gap += 1;
 
-	  // ÀüÃ¼ Å©±â°¡ li_max¸¦ ³ÑÁö¾ÊÀ¸¸é
+	  // ì „ì²´ í¬ê¸°ê°€ li_maxë¥¼ ë„˜ì§€ì•Šìœ¼ë©´
 	  if(li_gap <= li_max)
 	  {
 		 li_len = li_len + 1;
 	  }
    }
    
-   // ÀüÃ¼±æÀÌ¸¦ ÃÊ°úÇÏ¸é
+   // ì „ì²´ê¸¸ì´ë¥¼ ì´ˆê³¼í•˜ë©´
    if(li_gap > li_max)
    {
-	  alert( li_max + " ±ÛÀÚ¸¦ ÃÊ°ú ÀÔ·ÂÇÒ¼ö ¾ø½À´Ï´Ù. \n ÃÊ°úµÈ ³»¿ëÀº ÀÚµ¿À¸·Î »èÁ¦ µË´Ï´Ù. ");
-	  ls_str2 = ls_str.substr(0, li_len);
+	  alert( li_max + " ê¸€ìë¥¼ ì´ˆê³¼ ì…ë ¥í• ìˆ˜ ì—†ìŠµë‹ˆë‹¤. \n ì´ˆê³¼ëœ ë‚´ìš©ì€ ìë™ìœ¼ë¡œ ì‚­ì œ ë©ë‹ˆë‹¤. ");
+	  ls_str2 = ls_str.mb_substr(0, li_len);
 	  aro_name.value = ls_str2;
 	  
    }
@@ -92,14 +92,14 @@ function fc_chk_byte(aro_name,ari_max)
 </HEAD>
 
 <BODY>
-<font color="red"><b>bit.ly·Î URLÀ» ´ÜÃà½ÃÅ°°í ³»¿ë°ú ÀÏÁ¤ ±æÀÌ·Î °áÇÕ½ÃÅ°´Â ÇÁ·Î±×·¥ÀÔ´Ï´Ù. µ¡±Û¼ö°¡ ºÎÁ·ÇÑ »çÀÌÆ®¿¡¼­ µ¡±ÛÀ» ¾´ ÈÄ ³×Æ¼Áğ Ä®·³¿¡ ³»¿ë ÀüÃ¼¸¦ ¿Ã¸° ÈÄ ÀÌ »ı¼º±â¿¡ ºÙ¿©³Ö±â ÇØ °áÇÕ½ÃÅ°¸é ÀûÀıÇÑ ±ÛÀÚ¼ö·Î ´ÜÃà¸µÅ©°¡ µé¾î°£ µ¡±ÛÀÌ »ı¼ºµË´Ï´Ù.</b></font>
+<font color="red"><b>bit.lyë¡œ URLì„ ë‹¨ì¶•ì‹œí‚¤ê³  ë‚´ìš©ê³¼ ì¼ì • ê¸¸ì´ë¡œ ê²°í•©ì‹œí‚¤ëŠ” í”„ë¡œê·¸ë¨ì…ë‹ˆë‹¤. ë§ê¸€ìˆ˜ê°€ ë¶€ì¡±í•œ ì‚¬ì´íŠ¸ì—ì„œ ë§ê¸€ì„ ì“´ í›„ ë„¤í‹°ì¦Œ ì¹¼ëŸ¼ì— ë‚´ìš© ì „ì²´ë¥¼ ì˜¬ë¦° í›„ ì´ ìƒì„±ê¸°ì— ë¶™ì—¬ë„£ê¸° í•´ ê²°í•©ì‹œí‚¤ë©´ ì ì ˆí•œ ê¸€ììˆ˜ë¡œ ë‹¨ì¶•ë§í¬ê°€ ë“¤ì–´ê°„ ë§ê¸€ì´ ìƒì„±ë©ë‹ˆë‹¤.</b></font>
 <FORM NAME="form1" METHOD="Post" ACTION="bitly.php?flag=ok">
 <b>Long URL: </b><INPUT NAME="l_url" TYPE="Text" SIZE="44" MAXLENGTH="3000" value="<?=$social_ref?>"><br>
-<b>ÃÖ´ë ±ÛÀÚ¼ö(ÇÑ±Û): </b><INPUT NAME="max_ch" TYPE="Text" SIZE="11" MAXLENGTH="7" value="250"><br>
-<b>ÀÚ¸£±â ÀüÀÇ ´ñ±Û ³»¿ë ÀüÃ¼ ÀÔ·Â: </b><br>
-<textarea name="memo" cols="20" rows="8" style="width:100%" onkeyup="fc_chk_byte(this,form1.max_ch.value-<?=strlen($short_url = get_bitly_short_url($social_ref,'blrun','R_4c90949047276e64cd01c9ad4ce7ee53'))+1?>);"></textarea>
+<b>ìµœëŒ€ ê¸€ììˆ˜(í•œê¸€): </b><INPUT NAME="max_ch" TYPE="Text" SIZE="11" MAXLENGTH="7" value="250"><br>
+<b>ìë¥´ê¸° ì „ì˜ ëŒ“ê¸€ ë‚´ìš© ì „ì²´ ì…ë ¥: </b><br>
+<textarea name="memo" cols="20" rows="8" style="width:100%" onkeyup="fc_chk_byte(this,form1.max_ch.value-<?=mb_strlen($short_url = get_bitly_short_url($social_ref,'blrun','R_4c90949047276e64cd01c9ad4ce7ee53'))+1?>);"></textarea>
 <input type="hidden" name="s_url" value="<?=$short_url?>">
-<br><br><INPUT TYPE="Submit" VALUE="º¯È¯">
+<br><br><INPUT TYPE="Submit" VALUE="ë³€í™˜">
 </FORM>
 </BODY>
 </HTML>

@@ -15,13 +15,13 @@ $emoticon_url=$dir."/emoticon";
 	<td align=left class=list_eng><b>Password</b></td><td align=left class=list_han><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input onkeyup="ajaxLoad2()"></td>
 <?=$hide_end?>
 
-	<td width="100%" align=left><div align=right>ºñ¹øÀ» ÀçÀÔ·ÂÇÏ¸é ÀÓ½ÃÀúÀåÀÌ º¹¿øµÊ <?if($emoticon_use=="on"){?><input onclick='showEmoticon()' type=checkbox name=Emoticons value='yes'><img src=<?=$dir?>/use_emo.gif></div><?}?></td>
+	<td width="100%" align=left><div align=right>ë¹„ë²ˆì„ ìž¬ìž…ë ¥í•˜ë©´ ìž„ì‹œì €ìž¥ì´ ë³µì›ë¨ <?if($emoticon_use=="on"){?><input onclick='showEmoticon()' type=checkbox name=Emoticons value='yes'><img src=<?=$dir?>/use_emo.gif></div><?}?></td>
 </tr>
 <tr>
 	<td height=1 colspan=5 background=<?=$dir?>/dot.gif></td>
 </tr>
 <tr>
-	<td colspan=5 align=right class=list_eng><font id="state"></font> <?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTML»ç¿ë<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>ºñ¹Ð±Û<?=$hide_secret_end?></td>
+	<td colspan=5 align=right class=list_eng><font id="state"></font> <?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTMLì‚¬ìš©<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>ë¹„ë°€ê¸€<?=$hide_secret_end?></td>
 </tr>
 <tr>
 	<td bgcolor=white height=3 colspan=5></td>
@@ -33,13 +33,13 @@ $emoticon_url=$dir."/emoticon";
 		<table border=0 cellspacing=1 cellpadding=0 width=100% height=120>
 		<col width=5 align=center><col width=></col>
 		<tr> 
-			<td onclick="document.write.memo.rows=document.write.memo.rows+4" style=cursor:pointer valign=top align=right>¡é</td>
+			<td onclick="document.write.memo.rows=document.write.memo.rows+4" style=cursor:pointer valign=top align=right>â†“</td>
 			<td align=left>
 				<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
 				<col width=></col><col width=70></col>
 				<tr>
 					<td width=100% valign=top><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);' onkeyup="addStroke()"><?=$memo?></textarea></td>
-					<td width=70><input type=button class=submit value='ÀÓ½ÃÀúÀå' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit class=submit value='ÀÛ¼º¿Ï·á' accesskey="s" style="height:50%"></td>
+					<td width=70><input type=button class=submit value='ìž„ì‹œì €ìž¥' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit class=submit value='ìž‘ì„±ì™„ë£Œ' accesskey="s" style="height:50%"></td>
 				</tr>
 				</table>
 				<table border=0 cellspacing=2 cellpadding=0 width=100% height=20>
@@ -70,6 +70,6 @@ $emoticon_url=$dir."/emoticon";
 </TABLE>
 <table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0>
 <tr>
-	<td align=left width=200 height=40><?=$a_preview?>¹Ì¸®º¸±â</a><?=$a_imagebox?>±×¸²Ã¢°í</a><?=$a_codebox?>ÄÚµå»ðÀÔ</a></td>
+	<td align=left width=200 height=40><?=$a_preview?>ë¯¸ë¦¬ë³´ê¸°</a><?=$a_imagebox?>ê·¸ë¦¼ì°½ê³ </a><?=$a_codebox?>ì½”ë“œì‚½ìž…</a></td>
 </tr>
 </table>

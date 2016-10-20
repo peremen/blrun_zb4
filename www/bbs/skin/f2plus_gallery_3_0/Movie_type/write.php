@@ -1,9 +1,9 @@
 <?
 include $dir."/swe/ed_seting_head.php";
 
-if($mode=="reply") $title="´ä±Û ¾²±â";
-elseif($mode=="modify") $title="±Û ¼öÁ¤ÇÏ±â";
-else $title="»õ·Î ±Û ¾²±â";
+if($mode=="reply") $title="ë‹µê¸€ ì“°ê¸°";
+elseif($mode=="modify") $title="ê¸€ ìˆ˜ì •í•˜ê¸°";
+else $title="ìƒˆë¡œ ê¸€ ì“°ê¸°";
 
 $m_memo = explode("|||",htmlspecialchars(str_replace("&amp;","&",str_replace("&lt;","<",$memo))));
 $memo = $m_memo[0];  
@@ -37,7 +37,7 @@ function check_submit_y()
 	var rCheck=document.getElementById('check');
 	if(rCheck.value==1)
 	{
-		alert('±Û¾²±â ¹öÆ°À» ¿©·¯¹ø ´©¸£½Ã¸é ¾ÈµË´Ï´Ù.');
+		alert('ê¸€ì“°ê¸° ë²„íŠ¼ì„ ì—¬ëŸ¬ë²ˆ ëˆ„ë¥´ì‹œë©´ ì•ˆë©ë‹ˆë‹¤.');
 		return false;
 	}
 
@@ -51,7 +51,7 @@ function check_submit_y()
 		var myindex=document.getElementById('write').category[1].selectedIndex;
 		if (myindex<1)
 		{
-			alert('Ä«Å×°í¸®¸¦ ¼±ÅÃÇÏ¿© ÁÖ¼¼¿ä.');
+			alert('ì¹´í…Œê³ ë¦¬ë¥¼ ì„ íƒí•˜ì—¬ ì£¼ì„¸ìš”.');
 			document.getElementById('write').category[1].focus();
 			return false;
 		}
@@ -61,13 +61,13 @@ function check_submit_y()
 	{
 		if(!rName.value)
 		{
-			alert('ÀÌ¸§À» ÀÔ·ÂÇÏ¿© ÁÖ¼¼¿ä.');
+			alert('ì´ë¦„ì„ ì…ë ¥í•˜ì—¬ ì£¼ì„¸ìš”.');
 			rName.focus();
 			return false;
 		}
 		if(!rPass.value)
 		{
-			alert('¾ÏÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ¼¼¿ä.\n\n¾ÏÈ£¸¦ ÀÔ·ÂÇÏ¼Å¾ß ¼öÁ¤/»èÁ¦¸¦ ÇÒ ¼ö ÀÖ½À´Ï´Ù.');
+			alert('ì•”í˜¸ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì„¸ìš”.\n\nì•”í˜¸ë¥¼ ì…ë ¥í•˜ì…”ì•¼ ìˆ˜ì •/ì‚­ì œë¥¼ í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.');
 			rPass.focus();
 			return false;
 		}
@@ -75,7 +75,7 @@ function check_submit_y()
 
 	if(!rSub.value)
 	{
-		alert('Á¦¸ñÀ» ÀÔ·ÂÇÏ¿© ÁÖ¼¼¿ä.');
+		alert('ì œëª©ì„ ì…ë ¥í•˜ì—¬ ì£¼ì„¸ìš”.');
 		rSub.focus();
 		return false;
 	}
@@ -83,14 +83,14 @@ function check_submit_y()
 	if(edit_tag_yn == "Y") {
 		if(!memoiW.document.body.innerHTML||memoiW.document.body.innerHTML=="<P>&nbsp;</P>"||memoiW.document.body.innerHTML=="<br>")
 		{
-			alert('³»¿ëÀ» ÀÔ·ÂÇÏ¿© ÁÖ¼¼¿ä.');
+			alert('ë‚´ìš©ì„ ì…ë ¥í•˜ì—¬ ì£¼ì„¸ìš”.');
 			memoiW.focus();
 			return false;
 		}
 	} else {
 		if(!memoE.value||memoE.value=="<P>&nbsp;</P>"||memoE.value=="<br>")
 		{
-			alert('³»¿ëÀ» ÀÔ·ÂÇÏ¿© ÁÖ¼¼¿ä.');
+			alert('ë‚´ìš©ì„ ì…ë ¥í•˜ì—¬ ì£¼ì„¸ìš”.');
 			rStr.focus();
 			return false;
 		}
@@ -104,32 +104,32 @@ function check_submit_y()
 	var rName8=document.getElementById('_name8');
 
 	if(rName2.value==""){
-		alert("°¨µ¶À» ÀÔ·ÂÇÏ¼¼¿ä!");
+		alert("ê°ë…ì„ ì…ë ¥í•˜ì„¸ìš”!");
 		rName2.focus();
 		return false;
 	}
 	else if(rName3.value==""){
-		alert("°³ºÀÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä!");
+		alert("ê°œë´‰ì¼ì„ ì…ë ¥í•˜ì„¸ìš”!");
 		rName3.focus();
 		return false;
 	}
 	else if(rName4.value==""){
-		alert("Àå¸£¸¦ ÀÔ·ÂÇÏ¼¼¿ä!");
+		alert("ì¥ë¥´ë¥¼ ì…ë ¥í•˜ì„¸ìš”!");
 		rName4.focus();
 		return false;
 	}
 	else if(rName5.value==""){
-		alert("ÁÖ¿¬À» ÀÔ·ÂÇÏ¼¼¿ä!");
+		alert("ì£¼ì—°ì„ ì…ë ¥í•˜ì„¸ìš”!");
 		rName5.focus();
 		return false;
 	}
 	else if(rName6.value=="0"){
-		alert("ÆòÁ¡À» ÀÔ·ÂÇÏ¼¼¿ä!");
+		alert("í‰ì ì„ ì…ë ¥í•˜ì„¸ìš”!");
 		rName6.focus();
 		return false;
 	}
 	else if(rName8.value==""){
-		alert("»ó¿µ½Ã°£À» ÀÔ·ÂÇÏ¼¼¿ä!");
+		alert("ìƒì˜ì‹œê°„ì„ ì…ë ¥í•˜ì„¸ìš”!");
 		rName8.focus();
 		return false;
 	}
@@ -157,7 +157,7 @@ function check_submit_y()
 <?$_url=$dir."/write_ok.php";?>
 <table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=border-width:1pt;border-style:solid;border-color:#cccccc style=table-layout:fixed>
 <tr align=left valign="middle" height=25>
-  <td class=list_eng>&nbsp;&nbsp;<img src=<?=$dir?>/images/front_img.gif>&nbsp;&nbsp;»õ±Û¾²±â </td>
+  <td class=list_eng>&nbsp;&nbsp;<img src=<?=$dir?>/images/front_img.gif>&nbsp;&nbsp;ìƒˆê¸€ì“°ê¸° </td>
 </tr>
 </table>
 <table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0 style=table-layout:fixed>
@@ -166,28 +166,28 @@ function check_submit_y()
 <?=$hide_start?>
 
 <tr>
-  <td align=right><font class=com2><b>ÀÌ¸§</b></font></td>
+  <td align=right><font class=com2><b>ì´ë¦„</b></font></td>
   <td align=left><input type=text id=name name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=input onkeyup="ajaxLoad2()"></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2><b>¾ÏÈ£</b></font></td>
-  <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> ºñ¹øÀ» ÀçÀÔ·ÂÇÏ¸é ÀÓ½ÃÀúÀåÀÌ º¹¿øµÊ</td>
+  <td align=right><font class=com2><b>ì•”í˜¸</b></font></td>
+  <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> ë¹„ë²ˆì„ ì¬ì…ë ¥í•˜ë©´ ì„ì‹œì €ì¥ì´ ë³µì›ë¨</td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2>È¨ÆäÀÌÁö</font></td>
+  <td align=right><font class=com2>í™ˆí˜ì´ì§€</font></td>
   <td align=left><input type=text id=homepage name=homepage value="<?=$homepage?>" <?=size(40)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2>ÀÌ¸ŞÀÏ</font></td>
+  <td align=right><font class=com2>ì´ë©”ì¼</font></td>
   <td align=left><input type=text id=email name=email value="<?=$email?>" <?=size(40)?> maxlength=200 class=input></td>
 </tr>
 <tr>
@@ -196,74 +196,74 @@ function check_submit_y()
 <?=$hide_end?>
 
 <tr>
-  <td align=right><font class=com2>ÆòÁ¡</font></td>
+  <td align=right><font class=com2>í‰ì </font></td>
   <td align=left>
     <SELECT id=_name6 NAME=_name6 value=<?=$_name6?>>
 <? $checked=array("","","","","",""); $checked[$_name6]="selected"; ?>
-    <option value=0 <?=$checked[0]?>>Æ÷ÀÎÆ®</option>
-    <option value=1 <?=$checked[1]?>>¡Ú</option>
-    <option value=2 <?=$checked[2]?>>¡Ú¡Ú</option>
-    <option value=3 <?=$checked[3]?>>¡Ú¡Ú¡Ú</option>
-    <option value=4 <?=$checked[4]?>>¡Ú¡Ú¡Ú¡Ú</option>
-    <option value=5 <?=$checked[5]?>>¡Ú¡Ú¡Ú¡Ú¡Ú</option>
+    <option value=0 <?=$checked[0]?>>í¬ì¸íŠ¸</option>
+    <option value=1 <?=$checked[1]?>>â˜…</option>
+    <option value=2 <?=$checked[2]?>>â˜…â˜…</option>
+    <option value=3 <?=$checked[3]?>>â˜…â˜…â˜…</option>
+    <option value=4 <?=$checked[4]?>>â˜…â˜…â˜…â˜…</option>
+    <option value=5 <?=$checked[5]?>>â˜…â˜…â˜…â˜…â˜…</option>
     </SELECT>
     <SELECT NAME=_name7 value=<?=$_name7?>>
 <? $checked=array("",""); $checked[$_name7]="selected"; ?>
-    <option value=0 <?=$checked[0]?>>Àı¹İ</option>
-    <option value=1 <?=$checked[1]?>>¡Ù</option>
+    <option value=0 <?=$checked[0]?>>ì ˆë°˜</option>
+    <option value=1 <?=$checked[1]?>>â˜†</option>
     </select>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2>°¨µ¶</font></td>
+  <td align=right><font class=com2>ê°ë…</font></td>
   <td align=left><input type=text id=_name2 name=_name2 value="<?=$_name2?>" <?=size(20)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2>°³ºÀÀÏ</font></td>
+  <td align=right><font class=com2>ê°œë´‰ì¼</font></td>
   <td align=left><input type=text id=_name3 name=_name3 value="<?=$_name3?>" <?=size(20)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2>»ó¿µ½Ã°£</font></td>
-  <td align=left><input type=text id=_name8 name=_name8 value="<?=$_name8?>" <?=size(10)?> maxlength=200 class=input>ºĞ</td>
+  <td align=right><font class=com2>ìƒì˜ì‹œê°„</font></td>
+  <td align=left><input type=text id=_name8 name=_name8 value="<?=$_name8?>" <?=size(10)?> maxlength=200 class=input>ë¶„</td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2>Àå¸£</font></td>
+  <td align=right><font class=com2>ì¥ë¥´</font></td>
   <td align=left><input type=text id=_name4 name=_name4 value="<?=$_name4?>" <?=size(10)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2>ÁÖ¿¬</font></td>
+  <td align=right><font class=com2>ì£¼ì—°</font></td>
   <td align=left><input type=text id=_name5 name=_name5 value="<?=$_name5?>" <?=size(50)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2>¿¹°íÆí URL</font></td>
-  <td align=left>¡¤Àú¼Ó : <input type=text name=_name9 value="<?=$_name9?>" <?=size(70)?> maxlength=200 class=input><BR>¡¤°í¼Ó : <input type=text name=_name10 value="<?=$_name10?>" <?=size(70)?> maxlength=200 class=input></td>
+  <td align=right><font class=com2>ì˜ˆê³ í¸ URL</font></td>
+  <td align=left>Â·ì €ì† : <input type=text name=_name9 value="<?=$_name9?>" <?=size(70)?> maxlength=200 class=input><BR>Â·ê³ ì† : <input type=text name=_name10 value="<?=$_name10?>" <?=size(70)?> maxlength=200 class=input></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2>¿É¼Ç</font></td>
+  <td align=right><font class=com2>ì˜µì…˜</font></td>
   <td align=left class=com2>
     <?=$hide_category_start?><?=$category_kind?><?=$hide_category_end?>
 
-    <?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1>°øÁö»çÇ×<?=$hide_notice_end?> <input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1>´äº¯¸ŞÀÏ¹Ş±â <?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>ºñ¹Ğ±Û<?=$hide_secret_end?>
+    <?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1>ê³µì§€ì‚¬í•­<?=$hide_notice_end?> <input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1>ë‹µë³€ë©”ì¼ë°›ê¸° <?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>ë¹„ë°€ê¸€<?=$hide_secret_end?>
 
     <?=$hide_html_start?>
     <? include $dir."/swe/ed_seting_option.php"; ?>
@@ -275,7 +275,7 @@ function check_submit_y()
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2><b>¿µÈ­Á¦¸ñ</b></font></td>
+  <td align=right><font class=com2><b>ì˜í™”ì œëª©</b></font></td>
   <td align=left><? include $dir."/swe/ed_seting_substyle.php"; ?></td>
 </tr>
 <tr>
@@ -283,7 +283,7 @@ function check_submit_y()
 </tr>
 <tr>
   <td align=right onclick='javascript:edit_window_size("height_in");' style=cursor:pointer>
-  <font class=com2><b>³»¿ë</b></font> <font class=com2>¡å</font></td>
+  <font class=com2><b>ë‚´ìš©</b></font> <font class=com2>â–¼</font></td>
   <td align=left style=padding-top:8px;padding-bottom:8px;>
   <? include $dir."/swe/ed_seting_edit.php"; ?>
   </td>
@@ -295,11 +295,11 @@ function check_submit_y()
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2>°ø½Ä È¨ÆäÀÌÁö</font></td>
+  <td align=right><font class=com2>ê³µì‹ í™ˆí˜ì´ì§€</font></td>
   <td align=left><input type=text id=sitelink1 name=sitelink1 value="<?=$sitelink1?>" <?=size(62)?> maxlength=200 class=input style=width:99%></td>
 </tr>
 <tr>
-  <td align=right><font class=com2>°ü·Ã È¨ÆäÀÌÁö</font></td>
+  <td align=right><font class=com2>ê´€ë ¨ í™ˆí˜ì´ì§€</font></td>
   <td align=left><input type=text id=sitelink2 name=sitelink2 value="<?=$sitelink2?>" <?=size(62)?> maxlength=200 class=input style=width:99%></td>
 </tr>
 <tr>
@@ -308,14 +308,14 @@ function check_submit_y()
 <?=$hide_pds_start?>
 
 <tr>
-  <td align=right><font class=com2>ÆÄÀÏ #1</font></td>
+  <td align=right><font class=com2>íŒŒì¼ #1</font></td>
   <td align=left class=com2><? echo(filebox_add("1",$file_name1)) ?></td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right><font class=com2>ÆÄÀÏ #2</font></td>
+  <td align=right><font class=com2>íŒŒì¼ #2</font></td>
   <td align=left class=com2><? echo( filebox_add("2",$file_name2)) ?></td>
 </tr>
 <tr>
@@ -330,7 +330,7 @@ function check_submit_y()
 		<?=$a_preview?><img src=<?=$dir?>/images/bt_prev.gif border=0></a>
 		<?=$a_imagebox?><img src=<?=$dir?>/images/bt_imgbox.gif border=0></a>
 	</td>
-	<td width=60 valign=middle><?=$a_codebox?>ÄÚµå»ğÀÔ</a></td>
+	<td width=60 valign=middle><?=$a_codebox?>ì½”ë“œì‚½ì…</a></td>
 	<td align=right>
 		<img src=<?=$dir?>/images/bt_imsi_ok.gif border=0 accesskey="a" onclick=autoSave_n() style="cursor:pointer">&nbsp;
 		<input type=image src=<?=$dir?>/images/bt_write_ok.gif border=0 accesskey="s" onfocus=blur()>&nbsp;<a href=# onclick=history.back() onfocus=blur()><img src=<?=$dir?>/images/bt_cancel.gif border=0></a>

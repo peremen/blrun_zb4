@@ -10,19 +10,19 @@ function thisError($message) {
 }
 
 $member=member_info();
-if(!$member[no]) thisError("·Î±×ÀÎÈÄ »ç¿ëÇÏ¿©ÁÖ½Ê½Ã¿ä");
+if(!$member[no]) thisError("ë¡œê·¸ì¸í›„ ì‚¬ìš©í•˜ì—¬ì£¼ì‹­ì‹œìš”");
 
-if($member[is_admin]>3||$member[is_admin]<1) thisError("°ü¸®ÀÚÆäÀÌÁö¸¦ »ç¿ëÇÒ¼ö ÀÖ´Â ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
+if($member[is_admin]>3||$member[is_admin]<1) thisError("ê´€ë¦¬ìžíŽ˜ì´ì§€ë¥¼ ì‚¬ìš©í• ìˆ˜ ìžˆëŠ” ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
 
 if($s_comment) $comment = $s_comment;
 else $s_comment = $comment;
 
-if(isblank($from)) thisError("º¸³»´Â ÀÌÀÇ mailÀ» Àû¾îÁÖ½Ê½Ã¿ä");
-if(isblank($name)) thisError("º¸³»½Ã´Â ºÐÀÇ ÀÌ¸§À» Àû¾îÁÖ½Ê½Ã¿ä");
-if(isblank($subject)) thisError("Á¦¸ñÀ» Àû¾îÁÖ½Ê½Ã¿ä");
-if(isblank($comment)) thisError("³»¿ëÀ» Àû¾îÁÖ½Ê½Ã¿ä");
+if(isblank($from)) thisError("ë³´ë‚´ëŠ” ì´ì˜ mailì„ ì ì–´ì£¼ì‹­ì‹œìš”");
+if(isblank($name)) thisError("ë³´ë‚´ì‹œëŠ” ë¶„ì˜ ì´ë¦„ì„ ì ì–´ì£¼ì‹­ì‹œìš”");
+if(isblank($subject)) thisError("ì œëª©ì„ ì ì–´ì£¼ì‹­ì‹œìš”");
+if(isblank($comment)) thisError("ë‚´ìš©ì„ ì ì–´ì£¼ì‹­ì‹œìš”");
 
-// ÆäÀÌÁö ÀÌµ¿ ÇÒ¶§ ÆäÀÌÁö¸¦ ±¸ÇÔ
+// íŽ˜ì´ì§€ ì´ë™ í• ë•Œ íŽ˜ì´ì§€ë¥¼ êµ¬í•¨
 if(!$page) $page = 1; else $page++;
 if(!$fault) $fault = 0;
 if(!$true) $true = 0;
@@ -40,7 +40,7 @@ if($cart) {
 	for($i=0;$i<count($temp);$i++) $target_srls[] = (int)$temp[$i];
 	$s_que = sprintf(' and ( no in (%s) )', "'".implode("','", $target_srls)."'");
 } else {
-	// Á÷Á¢ ¼±ÅÃÀÌ ¾øÀ»¶§
+	// ì§ì ‘ ì„ íƒì´ ì—†ì„ë•Œ
 	$s_que=stripslashes($s_que);
 }
 
@@ -53,7 +53,7 @@ if(!$total_member) {
 
 if(!$totalpage) $totalpage = (int)(($total_member-1)/$sendnum)+1;
 
-if($total_member==0) thisError("¸ÞÀÏÀ» º¸³¾ È¸¿øÀÌ ¾ø½À´Ï´Ù");
+if($total_member==0) thisError("ë©”ì¼ì„ ë³´ë‚¼ íšŒì›ì´ ì—†ìŠµë‹ˆë‹¤");
 
 $result=mysql_query("select name, email, mailing from $member_table where group_no='$group_no' $s_que order by no limit $startnum, $sendnum",$connect) or thisError(addslashes(mysql_error()));
 
@@ -61,19 +61,19 @@ head( "onload=window.resizeTo(550,420); bgcolor=white");
 ?>
 
 <br>
-<center><b>¸ÞÀÏ¸µ ¹ß¼Û</b></center><br>
+<center><b>ë©”ì¼ë§ ë°œì†¡</b></center><br>
 
 <table border=0 cellpadding=4 cellspacing=1 width=100% bgcolor=white height=30>
 <form action=<?=$PHP_SELF?> method=post>
 <tr>
 	<td>
-		ÀüÃ¼ ±×·ì È¸¿ø ¼ö : <?=number_format($total_member_num)?> ¸í<br>
+		ì „ì²´ ê·¸ë£¹ íšŒì› ìˆ˜ : <?=number_format($total_member_num)?> ëª…<br>
 		<img src=images/t.gif border=0 height=5><br>
-		¸ÞÀÏ¸µ ¹ß¼Û ´ë»ó È¸¿ø ¼ö : <?=number_format($total_member)?> ¸í<br>
+		ë©”ì¼ë§ ë°œì†¡ ëŒ€ìƒ íšŒì› ìˆ˜ : <?=number_format($total_member)?> ëª…<br>
 		<img src=images/t.gif border=0 height=5><br>
-		¸ÞÀÏ ¹ß¼Û ´ÜÀ§  : <?=$sendnum?> ¸í ´ÜÀ§·Î Àß¶ó¼­ ¹ß¼Û<br>
+		ë©”ì¼ ë°œì†¡ ë‹¨ìœ„  : <?=$sendnum?> ëª… ë‹¨ìœ„ë¡œ ìž˜ë¼ì„œ ë°œì†¡<br>
 		<img src=images/t.gif border=0 height=5><br>
-		¸ÞÀÏ ¹ß¼Û ÆäÀÌÁö : <?=$page?> / <?=$totalpage?><br>
+		ë©”ì¼ ë°œì†¡ íŽ˜ì´ì§€ : <?=$page?> / <?=$totalpage?><br>
 
 <?
 $fault=0;
@@ -100,19 +100,19 @@ while($data=mysql_fetch_array($result)) {
 ?>
 
 		<img src=images/t.gif border=0 height=5><br>
-		¸ÞÀÏ ¹ß¼Û °á°ú : <?=$true?>¸í ¹ß¼Û ¼º°ø (<?=$nomailing?>¸íÀº ¸ÞÀÏ¸µ ¼ö½Å °ÅºÎ)<br>
+		ë©”ì¼ ë°œì†¡ ê²°ê³¼ : <?=$true?>ëª… ë°œì†¡ ì„±ê³µ (<?=$nomailing?>ëª…ì€ ë©”ì¼ë§ ìˆ˜ì‹  ê±°ë¶€)<br>
 		<img src=images/t.gif border=0 height=5><br>
-		<font color=white>¸ÞÀÏ ¹ß¼Û °á°ú : </font><?=$fault?>¸í ¹ß¼Û ½ÇÆÐ<br>
+		<font color=white>ë©”ì¼ ë°œì†¡ ê²°ê³¼ : </font><?=$fault?>ëª… ë°œì†¡ ì‹¤íŒ¨<br>
 		<img src=images/t.gif border=0 height=5><br>
 		<center>
 <?
 if($page==$totalpage) {
 ?>
-		<input type=button value="¸ÞÀÏ¸µ ¹ß¼Û ¿Ï·áÇÏ¿´½À´Ï´Ù" onclick=window.close() class=submit style=width:100%>
+		<input type=button value="ë©”ì¼ë§ ë°œì†¡ ì™„ë£Œí•˜ì˜€ìŠµë‹ˆë‹¤" onclick=window.close() class=submit style=width:100%>
 <?
 } else {
 ?>
-		<input type=submit value="´ÙÀ½ <?=$sendnum?>¸í ¿¡°Ô ¸ÞÀÏ ¹ß¼Û" class=submit style=width:100%>
+		<input type=submit value="ë‹¤ìŒ <?=$sendnum?>ëª… ì—ê²Œ ë©”ì¼ ë°œì†¡" class=submit style=width:100%>
 <?
 }
 ?>

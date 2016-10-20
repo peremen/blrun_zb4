@@ -1,5 +1,5 @@
 
-<!--====================[ sw_edit ÆÄÀÏ¸í: ed_seting_edit.php ]====================-->
+<!--====================[ sw_edit íŒŒì¼ëª…: ed_seting_edit.php ]====================-->
 <table width='100%' id='ed_toolbar' name='ed_toolbar' border='0' cellpadding='0' cellspacing='0'>
 <tr>
 <td>
@@ -35,13 +35,13 @@ if($setup['use_html'] > 0) {
 var textArea = document.getElementById("memo");
 if(sw_edit_use == "write") {
 	edit_windowdiv.style.height = "300px";
-	if(typeof window.getSelection == "undefined") //FF°¡ ¾Æ´Ï¸é
-		textArea.rows = "20";
+	if(typeof window.getSelection == "undefined") //FFê°€ ì•„ë‹ˆë©´
+		textArea.rows = "19";
 } else {
 	edit_windowdiv.style.height = "150px";
-	if(typeof window.getSelection == "undefined") //FF°¡ ¾Æ´Ï¸é
-		textArea.rows = "10";
+	if(typeof window.getSelection == "undefined") //FFê°€ ì•„ë‹ˆë©´
+		textArea.rows = "9";
 	document.getElementById("ed_toolbar").style.display = "none";
 }
 </SCRIPT>
-<!--====================[ sw_edit ÆÄÀÏ¸í: ed_seting_edit.php ³¡]====================-->
+<!--====================[ sw_edit íŒŒì¼ëª…: ed_seting_edit.php ë]====================-->

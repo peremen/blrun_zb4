@@ -12,8 +12,8 @@ if(!preg_match("/Zeroboard/i",$a_write)) $a_write = str_replace(">","><font clas
 if(!preg_match("/Zeroboard/i",$a_prev_page)) $a_prev_page = str_replace(">","><font class=list_eng>",$a_prev_page)."";
 if(!preg_match("/Zeroboard/i",$a_next_page)) $a_next_page = str_replace(">","><font class=list_eng>",$a_next_page)."";
 $print_page = str_replace("<font style=font-size:9pt>","<font class=list_eng>",$print_page);
-$print_page = str_replace("°è¼Ó °Ë»ö","<font class=list_han>°è¼Ó °Ë»ö",$print_page);
-$print_page = str_replace("ÀÌÀü °Ë»ö","<font class=list_han>°è¼Ó °Ë»ö",$print_page);
+$print_page = str_replace("ê³„ì† ê²€ìƒ‰","<font class=list_han>ê³„ì† ê²€ìƒ‰",$print_page);
+$print_page = str_replace("ì´ì „ ê²€ìƒ‰","<font class=list_han>ê³„ì† ê²€ìƒ‰",$print_page);
 ?>
 <img src=<?=$dir?>/t.gif border=0 height=10><br>
 <table border=0 cellpadding=0 cellspacing=0 width=<?=$width?> align=center>
@@ -31,7 +31,7 @@ $print_page = str_replace("ÀÌÀü °Ë»ö","<font class=list_han>°è¼Ó °Ë»ö",$print_pa
 		<?=$a_write?><img src=<?=$dir?>/bt_write.gif border=0></a>
 	</td>
 	<td align=right>
-		<?=$a_prev_page?>[ÀÌÀü <?=$setup[page_num]?>°³]</font></a><?=$print_page?></font><?=$a_next_page?>[´ÙÀ½ <?=$setup[page_num]?>°³]</font></a><br>
+		<?=$a_prev_page?>[ì´ì „ <?=$setup[page_num]?>ê°œ]</font></a><?=$print_page?></font><?=$a_next_page?>[ë‹¤ìŒ <?=$setup[page_num]?>ê°œ]</font></a><br>
 	<td>
 </form>
 </tr>

@@ -4,9 +4,9 @@ if(!$member[no] && empty($_POST['code'])) {
 <script language="javascript">
 <!--
 function sendit() {
-	//ÆÐ½º¿öµå
+	//íŒ¨ìŠ¤ì›Œë“œ
 	if(document.myform.code.value=="") {
-		alert("½ºÆÔ¹æÁö ÄÚµå¸¦ ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿ä");
+		alert("ìŠ¤íŒ¸ë°©ì§€ ì½”ë“œë¥¼ ìž…ë ¥í•´ ì£¼ì‹­ì‹œìš”");
 		document.myform.code.focus();
 		return false;
 	}
@@ -35,38 +35,38 @@ function sendit() {
 		<a tabindex="-1" style="border-style: none" href="#" title="Refresh Image" onclick="document.getElementById('siimage').src = 'securimage/securimage_show.php?sid=' + Math.random(); return false"><img src="securimage/images/refresh.gif" width="33" height="33" alt="Reload Image" border="0" onclick="this.blur()" align="bottom" /></a></p>
 		</div>
 		<div style="clear: both"></div>
-		<b>ÀÍ¸í±Û¾²±â ÄÚµåÀÔ·Â:</b>
+		<b>ìµëª…ê¸€ì“°ê¸° ì½”ë“œìž…ë ¥:</b>
 		<!-- NOTE: the "name" attribute is "code" so that $img->check($_POST['code']) will check the submitted form field -->
 		<input type="text" name="code" size="12" /><br /><br />
 	</td>
 </tr>
 <tr class=list0>
-	<td align=center><input type=button value=" È® ÀÎ " onClick="javascript:sendit()"></td>
+	<td align=center><input type=button value=" í™• ì¸ " onClick="javascript:sendit()"></td>
 </tr>
 </table>
 </form>
 <?
 } else {
 
-//½ºÆÔ¹æÁö º¸¾È ¼¼¼Çº¯¼ö ¼³Á¤°ú Modeº¯¼ö ·Î±×ÀÎ À¯Çüº° ³Ñ°Ü¹Þ±â ¼ÂÆÃ
+//ìŠ¤íŒ¸ë°©ì§€ ë³´ì•ˆ ì„¸ì…˜ë³€ìˆ˜ ì„¤ì •ê³¼ Modeë³€ìˆ˜ ë¡œê·¸ì¸ ìœ í˜•ë³„ ë„˜ê²¨ë°›ê¸° ì…‹íŒ…
 	if($member[no]) {
 		$mode = $_GET[mode];
 	} else {
 		$mode = $_POST[mode];
 	}
 
-//·£´ýÇÑ µÎ ¼ýÀÚ¸¦ ¹ß»ý(1-1000) ÈÄ º¯¼ö¿¡ ´ëÀÔ
+//ëžœë¤í•œ ë‘ ìˆ«ìžë¥¼ ë°œìƒ(1-1000) í›„ ë³€ìˆ˜ì— ëŒ€ìž…
 	$wnum1 = mt_rand(1,1000);
 	$wnum2 = mt_rand(1,1000);
 	$wnum1num2 = $wnum1*10000 + $wnum2;
-	//±Û¾²±â º¸¾ÈÀ» À§ÇØ ¼¼¼Çº¯¼ö¸¦ ¼³Á¤
+	//ê¸€ì“°ê¸° ë³´ì•ˆì„ ìœ„í•´ ì„¸ì…˜ë³€ìˆ˜ë¥¼ ì„¤ì •
 	$_SESSION['WRT_SS_VRS'] = $wnum1num2;
 ?>
 
 <table border=0 cellspacing=0 cellpadding=0 class=width>
 <tr>
 <td width=1>
-	<!-- ÆûÅÂ±× ºÎºÐ;; ¼öÁ¤ÇÏÁö ¾Ê´Â °ÍÀÌ ÁÁ½À´Ï´Ù -->
+	<!-- í¼íƒœê·¸ ë¶€ë¶„;; ìˆ˜ì •í•˜ì§€ ì•ŠëŠ” ê²ƒì´ ì¢‹ìŠµë‹ˆë‹¤ -->
 	<form method=post id=write name=write action=write_ok.php enctype=multipart/form-data>
 	<input type=hidden name=page value=<?=$page?>>
 	<input type=hidden name=id value=<?=$id?>>
@@ -100,7 +100,7 @@ function sendit() {
 	</tr>
 	<tr>
 	<td width=70 align=right><span class=cu><span class=v7><b>P</b>assword&nbsp;</span></span></td>
-	<td align=left><input type=password id=password name=password <?=size(16)?> maxlength=20 class=input2 onkeyup="ajaxLoad2()"> ºñ¹øÀ» ÀçÀÔ·ÂÇÏ¸é ÀÓ½ÃÀúÀåÀÌ º¹¿øµÊ</td>
+	<td align=left><input type=password id=password name=password <?=size(16)?> maxlength=20 class=input2 onkeyup="ajaxLoad2()"> ë¹„ë²ˆì„ ìž¬ìž…ë ¥í•˜ë©´ ìž„ì‹œì €ìž¥ì´ ë³µì›ë¨</td>
 	</tr>
 	<tr>
 		<td width=70 align=right><span class=cu><span class=v7><b>E</b>-mail&nbsp;</span></span></td>

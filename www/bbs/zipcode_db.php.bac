@@ -1,9 +1,9 @@
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <?
 /*
-Á¦·Îº¸µå¿ë ¿ìÆí¹øÈ£ ÇÃ·¯±×ÀÎ
-¸¸µçÀÌ: ÀÌ¼ö¿µ (http://nzeo.wo.tc:8080)
-º» ¼Ò½ºÀÇ ¹«´Ü¹èÆ÷,¼öÁ¤À» ±ÝÇÕ´Ï´Ù.
+ì œë¡œë³´ë“œìš© ìš°íŽ¸ë²ˆí˜¸ í”ŒëŸ¬ê·¸ì¸
+ë§Œë“ ì´: ì´ìˆ˜ì˜ (http://nzeo.wo.tc:8080)
+ë³¸ ì†ŒìŠ¤ì˜ ë¬´ë‹¨ë°°í¬,ìˆ˜ì •ì„ ê¸ˆí•©ë‹ˆë‹¤.
 */
 ini_set("max_execution_time", "300");
 ini_set("max_input_time", "600");
@@ -36,7 +36,7 @@ while (!feof ($fd))
 		
 		if(($i % 1000) == 0)
 		{
-			echo "<b>{$i}</b> °ÇÀ» ÀÔ·ÂÇÏ¿´½À´Ï´Ù.<br />";
+			echo "<b>{$i}</b> ê±´ì„ ìž…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.<br />";
 			flush();
 		}
 	}
@@ -44,6 +44,6 @@ while (!feof ($fd))
 fclose ($fd);
 @mysql_query("repair table zetyx_zipcode");
 ?>
-<br />¿ìÆí¹øÈ£Å×ÀÌºí »ý¼º¿Ï·á<br />
-<b><?=$i?></b>°ÇÀ» ÀÔ·Â ¿Ï·á ÇÏ¿´½À´Ï´Ù.<br />
-¿ìÆí¹øÈ£ Å×ÀÌºí°ú µ¥ÀÌÅ¸¸¦ Á¤»óÀûÀ¸·Î »ý¼ºÇÏ¿´½À´Ï´Ù.
+<br />ìš°íŽ¸ë²ˆí˜¸í…Œì´ë¸” ìƒì„±ì™„ë£Œ<br />
+<b><?=$i?></b>ê±´ì„ ìž…ë ¥ ì™„ë£Œ í•˜ì˜€ìŠµë‹ˆë‹¤.<br />
+ìš°íŽ¸ë²ˆí˜¸ í…Œì´ë¸”ê³¼ ë°ì´íƒ€ë¥¼ ì •ìƒì ìœ¼ë¡œ ìƒì„±í•˜ì˜€ìŠµë‹ˆë‹¤.

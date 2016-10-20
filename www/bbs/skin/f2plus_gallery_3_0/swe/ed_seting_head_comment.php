@@ -1,29 +1,29 @@
 
-<!--========================[ ¿¡µðÅÍ ±â´É »ç¿ëÀ¯¹« Ã¼Å© ]=========================-->
+<!--========================[ ì—ë””í„° ê¸°ëŠ¥ ì‚¬ìš©ìœ ë¬´ ì²´í¬ ]=========================-->
 <!-- 
-»ç¿ëÀÚº¯¼ö chk_edit_use ´Â Á÷Á¢ ¸¸µé¾î¾ß ÇÕ´Ï´Ù.
-»ç¿ëÀÚº¯¼ö(chk_edit_use)¸¦ ¸¸µéÁö ¸øÇÑ´Ù¸é ¾Æ·¡Ã³·³ ¹Ù²Ù¼¼¿ä.
-if($chk_edit_use=="on")	¸¦ if(true) ·Î ¹Ù²ß´Ï´Ù.
+ì‚¬ìš©ìžë³€ìˆ˜ chk_edit_use ëŠ” ì§ì ‘ ë§Œë“¤ì–´ì•¼ í•©ë‹ˆë‹¤.
+ì‚¬ìš©ìžë³€ìˆ˜(chk_edit_use)ë¥¼ ë§Œë“¤ì§€ ëª»í•œë‹¤ë©´ ì•„ëž˜ì²˜ëŸ¼ ë°”ê¾¸ì„¸ìš”.
+if($chk_edit_use=="on")	ë¥¼ if(true) ë¡œ ë°”ê¿‰ë‹ˆë‹¤.
 -->
 
 <?	
-if($emoticon_use=="on")			//<!-- ¿¡µðÅÍ ±â´É »ç¿ëÀ¯¹« Ã¼Å© -->
+if($emoticon_use=="on")			//<!-- ì—ë””í„° ê¸°ëŠ¥ ì‚¬ìš©ìœ ë¬´ ì²´í¬ -->
 {
-	$sw_edit_yn = "Y";			//<!-- HTML Editer »ç¿ë¿©ºÎ -->
-	$sw_edit_tag_yn = "N";		//<!-- HTML/Visual ¸ðµå Åä±Û -->
+	$sw_edit_yn = "Y";			//<!-- HTML Editer ì‚¬ìš©ì—¬ë¶€ -->
+	$sw_edit_tag_yn = "N";		//<!-- HTML/Visual ëª¨ë“œ í† ê¸€ -->
 }else{
 	$sw_edit_yn = "N";
 	$sw_edit_tag_yn = "N";
 };
 ?>
-<!--========================[ ¿¡µðÅÍ ±â´É »ç¿ëÀ¯¹« Ã¼Å© ]=========================-->
+<!--========================[ ì—ë””í„° ê¸°ëŠ¥ ì‚¬ìš©ìœ ë¬´ ì²´í¬ ]=========================-->
 
-<!--====================[ sw_edit ÆÄÀÏ¸í: ed_seting_head_comment.php ]====================-->
+<!--====================[ sw_edit íŒŒì¼ëª…: ed_seting_head_comment.php ]====================-->
 <input type='hidden' id='member_yn' name='member_yn' value='<? if(!$member['no']) { echo("Y"); }else{ echo("N"); } ?>'>
 <SCRIPT language="JavaScript" src="<?=$dir?>/swe/write_comment.js"></SCRIPT>
 
-<input type='hidden' id='sw_edit_yn' name='sw_edit_yn' value='<?=$sw_edit_yn?>'> <!-- HTML Editer »ç¿ë¿©ºÎ -->
-<input type='hidden' id='sw_edit_tag_yn' name='sw_edit_tag_yn' value='<?=$sw_edit_tag_yn?>'> <!-- HTML/Visual ¸ðµå Åä±Û -->
+<input type='hidden' id='sw_edit_yn' name='sw_edit_yn' value='<?=$sw_edit_yn?>'> <!-- HTML Editer ì‚¬ìš©ì—¬ë¶€ -->
+<input type='hidden' id='sw_edit_tag_yn' name='sw_edit_tag_yn' value='<?=$sw_edit_tag_yn?>'> <!-- HTML/Visual ëª¨ë“œ í† ê¸€ -->
 <input type='hidden' id='sw_m_level' name='sw_m_level' value='<?=$member['level']?>'>
 <input type='hidden' id='sw_s_grant_html' name='sw_s_grant_html' value='<?=$setup['grant_html']?>'>
 <input type='hidden' id='sw_s_use_html' name='sw_s_use_html' value='<?=$setup['use_html']?>'>
@@ -57,4 +57,4 @@ $a_codebox = str_replace("showCodeBox","sw_codebox",$a_codebox);
   	DocReloadInterval = setInterval("DocReload()", 300);
   //-->
 </SCRIPT>
-<!--====================[ sw_edit ÆÄÀÏ¸í: ed_seting_head_comment.php ³¡]====================-->
+<!--====================[ sw_edit íŒŒì¼ëª…: ed_seting_head_comment.php ë]====================-->

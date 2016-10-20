@@ -4,9 +4,9 @@ unset ($aver_point);
 $m_memo = explode("|||",$data[memo]);
 $_name1 = $m_memo[0]; 
 $_name1 = love_convert($_name1);
-// $_name1ÀÇ &¸¦ &amp ·Î Ä¡È¯ ÈÄ textarea ÅÂ±× ¾ÈÀÇ textarea ÅÂ±× ±úÁü ¹æÁö¸¦ À§ÇØ < ¸¦ &lt; ·Î ÇÑ¹ø´õ Ä¡È¯
+// $_name1ì˜ &ë¥¼ &amp ë¡œ ì¹˜í™˜ í›„ textarea íƒœê·¸ ì•ˆì˜ textarea íƒœê·¸ ê¹¨ì§ ë°©ì§€ë¥¼ ìœ„í•´ < ë¥¼ &lt; ë¡œ í•œë²ˆë” ì¹˜í™˜
 $_name1=str_replace("<","&lt;",str_replace("&","&amp;",$_name1));
-// view.php Ã¢ÀÌ ±úÁöÁö ¾Ê°Ô ÇÏ±â À§ÇØ Á¶¸³
+// view.php ì°½ì´ ê¹¨ì§€ì§€ ì•Šê²Œ í•˜ê¸° ìœ„í•´ ì¡°ë¦½
 $_name1="<div id=MEMOCONT_$data[no]></div><textarea style='display:none' id=MEMOAREA_$data[no]>".$_name1."</textarea><script>document.getElementById('MEMOCONT_'+$data[no]).innerHTML = document.getElementById('MEMOAREA_'+$data[no]).value</script>";
 $_name2 = del_html($m_memo[1]);
 $_name3 = del_html($m_memo[2]);
@@ -19,9 +19,9 @@ $_name9 = addslashes(htmlspecialchars($m_memo[8]));
 $_name10 = addslashes(htmlspecialchars($m_memo[9]));
 
 for($i=1;$i<=$_name6;$i++){
-	$_point.="¡Ú";
+	$_point.="â˜…";
 }
-if($_name7==1) $_point=$_point."¡Ù";
+if($_name7==1) $_point=$_point."â˜†";
 
 include "view_image_info.php";
 
@@ -37,8 +37,8 @@ if($total_comment[0]>0){
 	}
 	$aver=$total_point/$total_comment[0];
 	$aver=$aver / 2;
-	for($i=1;$i<=floor($aver);$i++) $aver_point.="¡Ú";
-	if(round($aver)==ceil($aver)&&ceil($aver)!=$aver) $aver_point=$aver_point."¡Ù";
+	for($i=1;$i<=floor($aver);$i++) $aver_point.="â˜…";
+	if(round($aver)==ceil($aver)&&ceil($aver)!=$aver) $aver_point=$aver_point."â˜†";
 }
 ?>
 
@@ -64,32 +64,32 @@ if($total_comment[0]>0){
 	<tr><td height=5></td></tr>
 	<tr valign=top>
 		<td align=left style=padding-left:10px><?=$print_img1?><?=$view_img1?></a>
-			<table border=0 cellpadding=0 cellspacing=0><tr><td nowrap width=55 align=left><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;Á¦¸ñ</B> :&nbsp;</td><td nowrap width=100%><?=$subject?></td></tr></table>
+			<table border=0 cellpadding=0 cellspacing=0><tr><td nowrap width=55 align=left><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;ì œëª©</B> :&nbsp;</td><td nowrap width=100%><?=$subject?></td></tr></table>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr></table>
-			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;°¨µ¶</B> :&nbsp;<?=$_name2?><BR>
+			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;ê°ë…</B> :&nbsp;<?=$_name2?><BR>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr></table>
-			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;°³ºÀÀÏ</B> :&nbsp;<?=$_name3?><BR>
+			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;ê°œë´‰ì¼</B> :&nbsp;<?=$_name3?><BR>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr></table>
-			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;Àå¸£</B> :&nbsp;<?=$_name4?><BR>
+			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;ì¥ë¥´</B> :&nbsp;<?=$_name4?><BR>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr></table>
-			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;ÁÖ¿¬</B>(Ãâ¿¬) :&nbsp;<?=$_name5?><BR>
+			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;ì£¼ì—°</B>(ì¶œì—°) :&nbsp;<?=$_name5?><BR>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr></table>
-			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;»ó¿µ½Ã°£</B> :&nbsp;<?=$_name8?>ºĞ<BR>
+			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle><B>&nbsp;ìƒì˜ì‹œê°„</B> :&nbsp;<?=$_name8?>ë¶„<BR>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
@@ -99,9 +99,9 @@ if($total_comment[0]>0){
 			<col width=></col><col width=140></col>
 			<tr bgcolor=#eeeeee>
 			<td>
-				<a href="<?=del_html(str_replace("\"","&quot;",$data[sitelink1]))?>" target=_blank><font class=list_eng><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;°ø½ÄÈ¨ÆäÀÌÁö</font></a>
+				<a href="<?=del_html(str_replace("\"","&quot;",$data[sitelink1]))?>" target=_blank><font class=list_eng><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;ê³µì‹í™ˆí˜ì´ì§€</font></a>
 			</td>
-			<td align=right><font class=list_eng><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;¿¹°íÆí &nbsp;</font><a href=javascript: onclick="player('<?=$_name9?>','800','600')"><img src=<?=$dir?>/images/movie_view1.gif border=0 align=absmiddle></a> &nbsp;<a href=javascript: onclick="player('<?=$_name10?>','800','600')"><img src=<?=$dir?>/images/movie_view2.gif border=0 align=absmiddle></a></td>
+			<td align=right><font class=list_eng><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;ì˜ˆê³ í¸ &nbsp;</font><a href=javascript: onclick="player('<?=$_name9?>','800','600')"><img src=<?=$dir?>/images/movie_view1.gif border=0 align=absmiddle></a> &nbsp;<a href=javascript: onclick="player('<?=$_name10?>','800','600')"><img src=<?=$dir?>/images/movie_view2.gif border=0 align=absmiddle></a></td>
 			</tr>
 			<tr>
 			<td colspan=2><img src=<?=$dir?>/images/point_fr2.gif border=0 align=absmiddle> :&nbsp;<?=$_point?><br>
@@ -112,8 +112,8 @@ if($total_comment[0]>0){
 					<table border=0 width=100% cellspacing=0 cellpadding=0 align=center>
 					<col width=></col><col width=77></col>
 					<tr><td align=right>
-					<a href="<?=del_html(str_replace("\"","&quot;",$data[sitelink2]))?>" target=_blank><font class=list_eng><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;°ü·ÃÈ¨ÆäÀÌÁö</font></a> <a href="#m_review_w"><font class=list_eng><img src=<?=$dir?>/images/m_review_w.gif border=0 align=absmiddle>¿µÈ­Æò¾²±â</font></a></td>
-					<td align=right><a href="#m_review_r"><font class=list_eng><img src=<?=$dir?>/images/m_review_r.gif border=0 align=absmiddle>¿µÈ­Æòº¸±â</font></a></td></tr>
+					<a href="<?=del_html(str_replace("\"","&quot;",$data[sitelink2]))?>" target=_blank><font class=list_eng><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;ê´€ë ¨í™ˆí˜ì´ì§€</font></a> <a href="#m_review_w"><font class=list_eng><img src=<?=$dir?>/images/m_review_w.gif border=0 align=absmiddle>ì˜í™”í‰ì“°ê¸°</font></a></td>
+					<td align=right><a href="#m_review_r"><font class=list_eng><img src=<?=$dir?>/images/m_review_r.gif border=0 align=absmiddle>ì˜í™”í‰ë³´ê¸°</font></a></td></tr>
 					</table>
 				</td>
 			</tr>
@@ -135,7 +135,7 @@ if($total_comment[0]>0){
 				<td height=4></td>
 			</tr>
 			</table>
-			<B>&nbsp;¿µÈ­³»¿ë</B>(ÁÙ°Å¸®) :<BR><BR>".$_name1."<BR><BR>";
+			<B>&nbsp;ì˜í™”ë‚´ìš©</B>(ì¤„ê±°ë¦¬) :<BR><BR>".$_name1."<BR><BR>";
 	include "script/sns.php";
 	echo "
 		</td>
@@ -147,7 +147,7 @@ if($total_comment[0]>0){
 	<tr valign=top>
 		<td align=left class=memo><BR>			
 		<?=$print_img2?><?=$view_img2?></A>
-		<B>&nbsp;¡¤ ¿µÈ­³»¿ë</B>(ÁÙ°Å¸®) :<BR><BR><?=$_name1?><BR><BR>
+		<B>&nbsp;Â· ì˜í™”ë‚´ìš©</B>(ì¤„ê±°ë¦¬) :<BR><BR><?=$_name1?><BR><BR>
 		<? include "script/sns.php"; ?>
 		</td>
 	</tr>

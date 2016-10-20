@@ -4,8 +4,8 @@ include "lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
 $s_keyword = $keyword;
-if(!$member[no]||$member[is_admin]>1||$member[level]>2) Error("·¹º§2 ÀÌ»óÀÇ ÃÖ°í °ü¸®ÀÚ¸¸ÀÌ »ç¿ëÇÒ¼ö ÀÖ½À´Ï´Ù");
-// ½ÇÁ¦ °Ë»öºÎºÐ
+if(!$member[no]||$member[is_admin]>1||$member[level]>2) Error("ë ˆë²¨2 ì´ìƒì˜ ìµœê³  ê´€ë¦¬ìžë§Œì´ ì‚¬ìš©í• ìˆ˜ ìžˆìŠµë‹ˆë‹¤");
+// ì‹¤ì œ ê²€ìƒ‰ë¶€ë¶„
 if($keyword) {
 	$comment_search=1;
 	$s_que = "";
@@ -32,14 +32,14 @@ head(" bgcolor=white");
   <Table border=0>
 	<tr>
   	<td style=line-height:180% height=40 align=right>
-  		<input type=checkbox name=keykind value="ip" <?if($keykind) echo "checked";?>> ¾ÆÀÌÇÇ &nbsp;
+  		<input type=checkbox name=keykind value="ip" <?if($keykind) echo "checked";?>> ì•„ì´í”¼ &nbsp;
   	</td>
   	<td><input type=text name=keyword value="<?=$s_keyword?>" size=20 class=input>&nbsp;</td>
   	<td><input type=image src=images/trace_search.gif border=0 valign=absmiddle></td>
 	</tr>
 	<tr>
   	<td colspan=3 align=right>
-		<font color=darkred>* ip·Î °Ë»öµÈ °á°ú´Â ºñ¹Ð±Ûµµ ¸ðµÎ º¸¿©Áý´Ï´Ù.</font>
+		<font color=darkred>* ipë¡œ ê²€ìƒ‰ëœ ê²°ê³¼ëŠ” ë¹„ë°€ê¸€ë„ ëª¨ë‘ ë³´ì—¬ì§‘ë‹ˆë‹¤.</font>
   	</td>
 	</tr>
 	</form>
@@ -58,13 +58,13 @@ if($keyword&&$s_que)
 		$table_name=$table_data[name];
 		if($table_data[use_alllist]) $file="zboard.php"; else $file="view.php";
 
-		// º»¹®
+		// ë³¸ë¬¸
 		$result=mysql_query("select * from $t_board"."_$table_name $s_que", $connect) or error(mysql_error());
 ?>
 
 <br><br><br>
 
-&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>°Ô½ÃÆÇ</b></font></a><br>
+&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>ê²Œì‹œíŒ</b></font></a><br>
 <?
 		while($data=mysql_fetch_array($result))
 		{
@@ -84,21 +84,21 @@ if($keyword&&$s_que)
 
 		mysql_free_result($result);
 
-		// ÄÚ¸àÆ®
+		// ì½”ë©˜íŠ¸
 		if($comment_search)
 		{
 			$result=mysql_query("select * from $t_comment"."_$table_name $s_que", $connect) or error(mysql_error());
 ?>
 
 <br><br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>°Ô½ÃÆÇ</b> ÀÇ °£´ÜÇÑ ´ä±Û</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>ê²Œì‹œíŒ</b> ì˜ ê°„ë‹¨í•œ ë‹µê¸€</font></a>
 <br>
 <?
 			while($data=mysql_fetch_array($result))
 			{
 				flush();
 				$data[memo] = del_html(strip_tags($data[memo]));
-				// °èÃþ ÄÚ¸àÆ® Ç¥½Ä ºÒ·¯¿Í Ã³¸®
+				// ê³„ì¸µ ì½”ë©˜íŠ¸ í‘œì‹ ë¶ˆëŸ¬ì™€ ì²˜ë¦¬
 				unset($c_match);
 				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
 					$data[memo] = str_replace($c_match[0],"",$data[memo]);

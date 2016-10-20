@@ -6,13 +6,13 @@ function check_submit()
  var rStr=document.getElementById('memo');
  if(!rSub.value) 
  {
-  alert('Á¦¸ñÀ» ÀÔ·ÂÇÏ¿© ÁÖ¼¼¿ä');
+  alert('ì œëª©ì„ ì…ë ¥í•˜ì—¬ ì£¼ì„¸ìš”');
   rSub.focus();
   return false;
  }
  if(!rStr.value)
  {
-  alert('³»¿ëÀ»ÀÔ·ÂÇÏ¿©ÁÖ¼¼¿ä');
+  alert('ë‚´ìš©ì„ì…ë ¥í•˜ì—¬ì£¼ì„¸ìš”');
   rStr.focus();
   return false;
  }

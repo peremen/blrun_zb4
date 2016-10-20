@@ -1,5 +1,5 @@
 <?
-//±âº»ÀûÀ¸·Î $img1Àº Ç×»ó µ¥ÀÌÅÍ¸¦ ¹ÞÀ½, ±×·¡¼­ $img2°¡ ÀÖ´Ù¸é µÑ´Ù¸¦ Ãâ·Â. ¾ø´Ù¸é $img1 ¸¸ Ãâ·Â
+//ê¸°ë³¸ì ìœ¼ë¡œ $img1ì€ í•­ìƒ ë°ì´í„°ë¥¼ ë°›ìŒ, ê·¸ëž˜ì„œ $img2ê°€ ìžˆë‹¤ë©´ ë‘˜ë‹¤ë¥¼ ì¶œë ¥. ì—†ë‹¤ë©´ $img1 ë§Œ ì¶œë ¥
 function image_tag($img1,$img2){
 	if($img2){
 		$img_tag="<img src=$img1 width=200 border=0 style=filter: Alpha(Opacity=75) style=PADDING-RIGHT: 10px; PADDING-LEFT: 13px; style=border-width:1pt;border-style:solid;border-color:#000000;>"."&nbsp;&nbsp;<img src=$img2 width=160 height=120 border=0 style=PADDING-RIGHT: 10px; PADDING-LEFT: 13px; style=border-width:1pt;border-style:solid;border-color:#000000  style=filter:progid:DXImageTransform.Microsoft.Alpha(style=1,opacity=100,finishOpacity=0,startX=0,finishX=100,startY=100,finishY=100);>";

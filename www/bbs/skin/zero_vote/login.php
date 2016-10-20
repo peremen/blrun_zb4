@@ -14,7 +14,7 @@ include "$dir/value.php3";
 </tr>
 <tr height=1><td colspan=2 bgcolor=<?=$sC_dark0?>><img src=images/t.gif height=1></td></tr>
 <tr height=20 valign=bottom bgcolor=<?=$sC_light1?>>
-	<td align=right class=thm8><input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="º¸¾ÈÁ¢¼Ó ¼³Á¤/ÇØÁ¦"> <b>ID &nbsp;&nbsp;&nbsp;</b></td>
+	<td align=right class=thm8><input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="ë³´ì•ˆì ‘ì† ì„¤ì •/í•´ì œ"> <b>ID &nbsp;&nbsp;&nbsp;</b></td>
 	<td align=right class=thm8><b>Password &nbsp;&nbsp;&nbsp;</b></td>
 </tr>
 <tr height=25 bgcolor=<?=$sC_light1?>>

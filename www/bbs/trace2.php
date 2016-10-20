@@ -8,7 +8,7 @@ if($keykind[4]) {
 	$userno = mysql_Fetch_array(mysql_query("select no from zetyx_member_table where user_id='$keyword'", $connect));
 	$userno = $userno[0];
 }
-// ½ÇÁ¦ °Ë»öºÎºĞ
+// ì‹¤ì œ ê²€ìƒ‰ë¶€ë¶„
 if($keyword) {
 	$comment_search=1;
 	$s_que = "";
@@ -46,18 +46,18 @@ head(" bgcolor=white");
   <Table border=0>
 	<tr>
   	<td style=line-height:180% height=40 align=right>
-  		<input type=checkbox name=keykind[0] value="name" <?if($keykind[0]) echo "checked";?>> ÀÌ¸§ &nbsp;
+  		<input type=checkbox name=keykind[0] value="name" <?if($keykind[0]) echo "checked";?>> ì´ë¦„ &nbsp;
   		<input type=checkbox name=keykind[1] value="email" <?if($keykind[1]) echo "checked";?>> E-Mail &nbsp;
-  		<input type=checkbox name=keykind[2] value="subject" <?if($keykind[2]) echo "checked";?>> Á¦¸ñ &nbsp;
-  		<input type=checkbox name=keykind[3] value="memo" <?if($keykind[3]) echo "checked";?>> ³»¿ë &nbsp;
-  		<input type=checkbox name=keykind[4] value="ismember" <?if($keykind[4]) echo "checked";?>> ¾ÆÀÌµğ &nbsp;
+  		<input type=checkbox name=keykind[2] value="subject" <?if($keykind[2]) echo "checked";?>> ì œëª© &nbsp;
+  		<input type=checkbox name=keykind[3] value="memo" <?if($keykind[3]) echo "checked";?>> ë‚´ìš© &nbsp;
+  		<input type=checkbox name=keykind[4] value="ismember" <?if($keykind[4]) echo "checked";?>> ì•„ì´ë”” &nbsp;
   	</td>
   	<td><input type=text name=keyword value="<?=$s_keyword?>" size=20 class=input>&nbsp;</td>
   	<td><input type=image src=images/trace_search.gif border=0 valign=absmiddle></td>
 	</tr>
 	<tr>
   	<td colspan=3 align=right>
-		<font color=darkred>* Ã¼Å©µÈ Ç×¸ñÀº AND ¿¬»êµË´Ï´Ù, Áï ¼±ÅÃµÈ Ç×¸ñÀÌ ¸ğµÎ ÇØ´çµÉ¶§ÀÔ´Ï´Ù.</font>
+		<font color=darkred>* ì²´í¬ëœ í•­ëª©ì€ AND ì—°ì‚°ë©ë‹ˆë‹¤, ì¦‰ ì„ íƒëœ í•­ëª©ì´ ëª¨ë‘ í•´ë‹¹ë ë•Œì…ë‹ˆë‹¤.</font>
   	</td>
 	</tr>
 	</form>
@@ -75,13 +75,13 @@ if($keyword&&$s_que)
 		$table_name=$table_data[name];
 		if($table_data[use_alllist]) $file="zboard.php"; else $file="view.php";
 
-		// º»¹®
+		// ë³¸ë¬¸
 		$result=mysql_query("select * from $t_board"."_$table_name $s_que order by no desc", $connect) or error(mysql_error());
 ?>
 
 <br><br><br>
 
-&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>°Ô½ÃÆÇ</b></font></a><br>
+&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>ê²Œì‹œíŒ</b></font></a><br>
 <?
 		while($data=mysql_fetch_array($result))
 		{
@@ -101,27 +101,27 @@ if($keyword&&$s_que)
 
 		mysql_free_result($result);
 
-		/// ÄÚ¸àÆ®
+		/// ì½”ë©˜íŠ¸
 		if($comment_search)
 		{
 			$result=mysql_query("select * from $t_comment"."_$table_name $s_que order by no desc", $connect) or error(mysql_error());
 ?>
 
 <br><br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>°Ô½ÃÆÇ</b> ÀÇ °£´ÜÇÑ ´ä±Û</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>ê²Œì‹œíŒ</b> ì˜ ê°„ë‹¨í•œ ë‹µê¸€</font></a>
 <br>
 <?
 			while($data=mysql_fetch_array($result))
 			{
 				flush();
 				$data[memo] = preg_replace("#".$keyword."#i","<font color=red>$keyword</font>",del_html($data[memo]));
-				// °èÃş ÄÚ¸àÆ® Ç¥½Ä ºÒ·¯¿Í Ã³¸®
+				// ê³„ì¸µ ì½”ë©˜íŠ¸ í‘œì‹ ë¶ˆëŸ¬ì™€ ì²˜ë¦¬
 				unset($c_match);
 				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
 					$data[memo] = str_replace($c_match[0],"",$data[memo]);
 ?>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ <?=del_html(str_replace("&rlm;","",$data[name]))?> ]
-&nbsp;<a href=<?=$file?>?id=<?=$table_name?>&no=<?=$data[parent]?> target=_blank><? if($data[is_secret]) echo "<font color='gray'>ºñ¹Ğ µ¡±ÛÀÔ´Ï´Ù</font>"; else echo $data[memo]; ?></a> &nbsp;&nbsp;
+&nbsp;<a href=<?=$file?>?id=<?=$table_name?>&no=<?=$data[parent]?> target=_blank><? if($data[is_secret]) echo "<font color='gray'>ë¹„ë°€ ë§ê¸€ì…ë‹ˆë‹¤</font>"; else echo $data[memo]; ?></a> &nbsp;&nbsp;
 <font color=666666>(<font color=blue><?=date("Y-m-d H:i:s",$data[reg_date])?></font>)</font>
 <img src=images/t.gif border=0 height=20><Br>
 

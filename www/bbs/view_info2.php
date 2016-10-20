@@ -1,11 +1,11 @@
 <?
-// ¶óÀÌºê·¯¸® ÇÔ¼ö ÆÄÀÏ ÀÎÅ©·çµå
+// ë¼ì´ë¸ŒëŸ¬ë¦¬ í•¨ìˆ˜ íŒŒì¼ ì¸í¬ë£¨ë“œ
 include "lib.php";
 
-// DB ¿¬°á
+// DB ì—°ê²°
 if(!$connect) $connect=dbConn();
 
-// ±Û¾´ÀÌÀÇ Á¤º¸¸¦ °®°í¿È;;
+// ê¸€ì“´ì´ì˜ ì •ë³´ë¥¼ ê°–ê³ ì˜´;;
 $data=mysql_fetch_array(mysql_query("select * from $member_table where no='$member_no'"));
 $data[name] = stripslashes($data[name]);
 $data[job] = stripslashes($data[job]);
@@ -28,13 +28,13 @@ $temp_name = get_private_icon($data[no], "1");
 if($temp_name) $i_name="<img src='$temp_name' border=0 align=absmiddle>&nbsp;".$i_name;
 $i_name="&nbsp;".$i_name."&nbsp;";
 
-// $data °¡ ¾øÀ»¶§, Áï Å»ÅğÇÑ È¸¿øÀÎ°æ¿ì Ç¥½Ã
-if(!$data[no]) Error("Å»ÅğÇÑ È¸¿øÀÔ´Ï´Ù", "window.close");
+// $data ê°€ ì—†ì„ë•Œ, ì¦‰ íƒˆí‡´í•œ íšŒì›ì¸ê²½ìš° í‘œì‹œ
+if(!$data[no]) Error("íƒˆí‡´í•œ íšŒì›ì…ë‹ˆë‹¤", "window.close");
 
-// ¸â¹öÁ¤º¸ ±¸ÇÏ±â
+// ë©¤ë²„ì •ë³´ êµ¬í•˜ê¸°
 $member=member_info();
 
-// ±×·ìµ¥ÀÌÅ¸ ÀĞ¾î¿À±â;;
+// ê·¸ë£¹ë°ì´íƒ€ ì½ì–´ì˜¤ê¸°;;
 $group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$data[group_no]'"));
 
 head("bgcolor=white","script_memo.php");
@@ -100,7 +100,7 @@ if($data[no]&&($data[openinfo]||$member[is_admin]==1)) {
       <td colspan="5" bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
     </tr>
 <? if($data[open_birth]&&$data[birth]) { ?>
-    <tr><td align=right><img src=images/vi_birthday.gif align=absmiddle>&nbsp;&nbsp;</td><td align=left><img src="images/t.gif" width="10" height="3"><br><?=date("Y³â m¿ù dÀÏ",$data[birth])?></td>
+    <tr><td align=right><img src=images/vi_birthday.gif align=absmiddle>&nbsp;&nbsp;</td><td align=left><img src="images/t.gif" width="10" height="3"><br><?=date("Yë…„ mì›” dì¼",$data[birth])?></td>
     </tr>
     <tr>
       <td colspan="5" bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -206,7 +206,7 @@ if($data[no]&&($data[openinfo]||$member[is_admin]==1)) {
 <? } ?>
     <tr>
       <td align=right><img src=images/vi_point.gif align=absmiddle>&nbsp;&nbsp;</td>
-      <td align=left><img src="images/t.gif" width="10" height="3"><br><?=($data[point1]*10+$data[point2])?> Á¡ ( ÀÛ¼º±Û¼ö : <?=$data[point1]?>, ÄÚ¸àÆ® : <?=$data[point2]?> )</td>
+      <td align=left><img src="images/t.gif" width="10" height="3"><br><?=($data[point1]*10+$data[point2])?> ì  ( ì‘ì„±ê¸€ìˆ˜ : <?=$data[point1]?>, ì½”ë©˜íŠ¸ : <?=$data[point2]?> )</td>
     </tr>
     </table>
   </td>
@@ -225,7 +225,7 @@ if($data[no]&&($data[openinfo]||$member[is_admin]==1)) {
 </tr>
 </table>
 <?
-} else Error("Á¤º¸°¡ °ø°³µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù", "window.close");
+} else Error("ì •ë³´ê°€ ê³µê°œë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤", "window.close");
 ?>
 
 <?

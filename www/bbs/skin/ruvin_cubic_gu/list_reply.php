@@ -5,7 +5,7 @@
 		<table border=0 cellpadding=0 cellspacing=0 class=re>
 		<tr>
 			<td align=left valign=top class=cu style=padding-left:7;padding-top:7><?=$face_image?><?=$name?></td>
-			<td align=right valign=top class=cu style=padding-right:7;padding-top:7><span class=v7><font title="¼öÁ¤"><?=$a_modify?>*&nbsp;&nbsp;</font></a><font title="»èÁ¦"><?=$a_delete?>*</font></a></span></td>
+			<td align=right valign=top class=cu style=padding-right:7;padding-top:7><span class=v7><font title="ìˆ˜ì •"><?=$a_modify?>*&nbsp;&nbsp;</font></a><font title="ì‚­ì œ"><?=$a_delete?>*</font></a></span></td>
 		</tr>
 
 		<tr>

@@ -1,32 +1,32 @@
 <?
 /*********************************************************************
-* È¸¿ø Á¤º¸ º¯°æ¿¡ ´ëÇÑ Ã³¸®
+* íšŒì› ì •ë³´ ë³€ê²½ì— ëŒ€í•œ ì²˜ë¦¬
 *********************************************************************/
 
 function del_member($no) {
 	global $group_no, $member_table, $get_memo_table,  $send_memo_table,$admin_table, $t_board, $t_comment, $connect, $group_table, $member;
 
 	$member_data = mysql_fetch_array(mysql_query("select * from $member_table where no = '$no'"));
-	if($member[is_admin]>1&&$member[no]!=$member_data[no]&&$member_data[level]<=$member[level]&&$member_data[is_admin]<=$member[is_admin]) error("¼±ÅÃÇÏ½Å È¸¿øÀÇ Á¤º¸¸¦ º¯°æÇÒ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
+	if($member[is_admin]>1&&$member[no]!=$member_data[no]&&$member_data[level]<=$member[level]&&$member_data[is_admin]<=$member[is_admin]) error("ì„ íƒí•˜ì‹  íšŒì›ì˜ ì •ë³´ë¥¼ ë³€ê²½í•  ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
 
-	// ¸â¹ö Á¤º¸ »èÁ¦
+	// ë©¤ë²„ ì •ë³´ ì‚­ì œ
 	@mysql_query("delete from $member_table where no='$no'") or error(mysql_error());
 
-	// ÂÊÁö Å×ÀÌºí¿¡¼­ ¸â¹ö Á¤º¸ »èÁ¦
+	// ìª½ì§€ í…Œì´ë¸”ì—ì„œ ë©¤ë²„ ì •ë³´ ì‚­ì œ
 	@mysql_query("delete from $get_memo_table where member_no='$no'") or error(mysql_error());
 	@mysql_query("delete from $send_memo_table where member_no='$no'") or error(mysql_error());
 
-	// ±×·ìÅ×ÀÌºí¿¡¼­ È¸¿ø¼ö -1
+	// ê·¸ë£¹í…Œì´ë¸”ì—ì„œ íšŒì›ìˆ˜ -1
 	@mysql_query("update $group_table set member_num=member_num-1 where no = '$group_no'") or error(mysql_error());
 
-	// ÀÌ¸§ ±×¸², ¾ÆÀÌÄÜ, ÀÌ¹ÌÁö ¹Ú½º »ç¿ë¿ë·® ÆÄÀÏ »èÁ¦
+	// ì´ë¦„ ê·¸ë¦¼, ì•„ì´ì½˜, ì´ë¯¸ì§€ ë°•ìŠ¤ ì‚¬ìš©ìš©ëŸ‰ íŒŒì¼ ì‚­ì œ
 	@z_unlink("icon/private_name/".$no.".gif");
 	@z_unlink("icon/private_icon/".$no.".gif");
 	@z_unlink("icon/member_image_box/".$no."_maxsize.php");
 }
 
 
-// È¸¿øÀüÃ¼ »èÁ¦ÇÏ´Â ºÎºĞ 
+// íšŒì›ì „ì²´ ì‚­ì œí•˜ëŠ” ë¶€ë¶„ 
 
 if($exec2=="deleteall"&&$member[is_admin]<3) {
 	for($i=0;$i<sizeof($cart);$i++) {
@@ -36,7 +36,7 @@ if($exec2=="deleteall"&&$member[is_admin]<3) {
 }
 
 
-// È¸¿ø °Ô½ÃÆÇ ±ÇÇÑ Ãë¼Ò½ÃÅ°´Â ºÎºĞ 
+// íšŒì› ê²Œì‹œíŒ ê¶Œí•œ ì·¨ì†Œì‹œí‚¤ëŠ” ë¶€ë¶„ 
 
 if($exec2=="modify_member_board_manager"&&$member[is_admin]<3) {
 
@@ -57,7 +57,7 @@ if($exec2=="modify_member_board_manager"&&$member[is_admin]<3) {
 }
 
 
-// È¸¿ø °Ô½ÃÆÇ ±ÇÇÑ Ãß°¡½ÃÅ°´Â ºÎºĞ 
+// íšŒì› ê²Œì‹œíŒ ê¶Œí•œ ì¶”ê°€ì‹œí‚¤ëŠ” ë¶€ë¶„ 
 
 if($exec2=="add_member_board_manager"&&$member[is_admin]<3) {
 
@@ -70,7 +70,7 @@ if($exec2=="add_member_board_manager"&&$member[is_admin]<3) {
 }
 
 
-// È¸¿ø ±ÇÇÑ º¯°æÇÏ´Â ºÎºĞ 
+// íšŒì› ê¶Œí•œ ë³€ê²½í•˜ëŠ” ë¶€ë¶„ 
 
 if($exec2=="moveall"&&$member[is_admin]==1) {
 	for($i=0;$i<sizeof($cart);$i++) {
@@ -80,7 +80,7 @@ if($exec2=="moveall"&&$member[is_admin]==1) {
 }
 
 
-// È¸¿ø ±×·ì º¯°æÇÏ´Â ºÎºĞ 
+// íšŒì› ê·¸ë£¹ ë³€ê²½í•˜ëŠ” ë¶€ë¶„ 
 
 if($exec2=="move_group"&&$member[is_admin]==1) {
 	for($i=0;$i<sizeof($cart);$i++) {
@@ -92,7 +92,7 @@ if($exec2=="move_group"&&$member[is_admin]==1) {
 }
 
 
-// È¸¿ø»èÁ¦ÇÏ´Â ºÎºĞ 
+// íšŒì›ì‚­ì œí•˜ëŠ” ë¶€ë¶„ 
 
 if($exec2=="del"&&$member[is_admin]<3) {
 	del_member($no);
@@ -100,12 +100,12 @@ if($exec2=="del"&&$member[is_admin]<3) {
 }
 
 
-// È¸¿øÁ¤º¸ º¯°æÇÏ´Â ºÎºĞ 
-preg_match('/[0-9a-zA-Z.\@\_]+/',$email,$result); //Æ¯¼ö¹®ÀÚ°¡ µé¾î°¬´ÂÁö Á¶»ç
-if($result[0]!=$email) Error("E-mail ¹®ÀÚ¸¦ È®ÀÎÇÏ¼¼¿ä(¿µ¹®ÀÚ¿Í ¼ıÀÚ, ., @, _¸¸À» »ç¿ë!)","");
+// íšŒì›ì •ë³´ ë³€ê²½í•˜ëŠ” ë¶€ë¶„ 
+preg_match('/[0-9a-zA-Z.\@\_]+/',$email,$result); //íŠ¹ìˆ˜ë¬¸ìê°€ ë“¤ì–´ê°”ëŠ”ì§€ ì¡°ì‚¬
+if($result[0]!=$email) Error("E-mail ë¬¸ìë¥¼ í™•ì¸í•˜ì„¸ìš”(ì˜ë¬¸ìì™€ ìˆ«ì, ., @, _ë§Œì„ ì‚¬ìš©!)","");
 $email=addslashes($email);
 $member_data = mysql_fetch_array(mysql_query("select email from $member_table where no = '$member_no'"));
-// email IP Ç¥½Ä ºÒ·¯¿Í Ã³¸®
+// email IP í‘œì‹ ë¶ˆëŸ¬ì™€ ì²˜ë¦¬
 unset($c_match);
 if(preg_match("#(\|\|\|)([0-9.]{1,})$#",$member_data[email],$c_match))
 	$email.=$c_match[1].$c_match[2];
@@ -123,13 +123,13 @@ $handphone=addslashes($handphone);
 $comment=addslashes($comment);
 
 if($exec2=="modify_member_ok") {
-	// POST ¹æ½ÄÀÌ ¾Æ´Ñ °æ¿ì Á¾·á
-	if($_SERVER['REQUEST_METHOD']!='POST') die("ºñÁ¤»óÀûÀÎ Á¢±ÙÀÌ¶ó Â÷´ÜµË´Ï´Ù");
+	// POST ë°©ì‹ì´ ì•„ë‹Œ ê²½ìš° ì¢…ë£Œ
+	if($_SERVER['REQUEST_METHOD']!='POST') die("ë¹„ì •ìƒì ì¸ ì ‘ê·¼ì´ë¼ ì°¨ë‹¨ë©ë‹ˆë‹¤");
 
-	if($member[is_admin]>1) Error("È¸¿øÁ¤º¸º¯°æ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
-	if(isblank($name)) Error("ÀÌ¸§À» ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù");
+	if($member[is_admin]>1) Error("íšŒì›ì •ë³´ë³€ê²½ ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
+	if(isblank($name)) Error("ì´ë¦„ì„ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤");
 
-	if($password&&$password1&&$password!=$password1) Error("ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù");
+	if($password&&$password1&&$password!=$password1) Error("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
 
 	$birth=mktime(0,0,0,$birth_2,$birth_3,$birth_1);
 
@@ -166,9 +166,9 @@ if($exec2=="modify_member_ok") {
 	$que.=",comment='$comment'";
 	$que.=" where no='$member_no'";
 
-	@mysql_query($que) or Error("È¸¿øÁ¤º¸ ¼öÁ¤½Ã¿¡ ¿¡·¯°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù ".mysql_error());
+	@mysql_query($que) or Error("íšŒì›ì •ë³´ ìˆ˜ì •ì‹œì— ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤ ".mysql_error());
 
-	// È¸¿øÀÇ ¼Ò°³ »çÁø 
+	// íšŒì›ì˜ ì†Œê°œ ì‚¬ì§„ 
 	if($_FILES[picture]) {
 		$picture = $_FILES[picture][tmp_name];
 		$picture_name = $_FILES[picture][name];
@@ -176,26 +176,26 @@ if($exec2=="modify_member_ok") {
 		$picture_size = $_FILES[picture][size];
 	}
 	if($picture_name) {
-		// Æ¯¼ö¹®ÀÚ°¡ µé¾î°¬´ÂÁö Á¶»ç
-		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$picture_name,$result);
-		if($result[0]!=$picture_name) Error("»çÁø ÆÄÀÏ¸íÀº ÇÑ±Û,¿µ¹®ÀÚ,¼ıÀÚ,°ıÈ£,°ø¹é,+,-,_ ¸¸À» »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù!");
+		// íŠ¹ìˆ˜ë¬¸ìê°€ ë“¤ì–´ê°”ëŠ”ì§€ ì¡°ì‚¬
+		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xE0-\xFF\x80-\xFF\x80-\xFF]+/',$picture_name,$result);
+		if($result[0]!=$picture_name) Error("ì‚¬ì§„ íŒŒì¼ëª…ì€ í•œê¸€,ì˜ë¬¸ì,ìˆ«ì,ê´„í˜¸,ê³µë°±,+,-,_ ë§Œì„ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤!");
 
-		if(!is_uploaded_file($picture)) Error("Á¤»óÀûÀÎ ¹æ¹ıÀ¸·Î ¾÷·ÎµåÇÏ¿© ÁÖ½Ê½Ã¿ä");
-		if(!preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$picture_name)) Error("»çÁøÀº jpg(jpeg)/png/gif/bmp ÆÄÀÏÀ» ¿Ã·ÁÁÖ¼¼¿ä!");
+		if(!is_uploaded_file($picture)) Error("ì •ìƒì ì¸ ë°©ë²•ìœ¼ë¡œ ì—…ë¡œë“œí•˜ì—¬ ì£¼ì‹­ì‹œìš”");
+		if(!preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$picture_name)) Error("ì‚¬ì§„ì€ jpg(jpeg)/png/gif/bmp íŒŒì¼ì„ ì˜¬ë ¤ì£¼ì„¸ìš”!");
 		$size=GetImageSize($picture);
-		if($size[0]>480||$size[1]>480) Error("»çÁøÀÇ Å©±â´Â 480*480ÀÌÇÏ¿©¾ß ÇÕ´Ï´Ù!");
+		if($size[0]>480||$size[1]>480) Error("ì‚¬ì§„ì˜ í¬ê¸°ëŠ” 480*480ì´í•˜ì—¬ì•¼ í•©ë‹ˆë‹¤!");
 		$kind=array("","jpg","jpeg","png","gif","bmp");
 		$n=$size[2];
 		$path="icon/member_".time().".".$kind[$n];
 		@move_uploaded_file($picture,$path);
 		@chmod($path,0707);
-		@mysql_query("update $member_table set picture='$path' where no='$member_no'") or Error("»çÁø ÀÚ·á ¾÷·Îµå½Ã ¿¡·¯°¡ ¹ß»ıÇÏ¿´½À´Ï´Ù");
+		@mysql_query("update $member_table set picture='$path' where no='$member_no'") or Error("ì‚¬ì§„ ìë£Œ ì—…ë¡œë“œì‹œ ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìŠµë‹ˆë‹¤");
 	}
 
-	// ÀÌ¹ÌÁö ¹Ú½º ¿ë·®À» ÀúÀå
+	// ì´ë¯¸ì§€ ë°•ìŠ¤ ìš©ëŸ‰ì„ ì €ì¥
 	if($maxdirsize<>100) {
 		$maxdirsize = $maxdirsize * 1024;
-		// icon µğ·ºÅä¸®¿¡ member_image_box µğ·ºÅä¸®°¡ ¾øÀ»°æ¿ì µğ·ºÅä¸® »ı¼º
+		// icon ë””ë ‰í† ë¦¬ì— member_image_box ë””ë ‰í† ë¦¬ê°€ ì—†ì„ê²½ìš° ë””ë ‰í† ë¦¬ ìƒì„±
 		$path = "icon/member_image_box";
 		if(!is_dir($path)) {
 			@mkdir($path,0707,true);
@@ -205,7 +205,7 @@ if($exec2=="modify_member_ok") {
 		zWriteFile("icon/member_image_box/".$member_no."_maxsize.php","<?/*".$maxdirsize."*/?>");
 	}
 
-	// ÀÌ¸§¾Õ¿¡ ºÙ´Â ¾ÆÀÌÄÜ »èÁ¦½Ã
+	// ì´ë¦„ì•ì— ë¶™ëŠ” ì•„ì´ì½˜ ì‚­ì œì‹œ
 	if($delete_private_icon) @z_unlink("icon/private_icon/".$member_no.".gif");
 
 	if($_FILES[private_icon]) {
@@ -214,31 +214,31 @@ if($exec2=="modify_member_ok") {
 		$private_icon_type = $_FILES[private_icon][type];
 		$private_icon_size = $_FILES[private_icon][size];
 	}
-	// ÀÌ¸§¾Õ¿¡ ºÙ´Â ¾ÆÀÌÄÜ ¾÷·Îµå½Ã Ã³¸®
+	// ì´ë¦„ì•ì— ë¶™ëŠ” ì•„ì´ì½˜ ì—…ë¡œë“œì‹œ ì²˜ë¦¬
 	if(@filesize($private_icon)) {
 		if(!is_dir("icon/private_icon")) {
 			@mkdir("icon/private_icon",0707,true);
 			@chmod("icon/private_icon",0707);
 		}
 
-		// ÇÑ±Û¹®ÀÚ°¡ µé¾î°¬´ÂÁö Á¶»ç
-		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$private_icon_name,$result);
-		if($result[0]!=$private_icon_name) Error("¾ÆÀÌÄÜ ÆÄÀÏ¸íÀº ÇÑ±Û,¿µ¹®ÀÚ,¼ıÀÚ,°ıÈ£,°ø¹é,+,-,_ ¸¸À» »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù!");
+		// í•œê¸€ë¬¸ìê°€ ë“¤ì–´ê°”ëŠ”ì§€ ì¡°ì‚¬
+		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xE0-\xFF\x80-\xFF\x80-\xFF]+/',$private_icon_name,$result);
+		if($result[0]!=$private_icon_name) Error("ì•„ì´ì½˜ íŒŒì¼ëª…ì€ í•œê¸€,ì˜ë¬¸ì,ìˆ«ì,ê´„í˜¸,ê³µë°±,+,-,_ ë§Œì„ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤!");
 
-		if(!is_uploaded_file($private_icon)) Error("Á¤»óÀûÀÎ ¹æ¹ıÀ¸·Î ¾÷·ÎµåÇÏ¿© ÁÖ½Ê½Ã¿ä");
-		if(!preg_match("/\.gif$/i",$private_icon_name)) Error("ÀÌ¸§¾ÕÀÇ ¾ÆÀÌÄÜÀº Gif ÆÄÀÏ¸¸ ¿Ã¸®½Ç¼ö ÀÖ½À´Ï´Ù");
+		if(!is_uploaded_file($private_icon)) Error("ì •ìƒì ì¸ ë°©ë²•ìœ¼ë¡œ ì—…ë¡œë“œí•˜ì—¬ ì£¼ì‹­ì‹œìš”");
+		if(!preg_match("/\.gif$/i",$private_icon_name)) Error("ì´ë¦„ì•ì˜ ì•„ì´ì½˜ì€ Gif íŒŒì¼ë§Œ ì˜¬ë¦¬ì‹¤ìˆ˜ ìˆìŠµë‹ˆë‹¤");
 		$size=GetImageSize($private_icon);
-		if($size[0]>16||$size[1]>16) Error("¾ÆÀÌÄÜÀÇ Å©±â´Â 16*16ÀÌÇÏ¿©¾ß ÇÕ´Ï´Ù");
+		if($size[0]>16||$size[1]>16) Error("ì•„ì´ì½˜ì˜ í¬ê¸°ëŠ” 16*16ì´í•˜ì—¬ì•¼ í•©ë‹ˆë‹¤");
 
 		@move_uploaded_file($private_icon, "icon/private_icon/".$member_no.".gif");
 		@chmod("icon/private_icon".$member_no.".gif",0707);
 		@chmod("icon/private_icon",0707);
 	}
 
-	// ÀÌ¸§À» ´ë½ÅÇÏ´Â ¾ÆÀÌÄÜ »èÁ¦½Ã
+	// ì´ë¦„ì„ ëŒ€ì‹ í•˜ëŠ” ì•„ì´ì½˜ ì‚­ì œì‹œ
 	if($delete_private_name) @z_unlink("icon/private_name/".$member_no.".gif");
 
-	// ÀÌ¸§À» ´ë½ÅÇÏ´Â ¾ÆÀÌÄÜ ¾÷·Îµå½Ã Ã³¸®
+	// ì´ë¦„ì„ ëŒ€ì‹ í•˜ëŠ” ì•„ì´ì½˜ ì—…ë¡œë“œì‹œ ì²˜ë¦¬
 	if($_FILES[private_name]) {
 		$private_name = $_FILES[private_name][tmp_name];
 		$private_name_name = $_FILES[private_name][name];
@@ -251,20 +251,20 @@ if($exec2=="modify_member_ok") {
 			@chmod("icon/private_name",0707);
 		}
 
-		// ÇÑ±Û¹®ÀÚ°¡ µé¾î°¬´ÂÁö Á¶»ç
-		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$private_name_name,$result);
-		if($result[0]!=$private_name_name) Error("ÀÌ¸§À» ´ë½ÅÇÏ´Â ¾ÆÀÌÄÜ ÆÄÀÏ¸íÀº ÇÑ±Û,¿µ¹®ÀÚ,¼ıÀÚ,°ıÈ£,°ø¹é,+,-,_ ¸¸À» »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù!");
+		// í•œê¸€ë¬¸ìê°€ ë“¤ì–´ê°”ëŠ”ì§€ ì¡°ì‚¬
+		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xE0-\xFF\x80-\xFF\x80-\xFF]+/',$private_name_name,$result);
+		if($result[0]!=$private_name_name) Error("ì´ë¦„ì„ ëŒ€ì‹ í•˜ëŠ” ì•„ì´ì½˜ íŒŒì¼ëª…ì€ í•œê¸€,ì˜ë¬¸ì,ìˆ«ì,ê´„í˜¸,ê³µë°±,+,-,_ ë§Œì„ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤!");
 
-		if(!is_uploaded_file($private_name)) Error("Á¤»óÀûÀÎ ¹æ¹ıÀ¸·Î ¾÷·ÎµåÇÏ¿© ÁÖ½Ê½Ã¿ä");
-		if(!preg_match("/\.gif$/i",$private_name_name)) Error("ÀÌ¸§À» ´ë½ÅÇÏ´Â ¾ÆÀÌÄÜÀº Gif ÆÄÀÏ¸¸ ¿Ã¸®½Ç¼ö ÀÖ½À´Ï´Ù");
+		if(!is_uploaded_file($private_name)) Error("ì •ìƒì ì¸ ë°©ë²•ìœ¼ë¡œ ì—…ë¡œë“œí•˜ì—¬ ì£¼ì‹­ì‹œìš”");
+		if(!preg_match("/\.gif$/i",$private_name_name)) Error("ì´ë¦„ì„ ëŒ€ì‹ í•˜ëŠ” ì•„ì´ì½˜ì€ Gif íŒŒì¼ë§Œ ì˜¬ë¦¬ì‹¤ìˆ˜ ìˆìŠµë‹ˆë‹¤");
 		$size=GetImageSize($private_name);
-		if($size[0]>60||$size[1]>16) Error("ÀÌ¸§À» ´ë½ÅÇÏ´Â ¾ÆÀÌÄÜÀÇ Å©±â´Â 60*16ÀÌÇÏ¿©¾ß ÇÕ´Ï´Ù");
+		if($size[0]>60||$size[1]>16) Error("ì´ë¦„ì„ ëŒ€ì‹ í•˜ëŠ” ì•„ì´ì½˜ì˜ í¬ê¸°ëŠ” 60*16ì´í•˜ì—¬ì•¼ í•©ë‹ˆë‹¤");
 
 		@move_uploaded_file($private_name, "icon/private_name/".$member_no.".gif");
 		@chmod("icon/private_name".$member_no.".gif",0707);
 		@chmod("icon/private_name",0707);
 	}
-	// °ü¸®ÀÚ ÀÚ½ÅÀÇ ºñ¹Ğ¹øÈ£ º¯°æ½Ã »õ·ÎÀÌ ÄíÅ°¸¦ ¼³Á¤ÇÏ¿© ÁÜ
+	// ê´€ë¦¬ì ìì‹ ì˜ ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ì‹œ ìƒˆë¡œì´ ì¿ í‚¤ë¥¼ ì„¤ì •í•˜ì—¬ ì¤Œ
 	//if($member_no==$member[no]&&$password&&$password1&&$password==$password1) {
 		//$password=mysql_fetch_array(mysql_query("select password('$password')"));
 		//setcookie("zetyxboard_userid",$member[user_id],'',"/");

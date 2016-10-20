@@ -10,14 +10,14 @@
 	<td align=center><b>
 		<?
 		if(!$mode||$mode=="write") {
-			echo "»õ·Î¿î ¼³¹®Á¶»ç ÀÛ¼º";
-			$memo="¼³¹®Á¶»ç|".time();
+			echo "ìƒˆë¡œìš´ ì„¤ë¬¸ì¡°ì‚¬ ìž‘ì„±";
+			$memo="ì„¤ë¬¸ì¡°ì‚¬|".time();
 		}
 		elseif($mode=="reply") {
-			echo "¼³¹®Á¶»ç Ç×¸ñ Ãß°¡";
-			$memo="¼³¹®Á¶»ç|".time();
+			echo "ì„¤ë¬¸ì¡°ì‚¬ í•­ëª© ì¶”ê°€";
+			$memo="ì„¤ë¬¸ì¡°ì‚¬|".time();
 		}
-		else echo"¼³¹®Á¶»ç Á¦¸ñ ¼öÁ¤";
+		else echo"ì„¤ë¬¸ì¡°ì‚¬ ì œëª© ìˆ˜ì •";
 		?></b><br>
 		<?
 		if($mode!="modify") $subject="";
@@ -25,7 +25,7 @@
 		<table border=0 cellspacing=1 cellpadding=0 width=600>
 		<tr>
 		<td width=1>
-			<!-- ÆûÅÂ±× ºÎºÐ;; ¼öÁ¤ÇÏÁö ¾Ê´Â °ÍÀÌ ÁÁ½À´Ï´Ù -->
+			<!-- í¼íƒœê·¸ ë¶€ë¶„;; ìˆ˜ì •í•˜ì§€ ì•ŠëŠ” ê²ƒì´ ì¢‹ìŠµë‹ˆë‹¤ -->
 			<form method=post id=write name=write action=write_ok.php onsubmit="return check_submit();" enctype=multipart/form-data>
 			<input type=hidden name=page value=<?=$page?>>
 			<input type=hidden name=id value=<?=$id?>>
@@ -53,30 +53,30 @@
 				<?=$hide_category_start?>
 
 				<tr>
-					<td align=right>¼³¹®Á¶»ç Á¾·ù</td><td align=left><?=$category_kind?> <font id="state"></font></td>
+					<td align=right>ì„¤ë¬¸ì¡°ì‚¬ ì¢…ë¥˜</td><td align=left><?=$category_kind?> <font id="state"></font></td>
 				</tr>
 				<?=$hide_category_end?>
 
 				<?=$hide_notice_start?>
 
 				<tr>
-					<td align=right>°øÁö»çÇ× ¼±ÅÃ</td>
+					<td align=right>ê³µì§€ì‚¬í•­ ì„ íƒ</td>
 					<td align=left> <input type=checkbox id=notice name=notice <?=$notice?> value=1></td>
 				</tr>
 				<?=$hide_notice_end?>
 
 				<tr>
-					<td align=right>¼³¹®Á¶»ç Á¦¸ñ</td>
+					<td align=right>ì„¤ë¬¸ì¡°ì‚¬ ì œëª©</td>
 					<td align=left> <input type=text id=subject name=subject <?=size(70)?> value="<?=$subject?>" maxlength=200 class=input onkeyup="addStroke()"> </td>
 				</tr>
 				<?=$hide_start?>
 
 				<tr>
-					<td align=right>ºñ¹Ð¹øÈ£ ÀÔ·Â</td>
-					<td align=left> <input type=password id=password name=password <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> ºñ¹øÀ» ÀçÀÔ·ÂÇÏ¸é ÀÓ½ÃÀúÀåÀÌ º¹¿øµÊ</td>
+					<td align=right>ë¹„ë°€ë²ˆí˜¸ ìž…ë ¥</td>
+					<td align=left> <input type=password id=password name=password <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> ë¹„ë²ˆì„ ìž¬ìž…ë ¥í•˜ë©´ ìž„ì‹œì €ìž¥ì´ ë³µì›ë¨</td>
 				</tr>
 				<tr>
-					<td width=60 align=right>¼³¹® ÀÛ¼ºÀÎ</td> 
+					<td width=60 align=right>ì„¤ë¬¸ ìž‘ì„±ì¸</td> 
 					<td align=left> <input type=text id=name name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> </td>
 				</tr>
 				<?=$hide_end?>

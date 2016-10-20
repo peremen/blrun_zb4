@@ -12,12 +12,12 @@ $check[1]="checked";
 <input type=hidden name=group_no value=<?=$group_no?>>
 <tr align=center bgcolor=#e0e0e0>
   <td colspan=2 bgcolor=#e0e0e0 style=line-height:180%>
-    �� �׷��� ȸ�����Խ� ��Ÿ���� ���Ծ���� �����Ҽ� �ֽ��ϴ�.<br>
-    ���� �⺻���� ���̵�, ��й�ȣ, �̸�, E-Mail�� ���� �Ұ����մϴ�;;;
+    이 그룹의 회원가입시 나타나는 가입양식을 조절할수 있습니다.<br>
+    가장 기본적인 아이디, 비밀번호, 이름, E-Mail은 조절 불가능합니다;;;
   </td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td width=20% align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>���Խ� �⺻ ����</td>
+  <td width=20% align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>가입시 기본 레벨</td>
   <td align=left>&nbsp;
     <select name=join_level>
 <?
@@ -28,68 +28,68 @@ for($i=$member[level];$i<=10;$i++)
 ?>
 
     </select>
-    �⺻������ ���Ҽ� �ֽ��ϴ�. 1~10�����Դϴ�
+    기본레벨을 정할수 있습니다. 1~10까지입니다
   </td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>ICQ </td>
-  <td align=left>&nbsp;<input type=checkbox name=use_icq value=1 <?=$check[$data[use_icq]]?>> �ƾ�ť��ȣ�� �Է¹����� �ֽ��ϴ�</td>
+  <td align=left>&nbsp;<input type=checkbox name=use_icq value=1 <?=$check[$data[use_icq]]?>> 아씨큐번호를 입력받을수 있습니다</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>AIM(AOL) </td>
-  <td align=left>&nbsp;<input type=checkbox name=use_aol value=1 <?=$check[$data[use_aol]]?>> AOL��ȣ�� �Է¹����� �ֽ��ϴ�</td>
+  <td align=left>&nbsp;<input type=checkbox name=use_aol value=1 <?=$check[$data[use_aol]]?>> AOL번호를 입력받을수 있습니다</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>MSN </td>
-  <td align=left>&nbsp;<input type=checkbox name=use_msn value=1 <?=$check[$data[use_msn]]?>> MSN ��ȣ�� �Է¹����� �ֽ��ϴ�</td>
+  <td align=left>&nbsp;<input type=checkbox name=use_msn value=1 <?=$check[$data[use_msn]]?>> MSN 번호를 입력받을수 있습니다</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>�ֹε�Ϲ�ȣ </td>
-  <td align=left>&nbsp;<input type=checkbox name=use_jumin value=1 <?=$check[$data[use_jumin]]?>> �ֹε�Ϲ�ȣ�� �Է¹����� �ֽ��ϴ�. �����ֹε�Ϲ�ȣ�� �ڵ����� üũ�մϴ�</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>주민등록번호 </td>
+  <td align=left>&nbsp;<input type=checkbox name=use_jumin value=1 <?=$check[$data[use_jumin]]?>> 주민등록번호를 입력받을수 있습니다. 허위주민등록번호는 자동으로 체크합니다</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>�ڱ�Ұ��� �ۼ� </td>
-  <td align=left>&nbsp;<input type=checkbox name=use_comment value=1 <?=$check[$data[use_comment]]?>> �ڱ�Ұ����� �ۼ��Ҽ� �ְ� �մϴ�</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>자기소개서 작성 </td>
+  <td align=left>&nbsp;<input type=checkbox name=use_comment value=1 <?=$check[$data[use_comment]]?>> 자기소개서를 작성할수 있게 합니다</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>���</td>
-  <td align=left>&nbsp;<input type=checkbox name=use_hobby value=1 <?=$check[$data[use_hobby]]?>> ��̸� �Է¹����� �ֽ��ϴ�.</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>취미</td>
+  <td align=left>&nbsp;<input type=checkbox name=use_hobby value=1 <?=$check[$data[use_hobby]]?>> 취미를 입력받을수 있습니다.</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>����</td>
-  <td align=left>&nbsp;<input type=checkbox name=use_job value=1 <?=$check[$data[use_job]]?>> ������ �Է¹����� �ֽ��ϴ�.</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>직업</td>
+  <td align=left>&nbsp;<input type=checkbox name=use_job value=1 <?=$check[$data[use_job]]?>> 직업을 입력받을수 있습니다.</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>�� �ּ�</td>
-  <td align=left>&nbsp;<input type=checkbox name=use_home_address value=1 <?=$check[$data[use_home_address]]?>> ���ּҸ� �Է¹����� �ֽ��ϴ�.</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>집 주소</td>
+  <td align=left>&nbsp;<input type=checkbox name=use_home_address value=1 <?=$check[$data[use_home_address]]?>> 집주소를 입력받을수 있습니다.</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>�� ��ȭ��ȣ</td>
-  <td align=left>&nbsp;<input type=checkbox name=use_home_tel value=1 <?=$check[$data[use_home_tel]]?>> ����ȭ��ȣ�� �Է��Ҽ� �ֽ��ϴ�.</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>집 전화번호</td>
+  <td align=left>&nbsp;<input type=checkbox name=use_home_tel value=1 <?=$check[$data[use_home_tel]]?>> 집전화번호를 입력할수 있습니다.</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>ȸ�� �ּ�</td>
-  <td align=left>&nbsp;<input type=checkbox name=use_office_address value=1 <?=$check[$data[use_office_address]]?>> ȸ���ּҸ� �Է��Ҽ� �ֽ��ϴ�</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>회사 주소</td>
+  <td align=left>&nbsp;<input type=checkbox name=use_office_address value=1 <?=$check[$data[use_office_address]]?>> 회사주소를 입력할수 있습니다</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>ȸ�� ��ȭ��ȣ</td>
-  <td align=left>&nbsp;<input type=checkbox name=use_office_tel value=1 <?=$check[$data[use_office_tel]]?>> ȸ����ȭ��ȣ�� �Է��Ҽ� �ֽ��ϴ�.</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>회사 전화번호</td>
+  <td align=left>&nbsp;<input type=checkbox name=use_office_tel value=1 <?=$check[$data[use_office_tel]]?>> 회사전화번호를 입력할수 있습니다.</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>�ڵ���</td>
-  <td align=left>&nbsp;<input type=checkbox name=use_handphone value=1 <?=$check[$data[use_handphone]]?>> �ڵ��� ��ȣ�� �Է��Ҽ� �ֽ��ϴ�</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>핸드폰</td>
+  <td align=left>&nbsp;<input type=checkbox name=use_handphone value=1 <?=$check[$data[use_handphone]]?>> 핸드폰 번호를 입력할수 있습니다</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>���ϸ� ����</td>
-  <td align=left>&nbsp;<input type=checkbox name=use_mailing value=1 <?=$check[$data[use_mailing]]?>> ���ϸ� ����Ʈ �ޱ� ������ �����Ҽ� �ֽ��ϴ�</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>메일링 가입</td>
+  <td align=left>&nbsp;<input type=checkbox name=use_mailing value=1 <?=$check[$data[use_mailing]]?>> 메일링 리스트 받기 유무를 선택할수 있습니다</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>���� </td>
-  <td align=left>&nbsp;<input type=checkbox name=use_birth value=1 <?=$check[$data[use_birth]]?>> ������ �Է¹ް� �Ҽ� �ֽ��ϴ�</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>생일 </td>
+  <td align=left>&nbsp;<input type=checkbox name=use_birth value=1 <?=$check[$data[use_birth]]?>> 생일을 입력받게 할수 있습니다</td>
 </tr>
 <tr align=center bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>����</td>
-  <td align=left>&nbsp;<input type=checkbox name=use_picture value=1 <?=$check[$data[use_picture]]?>> ���������� �Է��Ҽ� �ֽ��ϴ�</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold>사진</td>
+  <td align=left>&nbsp;<input type=checkbox name=use_picture value=1 <?=$check[$data[use_picture]]?>> 사진파일을 입력할수 있습니다</td>
 </tr>
 <tr align=right bgcolor=#ffffff><td colspan=2><img src=images/t.gif height=5><br><input type=image border=0 src=images/button_confirm.gif> &nbsp;<img style=cursor:hand onclick=reset() border=0 src=images/button_cancel.gif>&nbsp;&nbsp;</td>
 </tr>

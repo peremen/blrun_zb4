@@ -1,5 +1,5 @@
 
-<!--½Ò¸®°¡ ³ë°¡´Ù ÇÏ´Ù-->
+<!--ìŒ€ë¦¬ê°€ ë…¸ê°€ë‹¤ í•˜ë‹¤-->
 <script language=javascript>
 function showEmoticon(){
 	if(Emoticon.style.display=='none'){

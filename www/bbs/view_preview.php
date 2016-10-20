@@ -1,32 +1,32 @@
 <?
 include "lib.php";
 
-if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("Á¤»óÀûÀ¸·Î ±ÛÀ» ÀÛ¼ºÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.","window.close");
-if(!preg_match("/write.php/i",$HTTP_REFERER)) Error("Á¤»óÀûÀ¸·Î ±ÛÀ» ¾²½Ã±â ¹Ù¶ø´Ï´Ù.","window.close");
-if(getenv("REQUEST_METHOD") == 'GET' ) Error("Á¤»óÀûÀ¸·Î ±ÛÀ» ¾²½Ã±â ¹Ù¶ø´Ï´Ù..","window.close");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("ì •ìƒì ìœ¼ë¡œ ê¸€ì„ ì‘ì„±í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.","window.close");
+if(!preg_match("/write.php/i",$HTTP_REFERER)) Error("ì •ìƒì ìœ¼ë¡œ ê¸€ì„ ì“°ì‹œê¸° ë°”ëë‹ˆë‹¤.","window.close");
+if(getenv("REQUEST_METHOD") == 'GET' ) Error("ì •ìƒì ìœ¼ë¡œ ê¸€ì„ ì“°ì‹œê¸° ë°”ëë‹ˆë‹¤..","window.close");
 
 if($_name1) $memo=$_name1;
-if(!$subject) Error("Æ÷½ºÆ® Á¦¸ñÀ» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä","window.close");
-if(!$memo) Error("Æ÷½ºÆ® ³»¿ëÀ» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä","window.close");
+if(!$subject) Error("í¬ìŠ¤íŠ¸ ì œëª©ì„ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”","window.close");
+if(!$memo) Error("í¬ìŠ¤íŠ¸ ë‚´ìš©ì„ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”","window.close");
 
 if(!$connect) $connect=dbConn();
 
-// °Ô½ÃÆÇ ¼³Á¤ ÀĞ¾î ¿À±â
+// ê²Œì‹œíŒ ì„¤ì • ì½ì–´ ì˜¤ê¸°
 $setup=get_table_attrib($id);
 
-// ¼³Á¤µÇÁö ¾ÊÀº °Ô½ÃÆÇ
-if(!$setup[name]) Error("»ı¼ºµÇÁö ¾ÊÀº °Ô½ÃÆÇÀÔ´Ï´Ù.<br><br>°Ô½ÃÆÇÀ» »ı¼ºÈÄ »ç¿ëÇÏ½Ê½Ã¿ä","window.close()"); 
+// ì„¤ì •ë˜ì§€ ì•Šì€ ê²Œì‹œíŒ
+if(!$setup[name]) Error("ìƒì„±ë˜ì§€ ì•Šì€ ê²Œì‹œíŒì…ë‹ˆë‹¤.<br><br>ê²Œì‹œíŒì„ ìƒì„±í›„ ì‚¬ìš©í•˜ì‹­ì‹œìš”","window.close()"); 
 
-// ÇöÀç °Ô½ÃÆÇÀÇ ±×·ìÀÇ ¼³Á¤ ÀĞ¾î ¿À±â
+// í˜„ì¬ ê²Œì‹œíŒì˜ ê·¸ë£¹ì˜ ì„¤ì • ì½ì–´ ì˜¤ê¸°
 $group=group_info($setup[group_no]);
 
-// È¸¿ø µ¥ÀÌÅ¸ ÀĞ¾î ¿À±â
+// íšŒì› ë°ì´íƒ€ ì½ì–´ ì˜¤ê¸°
 $member = member_info();
 
-// ¿ø °Ô½Ã±Û Á¤º¸ ÀĞ¾î¿À±â
+// ì› ê²Œì‹œê¸€ ì •ë³´ ì½ì–´ì˜¤ê¸°
 if($no&&$mode=="modify") $data=mysql_fetch_array(mysql_query("select * from  $t_board"."_$id  where no='$no'"));
 
-// ÇöÀç ·Î±×ÀÎµÇ¾î ÀÖ´Â ¸â¹ö°¡ ÀüÃ¼, ¶Ç´Â ±×·ì°ü¸®ÀÚÀÎÁö °Ë»ç
+// í˜„ì¬ ë¡œê·¸ì¸ë˜ì–´ ìˆëŠ” ë©¤ë²„ê°€ ì „ì²´, ë˜ëŠ” ê·¸ë£¹ê´€ë¦¬ìì¸ì§€ ê²€ì‚¬
 if($member[is_admin]==1||($member[is_admin]==2&&$member[group_no]==$setup[group_no])||check_board_master($member, $setup[no])) $is_admin=1; else $is_admin="";
 
 if(get_magic_quotes_gpc()) {
@@ -34,17 +34,17 @@ if(get_magic_quotes_gpc()) {
 	$memo=stripslashes($memo);
 }
 
-// &lt,&gt¸¦ ½ÅÅÃ½ºÇÏÀÌ¶óÀÌÆ®¿¡¼­ »ç¿ëÇÏ±â À§ÇØ ÀÓ½Ã Ä¡È¯
+// &lt,&gtë¥¼ ì‹ íƒìŠ¤í•˜ì´ë¼ì´íŠ¸ì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ì„ì‹œ ì¹˜í™˜
 $memo=str_replace("&lt;","my_lt_ek",$memo);
 $memo=str_replace("&gt;","my_gt_ek",$memo);
 
-// °ü¸®ÀÚÀÌ°Å³ª HTMLÇã¿ë·¹º§ÀÌ ³·À»¶§ ÅÂ±×ÀÇ ±İÁöÀ¯¹«¸¦ Ã¼Å©
+// ê´€ë¦¬ìì´ê±°ë‚˜ HTMLí—ˆìš©ë ˆë²¨ì´ ë‚®ì„ë•Œ íƒœê·¸ì˜ ê¸ˆì§€ìœ ë¬´ë¥¼ ì²´í¬
 if(!$is_admin&&$setup[grant_html]<$member[level]) {
 
-	// ³»¿ëÀÇ HTML ±İÁö;;
+	// ë‚´ìš©ì˜ HTML ê¸ˆì§€;;
 	if(!$use_html||$setup[use_html]==0) $memo=del_html($memo);
 
-	// HTMLÀÇ ºÎºĞÇã¿ëÀÏ¶§;;
+	// HTMLì˜ ë¶€ë¶„í—ˆìš©ì¼ë•Œ;;
 	if($use_html&&$setup[use_html]==1) {
 		$memo=str_replace("<","&lt;",$memo);
 		$tag=explode(",",$setup[avoid_tag]);
@@ -55,7 +55,7 @@ if(!$is_admin&&$setup[grant_html]<$member[level]) {
 				$memo=preg_replace("#&lt;/".$tag[$i]."#i","</".$tag[$i],$memo);
 			}
 		}
-		// XSS ÇØÅ· ÀÌº¥Æ® ÇÚµé·¯ Á¦°Å
+		// XSS í•´í‚¹ ì´ë²¤íŠ¸ í•¸ë“¤ëŸ¬ ì œê±°
 		$xss_pattern1 = "!(<[^>]*?)on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)([^>]*?)(>)!i";
 		$xss_pattern2 = "!on(load|click|error|abort|activate|afterprint|afterupdate|beforeactivate|beforecopy|beforecut|beforedeactivate|beforeeditfocus|beforepaste|beforeprint|beforeunload|beforeupdate|blur|bounce|cellchange|change|contextmenu|controlselect|copy|cut|dataavailable|datasetchanged|datasetcomplete|dblclick|deactivate|drag|dragend|dragenter|dragleave|dragover|dragstart|drop|errorupdate|filterchange|finish|focus|focusin|focusout|help|keydown|keypress|keyup|layoutcomplete|losecapture|mousedown|mouseenter|mouseleave|mousemove|mouseout|mouseover|mouseup|mousewheel|move|moveend|movestart|paste|propertychange|readystatechange|reset|resize|resizeend|resizestart|rowenter|rowexit|rowsdelete|rowsinserted|scroll|select|selectionchange|selectstart|start|stop|submit|unload)\s*\=!i";
 		if(preg_match($xss_pattern1,$memo))
@@ -76,10 +76,10 @@ if($mode=="modify") {
 }
 else $ismember=$member[no];
 
-// SyntaxHighlighter ÄÚµå Á¾·ù º¯¼ö
+// SyntaxHighlighter ì½”ë“œ ì¢…ë¥˜ ë³€ìˆ˜
 $code=array("applescript","as3","bash","cf","csharp","cpp","css","delphi","diff","erl","groovy","js","java","jfx","perl","php","plain","ps","py","ruby","scss","scala","sql","vb","html");
 
-// ½ÅÅÃ½ºÇÏÀÌ¶óÀÌÆ® Ã³¸® ½ÃÀÛ
+// ì‹ íƒìŠ¤í•˜ì´ë¼ì´íŠ¸ ì²˜ë¦¬ ì‹œì‘
 $codePattern = "#(\[[a-z]+[0-9]?\_code\:[0-9]+\{[^}]*?\}\]|[\/[a-z]+[0-9]?\_code\])#si";
 $temp = preg_split($codePattern,$memo,-1,PREG_SPLIT_DELIM_CAPTURE);
 
@@ -88,7 +88,7 @@ for($i=0;$i<count($temp);$i++) {
 	for($j=0;$j<count($code);$j++) {
 		$pattern1 = "#\[".$code[$j]."\_code\:([0-9]+)\{([^}]*?)\}\]#i";
 		$pattern2 = "#\[\/".$code[$j]."\_code\]#i";
-		// ÄÚµå»ğÀÔ ÅÂ±× Â¦ÀÌ ¹ß°ßµÇ¸é
+		// ì½”ë“œì‚½ì… íƒœê·¸ ì§ì´ ë°œê²¬ë˜ë©´
 		if(preg_match($pattern1,$temp[$i])&&preg_match($pattern2,$temp[$i+2])) {
 			$cnt++;
 			if($code[$j]=="php")
@@ -100,8 +100,8 @@ for($i=0;$i<count($temp);$i++) {
 			$temp[$i+1]=str_replace("&#039;","&amp;#039;",$temp[$i+1]);
 			$temp[$i+1]=str_replace("&quot;","&amp;quot;",$temp[$i+1]);
 			$temp[$i+1]=str_replace("&nbsp;","&amp;nbsp;",$temp[$i+1]);
-			$temp[$i+1]=str_replace("my_lt_ek","&amp;lt;",$temp[$i+1]); // &lt »ç¿ë!
-			$temp[$i+1]=str_replace("my_gt_ek","&amp;gt;",$temp[$i+1]); // &gt »ç¿ë!
+			$temp[$i+1]=str_replace("my_lt_ek","&amp;lt;",$temp[$i+1]); // &lt ì‚¬ìš©!
+			$temp[$i+1]=str_replace("my_gt_ek","&amp;gt;",$temp[$i+1]); // &gt ì‚¬ìš©!
 			$temp[$i+1]=str_replace("<","&lt;",$temp[$i+1]);
 			
 			$temp[$i+2]="</pre>";
@@ -116,9 +116,9 @@ $memo="";
 for($i=0;$i<count($temp);$i++) {
 	$memo = $memo.$temp[$i];
 }
-// ½ÅÅÃ½ºÇÏÀÌ¶óÀÌÆ® Ã³¸® ³¡
+// ì‹ íƒìŠ¤í•˜ì´ë¼ì´íŠ¸ ì²˜ë¦¬ ë
 
-// ÀÓ½Ã Ä¡È¯µÈ ¹®ÀÚ¸¦ º¹¿øÇÔ
+// ì„ì‹œ ì¹˜í™˜ëœ ë¬¸ìë¥¼ ë³µì›í•¨
 $memo=str_replace("my_lt_ek","&lt;",$memo);
 $memo=str_replace("my_gt_ek","&gt;",$memo);
 
@@ -129,35 +129,35 @@ if($use_html<2) {
 	$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
 }
 
-// HTML »ç¿ëÀÏ °æ¿ì ÇöÀç È¸¿øÀÇ levelÀÌ ÀÍ¸í»ç¿ëÀÚ/°Ô½ºÆ® ·¹º§ÀÌ¶ó¸é style ¼Ó¼ºÀ» Á¦°Å
+// HTML ì‚¬ìš©ì¼ ê²½ìš° í˜„ì¬ íšŒì›ì˜ levelì´ ìµëª…ì‚¬ìš©ì/ê²ŒìŠ¤íŠ¸ ë ˆë²¨ì´ë¼ë©´ style ì†ì„±ì„ ì œê±°
 if($use_html&&$member[level]>8) {
 	$style_pattern = "/(<[^>]*?)style([^>]*?)(>)/i";
 	$memo=preg_replace($style_pattern,"\\1\\3",$memo);
 }
 
-// html ÀÌ¹ÌÁö ¸®»çÀÌÁî
+// html ì´ë¯¸ì§€ ë¦¬ì‚¬ì´ì¦ˆ
 $imagePattern = "#<img(.+?)src=([^>]*?)>#i";
 $imagePattern2 = "#<div align=left><img name=zb_target_resize src=\"skin\/f2plus_gallery_3_0\/images\/emoticon\/([^>]*?)><\/div>#i";
 $memo=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize\\1src=\\2></div>",$memo);
 $memo=preg_replace($imagePattern2,"<img src=\"skin/f2plus_gallery_3_0/images/emoticon/\\1>",$memo);
 
-// ÀÌ¹ÌÁö ¹Ú½º ÇØ¼® ¹× ¸®»çÀÌÂ¡, È®´ëº¸±â¸¦ À§ÇØ¼­ Á¤±ÔÇ¥Çö½Ä »ç¿ë
+// ì´ë¯¸ì§€ ë°•ìŠ¤ í•´ì„ ë° ë¦¬ì‚¬ì´ì§•, í™•ëŒ€ë³´ê¸°ë¥¼ ìœ„í•´ì„œ ì •ê·œí‘œí˜„ì‹ ì‚¬ìš©
 if($ismember) {
-	// ½æ³×ÀÏ ÀÌ¹ÌÁö °ü·Ã Ã³¸®
+	// ì¸ë„¤ì¼ ì´ë¯¸ì§€ ê´€ë ¨ ì²˜ë¦¬
 	$imagePattern="#\[img\:(.+?)\.(jpg|jpeg|png)\,#i";
 	preg_match_all($imagePattern,$memo,$out3,PREG_SET_ORDER);
 	for($i=0;$i<count($out3);$i++) {
 		$iview_large="vXL_".$out3[$i][1].".".$out3[$i][2].".jpg";
 		$src_img="icon/member_image_box/".$ismember."/".$out3[$i][1].".".$out3[$i][2];
 		if(file_exists($src_img) && !file_exists($_zb_path."data/$id/thumbnail/".$ismember."/".$iview_large)){
-			// ½æ³×ÀÏ µğ·ºÅä¸® ³» °¢ È¸¿øº° µğ·ºÅä¸® »ı¼º
+			// ì¸ë„¤ì¼ ë””ë ‰í† ë¦¬ ë‚´ ê° íšŒì›ë³„ ë””ë ‰í† ë¦¬ ìƒì„±
 			$error_check=0;
 			if(!is_dir($_zb_path."data/$id/thumbnail/".$ismember."/")) {
 				if(!@mkdir($_zb_path."data/$id/thumbnail/".$ismember."/",0777,true)) $error_check+=1;
 				if(!@chmod($_zb_path."data/$id/thumbnail/".$ismember."/",0707)) $error_check+=2;
 			}
-			if($error_check==2) echo "<br> ".$_zb_path."data/$id/thumbnail/".$ismember."/ µğ·ºÅä¸®ÀÇ ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
-			elseif($error_check==3) echo "<br> ".$_zb_path."data/$id/thumbnail/ µğ·ºÅä¸® ³»¿¡ ".$ismember."¹ø È¸¿ø µğ·ºÅä¸® »ı¼º¿¡ ½ÇÆĞÇß½À´Ï´Ù.<br> ÇØ´ç°æ·Î¿¡ µğ·ºÅä¸®¸¦ »ı¼º½ÃÄÑ ÁÖ½Ã°í ±ÇÇÑÀ» 707·Î ¼³Á¤ÇÏ¼¼¿ä<br><br>";
+			if($error_check==2) echo "<br> ".$_zb_path."data/$id/thumbnail/".$ismember."/ ë””ë ‰í† ë¦¬ì˜ ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
+			elseif($error_check==3) echo "<br> ".$_zb_path."data/$id/thumbnail/ ë””ë ‰í† ë¦¬ ë‚´ì— ".$ismember."ë²ˆ íšŒì› ë””ë ‰í† ë¦¬ ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.<br> í•´ë‹¹ê²½ë¡œì— ë””ë ‰í† ë¦¬ë¥¼ ìƒì„±ì‹œì¼œ ì£¼ì‹œê³  ê¶Œí•œì„ 707ë¡œ ì„¤ì •í•˜ì„¸ìš”<br><br>";
 
 			thumbnail3(640,$src_img,$_zb_path."data/$id/thumbnail/".$ismember."/".$iview_large);
 		}
@@ -173,7 +173,7 @@ if($ismember) {
 if($use_html<2) {
 	$memo=nl2br($memo);
 
-	// ½ÅÅÃ½ºÇÏÀÌ¶óÀÌÆ® Ã³¸® ½ÃÀÛ
+	// ì‹ íƒìŠ¤í•˜ì´ë¼ì´íŠ¸ ì²˜ë¦¬ ì‹œì‘
 	$codePattern = "#(<pre[^>]*?>|<\/pre>)#si";
 	$temp = preg_split($codePattern,$memo,-1,PREG_SPLIT_DELIM_CAPTURE);
 
@@ -183,7 +183,7 @@ if($use_html<2) {
 			$temp[$i+1]=preg_replace("#<br \/>|<br>#si","",$temp[$i+1]);
 			$i+=1;
 		} else {
-			// ÀÚµ¿¸µÅ© °Å´Â ºÎºĞ;;
+			// ìë™ë§í¬ ê±°ëŠ” ë¶€ë¶„;;
 			if($setup[use_autolink]&&!preg_match("/url\(/i",$temp[$i])) $temp[$i]=autolink($temp[$i]);
 		}
 	}
@@ -193,24 +193,24 @@ if($use_html<2) {
 	for($i=0;$i<count($temp);$i++) {
 		$memo = $memo.$temp[$i];
 	}
-	// ½ÅÅÃ½ºÇÏÀÌ¶óÀÌÆ® Ã³¸® ³¡
+	// ì‹ íƒìŠ¤í•˜ì´ë¼ì´íŠ¸ ì²˜ë¦¬ ë
 }
 
-// Á¦¸ñ Á¦ÀÛ
+// ì œëª© ì œì‘
 if(($is_admin||$member[level]<=$setup[use_html])&&$use_html) $data[subject]=trim($subject);
 else $data[subject]=trim(del_html($subject));
 
-// $memoÀÇ &¸¦ &amp ·Î Ä¡È¯ ÈÄ textarea ÅÂ±× ¾ÈÀÇ textarea ÅÂ±× ±úÁü ¹æÁö¸¦ À§ÇØ < ¸¦ &lt; ·Î ÇÑ¹ø´õ Ä¡È¯
+// $memoì˜ &ë¥¼ &amp ë¡œ ì¹˜í™˜ í›„ textarea íƒœê·¸ ì•ˆì˜ textarea íƒœê·¸ ê¹¨ì§ ë°©ì§€ë¥¼ ìœ„í•´ < ë¥¼ &lt; ë¡œ í•œë²ˆë” ì¹˜í™˜
 $memo=str_replace("<","&lt;",str_replace("&","&amp;",$memo));
 ?>
-<html>
+<html lang="ko">
 <head>
 <title><?=$setup[title]?></title>
-<meta http-equiv=Content-Type content=text/html; charset=EUC-KR>
+<meta http-equiv=Content-Type content=text/html; charset=UTF-8>
 <meta name="viewport" content="width=device-width">
 <link rel=StyleSheet HREF=skin/<?=$setup[skinname]?>/style.css type=text/css title=style>
 
-<!-- SyntaxHighlighter °ü·Ã Çì´õ -->
+<!-- SyntaxHighlighter ê´€ë ¨ í—¤ë” -->
 <link rel="stylesheet" type="text/css" href="syntaxhighlighter/styles/shThemeDefault.css" />
 <link rel="stylesheet" type="text/css" href="syntaxhighlighter/styles/shCore.css" />
 
@@ -219,7 +219,7 @@ $memo=str_replace("<","&lt;",str_replace("&","&amp;",$memo));
 <script type="text/javascript" src="syntaxhighlighter/scripts/shAutoloader.js"></script>
 <SCRIPT type="text/javascript" src="syntaxhighlighter/scripts/jQuery.js"></SCRIPT>
 
-<!-- ÀÌ¹ÌÁö ¸®»çÀÌÁî¸¦ À§ÇØ¼­ Ã³¸®ÇÏ´Â ºÎºĞ -->
+<!-- ì´ë¯¸ì§€ ë¦¬ì‚¬ì´ì¦ˆë¥¼ ìœ„í•´ì„œ ì²˜ë¦¬í•˜ëŠ” ë¶€ë¶„ -->
 <script>
 	function zb_img_check(){
 		var zb_main_table_width = document.zb_get_table_width.width*(100-4)/100;
@@ -254,12 +254,12 @@ $memo=str_replace("<","&lt;",str_replace("&","&amp;",$memo));
 <table border=0 cellspacing=0 cellpadding=10 width=100% height=100% bgcolor=black style=table-layout:fixed>
 <tr bgcolor=white valign=top>
 	<td height=50 class=title2_han>
-		<b>Á¦¸ñ: <?=$data[subject]?></b><br>
+		<b>ì œëª©: <?=$data[subject]?></b><br>
 	</td>
 </tr>
 <tr bgcolor=white valign=top>
 	<td class=memo>
-		<!-- ³»¿ë Ã¢ÀÌ ±úÁöÁö ¾Ê°Ô ÇÏ±â À§ÇØ Á¶¸³ -->
+		<!-- ë‚´ìš© ì°½ì´ ê¹¨ì§€ì§€ ì•Šê²Œ í•˜ê¸° ìœ„í•´ ì¡°ë¦½ -->
 		<div id=MEMOCONT></div>
 		<textarea style='display:none' id=MEMOAREA><?=$memo?></textarea>
 		<script>document.getElementById('MEMOCONT').innerHTML = document.getElementById('MEMOAREA').value</script>
@@ -270,6 +270,6 @@ $memo=str_replace("<","&lt;",str_replace("&","&amp;",$memo));
 </html>
 
 <?
-// ¼¼¼ÇÀÌ ÃÊ±âÈ­µÇ´Â ¹ö±× ¶§¹®¿¡ ¼¼¼Çº¯¼ö¸¦ Àç¼³Á¤
+// ì„¸ì…˜ì´ ì´ˆê¸°í™”ë˜ëŠ” ë²„ê·¸ ë•Œë¬¸ì— ì„¸ì…˜ë³€ìˆ˜ë¥¼ ì¬ì„¤ì •
 $_SESSION['WRT_SS_VRS'] = $wantispam;
 ?>

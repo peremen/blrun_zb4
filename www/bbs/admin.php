@@ -6,10 +6,10 @@ if((($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$mem
 else {
 	if($member[no]) {
 		destroyZBSessionID($member[no]);
-		// ÅäÅ« ÃÊ±âÈ­
+		// í† í° ì´ˆê¸°í™”
 		$_SESSION['_token2']='';
 		setCookie("token2","",0,"/","");
-		// 5.3 ÀÌ»ó¿ë ¼¼¼Ç Ã³¸®
+		// 5.3 ì´ìƒìš© ì„¸ì…˜ ì²˜ë¦¬
 		$_SESSION['zb_logged_no']='';
 		$_SESSION['zb_logged_time']='';
 		$_SESSION['zb_logged_ip']='';
@@ -25,30 +25,30 @@ head(" bgcolor=444444 onload=write.user_id.focus()");
 <script>
 function check_submit() {
 	if(!write.user_id.value) {
-		alert("ID¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");
+		alert("IDë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");
 		write.user_id.focus();
 		return false;
 	}
 	if(!write.password.value) {
-		alert("Password¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");
+		alert("Passwordë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");
 		write.password.focus();
 		return false;
 	}
 	var f = document.forms["write"];
-	// º¸¾ÈÁ¢¼ÓÀ» Ã¼Å©ÇßÀ» ¶§ÀÇ ¾×¼Ç
+	// ë³´ì•ˆì ‘ì†ì„ ì²´í¬í–ˆì„ ë•Œì˜ ì•¡ì…˜
 	if ( f.SSL_Login.checked ) {
 		f.action = sslUrl()+"login_check2.php";
 	}
-	check=confirm("ÀÚµ¿ ·Î±×ÀÎ ±â´ÉÀ» »ç¿ëÇÏ½Ã°Ú½À´Ï±î?\n\nÀÚµ¿ ·Î±×ÀÎ »ç¿ë½Ã ´ÙÀ½ Á¢¼ÓºÎÅÍ´Â ·Î±×ÀÎÀ» ÇÏ½ÇÇÊ¿ä°¡ ¾ø½À´Ï´Ù.\n\n´Ü, °ÔÀÓ¹æ, ÇĞ±³µî °ø°øÀå¼Ò¿¡¼­ ÀÌ¿ë½Ã °³ÀÎÁ¤º¸°¡ À¯ÃâµÉ¼ö ÀÖÀ¸´Ï Á¶½ÉÇÏ¿© ÁÖ½Ê½Ã¿ä");
+	check=confirm("ìë™ ë¡œê·¸ì¸ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n\nìë™ ë¡œê·¸ì¸ ì‚¬ìš©ì‹œ ë‹¤ìŒ ì ‘ì†ë¶€í„°ëŠ” ë¡œê·¸ì¸ì„ í•˜ì‹¤í•„ìš”ê°€ ì—†ìŠµë‹ˆë‹¤.\n\në‹¨, ê²Œì„ë°©, í•™êµë“± ê³µê³µì¥ì†Œì—ì„œ ì´ìš©ì‹œ ê°œì¸ì •ë³´ê°€ ìœ ì¶œë ìˆ˜ ìˆìœ¼ë‹ˆ ì¡°ì‹¬í•˜ì—¬ ì£¼ì‹­ì‹œìš”");
 	if(check) {write.auto_login.value=1;}
 	return true;
 }
 
 function check_SSL_Login() {
 	if (document.write.SSL_Login.checked==true) {
-		alert("SSL ¾ÏÈ£È­ º¸¾ÈÁ¢¼ÓÀ» ¼³Á¤ÇÕ´Ï´Ù");
+		alert("SSL ì•”í˜¸í™” ë³´ì•ˆì ‘ì†ì„ ì„¤ì •í•©ë‹ˆë‹¤");
 	} else {
-		alert("SSL ¾ÏÈ£È­ º¸¾ÈÁ¢¼ÓÀ» ÇØÁ¦ÇÕ´Ï´Ù");
+		alert("SSL ì•”í˜¸í™” ë³´ì•ˆì ‘ì†ì„ í•´ì œí•©ë‹ˆë‹¤");
 	}
 }
 </script>
@@ -66,7 +66,7 @@ function check_SSL_Login() {
 </tr>
 <tr height=25>
   <td align=right bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><b>User ID &nbsp;</b></td>
-  <td bgcolor=#e0e0e0 align=left><input type=text name=user_id value='' size=20 maxlength=20 class=input style=border-color:#b0b0b0> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="º¸¾ÈÁ¢¼Ó ¼³Á¤/ÇØÁ¦"></td>
+  <td bgcolor=#e0e0e0 align=left><input type=text name=user_id value='' size=20 maxlength=20 class=input style=border-color:#b0b0b0> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="ë³´ì•ˆì ‘ì† ì„¤ì •/í•´ì œ"></td>
 </tr>
 <tr height=25>
   <td align=right bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><b>Password &nbsp;</b></td>

@@ -5,18 +5,18 @@
 		<table width='250' border='0' cellpadding='0' cellspacing='0' background='<?=$dir?>/images/sw_window_bgi.gif' style='word-break:break-all; background-repeat:repeat-y;'>
 		<tr><td><img src='<?=$dir?>/images/sw_window_t.gif' border='0'></td></tr>
 		<tr>
-			<td align='center' style='padding:7 0 7 0;' class='sw_ft_style_0'><strong>È¸¿ø ·Î±×ÀÎ</strong></td>
+			<td align='center' style='padding:7 0 7 0;' class='sw_ft_style_0'><strong>íšŒì› ë¡œê·¸ì¸</strong></td>
 		</tr>
 		<tr><td class='sw_bg_style_0'></td></tr>
 		<tr>
 			<td align='center' style='padding:7;'>
 				<table border='0' cellpadding='0' cellspacing='0'>
 				<tr height='25'>
-					<td align='right' class='sw_ft_style_0'>¾ÆÀÌµð</td>
-					<td align='left' style='padding:0 0 0 5;'><input type='text' name='user_id' maxlength='20' class='text' style='width:90;'> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="º¸¾ÈÁ¢¼Ó ¼³Á¤/ÇØÁ¦"></td>
+					<td align='right' class='sw_ft_style_0'>ì•„ì´ë””</td>
+					<td align='left' style='padding:0 0 0 5;'><input type='text' name='user_id' maxlength='20' class='text' style='width:90;'> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="ë³´ì•ˆì ‘ì† ì„¤ì •/í•´ì œ"></td>
 				</tr>
 				<tr height='25'>
-					<td align='right' class='sw_ft_style_0'>ºñ¹Ð¹øÈ£</td>
+					<td align='right' class='sw_ft_style_0'>ë¹„ë°€ë²ˆí˜¸</td>
 					<td align='left' style='padding:0 0 0 5;'><input type='password' name='password' maxlength='20' class='text' style='width:90;'></td>
 				</tr>
 				</table>
@@ -25,8 +25,8 @@
 		<tr><td class='sw_bg_style_0'></td></tr>
 		<tr>
 			<td align='center' style='padding:7 0 7 0;'>
-				<input type='submit' class='submit' value='·Î±×ÀÎ' style='margin:0 5 0 0;'>
-				<input type='button' class='button' value='Ãë&nbsp;&nbsp;&nbsp;¼Ò' onClick='history.back();'>
+				<input type='submit' class='submit' value='ë¡œê·¸ì¸' style='margin:0 5 0 0;'>
+				<input type='button' class='button' value='ì·¨&nbsp;&nbsp;&nbsp;ì†Œ' onClick='history.back();'>
 			</td>
 		</tr>
 		<tr><td><img src='<?=$dir?>/images/sw_window_b.gif' border='0'></td></tr>

@@ -3,7 +3,7 @@ $group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='
 
 $member_data=mysql_fetch_array(mysql_query("select * from $member_table where no='$no'"));
 
-if($member[is_admin]>1&&$member[no]!=$member_data[no]&&$member_data[level]<=$member[level]&&$member_data[is_admin]<=$member[is_admin]) error("¼±ÅÃÇÏ½Å È¸¿øÀÇ Á¤º¸¸¦ º¯°æÇÒ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
+if($member[is_admin]>1&&$member[no]!=$member_data[no]&&$member_data[level]<=$member[level]&&$member_data[is_admin]<=$member[is_admin]) error("ì„ íƒí•˜ì‹  íšŒì›ì˜ ì •ë³´ë¥¼ ë³€ê²½í•  ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
 
 $check[1]="checked";
 ?>
@@ -11,25 +11,25 @@ $check[1]="checked";
 <script>
  function check_submit()
  {
-  if(write.password.value!=write.password1.value) {alert("ÆĞ½º¿öµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");write.password.value="";write.password1.value=""; write.password.focus(); return false;}
-  if(!write.name.value) { alert("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä"); write.name.focus(); return false; }
+  if(write.password.value!=write.password1.value) {alert("íŒ¨ìŠ¤ì›Œë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");write.password.value="";write.password1.value=""; write.password.focus(); return false;}
+  if(!write.name.value) { alert("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”"); write.name.focus(); return false; }
 
 <? if($group_data[use_birth]) { ?>
 
     if ( write.birth_1.value < 1000 || write.birth_1.value <= 0 )  {
-         alert('»ı³âÀÌ Àß¸øÀÔ·ÂµÇ¾ú½À´Ï´Ù.');
+         alert('ìƒë…„ì´ ì˜ëª»ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.');
          write.birth_1.value='';
          write.birth_1.focus();
         return false;
     }
     if ( write.birth_2.value > 12 || write.birth_2.value <= 0 ) {
-         alert('»ı¿ùÀÌ Àß¸øÀÔ·ÂµÇ¾ú½À´Ï´Ù.');
+         alert('ìƒì›”ì´ ì˜ëª»ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.');
          write.birth_2.value='';
          write.birth_2.focus();
         return false;
     }
     if ( write.birth_3.value > 31 || write.birth_3.value <= 0 )  {
-         alert('»ıÀÏÀÌ Àß¸øÀÔ·ÂµÇ¾ú½À´Ï´Ù.');
+         alert('ìƒì¼ì´ ì˜ëª»ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.');
          write.birth_3.value='';
          write.birth_3.focus();
         return false;
@@ -66,15 +66,15 @@ $check[1]="checked";
 <input type=hidden name=keykind value=<?=$keykind?>>
 <input type=hidden name=keyword value=<?=$keyword?>>
 <input type=hidden name=like value=<?=$like?>>
-<tr height=22 align=center><td height=30 colspan=2><b><?=$member_data[name]?></b> È¸¿ø ¼³Á¤ º¯°æ</td>
+<tr height=22 align=center><td height=30 colspan=2><b><?=$member_data[name]?></b> íšŒì› ì„¤ì • ë³€ê²½</td>
 </tr>
 <tr height=22 align=center bgcolor=#e0e0e0>
-  <td width=25% align=right bgcolor=#a0a0a0 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>¾ÆÀÌµğ&nbsp;&nbsp;</td>
-  <td align=left>&nbsp;<?=$member_data[user_id]?> &nbsp;(<?=date("Y³â m¿ù dÀÏ H½Ã iºĞ",$member_data[reg_date])?>¿¡ °¡ÀÔ)</td>
+  <td width=25% align=right bgcolor=#a0a0a0 style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì•„ì´ë””&nbsp;&nbsp;</td>
+  <td align=left>&nbsp;<?=$member_data[user_id]?> &nbsp;(<?=date("Yë…„ mì›” dì¼ Hì‹œ ië¶„",$member_data[reg_date])?>ì— ê°€ì…)</td>
 </tr>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ºñ¹Ğ¹øÈ£&nbsp;&nbsp;</td>
-  <td align=left bgcolor=#e0e0e0><input type=password name=password size=20 maxlength=20 class=input style=border-color:#b0b0b0> È®ÀÎ : <input type=password name=password1 size=20 maxlength=20 class=input style=border-color:#b0b0b0></td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ë¹„ë°€ë²ˆí˜¸&nbsp;&nbsp;</td>
+  <td align=left bgcolor=#e0e0e0><input type=password name=password size=20 maxlength=20 class=input style=border-color:#b0b0b0> í™•ì¸ : <input type=password name=password1 size=20 maxlength=20 class=input style=border-color:#b0b0b0></td>
 </tr>
 <?
 if($member[no]==$no) $locking = "disabled";
@@ -84,20 +84,20 @@ if($member[is_admin]==1)
 	$select[$member_data[is_admin]]="selected";
 ?>
 <tr height=22 align=center>  
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>°ü¸®ÀÚ ·¹º§&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ê´€ë¦¬ì ë ˆë²¨&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>
     <select name=is_admin <?=$locking?>>
-    <option value=3 <?=$select[3]?>>ÀÏ¹İ»ç¿ëÀÚ</option>
-    <option value=2 <?=$select[2]?>>±×·ì°ü¸®ÀÚ</option>
-    <option value=1 <?=$select[1]?>>ÃÖ°í°ü¸®ÀÚ</option>
-    </select> (°ü¸®ÀÚ ·¹º§Àº ÀÏ¹İ ·¹º§¿¡ ¿ì¼±ÇÕ´Ï´Ù)
+    <option value=3 <?=$select[3]?>>ì¼ë°˜ì‚¬ìš©ì</option>
+    <option value=2 <?=$select[2]?>>ê·¸ë£¹ê´€ë¦¬ì</option>
+    <option value=1 <?=$select[1]?>>ìµœê³ ê´€ë¦¬ì</option>
+    </select> (ê´€ë¦¬ì ë ˆë²¨ì€ ì¼ë°˜ ë ˆë²¨ì— ìš°ì„ í•©ë‹ˆë‹¤)
   </td>
 </tr>
 <?
 }
 ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>·¹º§&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ë ˆë²¨&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>
     <select name=level <?=$locking?>>
 <?
@@ -108,7 +108,7 @@ for($i=$member[level];$i<=10;$i++) if($i==$member_data[level]) echo "<option val
   </td>
 </tr>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ÀÌ¸§&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì´ë¦„&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=name size=20 maxlength=20 value="<?=$member_data[name]?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <?                                                                                                  
@@ -123,7 +123,7 @@ if($member_data[is_admin]>2)
 		}
 		$manager_board_list = mysql_query("select * from $admin_table where $get_string",$connect) or die(mysql_error());
 		while($__manager_data = mysql_fetch_array($manager_board_list)) {
-			$__manager_board_name .= "&nbsp;".stripslashes($__manager_data[name])." &nbsp; <a href='$PHP_SELF?exec=view_member&exec2=modify_member_board_manager&group_no=$group_no&member_no=$no&page=$page&keyword=$keyword&board_num=$__manager_data[no]' onclick=\"return confirm('±ÇÇÑÀ» Ãë¼Ò½ÃÅ°½Ã°Ú½À´Ï±î?')\">[±ÇÇÑÃë¼Ò]</a><br><img src=images/t.gif border=0 height=4><br>";
+			$__manager_board_name .= "&nbsp;".stripslashes($__manager_data[name])." &nbsp; <a href='$PHP_SELF?exec=view_member&exec2=modify_member_board_manager&group_no=$group_no&member_no=$no&page=$page&keyword=$keyword&board_num=$__manager_data[no]' onclick=\"return confirm('ê¶Œí•œì„ ì·¨ì†Œì‹œí‚¤ì‹œê² ìŠµë‹ˆê¹Œ?')\">[ê¶Œí•œì·¨ì†Œ]</a><br><img src=images/t.gif border=0 height=4><br>";
 
 		}
 	}
@@ -132,12 +132,12 @@ if($member_data[is_admin]>2)
 	$board_list=mysql_query("select no,name from $admin_table where group_no='$group_data[no]'") or error(mysql_error());
 ?>                                                                                                  
 <tr height=22 align=center>                                                                       
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>°Ô½ÃÆÇ °ü¸®ÀÚ ÁöÁ¤&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ê²Œì‹œíŒ ê´€ë¦¬ì ì§€ì •&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>
     <?=$__manager_board_name?>
 
     <select name=board_name>
-    <option value="">°Ô½ÃÆÇ°ü¸®ÀÚ ÁöÁ¤</option>
+    <option value="">ê²Œì‹œíŒê´€ë¦¬ì ì§€ì •</option>
 <?
 	while($board_data_list=mysql_fetch_array($board_list))
 	{
@@ -146,7 +146,7 @@ if($member_data[is_admin]>2)
 	}
 ?>
 
-    </select> <input type=button value="°Ô½ÃÆÇ °ü¸® ±ÇÇÑ Ãß°¡" onclick="add_board_manager()" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;>
+    </select> <input type=button value="ê²Œì‹œíŒ ê´€ë¦¬ ê¶Œí•œ ì¶”ê°€" onclick="add_board_manager()" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;>
   </td>
 </tr>
 <?                                                                                                  
@@ -154,17 +154,17 @@ if($member_data[is_admin]>2)
 ?> 
 <? if($group_data[use_birth]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>»ıÀÏ&nbsp;&nbsp;</td>
-  <td align=left bgcolor=#e0e0e0><input type=text name=birth_1 size=4 maxlength=4 value="<?=date("Y",$member_data[birth])?>" class=input style=border-color:#b0b0b0> ³â 
-    <input type=text name=birth_2 size=2 maxlength=2 value="<?=date("m",$member_data[birth])?>" class=input style=border-color:#b0b0b0> ¿ù
-    <input type=text name=birth_3 size=2 maxlength=2 value="<?=date("d",$member_data[birth])?>" class=input style=border-color:#b0b0b0> ÀÏ 
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ìƒì¼&nbsp;&nbsp;</td>
+  <td align=left bgcolor=#e0e0e0><input type=text name=birth_1 size=4 maxlength=4 value="<?=date("Y",$member_data[birth])?>" class=input style=border-color:#b0b0b0> ë…„ 
+    <input type=text name=birth_2 size=2 maxlength=2 value="<?=date("m",$member_data[birth])?>" class=input style=border-color:#b0b0b0> ì›”
+    <input type=text name=birth_3 size=2 maxlength=2 value="<?=date("d",$member_data[birth])?>" class=input style=border-color:#b0b0b0> ì¼ 
 </tr>
 <? } ?>
 <tr height=22 align=center>
   <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>E-mail&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=email size=50 maxlength=200 value="<?
   $member_data[email]=stripslashes($member_data[email]);
-  // email IP Ç¥½Ä ºÒ·¯¿Í Ã³¸®
+  // email IP í‘œì‹ ë¶ˆëŸ¬ì™€ ì²˜ë¦¬
   unset($c_match);
   if(preg_match("#\|\|\|([0-9.]{1,})$#",$member_data[email],$c_match)) {
     //$tokenID = $c_match[1];
@@ -174,7 +174,7 @@ if($member_data[is_admin]>2)
   ?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>È¨ÆäÀÌÁö&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>í™ˆí˜ì´ì§€&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=homepage size=50 maxlength=255 value="<?=stripslashes($member_data[homepage])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? if($group_data[use_icq]) { ?>
@@ -197,79 +197,79 @@ if($member_data[is_admin]>2)
 <? } ?>
 <? if($group_data[use_hobby]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>Ãë¹Ì&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì·¨ë¯¸&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=hobby size=50 maxlength=50 value="<?=stripslashes($member_data[hobby])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_job]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>Á÷¾÷&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì§ì—…&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=job size=20 maxlength=20 value="<?=stripslashes($member_data[job])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_home_address]) { ?> 
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>Áı ÁÖ¼Ò&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì§‘ ì£¼ì†Œ&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=home_address size=50 maxlength=255 value="<?=stripslashes($member_data[home_address])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_home_tel]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>Áı ÀüÈ­¹øÈ£&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì§‘ ì „í™”ë²ˆí˜¸&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=home_tel size=20 maxlength=20 value="<?=stripslashes($member_data[home_tel])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_office_address]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>È¸»ç ÁÖ¼Ò&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>íšŒì‚¬ ì£¼ì†Œ&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=office_address size=50 maxlength=255 value="<?=stripslashes($member_data[office_address])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_office_tel]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>È¸»ç ÀüÈ­¹øÈ£&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>íšŒì‚¬ ì „í™”ë²ˆí˜¸&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=office_tel size=20 maxlength=20 value="<?=stripslashes($member_data[office_tel])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_handphone]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ÇÚµåÆù&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>í•¸ë“œí°&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=handphone size=20 maxlength=20 value="<?=stripslashes($member_data[handphone])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
 <? if($group_data[use_mailing]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>¸ŞÀÏ¸µ¸®½ºÆ® °¡ÀÔ&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ë©”ì¼ë§ë¦¬ìŠ¤íŠ¸ ê°€ì…&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=checkbox name=mailing value=1 <?=$check[$member_data[mailing]]?>></td>
 </tr>
 <? } ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>Á¤º¸ °ø°³ ¿©ºÎ&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì •ë³´ ê³µê°œ ì—¬ë¶€&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=checkbox name=openinfo value=1 <?=$check[$member_data[openinfo]]?>></td>
 </tr>
 <? if($group_data[use_picture]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>»çÁø&nbsp;&nbsp;</td>
-  <td align=left bgcolor=#e0e0e0><input type=file name=picture size=37 maxlength=255 class=input style=border-color:#b0b0b0> (480X480 ÀÌ³»)
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì‚¬ì§„&nbsp;&nbsp;</td>
+  <td align=left bgcolor=#e0e0e0><input type=file name=picture size=37 maxlength=255 class=input style=border-color:#b0b0b0> (480X480 ì´ë‚´)
     <? if($member_data[picture]) echo "<br>&nbsp;<img src='$member_data[picture]' border=0>"; ?>
   </td>
 </tr>
 <? } ?>
 <? if($group_data[use_comment]) { ?>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>¼Ò°¹¸»&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì†Œê°¯ë§&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><textarea cols=50 rows=4 name=comment class=textarea style=border-color:#b0b0b0><?=stripslashes($member_data[comment])?></textarea></td>
 </tr>
 <? } ?>
 <tr height=22 align=center>
   <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>Point&nbsp;&nbsp;</td>
-  <td align=left bgcolor=#e0e0e0>&nbsp;<?=($member_data[point1]*10+$member_data[point2])?> Á¡ ( ÀÛ¼º±Û¼ö : <?=$member_data[point1]?>, ÄÚ¸àÆ® : <?=$member_data[point2]?> )</td>
+  <td align=left bgcolor=#e0e0e0>&nbsp;<?=($member_data[point1]*10+$member_data[point2])?> ì  ( ì‘ì„±ê¸€ìˆ˜ : <?=$member_data[point1]?>, ì½”ë©˜íŠ¸ : <?=$member_data[point2]?> )</td>
 </tr>
 <tr height=22 align=center>
-  <td colspan=2 bgcolor=#a0a0a0 style=font-family:Tahoma;font-size:9pt;font-weight:bold; align=center>°ü¸®ÀÚ °íÀ¯±ÇÇÑ</td>
+  <td colspan=2 bgcolor=#a0a0a0 style=font-family:Tahoma;font-size:9pt;font-weight:bold; align=center>ê´€ë¦¬ì ê³ ìœ ê¶Œí•œ</td>
 </tr>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>Image Box ¿ë·® ÁöÁ¤&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>Image Box ìš©ëŸ‰ ì§€ì •&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>
 <?
 $maxDirSize = zReadFile("icon/member_image_box/".$no."_maxsize.php");
@@ -281,11 +281,11 @@ if($maxDirSize) {
 	$maxDirSize = 20000;
 }
 ?>
-    <input type=input name=maxdirsize value="<?=$maxDirSize?>" size=10 maxlength=20 class=input> KByte &nbsp; ÀÌ¹ÌÁö Ã¢°íÀÇ »ç¿ë ¿ë·®À» ÁöÁ¤ÇØ ÁÙ¼ö ÀÖ½À´Ï´Ù.
+    <input type=input name=maxdirsize value="<?=$maxDirSize?>" size=10 maxlength=20 class=input> KByte &nbsp; ì´ë¯¸ì§€ ì°½ê³ ì˜ ì‚¬ìš© ìš©ëŸ‰ì„ ì§€ì •í•´ ì¤„ìˆ˜ ìˆìŠµë‹ˆë‹¤.
   </td>
 </tr>
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>¸¶Å© ±×¸²&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ë§ˆí¬ ê·¸ë¦¼&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>&nbsp;
 <? 
 $private_icon = get_private_icon($member_data[no],1);
@@ -301,13 +301,13 @@ if($private_icon) {
     <input type=file name=private_icon value="" size=20 maxlength=20 class=input >
     <br>
     <img src=images/t.gif border=0 height=5><br>
-    * Á¤ÇØÁø È¸¿øÀÇ ÀÌ¸§ ¾Õ¿¡¸¸ ³ªÅ¸³ª´Â ¾ÆÀÌÄÜÀÔ´Ï´Ù. <br>
-    <font color=#e0e0e0>* </font>(GIF ÆÄÀÏ¸¸ °¡´ÉÇÕ´Ï´Ù. 16x16 px ÀÌÇÏ·Î ÇØÁÖ¼¼¿ä)
+    * ì •í•´ì§„ íšŒì›ì˜ ì´ë¦„ ì•ì—ë§Œ ë‚˜íƒ€ë‚˜ëŠ” ì•„ì´ì½˜ì…ë‹ˆë‹¤. <br>
+    <font color=#e0e0e0>* </font>(GIF íŒŒì¼ë§Œ ê°€ëŠ¥í•©ë‹ˆë‹¤. 16x16 px ì´í•˜ë¡œ í•´ì£¼ì„¸ìš”)
   </td>
 </tr>
 
 <tr height=22 align=center>
-  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ÀÌ¸§ ±×¸²&nbsp;&nbsp;</td>
+  <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>ì´ë¦„ ê·¸ë¦¼&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>&nbsp;
 <?
 $private_name = get_private_icon($member_data[no],2);
@@ -325,14 +325,14 @@ if($private_name) {
     <input type=file name=private_name value="" size=20 maxlength=20 class=input >
     <br>
     <img src=images/t.gif border=0 height=5><br>
-    * Á¤ÇØÁø È¸¿øÀÇ ÀÌ¸§À» ´ë½ÅÇØ¼­ ³ªÅ¸³ª´Â ¾ÆÀÌÄÜÀÔ´Ï´Ù. <br>
-    <font color=#e0e0e0>* </font>½ºÅ²¿¡ µû¶ó¼­ ¿Àµ¿ÀÛÀ» ÀÏÀ¸Å³¼ö ÀÖÀ¸´Ï È®ÀÎÀ» ²À ÇÏ¿©ÁÖ¼¼¿ä<br>
-    <font color=#e0e0e0>* </font>(GIF ÆÄÀÏ¸¸ °¡´ÉÇÕ´Ï´Ù. Å©±â´Â 60x16 px ÀÌÇÏ·Î ÇØÁÖ¼¼¿ä)
+    * ì •í•´ì§„ íšŒì›ì˜ ì´ë¦„ì„ ëŒ€ì‹ í•´ì„œ ë‚˜íƒ€ë‚˜ëŠ” ì•„ì´ì½˜ì…ë‹ˆë‹¤. <br>
+    <font color=#e0e0e0>* </font>ìŠ¤í‚¨ì— ë”°ë¼ì„œ ì˜¤ë™ì‘ì„ ì¼ìœ¼í‚¬ìˆ˜ ìˆìœ¼ë‹ˆ í™•ì¸ì„ ê¼­ í•˜ì—¬ì£¼ì„¸ìš”<br>
+    <font color=#e0e0e0>* </font>(GIF íŒŒì¼ë§Œ ê°€ëŠ¥í•©ë‹ˆë‹¤. í¬ê¸°ëŠ” 60x16 px ì´í•˜ë¡œ í•´ì£¼ì„¸ìš”)
   </td>
 </tr>
 <tr height=22 align=center>
-  <td colspan=2><input type=submit value='  º¯°æ ¿Ï·á  ' style=font-weight:bold;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px;>
-    <input type=button value='  º¯°æ Ãë¼Ò  ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px; onclick=location.href="<?="$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like"?>">
+  <td colspan=2><input type=submit value='  ë³€ê²½ ì™„ë£Œ  ' style=font-weight:bold;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px;>
+    <input type=button value='  ë³€ê²½ ì·¨ì†Œ  ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px; onclick=location.href="<?="$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like"?>">
   </td>
 </tr>
 </form>

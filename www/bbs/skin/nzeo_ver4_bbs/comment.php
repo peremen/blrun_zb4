@@ -18,24 +18,24 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 		</tr>
 		<tr>
 			<td align=right class=list0><font class=list_eng><b>Password</b></font></td>
-			<td align=left class=list1><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> ºñ¹øÀ» ÀçÀÔ·ÂÇÏ¸é ÀÓ½ÃÀúÀåÀÌ º¹¿øµÊ</td>
+			<td align=left class=list1><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> ë¹„ë²ˆì„ ìž¬ìž…ë ¥í•˜ë©´ ìž„ì‹œì €ìž¥ì´ ë³µì›ë¨</td>
 		</tr>
 		<?=$hide_end?>
 
 		<tr>
 			<td align=right class=list0><font class=list_eng><b>Option</b></font></td>
 			<td align=left class=list_eng>
-				<?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTML»ç¿ë<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>ºñ¹Ð±Û<?=$hide_secret_end?> <font id="state"></font>
+				<?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTMLì‚¬ìš©<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>ë¹„ë°€ê¸€<?=$hide_secret_end?> <font id="state"></font>
 			</td>
 		</tr>
 		<tr>	
-			<td align=right class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>¡å</font></td>
+			<td align=right class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>â–¼</font></td>
 			<td align=left width=100% height=100% class=list1>
 				<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>
 				<col width=></col><col width=70></col>
 				<tr>
 					<td width=100%><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);' onkeyup="addStroke()"><?=$memo?></textarea></td>
-					<td width=70><input type=button value='ÀÓ½ÃÀúÀå' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit class=submit value='ÀÛ¼º¿Ï·á' accesskey="s" style="height:50%"></td>
+					<td width=70><input type=button value='ìž„ì‹œì €ìž¥' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit class=submit value='ìž‘ì„±ì™„ë£Œ' accesskey="s" style="height:50%"></td>
 				</tr>
 				</table>
 			</td>
@@ -65,7 +65,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 <table border=0 width=<?=$width?> cellsapcing=1 cellpadding=0>
 <tr>
 	<td width=200 height=40 align=left>
-		<?=$a_preview?>¹Ì¸®º¸±â</a><?=$a_imagebox?>±×¸²Ã¢°í</a><?=$a_codebox?>ÄÚµå»ðÀÔ</a>
+		<?=$a_preview?>ë¯¸ë¦¬ë³´ê¸°</a><?=$a_imagebox?>ê·¸ë¦¼ì°½ê³ </a><?=$a_codebox?>ì½”ë“œì‚½ìž…</a>
 	</td>
 </tr>
 </table>

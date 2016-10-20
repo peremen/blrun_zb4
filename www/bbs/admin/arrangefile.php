@@ -4,7 +4,7 @@ $_zb_path="../";
 include "../lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
-if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("ÃÖ°í °ü¸®ÀÚ¸¸ÀÌ »ç¿ëÇÒ¼ö ÀÖ½À´Ï´Ù");
+if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("ìµœê³  ê´€ë¦¬ìë§Œì´ ì‚¬ìš©í• ìˆ˜ ìˆìŠµë‹ˆë‹¤");
 head(" bgcolor=white");
 ?>
 
@@ -18,11 +18,11 @@ head(" bgcolor=white");
 </tr>
 <tr>
   <td colspan=3 style=padding:15px;line-height:160%>
-  	ÀÌ ÆäÀÌÁö´Â Á¦·Îº¸µåÀÇ Ã·ºÎÆÄÀÏÀ» Á¤¸®ÇÏ´Â °÷ÀÔ´Ï´Ù.<br>
-	¸ğµç °Ô½ÃÆÇÀ» °ËÅäÇÏ¿© Àß¸ø ¿Ã·ÁÁø Ã·ºÎÆÄÀÏÀ» Á¤¸®ÇÏ°Å³ª, ¾²·¹±â ÀÚ·áµîÀ» ÀÚµ¿À¸·Î Á¤¸®ÇÕ´Ï´Ù.<br>
-	°Ô½ÃÆÇÀÌ ¸¹À»¼ö·Ï ¸¹Àº ½Ã°£ÀÌ °É¸®°Ô µÇ´Ï Á¤»óÀûÀ¸·Î Á¾·áÇÒ¶§±îÁö ±â´Ù·Á ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.<br>
+  	ì´ í˜ì´ì§€ëŠ” ì œë¡œë³´ë“œì˜ ì²¨ë¶€íŒŒì¼ì„ ì •ë¦¬í•˜ëŠ” ê³³ì…ë‹ˆë‹¤.<br>
+	ëª¨ë“  ê²Œì‹œíŒì„ ê²€í† í•˜ì—¬ ì˜ëª» ì˜¬ë ¤ì§„ ì²¨ë¶€íŒŒì¼ì„ ì •ë¦¬í•˜ê±°ë‚˜, ì“°ë ˆê¸° ìë£Œë“±ì„ ìë™ìœ¼ë¡œ ì •ë¦¬í•©ë‹ˆë‹¤.<br>
+	ê²Œì‹œíŒì´ ë§ì„ìˆ˜ë¡ ë§ì€ ì‹œê°„ì´ ê±¸ë¦¬ê²Œ ë˜ë‹ˆ ì •ìƒì ìœ¼ë¡œ ì¢…ë£Œí• ë•Œê¹Œì§€ ê¸°ë‹¤ë ¤ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.<br>
 	<br>
-	<font color=darkred>* ¸ğµç °Ô½ÃÆÇÀ» Á¤¸®ÇÏ¹Ç·Î, »ç¿ëÀÚ°¡ ÀûÀº ½Ã°£¿¡ ÀÌ¿ëÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù</font>
+	<font color=darkred>* ëª¨ë“  ê²Œì‹œíŒì„ ì •ë¦¬í•˜ë¯€ë¡œ, ì‚¬ìš©ìê°€ ì ì€ ì‹œê°„ì— ì´ìš©í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤</font>
   </td>
 </tr>
 </table>
@@ -64,34 +64,34 @@ while($bbs = mysql_fetch_array($result)) {
 	$totalfilesnum += $filesnum1 + $filesnum2 + $filesnum3 + $filesnum4;
 	$ntotalfilesnum += $nfilesnum1 + $nfilesnum2 + $nfilesnum3 + $nfilesnum4;
 
-	// µğ·ºÅä¸® °Ë»ç
+	// ë””ë ‰í† ë¦¬ ê²€ì‚¬
 	if(!is_dir("../data/$id")) {
 		mkdir("../data/$id",0777,true);
 	}
 
-	if(!is_dir("../data/$id")) die("../data/$id µğ·ºÅä¸®¸¦ »ı¼ºÇÒ¼ö°¡ ¾ø½À´Ï´Ù");
+	if(!is_dir("../data/$id")) die("../data/$id ë””ë ‰í† ë¦¬ë¥¼ ìƒì„±í• ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤");
 
 ?>
-	<b><?=$id?></b> °Ô½ÃÆÇ</b>
-	 - ÃÑ °Ô½Ã¹° ¼ö  : <?=$bbs[total_article]?>°³
-	 - ÃÑ ¾÷·Îµå °¹¼ö : <?=number_format($filesnum1+$filesnum2+$filesnum3+$filesnum4)?> °³
-	 - °æ·Î°¡ Àß¸øµÈ Ã·ºÎÆÄÀÏ ÇÊµå¼ö : <?=number_format($nfilesnum1+$nfilesnum2+$nfilesnum3+$nfilesnum4)?> °³
+	<b><?=$id?></b> ê²Œì‹œíŒ</b>
+	 - ì´ ê²Œì‹œë¬¼ ìˆ˜  : <?=$bbs[total_article]?>ê°œ
+	 - ì´ ì—…ë¡œë“œ ê°¯ìˆ˜ : <?=number_format($filesnum1+$filesnum2+$filesnum3+$filesnum4)?> ê°œ
+	 - ê²½ë¡œê°€ ì˜ëª»ëœ ì²¨ë¶€íŒŒì¼ í•„ë“œìˆ˜ : <?=number_format($nfilesnum1+$nfilesnum2+$nfilesnum3+$nfilesnum4)?> ê°œ
 
 <?
 	while($data=mysql_fetch_array($nfiles1)) {
 
-		// ¼Ò½º ÆÄÀÏÀÇ Á¤º¸¸¦ Ã¼Å©
+		// ì†ŒìŠ¤ íŒŒì¼ì˜ ì •ë³´ë¥¼ ì²´í¬
 		$filename = stripslashes($data[s_file_name1]);
 		$source = "../".stripslashes($data[file_name1]);
 		$path = str_replace($filename, "", $source);
 		$no = $data[no];
 
-		// ¼Ò½º ÆÄÀÏÀÌ ÀÖÀ» °æ¿ì¿¡¸¸ Ã¼Å©
+		// ì†ŒìŠ¤ íŒŒì¼ì´ ìˆì„ ê²½ìš°ì—ë§Œ ì²´í¬
 		if(file_exists($source)) {
 
 			$existsfilesnum ++;
 
-			// ¿Å±æ ´ë»ó¿¡ °°Àº ÆÄÀÏÀÌ Á¸ÀçÇÏ´ÂÁö Ã¼Å©
+			// ì˜®ê¸¸ ëŒ€ìƒì— ê°™ì€ íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ ì²´í¬
 			if(file_exists("../data/$id/$filename")) {
 				$add_dir = time();
 				$target_path = "../data/$id/$add_dir";
@@ -103,7 +103,7 @@ while($bbs = mysql_fetch_array($result)) {
 				$sql = "update $t_board"."_$id set file_name1 = 'data/$id/$filename' where no = $no";
 			}
 
-			if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> ÆÄÀÏÀ» º¹»çÇÒ¼ö°¡ ¾ø½À´Ï´Ù<br>(ÆÄÀÏÀ» Ã¼Å©ÇÏ½ÅÈÄ ´Ù½Ã ½ÇÇàÀ» ÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù)</center>");
+			if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> íŒŒì¼ì„ ë³µì‚¬í• ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤<br>(íŒŒì¼ì„ ì²´í¬í•˜ì‹ í›„ ë‹¤ì‹œ ì‹¤í–‰ì„ í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤)</center>");
 			z_unlink($source);
 			@rmdir($path);
 
@@ -118,18 +118,18 @@ while($bbs = mysql_fetch_array($result)) {
 
 	while($data=mysql_fetch_array($nfiles2)) {
 
-		// ¼Ò½º ÆÄÀÏÀÇ Á¤º¸¸¦ Ã¼Å©
+		// ì†ŒìŠ¤ íŒŒì¼ì˜ ì •ë³´ë¥¼ ì²´í¬
 		$filename = stripslashes($data[s_file_name2]);
 		$source = "../".stripslashes($data[file_name2]);
 		$path = str_replace($filename, "", $source);
 		$no = $data[no];
 
-		// ¼Ò½º ÆÄÀÏÀÌ ÀÖÀ» °æ¿ì¿¡¸¸ Ã¼Å©
+		// ì†ŒìŠ¤ íŒŒì¼ì´ ìˆì„ ê²½ìš°ì—ë§Œ ì²´í¬
 		if(file_exists($source)) {
 
 			$existsfilesnum ++;
 
-			// ¿Å±æ ´ë»ó¿¡ °°Àº ÆÄÀÏÀÌ Á¸ÀçÇÏ´ÂÁö Ã¼Å©
+			// ì˜®ê¸¸ ëŒ€ìƒì— ê°™ì€ íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ ì²´í¬
 			if(file_exists("../data/$id/$filename")) {
 				$add_dir = time();
 				$target_path = "../data/$id/$add_dir";
@@ -141,7 +141,7 @@ while($bbs = mysql_fetch_array($result)) {
 				$sql = "update $t_board"."_$id set file_name2 = 'data/$id/$filename' where no = $no";
 			}
 
-			if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> ÆÄÀÏÀ» º¹»çÇÒ¼ö°¡ ¾ø½À´Ï´Ù<br><br>(ÆÄÀÏÀ» Ã¼Å©ÇÏ½ÅÈÄ ´Ù½Ã ½ÇÇàÀ» ÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù)</center>");
+			if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> íŒŒì¼ì„ ë³µì‚¬í• ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤<br><br>(íŒŒì¼ì„ ì²´í¬í•˜ì‹ í›„ ë‹¤ì‹œ ì‹¤í–‰ì„ í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤)</center>");
 			z_unlink($source);
 			@rmdir($path);
 
@@ -156,18 +156,18 @@ while($bbs = mysql_fetch_array($result)) {
 
 	while($data=mysql_fetch_array($nfiles3)) {
 
-		// ¼Ò½º ÆÄÀÏÀÇ Á¤º¸¸¦ Ã¼Å©
+		// ì†ŒìŠ¤ íŒŒì¼ì˜ ì •ë³´ë¥¼ ì²´í¬
 		$filename = stripslashes($data[s_file_name1]);
 		$source = "../".stripslashes($data[file_name1]);
 		$path = str_replace($filename, "", $source);
 		$no = $data[no];
 
-		// ¼Ò½º ÆÄÀÏÀÌ ÀÖÀ» °æ¿ì¿¡¸¸ Ã¼Å©
+		// ì†ŒìŠ¤ íŒŒì¼ì´ ìˆì„ ê²½ìš°ì—ë§Œ ì²´í¬
 		if(file_exists($source)) {
 
 			$existsfilesnum ++;
 
-			// ¿Å±æ ´ë»ó¿¡ °°Àº ÆÄÀÏÀÌ Á¸ÀçÇÏ´ÂÁö Ã¼Å©
+			// ì˜®ê¸¸ ëŒ€ìƒì— ê°™ì€ íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ ì²´í¬
 			if(file_exists("../data/$id/$filename")) {
 				$add_dir = time();
 				$target_path = "../data/$id/$add_dir";
@@ -179,7 +179,7 @@ while($bbs = mysql_fetch_array($result)) {
 				$sql = "update $t_comment"."_$id set file_name1 = 'data/$id/$filename' where no = $no";
 			}
 
-			if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> ÆÄÀÏÀ» º¹»çÇÒ¼ö°¡ ¾ø½À´Ï´Ù<br>(ÆÄÀÏÀ» Ã¼Å©ÇÏ½ÅÈÄ ´Ù½Ã ½ÇÇàÀ» ÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù)</center>");
+			if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> íŒŒì¼ì„ ë³µì‚¬í• ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤<br>(íŒŒì¼ì„ ì²´í¬í•˜ì‹ í›„ ë‹¤ì‹œ ì‹¤í–‰ì„ í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤)</center>");
 			z_unlink($source);
 			@rmdir($path);
 
@@ -194,18 +194,18 @@ while($bbs = mysql_fetch_array($result)) {
 
 	while($data=mysql_fetch_array($nfiles4)) {
 
-		// ¼Ò½º ÆÄÀÏÀÇ Á¤º¸¸¦ Ã¼Å©
+		// ì†ŒìŠ¤ íŒŒì¼ì˜ ì •ë³´ë¥¼ ì²´í¬
 		$filename = stripslashes($data[s_file_name2]);
 		$source = "../".stripslashes($data[file_name2]);
 		$path = str_replace($filename, "", $source);
 		$no = $data[no];
 
-		// ¼Ò½º ÆÄÀÏÀÌ ÀÖÀ» °æ¿ì¿¡¸¸ Ã¼Å©
+		// ì†ŒìŠ¤ íŒŒì¼ì´ ìˆì„ ê²½ìš°ì—ë§Œ ì²´í¬
 		if(file_exists($source)) {
 
 			$existsfilesnum ++;
 
-			// ¿Å±æ ´ë»ó¿¡ °°Àº ÆÄÀÏÀÌ Á¸ÀçÇÏ´ÂÁö Ã¼Å©
+			// ì˜®ê¸¸ ëŒ€ìƒì— ê°™ì€ íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ ì²´í¬
 			if(file_exists("../data/$id/$filename")) {
 				$add_dir = time();
 				$target_path = "../data/$id/$add_dir";
@@ -217,7 +217,7 @@ while($bbs = mysql_fetch_array($result)) {
 				$sql = "update $t_comment"."_$id set file_name2 = 'data/$id/$filename' where no = $no";
 			}
 
-			if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> ÆÄÀÏÀ» º¹»çÇÒ¼ö°¡ ¾ø½À´Ï´Ù<br><br>(ÆÄÀÏÀ» Ã¼Å©ÇÏ½ÅÈÄ ´Ù½Ã ½ÇÇàÀ» ÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù)</center>");
+			if(!copy($source, $target_path)) die("<center><b>$source</b><br>to<br><b>$target_path</b><br><br> íŒŒì¼ì„ ë³µì‚¬í• ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤<br><br>(íŒŒì¼ì„ ì²´í¬í•˜ì‹ í›„ ë‹¤ì‹œ ì‹¤í–‰ì„ í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤)</center>");
 			z_unlink($source);
 			@rmdir($path);
 
@@ -234,26 +234,26 @@ while($bbs = mysql_fetch_array($result)) {
 }
 ?>
 
-	<b>ÀüÃ¼ Ã·ºÎÆÄÀÏ ¼ö :</b> <?=number_format($totalfilesnum)?>
+	<b>ì „ì²´ ì²¨ë¶€íŒŒì¼ ìˆ˜ :</b> <?=number_format($totalfilesnum)?>
 
-	<b>ÀüÃ¼ °æ·Î°¡ Àß¸øµÈ Ã·ºÎÆÄÀÏ ÇÊµå¼ö :</b> <?=number_format($ntotalfilesnum)?>
+	<b>ì „ì²´ ê²½ë¡œê°€ ì˜ëª»ëœ ì²¨ë¶€íŒŒì¼ í•„ë“œìˆ˜ :</b> <?=number_format($ntotalfilesnum)?>
 
-	<b>°æ·Î°¡ Àß¸øµÈ Ã·ºÎÆÄÀÏ ÇÊµå, ÆÄÀÏ Á¸Àç °¹¼ö :</b> <?=number_format($existsfilesnum)?>
+	<b>ê²½ë¡œê°€ ì˜ëª»ëœ ì²¨ë¶€íŒŒì¼ í•„ë“œ, íŒŒì¼ ì¡´ì¬ ê°¯ìˆ˜ :</b> <?=number_format($existsfilesnum)?>
 
-	<b>ÆÄÀÏ ¹ÌÁ¸Àç °¹¼ö :</b> <?=number_format($nexistsfilesnum)?> (Ã·ºÎÆÄÀÏ ÇÊµå°¡ ´Ù¸¥ ¿ëµµ·Î »ç¿ëµÇ´Â °æ¿ìÀÏ¼ö°¡ ÀÖÀ½)
+	<b>íŒŒì¼ ë¯¸ì¡´ì¬ ê°¯ìˆ˜ :</b> <?=number_format($nexistsfilesnum)?> (ì²¨ë¶€íŒŒì¼ í•„ë“œê°€ ë‹¤ë¥¸ ìš©ë„ë¡œ ì‚¬ìš©ë˜ëŠ” ê²½ìš°ì¼ìˆ˜ê°€ ìˆìŒ)
 
-	<font color=red><b>¸ğµç Á¤¸®°¡ ³¡³µ½À´Ï´Ù.
+	<font color=red><b>ëª¨ë“  ì •ë¦¬ê°€ ëë‚¬ìŠµë‹ˆë‹¤.
 
-	È®½ÇÇÑ Ã³¸®¸¦ À§ÇØ¼­ ´Ù½Ã ÇÑ¹ø ½ÇÇàÇØº¸½Ã±â ¹Ù¶ø´Ï´Ù.</font>
+	í™•ì‹¤í•œ ì²˜ë¦¬ë¥¼ ìœ„í•´ì„œ ë‹¤ì‹œ í•œë²ˆ ì‹¤í–‰í•´ë³´ì‹œê¸° ë°”ëë‹ˆë‹¤.</font>
 
-	ÀÌ ÆÄÀÏ Á¤¸®±â´Â DB¸¦ ±Ù°Å·Î ÇÏ¿© ÆÄÀÏÀ» Á¤¸®ÇÕ´Ï´Ù.
+	ì´ íŒŒì¼ ì •ë¦¬ê¸°ëŠ” DBë¥¼ ê·¼ê±°ë¡œ í•˜ì—¬ íŒŒì¼ì„ ì •ë¦¬í•©ë‹ˆë‹¤.
 
-	µû¶ó¼­ ¹Ì»èÁ¦ µÈ ¾²·¹±â ÆÄÀÏÀÌ ³²¾ÆÀÖÀ»¼ö°¡ ÀÖ½À´Ï´Ù.
+	ë”°ë¼ì„œ ë¯¸ì‚­ì œ ëœ ì“°ë ˆê¸° íŒŒì¼ì´ ë‚¨ì•„ìˆì„ìˆ˜ê°€ ìˆìŠµë‹ˆë‹¤.
 
-	¾²·¹±â ÆÄÀÏ »èÁ¦¸¦ ¿øÇÏ½Ã¸é ¾Æ·¡ ¹öÆ°À» ´­·¯ÁÖ¼¼¿ä.
+	ì“°ë ˆê¸° íŒŒì¼ ì‚­ì œë¥¼ ì›í•˜ì‹œë©´ ì•„ë˜ ë²„íŠ¼ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”.
 
 	<form action=arrangefile2.php method=post>
-	<input type=submit value=" ¾²·¹±â ÆÄÀÏ °Ë»ç " class=submit>
+	<input type=submit value=" ì“°ë ˆê¸° íŒŒì¼ ê²€ì‚¬ " class=submit>
 	</form>
 
 </pre>

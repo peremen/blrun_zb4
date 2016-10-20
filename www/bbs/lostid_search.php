@@ -1,26 +1,26 @@
 <?
 include "lib.php";
 
-// ю╔╦╤╫╨ем E-mail
+// Л⌡╧К╖┬Л┼╓М└╟ E-mail
 $_from = $_zbDefaultSetup[email];
 
-// ╩Гюлф╝ аж╪р
+// Л┌╛Л²╢М┼╦ Лё╪Л├▄
 $_homepage = $_zbDefaultSetup[url];
 
-// ╩Гюлф╝ юл╦╖
+// Л┌╛Л²╢М┼╦ Л²╢К╕└
 $_sitename = $_zbDefaultSetup[sitename];
 
 if(!$connect) $connect=dbConn();
 
-if(isblank($email)) Error("E-Mailю╩ ют╥бго©╘ аж╪╪©Д");
-if(isblank($jumin1)||!isnum($jumin1)) Error("аж╧н╣Н╥о╧Ьхё╦╕ а╕╢К╥н ют╥бго©╘ аж╪╪©Д");
-if(isblank($jumin2)||!isnum($jumin2)) Error("аж╧н╣Н╥о╧Ьхё╦╕ а╕╢К╥н ют╥бго©╘ аж╪╪©Д");
+if(isblank($email)) Error("E-MailЛ²└ Л·┘К═╔М∙≤Л≈╛ Лё╪Л└╦Л ■");
+if(isblank($jumin1)||!isnum($jumin1)) Error("Лё╪К╞╪К⌠╠К║²К╡┬М≤╦К╔╪ Л═°К▄─К║° Л·┘К═╔М∙≤Л≈╛ Лё╪Л└╦Л ■");
+if(isblank($jumin2)||!isnum($jumin2)) Error("Лё╪К╞╪К⌠╠К║²К╡┬М≤╦К╔╪ Л═°К▄─К║° Л·┘К═╔М∙≤Л≈╛ Лё╪Л└╦Л ■");
 
 $result=mysql_query("select * from zetyx_member_table where email like concat('$email','|||%') and jumin=password('$jumin1"."$jumin2')",$connect) or Error(mysql_error());
 
-if(!mysql_num_rows($result)) Error("ют╥бго╫е а╓╨╦©║ гь╢Гго╢б х╦©Ьюл ╬Ь╫ю╢о╢ы.<br><br>╢ы╫ц гя╧Ьх╝юнго©╘ аж╫ц╠Б ╧ы╤Ь╢о╢ы");
+if(!mysql_num_rows($result)) Error("Л·┘К═╔М∙≤Л▀═ Л═∙КЁ╢Л≈░ М∙╢К▀╧М∙≤К┼■ М ▄Л⌡░Л²╢ Л≈├Л┼╣К▀┬К▀╓.<br><br>К▀╓Л▀° М∙°К╡┬М≥∙Л²╦М∙≤Л≈╛ Лё╪Л▀°Й╦╟ К╟■К·█К▀┬К▀╓");
 else {
-	$temp=substr(base64_encode(time()),1,10);
+	$temp=mb_substr(base64_encode(time()),1,10);
 
 	$data=mysql_fetch_array($result);
 
@@ -30,14 +30,14 @@ else {
 	$to=$data[email];
 
 
-	$subject="╬хЁГго╪╪©Д, $_sitename ют╢о╢ы";
+	$subject="Л∙┬К┘∙М∙≤Л└╦Л ■, $_sitename Л·┘К▀┬К▀╓";
 
-	$comment="╬хЁГго╪╪©Д.\n"."$_sitename ют╢о╢ы.\n"."$name ╢тюг х╦©Ь ╬фюл╣П©м ╩У╥с╟т ╨╞╟Ф╣х ╨Я╧п╧Ьхёют╢о╢ы. \nх╝юнхд ╟П ╧ы╥н $_sitename ($_homepage) ©║ ╥н╠вюн го╪е╪╜ ╨Я╧п╧Ьхё╦╕ ╨╞╟Фго©╘ аж╫ц╠Б ╧ы╤Ь╢о╢ы.\n\nID : $data[user_id]\nPassword : $temp \n\n * ю╖юг ╨Я╧п╧Ьхё╦╕ е╦юлгнго╠Б хШ╣И╤╖ ╦╤©Л╫╨╥н ╢У╨Ме╛╦╞гяхд Ctrl-C ╦╕ ╢╜╥╞╪╜ ╨╧╩Ггяхд,\n ╨Я╧п╧Ьхё ют╥бд╜©║╪╜ Ctrl-V╦╕ ╢╜╥╞╪╜ ╨╧╩Гго╪╪©Д.";
+	$comment="Л∙┬К┘∙М∙≤Л└╦Л ■.\n"."$_sitename Л·┘К▀┬К▀╓.\n"."$name К▀≤Л²≤ М ▄Л⌡░ Л∙└Л²╢К■■Л≥─ Л┐┬К║╜Й╡▄ КЁ─Й╡╫К░° К╧└К╟─К╡┬М≤╦Л·┘К▀┬К▀╓. \nМ≥∙Л²╦М⌡└ ЙЁ╖ К╟■К║° $_sitename ($_homepage) Л≈░ К║°Й╥╦Л²╦ М∙≤Л┘■Л└° К╧└К╟─К╡┬М≤╦К╔╪ КЁ─Й╡╫М∙≤Л≈╛ Лё╪Л▀°Й╦╟ К╟■К·█К▀┬К▀╓.\n\nID : $data[user_id]\nPassword : $temp \n\n * Л°└Л²≤ К╧└К╟─К╡┬М≤╦К╔╪ М┐─Л²╢М∙▒М∙≤Й╦╟ М·≤К⌠╓К∙▄ К╖┬Л ╟Л┼╓К║° К█■К╦■М│╢К╕╜М∙°М⌡└ Ctrl-C К╔╪ К┬▄К÷╛Л└° КЁ╣Л┌╛М∙°М⌡└,\n К╧└К╟─К╡┬М≤╦ Л·┘К═╔Л╧╦Л≈░Л└° Ctrl-VК╔╪ К┬▄К÷╛Л└° КЁ╣Л┌╛М∙≤Л└╦Л ■.";
 
-	if(!zb_sendmail(0, $to, $name, $_from, "", $subject, $comment)) Error("╦чюо ╧ъ╪ш ©║╥╞");
+	if(!zb_sendmail(0, $to, $name, $_from, "", $subject, $comment)) Error("К╘■Л²╪ К╟°Л├║ Л≈░К÷╛");
 }
 ?>
 <script>
-	alert('╨╞╟Ф╣х ╨Я╧п╧Ьхё╟║ <?=$email?>╥н ╧ъ╪ш╣г╬З╫ю╢о╢ы.\n\n╦чюою╩ х╝юнго╫ехд ╟П ╧ы╥н ╥н╠вюнго©╘\n\n╨Я╧п╧Ьхё╦╕ ╨╞╟Фго©╘ аж╫ц╠Б ╧ы╤С╟з╫ю╢о╢ы');
+	alert('КЁ─Й╡╫К░° К╧└К╟─К╡┬М≤╦Й╟─ <?=$email?>К║° К╟°Л├║К░≤Л≈┬Л┼╣К▀┬К▀╓.\n\nК╘■Л²╪Л²└ М≥∙Л²╦М∙≤Л▀═М⌡└ ЙЁ╖ К╟■К║° К║°Й╥╦Л²╦М∙≤Л≈╛\n\nК╧└К╟─К╡┬М≤╦К╔╪ КЁ─Й╡╫М∙≤Л≈╛ Лё╪Л▀°Й╦╟ К╟■К²╪Й╡═Л┼╣К▀┬К▀╓');
 	window.close();
 </script>

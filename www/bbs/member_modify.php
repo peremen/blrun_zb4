@@ -1,37 +1,37 @@
 <?
-// ¶óÀÌºê·¯¸® ÇÔ¼ö ÆÄÀÏ ÀÎÅ©·çµå
+// ë¼ì´ë¸ŒëŸ¬ë¦¬ í•¨ìˆ˜ íŒŒì¼ ì¸í¬ë£¨ë“œ
 include "lib.php";
 
-// DB ¿¬°á
+// DB ì—°ê²°
 if(!$connect) $connect=dbConn();
 
-// ÇöÀç °Ô½ÃÆÇ ¼³Á¤ ÀĞ¾î ¿À±â
+// í˜„ì¬ ê²Œì‹œíŒ ì„¤ì • ì½ì–´ ì˜¤ê¸°
 if($id) {
 	$setup=get_table_attrib($id);
 
-	// ¼³Á¤µÇÁö ¾ÊÀº °Ô½ÃÆÇÀÏ¶§ ¿¡·¯ Ç¥½Ã
-	if(!$setup[name]) Error("»ı¼ºµÇÁö ¾ÊÀº °Ô½ÃÆÇÀÔ´Ï´Ù.<br><br>°Ô½ÃÆÇÀ» »ı¼ºÈÄ »ç¿ëÇÏ½Ê½Ã¿ä","window.close");
+	// ì„¤ì •ë˜ì§€ ì•Šì€ ê²Œì‹œíŒì¼ë•Œ ì—ëŸ¬ í‘œì‹œ
+	if(!$setup[name]) Error("ìƒì„±ë˜ì§€ ì•Šì€ ê²Œì‹œíŒì…ë‹ˆë‹¤.<br><br>ê²Œì‹œíŒì„ ìƒì„±í›„ ì‚¬ìš©í•˜ì‹­ì‹œìš”","window.close");
 }
 
-// ¸â¹ö Á¤º¸ ±¸ÇØ¿À±â;;; ¸â¹ö°¡ ÀÖÀ»¶§
+// ë©¤ë²„ ì •ë³´ êµ¬í•´ì˜¤ê¸°;;; ë©¤ë²„ê°€ ìˆì„ë•Œ
 $member=member_info();
 
-if(!$member[no]) Error("È¸¿ø Á¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù","window.close");
+if(!$member[no]) Error("íšŒì› ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤","window.close");
 
-// ÆûÅ¸ÄÏÀ» member_modify.php·Î ¼³Á¤
+// í¼íƒ€ì¼“ì„ member_modify.phpë¡œ ì„¤ì •
 $target="member_modify.php";
 
-// ÆĞ½º¿öµå°¡ Æ²¸®¸é ¿¡·¯ Ç¥½Ã
+// íŒ¨ìŠ¤ì›Œë“œê°€ í‹€ë¦¬ë©´ ì—ëŸ¬ í‘œì‹œ
 if($password) {
 	if(!get_magic_quotes_gpc()) {
 		$password = addslashes($password);
 	}
 	$secret_check=mysql_fetch_array(mysql_query("select count(*) from $member_table where user_id='$member[user_id]' and password=password('$password')"));
-	if(!$secret_check[0]) error("ºñ¹Ğ¹øÈ£ ¿À·ù! È¸¿øÁ¤º¸¸¦ ¼öÁ¤ÇÒ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
+	if(!$secret_check[0]) error("ë¹„ë°€ë²ˆí˜¸ ì˜¤ë¥˜! íšŒì›ì •ë³´ë¥¼ ìˆ˜ì •í•  ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
 	$target2=$ssl_url."member_modify_ok.php";
 } else {
 	head();
-	$title="È¸¿ø ºñ¹Ğ¹øÈ£¸¦ ´Ù½ÃÇÑ¹ø ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä.";
+	$title="íšŒì› ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œí•œë²ˆ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”.";
 	$input_password="<input type=password name=password size=20 maxlength=20 class=input>";
 	$target=$ssl_url."member_modify.php";
 	if(preg_match("/:\/\//i",$dir)||preg_match("/\.\./i",$dir)) $dir="./";
@@ -41,10 +41,10 @@ if($password) {
 <script>
  function check_submit()
  {
-  if(!member_secret.password.value) { alert("ÆĞ½º¿öµå¸¦ ÀÔ·ÂÇÏ¼¼¿ä"); member_secret.password.focus(); return false; }
+  if(!member_secret.password.value) { alert("íŒ¨ìŠ¤ì›Œë“œë¥¼ ì…ë ¥í•˜ì„¸ìš”"); member_secret.password.focus(); return false; }
 
   var f = document.forms["member_secret"];
-  // º¸¾ÈÁ¢¼ÓÀ» Ã¼Å©ÇßÀ» ¶§ÀÇ ¾×¼Ç
+  // ë³´ì•ˆì ‘ì†ì„ ì²´í¬í–ˆì„ ë•Œì˜ ì•¡ì…˜
   if ( f.SSL_Login.checked ) {
 	f.action = sslUrl()+"member_modify.php";
   } else {
@@ -56,9 +56,9 @@ if($password) {
 
  function check_SSL_Login() { 
   if (document.member_secret.SSL_Login.checked==true) {
-   alert("SSL ¾ÏÈ£È­ º¸¾ÈÁ¢¼ÓÀ» ¼³Á¤ÇÕ´Ï´Ù");
+   alert("SSL ì•”í˜¸í™” ë³´ì•ˆì ‘ì†ì„ ì„¤ì •í•©ë‹ˆë‹¤");
   } else {
-   alert("SSL ¾ÏÈ£È­ º¸¾ÈÁ¢¼ÓÀ» ÇØÁ¦ÇÕ´Ï´Ù");
+   alert("SSL ì•”í˜¸í™” ë³´ì•ˆì ‘ì†ì„ í•´ì œí•©ë‹ˆë‹¤");
   }
  }
 
@@ -73,12 +73,12 @@ if($password) {
 </tr>
 <tr height=60>
 	<td align=center class=list0>
-		<font class=list_eng><b>Password</b> :</font><?=$input_password?> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="º¸¾ÈÁ¢¼Ó ¼³Á¤/ÇØÁ¦">
+		<font class=list_eng><b>Password</b> :</font><?=$input_password?> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="ë³´ì•ˆì ‘ì† ì„¤ì •/í•´ì œ">
 	</td>
 </tr>
 <tr class=list0 height=30>
 	<td align=center>
-		<input type=submit class=submit value=" È®  ÀÎ " border=0 accesskey="s">
+		<input type=submit class=submit value=" í™•  ì¸ " border=0 accesskey="s">
 	</td>
 </tr>
 </table>
@@ -93,7 +93,7 @@ if($password) {
 $member[name] = stripslashes($member[name]);
 $member[job] = stripslashes($member[job]);
 $member[email] = stripslashes($member[email]);
-// email IP Ç¥½Ä ºÒ·¯¿Í Ã³¸®
+// email IP í‘œì‹ ë¶ˆëŸ¬ì™€ ì²˜ë¦¬
 unset($c_match);
 if(preg_match("#\|\|\|([0-9.]{1,})$#",$member[email],$c_match)) {
 	//$tokenID = $c_match[1];
@@ -112,7 +112,7 @@ $member[office_tel] = stripslashes($member[office_tel]);
 $member[handphone] = stripslashes($member[handphone]);
 $member[comment] = stripslashes($member[comment]);
 
-// ±×·ìµ¥ÀÌÅ¸ ÀĞ¾î¿À±â;;
+// ê·¸ë£¹ë°ì´íƒ€ ì½ì–´ì˜¤ê¸°;;
 $group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$member[group_no]'"));
 $group=$group_data;
 $group_no=$group[no];
@@ -154,25 +154,25 @@ head();
  }
  function check_submit()
  {
-  if(write.password.value!=write.password1.value) {alert("ÆĞ½º¿öµå°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");write.password.value="";write.password1.value=""; write.password.focus(); return false;}
-  if(!write.name.value) { alert("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä"); write.name.focus(); return false; }
+  if(write.password.value!=write.password1.value) {alert("íŒ¨ìŠ¤ì›Œë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");write.password.value="";write.password1.value=""; write.password.focus(); return false;}
+  if(!write.name.value) { alert("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”"); write.name.focus(); return false; }
 
 <? if($group_data[use_birth]) { ?>
 
   if ( write.birth_1.value < 1000 || write.birth_1.value <= 0 )  {
-    alert('»ı³âÀÌ Àß¸øÀÔ·ÂµÇ¾ú½À´Ï´Ù.');
+    alert('ìƒë…„ì´ ì˜ëª»ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.');
     write.birth_1.value='';
     write.birth_1.focus();
     return false;
   }
   if ( write.birth_2.value > 12 || write.birth_2.value <= 0 ) {
-    alert('»ı¿ùÀÌ Àß¸øÀÔ·ÂµÇ¾ú½À´Ï´Ù.');
+    alert('ìƒì›”ì´ ì˜ëª»ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.');
     write.birth_2.value='';
     write.birth_2.focus();
     return false;
   }
   if ( write.birth_3.value > 31 || write.birth_3.value <= 0 )  {
-    alert('»ıÀÏÀÌ Àß¸øÀÔ·ÂµÇ¾ú½À´Ï´Ù.');
+    alert('ìƒì¼ì´ ì˜ëª»ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤.');
     write.birth_3.value='';
     write.birth_3.focus();
     return false;
@@ -180,10 +180,10 @@ head();
 
 <? } ?>
 
-  if(!write.email.value) {alert("E-MailÀ» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä.");write.email.focus(); return false;}
+  if(!write.email.value) {alert("E-Mailì„ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”.");write.email.focus(); return false;}
 
   var f = document.forms["write"];
-  // º¸¾ÈÁ¢¼ÓÀ» Ã¼Å©ÇßÀ» ¶§ÀÇ ¾×¼Ç
+  // ë³´ì•ˆì ‘ì†ì„ ì²´í¬í–ˆì„ ë•Œì˜ ì•¡ì…˜
   if ( f.SSL_Login.checked ) {
 	f.action = sslUrl()+"member_modify_ok.php";
   } else {
@@ -195,9 +195,9 @@ head();
 
  function check_SSL_Login() { 
   if (document.write.SSL_Login.checked==true) {
-   alert("SSL ¾ÏÈ£È­ º¸¾ÈÁ¢¼ÓÀ» ¼³Á¤ÇÕ´Ï´Ù");
+   alert("SSL ì•”í˜¸í™” ë³´ì•ˆì ‘ì†ì„ ì„¤ì •í•©ë‹ˆë‹¤");
   } else {
-   alert("SSL ¾ÏÈ£È­ º¸¾ÈÁ¢¼ÓÀ» ÇØÁ¦ÇÕ´Ï´Ù");
+   alert("SSL ì•”í˜¸í™” ë³´ì•ˆì ‘ì†ì„ í•´ì œí•©ë‹ˆë‹¤");
   }
  }
 
@@ -227,14 +227,14 @@ head();
 </tr>
 <tr height=28 align=right>
   <td width=28% style=font-family:Tahoma;font-size:9pt;><b>ID&nbsp;</td>
-  <td align=left>&nbsp;<?=$member[user_id]?> &nbsp;(<?=date("Y³â m¿ù dÀÏ H½Ã iºĞ",$member[reg_date])?>¿¡ °¡ÀÔ) <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="º¸¾ÈÁ¢¼Ó ¼³Á¤/ÇØÁ¦"></td>
+  <td align=left>&nbsp;<?=$member[user_id]?> &nbsp;(<?=date("Yë…„ mì›” dì¼ Hì‹œ ië¶„",$member[reg_date])?>ì— ê°€ì…) <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="ë³´ì•ˆì ‘ì† ì„¤ì •/í•´ì œ"></td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
 </tr>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;><b>Password&nbsp;</td>
-  <td align=left>&nbsp;<input type=password name=password size=20 maxlength=20 style=border-color:#d8b3b3 class=input> È®ÀÎ : <input type=password name=password1 size=20 maxlength=20 style=border-color:#d8b3b3 class=input></td>
+  <td align=left>&nbsp;<input type=password name=password size=20 maxlength=20 style=border-color:#d8b3b3 class=input> í™•ì¸ : <input type=password name=password1 size=20 maxlength=20 style=border-color:#d8b3b3 class=input></td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -257,10 +257,10 @@ head();
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;><b>Birthday&nbsp;</td>
   <td align=left>
-    &nbsp;<input type=text name=birth_1 size=4 maxlength=4 value="<?=date("Y",$member[birth])?>" style=border-color:#d8b3b3 class=input> ³â
-	&nbsp;<input type=text name=birth_2 size=2 maxlength=2 value="<?=date("m",$member[birth])?>" style=border-color:#d8b3b3 class=input> ¿ù
-	&nbsp;<input type=text name=birth_3 size=2 maxlength=2 value="<?=date("d",$member[birth])?>" style=border-color:#d8b3b3 class=input> ÀÏ
-	<input type=checkbox value=1 name=open_birth <?=$check[$member[open_birth]]?>> °ø°³
+    &nbsp;<input type=text name=birth_1 size=4 maxlength=4 value="<?=date("Y",$member[birth])?>" style=border-color:#d8b3b3 class=input> ë…„
+	&nbsp;<input type=text name=birth_2 size=2 maxlength=2 value="<?=date("m",$member[birth])?>" style=border-color:#d8b3b3 class=input> ì›”
+	&nbsp;<input type=text name=birth_3 size=2 maxlength=2 value="<?=date("d",$member[birth])?>" style=border-color:#d8b3b3 class=input> ì¼
+	<input type=checkbox value=1 name=open_birth <?=$check[$member[open_birth]]?>> ê³µê°œ
   </td>
 </tr>
 <tr>
@@ -270,14 +270,14 @@ head();
 
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;><b>E-mail&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=email size=40 maxlength=200 value="<?=$member[email]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_email <?=$check[$member[open_email]]?>> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=email size=40 maxlength=200 value="<?=$member[email]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_email <?=$check[$member[open_email]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
 </tr>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>Homepage&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=homepage size=40 maxlength=255 value="<?=$member[homepage]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_homepage <?=$check[$member[open_homepage]]?>> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=homepage size=40 maxlength=255 value="<?=$member[homepage]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_homepage <?=$check[$member[open_homepage]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -286,7 +286,7 @@ head();
 <? if($group_data[use_icq]) { ?>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>ICQ&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=icq size=20 maxlength=20 value="<?=$member[icq]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_icq <?=$check[$member[open_icq]]?>> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=icq size=20 maxlength=20 value="<?=$member[icq]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_icq <?=$check[$member[open_icq]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -296,7 +296,7 @@ head();
 <? if($group_data[use_aol]) { ?>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>AIM&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=aol size=20 maxlength=30 value="<?=$member[aol]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_aol <?=$check[$member[open_aol]]?>> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=aol size=20 maxlength=30 value="<?=$member[aol]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_aol <?=$check[$member[open_aol]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -306,7 +306,7 @@ head();
 <? if($group_data[use_msn]) { ?>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>MSN&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=msn size=20 maxlength=250 value="<?=$member[msn]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_msn <?=$check[$member[open_msn]]?>> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=msn size=20 maxlength=250 value="<?=$member[msn]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_msn <?=$check[$member[open_msn]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -316,7 +316,7 @@ head();
 <? if($group_data[use_hobby]) { ?>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>Hobby&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=hobby size=40 maxlength=40 value="<?=$member[hobby]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_hobby <?=$check[$member[open_hobby]]?>> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=hobby size=40 maxlength=40 value="<?=$member[hobby]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_hobby <?=$check[$member[open_hobby]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -326,7 +326,7 @@ head();
 <? if($group_data[use_job]) { ?>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>Occupation(Job)&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=job size=20 maxlength=20 value="<?=$member[job]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_job <?=$check[$member[open_job]]?>> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=job size=20 maxlength=20 value="<?=$member[job]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_job <?=$check[$member[open_job]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -336,7 +336,7 @@ head();
 <? if($group_data[use_home_address]) { ?> 
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>Home Address&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=home_address size=40 maxlength=255 value="<?=$member[home_address]?>" style=border-color:#d8b3b3 class=input><input type=button value='°Ë»ö' class=input style=border-color:#d8b3b3 onclick=address_popup(1)><input type=checkbox value=1 name=open_home_address <?=$check[$member[open_home_address]]?>> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=home_address size=40 maxlength=255 value="<?=$member[home_address]?>" style=border-color:#d8b3b3 class=input><input type=button value='ê²€ìƒ‰' class=input style=border-color:#d8b3b3 onclick=address_popup(1)><input type=checkbox value=1 name=open_home_address <?=$check[$member[open_home_address]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -346,7 +346,7 @@ head();
 <? if($group_data[use_home_tel]) { ?>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>Home Phone&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=home_tel size=20 maxlength=20 value="<?=$member[home_tel]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_home_tel <?=$check[$member[open_home_tel]]?>> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=home_tel size=20 maxlength=20 value="<?=$member[home_tel]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_home_tel <?=$check[$member[open_home_tel]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -356,7 +356,7 @@ head();
 <? if($group_data[use_office_address]) { ?>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>Office Address&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=office_address size=40 maxlength=255 value="<?=$member[office_address]?>" style=border-color:#d8b3b3 class=input><input type=button value='°Ë»ö' class=input style=border-color:#d8b3b3 onclick=address_popup(2)><input type=checkbox value=1 name=open_office_address <?=$check[$member[open_office_address]]?>> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=office_address size=40 maxlength=255 value="<?=$member[office_address]?>" style=border-color:#d8b3b3 class=input><input type=button value='ê²€ìƒ‰' class=input style=border-color:#d8b3b3 onclick=address_popup(2)><input type=checkbox value=1 name=open_office_address <?=$check[$member[open_office_address]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -366,7 +366,7 @@ head();
 <? if($group_data[use_office_tel]) { ?>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>Office Phone&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=office_tel size=20 maxlength=20 value="<?=$member[office_tel]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_office_tel <?=$check[$member[open_office_tel]]?>> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=office_tel size=20 maxlength=20 value="<?=$member[office_tel]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_office_tel <?=$check[$member[open_office_tel]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -376,7 +376,7 @@ head();
 <? if($group_data[use_handphone]) { ?>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>Cellular&nbsp;</td>
-  <td align=left>&nbsp;<input type=text name=handphone size=20 maxlength=20 value="<?=$member[handphone]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_handphone <?=$check[$member[open_handphone]]?>> °ø°³</td>
+  <td align=left>&nbsp;<input type=text name=handphone size=20 maxlength=20 value="<?=$member[handphone]?>" style=border-color:#d8b3b3 class=input><input type=checkbox value=1 name=open_handphone <?=$check[$member[open_handphone]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -386,7 +386,7 @@ head();
 <? if($group_data[use_mailing]) { ?>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;><b>Mailling List</td>
-  <td align=left>&nbsp;<input type=checkbox name=mailing value=1 <?=$check[$member[mailing]]?>> ¸ŞÀÏ¸µ °¡ÀÔ</td>
+  <td align=left>&nbsp;<input type=checkbox name=mailing value=1 <?=$check[$member[mailing]]?>> ë©”ì¼ë§ ê°€ì…</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -395,7 +395,7 @@ head();
 
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;><b>Disclose Info</td>
-  <td align=left>&nbsp;<input type=checkbox name=openinfo value=1 <?=$check[$member[openinfo]]?>> Á¤º¸ °ø°³</td>
+  <td align=left>&nbsp;<input type=checkbox name=openinfo value=1 <?=$check[$member[openinfo]]?>> ì •ë³´ ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -405,8 +405,8 @@ head();
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>Photo</td>
   <td align=left>&nbsp;<input type=file name=picture size=34 maxlength=255 style=border-color:#d8b3b3 class=input>
-    <? if($member[picture]) echo "<br>&nbsp;<img src='$member[picture]' border=0> <input type=checkbox name=del_picture value=1> »èÁ¦"; ?>
-    <input type=checkbox value=1 name=open_picture <?=$check[$member[open_picture]]?>> °ø°³ (480X480 ÀÌÇÏ)
+    <? if($member[picture]) echo "<br>&nbsp;<img src='$member[picture]' border=0> <input type=checkbox name=del_picture value=1> ì‚­ì œ"; ?>
+    <input type=checkbox value=1 name=open_picture <?=$check[$member[open_picture]]?>> ê³µê°œ (480X480 ì´í•˜)
   </td>
 </tr>
 <tr>
@@ -417,7 +417,7 @@ head();
 <? if($group_data[use_comment]) { ?>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>Comments</td>
-  <td align=left>&nbsp;<textarea cols=40 rows=4 name=comment style=border-color:#d8b3b3 class=textarea><?=$member[comment]?></textarea><br>&nbsp;<input type=checkbox value=1 name=open_comment <?=$check[$member[open_comment]]?>> °ø°³</td>
+  <td align=left>&nbsp;<textarea cols=40 rows=4 name=comment style=border-color:#d8b3b3 class=textarea><?=$member[comment]?></textarea><br>&nbsp;<input type=checkbox value=1 name=open_comment <?=$check[$member[open_comment]]?>> ê³µê°œ</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
@@ -426,13 +426,13 @@ head();
 
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>Point</td>
-  <td align=left>&nbsp;<?=($member[point1]*10+$member[point2])?> Á¡ ( ÀÛ¼º±Û¼ö : <?=$member[point1]?>, ÄÚ¸àÆ® : <?=$member[point2]?> )</td>
+  <td align=left>&nbsp;<?=($member[point1]*10+$member[point2])?> ì  ( ì‘ì„±ê¸€ìˆ˜ : <?=$member[point1]?>, ì½”ë©˜íŠ¸ : <?=$member[point2]?> )</td>
 </tr>
 <tr>
   <td colspan=2 bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
 </tr>
 <tr height=30 bgcolor=#ffffff>
-  <td align=center><? if($member[no]>1) {?><a href=member_out.php?id=<?=$id?>&group_no=<?=$group_no?> onclick="return confirm('Å»ÅğÇÏ½Ã°Ú½À´Ï±î?\n\nÅ»Åğ¸¦ ÇÏ½Ã¸é ¸ğµç Á¤º¸°¡ DB¿¡¼­ »ç¶óÁı´Ï´Ù.\n\nÅ»ÅğÈÄ ¾ğÁ¦¶óµµ Àç °¡ÀÔ°¡´ÉÇÕ´Ï´Ù\n')"><img src=images/button_out.gif border=0 alt="È¸¿øÅ»Åğ"></a><?}?></td>
+  <td align=center><? if($member[no]>1) {?><a href=member_out.php?id=<?=$id?>&group_no=<?=$group_no?> onclick="return confirm('íƒˆí‡´í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n\níƒˆí‡´ë¥¼ í•˜ì‹œë©´ ëª¨ë“  ì •ë³´ê°€ DBì—ì„œ ì‚¬ë¼ì§‘ë‹ˆë‹¤.\n\níƒˆí‡´í›„ ì–¸ì œë¼ë„ ì¬ ê°€ì…ê°€ëŠ¥í•©ë‹ˆë‹¤\n')"><img src=images/button_out.gif border=0 alt="íšŒì›íƒˆí‡´"></a><?}?></td>
   <td align=right ><img src=images/t.gif height=5><br>
     <input type=image border=0 src=images/button_modify.gif> &nbsp;
     <img src=images/memo_close.gif border=0 onClick=window.close() style=cursor:hand>&nbsp;&nbsp;&nbsp;

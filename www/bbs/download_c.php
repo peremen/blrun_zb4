@@ -1,21 +1,21 @@
 <?
-ob_start(); //_head.php ÆÄÀÏ¿¡ ÀÌ¹Ì À¥·Î±× ºÐ¼® html ÄÚµå°¡ »ðÀÔµÅ ÀÖ¾î °æ°í¿¡·¯¸¦ ¹æÁöÇÏ±â À§ÇÑ°Í.
+ob_start(); //_head.php íŒŒì¼ì— ì´ë¯¸ ì›¹ë¡œê·¸ ë¶„ì„ html ì½”ë“œê°€ ì‚½ìž…ë¼ ìžˆì–´ ê²½ê³ ì—ëŸ¬ë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•œê²ƒ.
 
 /***************************************************************************
-* °øÅë ÆÄÀÏ include
+* ê³µí†µ íŒŒì¼ include
 **************************************************************************/
 include "_head.php";
 
 if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) die();
 
 /***************************************************************************
-* °Ô½ÃÆÇ ¼³Á¤ Ã¼Å©
+* ê²Œì‹œíŒ ì„¤ì • ì²´í¬
 **************************************************************************/
 
-// »ç¿ë±ÇÇÑ Ã¼Å©
-if($setup[grant_view]<$member[level]&&!$is_admin) Error("»ç¿ë±ÇÇÑÀÌ ¾ø½À´Ï´Ù","login.php?id=$id&page=$page&page_num=$page_num&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$parent&file=zboard.php");
+// ì‚¬ìš©ê¶Œí•œ ì²´í¬
+if($setup[grant_view]<$member[level]&&!$is_admin) Error("ì‚¬ìš©ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤","login.php?id=$id&page=$page&page_num=$page_num&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$parent&file=zboard.php");
 
-// ÇöÀç±ÛÀÇ Download ¼ö¸¦ ¿Ã¸²;;
+// í˜„ìž¬ê¸€ì˜ Download ìˆ˜ë¥¼ ì˜¬ë¦¼;;
 if($filenum==1) {
 	mysql_query("update `$t_comment"."_$id` set download1=download1+1 where no='$no'");
 } else {
@@ -24,10 +24,11 @@ if($filenum==1) {
 
 $data=mysql_fetch_array(mysql_query("select * from `$t_comment"."_$id` where no='$no'"));
 
-// ´Ù¿î·Îµå;;
+// ë‹¤ìš´ë¡œë“œ;;
 $filename="s_file_name".$filenum;
 $filepath=$data["file_name".$filenum];
 $filename=$data[$filename];
+$filename=iconv("utf-8","euc-kr",$filename);
 
 header("Content-Type: application/force-download"); 
 header("Content-Disposition: attachment; filename=\"$filename\""); 

@@ -1,8 +1,8 @@
 <?
 $emoticon_url=$dir."/emoticon";
-if($mode=="reply") $title="´ä±Û ¾²±â";
-elseif($mode=="modify") $title="±Û ¼öÁ¤ÇÏ±â";
-else $title="»õ·Î ±Û ¾²±â";
+if($mode=="reply") $title="ë‹µê¸€ ì“°ê¸°";
+elseif($mode=="modify") $title="ê¸€ ìˆ˜ì •í•˜ê¸°";
+else $title="ìƒˆë¡œ ê¸€ ì“°ê¸°";
 
 $a_preview = str_replace("view_preview()","preview_m()",$a_preview);
 $a_preview = str_replace(">","><font class=com2>",$a_preview)."";
@@ -21,7 +21,7 @@ function zb_formresize(obj) {
 <col width=5></col><col width=></col><col width=13></col>
 <tr align=left valign="middle" height=35>
   <td class=title1></td>
-  <td class=title2><font class=title_font2>&nbsp;¡¤&nbsp;»õ±Û¾²±â</font></td>
+  <td class=title2><font class=title_font2>&nbsp;Â·&nbsp;ìƒˆê¸€ì“°ê¸°</font></td>
   <td class=title3></td>
 </tr>
 </table>
@@ -40,7 +40,7 @@ function zb_formresize(obj) {
 </tr>
 <tr>
   <td align=right><font class=com2><b>Password</b></font></td>
-  <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> ºñ¹øÀ» ÀçÀÔ·ÂÇÏ¸é ÀÓ½ÃÀúÀåÀÌ º¹¿øµÊ</td>
+  <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> ë¹„ë²ˆì„ ì¬ì…ë ¥í•˜ë©´ ì„ì‹œì €ì¥ì´ ë³µì›ë¨</td>
 </tr>
 <tr>
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>
@@ -66,7 +66,7 @@ function zb_formresize(obj) {
   <td align=left class=com2>
     <?=$hide_category_start?><?=$category_kind?><?=$hide_category_end?>
 
-    <?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1>°øÁö»çÇ×<?=$hide_notice_end?><?=$hide_html_start?> <input type=checkbox id=use_html name=use_html <?=$use_html?>>HTML»ç¿ë<?=$hide_html_end?> <input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1>´äº¯¸ŞÀÏ¹Ş±â<?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>ºñ¹Ğ±Û<?=$hide_secret_end?><?if($emoticon_use=="on"){?> <input onclick='showEmoticon()' type=checkbox name=Emoticons value='yes'><img src=<?=$dir?>/use_emo.gif><?}?> <font id="state"></font>
+    <?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1>ê³µì§€ì‚¬í•­<?=$hide_notice_end?><?=$hide_html_start?> <input type=checkbox id=use_html name=use_html <?=$use_html?>>HTMLì‚¬ìš©<?=$hide_html_end?> <input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1>ë‹µë³€ë©”ì¼ë°›ê¸°<?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>ë¹„ë°€ê¸€<?=$hide_secret_end?><?if($emoticon_use=="on"){?> <input onclick='showEmoticon()' type=checkbox name=Emoticons value='yes'><img src=<?=$dir?>/use_emo.gif><?}?> <font id="state"></font>
 
   </td>
 </tr>
@@ -81,7 +81,7 @@ function zb_formresize(obj) {
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right onclick=document.write.memo.rows=document.write.memo.rows+4 style=cursor:pointer><font class=com2><b>Memo</b></font> <font class=com2>¡å</font></td>
+  <td align=right onclick=document.write.memo.rows=document.write.memo.rows+4 style=cursor:pointer><font class=com2><b>Memo</b></font> <font class=com2>â–¼</font></td>
   <td align=left style=padding-top:8px;padding-bottom:8px;><textarea id=memo name=memo <?=size2(90)?> rows=18 class=textarea style=width:99% onkeydown='return doTab(event);' onkeyup="addStroke()"><?=$memo?></textarea></td>
 </tr>
 <tr>
@@ -137,7 +137,7 @@ function zb_formresize(obj) {
     <?=$a_preview?><img src=<?=$dir?>/bt_prev.gif border=0></a>
     <?=$a_imagebox?><img src=<?=$dir?>/bt_imgbox.gif border=0></a>
   </td>
-  <td width=60 align=left valign=middle><?=$a_codebox?>ÄÚµå»ğÀÔ</a></td>
+  <td width=60 align=left valign=middle><?=$a_codebox?>ì½”ë“œì‚½ì…</a></td>
   <td align=right>
 	<img src=<?=$dir?>/bt_imsi_ok.gif border=0 accesskey="a" onclick=autoSave() style="cursor:pointer">&nbsp;
     <input type=image src=<?=$dir?>/bt_write_ok.gif border=0 accesskey="s" onfocus=blur()>&nbsp;<a href=# onclick=history.back() onfocus=blur()><img src=<?=$dir?>/bt_cancel.gif border=0></a>

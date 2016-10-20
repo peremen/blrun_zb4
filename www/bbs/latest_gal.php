@@ -1,6 +1,6 @@
 <? $use_thumb=2; ?>
 
-<!-----------------ÀÌ¹ÌÁö ¹Ì¸®º¸±â-------------------->
+<!-----------------ì´ë¯¸ì§€ ë¯¸ë¦¬ë³´ê¸°-------------------->
 <div id="message" style="border-width:0px; border-style:none; width:0px; height:0px; position:absolute; left:0px; top:0px; z-index:1;" class=shadow></div> 
 <script language="javascript">
 <!--
@@ -9,8 +9,8 @@ function imgposit(x,y,myEvent){
 	var scrollLeft = (document.documentElement && document.documentElement.scrollLeft) || document.body.scrollLeft;
 	var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
  
-	element.style.left = ((myEvent.clientX - x) + scrollLeft) + "px"; //¿À¹öµÉ¶§ º¸¿©Áú ÀÌ¹ÌÁöÀÇ x ÁÂÇ¥
-	element.style.top = ((myEvent.clientY - y) + scrollTop) + "px"; //¿À¹öµÉ¶§ º¸¿©Áú ÀÌ¹ÌÁöÀÇ y ÁÂÇ¥
+	element.style.left = ((myEvent.clientX - x) + scrollLeft) + "px"; //ì˜¤ë²„ë ë•Œ ë³´ì—¬ì§ˆ ì´ë¯¸ì§€ì˜ x ì¢Œí‘œ
+	element.style.top = ((myEvent.clientY - y) + scrollTop) + "px"; //ì˜¤ë²„ë ë•Œ ë³´ì—¬ì§ˆ ì´ë¯¸ì§€ì˜ y ì¢Œí‘œ
 } 
 
 function imgset(str){ 
@@ -26,10 +26,13 @@ function imghide(){
 -->
 </script>
 <?
+// mb_substr()ê³¼ mb_strlen(), mb_strpos()ê³¼ mb_strrpos() í•¨ìˆ˜ ì¸ì½”ë”© ì§€ì •
+mb_internal_encoding("UTF-8");
+
 if(!$connect) $connect=dbconn();
 
 function latest_thumb_del($path,$file,$reg_date){
-	//echo "ÀÌ ÇÔ¼ö°¡ ½ÇÇàµÇ¾ú½À´Ï´Ù.";
+	//echo "ì´ í•¨ìˆ˜ê°€ ì‹¤í–‰ë˜ì—ˆìŠµë‹ˆë‹¤.";
 	for($i=0;$i<sizeof($file);$i++){
 		for($j=0;$j<sizeof($reg_date);$j++){
 			$count=0;
@@ -54,7 +57,7 @@ function thumbnail_make1($size,$source_file,$save_path,$small,$large,$ratio){
 		if($size[$i]!=0){
 		 	
 			if($i==sizeof($size)-1) {
-				// $ratio°¡ 0À¸·Î ³ª´©¾îÁö´Â °Í ¹æÁö
+				// $ratioê°€ 0ìœ¼ë¡œ ë‚˜ëˆ„ì–´ì§€ëŠ” ê²ƒ ë°©ì§€
 				if($img_info[0]!="")
 					$ratio=$img_info[1]/$img_info[0];
 			}
@@ -118,7 +121,7 @@ function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
 		if($size[$i]!=0){
 		 	
 			if($i==sizeof($size)-1) {
-				// $ratio°¡ 0À¸·Î ³ª´©¾îÁö´Â °Í ¹æÁö
+				// $ratioê°€ 0ìœ¼ë¡œ ë‚˜ëˆ„ì–´ì§€ëŠ” ê²ƒ ë°©ì§€
 				if($img_info[0]!="")
 					$ratio=$img_info[1]/$img_info[0];
 			}
@@ -170,18 +173,18 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 	
 	$str = zReadFile($_zb_path."latest_skin/".$skinname."/main.html");
 	if(!$str) { 
-		echo "ÁöÁ¤ÇÏ½Å $skinname ÀÌ¶ó´Â ÃÖ±Ù¸ñ·Ï ½ºÅ²ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù<br>";
+		echo "ì§€ì •í•˜ì‹  $skinname ì´ë¼ëŠ” ìµœê·¼ëª©ë¡ ìŠ¤í‚¨ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤<br>";
 		return;
     }
 
 	if($use_thumb>0){
 		if(!is_dir($_zb_path."data/latest_thumb/")){
-			if(!@mkdir($_zb_path."data/latest_thumb/",0777,true)) echo $_zb_path."data Æú´õÀÇ ÆÛ¹Ì¼ÇÀÌ 707ÀÎÁö È®ÀÎÇÏ¼¼¿ä<BR>";
-			if(!@chmod($_zb_path."data/latest_thumb/",0707)) echo $_zb_path."data/latest_thumb/ Æú´õÀÇ ±ÇÇÑÀ» 707·Î ¼öÁ¤ÇÏ¼¼¿ä<BR>";
+			if(!@mkdir($_zb_path."data/latest_thumb/",0777,true)) echo $_zb_path."data í´ë”ì˜ í¼ë¯¸ì…˜ì´ 707ì¸ì§€ í™•ì¸í•˜ì„¸ìš”<BR>";
+			if(!@chmod($_zb_path."data/latest_thumb/",0707)) echo $_zb_path."data/latest_thumb/ í´ë”ì˜ ê¶Œí•œì„ 707ë¡œ ìˆ˜ì •í•˜ì„¸ìš”<BR>";
 		}
 		if(!is_dir($_zb_path."data/latest_thumb/$id/")){
-			if(!@mkdir($_zb_path."data/latest_thumb/$id/",0777)) echo $_zb_path."data/latest_thumb/ Æú´õÀÇ ±ÇÇÑÀÌ 707ÀÎÁö È®ÀÎÇÏ½Ã°í Æú´õ°¡ ¾ø´Ù¸é ¼öµ¿À¸·Î »ı¼º½ÃÄÑ ÁÖ½Ã°í ±ÇÇÑÀ» 707·Î ¼öÁ¤ÇÏ¼¼¿ä<BR>";
-			if(!@chmod($_zb_path."data/latest_thumb/$id/",0707)) echo $_zb_path."data/latest_thumb/$id/ Æú´õÀÇ ±ÇÇÑÀ» 707·Î ¼öÁ¤ÇÏ¼¼¿ä";
+			if(!@mkdir($_zb_path."data/latest_thumb/$id/",0777)) echo $_zb_path."data/latest_thumb/ í´ë”ì˜ ê¶Œí•œì´ 707ì¸ì§€ í™•ì¸í•˜ì‹œê³  í´ë”ê°€ ì—†ë‹¤ë©´ ìˆ˜ë™ìœ¼ë¡œ ìƒì„±ì‹œì¼œ ì£¼ì‹œê³  ê¶Œí•œì„ 707ë¡œ ìˆ˜ì •í•˜ì„¸ìš”<BR>";
+			if(!@chmod($_zb_path."data/latest_thumb/$id/",0707)) echo $_zb_path."data/latest_thumb/$id/ í´ë”ì˜ ê¶Œí•œì„ 707ë¡œ ìˆ˜ì •í•˜ì„¸ìš”";
 		}
 	}
 
@@ -210,17 +213,17 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 		$filename1=$_zb_url.$img1;
 		$filename2=$_zb_url.$img2;
 
-		// [img] ÅÂ±× ÆÄÀÏ Ã£±â
+		// [img] íƒœê·¸ íŒŒì¼ ì°¾ê¸°
 		$imagePattern="#\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,#i";
 		preg_match_all($imagePattern,$data[memo],$out,PREG_SET_ORDER);
 		$src_img="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
 
-		// ¿ÜºÎ html <img> ÅÂ±× src url ÃßÃâ
+		// ì™¸ë¶€ html <img> íƒœê·¸ src url ì¶”ì¶œ
 		$imagePattern="#<img[^>]*src=[\']?[\"]?([^>\'\"]+)[\']?[\"]?[^>]*>#i";
 		preg_match_all($imagePattern,$data[memo],$img,PREG_SET_ORDER);
 		for($i=0;$i<1;$i++)
-			if(($mypos=strrpos($img[$i][1],"http://"))||($mypos=strrpos($img[$i][1],"https://")))
-				$img[$i][1]=substr($img[$i][1],$mypos);
+			if(($mypos=mb_strrpos($img[$i][1],"http://"))||($mypos=mb_strrpos($img[$i][1],"https://")))
+				$img[$i][1]=mb_substr($img[$i][1],$mypos);
 
 		if($use_thumb>0){
 			if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name1])){
@@ -334,7 +337,7 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 		$path=$_zb_path."data/latest_thumb/$id/";
 		$directory=get_dirinfo($path);
 
-		// ¸ğ¹ÙÀÏ ¸ŞÀÎÆäÀÌÁö ÃÖ±Ù °¶·¯¸® °¹¼öµµ °í·ÁÇÑ ¹è¼ö ¼³Á¤
+		// ëª¨ë°”ì¼ ë©”ì¸í˜ì´ì§€ ìµœê·¼ ê°¤ëŸ¬ë¦¬ ê°¯ìˆ˜ë„ ê³ ë ¤í•œ ë°°ìˆ˜ ì„¤ì •
 		if($num==7)
 			$multi=2;
 		elseif($num==4)

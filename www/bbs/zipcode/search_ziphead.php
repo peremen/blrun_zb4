@@ -1,8 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<html lang="ko">
 <head>
-<title>¿ìÆí¹øÈ£ Ã£±â</title>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<title>ìš°í¸ë²ˆí˜¸ ì°¾ê¸°</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
 body {margin: 0px;<?=$list_begin ? 'background-color: #f0f0f0;' : ''?>}
 body,td,div,input {font-size: 12px;font-family: Verdana;}
@@ -20,7 +20,7 @@ function check_submit()
 	var forms_s = document.forms['w_form'];
 	if(!forms_s.dong.value || forms_s.dong.value.split(' ').join('') == '')
 	{
-	alert("°Ë»ö¾î¸¦ ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À.");
+	alert("ê²€ìƒ‰ì–´ë¥¼ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤.");
 	forms_s.dong.value='';
 	forms_s.dong.focus();
 	return false;
@@ -47,15 +47,15 @@ function returnmain()
 
 <body>
 <div align="center" style="padding: 5px;background-color: #009900;font-size:9pt;"> 
-<b><span style="color:#ffffff">¿ìÆí¹øÈ£¸¦ °Ë»öÇÕ´Ï´Ù.</span></b></div>
+<b><span style="color:#ffffff">ìš°í¸ë²ˆí˜¸ë¥¼ ê²€ìƒ‰í•©ë‹ˆë‹¤.</span></b></div>
 <div align="center" style="background-color: #007900;font-size:1pt;height: 3px;"></div>
 <form name="w_form" method="post" action="<?=$PHP_SELF?>" onsubmit="return check_submit();" style="margin: 0px">
 <input name="num" type="hidden" value="<?=$num?>">
 <div align="center" style="padding: 14px;background-color: #f0f0f0;font-size:9pt;">
-  Ã£°íÀÚ ÇÏ´Â À¾/¸é/µ¿ÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿À.<br />
-  ( ¿¹: <b>ÆòÃ¢À¾</b> ¶Ç´Â <b>ÁøºÎ¸é</b> ¶Ç´Â <b>¸ñµ¿</b> ¶Ç´Â <b>¸ñ3µ¿</b> )
+  ì°¾ê³ ì í•˜ëŠ” ì/ë©´/ë™ì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.<br />
+  ( ì˜ˆ: <b>í‰ì°½ì</b> ë˜ëŠ” <b>ì§„ë¶€ë©´</b> ë˜ëŠ” <b>ëª©ë™</b> ë˜ëŠ” <b>ëª©3ë™</b> )
   <div style="padding-top: 4px"></div>
-  <input name="dong" type="text" style="border:1px solid #e1e1e1;vertical-align: middle;background-color: #fff;" size="18" value="<?=$dong?>"<?=$address ? ' readonly' : ''?>> <input type="image" style="border: 0px;vertical-align: middle;width: 20px;height: 20px" src="../images/btn_search.gif"<?=$address ? " onclick=\"alert('¿©±â¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.\\n\\n¾Æ·¡Ä­¿¡ ³ª¸ÓÁö ÁÖ¼Ò¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.');return false\"" : ''?>>
+  <input name="dong" type="text" style="border:1px solid #e1e1e1;vertical-align: middle;background-color: #fff;" size="18" value="<?=$dong?>"<?=$address ? ' readonly' : ''?>> <input type="image" style="border: 0px;vertical-align: middle;width: 20px;height: 20px" src="../images/btn_search.gif"<?=$address ? " onclick=\"alert('ì—¬ê¸°ì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\\n\\nì•„ë˜ì¹¸ì— ë‚˜ë¨¸ì§€ ì£¼ì†Œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.');return false\"" : ''?>>
 </div>
 </form>
 <div align="center" style="background-color: <?=$list_begin ? 'background-color: #f0f0f0;' : '#E6E6E6;'?>font-size:1pt;height: 2px;"></div>

@@ -1,30 +1,30 @@
 <?
 /***************************************************************************
-* °øÅë ÆÄÀÏ include
+* ê³µí†µ íŒŒì¼ include
 **************************************************************************/
 include "_head.php";
 
-if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("Á¤»óÀûÀ¸·Î ±ÛÀ» ¼öÁ¤ÇÏ¿© ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("ì •ìƒì ìœ¼ë¡œ ê¸€ì„ ìˆ˜ì •í•˜ì—¬ ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤.");
 
-// ·£´ýÇÑ µÎ ¼ýÀÚ¸¦ ¹ß»ý(1-1000) ÈÄ º¯¼ö¿¡ ´ëÀÔ
+// ëžœë¤í•œ ë‘ ìˆ«ìžë¥¼ ë°œìƒ(1-1000) í›„ ë³€ìˆ˜ì— ëŒ€ìž…
 $num1 = mt_rand(1,1000);
 $num2 = mt_rand(1,1000);
 $num1num2 = $num1*10000 + $num2;
-// ÄÚ¸àÆ® º¸¾ÈÀ» À§ÇØ ¼¼¼Çº¯¼ö¸¦ ¼³Á¤
+// ì½”ë©˜íŠ¸ ë³´ì•ˆì„ ìœ„í•´ ì„¸ì…˜ë³€ìˆ˜ë¥¼ ì„¤ì •
 $_SESSION['ZBRD_SS_VRS'] = $num1num2;
 
 /***************************************************************************
-* ÄÚ¸àÆ® ¼öÁ¤ ÆäÀÌÁö Ã³¸®
+* ì½”ë©˜íŠ¸ ìˆ˜ì • íŽ˜ì´ì§€ ì²˜ë¦¬
 **************************************************************************/
 
-// ¿øº»±ÛÀ» °¡Á®¿È
+// ì›ë³¸ê¸€ì„ ê°€ì ¸ì˜´
 $s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
 
 if($s_data[ismember]||$is_admin||$member[level]<=$setup[grant_delete]) {
-	if(!$is_admin&&$s_data[ismember]!=$member[no]) Error("¼öÁ¤ÇÒ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù");
-	$title="±ÛÀ» ¼öÁ¤ÇÏ½Ã°Ú½À´Ï±î?";
+	if(!$is_admin&&$s_data[ismember]!=$member[no]) Error("ìˆ˜ì •í•  ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤");
+	$title="ê¸€ì„ ìˆ˜ì •í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
 } else {
-	$title="±ÛÀ» ¼öÁ¤ÇÕ´Ï´Ù.<br>ºñ¹Ð¹øÈ£¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä";
+	$title="ê¸€ì„ ìˆ˜ì •í•©ë‹ˆë‹¤.<br>ë¹„ë°€ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”";
 	$input_password="<input type=password name=password size=20 class=input>";
 }
 
@@ -70,8 +70,8 @@ if(!$member[no]) {
 ?>
 <tr class=list0 height=30>
 	<td align=center>
-		<input type=submit class=submit value=" È®  ÀÎ " accesskey="s">
-		<input type=button class=submit value="ÀÌÀüÈ­¸é" onclick=history.back()>
+		<input type=submit class=submit value=" í™•  ì¸ " accesskey="s">
+		<input type=button class=submit value="ì´ì „í™”ë©´" onclick=history.back()>
 	</td>
 </tr>
 </table>

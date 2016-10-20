@@ -1,11 +1,11 @@
 <?
-// ÇöÀç ±×·ìÀÇ µ¥ÀÌÅ¸¸¦ ±¸ÇÔ
+// í˜„ì¬ ê·¸ë£¹ì˜ ë°ì´íƒ€ë¥¼ êµ¬í•¨
 $group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
 
-// ¿À´Ã³¯Â¥ ±¸ÇÔ
+// ì˜¤ëŠ˜ë‚ ì§œ êµ¬í•¨
 $today_date=mktime(0,0,0,date("m"),date("d"),date("Y"));
 
-// °Ô½ÃÆÇ °ü¸®ÀÚÀÏ °æ¿ì °Ô½ÃÆÇÀ» Á¦ÇÑ
+// ê²Œì‹œíŒ ê´€ë¦¬ìì¼ ê²½ìš° ê²Œì‹œíŒì„ ì œí•œ
 if($member[is_admin]>=3 && $member[board_name]) {
 	$boardList = explode(",",$member[board_name]);
 	$s_que = "";
@@ -15,29 +15,29 @@ if($member[is_admin]>=3 && $member[board_name]) {
 			else $s_que .= " no = ".$boardList[$i]." ";
 		}
 	}
-// ±×·ì°ü¸®ÀÚÀÎ °æ¿ì ±×·ì °Ô½ÃÆÇ¸¸ º¸¿©ÁÖ±â
+// ê·¸ë£¹ê´€ë¦¬ìì¸ ê²½ìš° ê·¸ë£¹ ê²Œì‹œíŒë§Œ ë³´ì—¬ì£¼ê¸°
 } else {
 	$s_que = " group_no = '$group_no' ";
 }
 
-// ÀüÃ¼ °¹¼ö¸¦ ±¸ÇØ¿È
+// ì „ì²´ ê°¯ìˆ˜ë¥¼ êµ¬í•´ì˜´
 $temp=mysql_fetch_array(mysql_query("select count(*) from $admin_table where $s_que"));
 $total=$temp[0];
 
-// ÆäÀÌÁö ±¸ÇÏ´Â ºÎºĞ
+// í˜ì´ì§€ êµ¬í•˜ëŠ” ë¶€ë¶„
 if($page_num==0)$page_num=10;
 if(!$page) $page=1;
 $start_num=($page-1)*$page_num;
 $total_page=(int)(($total-1)/$page_num)+1;
 
-// °Ô½Ã¹°À» ±¸ÇØ¿È
+// ê²Œì‹œë¬¼ì„ êµ¬í•´ì˜´
 $result=@mysql_query("select * from $admin_table where $s_que order by no desc limit $start_num,$page_num",$connect) 
-or Error("°Ô½ÃÆÇÀÇ Á¤º¸¸¦ DB·Î ºÎÅÍ °¡Á®¿À´Â ºÎºĞ¿¡¼­ ¿¡·¯°¡ ¹ß»ıÇß½À´Ï´Ù");
+or Error("ê²Œì‹œíŒì˜ ì •ë³´ë¥¼ DBë¡œ ë¶€í„° ê°€ì ¸ì˜¤ëŠ” ë¶€ë¶„ì—ì„œ ì—ëŸ¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤");
 ?>
 <script>
 function board_recover(a,b)
 {
- c = confirm(b + " °Ô½ÃÆÇÀ» Á¤¸®ÇÏ½Ã°Ú½À´Ï±î?")
+ c = confirm(b + " ê²Œì‹œíŒì„ ì •ë¦¬í•˜ì‹œê² ìŠµë‹ˆê¹Œ?")
  if(c==true)
  {
 	window.open("admin/recover.php?no="+a,"recover","width=300,height=100,toolbars=no,resizable=no,scrollbars=no")
@@ -50,23 +50,23 @@ function board_recover(a,b)
 <tr height=1><td bgcolor=#000000 style=padding:0px; colspan=9><img src=images/t.gif height=1></td>
 </tr>
 <?
-// ¾Õ¿¡ ºÙ´Â °¡»ó¹øÈ£
+// ì•ì— ë¶™ëŠ” ê°€ìƒë²ˆí˜¸
 $number=$total-($page-1)*$page_num;
 
 echo "
 <tr align=center height=23 bgcolor=#a0a0a0>
-  <td style=font-family:Tahoma;font-size:9pt;><b>¹øÈ£</td>
-  <td style=font-family:Tahoma;font-size:9pt;><b>°Ô½ÃÆÇ ÀÌ¸§</td>
-  <td style=font-family:Tahoma;font-size:9pt;><b>ÀüÃ¼µî·Ï ¼ö</td>
-  <td style=font-family:Tahoma;font-size:9pt;><b>¹Ì¸®º¸±â</td>
-  <td style=font-family:Tahoma;font-size:9pt;><b>±âº»¼³Á¤ º¯°æ</td>
-  <td style=font-family:Tahoma;font-size:9pt;><b>±ÇÇÑ ¼³Á¤</td>
-  <td style=font-family:Tahoma;font-size:9pt;><b>Ä«Å×°í¸® °ü¸®</a></td>
-  <td style=font-family:Tahoma;font-size:9pt;><b>¿À·ùº¹±¸</a></td>
-  <td style=font-family:Tahoma;font-size:9pt;><b>»èÁ¦</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>ë²ˆí˜¸</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>ê²Œì‹œíŒ ì´ë¦„</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>ì „ì²´ë“±ë¡ ìˆ˜</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>ë¯¸ë¦¬ë³´ê¸°</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>ê¸°ë³¸ì„¤ì • ë³€ê²½</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>ê¶Œí•œ ì„¤ì •</td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>ì¹´í…Œê³ ë¦¬ ê´€ë¦¬</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>ì˜¤ë¥˜ë³µêµ¬</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><b>ì‚­ì œ</a></td>
 </tr>";
 
-// »Ì¾Æ¿Â °Ô½Ã¹° µ¥ÀÌÅ¸¸¦ È­¸é¿¡ Ãâ·Â
+// ë½‘ì•„ì˜¨ ê²Œì‹œë¬¼ ë°ì´íƒ€ë¥¼ í™”ë©´ì— ì¶œë ¥
 while($data=mysql_fetch_array($result))
 {
 	echo "
@@ -78,17 +78,17 @@ while($data=mysql_fetch_array($result))
   <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=modify&no=$data[no]&page=$page&page_num=$page_num>Setup</a></td>
   <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=grant&no=$data[no]&page=$page&page_num=$page_num>Setup</a></td>
   <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=category&no=$data[no]&page=$page&page_num=$page_num>Setup</a></td>
-  <td style=font-family:Tahoma;font-size:9pt;><a href=\"javascript:board_recover('$data[no]','$data[name]')\">Á¤¸®</a></td>
-  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=del&no=$data[no]&page=$page&page_num=$page_num onclick=\"return confirm('$data[name] °Ô½ÃÆÇÀ» \\n\\n»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?')\">»èÁ¦</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=\"javascript:board_recover('$data[no]','$data[name]')\">ì •ë¦¬</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=del&no=$data[no]&page=$page&page_num=$page_num onclick=\"return confirm('$data[name] ê²Œì‹œíŒì„ \\n\\nì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')\">ì‚­ì œ</a></td>
 </tr>";
-	// °¡»ó ¹øÈ£¸¦ 1¾¿ »­
+	// ê°€ìƒ ë²ˆí˜¸ë¥¼ 1ì”© ëºŒ
 	$number--;
 }
 ?>
 
 </table>
 <div align=right>
-<!-- °¢Á¾ °Ë»öºÎºĞ -->
+<!-- ê°ì¢… ê²€ìƒ‰ë¶€ë¶„ -->
 <table border=0 cellspacing=0 cellpadding=3>
 <form method=post action=<?=$PHP_SELF?> name=search>
 <input type=hidden name=page value=<?=$page?>>
@@ -96,8 +96,8 @@ while($data=mysql_fetch_array($result))
 <input type=hidden name=group_no value=<?=$group_no?>>
 <tr>
   <td><input type=text name=page_num value=<?=$page_num?> size=2></td>
-  <td><input type=submit value='ÆäÀÌÁö´ç °¹¼ö' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;>&nbsp;&nbsp;</td>
-  <td><input type=button onclick=location.href="<?=$PHP_SELF?>?exec=view_board&exec2=add&page=<?=$page?>&page_num=<?=$page_num?>&group_no=<?=$group_no?>" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; value=' °Ô½ÃÆÇ Ãß°¡ÇÏ±â '></td>
+  <td><input type=submit value='í˜ì´ì§€ë‹¹ ê°¯ìˆ˜' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;>&nbsp;&nbsp;</td>
+  <td><input type=button onclick=location.href="<?=$PHP_SELF?>?exec=view_board&exec2=add&page=<?=$page?>&page_num=<?=$page_num?>&group_no=<?=$group_no?>" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; value=' ê²Œì‹œíŒ ì¶”ê°€í•˜ê¸° '></td>
 </tr>
 </form>
 </table>
@@ -105,14 +105,14 @@ while($data=mysql_fetch_array($result))
 </div>
 <div align=center><br>
 <?
-//ÆäÀÌÁö ³ªÅ¸³»´Â ºÎºĞ
+//í˜ì´ì§€ ë‚˜íƒ€ë‚´ëŠ” ë¶€ë¶„
 $show_page_num=10;
 $start_page=(int)(($page-1)/$show_page_num)*$show_page_num;
 $i=1;
 if($page>$show_page_num){
 	$prev_page=$start_page-1;
 	echo "
-<a href=$PHP_SELF?page=$prev_page&exec=view_board&page_num=$page_num&group_no=$group_no style=color:white>[ÀÌÀüÆäÀÌÁö]</a>";
+<a href=$PHP_SELF?page=$prev_page&exec=view_board&page_num=$page_num&group_no=$group_no style=color:white>[ì´ì „í˜ì´ì§€]</a>";
 }
 while($i+$start_page<=$total_page&&$i<=$show_page_num)
 {
@@ -122,8 +122,8 @@ while($i+$start_page<=$total_page&&$i<=$show_page_num)
 	else echo "<a href=$PHP_SELF?page=$move_page&exec=view_board&page_num=$page_num&group_no=$group_no style=color:white>[$move_page]</a>";
 	$i++;
 }
-if($total_page>$move_page){$next_page=$move_page+1; echo "<a href=$PHP_SELF?page=$next_page&exec=view_board&page_num=$page_num&group_no=$group_no style=color:white>[´ÙÀ½ÆäÀÌÁö]</a>";}
-//ÆäÀÌÁö ³ªÅ¸³»´Â ºÎºĞ ³¡
+if($total_page>$move_page){$next_page=$move_page+1; echo "<a href=$PHP_SELF?page=$next_page&exec=view_board&page_num=$page_num&group_no=$group_no style=color:white>[ë‹¤ìŒí˜ì´ì§€]</a>";}
+//í˜ì´ì§€ ë‚˜íƒ€ë‚´ëŠ” ë¶€ë¶„ ë
 ?>
 
 </div>

@@ -78,16 +78,16 @@
 		<span style=line-height:160%>
 		<?=$upload_image1?><br>
 		<?=$upload_image2?><br>
-		<!--¿©±âºÎÅÍ º»¹® ³»¿ë ½ÃÀÛÀÔ´Ï´Ù-->
+		<!--ì—¬ê¸°ë¶€í„° ë³¸ë¬¸ ë‚´ìš© ì‹œìž‘ìž…ë‹ˆë‹¤-->
 		<?=$memo?><br><br>
 		<? include "script/sns.php"; ?>
 		<br><div align=right style=font-family:Tahoma;font-size:7pt;><?=$ip?></div><br>
 		<a href="http://www.ntzn.net/" target="_blank" style="color:blue;">http://www.ntzn.net/</a>
-		<!--¿©±â±îÁö º»¹® ³»¿ë ³¡ÀÔ´Ï´Ù-->
+		<!--ì—¬ê¸°ê¹Œì§€ ë³¸ë¬¸ ë‚´ìš© ëìž…ë‹ˆë‹¤-->
 		</span>
 	</td>
 </tr>
 </table>
 <img src=<?=$dir?>/t.gif border=0 height=2><br>
-<!-- °£´ÜÇÑ ´ä±Û ½ÃÀÛÇÏ´Â ºÎºÐ -->
+<!-- ê°„ë‹¨í•œ ë‹µê¸€ ì‹œìž‘í•˜ëŠ” ë¶€ë¶„ -->
 <?=$hide_comment_start?>

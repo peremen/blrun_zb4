@@ -1,24 +1,24 @@
 <?
 /***************************************************************************
-* °øÅë ÆÄÀÏ include
+* ê³µí†µ íŒŒì¼ include
 **************************************************************************/
 include "_head.php";
 
-// HTML Ãâ·Â 
+// HTML ì¶œë ¥ 
 print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
 
 /***************************************************************************
-* °Ô½ÃÆÇ ¼³Á¤ Ã¼Å©
+* ê²Œì‹œíŒ ì„¤ì • ì²´í¬
 **************************************************************************/
 
-// »ç¿ë±ÇÇÑ Ã¼Å©
-if($setup[grant_list]<$member[level] && !$is_admin) Error("»ç¿ë±ÇÇÑÀÌ ¾ø½À´Ï´Ù","login.php?id=$id&page=$page&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&s_url=".urlencode($REQUEST_URI));
+// ì‚¬ìš©ê¶Œí•œ ì²´í¬
+if($setup[grant_list]<$member[level] && !$is_admin) Error("ì‚¬ìš©ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤","login.php?id=$id&page=$page&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&s_url=".urlencode($REQUEST_URI));
 
 $notice_que = "select * from $t_board"."_$id where headnum <= -2000000000 order by $select_arrange $desc limit 0, $page_num";
 $notice_result = mysql_query($notice_que, $connect) or error(mysql_error());
 
 
-// °Ë»öÁ¶°ÇÀÌ ÀÖÀ»¶§ : »óÈ² -> Ä«Å×°í¸® ¼±ÅÃ, Use_Showreply »ç¿ë, ¶Ç´Â °Ë»ö¾î·Î °Ë»öÀ» ÇÒ¶§
+// ê²€ìƒ‰ì¡°ê±´ì´ ìˆì„ë•Œ : ìƒí™© -> ì¹´í…Œê³ ë¦¬ ì„ íƒ, Use_Showreply ì‚¬ìš©, ë˜ëŠ” ê²€ìƒ‰ì–´ë¡œ ê²€ìƒ‰ì„ í• ë•Œ
 if($s_que) {
 	$_dbTimeStart = getmicrotime();
 	if($sm=="on") {
@@ -30,10 +30,10 @@ if($s_que) {
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 }
 
-// °Ë»ö Á¶°ÇÀÌ ¾øÀ»¶§ : »óÈ² -> ÀÏ¹İ Á¤·Ä, ¶Ç´Â Á¤·Ä±âÁØÀ» °¡Áö°Å³ª Desc, Asc ÀÏ¶§.
+// ê²€ìƒ‰ ì¡°ê±´ì´ ì—†ì„ë•Œ : ìƒí™© -> ì¼ë°˜ ì •ë ¬, ë˜ëŠ” ì •ë ¬ê¸°ì¤€ì„ ê°€ì§€ê±°ë‚˜ Desc, Asc ì¼ë•Œ.
 else {
 
-	// °Ë»öÁ¶°ÇÀÌ ¾ø°í Á¤·ÄÀÌ headnum¿¡ ÀÇÇÑ °ÍÀÏ¶§;; Áï ÀÏ¹İ Á¤·ÄÀÏ¶§;; 
+	// ê²€ìƒ‰ì¡°ê±´ì´ ì—†ê³  ì •ë ¬ì´ headnumì— ì˜í•œ ê²ƒì¼ë•Œ;; ì¦‰ ì¼ë°˜ ì •ë ¬ì¼ë•Œ;; 
 	if ($select_arrange=="headnum"&&$desc=="asc") {
 		while($division_data=mysql_fetch_array($division_result)) {
 			$sum=$sum+$division_data[num];
@@ -68,7 +68,7 @@ else {
 		}
 	}
 
-	// °Ë»öÁ¶°ÇÀº ¾øÁö¸¸ Á¤·Ä°ªÀÌ »ı±æ¶§;;; //////////////////////////////
+	// ê²€ìƒ‰ì¡°ê±´ì€ ì—†ì§€ë§Œ ì •ë ¬ê°’ì´ ìƒê¸¸ë•Œ;;; //////////////////////////////
 	else {
 		$que="select * from $t_board"."_$id where headnum>-2000000000 order by $select_arrange $desc $add_on limit $start_num, $page_num";
 //			echo $que;
@@ -78,7 +78,7 @@ else {
 	}
 }
 
-// °ü¸®ÀÚÀÏ¶§´Â °Ô½ÃÆÇ ±Û ¿Å±â±â¶§¹®¿¡ °Ô½ÃÆÇ ¸®½ºÆ®¸¦ »Ì¾Æ¿È;;
+// ê´€ë¦¬ìì¼ë•ŒëŠ” ê²Œì‹œíŒ ê¸€ ì˜®ê¸°ê¸°ë•Œë¬¸ì— ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸ë¥¼ ë½‘ì•„ì˜´;;
 if($is_admin) {
 	$_dbTimeStart = getmicrotime();
 	$board_result=mysql_query("select no,name from $admin_table where no!='$setup[no]'");
@@ -86,11 +86,11 @@ if($is_admin) {
 }
 
 /***************************************************************************
-* ½ºÅ²¿¡¼­ »ç¿ëÇÒ ÆäÀÌÁö Á¤¸®
+* ìŠ¤í‚¨ì—ì„œ ì‚¬ìš©í•  í˜ì´ì§€ ì •ë¦¬
 **************************************************************************/
 
 $print_page="";
-$show_page_num=$setup[page_num]; // ÇÑ¹ø¿¡ º¸ÀÏ ÆäÀÌÁö °¹¼ö
+$show_page_num=$setup[page_num]; // í•œë²ˆì— ë³´ì¼ í˜ì´ì§€ ê°¯ìˆ˜
 $start_page=(int)(($page-1)/$show_page_num)*$show_page_num;
 $i=1;
 
@@ -124,92 +124,92 @@ if($total_page>$move_page) {
 	$next_page_exists = true;
 }
 
-// °Ë»ö½Ã Divsion ÆäÀÌÁö ÀÌµ¿ Ç¥½Ã
+// ê²€ìƒ‰ì‹œ Divsion í˜ì´ì§€ ì´ë™ í‘œì‹œ
 if($use_division) {
-	if($prevdivpage&&!$prev_page_exists) $a_div_prev_page="<a onfocus=blur() href='$PHP_SELF?id=$id&&select_arrange=$select_arrange&desc=$desc&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&sn1=$sn1&divpage=$prevdivpage'>[ÀÌÀü °Ë»ö]</a>...";
-	if($nextdivpage&&!$next_page_exists) $a_div_next_page="...<a onfocus=blur() href='$PHP_SELF?id=$id&&select_arrange=$select_arrange&desc=$desc&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&sn1=$sn1&divpage=$nextdivpage'>[°è¼Ó °Ë»ö]</a>";
+	if($prevdivpage&&!$prev_page_exists) $a_div_prev_page="<a onfocus=blur() href='$PHP_SELF?id=$id&&select_arrange=$select_arrange&desc=$desc&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&sn1=$sn1&divpage=$prevdivpage'>[ì´ì „ ê²€ìƒ‰]</a>...";
+	if($nextdivpage&&!$next_page_exists) $a_div_next_page="...<a onfocus=blur() href='$PHP_SELF?id=$id&&select_arrange=$select_arrange&desc=$desc&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&sn1=$sn1&divpage=$nextdivpage'>[ê³„ì† ê²€ìƒ‰]</a>";
 	$print_page = $a_div_prev_page.$print_page.$a_div_next_page;
 
 }
 
 /***************************************************************************
-* °¢Á¾ ¸µÅ©¸¦ ¹Ì¸® ÁöÁ¤ÇÏ´Â ºÎºĞ 
+* ê°ì¢… ë§í¬ë¥¼ ë¯¸ë¦¬ ì§€ì •í•˜ëŠ” ë¶€ë¶„ 
 **************************************************************************/
 
-// ±Û¾²±â¹öÆ°
+// ê¸€ì“°ê¸°ë²„íŠ¼
 if($is_admin||$member[level]<=$setup[grant_write]) $a_write="<a onfocus=blur() href='write.php?$href$sort&no=$no&mode=write&sn1=$sn1&divpage=$divpage'>"; else $a_write="<Zeroboard ";
 
-// ¸ñ·Ï ¹öÆ°
+// ëª©ë¡ ë²„íŠ¼
 if($is_admin||$member[level]<=$setup[grant_list]) $a_list="<a onfocus=blur() href='$PHP_SELF?id=$id&page=$page&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&prev_no=$no&sn1=$sn1&divpage=$divpage'>"; else $a_list="<Zeroboard ";
 
-// Ãë¼Ò¹öÆ°
+// ì·¨ì†Œë²„íŠ¼
 $a_cancel="<a onfocus=blur() href='$PHP_SELF?id=$id'>";
 
 
-// Á¤·Ä ¹öÆ°ÀÇ °æ¿ì $desc¸¦ ¿ªÀ¸·Î º¯È¯
+// ì •ë ¬ ë²„íŠ¼ì˜ ê²½ìš° $descë¥¼ ì—­ìœ¼ë¡œ ë³€í™˜
 if($desc=="desc") $t_desc="asc"; else $t_desc="desc";
 
-// ¹øÈ£ Á¤·Ä
+// ë²ˆí˜¸ ì •ë ¬
 $a_no="<a onfocus=blur() href='$PHP_SELF?$href&select_arrange=headnum&desc=$t_desc'>";
 
-// Á¦¸ñ Á¤·Ä
+// ì œëª© ì •ë ¬
 $a_subject="<a onfocus=blur() href='$PHP_SELF?$href&select_arrange=subject&desc=$t_desc'>";
 
-// ÀÌ¸§ Á¤·Ä
+// ì´ë¦„ ì •ë ¬
 $a_name="<a onfocus=blur() href='$PHP_SELF?$href&select_arrange=name&desc=$t_desc'>";
 
-// Á¶È¸¼ø Á¤·Ä
+// ì¡°íšŒìˆœ ì •ë ¬
 $a_hit="<a onfocus=blur() href='$PHP_SELF?$href&select_arrange=hit&desc=$t_desc'>";
 
-// ÃßÃµ¼ö Á¤·Ä
+// ì¶”ì²œìˆ˜ ì •ë ¬
 $a_vote="<a onfocus=blur() href='$PHP_SELF?$href&select_arrange=vote&desc=$t_desc'>";
 
-// ³¯ÀÚº° Á¤·Ä
+// ë‚ ìë³„ ì •ë ¬
 $a_date="<a onfocus=blur() href='$PHP_SELF?$href&select_arrange=reg_date&desc=$t_desc'>";
 
-// Ã¹¹øÂ° Ç×¸ñÀÇ ´Ù¿î·Îµå ¼ø¼­
+// ì²«ë²ˆì§¸ í•­ëª©ì˜ ë‹¤ìš´ë¡œë“œ ìˆœì„œ
 $a_download1="<a onfocus=blur() href='$PHP_SELF?$href&select_arrange=download1&desc=$t_desc'>";
 
-// µÎ¹øÂ° Ç×¸ñÀÇ ´Ù¿î·Îµå ¼ø¼­
+// ë‘ë²ˆì§¸ í•­ëª©ì˜ ë‹¤ìš´ë¡œë“œ ìˆœì„œ
 $a_download2="<a onfocus=blur() href='$PHP_SELF?$href&select_arrange=download2&desc=$t_desc'>";
 
 /***************************************************************************
-* Á¤¸®ÇÑ µ¥ÀÌÅ¸¸¦ Ãâ·ÂÇÏ´Â ºÎºĞ 
+* ì •ë¦¬í•œ ë°ì´íƒ€ë¥¼ ì¶œë ¥í•˜ëŠ” ë¶€ë¶„ 
 **************************************************************************/
 
-// ÇöÀç ¼±ÅÃµÈ µ¥ÀÌÅ¸°¡ ÀÖÀ»¶§, Áï $no °¡ ÀÖÀ»¶§ $_view_included º¯¼ö True·Î ¼Â.
+// í˜„ì¬ ì„ íƒëœ ë°ì´íƒ€ê°€ ìˆì„ë•Œ, ì¦‰ $no ê°€ ìˆì„ë•Œ $_view_included ë³€ìˆ˜ Trueë¡œ ì…‹.
 if($no&&$setup[use_alllist])
 	$_view_included = true;
 
-// Çì´õ Ãâ·Â
+// í—¤ë” ì¶œë ¥
 $_skinTimeStart = getmicrotime();
 head("onload=unlock2() onunload=hideImageBox2()","script_list.php");
 
-// $_view_included º¯¼ö°¡ True ÀÏ ¶§ Ãß°¡ ½ºÅ©¸³Æ® Æ÷ÇÔ
+// $_view_included ë³€ìˆ˜ê°€ True ì¼ ë•Œ ì¶”ê°€ ìŠ¤í¬ë¦½íŠ¸ í¬í•¨
 if($_view_included) {
 	if($setup[skinname] != "ruvin_cubic_gu")
 		include "script/script_comment.php";
 } elseif($setup[skinname] == "ruvin_cubic_gu")
 	include "script/script_write.php";
 
-// »ó´Ü ÇöÈ² ºÎºĞ Ãâ·Â 
+// ìƒë‹¨ í˜„í™© ë¶€ë¶„ ì¶œë ¥ 
 include "$dir/setup.php";
 $_skinTime += getmicrotime()-$_skinTimeStart;
 
-// ÇöÀç ¼±ÅÃµÈ µ¥ÀÌÅ¸°¡ ÀÖÀ»¶§, Áï $no °¡ ÀÖÀ»¶§ µ¥ÀÌÅ¸ °¡Á®¿È
+// í˜„ì¬ ì„ íƒëœ ë°ì´íƒ€ê°€ ìˆì„ë•Œ, ì¦‰ $no ê°€ ìˆì„ë•Œ ë°ì´íƒ€ ê°€ì ¸ì˜´
 if($_view_included)
 	include "view.php";
 
-// ¸®½ºÆ®ÀÇ »ó´Ü ºÎºĞ Ãâ·Â
+// ë¦¬ìŠ¤íŠ¸ì˜ ìƒë‹¨ ë¶€ë¶„ ì¶œë ¥
 $_skinTimeStart = getmicrotime();
 include $dir."/list_head.php";
 $_skinTime += getmicrotime()-$_skinTimeStart;
 
-// °¡»ó¹øÈ£¸¦ Á¤ÇÔ
+// ê°€ìƒë²ˆí˜¸ë¥¼ ì •í•¨
 $loop_number=$total-($page-1)*$page_num;
 if($setup[use_alllist]&&!$prev_no) $prev_no=$no;
 
-// »ÌÇôÁø µ¥ÀÌÅ¸¸¸Å­ Ãâ·ÂÇÔ
+// ë½‘í˜€ì§„ ë°ì´íƒ€ë§Œí¼ ì¶œë ¥í•¨
 while($data = @mysql_fetch_array($notice_result)) {
 	list_check(&$data);
 	$_skinTimeStart = getmicrotime();
@@ -235,7 +235,7 @@ if($check2) {
 	}
 }
 
-// ¸¶¹«¸® ºÎºĞ Ãâ·ÂÇÏ´Â ºÎºĞ;;
+// ë§ˆë¬´ë¦¬ ë¶€ë¶„ ì¶œë ¥í•˜ëŠ” ë¶€ë¶„;;
 $_skinTimeStart = getmicrotime();
 include $dir."/list_foot.php";
 $_skinTime += getmicrotime()-$_skinTimeStart;

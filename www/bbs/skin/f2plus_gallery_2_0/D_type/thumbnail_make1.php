@@ -11,7 +11,7 @@ function thumbnail($size,$source_file,$save_path,$small,$large,$ratio){
 		if($size[$i]!=0){
 
 			if($i==sizeof($size)-1) {
-				//$ratio°¡ 0À¸·Î ³ª´©¾îÁö´Â °Í ¹æÁö
+				//$ratioê°€ 0ìœ¼ë¡œ ë‚˜ëˆ„ì–´ì§€ëŠ” ê²ƒ ë°©ì§€
 				if($img_info[0]!="")
 					$ratio=$img_info[1]/$img_info[0];
 			}

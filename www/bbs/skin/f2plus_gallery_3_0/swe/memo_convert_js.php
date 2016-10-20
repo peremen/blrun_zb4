@@ -1,5 +1,5 @@
 <?
-/* ====================[ sw_edit ÆÄÀÏ¸í: memo_convert_js.php ]==================== */
+/* ====================[ sw_edit íŒŒì¼ëª…: memo_convert_js.php ]==================== */
 
 function love_convert($memo)
 {

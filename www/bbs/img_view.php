@@ -1,12 +1,12 @@
 <?
-@header("Content-Type: text/html; charset=euc-kr");
+@header("Content-Type: text/html; charset=utf-8");
 @extract($_GET);
 
 $img=str_replace('%2F', '/', urlencode("./".$img));
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
+<HTML lang="ko">
 <HEAD>
 <script language="javascript">
 <!--
@@ -37,8 +37,8 @@ function scroll_img(img_width,img_height,myEvent)
 }
 -->
 </script>
-<TITLE>Å« ÀÌ¹ÌÁö º¸±â</TITLE>
-<meta meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<TITLE>í° ì´ë¯¸ì§€ ë³´ê¸°</TITLE>
+<meta meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </HEAD>
 <BODY topmargin='0' leftmargin='0' marginwidth='0' marginheight='0' onLoad="win_size('<?=$width?>','<?=$height?>')" onmousemove="scroll_img('<?=$width?>','<?=$height?>',event)">
 </BODY>

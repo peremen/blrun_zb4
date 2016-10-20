@@ -8,15 +8,15 @@ if(!$data[bg_color]) $data[bg_color]="white";
 if(!$data[table_width]) $data[table_width]="95";
 if(!$data[cut_length]) $data[cut_length]="0";
 if(!$data[page_num]) $data[page_num]="10";
-if(!strlen($data[use_html])) $data[use_html]="1";
-if(!strlen($data[use_showreply])) $data[use_showreply]="1";
-if(!strlen($data[use_filter])) $data[use_filter]="1";
-if(!strlen($data[use_autolink])) $data[use_autolink]="1";
-if(!strlen($data[use_comment])) $data[use_comment]="1";
-if(!strlen($data[use_alllist])) $data[use_alllist]="0";
-if(!strlen($data[use_cart])) $data[use_cart]="0";
-if(!strlen($data[use_formmail])) $data[use_formmail]="1";
-if(!strlen($data[use_secret])) $data[use_secret]="1";
+if(!mb_strlen($data[use_html])) $data[use_html]="1";
+if(!mb_strlen($data[use_showreply])) $data[use_showreply]="1";
+if(!mb_strlen($data[use_filter])) $data[use_filter]="1";
+if(!mb_strlen($data[use_autolink])) $data[use_autolink]="1";
+if(!mb_strlen($data[use_comment])) $data[use_comment]="1";
+if(!mb_strlen($data[use_alllist])) $data[use_alllist]="0";
+if(!mb_strlen($data[use_cart])) $data[use_cart]="0";
+if(!mb_strlen($data[use_formmail])) $data[use_formmail]="1";
+if(!mb_strlen($data[use_secret])) $data[use_secret]="1";
 if(!$data[header]) $data[header]="<div align=center>";
 if(!$data[footer]) $data[footer]="</div>";
 if(!$data[memo_num]) $data[memo_num]=20;
@@ -24,10 +24,10 @@ if(!$data[memo_num]) $data[memo_num]=20;
 <script>
  function check_submit()
  {
-  if(!write.name.value) {alert("°Ô½ÃÆÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");write.name.focus();return false;}
-  if(!write.table_width.value) {alert("°Ô½ÃÆÇ °¡·ÎÅ©±âÀ» ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");write.table_width.focus();return false;}
-  if(!write.memo_num.value) {alert("¸ñ·Ï¼ö¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");write.memo_num.focus();return false;}
-  if(!write.page_num.value) {alert("ÆäÀÌÁö¼ö¸¦ ÀÔ·ÂÇÏ¿© ÁÖ½Ê½Ã¿ä");write.page_num.focus();return false;}
+  if(!write.name.value) {alert("ê²Œì‹œíŒ ì´ë¦„ì„ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");write.name.focus();return false;}
+  if(!write.table_width.value) {alert("ê²Œì‹œíŒ ê°€ë¡œí¬ê¸°ì„ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");write.table_width.focus();return false;}
+  if(!write.memo_num.value) {alert("ëª©ë¡ìˆ˜ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");write.memo_num.focus();return false;}
+  if(!write.page_num.value) {alert("í˜ì´ì§€ìˆ˜ë¥¼ ì…ë ¥í•˜ì—¬ ì£¼ì‹­ì‹œìš”");write.page_num.focus();return false;}
   return true;
  }
 </script>
@@ -43,21 +43,21 @@ if(!$data[memo_num]) $data[memo_num]=20;
 <tr height=1><td bgcolor=#000000 style=padding:0px; colspan=2><img src=images/t.gif height=1></td>
 </tr>
 <tr bgcolor=bbbbbb height=30>
-  <td align=right colspan=8 height=25 colspan=2 style=font-family:Tahoma;font-size:9pt;> ±×·ì ÀÌ¸§ : <b><?=$group_data[name]?></b>&nbsp;&nbsp;&nbsp;</td>
+  <td align=right colspan=8 height=25 colspan=2 style=font-family:Tahoma;font-size:9pt;> ê·¸ë£¹ ì´ë¦„ : <b><?=$group_data[name]?></b>&nbsp;&nbsp;&nbsp;</td>
 </tr>
-<!-- ±âº»¼³Á¤ -->
+<!-- ê¸°ë³¸ì„¤ì • -->
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>°Ô½ÃÆÇ ÀÌ¸§ &nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ê²Œì‹œíŒ ì´ë¦„ &nbsp;</td>
   <td >&nbsp;&nbsp; <input type=text name=name value='<?echo $data[name];?>' <?if($no) echo "readonly"; ?> size=20 maxlength=40 class=input style=border-color:#b0b0b0></td>
 </tr>
 
-<!-- ½ºÅ² ¼³Á¤ -->
+<!-- ìŠ¤í‚¨ ì„¤ì • -->
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>½ºÅ² ¼³Á¤&nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>ìŠ¤í‚¨ ì„¤ì •&nbsp;</td>
   <td >&nbsp;&nbsp; 
     <select name=skinname>
 <?
-// /skin µğ·ºÅä¸®¿¡¼­ µğ·ºÅä¸®¸¦ ±¸ÇÔ
+// /skin ë””ë ‰í† ë¦¬ì—ì„œ ë””ë ‰í† ë¦¬ë¥¼ êµ¬í•¨
 $skin_dir="skin";
 $handle=opendir($skin_dir);
 while ($skin_info = readdir($handle))
@@ -93,250 +93,250 @@ function check2()
 </script>
 
 <tr height=70 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>½ºÅ² Çü½Ä ¼³Á¤&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ìŠ¤í‚¨ í˜•ì‹ ì„¤ì •&nbsp;</td>
   <td>&nbsp;&nbsp; 
 <? unset($check);$check[$data[only_board]]="checked";?>
-    <input type=checkbox name=only_board value=1 checked> °Ô½ÃÆÇÀ¸·Î¸¸ »ç¿ë½Ã ¼±ÅÃÇÏ¿© ÁÖ½Ê½Ã¿ä. (½ºÅ²Ã³¸® ¼Óµµ°¡ Çâ»óµË´Ï´Ù.)<br>
-    &nbsp;&nbsp; <input type=button class=input onclick=check1() style=border-color:#b0b0b0;height=18px value="°Ô½ÃÆÇ ÇüÅÂ"> ³»¿ëÀÌ ¸ñ·Ï¿¡ ³ª¿ÀÁö ¾Ê´Â °Ô½ÃÆÇ ÇüÅÂÀÇ ½ºÅ²
+    <input type=checkbox name=only_board value=1 checked> ê²Œì‹œíŒìœ¼ë¡œë§Œ ì‚¬ìš©ì‹œ ì„ íƒí•˜ì—¬ ì£¼ì‹­ì‹œìš”. (ìŠ¤í‚¨ì²˜ë¦¬ ì†ë„ê°€ í–¥ìƒë©ë‹ˆë‹¤.)<br>
+    &nbsp;&nbsp; <input type=button class=input onclick=check1() style=border-color:#b0b0b0;height=18px value="ê²Œì‹œíŒ í˜•íƒœ"> ë‚´ìš©ì´ ëª©ë¡ì— ë‚˜ì˜¤ì§€ ì•ŠëŠ” ê²Œì‹œíŒ í˜•íƒœì˜ ìŠ¤í‚¨
     <br> 
     <img src=images/t.gif border=0 height=4><br>&nbsp;&nbsp;
-    <input type=button class=input onclick=check2() style=border-color:#b0b0b0;height=18px value="¹æ¸í·Ï ÇüÅÂ"> ³»¿ëÀÌ ¸ñ·Ï¿¡ ³ª¿À´Â ¹æ¸í·Ï Çü½ÄÀÇ ½ºÅ²
+    <input type=button class=input onclick=check2() style=border-color:#b0b0b0;height=18px value="ë°©ëª…ë¡ í˜•íƒœ"> ë‚´ìš©ì´ ëª©ë¡ì— ë‚˜ì˜¤ëŠ” ë°©ëª…ë¡ í˜•ì‹ì˜ ìŠ¤í‚¨
   </td>
 </tr>
-<!-- °Ô½ÃÆÇ ¼Ó¼º ¼³Á¤  -->
+<!-- ê²Œì‹œíŒ ì†ì„± ì„¤ì •  -->
 <tr height=25 bgcolor=bbbbbb><td  colspan=2  align=center  style=font-family:Tahoma;font-size:9pt;><b>Edit Properties</b></td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>¹è°æ ±×¸²&nbsp;</td>
+  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>ë°°ê²½ ê·¸ë¦¼&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=text  name=bg_image value='<?echo $data[bg_image];?>' size=50 maxlength=255 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>¹è°æ »ö»ó&nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>ë°°ê²½ ìƒ‰ìƒ&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=text  name=bg_color value='<?echo $data[bg_color];?>' size=20 maxlength=255 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>°Ô½ÃÆÇ °¡·Î Å©±â&nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>ê²Œì‹œíŒ ê°€ë¡œ í¬ê¸°&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=text  name=table_width value='<?echo $data[table_width];?>' size=4 maxlength=4 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
-    °Ô½ÃÆÇ °¡·ÎÅ©±â (100ÀÌÇÏÀÌ¸é %·Î ¼³Á¤) 
+    ê²Œì‹œíŒ ê°€ë¡œí¬ê¸° (100ì´í•˜ì´ë©´ %ë¡œ ì„¤ì •) 
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>¸ñ·Ï¿¡¼­ Á¦¸ñ ±ÛÀÚ Á¦ÇÑ&nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>ëª©ë¡ì—ì„œ ì œëª© ê¸€ì ì œí•œ&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=text  name=cut_length value='<?echo $data[cut_length];?>' size=11 maxlength=11 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
-    ÁöÁ¤µÈ ±æÀÌ ÀÌ»óÀÇ Á¦¸ñ±ÛÀº ... ·Î ³ª¸ÓÁö Ç¥½Ã (0:»ç¿ë¾ÈÇÔ)
+    ì§€ì •ëœ ê¸¸ì´ ì´ìƒì˜ ì œëª©ê¸€ì€ ... ë¡œ ë‚˜ë¨¸ì§€ í‘œì‹œ (0:ì‚¬ìš©ì•ˆí•¨)
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>ÆäÀÌÁö´ç ¸ñ·Ï ¼ö&nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>í˜ì´ì§€ë‹¹ ëª©ë¡ ìˆ˜&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=text  name=memo_num value='<?echo $data[memo_num];?>' size=3 maxlength=3 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
-    ÇÑÆäÀÌÁö´ç Ãâ·ÂµÉ ¸ñ·ÏÀÇ ¼ö (1~999) 
+    í•œí˜ì´ì§€ë‹¹ ì¶œë ¥ë  ëª©ë¡ì˜ ìˆ˜ (1~999) 
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>ÆäÀÌÁö Ç¥½Ã ¼ö&nbsp;</td>
+  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>í˜ì´ì§€ í‘œì‹œ ìˆ˜&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=text name=page_num value='<?echo $data[page_num];?>' size=3 maxlength=3 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
-    ¸ñ·ÏÀÇ ¾Æ·¡ºÎºĞ¿¡ Ç¥½ÃµÉ ÆäÀÌÁöÀÇ °¹¼ö (1~999) 
+    ëª©ë¡ì˜ ì•„ë˜ë¶€ë¶„ì— í‘œì‹œë  í˜ì´ì§€ì˜ ê°¯ìˆ˜ (1~999) 
   </td>
 </tr>
-<!-- Çì´õ, ÇªÅÍ  -->
-<tr height=25 bgcolor=bbbbbb><td colspan=2  align=center  style=font-family:Tahoma;font-size:9pt;><b>°Ô½ÃÆÇ »ó, ÇÏ´Ü¿¡ Ç¥½ÃµÉ ³»¿ë ¼³Á¤</td>
+<!-- í—¤ë”, í‘¸í„°  -->
+<tr height=25 bgcolor=bbbbbb><td colspan=2  align=center  style=font-family:Tahoma;font-size:9pt;><b>ê²Œì‹œíŒ ìƒ, í•˜ë‹¨ì— í‘œì‹œë  ë‚´ìš© ì„¤ì •</td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>Å¸ÀÌÆ² ÁöÁ¤&nbsp;</td>
+  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>íƒ€ì´í‹€ ì§€ì •&nbsp;</td>
   <td >&nbsp;&nbsp;
-    <input type=text  name=title value='<?echo $data[title];?>' size=20 maxlength=250 class=input style=border-color:#b0b0b0> &nbsp; ºê¶ó¿ìÀú »ó´ÜÀÇ Å¸ÀÌÆ²À» ÁöÁ¤
+    <input type=text  name=title value='<?echo $data[title];?>' size=20 maxlength=250 class=input style=border-color:#b0b0b0> &nbsp; ë¸Œë¼ìš°ì € ìƒë‹¨ì˜ íƒ€ì´í‹€ì„ ì§€ì •
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>°Ô½ÃÆÇ »ó´Ü¿¡ ºÒ·¯¿Ã ÆÄÀÏ&nbsp;</td>
+  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>ê²Œì‹œíŒ ìƒë‹¨ì— ë¶ˆëŸ¬ì˜¬ íŒŒì¼&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=text  name=header_url value='<?echo stripslashes($data[header_url]);?>' size=40 maxlength=255 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>°Ô½ÃÆÇ »ó´Ü¿¡ Ãâ·ÂÇÒ ³»¿ë&nbsp;</td>
+  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>ê²Œì‹œíŒ ìƒë‹¨ì— ì¶œë ¥í•  ë‚´ìš©&nbsp;</td>
   <td >&nbsp;&nbsp;
     <textarea name=header cols=70 rows=10 class=textarea style=border-color:b0b0b0><?echo stripslashes($data[header]);?></textarea>
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>°Ô½ÃÆÇ ÇÏ´Ü¿¡ ºÒ·¯¿Ã ÆÄÀÏ&nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>ê²Œì‹œíŒ í•˜ë‹¨ì— ë¶ˆëŸ¬ì˜¬ íŒŒì¼&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=text  name=footer_url value='<?echo stripslashes($data[footer_url]);?>' size=40 maxlength=255 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>°Ô½ÃÆÇ ÇÏ´Ü¿¡ Ãâ·ÂÇÒ ³»¿ë&nbsp;</td>
+  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>ê²Œì‹œíŒ í•˜ë‹¨ì— ì¶œë ¥í•  ë‚´ìš©&nbsp;</td>
   <td >&nbsp;&nbsp;
     <textarea name=footer cols=70 rows=10 class=textarea style=border-color:#b0b0b0><?echo stripslashes($data[footer]);?></textarea>
   </td>
 </tr>
-<!-- ±â´É ¼±ÅÃ  -->
-<tr height=25 bgcolor=#bbbbbb><td colspan=2  align=center  style=font-family:Tahoma;font-size:9pt;><b>Ãß°¡ ±â´É ¼³Á¤</b></td>
+<!-- ê¸°ëŠ¥ ì„ íƒ  -->
+<tr height=25 bgcolor=#bbbbbb><td colspan=2  align=center  style=font-family:Tahoma;font-size:9pt;><b>ì¶”ê°€ ê¸°ëŠ¥ ì„¤ì •</b></td>
 </tr>
 <? unset($check);$check[$data[use_alllist]]="checked";?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ÀüÃ¼ ¸ñ·Ï Ãâ·Â (±Û³»¿ë º¸±â)&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ì „ì²´ ëª©ë¡ ì¶œë ¥ (ê¸€ë‚´ìš© ë³´ê¸°)&nbsp;</td>
   <td >&nbsp;&nbsp;
-    <input type=checkbox name=use_alllist value='1' <?echo $check[1];?>> ±Û³»¿ëº¼¶§ ¾Æ·¡¿¡ ÀüÃ¼ ¸®½ºÆ® ±â´É&nbsp; 
+    <input type=checkbox name=use_alllist value='1' <?echo $check[1];?>> ê¸€ë‚´ìš©ë³¼ë•Œ ì•„ë˜ì— ì „ì²´ ë¦¬ìŠ¤íŠ¸ ê¸°ëŠ¥&nbsp; 
   </td>
 </tr>
 <? unset($check);$check[$data[use_category]]="checked";?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>Ä«Å×°í¸® »ç¿ë&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ì¹´í…Œê³ ë¦¬ ì‚¬ìš©&nbsp;</td>
   <td >&nbsp;&nbsp;
-    <input type=checkbox name=use_category value='1' <?echo $check[1];?>> Ä«Å×°í¸® ±â´É»ç¿ë &nbsp;
+    <input type=checkbox name=use_category value='1' <?echo $check[1];?>> ì¹´í…Œê³ ë¦¬ ê¸°ëŠ¥ì‚¬ìš© &nbsp;
   </td>
 </tr>
 <? unset($check);$check[$data[use_html]]="checked";?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>HTML »ç¿ë¿©ºÎ&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>HTML ì‚¬ìš©ì—¬ë¶€&nbsp;</td>
   <td >&nbsp;&nbsp;
-    <input type=radio name=use_html value='0' <?echo $check[0];?>> ¸ğµÎ¸·±â &nbsp;
-    <input type=radio name=use_html value='1' <?echo $check[1];?>> ºÎºĞÇã¿ë &nbsp;
-    <input type=radio name=use_html value='2' <?echo $check[2];?>> ¸ğµÎÇã¿ë &nbsp; 
+    <input type=radio name=use_html value='0' <?echo $check[0];?>> ëª¨ë‘ë§‰ê¸° &nbsp;
+    <input type=radio name=use_html value='1' <?echo $check[1];?>> ë¶€ë¶„í—ˆìš© &nbsp;
+    <input type=radio name=use_html value='2' <?echo $check[2];?>> ëª¨ë‘í—ˆìš© &nbsp; 
   </td>
 </tr>
 <? unset($check);if($data[use_showreply]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>´äº¯±Û ¸ñ·Ï¿¡ Ãâ·Â&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ë‹µë³€ê¸€ ëª©ë¡ì— ì¶œë ¥&nbsp;</td>
   <td >&nbsp;&nbsp;
-    <input type=checkbox  name=use_showreply value='1' <?echo $check;?>> ´ä±Ûº¸¿©ÁÖ±â
+    <input type=checkbox  name=use_showreply value='1' <?echo $check;?>> ë‹µê¸€ë³´ì—¬ì£¼ê¸°
   </td>
 </tr>
 <? if($data[use_filter]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ºÒ·®´Ü¾î ÇÊÅÍ¸µ »ç¿ë&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ë¶ˆëŸ‰ë‹¨ì–´ í•„í„°ë§ ì‚¬ìš©&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=checkbox  name=use_filter value='1' <?echo $check;?>> 
-    ¿å/ºñ¹æ±Ûµî¿¡ ´ëÇÑ ÇÊÅÍ±â´É »ç¿ë 
+    ìš•/ë¹„ë°©ê¸€ë“±ì— ëŒ€í•œ í•„í„°ê¸°ëŠ¥ ì‚¬ìš© 
   </td>
 </tr>
 <? if($data[use_status]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>¹Ì¸®º¸±â ±â´É&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ë¯¸ë¦¬ë³´ê¸° ê¸°ëŠ¥&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=checkbox  name=use_status value='1' <?echo $check;?>>
-    ¹Ì¸®º¸±â ±â´É »ç¿ë (Á¦¸ñ¿¡ °£´ÜÇÏ°Ô ³»¿ë ¿ä¾à ³ª¿À´Â ±â´É)
+    ë¯¸ë¦¬ë³´ê¸° ê¸°ëŠ¥ ì‚¬ìš© (ì œëª©ì— ê°„ë‹¨í•˜ê²Œ ë‚´ìš© ìš”ì•½ ë‚˜ì˜¤ëŠ” ê¸°ëŠ¥)
   </td>
 </tr>
 <? if($data[use_homelink]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>°ü·Ã »çÀÌÆ® ¸µÅ© #1&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ê´€ë ¨ ì‚¬ì´íŠ¸ ë§í¬ #1&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=checkbox  name=use_homelink value='1' <?echo $check;?>>
-    ¸µÅ© ±â´É »ç¿ë
+    ë§í¬ ê¸°ëŠ¥ ì‚¬ìš©
   </td>
 </tr>
 <? if($data[use_filelink]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>°ü·Ã »çÀÌÆ® ¸µÅ© #2&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ê´€ë ¨ ì‚¬ì´íŠ¸ ë§í¬ #2&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=checkbox  name=use_filelink value='1' <?echo $check;?>>
-    ¸µÅ© ±â´É »ç¿ë
+    ë§í¬ ê¸°ëŠ¥ ì‚¬ìš©
   </td>
 </tr>
 <? if($data[use_pds]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ÀÚ·á½Ç ±â´É&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ìë£Œì‹¤ ê¸°ëŠ¥&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=checkbox  name=use_pds value='1' <?echo $check;?>>
-    ÀÚ·á½Ç ±â´É »ç¿ë,
+    ìë£Œì‹¤ ê¸°ëŠ¥ ì‚¬ìš©,
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>Ã·ºÎÆÄÀÏ #1ÀÇ Çã¿ë È®ÀåÀÚ&nbsp;</td>
+  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>ì²¨ë¶€íŒŒì¼ #1ì˜ í—ˆìš© í™•ì¥ì&nbsp;</td>
   <td >&nbsp;&nbsp;
-    <input type=text  name=pds_ext1 value='<?echo $data[pds_ext1];?>' size=50 maxlength=250 class=input style=border-color:#b0b0b0><br>&nbsp;&nbsp; 1¹ø ¾÷·Îµå °¡´É È®ÀåÀÚ ÁöÁ¤ (°ø¹é½Ã °Ë»çÇÏÁö¾ÊÀ½. ½°Ç¥(,)·Î ±¸ºĞ) 
+    <input type=text  name=pds_ext1 value='<?echo $data[pds_ext1];?>' size=50 maxlength=250 class=input style=border-color:#b0b0b0><br>&nbsp;&nbsp; 1ë²ˆ ì—…ë¡œë“œ ê°€ëŠ¥ í™•ì¥ì ì§€ì • (ê³µë°±ì‹œ ê²€ì‚¬í•˜ì§€ì•ŠìŒ. ì‰¼í‘œ(,)ë¡œ êµ¬ë¶„) 
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>Ã·ºÎÆÄÀÏ #2 Çã¿ë È®ÀåÀÚ&nbsp;</td>
+  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>ì²¨ë¶€íŒŒì¼ #2 í—ˆìš© í™•ì¥ì&nbsp;</td>
   <td >&nbsp;&nbsp;
-    <input type=text  name=pds_ext2 value='<?echo $data[pds_ext2];?>' size=50 maxlength=250 class=input style=border-color:#b0b0b0><br>&nbsp;&nbsp; 2¹ø ¾÷·Îµå °¡´É È®ÀåÀÚ ÁöÁ¤ (°ø¹é½Ã °Ë»çÇÏÁö¾ÊÀ½. ½°Ç¥(,)·Î ±¸ºĞ)
+    <input type=text  name=pds_ext2 value='<?echo $data[pds_ext2];?>' size=50 maxlength=250 class=input style=border-color:#b0b0b0><br>&nbsp;&nbsp; 2ë²ˆ ì—…ë¡œë“œ ê°€ëŠ¥ í™•ì¥ì ì§€ì • (ê³µë°±ì‹œ ê²€ì‚¬í•˜ì§€ì•ŠìŒ. ì‰¼í‘œ(,)ë¡œ êµ¬ë¶„)
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ÃÖ°í ¾÷·Îµå °¡´É ¿ë·®&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ìµœê³  ì—…ë¡œë“œ ê°€ëŠ¥ ìš©ëŸ‰&nbsp;</td>
   <td >&nbsp;&nbsp;
-    <input type=text name=max_upload_size value=2097152 size=10  class=input style=border-color:#b0b0b0> byte &nbsp;&nbsp; (ÃÖ°íÇÑµµ : <?echo get_cfg_var("upload_max_filesize"); ?> byte)
+    <input type=text name=max_upload_size value=2097152 size=10  class=input style=border-color:#b0b0b0> byte &nbsp;&nbsp; (ìµœê³ í•œë„ : <?echo get_cfg_var("upload_max_filesize"); ?> byte)
   </td>
 </tr>
 <? if($data[use_cart]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>¹Ù±¸´Ï ±â´É&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ë°”êµ¬ë‹ˆ ê¸°ëŠ¥&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=checkbox  name=use_cart value='1' <?echo $check;?>>
-    ¹Ù±¸´Ï ±â´É »ç¿ë 
+    ë°”êµ¬ë‹ˆ ê¸°ëŠ¥ ì‚¬ìš© 
   </td>
 </tr>
 <? if($data[use_autolink]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ÀÚµ¿¸µÅ© ±â´É&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ìë™ë§í¬ ê¸°ëŠ¥&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=checkbox  name=use_autolink value='1' <?echo $check;?>>
-    ÀÚµ¿¸µÅ© ±â´É »ç¿ë
+    ìë™ë§í¬ ê¸°ëŠ¥ ì‚¬ìš©
   </td>
 </tr>
 <? if($data[use_showip]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>Image Box »ç¿ë&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>Image Box ì‚¬ìš©&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=checkbox  name=use_showip value='1' <?echo $check;?>>
-	Image BoxÀÇ »ç¿ë À¯¹«
+	Image Boxì˜ ì‚¬ìš© ìœ ë¬´
   </td>
 </tr>
 <? if($data[use_comment]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>°£´ÜÇÑ ´ä±Û ±â´É&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ê°„ë‹¨í•œ ë‹µê¸€ ê¸°ëŠ¥&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=checkbox  name=use_comment value='1' <?echo $check;?>>
-    °£´ÜÇÑ ´ä±Û ±â´É »ç¿ë
+    ê°„ë‹¨í•œ ë‹µê¸€ ê¸°ëŠ¥ ì‚¬ìš©
   </td>
 </tr>
 <? if($data[use_formmail]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>±Û¾´ÀÌ ¼­ºê¸Ş´º »ç¿ë&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ê¸€ì“´ì´ ì„œë¸Œë©”ë‰´ ì‚¬ìš©&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=checkbox  name=use_formmail value='1' <?echo $check;?>>
-	Çã¿ë½Ã ±Û¾´ÀÌÀÇ ÀÌ¸§ Å¬¸¯½Ã ¼­ºê ·¹ÀÌ¾î ¸Ş´º Ç¥½Ã 
+	í—ˆìš©ì‹œ ê¸€ì“´ì´ì˜ ì´ë¦„ í´ë¦­ì‹œ ì„œë¸Œ ë ˆì´ì–´ ë©”ë‰´ í‘œì‹œ 
   </td>
 </tr>
 <? if($data[use_secret]) $check="checked"; else $check=""; ?>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ºñ¹Ğ±Û »ç¿ë&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ë¹„ë°€ê¸€ ì‚¬ìš©&nbsp;</td>
   <td >&nbsp;&nbsp;
     <input type=checkbox  name=use_secret value='1' <?echo $check;?>>
-    ºñ¹Ğ±Û ±â´É»ç¿ë. °ü¸®ÀÚ¿Í ºñ¹ø ¾Æ´Â »ç¶÷¸¸ º¼¼ö ÀÖÀ½
+    ë¹„ë°€ê¸€ ê¸°ëŠ¥ì‚¬ìš©. ê´€ë¦¬ìì™€ ë¹„ë²ˆ ì•„ëŠ” ì‚¬ëŒë§Œ ë³¼ìˆ˜ ìˆìŒ
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ºÒ·®´Ü¾î µî·Ï&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>ë¶ˆëŸ‰ë‹¨ì–´ ë“±ë¡&nbsp;</td>
   <td >&nbsp;&nbsp;
     <textarea name=filter cols=70 rows=6 class=textarea style=border-color:#b0b0b0><?include "admin/base_filter.txt";?></textarea><br> &nbsp;&nbsp;
-    ºÒ·®´Ü¾î ÇÊÅÍ¸µ ¸ñ·ÏÀÔ´Ï´Ù. <b>, (ÄŞ¸¶)</b> ·Î ¿¬°áÇÏ¼¼¿ä
+    ë¶ˆëŸ‰ë‹¨ì–´ í•„í„°ë§ ëª©ë¡ì…ë‹ˆë‹¤. <b>, (ì½¤ë§ˆ)</b> ë¡œ ì—°ê²°í•˜ì„¸ìš”
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>Çã¿ëÇÒ HTML ÅÂ±×&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>í—ˆìš©í•  HTML íƒœê·¸&nbsp;</td>
   <td >&nbsp;&nbsp;
-    <textarea name=avoid_tag cols=70 rows=6 class=textarea style=border-color:#b0b0b0><?include "admin/base_avoid_tag.txt";?></textarea><br> &nbsp;&nbsp; HTMLÀ» ºÎºĞÇã¿ëÇßÀ»¶§ Çã¿ëÇÏ¿© ÁÖ´Â ÅÂ±×ÀÔ´Ï´Ù.<br>
-    &nbsp;&nbsp; &lt;,&gt;¸¦ ÅÂ±× ÀÌ¸§¸¸À» ÀÔ·ÂÇÏ¼¼¿ä.<br>
-    &nbsp;&nbsp; <b>, (ÄŞ¸¶)</b> ·Î ¿¬°áÇÏ¼¼¿ä
+    <textarea name=avoid_tag cols=70 rows=6 class=textarea style=border-color:#b0b0b0><?include "admin/base_avoid_tag.txt";?></textarea><br> &nbsp;&nbsp; HTMLì„ ë¶€ë¶„í—ˆìš©í–ˆì„ë•Œ í—ˆìš©í•˜ì—¬ ì£¼ëŠ” íƒœê·¸ì…ë‹ˆë‹¤.<br>
+    &nbsp;&nbsp; &lt;,&gt;ë¥¼ íƒœê·¸ ì´ë¦„ë§Œì„ ì…ë ¥í•˜ì„¸ìš”.<br>
+    &nbsp;&nbsp; <b>, (ì½¤ë§ˆ)</b> ë¡œ ì—°ê²°í•˜ì„¸ìš”
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td align=right style=font-family:Tahoma;font-size:9pt;><b>IP Â÷´Ü&nbsp;</td>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>IP ì°¨ë‹¨&nbsp;</td>
   <td >&nbsp;&nbsp;
-    <textarea name=avoid_ip cols=70 rows=4 class=textarea style=border-color:#b0b0b0><?=$data[avoid_ip]?></textarea><br> &nbsp;&nbsp; Â÷´ÜÀ» ¿øÇÏ´Â Æ¯Á¤ ¾ÆÀÌÇÇ°¡ ÀÖÀ»¶§ µî·ÏÇÏ¼¼¿ä.&nbsp;&nbsp; <b>, (ÄŞ¸¶)</b> ·Î ¿¬°áÇÏ¼¼¿ä
+    <textarea name=avoid_ip cols=70 rows=4 class=textarea style=border-color:#b0b0b0><?=$data[avoid_ip]?></textarea><br> &nbsp;&nbsp; ì°¨ë‹¨ì„ ì›í•˜ëŠ” íŠ¹ì • ì•„ì´í”¼ê°€ ìˆì„ë•Œ ë“±ë¡í•˜ì„¸ìš”.&nbsp;&nbsp; <b>, (ì½¤ë§ˆ)</b> ë¡œ ì—°ê²°í•˜ì„¸ìš”
   </td>
 </tr>
 <!-- Submit  -->

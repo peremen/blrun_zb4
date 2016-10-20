@@ -1,6 +1,6 @@
 <?
-// ÀÚµ¿À¸·Î www ºÙ¿©ÁØ´Ù. 
-if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI); 
+// ìžë™ìœ¼ë¡œ www ë¶™ì—¬ì¤€ë‹¤.
+//if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
 
 include_once "../bbs/include/get_url.php";
 $_zb_url = zbUrl();
@@ -12,13 +12,13 @@ include $_zb_path."latest_skin/bes_latest_skin08/recent_bbs_skin08.php";
 include $_zb_path."latest_skin/bes_latest_scroll/recent_bbs_scroll.php";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<html lang="ko">
 <head>
 <title><?=$_zbDefaultSetup[sitename]?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width">
 <link rel="image_src" href="../blrun2_fb.jpg">
-<link rel="alternate" type="application/rss+xml" title="<?=$_zbDefaultSetup[sitename]?>" href="<?=str_replace("www.","",substr(zbUrl(),0,strpos(zbUrl(),"/bbs/")))."/rss/"?>">
+<link rel="alternate" type="application/rss+xml" title="<?=$_zbDefaultSetup[sitename]?>" href="<?=str_replace("www.","",mb_substr(zbUrl(),0,mb_strpos(zbUrl(),"/bbs/")))."/rss/"?>">
 </head>
 
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
@@ -28,46 +28,46 @@ include $_zb_path."latest_skin/bes_latest_scroll/recent_bbs_scroll.php";
 		<? print_outlogin("nzeo", 1, 10); ?>
 	</td>
 	<td align="center" height="50">
-		<b><span style="color:black;font-size:13pt; line-height:140%;">³×Æ¼ÁðÄ®·³¿¡ ¿À½Å°ÍÀ» È¯¿µÇÕ´Ï´Ù...</span></b>
+		<b><span style="color:black;font-size:13pt; line-height:140%;">ë„¤í‹°ì¦Œì¹¼ëŸ¼ì— ì˜¤ì‹ ê²ƒì„ í™˜ì˜í•©ë‹ˆë‹¤...</span></b>
 	</td>
 </tr>
 <tr>
 	<td>
-		<span style="color:navy;font-size:10pt;">¿ì¸® ±¹¹Î ¸ðµÎ°¡ ÁÖÀÎÀÎ ¼¼»ó, ¿ì¸® ³×Æ¼Áð ¸ðµÎ°¡ Âü¿©ÇÏ´Â ÁøÁ¤ÇÑ Âü¿©¹ÎÁÖÁÖÀÇ¸¦ ½ÇÇöÇØ ³ª°©½Ã´Ù. ÀÌ°÷Àº ÀÌ·± ¸ðÅä¿¡ °ü½ÉÀÖ´Â ºÐµé, ¶Ç °Å±â¿¡ ¿­¼ºÀûÀ¸·Î ¶æÀ» °°ÀÌÇÒ ºÐµéÀ» À§ÇÑ °ø°£ÀÔ´Ï´Ù. º»ÀÎÀÌ ¿î¿µÇÏ´Â ºí·Î±×³ª Ä®·³ÀÌ ÀÖÀ¸½Ã¸é ¿ì¸®¸ðµÎ ¼­·Î °øÀ¯ÇÕ½Ã´Ù. [Áñ°ÜÃ£±â] ÅÇÀº ±×°ÍÀ» À§ÇÑ °ø°£ÀÔ´Ï´Ù. ¸¹Àº Âü¿©¹Ù¶ø´Ï´Ù.</span>
+		<span style="color:navy;font-size:10pt;">ìš°ë¦¬ êµ­ë¯¼ ëª¨ë‘ê°€ ì£¼ì¸ì¸ ì„¸ìƒ, ìš°ë¦¬ ë„¤í‹°ì¦Œ ëª¨ë‘ê°€ ì°¸ì—¬í•˜ëŠ” ì§„ì •í•œ ì°¸ì—¬ë¯¼ì£¼ì£¼ì˜ë¥¼ ì‹¤í˜„í•´ ë‚˜ê°‘ì‹œë‹¤. ì´ê³³ì€ ì´ëŸ° ëª¨í† ì— ê´€ì‹¬ìžˆëŠ” ë¶„ë“¤, ë˜ ê±°ê¸°ì— ì—´ì„±ì ìœ¼ë¡œ ëœ»ì„ ê°™ì´í•  ë¶„ë“¤ì„ ìœ„í•œ ê³µê°„ìž…ë‹ˆë‹¤. ë³¸ì¸ì´ ìš´ì˜í•˜ëŠ” ë¸”ë¡œê·¸ë‚˜ ì¹¼ëŸ¼ì´ ìžˆìœ¼ì‹œë©´ ìš°ë¦¬ëª¨ë‘ ì„œë¡œ ê³µìœ í•©ì‹œë‹¤. [ì¦ê²¨ì°¾ê¸°] íƒ­ì€ ê·¸ê²ƒì„ ìœ„í•œ ê³µê°„ìž…ë‹ˆë‹¤. ë§Žì€ ì°¸ì—¬ë°”ëžë‹ˆë‹¤.</span>
 	</td>
 </tr>
 <tr>
 	<td colspan="2" align="center">
 		<table  width="100%" border="0" cellspacing="2" cellpadding="0">
 		<tr>
-			<td width="50%" valign="top"><? print_bbs("nzeo/black_bbs", "³×Æ¼ÁðÄ®·³", "clmn1", 10, 31); ?></td>
-			<td width="50%" valign="top"><? print_bbs("nzeo/red_bbs", "ÀÚ·á°Ô½ÃÆÇ", "blrun1", 12, 31); ?></td>
+			<td width="50%" valign="top"><? print_bbs("nzeo/black_bbs", "ë„¤í‹°ì¦Œì¹¼ëŸ¼", "clmn1", 10, 31); ?></td>
+			<td width="50%" valign="top"><? print_bbs("nzeo/red_bbs", "ìžë£Œê²Œì‹œíŒ", "blrun1", 12, 31); ?></td>
 		</tr>
 		<tr>
-			<td colspan="2" width="100%" valign="top"><? print_survey("nzeo/survey", "³×Æ¼ÁðPoll", "poll1", 100) ?></td>
+			<td colspan="2" width="100%" valign="top"><? print_survey("nzeo/survey", "ë„¤í‹°ì¦ŒPoll", "poll1", 100) ?></td>
 		</tr>
 		<tr><td colspan="2" width="100%" valign="top">
-		<? 
-		$mb_id = array("clmn1", "blrun1", "cap1", "basket1");  
-		$mb_title = array("³×Æ¼Áð", "Ä®·³ÀÚ·á", "½ºÅ©·¦", "¾²·¹±âÅë"); 
+		<?
+		$mb_id = array("clmn1", "blrun1", "cap1", "basket1");
+		$mb_title = array("ë„¤í‹°ì¦Œ", "ì¹¼ëŸ¼ìžë£Œ", "ìŠ¤í¬ëž©", "ì“°ë ˆê¸°í†µ");
 		$mb_conf[showidtitle] = 1;
-		if($browser==1) //ie ÀÏ¶§¿Í ½º¸¶Æ®ÆùÀÏ ¶§ Ã³¸®
-			recent_scroll("bes_latest_scroll", "ÃÖ±Ù°Ô½Ã¹°50°³", 50,50);
+		if($browser==1) //ie ì¼ë•Œì™€ ìŠ¤ë§ˆíŠ¸í°ì¼ ë•Œ ì²˜ë¦¬
+			recent_scroll("bes_latest_scroll", "ìµœê·¼ê²Œì‹œë¬¼50ê°œ", 50,50);
 		else
-			recent_scroll("bes_latest_scroll", "ÃÖ±Ù°Ô½Ã¹°50°³", 50,20);
+			recent_scroll("bes_latest_scroll", "ìµœê·¼ê²Œì‹œë¬¼50ê°œ", 50,20);
 		echo "<div style='width: 100%; height: 117px; position: relative; overflow:hidden;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1' id='scroll_image'>";
 		echo "<script>startscroll();</script>";
 		echo "</div>";
 		?>
-		<? print_comment_total("bes_latest_skin08","ÃÖ±ÙÄÚ¸àÆ®","clmn1,blrun1,cap1,basket1,gal1,poll1,past1,blog1,bug1",50,45); ?>
+		<? print_comment_total("bes_latest_skin08","ìµœê·¼ì½”ë©˜íŠ¸","clmn1,blrun1,cap1,basket1,gal1,poll1,past1,blog1,bug1",50,45); ?>
 		</td></tr>
 		<tr>
 			<td colspan="2" width="100%" valign="top">
 			<?
-			if($browser==1) //ie ÀÏ¶§¿Í ½º¸¶Æ®ÆùÀÏ ¶§ Ã³¸®
-				latest_gal("f2plus_latest_2", "gal1", "ÃÖ±Ù °¶·¯¸®", 7, 110, 150, "m/d");
+			if($browser==1) //ie ì¼ë•Œì™€ ìŠ¤ë§ˆíŠ¸í°ì¼ ë•Œ ì²˜ë¦¬
+				latest_gal("f2plus_latest_2", "gal1", "ìµœê·¼ ê°¤ëŸ¬ë¦¬", 7, 110, 150, "m/d");
 			else
-				latest_gal("f2plus_latest_2", "gal1", "ÃÖ±Ù °¶·¯¸®", 4, 38, 30, "m/d");
+				latest_gal("f2plus_latest_2", "gal1", "ìµœê·¼ ê°¤ëŸ¬ë¦¬", 4, 38, 30, "m/d");
 			?>
 			</td>
 		</tr>
@@ -76,7 +76,7 @@ include $_zb_path."latest_skin/bes_latest_scroll/recent_bbs_scroll.php";
 </tr>
 <tr>
 	<td colspan="2" height="30">
-		<p style="line-height:100%; margin-top:0; margin-bottom:0;" align="center">&nbsp;<span style="font-family:±¼¸²; font-size:9pt;">CopyRight&copy;<a href="mailto:blrun39@hanafos.com" style="color:black;text-decoration:none;"><b>Y.C.Lee</b></a> All Rights Reserved. Since 2007.12.13.</span>&nbsp;<a href="<?=str_replace("www.","",substr(zbUrl(),0,strpos(zbUrl(),"/bbs/")))."/rss/"?>" target="_blank"><img src="../rss/rss2.gif" border="0" align="absmiddle" vspace="5"></a></p>
+		<p style="line-height:100%; margin-top:0; margin-bottom:0;" align="center">&nbsp;<span style="font-family:êµ´ë¦¼; font-size:9pt;">CopyRight&copy;<a href="mailto:blrun39@hanafos.com" style="color:black;text-decoration:none;"><b>Y.C.Lee</b></a> All Rights Reserved. Since 2007.12.13.</span>&nbsp;<a href="<?=str_replace("www.","",mb_substr(zbUrl(),0,mb_strpos(zbUrl(),"/bbs/")))."/rss/"?>" target="_blank"><img src="../rss/rss2.gif" border="0" align="absmiddle" vspace="5"></a></p>
 	</td>
 </tr>
 </table>

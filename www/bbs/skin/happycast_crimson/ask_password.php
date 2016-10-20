@@ -1,17 +1,17 @@
 <? include "$dir/value.php3"; ?>
 <?
   /*
-  ±ÛÀ» »èÁ¦ÇÏ°Å³ª ÇÒ¶§ ºñ¹Ð¹øÈ£¸¦ ¹°¾îº¸´Â ºÎºÐÀÔ´Ï´Ù
+  ê¸€ì„ ì‚­ì œí•˜ê±°ë‚˜ í• ë•Œ ë¹„ë°€ë²ˆí˜¸ë¥¼ ë¬¼ì–´ë³´ëŠ” ë¶€ë¶„ìž…ë‹ˆë‹¤
  
-  <?=$target?> : ½ÇÇàÆÄÀÏÀ» °¡¸®Åµ´Ï´Ù. ¼öÁ¤ÇÏÁö ¸¶¼¼¿ä;;;
-  <?=$title?> : Å¸ÀÌÆ²À» Ãâ·ÂÇÕ´Ï´Ù
+  <?=$target?> : ì‹¤í–‰íŒŒì¼ì„ ê°€ë¦¬í‚µë‹ˆë‹¤. ìˆ˜ì •í•˜ì§€ ë§ˆì„¸ìš”;;;
+  <?=$title?> : íƒ€ì´í‹€ì„ ì¶œë ¥í•©ë‹ˆë‹¤
 
-  <?=$a_list?> : ¸ñ·Ïº¸±â ¸µÅ©
-  <?=$a_view?> : ³»¿ëº¸±â ¸µÅ©
+  <?=$a_list?> : ëª©ë¡ë³´ê¸° ë§í¬
+  <?=$a_view?> : ë‚´ìš©ë³´ê¸° ë§í¬
 
-  <?=$invisible?> : ¸â¹ö³ª °ü¸®ÀÚ°¡ »èÁ¦½Ã »èÁ¦ ¹öÆ°¸¸ º¸ÀÔ´Ï´Ù;;
+  <?=$invisible?> : ë©¤ë²„ë‚˜ ê´€ë¦¬ìžê°€ ì‚­ì œì‹œ ì‚­ì œ ë²„íŠ¼ë§Œ ë³´ìž…ë‹ˆë‹¤;;
 
-  <?=$input_password?> : ºñ¹Ð¹øÈ£¸¦ ¹°¾îº¸´Â input=text Ãâ·Â 
+  <?=$input_password?> : ë¹„ë°€ë²ˆí˜¸ë¥¼ ë¬¼ì–´ë³´ëŠ” input=text ì¶œë ¥ 
   */
 ?>
 

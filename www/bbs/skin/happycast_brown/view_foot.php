@@ -1,26 +1,26 @@
 <?
- /* ÀÌÀü ´ÙÀ½±Û°ú ¹öÆ° Ç¥½Ã
+ /* ì´ì „ ë‹¤ìŒê¸€ê³¼ ë²„íŠ¼ í‘œì‹œ
  
-  --- ÀÌÀü/ ÀÌÈÄ±Û ¸µÅ© ---
-  <?=$a_prev?> : ÀÌÀü±Û ¸µÅ©
-  <?=$a_next?> : ´ÙÀ½±Û ¸µÅ©
+  --- ì´ì „/ ì´í›„ê¸€ ë§í¬ ---
+  <?=$a_prev?> : ì´ì „ê¸€ ë§í¬
+  <?=$a_next?> : ë‹¤ìŒê¸€ ë§í¬
 
-  <?=$prev_face_image?> : ÀÌÀü±Û ±Û¾´ÀÌÀÇ ¾ó±¼ ¾ÆÀÌÄÜ?;
-  <?=$next_face_image?> : ´ÙÀ½±Û ±Û¾´ÀÌÀÇ ¾ó±¼ ¾ÆÀÌÄÜ?;
+  <?=$prev_face_image?> : ì´ì „ê¸€ ê¸€ì“´ì´ì˜ ì–¼êµ´ ì•„ì´ì½˜?;
+  <?=$next_face_image?> : ë‹¤ìŒê¸€ ê¸€ì“´ì´ì˜ ì–¼êµ´ ì•„ì´ì½˜?;
 
 
-  <?=$hide_prev_start?> <?=$hide_prev_end?> : ÀÌÀü±Û ³ªÅ¸³ª±â/ ¼û±â±â
-  <?=$hide_next_start?> <?=$hide_next_end?> : ´ÙÀ½±Û ³ªÅ¸³ª±â/ ¼û±â±â
+  <?=$hide_prev_start?> <?=$hide_prev_end?> : ì´ì „ê¸€ ë‚˜íƒ€ë‚˜ê¸°/ ìˆ¨ê¸°ê¸°
+  <?=$hide_next_start?> <?=$hide_next_end?> : ë‹¤ìŒê¸€ ë‚˜íƒ€ë‚˜ê¸°/ ìˆ¨ê¸°ê¸°
 
-  ±âÅ¸ Á¦¸ñÀÌ³ª ±Û¾´ÀÌµîÀº À§ÀÇ µ¥ÀÌÅ¸¿¡¼­ ¾Õ¿¡ prev_ , next_ ¸¦ µ¡ ºÙÀÎ°ÍÀÓ;
-  ex) ÀÌÀü±Û Á¦¸ñ : <?=$prev_subject?>
+  ê¸°íƒ€ ì œëª©ì´ë‚˜ ê¸€ì“´ì´ë“±ì€ ìœ„ì˜ ë°ì´íƒ€ì—ì„œ ì•žì— prev_ , next_ ë¥¼ ë§ ë¶™ì¸ê²ƒìž„;
+  ex) ì´ì „ê¸€ ì œëª© : <?=$prev_subject?>
 
-  <?=$a_write?> : ±Û¾²±â ¹öÆ°
-  <?=$a_list?> : ¸ñ·Ïº¸±â ¹öÆ°
-  <?=$a_reply?> : ´ä±Û¾²±â ¹öÆ°
-  <?=$a_delete?> : ±Û»èÁ¦ ¹öÆ°
-  <?=$a_vote?> : ÃßÃµ¹öÆ°
-  <?=$a_modify?> : ±Û¼öÁ¤ ¹öÆ°
+  <?=$a_write?> : ê¸€ì“°ê¸° ë²„íŠ¼
+  <?=$a_list?> : ëª©ë¡ë³´ê¸° ë²„íŠ¼
+  <?=$a_reply?> : ë‹µê¸€ì“°ê¸° ë²„íŠ¼
+  <?=$a_delete?> : ê¸€ì‚­ì œ ë²„íŠ¼
+  <?=$a_vote?> : ì¶”ì²œë²„íŠ¼
+  <?=$a_modify?> : ê¸€ìˆ˜ì • ë²„íŠ¼
 
  */
 ?>
@@ -35,7 +35,7 @@ if(!preg_match("/Zeroboard/i",$a_bitly)) $a_bitly = str_replace(">","><font clas
 if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font class=view_title1>",$a_keyword)."&nbsp;&nbsp;";
 ?>
 
-<!-- ÀÌÀü / ´ÙÀ½±Û Ãâ·Â -->
+<!-- ì´ì „ / ë‹¤ìŒê¸€ ì¶œë ¥ -->
 <table border=0 cellpadding cellspacing=0 width=<?=$width?>>
 <tr><td colspan=10 bgcolor=white><img src=images/t.gif height=1></td></tr>
 <tr><td colspan=10 bgcolor=<?=$view_left_header_color?>><img src=images/t.gif height=2></td></tr>
@@ -78,17 +78,17 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 </table>
 <?=$hide_next_end?>
 
-<!-- ¹öÆ° °ü·Ã Ãâ·Â -->
+<!-- ë²„íŠ¼ ê´€ë ¨ ì¶œë ¥ -->
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <tr height=23>
   <td align=left>
     <?=$a_list?><img src=<?=$dir?>/i_list.gif border=0 align=absmiddle></a>
     <?=$a_write?><img src=<?=$dir?>/i_write.gif border=0 align=absmiddle></a>
-    <? if($box_view) { echo $a_preview."¹Ì¸®º¸±â</a>".$a_imagebox."±×¸²Ã¢°í</a>".$a_codebox."ÄÚµå»ðÀÔ</a>"; }?>
+    <? if($box_view) { echo $a_preview."ë¯¸ë¦¬ë³´ê¸°</a>".$a_imagebox."ê·¸ë¦¼ì°½ê³ </a>".$a_codebox."ì½”ë“œì‚½ìž…</a>"; }?>
 
   </td>
   <td align=right>
-    <?=$a_home?>[HOME]</a><?=$a_bitly?>[bitly]</a><?=$a_keyword?>[¹ÝÀüÇØÁ¦]</a>
+    <?=$a_home?>[HOME]</a><?=$a_bitly?>[bitly]</a><?=$a_keyword?>[ë°˜ì „í•´ì œ]</a>
     <?=$a_vote?><img src=<?=$dir?>/i_vote.gif border=0 align=absmiddle></a>
     <?=$a_reply?><img src=<?=$dir?>/i_reply.gif border=0 align=absmiddle></a>
   </td>

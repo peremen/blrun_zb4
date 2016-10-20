@@ -21,15 +21,15 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <tr>
 	<td align=left height=30>
-		<?=$a_reply?>´ä±Û´Þ±â</a>
-		<?=$a_modify?>¼öÁ¤ÇÏ±â</a>
-		<?=$a_delete?>»èÁ¦ÇÏ±â</a>
-		<?=$a_vote?>ÃßÃµÇÏ±â</a>
-		<? if($box_view) { echo $a_preview."¹Ì¸®º¸±â</a>".$a_imagebox."±×¸²Ã¢°í</a>".$a_codebox."ÄÚµå»ðÀÔ</a>"; }?>
+		<?=$a_reply?>ë‹µê¸€ë‹¬ê¸°</a>
+		<?=$a_modify?>ìˆ˜ì •í•˜ê¸°</a>
+		<?=$a_delete?>ì‚­ì œí•˜ê¸°</a>
+		<?=$a_vote?>ì¶”ì²œí•˜ê¸°</a>
+		<? if($box_view) { echo $a_preview."ë¯¸ë¦¬ë³´ê¸°</a>".$a_imagebox."ê·¸ë¦¼ì°½ê³ </a>".$a_codebox."ì½”ë“œì‚½ìž…</a>"; }?>
 
 	</td>
 	<td align=right>
-		<?=$a_home?>[HOME]</a><?=$a_bitly?>[bitly]</a><?=$a_keyword?>[¹ÝÀüÇØÁ¦]</a><?=$a_list?>¸ñ·Ïº¸±â</a><?=$a_write?>±Û¾²±â</a>
+		<?=$a_home?>[HOME]</a><?=$a_bitly?>[bitly]</a><?=$a_keyword?>[ë°˜ì „í•´ì œ]</a><?=$a_list?>ëª©ë¡ë³´ê¸°</a><?=$a_write?>ê¸€ì“°ê¸°</a>
 	</td>
 </tr>
 </table>
@@ -43,7 +43,7 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 
 <table width=<?=$width?>>
 <tr>
-	<td align=left style='word-break:break-all;'>¡ã <?=$a_prev?><?=$prev_subject?></a></td>
+	<td align=left style='word-break:break-all;'>â–² <?=$a_prev?><?=$prev_subject?></a></td>
 </tr>
 </table>
 <?=$hide_prev_end?>
@@ -52,7 +52,7 @@ if(!preg_match("/Zeroboard/i",$a_keyword)) $a_keyword = str_replace(">","><font 
 
 <table width=<?=$width?>>
 <tr>
-	<td align=left style='word-break:break-all;'>¡å <?=$a_next?><?=$next_subject?></a></td>
+	<td align=left style='word-break:break-all;'>â–¼ <?=$a_next?><?=$next_subject?></a></td>
 </tr>
 </table>
 <?=$hide_next_end?>

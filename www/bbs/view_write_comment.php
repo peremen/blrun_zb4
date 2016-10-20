@@ -3,7 +3,7 @@ if(!empty($_POST['code']) || $member[no] || $data[is_secret] != 0) {
 
 	if(!($member[no] || $data[is_secret] != 0)) {
 
-		// ½ºÆÔ¹æÁöÄÚµå Ã¼Å© °ü·Ã
+		// ìŠ¤íŒ¸ë°©ì§€ì½”ë“œ ì²´í¬ ê´€ë ¨
 		include("securimage/securimage.php");
 		$img = new Securimage();
 		$valid = $img->check($_POST['code']);
@@ -11,17 +11,17 @@ if(!empty($_POST['code']) || $member[no] || $data[is_secret] != 0) {
 		if($valid == true) {
 
 		} else {
-			Error("½ºÆÔ¹æÁö ÄÚµå¸¦ Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+			Error("ìŠ¤íŒ¸ë°©ì§€ ì½”ë“œë¥¼ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		}
 	}
 
-	// ·£´ıÇÑ µÎ ¼ıÀÚ¸¦ ¹ß»ı(1-1000) ÈÄ º¯¼ö¿¡ ´ëÀÔ
+	// ëœë¤í•œ ë‘ ìˆ«ìë¥¼ ë°œìƒ(1-1000) í›„ ë³€ìˆ˜ì— ëŒ€ì…
 	$num1 = mt_rand(1,1000);
 	$num2 = mt_rand(1,1000);
 	$num1num2 = $num1*10000 + $num2;
-	// ÄÚ¸àÆ® º¸¾ÈÀ» À§ÇØ ¼¼¼Çº¯¼ö¸¦ ¼³Á¤
+	// ì½”ë©˜íŠ¸ ë³´ì•ˆì„ ìœ„í•´ ì„¸ì…˜ë³€ìˆ˜ë¥¼ ì„¤ì •
 	$_SESSION['ZBRD_SS_VRS'] = $num1num2;
-	// ¹Ì¸®º¸±â, ±×¸²Ã¢°í, ÄÚµå»ğÀÔ ¹öÆ° º¸ÀÌ°Ô ÇÏ±â
+	// ë¯¸ë¦¬ë³´ê¸°, ê·¸ë¦¼ì°½ê³ , ì½”ë“œì‚½ì… ë²„íŠ¼ ë³´ì´ê²Œ í•˜ê¸°
 	$box_view=true;
 
 	include $dir."/view_write_comment.php";
@@ -32,9 +32,9 @@ if(!empty($_POST['code']) || $member[no] || $data[is_secret] != 0) {
 <script language="javascript">
 <!--
 function sendit() {
-	// ÆĞ½º¿öµå
+	// íŒ¨ìŠ¤ì›Œë“œ
 	if(document.myform.code.value=="") {
-		alert("½ºÆÔ¹æÁö ÄÚµå¸¦ ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿ä");
+		alert("ìŠ¤íŒ¸ë°©ì§€ ì½”ë“œë¥¼ ì…ë ¥í•´ ì£¼ì‹­ì‹œìš”");
 		document.myform.code.focus();
 		return false;
 	}
@@ -64,13 +64,13 @@ function sendit() {
 		<a tabindex="-1" style="border-style: none" href="#" title="Refresh Image" onclick="document.getElementById('siimage').src = 'securimage/securimage_show.php?sid=' + Math.random(); return false"><img src="securimage/images/refresh.gif" width="33" height="33" alt="Reload Image" border="0" onclick="this.blur()" align="bottom" /></a></p>
 		</div>
 		<div style="clear: both"></div>
-		<b>ÀÍ¸íµ¡±Û¾²±â ÄÚµåÀÔ·Â:</b>
+		<b>ìµëª…ë§ê¸€ì“°ê¸° ì½”ë“œì…ë ¥:</b>
 		<!-- NOTE: the "name" attribute is "code" so that $img->check($_POST['code']) will check the submitted form field -->
 		<input type="text" name="code" size="12" /><br /><br />
 	</td>
 </tr>
 <tr class=list0>
-	<td align=center><input type=button value=" È® ÀÎ " onClick="javascript:sendit()"></td>
+	<td align=center><input type=button value=" í™• ì¸ " onClick="javascript:sendit()"></td>
 </tr>
 </table>
 </form>

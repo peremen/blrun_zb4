@@ -2,7 +2,7 @@
 @extract($_GET); 
 @extract($_POST); 
 /***************************************************************************
-* °øÅëÆÄÀÏ include
+* ê³µí†µíŒŒì¼ include
 **************************************************************************/
 include $_zb_path."_head.php";
 
@@ -13,7 +13,7 @@ function error1($message, $url="") {
 		$message=str_replace("<br>","\\n",$message);
 		$message=str_replace("\"","\\\"",$message);
 ?>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script>
 	<!--
 	alert("<?=$message?>");
@@ -25,23 +25,23 @@ function error1($message, $url="") {
 }
 
 /***************************************************************************
- * ¼³Á¤ Ã¼Å©
+ * ì„¤ì • ì²´í¬
  **************************************************************************/
-// ÇöÀç±ÛÀÇ Vote¼ö ¿Ã¸²;;
+// í˜„ì¬ê¸€ì˜ Voteìˆ˜ ì˜¬ë¦¼;;
 $table="zetyx_board_comment_".$id."_movie";
 $t_c=mysql_fetch_array(mysql_query("select * from $table where no='$c_no'"));
 $vote_man=$t_c[who];
 $whois=explode("!*)",$vote_man);
 for($i=0;$i<=sizeof($whois)-1;$i++){
 	if($who==$whois[$i]){ 
-		error1("ÀÌ¹Ì ÅõÇ¥¸¦ ÇÏ¼Ì³×¿ä");
+		error1("ì´ë¯¸ íˆ¬í‘œë¥¼ í•˜ì…¨ë„¤ìš”");
 	}
 }
 if(!$vote_man) $vote_man=$who;
 else $vote_man=$vote_man."!*)".$who;
 mysql_query("update $table set vote=vote+1, who='$vote_man' where no='$c_no'");
 
-// ÆäÀÌÁö ÀÌµ¿
+// í˜ì´ì§€ ì´ë™
 //if($setup[use_alllist]) $temp_href="zboard.php"; else $temp_href="view.php";
 movepage($_url."?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&keyword=$keyword&no=$no&category=$category");
 ?>

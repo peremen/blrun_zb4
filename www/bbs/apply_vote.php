@@ -1,42 +1,42 @@
 <?
 /***************************************************************************
-* °øÅëÆÄÀÏ include
+* ê³µí†µíŒŒì¼ include
 **************************************************************************/
 include "_head.php";
 
-// »ç¿ë±ÇÇÑ Ã¼Å©
-if($setup[grant_view]<$member[level]&&!$is_admin) Error("»ç¿ë±ÇÇÑÀÌ ¾ø½À´Ï´Ù","login.php?id=$id&page=$page&page_num=$page_num&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&file=zboard.php");
+// ì‚¬ìš©ê¶Œí•œ ì²´í¬
+if($setup[grant_view]<$member[level]&&!$is_admin) Error("ì‚¬ìš©ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤","login.php?id=$id&page=$page&page_num=$page_num&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&file=zboard.php");
 
-// º¸¾ÈÇâ»ó
+// ë³´ì•ˆí–¥ìƒ
 if(!get_magic_quotes_gpc()) {
 	$no = addslashes($no);
 	$sub_no = addslashes($sub_no);
 }
 
-// Á¶È¸¼ö ÇØÅ· °ËÁõ
+// ì¡°íšŒìˆ˜ í•´í‚¹ ê²€ì¦
 $result=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$sub_no'",$connect));
-$prev_no1=$result[prev_no]; //ÇöÀçÇ×¸ñÀÇ »ó´Ü ÅõÇ¥ ³Ñ¹ö
-$next_no1=$result[next_no]; //ÇöÀç Ç×¸ñÀÇ ÇÏ´Ü ÅõÇ¥ ³Ñ¹ö
+$prev_no1=$result[prev_no]; //í˜„ìž¬í•­ëª©ì˜ ìƒë‹¨ íˆ¬í‘œ ë„˜ë²„
+$next_no1=$result[next_no]; //í˜„ìž¬ í•­ëª©ì˜ í•˜ë‹¨ íˆ¬í‘œ ë„˜ë²„
 $result=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$next_no1'",$connect));
-$prev_no2=$result[prev_no]; //ÇÏ´Ü ÅõÇ¥ ³Ñ¹öÀÇ »ó´Ü ÅõÇ¥ ³Ñ¹ö
+$prev_no2=$result[prev_no]; //í•˜ë‹¨ íˆ¬í‘œ ë„˜ë²„ì˜ ìƒë‹¨ íˆ¬í‘œ ë„˜ë²„
 $result=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$prev_no1'",$connect));
-$next_no2=$result[next_no]; //»ó´Ü ÅõÇ¥ ³Ñ¹öÀÇ ÇÏ´Ü ÅõÇ¥ ³Ñ¹ö
+$next_no2=$result[next_no]; //ìƒë‹¨ íˆ¬í‘œ ë„˜ë²„ì˜ í•˜ë‹¨ íˆ¬í‘œ ë„˜ë²„
 
-// °¡Àå ÃÖ±Ù ÅõÇ¥¿Í ¸Ç ¾Æ·¡ ÅõÇ¥´Â ¾Æ·¡¿Í °°ÀÌ ´ÙÀ½Çà if¿¡ »ç¿ëµÉ $next_no2,$prev_no2 Ä¡È¯
+// ê°€ìž¥ ìµœê·¼ íˆ¬í‘œì™€ ë§¨ ì•„ëž˜ íˆ¬í‘œëŠ” ì•„ëž˜ì™€ ê°™ì´ ë‹¤ìŒí–‰ ifì— ì‚¬ìš©ë  $next_no2,$prev_no2 ì¹˜í™˜
 if($prev_no1==0) $next_no2=$prev_no2;
 else if($next_no1==0) $prev_no2=$next_no2;
 
-// ±âÁ¸ ¾ÆÀÌÇÇ°¡ ÀÖ´ÂÁö °Ë»ç
+// ê¸°ì¡´ ì•„ì´í”¼ê°€ ìžˆëŠ”ì§€ ê²€ì‚¬
 $data = mysql_fetch_array(mysql_query("select memo from $t_board"."_$id where no='$no'",$connect));
 $ip_array = explode("|||",$data[memo]);
 $rows = 1;
 for($i=1;$i<count($ip_array);$i++)
-	if((preg_match("#".$REMOTE_ADDR."#",$ip_array[$i])) || ($member[user_id] && preg_match("#".$member[user_id]."#",$ip_array[$i]))) $rows = 0; //Á¸ÀçÇÏ¸é ÇÃ·¡±× 0À¸·Î ¼ÂÆÃ
+	if((preg_match("#".$REMOTE_ADDR."#",$ip_array[$i])) || ($member[user_id] && preg_match("#".$member[user_id]."#",$ip_array[$i]))) $rows = 0; //ì¡´ìž¬í•˜ë©´ í”Œëž˜ê·¸ 0ìœ¼ë¡œ ì…‹íŒ…
 
 if($rows) {
-	// ÇöÀç±ÛÀÇ Vote¼ö ¿Ã¸²;;
+	// í˜„ìž¬ê¸€ì˜ Voteìˆ˜ ì˜¬ë¦¼;;
 	if(!preg_match("/".$setup[no]."_".$no."/i",$_SESSION['zb_vote'])&&$no==$prev_no2&&$no==$next_no2) {
-		// ¾ÆÀÌÇÇ Å×ÀÌºí ¸¸µê
+		// ì•„ì´í”¼ í…Œì´ë¸” ë§Œë“¦
 		unset($data);
 		$data = mysql_fetch_array(mysql_query("select memo from $t_board"."_$id where no='$no'",$connect));
 		$memo = $data[memo]."|||".$REMOTE_ADDR;
@@ -45,13 +45,13 @@ if($rows) {
 		mysql_query("update $t_board"."_$id set vote=vote+1 where no='$sub_no'",$connect);
 		mysql_query("update $t_board"."_$id set memo='$memo',vote=vote+1 where no='$no'",$connect);
 
-		// 5.3 ÀÌ»ó¿ë ¼¼¼Ç Ã³¸®
+		// 5.3 ì´ìƒìš© ì„¸ì…˜ ì²˜ë¦¬
 		$_SESSION['zb_vote'] = $_SESSION['zb_vote'].",".$setup[no]."_".$no;
 
-	} else Error("ÀÌ¹Ì ÅõÇ¥ÇÏ¼Ì½À´Ï´Ù.");
-} else Error("ÀÌ¹Ì ÅõÇ¥ÇÏ¼Ì½À´Ï´Ù..");
+	} else Error("ì´ë¯¸ íˆ¬í‘œí•˜ì…¨ìŠµë‹ˆë‹¤.");
+} else Error("ì´ë¯¸ íˆ¬í‘œí•˜ì…¨ìŠµë‹ˆë‹¤..");
 
-// ÆäÀÌÁö ÀÌµ¿
+// íŽ˜ì´ì§€ ì´ë™
 if($setup[use_alllist]) movepage("zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&category=$category&no=$no");
 else  movepage("view.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&category=$category&no=$no");
 ?>
