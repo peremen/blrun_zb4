@@ -10,7 +10,7 @@ td {line-height:140%}
 .com4 {color:555555;font-family:tahoma;font-size:9pt}
 .com5 {color:555555;font-family:tahoma;font-size:9pt;font-weight:bold}
 .com6 {color:0E6B96;font-family:tahoma;font-size:9pt}
-
+.memo {word-wrap:break-word; word-break:break-word; word-break:keep-all;}
 .shadow {filter:progid:DXImageTransform.Microsoft.Shadow(color=#C0C0C0,Direction=135,Strength=2)}
 
 A:link    {color:blue;text-decoration:none;}
@@ -37,7 +37,7 @@ A:hover  {color:E46527;text-decoration:underline}
 			</td>
 		</tr>
 		<tr>
-			<td colspan=2><img src=[dir]point.gif border=0 align=absmiddle>
+			<td colspan=2 class=memo><img src=[dir]point.gif border=0 align=absmiddle>
 				<font class=com4 color=E46527>[subject]</font>&nbsp;&nbsp;<font class=com2>[comment]</font></td>
 		</tr>
 		<tr>
@@ -51,9 +51,9 @@ A:hover  {color:E46527;text-decoration:underline}
 				</table>
 			</td>
 			<td style=padding-left:5px>
-				<table align=center border=0 cellpadding=0 cellspacing=0 width=100%>
+				<table align=center border=0 cellpadding=0 cellspacing=0 width=100% style=table-layout:fixed>
 				<tr align=left style=padding-left:5px>
-					<td>&nbsp;<font class=com4>[memo]</font></td>
+					<td class=memo>&nbsp;<font class=com4>[memo]</font></td>
 				</tr>
 				<tr align=left style=padding-left:5px>
 					<td><font class=com6>&nbsp;-&nbsp;[name]&nbsp;&nbsp;-&nbsp;[[date]]</font></td>
