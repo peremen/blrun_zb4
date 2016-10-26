@@ -68,8 +68,8 @@ if($Thumbnail_use=="on"){
 	}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name1])){
 		$file1_check=1;
 		$src_img1=$data[file_name1];
-		$thumb_img1=$src_img1;
-		$thumb_img12=$src_img1;
+		$thumb_img1=str_replace("%2F", "/", urlencode($src_img1));
+		$thumb_img12=str_replace("%2F", "/", urlencode($src_img1));
 		$xy1=@getimagesize($src_img1);
 	}elseif(preg_match("#\.(gif|bmp)$#i",$out[0][1].".".$out[0][2])) {
 		$src_img1="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
@@ -171,8 +171,8 @@ if($Thumbnail_use=="on"){
 		}
 	}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name2])){
 		$src_img2=$data[file_name2];
-		$thumb_img2=$src_img2;
-		$thumb_img22=$src_img2;
+		$thumb_img2=str_replace("%2F", "/", urlencode($src_img2));
+		$thumb_img22=str_replace("%2F", "/", urlencode($src_img2));
 		$xy2=@getimagesize($src_img2);
 	}elseif($file1_check==1 && preg_match("#\.(gif|bmp)$#i",$out[0][1].".".$out[0][2])) {
 		$src_img2="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
@@ -207,7 +207,7 @@ if($Thumbnail_use=="on"){
 	}
 
 	$ran_img1=array($thumb_img12,$thumb_img22);
-	$ran_img2=array($src_img1,$src_img2,$dir."/no_image.gif");
+	$ran_img2=array(str_replace("%2F", "/", urlencode($src_img1)),str_replace("%2F", "/", urlencode($src_img2)),$dir."/no_image.gif");
 	$ran_img3=array($thumb_img1,$thumb_img2);
 	$ran_xy=array($xy1,$xy2);
 
@@ -232,8 +232,6 @@ if($Thumbnail_use=="on"){
 		$source_img=$ran_img2[2];
 		$xy[0]=300; $xy[1]=200;
 	}
-
-	$img_info=@getimagesize($source_img);
 
 	$full_img="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=".($xy[0]+10)."&height=".($xy[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') onfocus=this.blur(); class=shadow style=cursor:pointer>";
 	if($img_show=="on"){
