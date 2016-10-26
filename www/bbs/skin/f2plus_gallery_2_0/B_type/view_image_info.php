@@ -62,11 +62,11 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		$src_img1="icon/member_image_box/".$prev_data[ismember]."/".$out1[0][1].".".$out1[0][2];
 		if(file_exists($src_img1) && !file_exists($Thumbnail_path.$prev_data[ismember]."/".$iPrev_thumb_small1)){
 			thumbnail($min_width_size,$src_img1,$Thumbnail_path.$prev_data[ismember]."/".$iPrev_thumb_small1);
-			$prev_thumb=$Thumbnail_url.$prev_data[ismember]."/".str_replace("%2F", "/", urlencode($iPrev_thumb_small1));
+			$prev_thumb=$Thumbnail_url.$prev_data[ismember]."/".$iPrev_thumb_small1;
 		}elseif(!file_exists($src_img1)){
 			$prev_thumb=$dir."/no_image.gif";
 		}else{
-			$prev_thumb=$Thumbnail_url.$prev_data[ismember]."/".str_replace("%2F", "/", urlencode($iPrev_thumb_small1));
+			$prev_thumb=$Thumbnail_url.$prev_data[ismember]."/".$iPrev_thumb_small1;
 		}
 
 	}elseif(($src_img1=$img1[0][1]) && !preg_match("#\.(gif|bmp)$#i",$src_img1)){
@@ -99,15 +99,15 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		$prev_thumb=$Thumbnail_url.$Prev_thumb_small2;
 
 	}elseif(preg_match("#\.(gif|bmp)$#i",$prev_data[file_name1]))
-		$prev_thumb=str_replace("%2F", "/", urlencode($prev_data[file_name1]));
+		$prev_thumb=$prev_data[file_name1];
 	elseif(preg_match("#\.(gif|bmp)$#i",$out1[0][1].".".$out1[0][2])){
 		$src_img1="icon/member_image_box/".$prev_data[ismember]."/".$out1[0][1].".".$out1[0][2];
-		$prev_thumb=str_replace("%2F", "/", urlencode($src_img1));
+		$prev_thumb=$src_img1;
 		if(!file_exists($src_img1)) $prev_thumb=$dir."/no_image.gif";
 	}elseif(($src_img1=$img1[0][1]) && preg_match("#\.(gif|bmp)$#i",$src_img1))
 		$prev_thumb=$src_img1;
 	elseif(preg_match("#\.(gif|bmp)$#i",$prev_data[file_name2]))
-		 $prev_thumb=str_replace("%2F", "/", urlencode($prev_data[file_name2]));
+		 $prev_thumb=$prev_data[file_name2];
 	elseif($prev_data[no]) $prev_thumb=$dir."/no_image.gif";
 
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$next_data[file_name1])){
@@ -130,11 +130,11 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		$src_img2="icon/member_image_box/".$next_data[ismember]."/".$out2[0][1].".".$out2[0][2];
 		if(!file_exists($Thumbnail_path.$next_data[ismember]."/".$iNext_thumb_small1)){
 			thumbnail($min_width_size,$src_img2,$Thumbnail_path.$next_data[ismember]."/".$iNext_thumb_small1);
-			$next_thumb=$Thumbnail_url.$next_data[ismember]."/".str_replace("%2F", "/", urlencode($iNext_thumb_small1));
+			$next_thumb=$Thumbnail_url.$next_data[ismember]."/".$iNext_thumb_small1;
 		}elseif(!file_exists($src_img2)){
 			$next_thumb=$dir."/no_image.gif";
 		}else{
-			$next_thumb=$Thumbnail_url.$next_data[ismember]."/".str_replace("%2F", "/", urlencode($iNext_thumb_small1));
+			$next_thumb=$Thumbnail_url.$next_data[ismember]."/".$iNext_thumb_small1;
 		}
 
 	}elseif(($src_img2=$img2[0][1]) && !preg_match("#\.(gif|bmp)$#i",$src_img2)){
@@ -167,20 +167,20 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		$next_thumb=$Thumbnail_url.$Next_thumb_small2;
 
 	}elseif(preg_match("#\.(gif|bmp)$#i",$next_data[file_name1]))
-		$next_thumb=str_replace("%2F", "/", urlencode($next_data[file_name1]));
+		$next_thumb=$next_data[file_name1];
 	elseif(preg_match("#\.(gif|bmp)$#i",$out2[0][1].".".$out2[0][2])){
 		$src_img2="icon/member_image_box/".$next_data[ismember]."/".$out2[0][1].".".$out2[0][2];
-		$next_thumb=str_replace("%2F", "/", urlencode($src_img2));
+		$next_thumb=$src_img2;
 		if(!file_exists($src_img2)) $next_thumb=$dir."/no_image.gif";
 	}elseif(($src_img2=$img2[0][1]) && preg_match("#\.(gif|bmp)$#i",$src_img2))
 		$next_thumb=$src_img2;
 	elseif(preg_match("#\.(gif|bmp)$#i",$next_data[file_name2]))
-		 $next_thumb=str_replace("%2F", "/", urlencode($next_data[file_name2]));
+		 $next_thumb=$next_data[file_name2];
 	elseif($next_data[no]) $next_thumb=$dir."/no_image.gif";
 
 }else{
 	if($upload_image1){
-		$source_img=str_replace("%2F", "/", urlencode($data[file_name1]));
+		$source_img=$data[file_name1];
 		if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name1])){
 			$view_img1="<img src=$source_img name=zb_target_resize border=0 alt='$alt1'>";
 		}else{
@@ -192,7 +192,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		$print_img1="<a onclick=window.open('$dir/img_view.php?img=$data[file_name1]&width=".($img_info1[0]+10)."&height=".($img_info1[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
 	if($upload_image2){
-		$source_img=str_replace("%2F", "/", urlencode($data[file_name2]));
+		$source_img=$data[file_name2];
 		if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name2])){
 			$view_img2="<img src=$source_img name=zb_target_resize border=0 alt='$alt2'>";
 		}else{
@@ -207,30 +207,24 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 	//썸네일 사용하지 않을때 이전파일및 다음파일 정보를 저장
 	if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$prev_data[file_name1])){
 		$prev_thumb=$prev_data[file_name1];
-		$prev_thumb=str_replace("%2F", "/", urlencode($prev_thumb));
 	}elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$out1[0][1].".".$out1[0][2])){
 		$prev_thumb="icon/member_image_box/".$prev_data[ismember]."/".$out1[0][1].".".$out1[0][2];
 		if(!file_exists($prev_thumb)) $prev_thumb=$dir."/no_image.gif";
-		else $prev_thumb=str_replace("%2F", "/", urlencode($prev_thumb));
 	}elseif($src_img1=$img1[0][1])
 		$prev_thumb=$src_img1;
 	elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$prev_data[file_name2])){
 		$prev_thumb=$prev_data[file_name2];
-		$prev_thumb=str_replace("%2F", "/", urlencode($prev_thumb));
 	}elseif($prev_data[no]) $prev_thumb=$dir."/no_image.gif";
 
 	if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$next_data[file_name1])){
 		$next_thumb=$next_data[file_name1];
-		$next_thumb=str_replace("%2F", "/", urlencode($next_thumb));
 	}elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$out2[0][1].".".$out2[0][2])){
 		$next_thumb="icon/member_image_box/".$next_data[ismember]."/".$out2[0][1].".".$out2[0][2];
 		if(!file_exists($next_thumb)) $next_thumb=$dir."/no_image.gif";
-		else $next_thumb=str_replace("%2F", "/", urlencode($next_thumb));
 	}elseif($src_img2=$img2[0][1])
 		$next_thumb=$src_img2;
 	elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$next_data[file_name2])){
 		$next_thumb= $next_data[file_name2];
-		$next_thumb=str_replace("%2F", "/", urlencode($next_thumb));
 	}elseif($next_data[no])
 		$next_thumb=$dir."/no_image.gif";
 }

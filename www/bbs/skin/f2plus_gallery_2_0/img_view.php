@@ -3,7 +3,7 @@
 @extract($_GET);
 
 if(!preg_match("#http[s]?:\/\/#i",$img))
-	$img=str_replace('%2F', '/', urlencode("../../".$img));
+	$img="../../".$img;
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">

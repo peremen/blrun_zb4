@@ -99,9 +99,9 @@
 	
 		// 만약 자료 파일이 있다면 같이 링크합니다.
 		if($row[file_name1])
-			$file1 = "file link 1 : <a href=$_zb_url".str_replace("%2F", "/", urlencode($row[file_name1]))." target=_blank> $row[s_file_name1]</a><br>";
+			$file1 = "file link 1 : <a href=$_zb_url".$row[file_name1]." target=_blank> $row[s_file_name1]</a><br>";
 		if($row[file_name2])
-			$file2 = "file link 2 : <a href=$_zb_url".str_replace("%2F", "/", urlencode($row[file_name2]))." target=_blank> $row[s_file_name2]</a><br>";
+			$file2 = "file link 2 : <a href=$_zb_url".$row[file_name2]." target=_blank> $row[s_file_name2]</a><br>";
 
 		if($row[use_html]<2)
 			$row[memo]=str_replace("\n","<br />",$row[memo]);

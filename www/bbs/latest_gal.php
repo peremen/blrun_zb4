@@ -266,18 +266,18 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 				}
 
 			}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name1])){
-				$filename1=$_zb_url.str_replace("%2F", "/", urlencode($data[file_name1]));
-				$filename2=$_zb_url.str_replace("%2F", "/", urlencode($data[file_name1]));
+				$filename1=$_zb_url.$data[file_name1];
+				$filename2=$_zb_url.$data[file_name1];
 			}elseif(preg_match("#\.(gif|bmp)$#i",$data[file_name2])){
-				$filename1=$_zb_url.str_replace("%2F", "/", urlencode($data[file_name2]));
-				$filename2=$_zb_url.str_replace("%2F", "/", urlencode($data[file_name2]));
+				$filename1=$_zb_url.$data[file_name2];
+				$filename2=$_zb_url.$data[file_name2];
 			}elseif(preg_match("#\.(gif|bmp)$#i",$out[0][1].".".$out[0][2])) {
 				if(!file_exists($_zb_path.$src_img)){
 					$filename1=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 					$filename2=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 				}else{
-					$filename1=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
-					$filename2=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
+					$filename1=$_zb_url.$src_img;
+					$filename2=$_zb_url.$src_img;
 				}
 			}elseif(($src_img1=$img[0][1]) && preg_match("#\.(gif|bmp)$#i",$src_img1)){
 				$filename1=$src_img1;
@@ -289,18 +289,18 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 
 		}else{
 			if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name1])){
-					$filename1=$_zb_url.str_replace("%2F", "/", urlencode($data[file_name1]));
-					$filename2=$_zb_url.str_replace("%2F", "/", urlencode($data[file_name1]));
+					$filename1=$_zb_url.$data[file_name1];
+					$filename2=$_zb_url.$data[file_name1];
 			}elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name2])){
-					$filename1=$_zb_url.str_replace("%2F", "/", urlencode($data[file_name2]));
-					$filename2=$_zb_url.str_replace("%2F", "/", urlencode($data[file_name2]));
+					$filename1=$_zb_url.$data[file_name2];
+					$filename2=$_zb_url.$data[file_name2];
 			}elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$out[0][1].".".$out[0][2])) {
 				if(!file_exists($_zb_path.$src_img)){
 					$filename1=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 					$filename2=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";
 				}else{
-					$filename1=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
-					$filename2=$_zb_url.str_replace("%2F", "/", urlencode($src_img));
+					$filename1=$_zb_url.$src_img;
+					$filename2=$_zb_url.$src_img;
 				}
 			}elseif(($src_img1=$img[0][1]) && preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$src_img1)){
 				$filename1=$src_img1;

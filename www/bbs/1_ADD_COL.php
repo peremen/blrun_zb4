@@ -47,7 +47,7 @@ while($table_data=mysql_fetch_array($table_name_result))
 	// 코멘트 use_html2 필드 일괄 추가
 	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'use_html2'", $connect));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `use_html2` char(1) default '0' CHARACTER SET euckr COLLATE euckr_korean_ci AFTER `reg_date`", $connect) or error(mysql_error());
+		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `use_html2` char(1) default '0' CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `reg_date`", $connect) or error(mysql_error());
 		$cnt2++;
 	}
 
@@ -55,7 +55,7 @@ while($table_data=mysql_fetch_array($table_name_result))
 	// 코멘트 is_secret 필드 일괄 추가
 	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'is_secret'", $connect));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `is_secret` char(1) not null default '0' CHARACTER SET euckr COLLATE euckr_korean_ci AFTER `use_html2`", $connect) or error(mysql_error());
+		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `is_secret` char(1) not null default '0' CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `use_html2`", $connect) or error(mysql_error());
 		$cnt2++;
 	}
 
@@ -63,7 +63,7 @@ while($table_data=mysql_fetch_array($table_name_result))
 	// 코멘트 file_name1 필드 일괄 추가
 	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'file_name1'", $connect));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `file_name1` char(255) CHARACTER SET euckr COLLATE euckr_korean_ci AFTER `is_secret`", $connect) or error(mysql_error());
+		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `file_name1` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `is_secret`", $connect) or error(mysql_error());
 		$cnt2++;
 	}
 
@@ -71,7 +71,7 @@ while($table_data=mysql_fetch_array($table_name_result))
 	// 코멘트 file_name2 필드 일괄 추가
 	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'file_name2'", $connect));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `file_name2` char(255) CHARACTER SET euckr COLLATE euckr_korean_ci AFTER `file_name1`", $connect) or error(mysql_error());
+		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `file_name2` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `file_name1`", $connect) or error(mysql_error());
 		$cnt2++;
 	}
 
@@ -79,7 +79,7 @@ while($table_data=mysql_fetch_array($table_name_result))
 	// 코멘트 s_file_name1 필드 일괄 추가
 	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 's_file_name1'", $connect));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `s_file_name1` char(255) CHARACTER SET euckr COLLATE euckr_korean_ci AFTER `file_name2`", $connect) or error(mysql_error());
+		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `s_file_name1` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `file_name2`", $connect) or error(mysql_error());
 		$cnt2++;
 	}
 
@@ -87,7 +87,7 @@ while($table_data=mysql_fetch_array($table_name_result))
 	// 코멘트 s_file_name2 필드 일괄 추가
 	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 's_file_name2'", $connect));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `s_file_name2` char(255) CHARACTER SET euckr COLLATE euckr_korean_ci AFTER `s_file_name1`", $connect) or error(mysql_error());
+		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `s_file_name2` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `s_file_name1`", $connect) or error(mysql_error());
 		$cnt2++;
 	}
 

@@ -1,8 +1,6 @@
 <?
 @header("Content-Type: text/html; charset=utf-8");
 @extract($_GET);
-
-$img=str_replace('%2F', '/', urlencode("./".$img));
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
