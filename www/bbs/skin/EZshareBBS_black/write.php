@@ -97,7 +97,7 @@ function zb_formresize(obj) {
       <td align=left><?=$a_preview?><img src=<?=$dir?>/btn_preview.gif border=0></a> <?=$a_imagebox?><img src=<?=$dir?>/btn_imagebox.gif border=0></a> <?=$a_codebox?>코드삽입</a>&nbsp;</td>
       <td align=right>
         <img src=<?=$dir?>/btn_save.gif border=0 accesskey="a" onclick=autoSave() style=cursor:pointer>
-        <input type=image src=<?=$dir?>/btn_writeok.gif border=0 onfocus=blur() border=0 accesskey="s">
+        <input type=image src=<?=$dir?>/btn_writeok.gif border=0 onfocus=blur() accesskey="s">
         <a href=javascript:void(history.back()) onfocus=blur()><img src=<?=$dir?>/btn_writecancel.gif border=0></a>
       </td>
     </tr>
