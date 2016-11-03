@@ -43,14 +43,14 @@ function zb_formresize(obj) {
 </tr>
 <tr>
 	<td align=right><font class=com2>메일주소</font></td>
-	<td align=left><input type=text name=email value="<?=$email?>" <?=size(40)?> maxlength=200 class=input></td>
+	<td align=left><input type=text id=email name=email value="<?=$email?>" <?=size(40)?> maxlength=200 class=input></td>
 </tr>
 <tr>
 	<td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
 	<td align=right><font class=com2>홈페이지</font></td>
-	<td align=left><input type=text name=homepage value="<?=$homepage?>" <?=size(40)?> maxlength=200 class=input></td>
+	<td align=left><input type=text id=homepage name=homepage value="<?=$homepage?>" <?=size(40)?> maxlength=200 class=input></td>
 </tr>
 <?=$hide_end?>
 <tr>
@@ -61,7 +61,7 @@ function zb_formresize(obj) {
 	<td align=left class=com2>
 		<?=$hide_category_start?><?=$category_kind?><?=$hide_category_end?>
 
-		<?=$hide_notice_start?> <input type=checkbox name=notice <?=$notice?> value=1>공지사항<?=$hide_notice_end?> <input type=checkbox name=reply_mail <?=$reply_mail?> value=1>답변메일받기<?=$hide_secret_start?> <input type=checkbox name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?>
+		<?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1>공지사항<?=$hide_notice_end?> <input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1>답변메일받기<?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?>
 
 <?=$hide_html_start?>
 		<? include $dir."/swe/ed_seting_option.php"; ?>
@@ -97,7 +97,7 @@ function zb_formresize(obj) {
 
 <tr>
 	<td align=right><font class=com2>링크 #1</font></td>
-	<td align=left><input type=text name=sitelink1 value="<?=$sitelink1?>" <?=size(62)?> maxlength=200 class=input style=width:99%></td>
+	<td align=left><input type=text id=sitelink1 name=sitelink1 value="<?=$sitelink1?>" <?=size(62)?> maxlength=200 class=input style=width:99%></td>
 </tr>
 <tr>
 	<td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
@@ -108,7 +108,7 @@ function zb_formresize(obj) {
 
 <tr>
 	<td align=right><font class=com2>링크 #2</font></td>
-	<td align=left><input type=text name=sitelink2 value="<?=$sitelink2?>" <?=size(62)?> maxlength=200 class=input style=width:99%></td>
+	<td align=left><input type=text id=sitelink2 name=sitelink2 value="<?=$sitelink2?>" <?=size(62)?> maxlength=200 class=input style=width:99%></td>
 </tr>
 <tr>
 	<td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
