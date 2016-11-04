@@ -3,7 +3,7 @@
 * 공통 파일 include
 **************************************************************************/
 include "_head.php";
-
+include("securimage/securimage.php");
 // HTML 출력
 print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
 head(" onload=unlock() onunload=hideImageBox() ","script_comment.php");
@@ -13,7 +13,6 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	if(!($member[no] || $password)) {
 
 		// 스팸방지코드 체크 관련
-		include("securimage/securimage.php");
 		$img = new Securimage();
 		$valid = $img->check($_POST['code']);
 

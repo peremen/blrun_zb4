@@ -4,6 +4,7 @@
 **************************************************************************/
 if(!$_view_included) {
 	include "_head.php";
+	include("securimage/securimage.php");
 	// HTML 출력 
 	print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
 }
