@@ -1,14 +1,13 @@
 <?
 // 라이브러리 함수 파일 인크루드
 include "lib.php";
-
+include("securimage/securimage.php");
 // HTML 출력
 head();
 
 if(!empty($_POST['code'])) {
 
 	// 스팸방지코드 체크 관련
-	include("securimage/securimage.php");
 	$img = new Securimage();
 	$valid = $img->check($_POST['code']);
 

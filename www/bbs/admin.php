@@ -2,7 +2,7 @@
 include "lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
-if((($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$member[board_name]))&&$_SESSION['_token2']) movepage("admin_setup_bac.php?_token2=".$_SESSION['_token2']);
+if((($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$member[board_name]))&&$_SESSION['_token2']) movepage("admin_setup_zbd.php?_token2=".$_SESSION['_token2']);
 else {
 	if($member[no]) {
 		destroyZBSessionID($member[no]);
@@ -66,11 +66,11 @@ function check_SSL_Login() {
 </tr>
 <tr height=25>
   <td align=right bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><b>User ID &nbsp;</b></td>
-  <td bgcolor=#e0e0e0 align=left><input type=text name=user_id value='' size=20 maxlength=20 class=input style=border-color:#b0b0b0> <input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="보안접속 설정/해제"></td>
+  <td bgcolor=#e0e0e0 align=left><input type=text name=user_id value='' size=19 maxlength=20 class=input style=border-color:#b0b0b0><input type=checkbox name=SSL_Login value=1 checked onclick=check_SSL_Login() title="보안접속 설정/해제"></td>
 </tr>
 <tr height=25>
   <td align=right bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><b>Password &nbsp;</b></td>
-  <td align=left bgcolor=#e0e0e0><input type=password name=password size=20 maxlength=20 class=input style=border-color:#b0b0b0></td>
+  <td align=left bgcolor=#e0e0e0><input type=password name=password size=19 maxlength=20 class=input style=border-color:#b0b0b0></td>
 </tr>
 <tr height=25>
   <td align=center align=center colspan=2 bgcolor=3d3d3d>

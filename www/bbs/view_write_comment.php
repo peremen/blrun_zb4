@@ -4,7 +4,6 @@ if(!empty($_POST['code']) || $member[no] || $data[is_secret] != 0) {
 	if(!($member[no] || $data[is_secret] != 0)) {
 
 		// 스팸방지코드 체크 관련
-		include("securimage/securimage.php");
 		$img = new Securimage();
 		$valid = $img->check($_POST['code']);
 
