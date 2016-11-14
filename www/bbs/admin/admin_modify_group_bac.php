@@ -21,6 +21,7 @@ $check_use_icon[$data[use_icon]]="checked";
 <form name=write method=post action=<?=$PHP_SELF?> enctype=multipart/form-data onsubmit="return check_submit();">
 <input type=hidden name=exec value=modify_group_ok>
 <input type=hidden name=group_no value=<?=$group_no?>>
+<input type=hidden name=sid value=<?=$sid?>>
 <tr height=30><td bgcolor=#3d3d3d colspan=2><img src=images/admin_editgroup.gif></td>
 </tr>
 <tr height=1><td bgcolor=#000000 style=padding:0px; colspan=2><img src=images/t.gif height=1></td>
@@ -39,29 +40,29 @@ $check_use_icon[$data[use_icon]]="checked";
 <tr align=right bgcolor=#e0e0e0><td style=font-family:Tahoma;font-size:9pt; valign=top><img src=images/t.gif height=3><br><b>회원가입후 이동할 페이지</b>&nbsp;&nbsp;</td><td align=left style=font-family:Tahoma;font-size:9pt;line-height:160%><input type=text name=join_return_url size=40 maxlength=255 class=input style=border-color:#b0b0b0 value='<?echo stripslashes($data[join_return_url]);?>'><br>&nbsp;게시판이 아닌곳에서의 회원가입, 로그인시 이동할 URL을 입력하세요</td>
 </tr>
 <!-- 헤더, 푸터  -->
-<tr height=25 bgcolor=bbbbbb><td colspan=2  align=center  style=font-family:Tahoma;font-size:9pt;><b>게시판 상하단에 출력한 파일, 내용 지정</td>
+<tr height=25 bgcolor=bbbbbb><td colspan=2 align=center style=font-family:Tahoma;font-size:9pt;><b>게시판 상하단에 출력한 파일, 내용 지정</td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>게시판 상단에 불러올 파일&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=text  name=header_url value='<?echo stripslashes($data[header_url]);?>' size=40 maxlength=255 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 상단에 불러올 파일&nbsp;</td>
+  <td>&nbsp;&nbsp;
+    <input type=text name=header_url value='<?echo stripslashes($data[header_url]);?>' size=40 maxlength=255 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right  style=font-family:Tahoma;font-size:9pt;><b>게시판 상단에 출력할 내용&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <textarea name=header cols=70 rows=10 class=textarea style=border-color:b0b0b0><?echo stripslashes($data[header]);?></textarea>
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 상단에 출력할 내용&nbsp;</td>
+  <td>&nbsp;&nbsp;
+    <textarea name=header cols=70 rows=10 class=textarea style=border-color:#b0b0b0><?echo stripslashes($data[header]);?></textarea>
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 하단에 불러올 파일&nbsp;</td>
-  <td >&nbsp;&nbsp;
-    <input type=text  name=footer_url value='<?echo stripslashes($data[footer_url]);?>' size=40 maxlength=255 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 하단에 불러올 파일&nbsp;</td>
+  <td>&nbsp;&nbsp;
+    <input type=text name=footer_url value='<?echo stripslashes($data[footer_url]);?>' size=40 maxlength=255 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
-  <td  align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 하단에 출력할 내용&nbsp;</td>
-  <td >&nbsp;&nbsp;
+  <td align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 하단에 출력할 내용&nbsp;</td>
+  <td>&nbsp;&nbsp;
     <textarea name=footer cols=70 rows=10 class=textarea style=border-color:#b0b0b0><?echo stripslashes($data[footer]);?></textarea>
   </td>
 </tr>

@@ -33,7 +33,7 @@ if($exec2=="modify_ok") {
 	if($applyall_tag) mysql_query("update $admin_table set avoid_tag='$avoid_tag'");
 	if($applyall_ip) mysql_query("update $admin_table set avoid_ip='$avoid_ip'");
 
-	movepage("$PHP_SELF?group_no=$group_no&exec=view_board&no=$no&exec2=modify&page=$page&page_num=$s_page_num");
+	movepage("$PHP_SELF?group_no=$group_no&exec=view_board&no=$no&exec2=modify&page=$page&page_num=$s_page_num&sid=$sid");
 }
 
 // 게시판 추가 
@@ -96,7 +96,7 @@ elseif($exec2=="add_ok") {
 
 	mysql_query("update $group_table set board_num=board_num+1 where no='$group_no'");    
 
-	movepage("$PHP_SELF?exec=view_board&group_no=$group_no&page=$page&page_num=$page_num");
+	movepage("$PHP_SELF?exec=view_board&group_no=$group_no&page=$page&page_num=$page_num&sid=$sid");
 }
 
 // 게시판 삭제 
@@ -122,7 +122,7 @@ elseif($exec2=="del") {
 
 	mysql_query("update $group_table set board_num=board_num-1 where no='$group_no'");    
 
-	movepage("$PHP_SELF?exec=view_board&group_no=$group_no&page=$page&page_num=$page_num");
+	movepage("$PHP_SELF?exec=view_board&group_no=$group_no&page=$page&page_num=$page_num&sid=$sid");
 }
 
 // 카테고리 부분
@@ -132,17 +132,17 @@ if($exec2=="category_add") {
 	$check=mysql_fetch_array(mysql_query("select count(*) from $t_category"."_$table_data[name] where name='$name'"));
 	if($check[0]>0) Error("동일한 이름의 카테고리가 있습니다");
 	@mysql_query("insert into $t_category"."_$table_data[name] (name) values ('$name')") or error("카테고리 추가시 에러가 발생했습니다");
-	movepage("$PHP_SELF?exec=view_board&exec2=category&no=$no&page=$page&page_num=$page_num&group_no=$group_no");
+	movepage("$PHP_SELF?exec=view_board&exec2=category&no=$no&page=$page&page_num=$page_num&group_no=$group_no&sid=$sid");
 } elseif($exec2=="del_category") {
 	$table_data=mysql_fetch_array(mysql_query("select name from $admin_table where no='$no'"));
 	mysql_query("delete from $t_category"."_$table_data[name] where no='$category_no'",$connect) or Error("카테고리 삭제시 에러가 발생했습니다");
-	movepage("$PHP_SELF?exec=view_board&exec2=category&no=$no&page=$page&page_num=$page_num&group_no=$group_no");
+	movepage("$PHP_SELF?exec=view_board&exec2=category&no=$no&page=$page&page_num=$page_num&group_no=$group_no&sid=$sid");
 } elseif($exec2=="category_modify_ok") {
 	if(!$name) error("수정할 카테고리 이름을 입력하여 주십시요");
 	$table_data=mysql_fetch_array(mysql_query("select name from $admin_table where no='$no'"));
 	mysql_query("update $t_category"."_$table_data[name] set name='$name' where no='$category_no'",$connect);
 
-	movepage("$PHP_SELF?exec=view_board&exec2=category&no=$no&page=$page&page_num=$page_num&group_no=$group_no");
+	movepage("$PHP_SELF?exec=view_board&exec2=category&no=$no&page=$page&page_num=$page_num&group_no=$group_no&sid=$sid");
 }
 
 // 카테고리 내용 이동 
@@ -158,7 +158,7 @@ elseif($exec2=="category_move") {
 		mysql_query("update $t_category"."_$table_data[name] set num='$num[0]' where no = '$data[no]'") or die(mysql_error());
 	}
 
-	movepage("$PHP_SELF?exec=view_board&exec2=category&no=$no&page=$page&page_num=$page_num&group_no=$group_no");
+	movepage("$PHP_SELF?exec=view_board&exec2=category&no=$no&page=$page&page_num=$page_num&group_no=$group_no&sid=$sid");
 }
 
 // 권한 설정 
@@ -168,6 +168,6 @@ elseif($exec2=="modify_grant_ok") {
 			grant_view='$grant_view', grant_comment='$grant_comment', grant_write='$grant_write',
 			grant_reply='$grant_reply', grant_delete='$grant_delete', grant_notice='$grant_notice',
 			grant_view_secret='$grant_view_secret', use_showip = '$grant_imagebox' where no='$no'") or Error("권한 설정 변경시 에러가 발생하였습니다".mysql_error());
-	movepage("$PHP_SELF?exec=view_board&exec=view_board&exec2=grant&no=$no&page=$page&page_num=$page_num&group_no=$group_no");
+	movepage("$PHP_SELF?exec=view_board&exec=view_board&exec2=grant&no=$no&page=$page&page_num=$page_num&group_no=$group_no&sid=$sid");
 }
 ?>

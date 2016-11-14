@@ -45,7 +45,15 @@ if($member_data[no]) {
 	$num2 = mt_rand(1000,9999);
 	$num3 = mt_rand(1000,9999);
 	$num123 = $num1.$num2.$num3;
-
+	// 로그인시 토큰 생성
+	setCookie("token","$num123",0,"/","");
+	// 랜덤한 세 숫자를 발생(각1000-9999까지) 후 토큰변수에 대입
+	$num1 = mt_rand(1000,9999);
+	$num2 = mt_rand(1000,9999);
+	$num3 = mt_rand(1000,9999);
+	$num456 = $num1.$num2.$num3;
+	// 관리자모드 토큰 생성
+	setCookie("token2","$num456",0,"/","");
 	// email IP 표식 불러와 처리
 	unset($c_match);
 	if(preg_match("#\|\|\|([0-9.]{1,})$#",$member_data[email],$c_match)) {
@@ -54,11 +62,9 @@ if($member_data[no]) {
 	}
 	$member_data[email].="|||".$REMOTE_ADDR;
 	mysql_query("update $member_table set email='$member_data[email]' where user_id='$user_id'");
-	// 로그인시 토큰 생성
-	$_SESSION['_token'] = $_COOKIE['token'];
-
-	setCookie("token2","$num123",0,"/","");
-	$_SESSION['_token2'] = "$num123";
+	// IP 업데이트 후 토큰 세션 변수 생성
+	$_SESSION['_token'] = "$num123";
+	$_SESSION['_token2'] = "$num456";
 
 	// 5.3 이상용 세션 처리
 	$_SESSION['zb_logged_no'] = $member_data[no];

@@ -16,37 +16,39 @@ $check[1]="checked";
 
 <? if($group_data[use_birth]) { ?>
 
-    if ( write.birth_1.value < 1000 || write.birth_1.value <= 0 )  {
-         alert('생년이 잘못입력되었습니다.');
-         write.birth_1.value='';
-         write.birth_1.focus();
-        return false;
-    }
-    if ( write.birth_2.value > 12 || write.birth_2.value <= 0 ) {
-         alert('생월이 잘못입력되었습니다.');
-         write.birth_2.value='';
-         write.birth_2.focus();
-        return false;
-    }
-    if ( write.birth_3.value > 31 || write.birth_3.value <= 0 )  {
-         alert('생일이 잘못입력되었습니다.');
-         write.birth_3.value='';
-         write.birth_3.focus();
-        return false;
-    }
+  if ( write.birth_1.value < 1000 || write.birth_1.value <= 0 )  {
+    alert('생년이 잘못입력되었습니다.');
+    write.birth_1.value='';
+    write.birth_1.focus();
+    return false;
+  }
+  if ( write.birth_2.value > 12 || write.birth_2.value <= 0 ) {
+    alert('생월이 잘못입력되었습니다.');
+    write.birth_2.value='';
+    write.birth_2.focus();
+    return false;
+  }
+  if ( write.birth_3.value > 31 || write.birth_3.value <= 0 )  {
+    alert('생일이 잘못입력되었습니다.');
+    write.birth_3.value='';
+    write.birth_3.focus();
+    return false;
+  }
 <? } ?>
 
+  if(!write.email.value) {alert("E-Mail을 입력하여 주십시요.");write.email.focus(); return false;}
+
   return true;
-  }
+ }
 
 
   function add_board_manager() {
 
-	var myindex=document.write.board_name.selectedIndex;
-	var no=document.write.board_name.options[myindex].value;
+	var pSel=document.getElementById("board_name");
+	var no=pSel.options[pSel.selectedIndex].value;
 
 	if(no) {
-		location.href="<?=$PHP_SELF?>?exec=view_member&exec2=add_member_board_manager&group_no=<?=$group_no?>&member_no=<?=$no?>&page=<?=$page?>&keyword=<?=$keyword?>&keykind=<?=$keykind?>&like=<?=$like?>&board_num="+ no;
+		location.href="<?=$PHP_SELF?>?exec=view_member&exec2=add_member_board_manager&group_no=<?=$group_no?>&member_no=<?=$no?>&page=<?=$page?>&keyword=<?=$keyword?>&keykind=<?=$keykind?>&like=<?=$like?>&board_num="+ no + "&sid=<?=$sid?>";
 	}
   }
 
@@ -66,6 +68,7 @@ $check[1]="checked";
 <input type=hidden name=keykind value=<?=$keykind?>>
 <input type=hidden name=keyword value=<?=$keyword?>>
 <input type=hidden name=like value=<?=$like?>>
+<input type=hidden name=sid value=<?=$sid?>>
 <tr height=22 align=center><td height=30 colspan=2><b><?=$member_data[name]?></b> 회원 설정 변경</td>
 </tr>
 <tr height=22 align=center bgcolor=#e0e0e0>
@@ -123,7 +126,7 @@ if($member_data[is_admin]>2)
 		}
 		$manager_board_list = mysql_query("select * from $admin_table where $get_string",$connect) or die(mysql_error());
 		while($__manager_data = mysql_fetch_array($manager_board_list)) {
-			$__manager_board_name .= "&nbsp;".stripslashes($__manager_data[name])." &nbsp; <a href='$PHP_SELF?exec=view_member&exec2=modify_member_board_manager&group_no=$group_no&member_no=$no&page=$page&keyword=$keyword&board_num=$__manager_data[no]' onclick=\"return confirm('권한을 취소시키시겠습니까?')\">[권한취소]</a><br><img src=images/t.gif border=0 height=4><br>";
+			$__manager_board_name .= "&nbsp;".stripslashes($__manager_data[name])." &nbsp; <a href='$PHP_SELF?exec=view_member&exec2=modify_member_board_manager&group_no=$group_no&member_no=$no&page=$page&keyword=$keyword&board_num=$__manager_data[no]&sid=$sid' onclick=\"return confirm('권한을 취소시키시겠습니까?')\">[권한취소]</a><br><img src=images/t.gif border=0 height=4><br>";
 
 		}
 	}
@@ -136,7 +139,7 @@ if($member_data[is_admin]>2)
   <td align=left bgcolor=#e0e0e0>
     <?=$__manager_board_name?>
 
-    <select name=board_name>
+    <select id=board_name name=board_name>
     <option value="">게시판관리자 지정</option>
 <?
 	while($board_data_list=mysql_fetch_array($board_list))
@@ -332,7 +335,7 @@ if($private_name) {
 </tr>
 <tr height=22 align=center>
   <td colspan=2><input type=submit value='  변경 완료  ' style=font-weight:bold;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px;>
-    <input type=button value='  변경 취소  ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px; onclick=location.href="<?="$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like"?>">
+    <input type=button value='  변경 취소  ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:23px; onclick=location.href="<?="$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like&sid=$sid"?>">
   </td>
 </tr>
 </form>

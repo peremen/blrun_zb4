@@ -95,7 +95,7 @@ function fc_chk_byte(aro_name,ari_max)
 <font color="red"><b>bit.ly로 URL을 단축시키고 내용과 일정 길이로 결합시키는 프로그램입니다. 덧글수가 부족한 사이트에서 덧글을 쓴 후 네티즌 칼럼에 내용 전체를 올린 후 이 생성기에 붙여넣기 해 결합시키면 적절한 글자수로 단축링크가 들어간 덧글이 생성됩니다.</b></font>
 <FORM NAME="form1" METHOD="Post" ACTION="bitly.php?flag=ok">
 <b>Long URL: </b><INPUT NAME="l_url" TYPE="Text" SIZE="44" MAXLENGTH="3000" value="<?=$social_ref?>"><br>
-<b>최대 글자수(한글): </b><INPUT NAME="max_ch" TYPE="Text" SIZE="11" MAXLENGTH="7" value="250"><br>
+<b>최대 글자수(한글): </b><INPUT NAME="max_ch" TYPE="Text" SIZE="11" MAXLENGTH="7" value="139"><br>
 <b>자르기 전의 댓글 내용 전체 입력: </b><br>
 <textarea name="memo" cols="20" rows="8" style="width:100%" onkeyup="fc_chk_byte(this,form1.max_ch.value-<?=strlen($short_url = get_bitly_short_url($social_ref,'blrun','R_4c90949047276e64cd01c9ad4ce7ee53'))+1?>);"></textarea>
 <input type="hidden" name="s_url" value="<?=$short_url?>">

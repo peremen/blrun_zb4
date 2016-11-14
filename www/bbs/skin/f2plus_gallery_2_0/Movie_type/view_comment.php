@@ -1,7 +1,7 @@
 <?
 unset($_point);
 if($emoticon_use=="on") $c_memo=str_to_emoticon($c_memo,$emoticon_url);
-$a_del=str_replace("del_comment.php?","$dir/del_comment.php?_zb_url=$_zb_url&_zb_path=$config_dir&",$a_del);
+$a_del=str_replace("del_comment.php?","$dir/del_comment.php?_zb_url=$zb_url&_zb_path=$config_dir&",$a_del);
 $t_c=mysql_fetch_array(mysql_query("select * from $table where reg_date='$c_data[reg_date]'"));
 //$t_memo=str_replace("<","&lt",$t_c[memo]);
 $a_c_vote="$dir/vote.php?id=$id&no=$data[no]&c_no=$t_c[no]&who=$member[no]";

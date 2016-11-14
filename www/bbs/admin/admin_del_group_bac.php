@@ -18,6 +18,7 @@ while($temp2=mysql_fetch_array($temp))
 <form name=write method=post action=<?=$PHP_SELF?> enctype=multipart/form-data onsubmit="return confirm('삭제하시겠습니까?')">
 <input type=hidden name=exec value=del_group_ok>
 <input type=hidden name=group_no value=<?=$group_no?>>
+<input type=hidden name=sid value=<?=$sid?>>
 <tr align=center><td bgcolor=bbbbbb colspan=2 height=25 style=font-family:Tahoma;font-size:9pt;>Group Name : <b><?=$data[name]?></b></td>
 </tr>
 <tr align=center>

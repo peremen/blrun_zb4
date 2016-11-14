@@ -75,11 +75,11 @@ while($data=mysql_fetch_array($result))
   <td style=font-family:Tahoma;font-size:9pt;><b>$data[name]</b></td>
   <td style=font-family:Tahoma;font-size:9pt;>$data[total_article]</td>
   <td style=font-family:Tahoma;font-size:9pt;><a href=zboard.php?id=$data[name] target=_blank>View</a></td>
-  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=modify&no=$data[no]&page=$page&page_num=$page_num>Setup</a></td>
-  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=grant&no=$data[no]&page=$page&page_num=$page_num>Setup</a></td>
-  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=category&no=$data[no]&page=$page&page_num=$page_num>Setup</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=modify&no=$data[no]&page=$page&page_num=$page_num&sid=$sid>Setup</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=grant&no=$data[no]&page=$page&page_num=$page_num&sid=$sid>Setup</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=category&no=$data[no]&page=$page&page_num=$page_num&sid=$sid>Setup</a></td>
   <td style=font-family:Tahoma;font-size:9pt;><a href=\"javascript:board_recover('$data[no]','$data[name]')\">정리</a></td>
-  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=del&no=$data[no]&page=$page&page_num=$page_num onclick=\"return confirm('$data[name] 게시판을 \\n\\n삭제하시겠습니까?')\">삭제</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=view_board&group_no=$group_no&exec2=del&no=$data[no]&page=$page&page_num=$page_num&sid=$sid onclick=\"return confirm('$data[name] 게시판을 \\n\\n삭제하시겠습니까?')\">삭제</a></td>
 </tr>";
 	// 가상 번호를 1씩 뺌
 	$number--;
@@ -94,10 +94,11 @@ while($data=mysql_fetch_array($result))
 <input type=hidden name=page value=<?=$page?>>
 <input type=hidden name=exec value=<?=$exec?>>
 <input type=hidden name=group_no value=<?=$group_no?>>
+<input type=hidden name=sid value=<?=$sid?>>
 <tr>
   <td><input type=text name=page_num value=<?=$page_num?> size=2></td>
   <td><input type=submit value='페이지당 갯수' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;>&nbsp;&nbsp;</td>
-  <td><input type=button onclick=location.href="<?=$PHP_SELF?>?exec=view_board&exec2=add&page=<?=$page?>&page_num=<?=$page_num?>&group_no=<?=$group_no?>" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; value=' 게시판 추가하기 '></td>
+  <td><input type=button onclick=location.href="<?=$PHP_SELF?>?exec=view_board&exec2=add&page=<?=$page?>&page_num=<?=$page_num?>&group_no=<?=$group_no?>&sid=<?=$sid?>" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; value=' 게시판 추가하기 '></td>
 </tr>
 </form>
 </table>
@@ -112,17 +113,17 @@ $i=1;
 if($page>$show_page_num){
 	$prev_page=$start_page-1;
 	echo "
-<a href=$PHP_SELF?page=$prev_page&exec=view_board&page_num=$page_num&group_no=$group_no style=color:white>[이전페이지]</a>";
+<a href=$PHP_SELF?page=$prev_page&exec=view_board&page_num=$page_num&group_no=$group_no&sid=$sid style=color:white>[이전페이지]</a>";
 }
 while($i+$start_page<=$total_page&&$i<=$show_page_num)
 {
 	$move_page=$i+$start_page;
 	if($page==$move_page) echo "
 <b style=color:white>$move_page</b>";
-	else echo "<a href=$PHP_SELF?page=$move_page&exec=view_board&page_num=$page_num&group_no=$group_no style=color:white>[$move_page]</a>";
+	else echo "<a href=$PHP_SELF?page=$move_page&exec=view_board&page_num=$page_num&group_no=$group_no&sid=$sid style=color:white>[$move_page]</a>";
 	$i++;
 }
-if($total_page>$move_page){$next_page=$move_page+1; echo "<a href=$PHP_SELF?page=$next_page&exec=view_board&page_num=$page_num&group_no=$group_no style=color:white>[다음페이지]</a>";}
+if($total_page>$move_page){$next_page=$move_page+1; echo "<a href=$PHP_SELF?page=$next_page&exec=view_board&page_num=$page_num&group_no=$group_no&sid=$sid style=color:white>[다음페이지]</a>";}
 //페이지 나타내는 부분 끝
 ?>
 

@@ -37,8 +37,8 @@ if(!$data[memo_num]) $data[memo_num]=20;
 <tr height=30 bgcolor=white>
   <td align=right colspan=2 style=font-family:Tahoma;font-size:9pt;>
     그룹이름 : <b><?=$group_data[name]?></b> , 게시판 이름 : <b><a href=zboard.php?id=<?=$data[name]?> target=_blank><?=$data[name]?></a></b> &nbsp;&nbsp;&nbsp;
-    <input type=button value='카테고리관리' class=input style=width=100px onclick=location.href="<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&exec2=category&no=<?=$no?>&page=<?=$page?>&page_num=<?=$page_num?>">
-    <input type=button value='권한설정' class=input style=width=100px onclick=location.href="<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&exec2=grant&no=<?=$no?>&page=<?=$page?>&page_num=<?=$page_num?>"> &nbsp;&nbsp;&nbsp;
+    <input type=button value='카테고리관리' class=input style=width=100px onclick=location.href="<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&exec2=category&no=<?=$no?>&page=<?=$page?>&page_num=<?=$page_num?>&sid=<?=$sid?>">
+    <input type=button value='권한설정' class=input style=width=100px onclick=location.href="<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&exec2=grant&no=<?=$no?>&page=<?=$page?>&page_num=<?=$page_num?>&sid=<?=$sid?>"> &nbsp;&nbsp;&nbsp;
   </td>
 </tr>
 <tr height=1><td bgcolor=#000000 style=padding:0px; colspan=2><img src=images/t.gif height=1></td>
@@ -51,6 +51,7 @@ if(!$data[memo_num]) $data[memo_num]=20;
 <input type=hidden name=s_page_num value=<?=$page_num?>>
 <input type=hidden name=group_no value=<?=$group_no?>>
 <input type=hidden name=name value=<?=$data[name]?>>
+<input type=hidden name=sid value=<?=$sid?>>
 <!-- 기본설정 -->
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 이름 &nbsp;</td>

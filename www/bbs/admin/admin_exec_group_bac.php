@@ -73,7 +73,7 @@ if($exec=="add_group_ok") {
 	@mysql_query("insert into $group_table (name,is_open,icon,use_join,join_return_url, use_icon, header,footer,header_url,footer_url)
 					values ('$name','$is_open','$icon_name','$use_join','$join_return_url','$use_icon','$header','$footer','$header_url','$footer_url')") or Error("그룹생성 에러가 났습니다");
 	$group_no=mysql_insert_id();
-	movepage("$PHP_SELF?exec=view_group&group_no=$group_no");
+	movepage("$PHP_SELF?exec=view_group&group_no=$group_no&sid=$sid");
 }
 // 그룹수정 완료
 elseif($exec=="modify_group_ok") {
@@ -125,7 +125,7 @@ elseif($exec=="modify_group_ok") {
 					use_hobby='$use_hobby',name='$name',is_open='$is_open' $icon_sql ,use_join='$use_join',join_return_url='$join_return_url',use_icon='$use_icon',
 					header='$header',footer='$footer',footer_url='$footer_url',header_url='$header_url' 
 					where no='$group_no'") or Error("그룹수정 에러가 났습니다");
-	movepage("$PHP_SELF?exec=view_group&group_no=$group_no&exec=modify_group");
+	movepage("$PHP_SELF?exec=view_group&group_no=$group_no&exec=modify_group&sid=$sid");
 }
 // 그룹삭제 완료
 elseif($exec=="del_group_ok") {
@@ -172,7 +172,7 @@ elseif($exec=="del_group_ok") {
 	// 그룹삭제                                                                                                
 	@mysql_query("delete from $group_table where no='$group_no'") or Error("그룹삭제시 에러가 발생하였습니다");
 																										  
-	movepage("$PHP_SELF");                                                                                     
+	movepage("$PHP_SELF?sid=$sid");                                                                                     
 }                                                                                                           
 // 가입양식 변경                                                                                            
 elseif($exec=="modify_member_join_ok")                                                                      {                                                                                                           
@@ -181,7 +181,7 @@ elseif($exec=="modify_member_join_ok")                                          
 	use_home_address='$use_home_address',use_home_tel='$use_home_tel',use_office_address='$use_office_address',
 	use_office_tel='$use_office_tel',use_handphone='$use_handphone',use_mailing='$use_mailing',          
 	use_birth='$use_birth',use_picture='$use_picture' where no='$group_no'") or error(mysql_error());              
-	movepage("$PHP_SELF?exec=modify_member_join&group_no=$group_no");                                                  
+	movepage("$PHP_SELF?exec=modify_member_join&group_no=$group_no&sid=$sid");                                                  
 }    
 
 ?>

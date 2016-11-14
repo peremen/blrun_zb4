@@ -10,6 +10,7 @@ $check[1]="checked";
 <form name=write method=post action=<?=$PHP_SELF?>>
 <input type=hidden name=exec value=modify_member_join_ok>
 <input type=hidden name=group_no value=<?=$group_no?>>
+<input type=hidden name=sid value=<?=$sid?>>
 <tr align=center bgcolor=#e0e0e0>
   <td colspan=2 bgcolor=#e0e0e0 style=line-height:180%>
     이 그룹의 회원가입시 나타나는 가입양식을 조절할수 있습니다.<br>

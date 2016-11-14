@@ -7,7 +7,7 @@
  **************************************************************************/
 include $_zb_path."_head.php";
 
-if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['DEL_COMM_SEC']==""||$_SESSION['DEL_COMM_SEC']!=$delsec) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||!$_SESSION['DEL_COMM_SEC']||$_SESSION['DEL_COMM_SEC']!=$delsec) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
 
 //  초기 헤더를 뿌려주는 부분;;;;
 function head1($body="",$scriptfile="") {

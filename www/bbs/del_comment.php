@@ -4,7 +4,7 @@
 **************************************************************************/
 include "_head.php";
 
-if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['DEL_COMM_SEC']==""||$_SESSION['DEL_COMM_SEC']!=$delsec) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||!$_SESSION['DEL_COMM_SEC']||$_SESSION['DEL_COMM_SEC']!=$delsec) Error("정상적으로 글을 삭제하여 주시기 바랍니다.");
 
 /***************************************************************************
 * 코멘트 삭제 페이지 처리

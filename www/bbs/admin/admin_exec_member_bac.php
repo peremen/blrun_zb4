@@ -32,7 +32,7 @@ if($exec2=="deleteall"&&$member[is_admin]<3) {
 	for($i=0;$i<sizeof($cart);$i++) {
 		del_member($cart[$i]);
 	}
-	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&keykind=$keykind&like=$like&level_search=$level_search&page_num=$page_num");
+	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&keykind=$keykind&like=$like&level_search=$level_search&page_num=$page_num&sid=$sid");
 }
 
 
@@ -53,7 +53,7 @@ if($exec2=="modify_member_board_manager"&&$member[is_admin]<3) {
 
 	mysql_query("update $member_table set board_name = '$_st' where no='$member_no'",$connect) or error(mysql_Error());
 
-	movepage("$PHP_SELF?exec=view_member&exec2=modify&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&no=$member_no&keykind=$keykind&like=$like");
+	movepage("$PHP_SELF?exec=view_member&exec2=modify&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&no=$member_no&keykind=$keykind&like=$like&sid=$sid");
 }
 
 
@@ -66,7 +66,7 @@ if($exec2=="add_member_board_manager"&&$member[is_admin]<3) {
 
 	mysql_query("update $member_table set board_name = '$_board_name' where no='$member_no'",$connect) or error(mysql_Error());
 
-	movepage("$PHP_SELF?exec=view_member&exec2=modify&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&no=$member_no&keykind=$keykind&like=$like");
+	movepage("$PHP_SELF?exec=view_member&exec2=modify&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&no=$member_no&keykind=$keykind&like=$like&sid=$sid");
 }
 
 
@@ -76,7 +76,7 @@ if($exec2=="moveall"&&$member[is_admin]==1) {
 	for($i=0;$i<sizeof($cart);$i++) {
 		mysql_query("update $member_table set level='$movelevel' where no='$cart[$i]'",$connect);
 	}
-	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like");
+	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like&sid=$sid");
 }
 
 
@@ -88,7 +88,7 @@ if($exec2=="move_group"&&$member[is_admin]==1) {
 		mysql_query("update $group_table set member_num=member_num-1 where no='$group_no'");
 		mysql_query("update $group_table set member_num=member_num+1 where no='$movegroup'");
 	}
-	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like");
+	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like&sid=$sid");
 }
 
 
@@ -96,7 +96,7 @@ if($exec2=="move_group"&&$member[is_admin]==1) {
 
 if($exec2=="del"&&$member[is_admin]<3) {
 	del_member($no);
-	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like");
+	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like&sid=$sid");
 }
 
 
@@ -271,6 +271,6 @@ if($exec2=="modify_member_ok") {
 		//setcookie("zetyxboard_password",$password[0],'',"/");
 	//}
 
-	movepage("$PHP_SELF?exec=view_member&exec2=modify&no=$member_no&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like");
+	movepage("$PHP_SELF?exec=view_member&exec2=modify&no=$member_no&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like&sid=$sid");
 }
 ?>
