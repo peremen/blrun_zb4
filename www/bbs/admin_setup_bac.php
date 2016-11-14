@@ -12,7 +12,7 @@ $member=member_info();
 if(!$member[no]) Error("로그인후 사용하여주십시요","admin.php");
 
 if($member[is_admin]>=3&&!$member[board_name]) Error("관리자페이지를 사용할수 있는 권한이 없습니다","admin.php");
-if($member[no]&&($_SESSION['_token2']!=$_COOKIE['token2']||$tokenID!=$REMOTE_ADDR)) Error("세션 하이재킹은 허용되지 않습니다.<br>세션이 해킹되어 해커가 관리자 로그인을 시도하고 있으니 브라우저의 쿠키를 지우고 재접속 바랍니다.<br>그 다음 해커가 계정을 사용하기 전에 즉시 관리자 비밀번호를 바꿔야 합니다!","window.close");
+if($member[no]&&(!$_SESSION['_token2']||!$sid||$_SESSION['_token2']!=$sid||$_SESSION['_token2']!=$_COOKIE['token2']||$tokenID!=$REMOTE_ADDR)) Error("세션 하이재킹은 허용되지 않습니다.<br>세션이 해킹되어 해커가 관리자 로그인을 시도하고 있으니 브라우저의 쿠키를 지우고 재접속 바랍니다.<br>그 다음 해커가 계정을 사용하기 전에 즉시 관리자 비밀번호를 바꿔야 합니다!","window.close");
 
 
 // 게시판 관리자일때
@@ -55,9 +55,9 @@ head(" bgcolor=444444 ");
 <? if($member[is_admin]==1) {
 	$re=mysql_fetch_array(mysql_query("SELECT target from aokio_log_config order by no desc limit 1"));
 ?>
-        <a href=admin_setup_bac.php?exec=uninstall><font color=white style=font-size:9pt onclick="return confirm('제로보드를 제거하시겠습니까?')"><b>Uninstall</b></font></a> &nbsp;|&nbsp;
-        <a href=admin_setup_bac.php?exec=db_dump><font color=white style=font-size:9pt onclick="return confirm('백업하시겠습니까?')"><b>DB 백업</b></font></a> &nbsp;|&nbsp;
-        <a href=admin_setup_bac.php?exec=db_status><font color=white style=font-size:9pt><b>DB 상태 보기</b></font></a> &nbsp;|&nbsp;
+        <a href=admin_setup_bac.php?exec=uninstall&sid=<?=$sid?>><font color=white style=font-size:9pt onclick="return confirm('제로보드를 제거하시겠습니까?')"><b>Uninstall</b></font></a> &nbsp;|&nbsp;
+        <a href=admin_setup_bac.php?exec=db_dump&sid=<?=$sid?>><font color=white style=font-size:9pt onclick="return confirm('백업하시겠습니까?')"><b>DB 백업</b></font></a> &nbsp;|&nbsp;
+        <a href=admin_setup_bac.php?exec=db_status&sid=<?=$sid?>><font color=white style=font-size:9pt><b>DB 상태 보기</b></font></a> &nbsp;|&nbsp;
         <a href=admin/arrangefile.php target=_blank onclick="return confirm('첨부파일 정리시에는 첨부파일의 종류에 따라서 시간이 오래 걸릴수 있습니다\n\n실행하시겠습니까?')"><font color=white style=font-size:9pt><b>첨부파일 정리</b></font></a> &nbsp;|&nbsp;
         <a href=admin/delsession.php target=_blank onclick="return confirm('세션의 양이 많아지면 전체적인 속도가 느려질수 있습니다.\n\n세션 디렉토리를 정리하시겠습니까?')"><font color=white style=font-size:9pt><b>세션 비우기</b></font></a> &nbsp;|&nbsp;
         <a href=admin/trace.php target=_blank><font color=white style=font-size:9pt><b>게시물 추적</b></font></a> &nbsp;|&nbsp;
@@ -91,11 +91,11 @@ head(" bgcolor=444444 ");
 <?
 // 최고관리자일때
 if($member[is_admin]==1) 
-	echo "<b><font color=#ffffff>Super Administrator</font></b> <a href=$PHP_SELF?exec=view_member&exec2=modify&no=$member[no]><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
+	echo "<b><font color=#ffffff>Super Administrator</font></b> <a href=$PHP_SELF?exec=view_member&exec2=modify&no=$member[no]&sid=$sid><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
 
 // 그룹관리자일때
 elseif($member[is_admin]==2) 
-	echo "<b><font color=#ffffff>Group Administrator</font></b> <a href=$PHP_SELF?exec=view_member&group_no=$member[group_no]&exec2=modify&no=$member[no]><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
+	echo "<b><font color=#ffffff>Group Administrator</font></b> <a href=$PHP_SELF?exec=view_member&group_no=$member[group_no]&exec2=modify&no=$member[no]&sid=$sid><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
 
 // 게시판 관리자일때
 elseif($member[board_name])
@@ -103,7 +103,7 @@ elseif($member[board_name])
 
 // 기타일때;; -_-;;
 else
-	echo "<b><font color=#ffffff>Normal Member</font></b> <a href=$PHP_SELF?exec=view_member&group_no=$member[group_no]&exec2=modify&no=$member[no]><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
+	echo "<b><font color=#ffffff>Normal Member</font></b> <a href=$PHP_SELF?exec=view_member&group_no=$member[group_no]&exec2=modify&no=$member[no]&sid=$sid><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
 ?>
               		&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href=logout.php?s_url=admin.php><font color=white style=font-size:9pt><b>Log Out</b></font></a>&nbsp;&nbsp;
           </td>
@@ -154,7 +154,7 @@ if($member[is_admin]==1) {
 ?>
     <table width=100% border=0 cellspacing=0 cellpadding=0>
     <tr> 
-      <td height=29 background=images/gnamebg.gif align=center><img src=images/t.gif width=10 height=3><br>&nbsp;<a href=<?=$PHP_SELF?>?exec=view_group&group_no=<?=$group_data[no]?>><font color=white><?=$b.$group_data[name]?> (<?=$group_data[no]?>)</b></font></a></td>
+      <td height=29 background=images/gnamebg.gif align=center><img src=images/t.gif width=10 height=3><br>&nbsp;<a href=<?=$PHP_SELF?>?exec=view_group&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><font color=white><?=$b.$group_data[name]?> (<?=$group_data[no]?>)</b></font></a></td>
     </tr>
 <?
 
@@ -163,20 +163,20 @@ if($member[is_admin]==1) {
 ?>
     <tr> 
       <td bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><img src=images/g_top.gif width=38 height=14><br>
-        <a href=<?=$PHP_SELF?>?group_no=<?=$group_data[no]?>&exec=modify_group><img src=images/g_properties.gif border=0 alt="그룹 설정"></a>
+        <a href=<?=$PHP_SELF?>?group_no=<?=$group_data[no]?>&exec=modify_group&sid=<?=$sid?>><img src=images/g_properties.gif border=0 alt="그룹 설정"></a>
 <?
 			if($member[is_admin]==1) 
 				echo "
-        <a href=$PHP_SELF?group_no=$group_data[no]&exec=del_group><img src=images/g_delete.gif border=0 alt=\"그룹 삭제\"></a>
+        <a href=$PHP_SELF?group_no=$group_data[no]&exec=del_group&sid=$sid><img src=images/g_delete.gif border=0 alt=\"그룹 삭제\"></a>
 "; 
 ?>
         <img src=images/t.gif width=10 height=5><br>
         <img src=images/m_top1.gif width=51 height=14 align=absmiddle><b><font color=#FFFFFF><?=$group_data[member_num]?></font></b><img src=images/m_top2.gif width=6 height=14 align=absmiddle><br>
-        <a href=<?=$PHP_SELF?>?exec=view_member&group_no=<?=$group_data[no]?>><img src=images/m_manage.gif border=0 alt="회원 관리"></a><a href=<?=$PHP_SELF?>?exec=modify_member_join&group_no=<?=$group_data[no]?>><img src=images/m_joinform.gif border=0 alt="가입양식 설정"></a><br>
+        <a href=<?=$PHP_SELF?>?exec=view_member&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><img src=images/m_manage.gif border=0 alt="회원 관리"></a><a href=<?=$PHP_SELF?>?exec=modify_member_join&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><img src=images/m_joinform.gif border=0 alt="가입양식 설정"></a><br>
         <img src=images/t.gif width=10 height=5><br>
         <img src=images/w_top1.gif width=58 height=14 align=absmiddle><b><font color=#FFFFFF><?=$group_data[board_num]?></font></b><img src=images/w_top2.gif width=4 height=14 align=absmiddle> 
         <br>
-        <a href=<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_data[no]?>&page=<?=$page?>&page_num=<?=$page_num?>><img src=images/w_manage.gif alt="게시판 관리" border=0></a><a href=<?=$PHP_SELF?>?exec=view_board&exec2=add&group_no=<?=$group_data[no]?>><img src=images/w_add.gif alt="게시판 추가" border=0></a> 
+        <a href=<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_data[no]?>&page=<?=$page?>&page_num=<?=$page_num?>&sid=<?=$sid?>><img src=images/w_manage.gif alt="게시판 관리" border=0></a><a href=<?=$PHP_SELF?>?exec=view_board&exec2=add&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><img src=images/w_add.gif alt="게시판 추가" border=0></a> 
       </td>
     </tr>
 <?
@@ -204,7 +204,7 @@ else {
     <table width=100% border=0 cellspacing=0 cellpadding=0>
     <tr>
       <td height=29 background=images/gnamebg.gif align=center><img src=images/t.gif width=10 height=3><br>
-        <a href=<?=$PHP_SELF?>?exec=view_group&group_no=<?=$group_data[no]?>><b><font color=white><?=$b.$group_data[name]?> (<?=$group_data[no]?>)</b></font></a>
+        <a href=<?=$PHP_SELF?>?exec=view_group&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><b><font color=white><?=$b.$group_data[name]?> (<?=$group_data[no]?>)</b></font></a>
       </td>
     </tr>
 <?
@@ -213,14 +213,14 @@ else {
 ?>
     <tr>
       <td bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><img src=images/g_top.gif width=38 height=14><br>
-        <a href=<?=$PHP_SELF?>?group_no=<?=$group_data[no]?>&exec=modify_group><img src=images/g_properties.gif width=60 height=12 border=0 alt="그룹 설정"></a><br>
+        <a href=<?=$PHP_SELF?>?group_no=<?=$group_data[no]?>&exec=modify_group&sid=<?=$sid?>><img src=images/g_properties.gif width=60 height=12 border=0 alt="그룹 설정"></a><br>
         <img src=images/t.gif width=10 height=5><br>
         <img src=images/m_top1.gif width=51 height=14 align=absmiddle><b><font color=#FFFFFF><?=$group_data[member_num]?></font></b><img src=images/m_top2.gif width=6 height=14 align=absmiddle><br>
-        <a href=<?=$PHP_SELF?>?exec=view_member&group_no=<?=$group_data[no]?>><img src=images/m_manage.gif width=73 height=12 border=0 alt="회원 관리"></a><a href=<?=$PHP_SELF?>?exec=modify_member_join&group_no=<?=$group_data[no]?>><img src=images/m_joinform.gif width=55 height=12 border=0 alt="가입폼설정"></a><br>
+        <a href=<?=$PHP_SELF?>?exec=view_member&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><img src=images/m_manage.gif width=73 height=12 border=0 alt="회원 관리"></a><a href=<?=$PHP_SELF?>?exec=modify_member_join&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><img src=images/m_joinform.gif width=55 height=12 border=0 alt="가입폼설정"></a><br>
         <img src=images/t.gif width=10 height=5><br>
         <img src=images/w_top1.gif width=58 height=14 align=absmiddle><b><font color=#FFFFFF><?=$group_data[board_num]?></font></b><img src=images/w_top2.gif width=4 height=14 align=absmiddle>
         <br>
-        <a href=<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_data[no]?>><img src=images/w_manage.gif width=73 height=12 alt="게시판 관리" border=0></a><a href=<?=$PHP_SELF?>?exec=view_board&exec2=add&group_no=<?=$group_data[no]?>><img src=images/w_add.gif width=29 height=12 alt="게시판 추가" border=0></a>
+        <a href=<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><img src=images/w_manage.gif width=73 height=12 alt="게시판 관리" border=0></a><a href=<?=$PHP_SELF?>?exec=view_board&exec2=add&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><img src=images/w_add.gif width=29 height=12 alt="게시판 추가" border=0></a>
       </td>
     </tr>
 <?
@@ -239,7 +239,7 @@ else {
 if($member[is_admin]==1) {
 ?>
     <tr>
-	  <td bgcolor="#3F3F3F" valign="bottom"><img src="images/t.gif" width="10" height="10"><br><a href=<?=$PHP_SELF?>?exec=add_group><img src=images/l_addgroup.gif border=0></a></td>
+	  <td bgcolor="#3F3F3F" valign="bottom"><img src="images/t.gif" width="10" height="10"><br><a href=<?=$PHP_SELF?>?exec=add_group&sid=<?=$sid?>><img src=images/l_addgroup.gif border=0></a></td>
     </tr>
 <?
 }

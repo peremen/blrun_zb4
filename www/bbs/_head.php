@@ -305,7 +305,7 @@ if(!$member[no]) {
 	if(preg_match("#\|\|\|([0-9.]{1,})$#",$member[email],$c_match)) {
 		$tokenID = $c_match[1];
 	}
-	if($member[no]&&($_SESSION['_token']!=$_COOKIE['token']||$tokenID!=$REMOTE_ADDR)) Error("세션 하이재킹은 허용되지 않습니다.<br>세션이 해킹되어 해커가 로그인을 시도하고 있으니 브라우저의 쿠키를 지우고 재접속 바랍니다.<br>그 다음 해커가 계정을 사용하기 전에 즉시 비밀번호를 바꿔야 합니다!");
+	if($_SESSION['_token']!=$_COOKIE['token']||$tokenID!=$REMOTE_ADDR) Error("세션 하이재킹은 허용되지 않습니다.<br>세션이 해킹되어 해커가 로그인을 시도하고 있으니 브라우저의 쿠키를 지우고 재접속 바랍니다.<br>그 다음 해커가 계정을 사용하기 전에 즉시 비밀번호를 바꿔야 합니다!");
 	$a_login="<Zeroboard ";
 	$a_logout="<a onfocus=blur() href='".$_zb_url."logout.php?$href$sort&s_url=$s_url'>";
 	if($member[user_id]!="sprdrg") {

@@ -32,7 +32,7 @@ if($exec2=="deleteall"&&$member[is_admin]<3) {
 	for($i=0;$i<sizeof($cart);$i++) {
 		del_member($cart[$i]);
 	}
-	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&keykind=$keykind&like=$like&level_search=$level_search&page_num=$page_num");
+	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&keykind=$keykind&like=$like&level_search=$level_search&page_num=$page_num&sid=$sid");
 }
 
 
@@ -53,7 +53,7 @@ if($exec2=="modify_member_board_manager"&&$member[is_admin]<3) {
 
 	mysql_query("update $member_table set board_name = '$_st' where no='$member_no'",$connect) or error(mysql_Error());
 
-	movepage("$PHP_SELF?exec=view_member&exec2=modify&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&no=$member_no&keykind=$keykind&like=$like");
+	movepage("$PHP_SELF?exec=view_member&exec2=modify&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&no=$member_no&keykind=$keykind&like=$like&sid=$sid");
 }
 
 
@@ -66,7 +66,7 @@ if($exec2=="add_member_board_manager"&&$member[is_admin]<3) {
 
 	mysql_query("update $member_table set board_name = '$_board_name' where no='$member_no'",$connect) or error(mysql_Error());
 
-	movepage("$PHP_SELF?exec=view_member&exec2=modify&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&no=$member_no&keykind=$keykind&like=$like");
+	movepage("$PHP_SELF?exec=view_member&exec2=modify&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&no=$member_no&keykind=$keykind&like=$like&sid=$sid");
 }
 
 
@@ -76,7 +76,7 @@ if($exec2=="moveall"&&$member[is_admin]==1) {
 	for($i=0;$i<sizeof($cart);$i++) {
 		mysql_query("update $member_table set level='$movelevel' where no='$cart[$i]'",$connect);
 	}
-	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like");
+	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like&sid=$sid");
 }
 
 
@@ -88,7 +88,7 @@ if($exec2=="move_group"&&$member[is_admin]==1) {
 		mysql_query("update $group_table set member_num=member_num-1 where no='$group_no'");
 		mysql_query("update $group_table set member_num=member_num+1 where no='$movegroup'");
 	}
-	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like");
+	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like&sid=$sid");
 }
 
 
@@ -96,7 +96,7 @@ if($exec2=="move_group"&&$member[is_admin]==1) {
 
 if($exec2=="del"&&$member[is_admin]<3) {
 	del_member($no);
-	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like");
+	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like&sid=$sid");
 }
 
 
@@ -177,7 +177,7 @@ if($exec2=="modify_member_ok") {
 	}
 	if($picture_name) {
 		// 특수문자가 들어갔는지 조사
-		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xE0-\xFF\x80-\xFF\x80-\xFF]+/',$picture_name,$result);
+		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$picture_name,$result);
 		if($result[0]!=$picture_name) Error("사진 파일명은 한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!");
 
 		if(!is_uploaded_file($picture)) Error("정상적인 방법으로 업로드하여 주십시요");
@@ -222,7 +222,7 @@ if($exec2=="modify_member_ok") {
 		}
 
 		// 한글문자가 들어갔는지 조사
-		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xE0-\xFF\x80-\xFF\x80-\xFF]+/',$private_icon_name,$result);
+		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$private_icon_name,$result);
 		if($result[0]!=$private_icon_name) Error("아이콘 파일명은 한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!");
 
 		if(!is_uploaded_file($private_icon)) Error("정상적인 방법으로 업로드하여 주십시요");
@@ -252,7 +252,7 @@ if($exec2=="modify_member_ok") {
 		}
 
 		// 한글문자가 들어갔는지 조사
-		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xE0-\xFF\x80-\xFF\x80-\xFF]+/',$private_name_name,$result);
+		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xA1-\xFE\xA1-\xFE]+/',$private_name_name,$result);
 		if($result[0]!=$private_name_name) Error("이름을 대신하는 아이콘 파일명은 한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!");
 
 		if(!is_uploaded_file($private_name)) Error("정상적인 방법으로 업로드하여 주십시요");
@@ -271,6 +271,6 @@ if($exec2=="modify_member_ok") {
 		//setcookie("zetyxboard_password",$password[0],'',"/");
 	//}
 
-	movepage("$PHP_SELF?exec=view_member&exec2=modify&no=$member_no&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like");
+	movepage("$PHP_SELF?exec=view_member&exec2=modify&no=$member_no&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like&sid=$sid");
 }
 ?>

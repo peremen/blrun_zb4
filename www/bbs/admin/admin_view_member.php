@@ -194,6 +194,7 @@ $number=$total-($page-1)*$page_num;
 <input type=hidden name=exec value=<?=$exec?>>
 <input type=hidden name=page_num value=<?=$page_num?>>
 <input type=hidden name=exec2 value="">
+<input type=hidden name=sid value=<?=$sid?>>
 <?
 while($data=mysql_fetch_array($result))
 {
@@ -211,9 +212,9 @@ while($data=mysql_fetch_array($result))
   <td style=font-family:Tahoma;font-size:9pt;>$grant_color$data[level]</td>
   <td style=font-family:Tahoma;font-size:9pt;>".($data[point1]*10+$data[point2])." <font style=font-size:7pt;>(".$data[point1]."/".$data[point2].")</font></td>
   <td style=font-family:Tahoma;font-size:9pt;>".date("Y-m-d",$data[reg_date])."</td>
-  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=$exec&group_no=$group_no&exec2=modify&page=$page&no=$data[no]&keyword=$keyword&keykind=$keykind&like=$like&page_num=$page_num>Modify</a></td>
+  <td style=font-family:Tahoma;font-size:9pt;><a href=$PHP_SELF?exec=$exec&group_no=$group_no&exec2=modify&page=$page&no=$data[no]&keyword=$keyword&keykind=$keykind&like=$like&page_num=$page_num&sid=$sid>Modify</a></td>
   <td style=font-family:Tahoma;font-size:9pt;>";
-	if($data[no]>1) echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&exec2=del&keyword=$keyword&page=$page&no=$data[no]$href onclick=\"return confirm('삭제하시겠습니까?')\">Delete</a>"; else echo "&nbsp;";
+	if($data[no]>1) echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&exec2=del&keyword=$keyword&page=$page&no=$data[no]$href&sid=$sid onclick=\"return confirm('삭제하시겠습니까?')\">Delete</a>"; else echo "&nbsp;";
 	echo "</td>
 </tr>
 ";
@@ -281,6 +282,7 @@ if($member[is_admin]==1)
   <input type=hidden name=group_no value=<?=$group_no?>>
   <input type=hidden name=exec value=<?=$exec?>>
   <input type=hidden name=cart value=''>
+  <input type=hidden name=sid value=<?=$sid?>>
   <tr>
     <td rowspan=2 align=left>
       <input type=button value="메일링 리스트 발송" style=line-height:150%;border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:50px; onclick="sendmail();">&nbsp;
@@ -307,7 +309,7 @@ for($i=1;$i<=10;$i++) echo "<option value=$i $check[$i]>$i Level</option>";
       <input type=text name=keyword value='<?echo $keyword;?>'>
       <input type=checkbox name=like value=1 <?if($like) echo "checked";?> onclick='alert("Include 체크시 검색어를 포함하는 대상을 검색합니다.\n\n체크시 : *검색어*\n\n체크를 하지 않을경우 완전한 대상을 검색하며 더 빠릅니다\n\nComment를 제외하고는 체크하지 않는 것을 권해드립니다")'> <font style=color:#ffffff;font-size:9pt;font-family:Tahoma;>Include</font> &nbsp;
       <input type=submit value=' 검색 '  style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; >
-      <input type=button value=' 처음으로 ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=location.href="<?=$PHP_SELF?>?exec=<?=$exec?>&group_no=<?=$group_no?>">
+      <input type=button value=' 처음으로 ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px; onclick=location.href="<?=$PHP_SELF?>?exec=<?=$exec?>&group_no=<?=$group_no?>&sid=<?=$sid?>">
     </td>
   </tr>
   <tr>
@@ -328,15 +330,15 @@ for($i=1;$i<=10;$i++) echo "<option value=$i $check[$i]>$i Level</option>";
 	$show_page_num=10;
 	$start_page=(int)(($page-1)/$show_page_num)*$show_page_num;
 	$i=1;
-	if($page>$show_page_num){$prev_page=$start_page-1; echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&page=$prev_page$href><font color=#ffffff>[Prev]</font></a>";}
+	if($page>$show_page_num){$prev_page=$start_page-1; echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&page=$prev_page$href&sid=$sid><font color=#ffffff>[Prev]</font></a>";}
 	while($i+$start_page<=$total_page&&$i<=$show_page_num)
 	{
 	 $move_page=$i+$start_page;
 	 if($page==$move_page) echo "<b>$move_page</b>";
-	 else echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&page=$move_page$href><font color=#ffffff>[$move_page]</font></a>";
+	 else echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&page=$move_page$href&sid=$sid><font color=#ffffff>[$move_page]</font></a>";
 	 $i++;
 	}
-	if($total_page>$move_page){$next_page=$move_page+1; echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&page=$next_page$href><font color=#ffffff>[Next]</font></a>";}
+	if($total_page>$move_page){$next_page=$move_page+1; echo "<a href=$PHP_SELF?exec=$exec&group_no=$group_no&page=$next_page$href&sid=$sid><font color=#ffffff>[Next]</font></a>";}
 // 페이지 나타내는 부분 끝
 ?>
 </font><br><br>

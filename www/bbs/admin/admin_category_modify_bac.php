@@ -12,6 +12,7 @@ $category_data=mysql_fetch_array(mysql_query("select * from $t_category"."_$tabl
 <input type=hidden name=page_num value=<?=$page_num?>>
 <input type=hidden name=no value=<?=$no?>>
 <input type=hidden name=category_no value=<?=$category_no?>>
+<input type=hidden name=sid value=<?=$sid?>>
 <tr height=30><td bgcolor=#3d3d3d colspan=10><img src=images/admin_webboard.gif></td>
 </tr>
 <tr height=1><td bgcolor=#000000 style=padding:0px; colspan=10><img src=images/t.gif height=1></td>

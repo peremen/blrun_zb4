@@ -14,8 +14,8 @@ $total_category=mysql_num_rows($result);
 <tr height=30>
   <td bgcolor=white colspan=5 align=right style=font-family:Tahoma;font-size:9pt;>
     그룹 이름 : <b><?=$group_data[name]?></b> , 게시판 이름 : <b><a href=zboard.php?id=<?=$table_data[name]?> target=_blank><?=$table_data[name]?></a></b> &nbsp;&nbsp;&nbsp;
-    <input type=button value='게시판관리' class=input style=width=100px onclick=location.href="<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&exec2=modify&no=<?=$no?>&page=<?=$page?>&page_num=<?=$page_num?>">
-    <input type=button value='권한설정' class=input style=width=100px onclick=location.href="<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&exec2=grant&no=<?=$no?>&page=<?=$page?>&page_num=<?=$page_num?>">
+    <input type=button value='게시판관리' class=input style=width=100px onclick=location.href="<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&exec2=modify&no=<?=$no?>&page=<?=$page?>&page_num=<?=$page_num?>&sid=<?=$sid?>">
+    <input type=button value='권한설정' class=input style=width=100px onclick=location.href="<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&exec2=grant&no=<?=$no?>&page=<?=$page?>&page_num=<?=$page_num?>&sid=<?=$sid?>">
 &nbsp;&nbsp;&nbsp;
   </td>
 </tr>
@@ -28,6 +28,7 @@ $total_category=mysql_num_rows($result);
 <input type=hidden name=page value=<?=$page?>>
 <input type=hidden name=page_num value=<?=$page_num?>>
 <input type=hidden name=no value=<?=$no?>>
+<input type=hidden name=sid value=<?=$sid?>>
 <tr height=23 align=center bgcolor=#a0a0a0>
   <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>선택</td>
   <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>카테고리명</td>
@@ -45,11 +46,11 @@ while($data=mysql_fetch_array($result))
   <td><input type=checkbox name=c[] value=<? echo $data[no];?>></td>
   <td><img src=images/t.gif height=3><br><?echo $data[name];?></td>
   <td style=font-family:Tahoma;font-size:9pt><?echo $total_num;?></td>
-  <?="<td style=font-family:Tahoma;font-size:9pt><a href=$PHP_SELF?exec=view_board&no=$no&exec2=modify_category&group_no=$group_no&page=$page&page_num=$page_num&category_no=$data[no]>Modify</a></td>"?>
+  <?="<td style=font-family:Tahoma;font-size:9pt><a href=$PHP_SELF?exec=view_board&no=$no&exec2=modify_category&group_no=$group_no&page=$page&page_num=$page_num&category_no=$data[no]&sid=$sid>Modify</a></td>"?>
   <td style=font-family:Tahoma;font-size:9pt>
 <?
 if(!$total_num&&$total_category>1)
-	echo "<a href=$PHP_SELF?exec=view_board&no=$no&exec2=del_category&group_no=$group_no&page=$page&page_num=$page_num&category_no=$data[no] onclick=\"return confirm('삭제하시겠습니까?')\">Delete</a>"; else echo "&nbsp;";
+	echo "<a href=$PHP_SELF?exec=view_board&no=$no&exec2=del_category&group_no=$group_no&page=$page&page_num=$page_num&category_no=$data[no]&sid=$sid onclick=\"return confirm('삭제하시겠습니까?')\">Delete</a>"; else echo "&nbsp;";
 ?>
   </td>
 </tr>
@@ -87,6 +88,7 @@ while($data2=mysql_fetch_array($temp2))
 <input type=hidden name=no value=<?=$no?>>
 <input type=hidden name=page value=<?=$page?>>
 <input type=hidden name=page_num value=<?=$page_num?>>
+<input type=hidden name=sid value=<?=$sid?>>
 <table border=0 cellpadding=2 cellspacing=0>
 <tr>
   <td style=font-size:9pt;font-family:Tahoma;color:#ffffff;font-weight:bold> 카테고리 추가</td>
@@ -94,6 +96,6 @@ while($data2=mysql_fetch_array($temp2))
   <td><input type=submit value=' 추가 ' style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;></td>
 </tr>
 </table><br><br>
-<input type=button value=' 게시판 목록 보기 ' onclick="location.href='<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&page=<?=$page?>&page_num=<?=$page_num?>'" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;>
+<input type=button value=' 게시판 목록 보기 ' onclick="location.href='<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_no?>&page=<?=$page?>&page_num=<?=$page_num?>&sid=<?=$sid?>'" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;>
 </form>
 </div>

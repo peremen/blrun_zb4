@@ -2,11 +2,13 @@
 include "lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
-if((($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$member[board_name]))&&$_SESSION['_token2']) movepage("admin_setup_bac.php?_token2=".$_SESSION['_token2']);
+if((($member[no]&&$member[is_admin]<3&&$member[is_admin]>=1)||($member[no]&&$member[board_name]))&&$_SESSION['_token2']) movepage("admin_setup_bac.php?sid=".$_SESSION['_token2']);
 else {
 	if($member[no]) {
 		destroyZBSessionID($member[no]);
 		// 토큰 초기화
+		$_SESSION['_token']='';
+		setCookie("token","",0,"/","");
 		$_SESSION['_token2']='';
 		setCookie("token2","",0,"/","");
 		// 5.3 이상용 세션 처리
@@ -78,7 +80,7 @@ function check_SSL_Login() {
   </td>
 </tr>
 </table>
-<form>
+</form>
 
 <?
 foot();

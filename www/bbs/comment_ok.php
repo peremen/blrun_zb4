@@ -4,7 +4,7 @@
 **************************************************************************/
 include "_head.php";
 
-if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['ZBRD_SS_VRS']==""||$_SESSION['ZBRD_SS_VRS']!=$antispam) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||!$_SESSION['ZBRD_SS_VRS']||$_SESSION['ZBRD_SS_VRS']!=$antispam) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
 if(getenv("REQUEST_METHOD") == 'GET' ) Error("정상적으로 글을 쓰시기 바랍니다","");
 
 /***************************************************************************

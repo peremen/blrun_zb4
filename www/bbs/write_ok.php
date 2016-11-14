@@ -13,7 +13,7 @@ include "_head.php";
 
 // 편법을 이용한 글쓰기 방지
 $mode = $_POST[mode];
-if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||$_SESSION['WRT_SS_VRS']==""||$_SESSION['WRT_SS_VRS']!=$wantispam) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
+if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||!$_SESSION['WRT_SS_VRS']||$_SESSION['WRT_SS_VRS']!=$wantispam) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
 if(getenv("REQUEST_METHOD") == 'GET' ) Error("정상적으로 글을 쓰시기 바랍니다","");
 if(!$mode) $mode = "write";
 
