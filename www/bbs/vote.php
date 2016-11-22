@@ -27,7 +27,7 @@ if($setup[skinname]!="zero_vote") {
 		mysql_query("update $t_board"."_$id set vote=vote+1 where no='$no'");
 		$vote_str =  ",".$setup[no]."_".$no;
 
-		// 4.0x 용 세션 처리
+		// 5.3 이상용 세션 처리
 		$_SESSION['zb_vote'] = $_SESSION['zb_vote'].$vote_str;
 	}
 } else Error("정상적인 투표를 하지 않으셨습니다..");
