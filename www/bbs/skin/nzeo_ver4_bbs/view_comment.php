@@ -44,6 +44,9 @@
 	</td>
 </tr>
 <tr>
+	<td align=right class=list_han><?=$c_bitly?>[bitly]</a></td>
+</tr>
+<tr>
 	<td height=3><img src=images/t.gif border=0 hieght=3></td>
 </tr>
 </table>

@@ -58,6 +58,9 @@
 	</td>
 </tr>
 <tr>
+	<td align=right><?=$c_bitly?>[bitly]</a></td>
+</tr>
+<tr>
 	<td height=3><img src=images/t.gif border=0 hieght=3></td>
 </tr>
 </table>

@@ -487,6 +487,9 @@ if($setup[use_comment]) {
 			$a_del="<a onfocus=blur() href='del_comment.php?$href$sort&no=$no&c_no=$c_data[no]&delsec=$cnum1num2' style='color:red'>";
 		}
 
+		// bit.ly 코멘트 버튼
+		$c_bitly="<a href='bitly.php?social_ref=".urlencode("view.php?$href$sort&no=$no#$c_data[no]")."' target=_blank>";
+
 		// 코멘트 리플라이 버튼
 		if($o_data[ismember]=="") $ismember0="0"; else $ismember0=$o_data[ismember];
 		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$ismember0!=$member[no]&&$member[level]>$setup[grant_view_secret])
