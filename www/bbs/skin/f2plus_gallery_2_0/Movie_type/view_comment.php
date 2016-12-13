@@ -64,7 +64,7 @@ if($member[no]){
 	</tr>
 	<tr><td height=1 background=<?=$dir?>/dot3.gif colspan=<?=$c_colspan?>></td></tr>
 	<tr valign=top>
-		<td colspan=<?=$c_colspan?> align=right><?if($hide_date=="off"){?> DATE :<font class=com3> <?=date("m-d",$c_data[reg_date])?>&nbsp;<?=date("H:i:s",$c_data[reg_date])?>&nbsp;</font><?}?><?if($is_admin){?>/ &nbsp;IP :&nbsp;<font class=com5><?=$show_comment_ip?></font><?}?> <?=$a_edit2?><img src=<?=$dir?>/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/edit.gif border=0 valign=absmiddle></a> <?=$a_del?><img id=deleteButton_<?=$c_data[no]?> src=<?=$dir?>/del.gif border=0 valign=absmiddle></a>
+		<td colspan=<?=$c_colspan?> align=right><?=$c_bitly?>[bitly]</a> <?if($hide_date=="off"){?> DATE :<font class=com3> <?=date("m-d",$c_data[reg_date])?>&nbsp;<?=date("H:i:s",$c_data[reg_date])?>&nbsp;</font><?}?><?if($is_admin){?>/ &nbsp;IP :&nbsp;<font class=com5><?=$show_comment_ip?></font><?}?> <?=$a_edit2?><img src=<?=$dir?>/edit2.gif border=0 valign=absmiddle></a> <?=$a_edit?><img src=<?=$dir?>/edit.gif border=0 valign=absmiddle></a> <?=$a_del?><img id=deleteButton_<?=$c_data[no]?> src=<?=$dir?>/del.gif border=0 valign=absmiddle></a>
 		</FORM>
 		</td>
 	</tr>
