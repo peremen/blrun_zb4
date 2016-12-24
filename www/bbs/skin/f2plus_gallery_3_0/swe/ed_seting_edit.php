@@ -21,8 +21,8 @@ if($setup['use_html'] > 0) {
 </td>
 </tr>
 </table>
-<div id='edit_windowdiv' name='edit_windowdiv' style='width:100%;'>  
-<table width='100%' height='100%' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_6' style='table-layout:fixed'>
+<div id='edit_windowdiv' name='edit_windowdiv' style='width:100%;'>
+<table width='100%' height='100%' border='0' cellpadding='0' cellspacing='1' class='sw_bd_style_6' style='table-layout:fixed'>
 <tr>
 <td height='100%' align='center'>
 	<iframe id='memoi' name='memoi' style='width:100%; height:100%; display:none;' onbeforedeactivate='deactivate_handler()' scrolling='yes' frameborder='no' border='0' ALLOWTRANSPARENCY='true'></iframe>
