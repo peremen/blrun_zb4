@@ -20,7 +20,7 @@ if($setup[grant_view]<$member[level]&&!$is_admin) Error("사용권한이 없습니다","l
 unset($data);
 $hide_prev_start=$hide_prev_end=$hide_next_start=$hide_next_end=$hide_sitelink1_start=$hide_sitelink1_end=$hide_sitelink2_start=$hide_sitelink2_end=$hide_download1_start=$hide_download1_end=$hide_download2_start=$hide_download2_end="";
 $_dbTimeStart = getmicrotime();
-$data=mysql_fetch_array(mysql_query("select * from  $t_board"."_$id  where no='$no'"));
+$data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$no'"));
 $_dbTime += getmicrotime()-$_dbTimeStart;
 
 $social_ref = urlencode($_zb_url."view.php?$href$sort&no=$no");
@@ -29,8 +29,8 @@ if(!$data[no]) Error("선택하신 게시물이 존재하지 않습니다","zboard.php?$href$sor
 // 이전글과 이후글의 데이타를 구함;
 if(!$setup[use_alllist]) {	
 	$_dbTimeStart = getmicrotime();
-	if($data[prev_no]) $prev_data=mysql_fetch_array(mysql_query("select * from  $t_board"."_$id  where no='$data[prev_no]'"));
-	if($data[next_no]) $next_data=mysql_fetch_array(mysql_query("select * from  $t_board"."_$id  where no='$data[next_no]'"));
+	if($data[prev_no]) $prev_data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$data[prev_no]'"));
+	if($data[next_no]) $next_data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$data[next_no]'"));
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 }
 
@@ -38,7 +38,7 @@ if(!$setup[use_alllist]) {
 if(!$setup[use_alllist]) {	
 	$_dbTimeStart = getmicrotime();
 	$check_ref=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where division='$data[division]' and headnum='$data[headnum]'"));
-	if($check_ref[0]>1) $view_result=mysql_query("select * from $t_board"."_$id  where division='$data[division]' and headnum='$data[headnum]' order by headnum desc,arrangenum");
+	if($check_ref[0]>1) $view_result=mysql_query("select * from $t_board"."_$id where division='$data[division]' and headnum='$data[headnum]' order by headnum desc,arrangenum");
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 }
 
