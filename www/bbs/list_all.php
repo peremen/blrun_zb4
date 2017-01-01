@@ -62,9 +62,16 @@ if($exec=="view_all") {
 	$all_depth = 0;
 	for($idx=count($selected)-2;$idx>=0;$idx--) {
 		$no = $selected[$idx];
-		$count=0;
-		include "view.php";
-		if($all_depth<$max_depth) $all_depth=$max_depth;
+		unset($data);
+		$_dbTimeStart = getmicrotime();
+		$data=mysql_fetch_array(mysql_query("select is_secret,ismember from $t_board"."_$id where no='$no'"));
+		$_dbTime += getmicrotime()-$_dbTimeStart;
+		// 비밀글은 제외하고 view.php 파일을 연결함
+		if(!$data[is_secret]||$is_admin||$data[ismember]==$member[no]||$member[level]<=$setup[grant_view_secret]) {
+			$count=0;
+			include "view.php";
+			if($all_depth<$max_depth) $all_depth=$max_depth;
+		}
 	}
 
 	// layer 출력
