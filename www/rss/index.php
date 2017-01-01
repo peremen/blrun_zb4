@@ -223,7 +223,7 @@ setlocale (LC_TIME,"ko");
 $name_sq = "<br /><br />작성자 : ".$name[$i]."<br />작성일자: ".strftime("%Y년 %m월 %d일 %A %p %I:%M:%S",$datetm[$i]).""; 
 ?>
 <item>
-<title><?=$name[$i]?> - <?=htmlspecialchars($subject[$i])?><?=$comments?></title>
+<title><?=$name[$i]?> - <?=del_html(str_replace("\"","&quot;",$subject[$i]))?><?=$comments?></title>
 <link><?=$target?>?id=<?=$bbs_tmp[$i]?>&amp;no=<?=$num[$i]?></link>
 <description><?=htmlspecialchars($memoss.$name_sq)?></description>
 <author><?=$name[$i]?></author>
