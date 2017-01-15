@@ -8,12 +8,12 @@
  *
  * 외부로그인을 원하시는 문서의 제일 상단에 다음과 같이 입력하세요
  *
- * <? 
+ * <?
  *   $_zb_url = "http://도메인/제로보드경로/";                 // 끝에 꼭 / 를 써주세요
  *   $_zb_path = "/home/계정아이디/public_html/제로보드경로/"; // 끝에 꼭 / 를 써주세요
- *   include $_zb_path."outlogin.php"; 
+ *   include $_zb_path."outlogin.php";
  * ?>
- * 
+ *
  *
  * 그런후 외부로그인 폼이나 로그인 상태를 표시하고 싶은곳에 다음과 같이 입력하세요
  *
@@ -21,7 +21,7 @@
  *
  *
  * 위에서 "/home/계정 아이디/public_html/제로보드 경로/" 라는 것은 제로보드의 절대 경로를 나타냅니다.
- * 
+ *
  * 위에서 $_zb_url 과 $_zb_path 는 꼭 적어 주셔야 합니다.
  *
  * 절대경로는 관리자 페이지 메인 제일 아래에 있습니다
@@ -143,7 +143,7 @@ function print_outlogin($skinname = "default", $group_no = 1, $level = "10") {
 
 		if($member[new_memo]) {
 			$memo_on_image = "<img src=$memo_on_img border=0 align=absmiddle> ";
-			$memo_on_sound_out ="<embed src='$memo_swf' loop='false' width='1' height='1'></embed>"; 
+			$memo_on_sound_out ="<embed src='$memo_swf' loop='false' width='1' height='1'></embed>";
 		} else {
 			$memo_on_image = "<img src=$memo_off_img border=0 align=absmiddle> ";
 		}
@@ -164,7 +164,7 @@ function print_outlogin($skinname = "default", $group_no = 1, $level = "10") {
 		$_outlogin_data = str_replace("[total_guest_connect]",number_format($total_guest_connect),$_outlogin_data);
 		$_outlogin_data = str_replace("[total_connect]",number_format($total_member_connect+$total_guest_connect),$_outlogin_data);
 		$_outlogin_data = str_replace("[dir]",$_zb_url."outlogin_skin/$skinname/images/",$_outlogin_data);
-		
+
 		print $_outlogin_data.$memo_on_sound_out ."\n";
 
 	}
@@ -190,7 +190,7 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 	if(!$skinname||!$id||!$title) return;
 
 	$str = zReadFile($_zb_path."latest_skin/".$skinname."/main.html");
-	if(!$str) { 
+	if(!$str) {
 		echo "지정하신 $skinname 이라는 최근목록 스킨이 존재하지 않습니다<br>";
 		return;
 	}
@@ -220,7 +220,7 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 			$imageBoxPattern = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i";
 			$memo=preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data[ismember]/\\1.\\2' align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>", $memo);
 		}
-		$subject = del_html(cut_str(strip_tags($data[subject]),$textlen))."</font></b>";
+		$subject = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",cut_str(strip_tags($data[subject]),$textlen))))."</font></b>";
 		$date = date($datetype, $data[reg_date]);
 		$header = str_replace("[notice_memo]",$memo,$header);
 		$header = str_replace("[notice_subject]",$subject,$header);
@@ -229,10 +229,10 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 
 	$main_data = "";
 	while($data=mysql_fetch_array($result)) {
-		$name = $data[name];
+		$name = str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",$data[name]));
 		$sbj_all = $data[subject]=strip_tags($data[subject]);
-		$sbj_all = del_html(str_replace("\"","&quot;",$sbj_all));
-		$subject = del_html(cut_str($data[subject],$textlen))."</font></b>";
+		$sbj_all = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",str_replace("\"","&quot;",$sbj_all))));
+		$subject = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",cut_str($data[subject],$textlen))))."</font></b>";
 		$date = date($datetype, $data[reg_date]);
 		if($data[total_comment]) $comment = "[".$data[total_comment]."]"; else $comment="";
 
@@ -257,7 +257,7 @@ function print_survey($skinname, $title, $id, $textlen=30) {
 	if(!$skinname||!$id) return;
 
 	$str = zReadFile($_zb_path."latest_skin/".$skinname."/main.html");
-	if(!$str) { 
+	if(!$str) {
 		echo "지정하신 $skinname 이라는 최근목록 스킨이 존재하지 않습니다<br>";
 		return;
 	}
@@ -271,7 +271,7 @@ function print_survey($skinname, $title, $id, $textlen=30) {
 	$tmpData = mysql_fetch_array($result);
 	$no = $tmpData[no];
 	$headnum = $tmpData[headnum];
-	$main_subject="<a href='".$_zb_url.$target."&no=$no'>".del_html(strip_tags($tmpData[subject]))."</a>";
+	$main_subject="<a href='".$_zb_url.$target."&no=$no'>".del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",strip_tags($tmpData[subject]))))."</a>";
 	if($tmpData[vote]) $main_vote = "[총 ".$tmpData[vote]."표]"; else $main_vote="";
 
 	$result = mysql_query("select * from $t_board"."_$id where headnum='$headnum' and arrangenum > 0 order by arrangenum", $connect) or die(mysql_error());
@@ -284,7 +284,7 @@ function print_survey($skinname, $title, $id, $textlen=30) {
 
 	$main_data = "";
 	while($data=mysql_fetch_array($result)) {
-		$subject = del_html(cut_str(strip_tags($data[subject]),$textlen))."</font></b>";
+		$subject = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",cut_str(strip_tags($data[subject]),$textlen))))."</font></b>";
 		if($data[vote]) $vote = "[".$data[vote]."표]"; else $vote="";
 		$main = $loop;
 		$main = str_replace("[subject]","<a href='".$_zb_url."apply_vote.php?id=$id&no=$no&sub_no=$data[no]'>".$subject."</a>",$main);
@@ -307,7 +307,7 @@ function print_gallery($skinname, $title, $id, $num=10, $xsize=80, $ysize=80, $x
 	if(!$skinname||!$id) return;
 
 	$str = zReadFile($_zb_path."latest_skin/".$skinname."/main.html");
-	if(!$str) { 
+	if(!$str) {
 		echo "지정하신 $skinname 이라는 최근목록 스킨이 존재하지 않습니다<br>";
 		return;
 	}
@@ -321,7 +321,7 @@ function print_gallery($skinname, $title, $id, $num=10, $xsize=80, $ysize=80, $x
 
 	$i = 0;
 	while($data=mysql_fetch_array($result)) {
-		
+
 		if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name1])) $filename = $_zb_url.$data[file_name1];
 		elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name2])) $filename = $_zb_url.$data[file_name2];
 		else $filename="";

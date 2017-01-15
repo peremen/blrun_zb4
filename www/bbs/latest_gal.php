@@ -1,28 +1,28 @@
 <? $use_thumb=2; ?>
 
 <!-----------------이미지 미리보기-------------------->
-<div id="message" style="border-width:0px; border-style:none; width:0px; height:0px; position:absolute; left:0px; top:0px; z-index:1;" class=shadow></div> 
+<div id="message" style="border-width:0px; border-style:none; width:0px; height:0px; position:absolute; left:0px; top:0px; z-index:1;" class=shadow></div>
 <script language="javascript">
 <!--
-function imgposit(x,y,myEvent){ 
+function imgposit(x,y,myEvent){
 	var element = document.getElementById("message");
 	var scrollLeft = (document.documentElement && document.documentElement.scrollLeft) || document.body.scrollLeft;
 	var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
- 
+
 	element.style.left = ((myEvent.clientX - x) + scrollLeft) + "px"; //오버될때 보여질 이미지의 x 좌표
 	element.style.top = ((myEvent.clientY - y) + scrollTop) + "px"; //오버될때 보여질 이미지의 y 좌표
-} 
+}
 
-function imgset(str){ 
-	var text 
+function imgset(str){
+	var text
 	text ='<table align="center" border="0" cellpadding="0" cellspacing="0" class=shadow>'
 	text += '<tr><td align=center>'+str+'</td></tr></table>'
-	message.innerHTML=text 
-} 
+	message.innerHTML=text
+}
 
-function imghide(){ 
-	message.innerHTML='' 
-} 
+function imghide(){
+	message.innerHTML=''
+}
 -->
 </script>
 <?
@@ -45,14 +45,14 @@ function latest_thumb_del($path,$file,$reg_date){
 function thumbnail_make1($size,$source_file,$save_path,$small,$large,$ratio){
 
 	$img_info=@getimagesize($source_file);
-		
+
 	if($img_info[2]==1) $srcimg=@ImageCreateFromGIF($source_file);
 	 elseif($img_info[2]==2) $srcimg=@ImageCreateFromJPEG($source_file);
 	   else                     $srcimg=@ImageCreateFromPNG($source_file);
-	
+
 	for($i=0; $i<=sizeof($size)-1;$i++){
 		if($size[$i]!=0){
-		 	
+
 			if($i==sizeof($size)-1) {
 				// $ratio가 0으로 나누어지는 것 방지
 				if($img_info[0]!="")
@@ -61,7 +61,7 @@ function thumbnail_make1($size,$source_file,$save_path,$small,$large,$ratio){
 
 			$max_width=$size[$i];
 			$max_height=intval($size[$i]*$ratio);
-			
+
 			if($img_info[0]<=$max_width || $img_info[1]<=$max_height){
 				$new_width=$img_info[0];
 				$new_height=$img_info[1];
@@ -80,25 +80,25 @@ function thumbnail_make1($size,$source_file,$save_path,$small,$large,$ratio){
 
 			$srcx=(int)($max_width-$new_width)/2;
 			$srcy=(int)($max_height-$new_height)/2;
-				
-			if($img_info[2]==1){ 
+
+			if($img_info[2]==1){
 				$dstimg=@ImageCreate($max_width,$max_height);
 				@ImageColorAllocate($dstimg,255,255,255);
 				@ImageCopyResized($dstimg, $srcimg,$srcx,$srcy,0,0,$new_width,$new_height,ImageSX($srcimg),ImageSY($srcimg));
-			}else{ 
+			}else{
 				$dstimg=@ImageCreateTrueColor($max_width,$max_height);
 				@ImageColorAllocate($dstimg,255,255,255);
 				@ImageCopyResampled($dstimg, $srcimg,$srcx,$srcy,0,0,$new_width,$new_height,ImageSX($srcimg),ImageSY($srcimg));
 			}
-						
-			if($i==0){ 
+
+			if($i==0){
 				@ImageJPEG($dstimg,$save_path.$small,85);
 			}
-			else{ 
+			else{
 				@ImageJPEG($dstimg,$save_path.$large,85);
 			}
 			@ImageDestroy($dstimg);
-				
+
 		}
 	}
 	@ImageDestroy($srcimg);
@@ -109,14 +109,14 @@ function thumbnail_make1($size,$source_file,$save_path,$small,$large,$ratio){
 function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
 
 	$img_info=@getimagesize($source_file);
-		
+
 	if($img_info[2]==1) $srcimg=@ImageCreateFromGIF($source_file);
 	 elseif($img_info[2]==2) $srcimg=@ImageCreateFromJPEG($source_file);
 	   else                     $srcimg=@ImageCreateFromPNG($source_file);
-	
+
 	for($i=0; $i<=sizeof($size)-1;$i++){
 		if($size[$i]!=0){
-		 	
+
 			if($i==sizeof($size)-1) {
 				// $ratio가 0으로 나누어지는 것 방지
 				if($img_info[0]!="")
@@ -125,7 +125,7 @@ function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
 
 			$max_width=$size[$i];
 			$max_height=intval($size[$i]*$ratio);
-			
+
 			if($img_info[0]<=$max_width || $img_info[1]<=$max_height){
 				$new_width=$img_info[0];
 				$new_height=$img_info[1];
@@ -144,19 +144,19 @@ function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
 
 			$srcx=(int)($max_width-$new_width)/2;
 			$srcy=(int)($max_height-$new_height)/2;
-			
+
 			$dstimg=@ImageCreate($max_width,$max_height);
 			@ImageColorAllocate($dstimg,255,255,255);
 			@ImageCopyResized($dstimg, $srcimg,$srcx,$srcy,0,0,$new_width,$new_height,ImageSX($srcimg),ImageSY($srcimg));
-							
-			if($i==0){ 
+
+			if($i==0){
 				@ImageJPEG($dstimg,$save_path.$small,85);
 			}
-			else{ 
+			else{
 				@ImageJPEG($dstimg,$save_path.$large,85);
 			}
 			@ImageDestroy($dstimg);
-			
+
 		}
 	}
 	@ImageDestroy($srcimg);
@@ -167,9 +167,9 @@ function thumbnail_make2($size,$source_file,$save_path,$small,$large,$ratio){
 function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $datetype="m/d"){
 	global $_zb_path, $_zb_url, $connect, $use_thumb;
 	if(!$skinname||!$id) return;
-	
+
 	$str = zReadFile($_zb_path."latest_skin/".$skinname."/main.html");
-	if(!$str) { 
+	if(!$str) {
 		echo "지정하신 $skinname 이라는 최근목록 스킨이 존재하지 않습니다<br>";
 		return;
     }
@@ -188,9 +188,9 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 	$setup = mysql_fetch_array(mysql_query("select use_alllist from zetyx_admin_table where name='$id'"));
 	if($setup[use_alllist]) $target = "zboard.php?id=".$id;
 	else $target = "view.php?id=".$id;
-	
+
 	$result = mysql_query("select * from zetyx_board"."_$id order by no desc limit $num", $connect) or die(mysql_error());
-	
+
 	$tmpStr = explode("[loop]",$str);
 	$header = $tmpStr[0];
 	$tmpStr2 = explode("[/loop]",$tmpStr[1]);
@@ -199,8 +199,8 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 
 	$main_data = "";
 	while($data=mysql_fetch_array($result)) {
-		$name = del_html($data[name]);
-		$subject = del_html(cut_str(strip_tags($data[subject]),$textlen))."</font></b>";
+		$name = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",$data[name])));
+		$subject = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",cut_str(strip_tags($data[subject]),$textlen))))."</font></b>";
 		$date = date($datetype, $data[reg_date]);
 		if($data[total_comment]) $comment = "[".$data[total_comment]."]"; else $comment="";
 		$memo = del_html(cut_str(strip_tags($data[memo]),$textlen2));
@@ -308,10 +308,10 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 			}
 		}
 
-		$img_tag1="<img src=$filename2 width=200 border=0 style=border-width:1pt;border-style:solid;border-color:#000000;filter:progid:DXImageTransform.Microsoft.Shadow(color=#C0C0C0,Direction=135,Strength=4)>"; 
+		$img_tag1="<img src=$filename2 width=200 border=0 style=border-width:1pt;border-style:solid;border-color:#000000;filter:progid:DXImageTransform.Microsoft.Shadow(color=#C0C0C0,Direction=135,Strength=4)>";
 		$view_img="<a href=$_zb_url$target&no=$data[no] onfocus='this.blur();' onMouseMove=\"imgposit(-50,30,event)\"; onMouseOver=\"imgset('$img_tag1')\"; onMouseOut=\"imghide();\" 'width=400,height=510,toolbar=no,scrollbars=yes'>";
 		$imgList=$view_img."<img src=$filename1 border=0 width=52 height=39 vspacing=10 hspacing=10 style=border-style:solid;border-width:1px;border-color:000000;);></a>";
-		
+
 		$main = $loop;
 		$main = str_replace("[name]",$name,$main);
 		$main = str_replace("[date]",$date,$main);

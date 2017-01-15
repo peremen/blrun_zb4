@@ -7,7 +7,7 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 	global $_zb_path, $_zb_url, $t_board, $connect, $admin_table, $t_comment;
 
 	$str = zReadFile($_zb_path."latest_skin/".$skinname."/main.html");
-	if(!$str) { 
+	if(!$str) {
 		echo "지정하신 $skinname 이라는 최근목록 스킨이 존재하지 않습니다<br>";
 		return;
 	}
@@ -47,7 +47,7 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 			if($set[use_alllist]) $target = "zboard.php?id=".$_date[1];
 			else $target = "view.php?id=".$_date[1];
 
-			$name = del_html($data[name]);
+			$name = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",$data[name])));
 			$date = date($datetype, $data[reg_date]);
 			if($data[is_secret])
 				$memo = "<font color='gray'>비밀 덧글입니다</font>";
@@ -56,7 +56,7 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 				unset($c_match);
 				if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$data[memo],$c_match))
 					$data[memo] = str_replace($c_match[0],"",$data[memo]);
-				$memo = del_html(cut_str(strip_tags($data[memo]),$textlen));
+				$memo = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",cut_str(strip_tags($data[memo]),$textlen))));
 			}
 			$no = $data[no];
 			   $parent = $data[parent];
@@ -66,19 +66,19 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 			$main = str_replace("[date]",$date,$main);
 			$main = str_replace("[subject]","<a href='".$_zb_url.$target."&no=".$parent."' target=_self>[".$subject."]</a>",$main);
 			$main = str_replace("[comment]","<a href='".$_zb_url.$target."&no=".$parent."#$data[no]' target=_self>".$memo."</a>",$main);
-			// new 아이콘 달기 
-			$check_time=(time()-$data[reg_date])/60/60; 
-			if ($check_time<=48) 
-			{ 
+			// new 아이콘 달기
+			$check_time=(time()-$data[reg_date])/60/60;
+			if ($check_time<=48)
+			{
 				$memo_on_img = $_zb_url."latest_skin/bes_latest_skin08/images/new.gif";
 				$main = str_replace("[new]", "<img src=$memo_on_img border=0 align=absmiddle> ",$main);
-			} 
-			else 
-			{  
-				$main = str_replace("[new]", "",$main); 
-			} 
+			}
+			else
+			{
+				$main = str_replace("[new]", "",$main);
+			}
 
-			// 아이콘 끝 
+			// 아이콘 끝
 			$main = str_replace("[name]","<a href='".$_zb_url.$target."&no=".$parent."#$data[no]' target=_self>".$name."</a>",$main);
 			$main = str_replace("[date]","<a href='".$_zb_url.$target."&no=".$parent."#$data[no]' target=_self>".$date."</a>",$main);
 			$main_data .= "".$main;
