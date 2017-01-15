@@ -46,7 +46,7 @@ function list_check(&$data,$view_check=0) {
 		$data[email] = str_replace($c_match[0],"",$data[email]);
 	}
 	$_zbCount = check_zbLayer($data);
-	
+
 	// HTML 사용일 경우 현재 데이타 회원의 islevel이 익명사용자/게스트 레벨이라면 style 속성을 제거
 	if($data[use_html]&&$data[islevel]>8) {
 		$style_pattern = "/(<[^>]*?)style([^>]*?)(>)/i";
@@ -54,11 +54,11 @@ function list_check(&$data,$view_check=0) {
 	}
 
 	// ' " \ 등의 특수문자때문에 del_html 를 해준다
-	$name=$data[name]=del_html(str_replace("\"","&quot;",$data[name])); 
+	$name=$data[name]=del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",str_replace("\"","&quot;",$data[name]))));
 	$temp_name = get_private_icon($data[ismember], "2");
-	if($temp_name) $name="<img src='$temp_name' border=0 align=absmiddle>"; 
+	if($temp_name) $name="<img src='$temp_name' border=0 align=absmiddle>";
 
-	$subject=str_replace("\"","&quot;",$data[subject]); // 제목
+	$subject=str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",str_replace("\"","&quot;",$data[subject]))); // 제목
 	$subject_all=strip_tags($subject);
 	$subject=cut_str($subject,$setup[cut_length]); // 제목 자르는 부분
 
@@ -82,7 +82,7 @@ function list_check(&$data,$view_check=0) {
 		if($setup[use_status]&&!$data[is_secret]) $addShowComment = " title=\"$showCommentStr $comment_num\" ";
 		else $addShowComment = " title=\"$subject_all $comment_num\" ";
 		$subject="<a href=\"".$view_file."?$href$sort&no=$data[no]\" $addShowComment >".$subject."</a>";
-		if($keyword) 
+		if($keyword)
 			$a_keyword="<a href=\"".$view_file."?$href2$sort&no=$data[no]\">";
 		else
 			$a_keyword="<Zeroboard ";
@@ -171,7 +171,7 @@ function list_check(&$data,$view_check=0) {
 		$cnum1num2 = $cnum1*10000 + $cnum2;
 
 		// 아이피
-		if($is_admin) $ip="IP Address : <a href='trace_ip.php?keykind=ip&keyword=".$data[ip]."' target='_blank'>".$data[ip]."</a> <a href='#' style='color:red' onclick='javascript: var yn=confirm(\"▶엎질러진 물은 돌이킬 수 없습니다.◀\\n정말로 [$data[name]]님의 전체 게시글/덧글 삭제 후 차단하시겠습니까?\"); if(yn) window.open(\"spam_ip.php?keykind=ip&keyword=$data[ip]&delsec=$cnum1num2\",\"_blank\"); else return false;'>[스팸]</a>&nbsp;";  
+		if($is_admin) $ip="IP Address : <a href='trace_ip.php?keykind=ip&keyword=".$data[ip]."' target='_blank'>".$data[ip]."</a> <a href='#' style='color:red' onclick='javascript: var yn=confirm(\"▶엎질러진 물은 돌이킬 수 없습니다.◀\\n정말로 [$data[name]]님의 전체 게시글/덧글 삭제 후 차단하시겠습니까?\"); if(yn) window.open(\"spam_ip.php?keykind=ip&keyword=$data[ip]&delsec=$cnum1num2\",\"_blank\"); else return false;'>[스팸]</a>&nbsp;";
 
 		$sitelink1=$data[sitelink1]=del_html($data[sitelink1]);
 		$sitelink2=$data[sitelink2]=del_html($data[sitelink2]);
@@ -195,7 +195,7 @@ function list_check(&$data,$view_check=0) {
 			$file_size2=0;
 			$a_file_link2="<Zeroboard";
 		}
-  
+
 		$upload_image1=$upload_image2="";
 		$file_name1_ = $data[file_name1];
 		$file_name2_ = $data[file_name2];
@@ -226,7 +226,7 @@ function list_check(&$data,$view_check=0) {
 	// 글쓴 시간을 년월일 시분초 로 변환함
 	$reg_date="<span title='".date("Y년 m월 d일 H시 i분 s초", $data[reg_date])."'>".date("Y/m/d", $data[reg_date])."</span>";
 	$date=date("Y-m-d H:i:s", $data[reg_date]);
-	
+
 	// 폼메일을 사용하고 관련메뉴가 생성이 되면 레이어오픈
 	if($_zbCount&&$setup[use_formmail]) {
 		$name = "<span title=\"$data[name]\" onMousedown=\"ZB_layerAction('zbLayer$_zbCheckNum','visible',event)\" style=cursor:pointer>$name</span>";
@@ -252,15 +252,15 @@ function list_check(&$data,$view_check=0) {
 	if($prev_no==$data[no]) $number="<img src=$dir/arrow.gif border=0 align=absmiddle>"; elseif($number!="&nbsp;") $number=$loop_number;
 
 	// 답글 버튼
-	if(($is_admin||$member[level]<=$setup[grant_reply])&&$data[headnum]>-2000000000&&$data[headnum]!=-1) $a_reply="<a href='write.php?$href$sort&no=$data[no]&mode=reply'>"; 
+	if(($is_admin||$member[level]<=$setup[grant_reply])&&$data[headnum]>-2000000000&&$data[headnum]!=-1) $a_reply="<a href='write.php?$href$sort&no=$data[no]&mode=reply'>";
 	else $a_reply="<Zeroboard";
 
 	// 삭제버튼
-	if(($is_admin||$member[level]<=$setup[grant_delete]||$data[ismember]==$member[no]||!$data[ismember])&&!$data[child]) $a_delete="<a href='delete.php?$href$sort&no=$data[no]'>"; 
+	if(($is_admin||$member[level]<=$setup[grant_delete]||$data[ismember]==$member[no]||!$data[ismember])&&!$data[child]) $a_delete="<a href='delete.php?$href$sort&no=$data[no]'>";
 	else $a_delete="<Zeroboard";
 
 	// 수정버튼
-	if(($is_admin||$member[level]<=$setup[grant_delete]||$data[ismember]==$member[no]||!$data[ismember])) $a_modify="<a href='write.php?$href$sort&no=$data[no]&mode=modify'>"; 
+	if(($is_admin||$member[level]<=$setup[grant_delete]||$data[ismember]==$member[no]||!$data[ismember])) $a_modify="<a href='write.php?$href$sort&no=$data[no]&mode=modify'>";
 	else $a_modify="<Zeroboard";
 
 	// 스팸메일러 금지
