@@ -1,6 +1,6 @@
 <?
 // 자동으로 www 붙여준다. 
-if(!eregi("www",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI); 
+if(!preg_match("#www#i",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI); 
 
 include_once "../bbs/include/get_url.php";
 $_zb_url = zbUrl();
