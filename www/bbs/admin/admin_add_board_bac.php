@@ -61,7 +61,12 @@ if(!$data[memo_num]) $data[memo_num]=20;
 // /skin 디렉토리에서 디렉토리를 구함
 $skin_dir="skin";
 $handle=opendir($skin_dir);
-while ($skin_info = readdir($handle))
+while($skin_info = readdir($handle))
+{
+	$list[]=$skin_info;
+}
+sort($list);
+foreach($list as $skin_info)
 {
 	if(!preg_match("/\./i",$skin_info))
 	{
