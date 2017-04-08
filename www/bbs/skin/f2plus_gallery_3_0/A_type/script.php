@@ -41,7 +41,9 @@ function msghide(){
 <script language="javascript">
 <!--
 var IE = document.all?true:false;
-if (!IE) document.captureEvents(Event.MOUSEMOVE)
+if (!IE)
+	document.addEventListener("mousemove", getMouseXY);
+else
 	document.onmousemove = getMouseXY;
 var tempX = 0;
 var tempY = 0;
