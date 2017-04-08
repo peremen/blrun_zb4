@@ -14,7 +14,7 @@ var matchArray, e_use_html;
 var iePattern = /<br[^>]*?><(P|DIV|\/PRE|HR|LI|OL|O:P|UL|TABLE|TBODY|TR|TD|TH|CENTER|H1|H2|H3|H4|FORM|SCRIPT|\/SCRIPT)([^>]*?)>/gi;
 var iePattern2 = /<(HR|SCRIPT|\/SCRIPT)([^>]*?)>\s*?<br[^>]*?>/gi;
 var iePattern3 = / (?:\r\n|\r|\n)/g;
-var ffPattern = /<br[^>]*?><(TBODY|TR|TD)([^>]*?)>/gi;
+var ffPattern = /<br[^>]*?><(TBODY|\/TBODY|TR|\/TR|TD)([^>]*?)>/gi;
 
 var uAgent = navigator.userAgent;
 var re = new RegExp("rv:11"); //IE11 userAgent값 검출 정규식
@@ -1341,19 +1341,27 @@ function color_click(color)
 
 function table_color(bgColor)
 {
-	if(memoiW.document.selection.type == "None" || memoiW.document.selection.type == "Text")
-	{
+	if(re2.exec(uAgent) != null) { //IE 6,7,8,9,10
+		if(memoiW.document.selection.type == "None" || memoiW.document.selection.type == "Text")
+		{
+			var selectedTD;
+			if((selectedTD = isintd(memoiW.document.selection.createRange().parentElement())) != null)
+			{
+				selectedTD.bgColor = bgColor;
+			}
+		}
+		else if(memoiW.document.selection.type == "Control")
+		{
+			if(memoiW.document.selection.createRange().item(0).tagName == "TABLE")
+			{
+				memoiW.document.selection.createRange().item(0).bgColor = bgColor;
+			}
+		}
+	} else if(typeof window.getSelection != "undefined") { //IE11 && Chrome && FF
 		var selectedTD;
-		if((selectedTD = isintd(memoiW.document.selection.createRange().parentElement())) != null)
+		if((selectedTD = isintd(memoiW.window.getSelection().anchorNode.parentNode)) != null)
 		{
 			selectedTD.bgColor = bgColor;
-		}
-	}
-	else if(memoiW.document.selection.type == "Control")
-	{
-		if(memoiW.document.selection.createRange().item(0).tagName == "TABLE")
-		{
-			memoiW.document.selection.createRange().item(0).bgColor = bgColor;
 		}
 	}
 }
@@ -1369,7 +1377,7 @@ function isintd(obj)
 		} else if(obj.tagName == "TABLE" || obj.tagName == "BODY" || obj.tagName == null) {
 			return null;
 		} else {
-			obj = obj.parentElement;
+			obj = obj.parentNode;
 		}
 	}
 	return null;
