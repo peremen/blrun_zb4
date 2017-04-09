@@ -6,11 +6,11 @@ var sw_skins_dir = document.getElementById("sw_skins_dir").value;
 var sw_d_zb_self_dir = document.getElementById("sw_d_zb_self_dir").value;
 
 var sw_layers_ng_search = "<div id='ed_searchdiv' style='position:absolute; visibility:hidden;'>";
-sw_layers_ng_search += "<table width='180' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5'><tr><td style='padding:5;'>";
+sw_layers_ng_search += "<table width='180' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5'><tr><td style='padding:5px;'>";
 sw_layers_ng_search += "<input type='text' name='Search_text' id='Search_text' class='text' style='width:100%;' onChange='ser_n = 0;'>";
-sw_layers_ng_search += "</td></tr>" + tdbrd_line_0 + "<tr><td style='padding:5;'><table width='100%' border='0' cellpadding='0' cellspacing='0' class='sw_bg_style_1'><tr><td align='center' style='padding:5;' class='sw_ft_style_1'>";
+sw_layers_ng_search += "</td></tr>" + tdbrd_line_0 + "<tr><td style='padding:5px;'><table width='100%' border='0' cellpadding='0' cellspacing='0' class='sw_bg_style_1'><tr><td align='center' style='padding:5px;' class='sw_ft_style_1'>";
 sw_layers_ng_search += "찾을 내용을 입력해주세요.";
-sw_layers_ng_search += "</td></tr></table></td></tr>" + tdbrd_line_0 + "<tr><td align='center' style='padding:5;'>";
+sw_layers_ng_search += "</td></tr></table></td></tr>" + tdbrd_line_0 + "<tr><td align='center' style='padding:5px;'>";
 sw_layers_ng_search += "<a onClick='javascript:layerClick_no_grant(ed_searchdiv);' style='cursor:hand;'><img src=" + sw_skins_dir + "/images/ed_search.gif border='0' style='margin:0 10 0 0;'></a>";
 sw_layers_ng_search += "<a onClick='javascript:layerClick_no_grant(ed_searchdiv,\"div_clear\");' style='cursor:hand;'><img src=" + sw_skins_dir + "/images/sw_a_back.gif border='0'></a>";
 sw_layers_ng_search += "</td></tr></table></div>";

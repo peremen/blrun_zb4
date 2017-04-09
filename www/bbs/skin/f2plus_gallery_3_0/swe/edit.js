@@ -846,23 +846,19 @@ function layerClick(obj,objcmd)
 		{
 			var image_url = document.getElementById("urlimage_text").value;
 			if(typeof document.selection != "Control") {
-				if(re.exec(uAgent) != null)
-				{
-					//IE11
+				if(re2.exec(uAgent) != null) {
+					//IE6,7,8,9,10
+					var eEdit = memoiW.document.selection.createRange();
+					eEdit.pasteHTML("<p><img src='"+image_url+"' border='0'></p>");
+				} else if(typeof window.getSelection != "undefined") {	//IE11 & Edge & Chrome & FF
 					var eEdit = memoiW.window.getSelection().getRangeAt(0);
 					eEdit.deleteContents(); 
 					eEdit.insertNode(eEdit.createContextualFragment("<p><img src='"+image_url+"' border='0'></p>"));
-				} else if(re2.exec(uAgent) != null) {
-					//IE8
-					var eEdit = memoiW.document.selection.createRange();
-					eEdit.pasteHTML("<p><img src='"+image_url+"' border='0'></p>");
-				} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
-					memoiW.document.execCommand("InsertHTML",false,"<p><img src='"+image_url+"' border='0'></p>");
 				}
 			} else {	//Chrome & FF
 				memoiW.document.execCommand("InsertHTML",false,"<p><img src='"+image_url+"' border='0'></p>");
 			}
-			ed_asworddiv.style.visibility = "hidden";
+			ed_Url_Imagediv.style.visibility = "hidden";
 		}
 		if(obj.id == "ed_Url_mediadiv")
 		{
@@ -872,18 +868,14 @@ function layerClick(obj,objcmd)
 
 			if(document.getElementById("urlmedia_mv").checked == true) {
 				if(typeof document.selection != "Control") {
-					if(re.exec(uAgent) != null)
-					{
-						//IE11
+					if(re2.exec(uAgent) != null) {
+						//IE6,7,8,9,10
+						var eEdit = memoiW.document.selection.createRange();
+						eEdit.pasteHTML("<p><embed src='"+media_url+"' width='"+media_width+"' height='"+media_height+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
+					} else if(typeof window.getSelection != "undefined") {	//IE11 & Edge & Chrome & FF
 						var eEdit = memoiW.window.getSelection().getRangeAt(0);
 						eEdit.deleteContents(); 
 						eEdit.insertNode(eEdit.createContextualFragment("<p><embed src='"+media_url+"' width='"+media_width+"' height='"+media_height+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>"));
-					} else if(re2.exec(uAgent) != null) {
-						//IE8
-						var eEdit = memoiW.document.selection.createRange();
-						eEdit.pasteHTML("<p><embed src='"+media_url+"' width='"+media_width+"' height='"+media_height+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
-					} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
-						memoiW.document.execCommand("InsertHTML",false,"<p><embed src='"+media_url+"' width='"+media_width+"' height='"+media_height+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
 					}
 				} else {	//Chrome & FF
 					memoiW.document.execCommand("InsertHTML",false,"<p><embed src='"+media_url+"' width='"+media_width+"' height='"+media_height+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
@@ -891,36 +883,28 @@ function layerClick(obj,objcmd)
 			} else {
 				if(media_url.match(/(.SWF)$/i)) {
 					if(typeof document.selection != "Control") {
-						if(re.exec(uAgent) != null)
-						{
-							//IE11
+						if(re2.exec(uAgent) != null) {
+							//IE6,7,8,9,10
+							var eEdit = memoiW.document.selection.createRange();
+							eEdit.pasteHTML("<p><embed src='"+media_url+"' quality='high' width='"+media_width+"' height='"+media_height+"' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' wmode='transparent' /></p>");
+						} else if(typeof window.getSelection != "undefined") {	//IE11 & Edge & Chrome & FF
 							var eEdit = memoiW.window.getSelection().getRangeAt(0);
 							eEdit.deleteContents(); 
 							eEdit.insertNode(eEdit.createContextualFragment("<p><embed src='"+media_url+"' quality='high' width='"+media_width+"' height='"+media_height+"' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' wmode='transparent' /></p>"));
-						} else if(re2.exec(uAgent) != null) {
-							//IE8
-							var eEdit = memoiW.document.selection.createRange();
-							eEdit.pasteHTML("<p><embed src='"+media_url+"' quality='high' width='"+media_width+"' height='"+media_height+"' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' wmode='transparent' /></p>");
-						} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
-							memoiW.document.execCommand("InsertHTML",false,"<p><embed src='"+media_url+"' quality='high' width='"+media_width+"' height='"+media_height+"' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' wmode='transparent' /></p>");
 						}
 					} else {	//Chrome & FF
 						memoiW.document.execCommand("InsertHTML",false,"<p><embed src='"+media_url+"' quality='high' width='"+media_width+"' height='"+media_height+"' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' wmode='transparent' /></p>");
 					}
 				} else {
 					if(typeof document.selection != "Control") {
-						if(re.exec(uAgent) != null)
-						{
-							//IE11
+						if(re2.exec(uAgent) != null) {
+							//IE6,7,8,9,10
+							var eEdit = memoiW.document.selection.createRange();
+							eEdit.pasteHTML("<p><embed src='"+media_url+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
+						} else if(typeof window.getSelection != "undefined") {	//IE11 & Edge & Chrome & FF
 							var eEdit = memoiW.window.getSelection().getRangeAt(0);
 							eEdit.deleteContents(); 
 							eEdit.insertNode(eEdit.createContextualFragment("<p><embed src='"+media_url+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>"));
-						} else if(re2.exec(uAgent) != null) {
-							//IE8
-							var eEdit = memoiW.document.selection.createRange();
-							eEdit.pasteHTML("<p><embed src='"+media_url+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
-						} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
-							memoiW.document.execCommand("InsertHTML",false,"<p><embed src='"+media_url+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
 						}
 					} else {	//Chrome & FF
 						memoiW.document.execCommand("InsertHTML",false,"<p><embed src='"+media_url+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
@@ -956,18 +940,14 @@ function layerClick(obj,objcmd)
 		if(obj.id == "ed_asworddiv")
 		{
 			if(typeof document.selection != "Control") {
-				if(re.exec(uAgent) != null)
-				{
-					//IE11
+				if(re2.exec(uAgent) != null) {
+					//IE6,7,8,9,10
+					var eEdit = memoiW.document.selection.createRange();
+					eEdit.pasteHTML([objcmd]);
+				} else if(typeof window.getSelection != "undefined") {	//IE11 & Edge & Chrome & FF
 					var eEdit = memoiW.window.getSelection().getRangeAt(0);
 					eEdit.deleteContents(); 
 					eEdit.insertNode(eEdit.createContextualFragment(objcmd));
-				} else if(re2.exec(uAgent) != null) {
-					//IE8
-					var eEdit = memoiW.document.selection.createRange();
-					eEdit.pasteHTML([objcmd]);
-				} else if(typeof window.getSelection != "undefined") {	//Chrome & FF
-					memoiW.document.execCommand("InsertHTML",false,[objcmd]);
 				}
 			} else {	//Chrome & FF
 				memoiW.document.execCommand("InsertHTML",false,[objcmd]);
