@@ -6,45 +6,45 @@ var sw_skins_dir = document.getElementById("sw_skins_dir").value;
 var sw_d_zb_self_dir = document.getElementById("sw_d_zb_self_dir").value;
 
 var sw_layers_search = "<div id='ed_searchdiv' style='position:absolute; visibility:hidden;'>";
-sw_layers_search += "<table width='180' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5'><tr><td style='padding:5;'>";
+sw_layers_search += "<table width='180' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5'><tr><td style='padding:5px;'>";
 sw_layers_search += "<input type='text' name='Search_text' id='Search_text' class='text' style='width:100%;' onChange='ser_n = 0;'>";
-sw_layers_search += "</td></tr>" + tdbrd_line_0 + "<tr><td style='padding:5;'><table width='100%' border='0' cellpadding='0' cellspacing='0' class='sw_bg_style_1'><tr><td align='center' style='padding:5;' class='sw_ft_style_1'>";
+sw_layers_search += "</td></tr>" + tdbrd_line_0 + "<tr><td style='padding:5px;'><table width='100%' border='0' cellpadding='0' cellspacing='0' class='sw_bg_style_1'><tr><td align='center' style='padding:5px;' class='sw_ft_style_1'>";
 sw_layers_search += "찾을 내용을 입력해주세요.";
-sw_layers_search += "</td></tr></table></td></tr>" + tdbrd_line_0 + "<tr><td align='center' style='padding:5;'>";
+sw_layers_search += "</td></tr></table></td></tr>" + tdbrd_line_0 + "<tr><td align='center' style='padding:5px;'>";
 sw_layers_search += "<a onClick='javascript:layerClick(ed_searchdiv);' style='cusor:pointer;'><img src=" + sw_skins_dir + "/images/ed_search.gif border='0' style='margin:0 10 0 0;'></a>";
 sw_layers_search += "<a onClick='javascript:layerClick(ed_searchdiv,\"div_clear\");' style='cusor:pointer;'><img src=" + sw_skins_dir + "/images/sw_a_back.gif border='0'></a>";
 sw_layers_search += "</td></tr></table></div>";
 
 var sw_layers_Url_Image = "<div id='ed_Url_Imagediv' style='position:absolute; visibility:hidden;'>";
-sw_layers_Url_Image += "<table width='230' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5'><tr><td style='padding:5;'>";
+sw_layers_Url_Image += "<table width='230' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5'><tr><td style='padding:5px;'>";
 sw_layers_Url_Image += "<input type='text' name='urlimage_text' id='urlimage_text' class='text' style='width:100%;' value=\"http://\">";
-sw_layers_Url_Image += "</td></tr>" + tdbrd_line_0 + "<tr><td style='padding:5;'><table width='100%' border='0' cellpadding='0' cellspacing='0' class='sw_bg_style_1'><tr><td style='padding:5;' class='sw_ft_style_1'>";
+sw_layers_Url_Image += "</td></tr>" + tdbrd_line_0 + "<tr><td style='padding:5px;'><table width='100%' border='0' cellpadding='0' cellspacing='0' class='sw_bg_style_1'><tr><td style='padding:5px;' class='sw_ft_style_1'>";
 sw_layers_Url_Image += "이미지주소(URL)를 넣어주세요.<br>예) http://www.siqm.com/a.gif<br>http://를 꼭 써야 합니다.";
-sw_layers_Url_Image += "</td></tr></table></td></tr>" + tdbrd_line_0 + "<tr><td align='center' style='padding:5;'>";
+sw_layers_Url_Image += "</td></tr></table></td></tr>" + tdbrd_line_0 + "<tr><td align='center' style='padding:5px;'>";
 sw_layers_Url_Image += "<a onClick='javascript:layerClick(ed_Url_Imagediv);' style='cusor:pointer;'><img src=" + sw_skins_dir + "/images/sw_a_confirm.gif border='0' style='margin:0 10 0 0;'></a>";
 sw_layers_Url_Image += "<a onClick='javascript:layerClick(ed_Url_Imagediv,\"div_clear\");' style='cusor:pointer;'><img src=" + sw_skins_dir + "/images/sw_a_back.gif border='0'></a>";
 sw_layers_Url_Image += "</td></tr></table></div>";
 
 var sw_layers_Url_media = "<div id='ed_Url_mediadiv' style='position:absolute; visibility:hidden;'>";
-sw_layers_Url_media += "<table width='245' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5'><tr><td align='right' style='padding:5;' class='sw_ft_style_1'>";
-sw_layers_Url_media += "가로<input type='text' id='urlmedia_width' name='urlmedia_width' class='text' style='width:40; margin:0 10 0 3;' value=\"640\">";
-sw_layers_Url_media += "세로<input type='text' id='urlmedia_height' name='urlmedia_height' class='text' style='width:40; margin:0 32 0 3;' value=\"480\">";
+sw_layers_Url_media += "<table width='245' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5'><tr><td align='right' style='padding:5px;' class='sw_ft_style_1'>";
+sw_layers_Url_media += "가로<input type='text' id='urlmedia_width' name='urlmedia_width' class='text' style='width:40px; margin:0 10 0 3;' value=\"640\">";
+sw_layers_Url_media += "세로<input type='text' id='urlmedia_height' name='urlmedia_height' class='text' style='width:40px; margin:0 32 0 3;' value=\"480\">";
 sw_layers_Url_media += "동영상<input type='checkbox' id='urlmedia_mv' name='urlmedia_mv'>";
-sw_layers_Url_media += "</td></tr>" + tdbrd_line_0 + "<tr><td style='padding:5;'>";
+sw_layers_Url_media += "</td></tr>" + tdbrd_line_0 + "<tr><td style='padding:5px;'>";
 sw_layers_Url_media += "<input type='text' name='urlmedia_text' id='urlmedia_text' class='text' style='width:100%;' value=\"http://\">";
-sw_layers_Url_media += "</td></tr>" + tdbrd_line_0 + "<tr><td style='padding:5;'><table width='100%' border='0' cellpadding='0' cellspacing='0' class='sw_bg_style_1'><tr><td style='padding:5;' class='sw_ft_style_1'>";
+sw_layers_Url_media += "</td></tr>" + tdbrd_line_0 + "<tr><td style='padding:5px;'><table width='100%' border='0' cellpadding='0' cellspacing='0' class='sw_bg_style_1'><tr><td style='padding:5px;' class='sw_ft_style_1'>";
 sw_layers_Url_media += "동영상,음악,플래시<br>미디어주소(URL)를 넣어주세요.<br>예) http://www.siqm.com/a.wma<br>http://를 꼭 써야 합니다.<br><br>동영상일 경우 동영상에 체크하지<br>않으시면 원래 크기로 출력됩니다.";
-sw_layers_Url_media += "</td></tr></table></td></tr>" + tdbrd_line_0 + "<tr><td align='center' style='padding:5;'>";
+sw_layers_Url_media += "</td></tr></table></td></tr>" + tdbrd_line_0 + "<tr><td align='center' style='padding:5px;'>";
 sw_layers_Url_media += "<a onClick='javascript:layerClick(ed_Url_mediadiv);' style='cusor:pointer;'><img src=" + sw_skins_dir + "/images/sw_a_confirm.gif border='0' style='margin:0 10 0 0;'></a>";
 sw_layers_Url_media += "<a onClick='javascript:layerClick(ed_Url_mediadiv,\"div_clear\");' style='cusor:pointer;'><img src=" + sw_skins_dir + "/images/sw_a_back.gif border='0'></a>";
 sw_layers_Url_media += "</td></tr></table></div>";
 
 var sw_layers_createLink = "<div id='ed_createLinkdiv' style='position:absolute; visibility:hidden;'>";
-sw_layers_createLink += "<table width='200' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5'><tr><td align='right' style='padding:5;'>";
+sw_layers_createLink += "<table width='200' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5'><tr><td align='right' style='padding:5px;'>";
 sw_layers_createLink += "<input type='text' name='hyper_layer' id='hyper_layer' class='text' style='width:100%;' value=\"http://\">";
-sw_layers_createLink += "</td></tr>" + tdbrd_line_0 + "<tr><td style='padding:5;'><table width='100%' border='0' cellpadding='0' cellspacing='0' class='sw_bg_style_1'><tr><td style='padding:5;' class='sw_ft_style_1'>";
+sw_layers_createLink += "</td></tr>" + tdbrd_line_0 + "<tr><td style='padding:5px;'><table width='100%' border='0' cellpadding='0' cellspacing='0' class='sw_bg_style_1'><tr><td style='padding:5px;' class='sw_ft_style_1'>";
 sw_layers_createLink += "링크주소(URL)를 넣어주세요.<br>예) http://www.siqm.com<br>http://를 꼭 써야 합니다.";
-sw_layers_createLink += "</td></tr></table></td></tr>" + tdbrd_line_0 + "<tr><td align='center' style='padding:5;'>";
+sw_layers_createLink += "</td></tr></table></td></tr>" + tdbrd_line_0 + "<tr><td align='center' style='padding:5px;'>";
 sw_layers_createLink += "<a onClick='javascript:layerClick(ed_createLinkdiv);' style='cusor:pointer;'><img src=" + sw_skins_dir + "/images/sw_a_confirm.gif border='0' style='margin:0 10 0 0;'></a>";
 sw_layers_createLink += "<a onClick='javascript:layerClick(ed_createLinkdiv,\"div_clear\");' style='cusor:pointer;'><img src=" + sw_skins_dir + "/images/sw_a_back.gif border='0'></a>";
 sw_layers_createLink += "</td></tr></table></div>";
@@ -99,7 +99,7 @@ function ed_aswordF()
 sw_layers_asword += ed_aswordF();
 sw_layers_asword += "</table></td></tr></table></div>";
 
-var sw_layers_cells = "<div id='ed_cellsdiv' style='position:absolute; visibility:hidden; width:200;'>";
+var sw_layers_cells = "<div id='ed_cellsdiv' style='position:absolute; visibility:hidden; width:200px;'>";
 sw_layers_cells += "<table id='ed_cellstable' border='1' cellpadding='0' cellspacing='0' class='sw_bg_style_3' bordercolorlight='DDDDDD' bordercolordark='666666' onmousemove='clear_timeout()' onmouseout='start_timeout(this)'>";
 
 function ed_cellF()
