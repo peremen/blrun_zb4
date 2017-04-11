@@ -28,7 +28,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 				<?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?> <font id="state"></font>
 			</td>
 		</tr>
-		<tr>	
+		<tr>
 			<td align=right class=list0 onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4" style=cursor:pointer><font class=list_eng><b>Comment</b><br>▼</font></td>
 			<td align=left width=100% height=100% class=list1>
 				<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>

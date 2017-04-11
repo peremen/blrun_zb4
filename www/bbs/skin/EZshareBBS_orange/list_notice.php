@@ -22,7 +22,7 @@ else $comment_new = "&nbsp;<font class=zv3_comment style='font-size:8pt;'>".$com
   <? if($browser=="1"){ ?><td height=25 align="center"><?=$icon?></td><? } ?>
 
 <!--공지아이콘,카테고리,제목, 간단한 답글수-->
-  <td align=left nowrap='nowrap'><div style="overflow:hidden">&nbsp;(공지)&nbsp;<?=$insert?><b><?=$subject?></b> <?=$comment_new?><?=$new?></div></td> 
+  <td align=left nowrap='nowrap'><div style="overflow:hidden">&nbsp;(공지)&nbsp;<?=$insert?><b><?=$subject?></b> <?=$comment_new?><?=$new?></div></td>
 <!--회원아이콘, 작성자-->
   <? if($browser=="1"){ ?><td nowrap='nowrap'><div style="overflow:hidden"><?=$face_image?>&nbsp;<?=$name?>&nbsp;</div></td><? } ?>
 

@@ -737,7 +737,7 @@ class DB_fbsql extends DB_common
                        . ' "table_type" = \'VIEW\''
                        . ' AND "schema_name" = current_schema';
             case 'users':
-                return 'SELECT "user_name" from information_schema.users'; 
+                return 'SELECT "user_name" from information_schema.users';
             case 'functions':
                 return 'SELECT "routine_name" FROM'
                        . ' information_schema.psm_routines'

@@ -1,5 +1,5 @@
 <?php
-class AokioCommonManager{	
+class AokioCommonManager{
 
 	/**
 	 * Using Status:  ;
@@ -7,7 +7,7 @@ class AokioCommonManager{
 	 * @return array
 	 */
 
-	function thisTimeInfo($year=false,$month=false,$day=false){	
+	function thisTimeInfo($year=false,$month=false,$day=false){
 		$now = time();
 		$time_array = array('year'	=> ($year)?$year:date('Y' , $now),
 							'month' => ($month)?$month:date('m' , $now),
@@ -21,7 +21,7 @@ class AokioCommonManager{
 	 *
 	 * @return array
 	 */
-	function thisDayInfo($year=false,$month=false,$day=false){	
+	function thisDayInfo($year=false,$month=false,$day=false){
 		$now = time();
 		$day_array = array('year'	=> ($year)?$year:date('Y' , $now),
 							'month' => ($month)?$month:date('m' , $now),
@@ -31,21 +31,21 @@ class AokioCommonManager{
 
 
 	/*
-	
+
 	*
 	 * Number of days in selected Month of selected Year
 	 * @return int
 	 */
 	function _DaysInMonth ( $year, $month )	{
 		if ( in_array ( $month, array ( 1, 3, 5, 7, 8, 10, 12 ) ) )
-			return 31; 
+			return 31;
 
 		if ( in_array ( $month, array ( 4, 6, 9, 11 ) ) )
-			return 30; 
+			return 30;
 
 		if ( $month == 2 )
 			return ( checkdate ( 2, 29, $year ) ) ? 29 : 28;
-	
+
 		return false;
 	}
 
@@ -74,7 +74,7 @@ class AokioCommonManager{
 
 
 	/*
-	
+
 	*
 	 * Number of days in selected Month of selected Year
 	 * @return int
@@ -94,7 +94,7 @@ class AokioCommonManager{
 			}else{
 				return false;
 			}
-		} 
+		}
 		return true;
 	}
 

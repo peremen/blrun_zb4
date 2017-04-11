@@ -3,7 +3,7 @@
 
 var use_category_yn = document.getElementById("use_category_yn").value;
 var member_yn = document.getElementById("member_yn").value;
-var subeva_yn = document.getElementById("subeva_yn").value;	
+var subeva_yn = document.getElementById("subeva_yn").value;
 
 function check_submit_n()
 {
@@ -71,8 +71,8 @@ function check_submit_n()
 			rStr.focus();
 			return false;
 		}
-	}		
-	
+	}
+
 	if(subeva_yn == "Y")
 	{
 		if(edit_tag_yn == "Y")
@@ -97,7 +97,7 @@ function sub_val_ins()
 	var subjectE = document.getElementById("subject").value;
 	var sub_style_SE = document.getElementById("sub_style_S").value;
 	var sub_style_EE = document.getElementById("sub_style_E").value;
-	
+
 	if(!sub_style_SE)
 	{
 		sub_style_EE = "";
@@ -174,25 +174,25 @@ function preview_m()
 function sw_imagebox(id)
 {
 	if (document.getElementById('htChk').checked) {
-		showImageBox(id);					
-	} else {		
-		alert('HTML 체크후 사용하세요.');	
+		showImageBox(id);
+	} else {
+		alert('HTML 체크후 사용하세요.');
 	}
 }
 
 function sw_codebox(id)
 {
 	if (document.getElementById('htChk').checked) {
-		showCodeBox(id);					
-	} else {		
-		alert('HTML 체크후 사용하세요.');	
+		showCodeBox(id);
+	} else {
+		alert('HTML 체크후 사용하세요.');
 	}
 }
 
 function sw_mcpy()
 {
 	var mcpy_msg = "등록 실패를 대비하여 작성하신 내용을 복사 하시겠습니까?\n\n등록 실패시 Ctrl + V 로 붙여넣기 하시면 됩니다.";
-	
+
 	if(edit_tag_yn == "Y")
 	{
 		if(confirm(mcpy_msg))

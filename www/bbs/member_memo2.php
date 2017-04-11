@@ -54,11 +54,11 @@ $total_page=(int)(($total-1)/$page_num)+1; // 전체 페이지 구함
 
 if($page>$total_page) $page=$total_page; // 페이지가 전체 페이지보다 크면 페이지 번호 바꿈
 
-// 데이타 뽑아오는 부분... 
+// 데이타 뽑아오는 부분...
 $que="select a.no as no, a.subject as subject, a.reg_date as reg_date, a.readed as readed, b.name as name, b.user_id as user_id, a.member_to as member_to from $send_memo_table a ,$member_table b where a.member_no='$member[no]' and a.member_to=b.no  order by a.no desc limit $start_num,$page_num";
 $result=mysql_query($que) or Error(mysql_error());
 
-// 페이지 계산  $print_page 라는 변수에 저장 
+// 페이지 계산  $print_page 라는 변수에 저장
 $print_page="";
 $show_page_num=10;
 $start_page=(int)(($page-1)/$show_page_num)*$show_page_num;
@@ -222,7 +222,7 @@ while($data=mysql_fetch_array($result)) {
 	if($temp_name) $data[name]="<img src='$temp_name' border=0 align=absmiddle>";
 	$temp_name = get_private_icon($data[member_to], "1");
 	if($temp_name) $data[name]="<img src='$temp_name' border=0 align=absmiddle>&nbsp;".$data[name];
-	
+
 	$data[subject]=stripslashes(del_html($data[subject]));
 	$reg_date=date("Y/m/d H:i",$data[reg_date]);
 	if($data[readed]==0) $readed="<img src=images/memo_readed.gif>"; else $readed="<img src=images/memo_unread.gif>"

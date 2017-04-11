@@ -19,7 +19,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 	<td align=left>
 	<?=$face_image?> <b><font class=title_han4><?=$name?></font></b>
 	<?if($data['homepage']) {?><a class=list_eng href="<?=$data['homepage']?>" target=_blank>(Homepage)</a><?}?>
-	
+
 	<font class=com5>&nbsp;|&nbsp;</font><font class=com3>Point : <?=($m_data[point1]*10+$m_data[point2])?></font><font class=com5>&nbsp;|&nbsp;</font>
 	<font class=com3><?=$date?></font><font class=com5>&nbsp;|&nbsp;</font>
 	<font class=com3>Read : <?=number_format($hit)?></font><font class=com5>&nbsp;|&nbsp;</font>

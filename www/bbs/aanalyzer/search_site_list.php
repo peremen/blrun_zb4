@@ -46,7 +46,7 @@ $search_site_list = array(
 								'first_convert_encoding_code' => 'UTF-8'
 								), // kr ,com 같음
 
-	
+
 	'search.yahoo.co.jp'			=> array(	'site_regex'	=>'search.yahoo.co.jp',
 								'query_param'	=>'p=',
 								'first_convert_encoding_code' => 'EUC-JP'
@@ -90,15 +90,15 @@ $search_site_list = array(
 								),
 										//search/ 디렉토리 뒤에 쿼리
 /*
-Yahoo! 258  66.83% 
-2 Google (JP) 72  18.65% 
-3 Google (US) 22  5.69% 
-4 MSNサーチ 12  3.1% 
-5 goo 9  2.33% 
-6 Yahoo! 英語 2  0.51% 
-7 @nifty 2  0.51% 
-8 excite 2  0.51% 
-9 DION 
+Yahoo! 258  66.83%
+2 Google (JP) 72  18.65%
+3 Google (US) 22  5.69%
+4 MSNサーチ 12  3.1%
+5 goo 9  2.33%
+6 Yahoo! 英語 2  0.51%
+7 @nifty 2  0.51%
+8 excite 2  0.51%
+9 DION
 
 
 

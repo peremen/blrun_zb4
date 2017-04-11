@@ -330,7 +330,7 @@ class Net_UserAgent_Mobile_DoCoMo extends Net_UserAgent_Mobile_Common
 
     /**
      * returns status like "TB", "TC", "TD" or "TJ", which means:
-     * 
+     *
      * TB | Browsers
      * TC | Browsers with image off (only Available in HTML 5.0)
      * TD | Fetching JAR
@@ -407,7 +407,7 @@ class Net_UserAgent_Mobile_DoCoMo extends Net_UserAgent_Mobile_Common
      * with <form utn> attribute. returns null otherwise.
      *
      * @return string
-     */ 
+     */
     function getCardID()
     {
         return $this->_cardID;
@@ -418,7 +418,7 @@ class Net_UserAgent_Mobile_DoCoMo extends Net_UserAgent_Mobile_Common
 
     /**
      * @return boolean
-     */ 
+     */
     function isGPS()
     {
         static $gpsModels;
@@ -468,7 +468,7 @@ class Net_UserAgent_Mobile_DoCoMo extends Net_UserAgent_Mobile_Common
      *
      * @param string $main main part of HTTP_USER_AGENT string
      * @return mixed void, or a PEAR error object on error
-     */ 
+     */
     function _parseMain($main)
     {
         @list($this->name, $this->version, $this->_model, $cache, $rest) =
@@ -515,7 +515,7 @@ class Net_UserAgent_Mobile_DoCoMo extends Net_UserAgent_Mobile_Common
      *
      * @param string $foma main part of HTTP_USER_AGENT string
      * @return mixed void, or a PEAR error object on error
-     */ 
+     */
     function _parseFOMA($foma)
     {
         if (!preg_match('/^([^(]+)/', $foma, $matches)) {

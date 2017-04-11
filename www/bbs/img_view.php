@@ -18,7 +18,7 @@ function win_size(img_width,img_height)
 
 	if(img_height>screen.height-30)
 		new_height = window.screen.height-30;
-	else new_height=img_height; 
+	else new_height=img_height;
 
 	center_X = (window.screen.width-new_width)/2;
 	center_Y = (window.screen.height-new_height)/2;

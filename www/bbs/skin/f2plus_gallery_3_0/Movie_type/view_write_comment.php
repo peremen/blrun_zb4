@@ -1,4 +1,4 @@
-<? 
+<?
 	include $dir."/swe/ed_seting_head_comment.php";
 
 	$align="right";

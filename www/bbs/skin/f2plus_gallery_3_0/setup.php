@@ -1,7 +1,7 @@
 <?
 $config_file=$dir."/".$id."_config.php";
-if(file_exists($config_file)) include $config_file; 
-else{ 
+if(file_exists($config_file)) include $config_file;
+else{
 	$type="A2_type";
 }
 
@@ -11,7 +11,7 @@ if($Exif_use=="on") include "$dir/exif.php";
 if($gd_use==1) include $dir."/".$type."/thumbnail_make1.php";
 elseif($gd_use==2) include $dir."/".$type."/thumbnail_make2.php";
 include "$dir/member_icon.php";
-include $dir."/swe/memo_convert_js.php";  
+include $dir."/swe/memo_convert_js.php";
 $a_install="$dir/install.php";
 
 if(!preg_match("/Zeroboard/i",$a_login)) $a_login= str_replace(">","><font class=com>",$a_login)."&nbsp;";

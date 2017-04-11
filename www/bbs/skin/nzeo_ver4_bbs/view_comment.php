@@ -20,7 +20,7 @@
 	</td>
 </tr>
 <tr>
-	<td align=left class=memo style='word-break:break-all;padding:2px;padding-left:10px;padding-top:5px;'>&nbsp;::: 
+	<td align=left class=memo style='word-break:break-all;padding:2px;padding-left:10px;padding-top:5px;'>&nbsp;:::
 		<?
 		if($o_data[ismember]=="") $ismember0="0"; else $ismember0=$o_data[ismember];
 		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$ismember0!=$member[no]&&$member[level]>$setup[grant_view_secret])

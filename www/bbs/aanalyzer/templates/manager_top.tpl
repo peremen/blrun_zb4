@@ -1,8 +1,8 @@
 <table width="800" align="center" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td>
-    
-    
+
+
     <table width="800" border="0" cellspacing="0" cellpadding="0" >
   <tr>
     <td width="5"><img src="images/top_left.gif" width="5" height="4" /></td>
@@ -63,7 +63,7 @@
     <td background="images/border.gif" width="1"><img src="images/spacer.gif" width="1" height="1" /></td>
     <td width="12"><img src="images/spacer.gif" width="1" height="1" /></td>
     <td>AokioAnalyzer : Manager
-    
+
     {if  $mode_flag =="month"}>>
     {$this_year}
     {elseif  $mode_flag =="day"}>>

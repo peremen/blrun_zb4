@@ -8,7 +8,7 @@
   <?=$a_1_prev_page?> : 이전페이지를 출력합니다. (한페이지씩 이동)
   <?=$a_1_next_page?> : 다음 페이지를 출력합니다. (한페이지씩 이동)
   <?=$a_prev_page?> : 이전페이지를 출력합니다.
-  <?=$a_next_page?> : 다음 페이지를 출력합니다.  
+  <?=$a_next_page?> : 다음 페이지를 출력합니다.
   <?=$print_page?> : 페이지를 출력합니다
   <?=$a_write?> : 글쓰기 버튼
   <?=$a_list?> : 목록보기 버튼
@@ -17,7 +17,7 @@
   <?=$a_delete?> : 글삭제 버튼
   <?=$a_modify?> : 글수정 버튼
   <?=$a_delete_all?> : 관리자일때 나타나는 선택된 글 삭제 버튼;;
-  
+
   */
 ///////////////////////////////////////////////////////////////////////// ?>
 
@@ -28,11 +28,11 @@
 <!-- 버튼 부분 -->
 <table border=0 cellspacing=1 cellpadding=1 width=<?=$width?>>
 <tr>
-  <td width=40% height=20 align=left nowrap> 
+  <td width=40% height=20 align=left nowrap>
     <?=$hide_cart_start?><?=$a_cart?><img src=<?=$dir?>/i_list.gif border=0 align=absmiddle></a><?=$hide_cart_end?>
 
     <?=$a_delete_all?><img src=<?=$dir?>/i_admin.gif border=0 align=absmiddle></a>
-    <?=$a_1_prev_page?><img src=<?=$dir?>/i_prev.gif border=0 align=absmiddle></a>  
+    <?=$a_1_prev_page?><img src=<?=$dir?>/i_prev.gif border=0 align=absmiddle></a>
     <?=$a_1_next_page?><img src=<?=$dir?>/i_next.gif border=0 align=absmiddle></a>
   </td>
   <td align=center colspan=2 class=listnum nowrap>

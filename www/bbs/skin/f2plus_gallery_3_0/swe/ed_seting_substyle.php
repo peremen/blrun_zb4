@@ -12,9 +12,9 @@
   <select onChange='sub_style_chg(this.value)' id='sub_fcolor' name='sub_fcolor' style='background-color:#444444;'>
   <SCRIPT language="JavaScript">
   <!--
-   var sub_fc_Val = new Array('#444444','#FF0000','#00FF00','#0000FF','#FFFF00','#00FFFF','#FF00FF','#CCCCCC','#999999','#666666');     
+   var sub_fc_Val = new Array('#444444','#FF0000','#00FF00','#0000FF','#FFFF00','#00FFFF','#FF00FF','#CCCCCC','#999999','#666666');
    for(var i=0; i < sub_fc_Val.length; i++)
-	 document.writeln("<option value='" + sub_fc_Val[i] + "' style='background-color:" + sub_fc_Val[i] + ";'>&nbsp;&nbsp;&nbsp;</option>");     
+	 document.writeln("<option value='" + sub_fc_Val[i] + "' style='background-color:" + sub_fc_Val[i] + ";'>&nbsp;&nbsp;&nbsp;</option>");
   //-->
   </SCRIPT>
   </select>

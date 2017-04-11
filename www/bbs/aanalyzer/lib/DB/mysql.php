@@ -245,7 +245,7 @@ class DB_mysql extends DB_common
         if (!$this->connection) {
             if (($err = @mysql_error()) != '') {
                 return $this->raiseError(DB_ERROR_CONNECT_FAILED,
-                                         null, null, null, 
+                                         null, null, null,
                                          $err);
             } else {
                 return $this->raiseError(DB_ERROR_CONNECT_FAILED,

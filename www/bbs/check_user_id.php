@@ -24,6 +24,6 @@ else echo "$user_id 는 사용하실수 있습니다";
 </form>
 </table>
 
-<? 
-foot(); 
+<?
+foot();
 ?>

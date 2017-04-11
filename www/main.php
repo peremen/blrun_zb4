@@ -1,6 +1,6 @@
 <?
-// 자동으로 www 붙여준다. 
-if(!preg_match("#www#i",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI); 
+// 자동으로 www 붙여준다.
+if(!preg_match("#www#i",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
 
 include_once "./bbs/include/get_url.php";
 $_zb_url = zbUrl();
@@ -47,11 +47,11 @@ include $_zb_path."latest_skin/bes_latest_scroll/recent_bbs_scroll.php";
 			<td colspan="2" width="100%" valign="top"><? print_survey("nzeo/survey", "네티즌Poll", "poll1", 100) ?></td>
 		</tr>
 		<tr><td colspan="2" width="100%" valign="top">
-		<? 
-		$mb_id = array("clmn1", "blrun1", "cap1", "basket1");  
-		$mb_title = array("네티즌", "칼럼자료", "스크랩", "쓰레기통"); 
+		<?
+		$mb_id = array("clmn1", "blrun1", "cap1", "basket1");
+		$mb_title = array("네티즌", "칼럼자료", "스크랩", "쓰레기통");
 		$mb_conf[showidtitle] = 1;
-		recent_scroll("bes_latest_scroll", "최근게시물50개", 50,50); 
+		recent_scroll("bes_latest_scroll", "최근게시물50개", 50,50);
 		echo "<div style='width: 100%; height: 117px; position: relative; overflow:hidden;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1' id='scroll_image'>";
 		echo "<script>startscroll();</script>";
 		echo "</div>";

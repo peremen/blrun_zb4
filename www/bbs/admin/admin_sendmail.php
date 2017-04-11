@@ -8,7 +8,7 @@ if($cart) {
 }
 // 직접 선택이 없을때
 else {
-	$s_que=stripslashes($s_que); 
+	$s_que=stripslashes($s_que);
 	$s_que = str_replace("where","and", $s_que);
 }
 

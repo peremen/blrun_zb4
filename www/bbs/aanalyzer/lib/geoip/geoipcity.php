@@ -117,7 +117,7 @@ function _get_record($gi,$ipnum){
     return NULL;
   }
   $record_pointer = $seek_country + (2 * $gi->record_length - 1) * $gi->databaseSegments;
-  
+
   if ($gi->flags & GEOIP_MEMORY_CACHE) {
     $record_buf = substr($gi->memory_buffer,$record_pointer,FULL_RECORD_LENGTH);
   } elseif ($gi->flags & GEOIP_SHARED_MEMORY){

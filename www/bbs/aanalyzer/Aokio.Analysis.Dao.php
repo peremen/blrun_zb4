@@ -2,9 +2,9 @@
 require_once 'Aokio.Analyze.Parent.Dao.php';
 
 class AokioAnalysisDao extends AokioAnalyzeParentDao{
-	
+
 	//Constructor
-	function AokioAnalysisDao(){	
+	function AokioAnalysisDao(){
 		parent::AokioDao();
 	}
 
@@ -35,7 +35,7 @@ class AokioAnalysisDao extends AokioAnalyzeParentDao{
 
 
 
-	function getSevenDaysCounts($time_info,$db){		
+	function getSevenDaysCounts($time_info,$db){
 		if($this->php_type_for_db_variation ==="mysql"){
 			$sql  = " SELECT day , today ";
 			$sql .= " FROM aokio_log_time ";
@@ -769,7 +769,7 @@ class AokioAnalysisDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->modifyAokioInfo($sql,array(),$db);
 	}
 
@@ -783,7 +783,7 @@ class AokioAnalysisDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->insertAokioInfo($sql,array(),$db);
 	}
 

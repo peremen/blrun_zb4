@@ -2,14 +2,14 @@
 require_once 'Aokio.Analyze.Parent.Dao.php';
 
 class AokioAnalyzeDao extends AokioAnalyzeParentDao{
-	
+
 	//Constructor
-	function AokioAnalyzeDao(){	
+	function AokioAnalyzeDao(){
 		parent::AokioDao();
 	}
 
 	//======================================
-	// 초기 접속시 
+	// 초기 접속시
 	// 접속 정보 분석후 주 테이블에 기록
 	function insertAnalyzeInfo($analyze_info,$target,$db){
 		if($this->php_type_for_db_variation ==="mysql"){
@@ -66,7 +66,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 		$this->insertAokioInfo($sql,$os_info,$db);
 	}
-	
+
 
 	//======================================
 
@@ -92,8 +92,8 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
-		$this->insertAokioInfo($sql,$browser_info,$db);		
+
+		$this->insertAokioInfo($sql,$browser_info,$db);
 	}
 
 	function updateBrowser($browser_info,$db){
@@ -105,7 +105,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->insertAokioInfo($sql,$browser_info,$db);
 	}
 
@@ -133,7 +133,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 		}
 
 
-		$this->insertAokioInfo($sql,$time_info,$db);		
+		$this->insertAokioInfo($sql,$time_info,$db);
 	}
 
 	function updateTimeInfo($time_info,$hour,$db){
@@ -161,7 +161,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 		}
 
 
-		$this->insertAokioInfo($sql,$target_arr,$db);		
+		$this->insertAokioInfo($sql,$target_arr,$db);
 	}
 
 	function updateWeekInfo($week,$target_arr,$start_flag,$db){
@@ -257,7 +257,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->insertAokioInfo($sql,$language_info,$db);
 	}
 
@@ -297,7 +297,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->insertAokioInfo($sql,$nation_info,$db);
 	}
 
@@ -336,7 +336,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->insertAokioInfo($sql,$city_info,$db);
 	}
 
@@ -375,7 +375,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->insertAokioInfo($sql,$refererserver_info,$db);
 	}
 
@@ -413,7 +413,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->insertAokioInfo($sql,$refererserver_info,$db);
 	}
 
@@ -454,7 +454,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->insertAokioInfo($sql,$screen_info,$db);
 	}
 
@@ -492,7 +492,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->insertAokioInfo($sql,$resolution_info,$db);
 	}
 
@@ -521,7 +521,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 		}
 
 //		echo "<pre>".nl2br(print_r($search_keyword_info,true))."</pre>";
-		$this->insertAokioInfo($sql,$search_keyword_info,$db);		
+		$this->insertAokioInfo($sql,$search_keyword_info,$db);
 	}
 
 	function updateSearchKeyword($search_keyword_info,$db){
@@ -559,8 +559,8 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
-		$this->insertAokioInfo($sql,$search_keyword_info,$db);		
+
+		$this->insertAokioInfo($sql,$search_keyword_info,$db);
 	}
 
 	function updateSearchSite($search_keyword_info,$db){
@@ -572,7 +572,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->insertAokioInfo($sql,$search_keyword_info,$db);
 	}
 
@@ -601,7 +601,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		$this->insertAokioInfo($sql,$robot_info,$db);		
+		$this->insertAokioInfo($sql,$robot_info,$db);
 	}
 
 	function updateSearchRobotInfoInTargetTable($target,$robot_info,$db){
@@ -614,7 +614,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		$this->insertAokioInfo($sql,$robot_info,$db);		
+		$this->insertAokioInfo($sql,$robot_info,$db);
 	}
 
 	function insertSearchRobotInfoInRobotLogTable($target,$robot_info,$db){
@@ -626,7 +626,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		$this->insertAokioInfo($sql,$robot_info,$db);		
+		$this->insertAokioInfo($sql,$robot_info,$db);
 	}
 
 
@@ -668,7 +668,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->modifyAokioInfo($sql,array(),$db);
 	}
 
@@ -682,7 +682,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->insertAokioInfo($sql,array(),$db);
 	}
 

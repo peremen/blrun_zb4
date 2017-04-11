@@ -36,7 +36,7 @@ function returnmain()
 	<?} else {?>
 	var home_address = opener.document.forms['write'].office_address;
 	<?}?>
-	
+
 	home_address.value = frm_name+" " +accass;
 	home_address.focus();
 	self.close();
@@ -46,7 +46,7 @@ function returnmain()
 </head>
 
 <body>
-<div align="center" style="padding: 5px;background-color: #009900;font-size:9pt;"> 
+<div align="center" style="padding: 5px;background-color: #009900;font-size:9pt;">
 <b><span style="color:#ffffff">우편번호를 검색합니다.</span></b></div>
 <div align="center" style="background-color: #007900;font-size:1pt;height: 3px;"></div>
 <form name="w_form" method="post" action="<?=$PHP_SELF?>" onsubmit="return check_submit();" style="margin: 0px">

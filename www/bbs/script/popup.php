@@ -5,7 +5,7 @@ function insert_tag(sTag,str,eTag)
 	var objSelection = opener.document.selection;
 	var objTextArea = opener.document.getElementById('memo');
 	objTextArea.focus();
-	
+
 	if(typeof objSelection != 'undefined') //IE
 	{
 		var sRange = objSelection.createRange();
@@ -29,7 +29,7 @@ function insert_tab(str)
 	var objSelection = document.selection;
 	var objTextArea = document.getElementById('source');
 	objTextArea.focus();
-	
+
 	if(typeof objSelection != 'undefined') //IE
 	{
 		var sRange = objSelection.createRange();

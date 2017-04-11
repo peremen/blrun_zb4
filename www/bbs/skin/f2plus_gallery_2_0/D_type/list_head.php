@@ -33,5 +33,5 @@
 </td></tr>
 <tr><td height=5 colspan=2></td></tr>
 <tr><td valign=top>
-	<table border=0 cellspacing=0 cellpadding=2 width=100% align=center>	
+	<table border=0 cellspacing=0 cellpadding=2 width=100% align=center>
 <?$counter=1;?>

@@ -28,9 +28,9 @@ function Set_Cookie( name, value, expires, path, domain, secure ) {
 	today.setTime( today.getTime() );
 
 	/*
-	if the expires variable is set, make the correct 
-	expires time, the current script below will set 
-	it for x number of days, to make it for hours, 
+	if the expires variable is set, make the correct
+	expires time, the current script below will set
+	it for x number of days, to make it for hours,
 	delete * 24, for minutes, delete * 60 * 24
 	*/
 	if ( expires ){
@@ -39,8 +39,8 @@ function Set_Cookie( name, value, expires, path, domain, secure ) {
 	var expires_date = new Date( today.getTime() + (expires) );
 
 	document.cookie = name + "=" +escape( value ) +
-	( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) + 
-	( ( path ) ? ";path=" + path : "" ) + 
+	( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) +
+	( ( path ) ? ";path=" + path : "" ) +
 	( ( domain ) ? ";domain=" + domain : "" ) +
 	( ( secure ) ? ";secure" : "" );
 }
@@ -48,7 +48,7 @@ function Set_Cookie( name, value, expires, path, domain, secure ) {
 
 // this function gets the cookie, if it exists
 function Get_Cookie( name ) {
-	
+
 	var start = document.cookie.indexOf( name + "=" );
 	var len = start + name.length + 1;
 	if ( ( !start ) &&

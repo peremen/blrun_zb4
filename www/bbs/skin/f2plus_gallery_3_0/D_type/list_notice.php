@@ -16,7 +16,7 @@ else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$commen
 <tr>
 	<td nowrap colspan=2 align=left style=padding:3,3,3,3><img src=<?=$dir?>/images/notice_fr.gif border=0 align=absmiddle>&nbsp;<?=$hide_cart_start?><input type=checkbox name=cart value="<?=$data[no]?>"><?=$hide_cart_end?>&nbsp;<?=$insert?><B><nobr><?=$subject?></nobr></B><?=$comment_new?></td>
 </tr>
-<tr>	
+<tr>
 	<td height=1 colspan=2 bgcolor=#E0E0E0></td>
 </tr>
 </table>

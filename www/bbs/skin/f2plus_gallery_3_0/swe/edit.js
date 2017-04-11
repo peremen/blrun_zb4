@@ -1,4 +1,4 @@
-	
+
 //====================[ sw_edit 파일명: edit.js ]====================
 
 var m_level = parseInt(document.getElementById("sw_m_level").value);
@@ -11,7 +11,7 @@ var sw_edit_use = document.getElementById("sw_edit_use").value;
 var pattern = /(\[\w+\_code\:\d+\{[^}]*?\}\]|\[\/\w+\_code\])/gi;
 var pattern2 = /\[\/\w+\_code\]/gi;
 var matchArray, e_use_html;
-var iePattern = /<br[^>]*?><(P|DIV|\/PRE|HR|LI|OL|O:P|UL|TABLE|TBODY|TR|TD|TH|CENTER|H1|H2|H3|H4|FORM|SCRIPT|\/SCRIPT)([^>]*?)>/gi;
+var iePattern = /<br[^>]*?><(P|DIV|\/PRE|HR|LI|OL|O:P|UL|BLOCKQUOTE|TABLE|TBODY|TR|TD|TH|CENTER|H1|H2|H3|H4|FORM|SCRIPT|\/SCRIPT)([^>]*?)>/gi;
 var iePattern2 = /<(HR|SCRIPT|\/SCRIPT)([^>]*?)>\s*?<br[^>]*?>/gi;
 var iePattern3 = / (?:\r\n|\r|\n)/g;
 var ffPattern = /<br[^>]*?><(TBODY|\/TBODY|TR|\/TR|TD)([^>]*?)>/gi;
@@ -21,7 +21,7 @@ var re = new RegExp("rv:11"); //IE11 userAgent값 검출 정규식
 var re2 = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})"); //IE6,7,8,9,10 userAgent값 검출 정규식
 var DocReadyState = false;
 var DocReloadInterval = null;
-var memoiW = null;	
+var memoiW = null;
 var close_id = null;
 var which_color = null;
 var selectionObj = null;
@@ -102,7 +102,7 @@ function deactivate_handler()
 }
 
 function DocReload()
-{		
+{
 	memoiE = document.getElementById("memoi");
 	memoiW = memoiE.contentWindow;
 
@@ -152,7 +152,7 @@ function btnStyc()
 	{
 		ed_fontE = document.getElementById("ed_font");
 		ed_fontsizeE = document.getElementById("ed_fontsize");
-			
+
 		if(edit_tag_yn == "Y")
 		{
 			ed_fontE.disabled = false;
@@ -165,7 +165,7 @@ function btnStyc()
 		for(var i = 0 ; i < img_mark.length ; i++)
 		{
 			img_get = document.getElementById(img_mark[i]);
-			
+
 			if(edit_tag_yn == "Y") {
 				if(typeof window.getSelection != "undefined") {
 					img_get.style.opacity = ""; /* For Webkit browsers */
@@ -186,7 +186,7 @@ function btnStyc()
 		for(var i = 0 ; i < img_mark_no_grant.length ; i++)
 		{
 			img_get = document.getElementById(img_mark_no_grant[i]);
-			
+
 			if(edit_tag_yn == "Y") {
 				if(typeof window.getSelection != "undefined") {
 					img_get.style.opacity = ""; /* For Webkit browsers */
@@ -428,12 +428,12 @@ function command(obj,myEvent)
 	}
 
 	memoiW.focus();
-	
+
 	if(selectionObj.m_selection != null)
 	{
 		selectionObj.GetSelection();
 	}
-	
+
 	if(obj.tagName == "SELECT")
 	{
 		if(obj.id == "ed_font")
@@ -443,7 +443,7 @@ function command(obj,myEvent)
 				memoiW.document.execCommand("FontName", null, obj.options[obj.selectedIndex].value);
 				obj.options[obj.selectedIndex].selected = true;
 			}
-		} 
+		}
 		if(obj.id == "ed_fontsize")
 		{
 			if(obj.selectedIndex != 0)
@@ -542,7 +542,7 @@ function command(obj,myEvent)
 					{
 						//IE11
 						var eEdit = memoiW.window.getSelection().getRangeAt(0);
-						eEdit.deleteContents(); 
+						eEdit.deleteContents();
 						eEdit.insertNode(eEdit.createContextualFragment("<hr size='1' color='#CCCCCC'>"));
 					} else if(re2.exec(uAgent) != null) {
 						//IE8
@@ -852,7 +852,7 @@ function layerClick(obj,objcmd)
 					eEdit.pasteHTML("<p><img src='"+image_url+"' border='0'></p>");
 				} else if(typeof window.getSelection != "undefined") {	//IE11 & Edge & Chrome & FF
 					var eEdit = memoiW.window.getSelection().getRangeAt(0);
-					eEdit.deleteContents(); 
+					eEdit.deleteContents();
 					eEdit.insertNode(eEdit.createContextualFragment("<p><img src='"+image_url+"' border='0'></p>"));
 				}
 			} else {	//Chrome & FF
@@ -874,7 +874,7 @@ function layerClick(obj,objcmd)
 						eEdit.pasteHTML("<p><embed src='"+media_url+"' width='"+media_width+"' height='"+media_height+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
 					} else if(typeof window.getSelection != "undefined") {	//IE11 & Edge & Chrome & FF
 						var eEdit = memoiW.window.getSelection().getRangeAt(0);
-						eEdit.deleteContents(); 
+						eEdit.deleteContents();
 						eEdit.insertNode(eEdit.createContextualFragment("<p><embed src='"+media_url+"' width='"+media_width+"' height='"+media_height+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>"));
 					}
 				} else {	//Chrome & FF
@@ -889,7 +889,7 @@ function layerClick(obj,objcmd)
 							eEdit.pasteHTML("<p><embed src='"+media_url+"' quality='high' width='"+media_width+"' height='"+media_height+"' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' wmode='transparent' /></p>");
 						} else if(typeof window.getSelection != "undefined") {	//IE11 & Edge & Chrome & FF
 							var eEdit = memoiW.window.getSelection().getRangeAt(0);
-							eEdit.deleteContents(); 
+							eEdit.deleteContents();
 							eEdit.insertNode(eEdit.createContextualFragment("<p><embed src='"+media_url+"' quality='high' width='"+media_width+"' height='"+media_height+"' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' wmode='transparent' /></p>"));
 						}
 					} else {	//Chrome & FF
@@ -903,7 +903,7 @@ function layerClick(obj,objcmd)
 							eEdit.pasteHTML("<p><embed src='"+media_url+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>");
 						} else if(typeof window.getSelection != "undefined") {	//IE11 & Edge & Chrome & FF
 							var eEdit = memoiW.window.getSelection().getRangeAt(0);
-							eEdit.deleteContents(); 
+							eEdit.deleteContents();
 							eEdit.insertNode(eEdit.createContextualFragment("<p><embed src='"+media_url+"' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true' type='application/x-mplayer2' pluginspage='http://www.microsoft.com/windows/mediaplayer/download/default.asp' wmode='transparent' /></p>"));
 						}
 					} else {	//Chrome & FF
@@ -918,10 +918,10 @@ function layerClick(obj,objcmd)
 			var hyper_link = document.getElementById("hyper_layer").value;
 			memoiW.document.execCommand("UnLink", false, "");
 			memoiW.document.execCommand("CreateLink", false, hyper_link);
-		
+
 			var tagsLink = memoiW.document.getElementsByTagName("a");
 			//alert(tagsLink[0]);
-			for (var i = 0; i < tagsLink.length; i++) { 
+			for (var i = 0; i < tagsLink.length; i++) {
 				var target = tagsLink[i].target;
 				if (!target) {
 					tagsLink[i].target = '_blank';
@@ -946,7 +946,7 @@ function layerClick(obj,objcmd)
 					eEdit.pasteHTML([objcmd]);
 				} else if(typeof window.getSelection != "undefined") {	//IE11 & Edge & Chrome & FF
 					var eEdit = memoiW.window.getSelection().getRangeAt(0);
-					eEdit.deleteContents(); 
+					eEdit.deleteContents();
 					eEdit.insertNode(eEdit.createContextualFragment(objcmd));
 				}
 			} else {	//Chrome & FF
@@ -985,7 +985,7 @@ function layerClick_no_grant(obj,objcmd)
 				{
 					//IE11
 					var eEdit = memoiW.window.getSelection().getRangeAt(0);
-					eEdit.deleteContents(); 
+					eEdit.deleteContents();
 					eEdit.insertNode(eEdit.createContextualFragment("[SW_EMTC" + objcmd + "]"));
 				} else if(re2.exec(uAgent) != null) {
 					//IE8
@@ -1212,7 +1212,7 @@ function selectXY(td,myEvent)
 
 	var widthCols = Math.ceil(100/getColumnNum(td,myEvent))-1;
 	var CellAttrs = "width='" + widthCols + "%'";
-	
+
 	var i = 0, j = 0;
 	for(i = 0 ; i < NumRows ; i++)
 	{
@@ -1220,7 +1220,7 @@ function selectXY(td,myEvent)
 		for(j = 0 ; j < NumCols ; j++)
 		{
 			strTable += "<TD " + CellAttrs + ">&nbsp;</TD>\n";
-		}		
+		}
 		strTable += "</TR>\n";
 	}
 	strTable += "</TABLE>\n";
@@ -1229,13 +1229,13 @@ function selectXY(td,myEvent)
 	{
 		selectionObj.GetSelection();
 	}
-	
+
 	if(typeof document.selection != "Control") {
 		if(re.exec(uAgent) != null)
 		{
 			//IE11
 			var eEdit = memoiW.window.getSelection().getRangeAt(0);
-			eEdit.deleteContents(); 
+			eEdit.deleteContents();
 			eEdit.insertNode(eEdit.createContextualFragment(strTable));
 		} else if(re2.exec(uAgent) != null) {
 			//IE8
@@ -1298,7 +1298,7 @@ function color_click(color)
 	if(selectionObj.m_selection != null)
 	{
 		selectionObj.GetSelection();
-	}		
+	}
 
 	switch (which_color) {
 		case ("ed_fontcolor") : {
@@ -1314,7 +1314,7 @@ function color_click(color)
 			break;
 		}
 	}
-		
+
 	which_color = "";
 	close_div(ed_colordiv);
 }

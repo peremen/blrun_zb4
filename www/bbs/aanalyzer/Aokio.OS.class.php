@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
 // +----------------------------------------------------------------------+
 // +----------------------------------------------------------------------+
 // | Authors: Aokio <st.elmo@gmail.com>                                 |
@@ -12,7 +12,7 @@
  *
  * @package  Aokio_Analyzer_OS
  * @category Networking
- * @author   Aokio <st.elmo@gmail.com>   
+ * @author   Aokio <st.elmo@gmail.com>
  * @access   public
  * @version  $Revision: 0.1 $
  */
@@ -75,10 +75,10 @@ class Aokio_Analyzer_OS{
 		}elseif(preg_match("#mac#",$agent)){
 			$os_category = "Mac";
 			$this->_setOSMacVersion();
-		}elseif(	preg_match("#sunos#",$agent) || 
-//					preg_match("#linux#",$agent) || 
-					preg_match("#openbsd#",$agent) || 
-					preg_match("#freebsd#",$agent) || 
+		}elseif(	preg_match("#sunos#",$agent) ||
+//					preg_match("#linux#",$agent) ||
+					preg_match("#openbsd#",$agent) ||
+					preg_match("#freebsd#",$agent) ||
 					preg_match("#aix#",$agent) ||
 					preg_match("#hp-ux#",$agent) ||
 					preg_match("#netbsd#",$agent) ||
@@ -102,7 +102,7 @@ class Aokio_Analyzer_OS{
 
 	function _setOSWindowsVersion(){
 		$agent = $this->useragent;
-		
+
 		if(preg_match("#windows 3.1#",$agent) || preg_match("#win16#",$agent) || preg_match("#windows 16-bit#",$agent)){
 			//(including Windows NT 3.x)
 			$os_version = "3.1";
@@ -144,7 +144,7 @@ class Aokio_Analyzer_OS{
 			//Windows CE and Windows Mobile
 			$os_version = "CE";
 		}elseif(preg_match("#winnt#",$agent)){
-			$os_version = "NT 3.X";		// This only applies to earlier versions of Netscape. 
+			$os_version = "NT 3.X";		// This only applies to earlier versions of Netscape.
 		}elseif(preg_match("#windows nt 6.1#",$agent)){
 			$os_version = "7";
 		}elseif(preg_match("#windows nt 6.2#",$agent)){
@@ -168,7 +168,7 @@ class Aokio_Analyzer_OS{
 			$os_sp_info = "ServicePack2 ";
 		}
 		$this->os_sp_info =$os_sp_info;
-	
+
 		$os_net_frame_info ="";
 		$this->os_net_frame_version_info = array();
 		if(preg_match("#net clr#",$agent)){
@@ -184,7 +184,7 @@ class Aokio_Analyzer_OS{
 			}
 		}
 		$this->os_net_frame_info =$os_net_frame_info;
-		
+
 		if(preg_match("#tablet pc#",$agent)){
 			$this->tablet_info = "Tablet services are installed";
 			//TODO version info
@@ -201,7 +201,7 @@ class Aokio_Analyzer_OS{
 		if(preg_match("#wow64#",$agent)){
 			$this->processor_info = "A 32-bit version of Internet Explorer is running on a 64-bit processor.";
 		}
-		
+
 	}
 
 

@@ -1,6 +1,6 @@
-<? 
+<?
 if(preg_match("#:\/\/#i",$dir)||preg_match("#\.\.#i",$dir)||preg_match("#^\/#i",$dir)||preg_match("#data:;#i",$dir)||preg_match("#:#i",$dir)) $dir="./";
-include "$dir/value.php3"; 
+include "$dir/value.php3";
 ?>
 
 <br><br><br>

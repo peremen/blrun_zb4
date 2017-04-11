@@ -1,3 +1,3 @@
 <?
-include $dir."/".$type."/list_foot.php";	
+include $dir."/".$type."/list_foot.php";
 ?>

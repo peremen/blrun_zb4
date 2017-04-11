@@ -1,5 +1,5 @@
-<!DOCTYPE html>  
-<html>  
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width">
@@ -45,7 +45,7 @@ if (!$doc = domxml_open_mem($xml)) {
 		<table border=0 cellspacing=2 cellpadding=4 width=100% align=center bgcolor=gray style=table-layout:fixed>
 		<?
 		$children = $item->child_nodes();
-		foreach ($children as $child) { 
+		foreach ($children as $child) {
 			$name = $child->node_name();
 			if ($name != "#text") {
 				if($name=="title") {
@@ -87,7 +87,7 @@ if (!$doc = domxml_open_mem($xml)) {
 	function zb_img_check(){
 		var zb_main_table_width = document.zb_get_table_width.width - 50;
 		var zb_target_resize_num = document.zb_target_resize.length;
-		for(i=0;i<zb_target_resize_num;i++){ 
+		for(i=0;i<zb_target_resize_num;i++){
 			if(document.zb_target_resize[i].width > zb_main_table_width) {
 				document.zb_target_resize[i].height = document.zb_target_resize[i].height * zb_main_table_width / document.zb_target_resize[i].width;
 				document.zb_target_resize[i].width = zb_main_table_width;

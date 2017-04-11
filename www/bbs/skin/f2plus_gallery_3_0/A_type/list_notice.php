@@ -11,12 +11,12 @@ else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$commen
 
 include "list_image_info.php";
 
-unset($_m);	
-unset($line);	
-$_m = explode("\n",strip_tags($data['memo']));	
-for($i=0;$i<count($_m);$i++) 
+unset($_m);
+unset($line);
+$_m = explode("\n",strip_tags($data['memo']));
+for($i=0;$i<count($_m);$i++)
 if(trim($_m[$i])) $line[] = $_m[$i];
-$tmp_memo=$line[0]."".$line[1]."".$line[2]."".$line[3]."".$line[4]."".$line[5]."".$line[6]."".$line[7]."".$line[8]."".$line[9]."".$line[10];// 이부분이 미리나오는 내용 입니다. 라인 1,2,3 적용	if($line[11]) $tmp_memo.="..."; 
+$tmp_memo=$line[0]."".$line[1]."".$line[2]."".$line[3]."".$line[4]."".$line[5]."".$line[6]."".$line[7]."".$line[8]."".$line[9]."".$line[10];// 이부분이 미리나오는 내용 입니다. 라인 1,2,3 적용	if($line[11]) $tmp_memo.="...";
 $_name1=explode("|||",$tmp_memo);
 $_name1[0] = love_convert($_name1[0]);
 
@@ -33,7 +33,7 @@ $m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no
 			<col width=100%></col><?if($hide_name=="off"){?><? if($browser=="1"){ ?><col width=100></col><? } ?><?}?><?if($hide_date=="off"){?><? if($browser=="1"){ ?><col width=65></col><? } ?><?}?><?if($hide_vote=="off"){?><? if($browser=="1"){ ?><col width=35></col><? } ?><?}?><?if($hide_hit=="off"){?><? if($browser=="1"){ ?><col width=50></col><? } ?><?}?>
 
 			<tr>
-				<td align=left nowrap><div style="overflow:hidden"><?=$hide_cart_start?><input type=checkbox name=cart value="<?=$data[no]?>"><?=$hide_cart_end?><img src=<?=$dir?>/images/notice_fr2.gif align=absmiddle border=0>&nbsp;<?=$insert?><B><?=$subject?></B><?=$comment_new?></div></td> 
+				<td align=left nowrap><div style="overflow:hidden"><?=$hide_cart_start?><input type=checkbox name=cart value="<?=$data[no]?>"><?=$hide_cart_end?><img src=<?=$dir?>/images/notice_fr2.gif align=absmiddle border=0>&nbsp;<?=$insert?><B><?=$subject?></B><?=$comment_new?></div></td>
 				<?if($hide_name=="off"){?><? if($browser=="1"){ ?><td nowrap align=center><div style="overflow:hidden"><nobr><?=$face_image?><?=$name?></nobr></div></td><? } ?><?}?>
 
 				<?if($hide_date=="off"){?><? if($browser=="1"){ ?><td nowrap class=list_eng align=center><?=$reg_date?></td><? } ?><?}?>

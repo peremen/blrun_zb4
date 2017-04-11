@@ -23,7 +23,7 @@
 <!--작성일--><? if($browser=="1"){ ?><col width=65></col><? } ?>
 <? if($browser=="1"){ ?>
 <!--조회--><col width=35></col>
-<!--추천--><col width=35></col> 
+<!--추천--><col width=35></col>
 <? } ?>
 
 <tr>

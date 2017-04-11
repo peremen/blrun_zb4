@@ -137,7 +137,7 @@ class Net_UserAgent_Mobile_EZweb extends Net_UserAgent_Mobile_Common
                 return true;
             }
         }
-        
+
         return false;
     }
 

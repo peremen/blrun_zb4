@@ -15,7 +15,7 @@ if(!$connect) $connect=dbConn();
 $setup=get_table_attrib($id);
 
 // 설정되지 않은 게시판
-if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성후 사용하십시요","window.close()"); 
+if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성후 사용하십시요","window.close()");
 
 // 현재 게시판의 그룹의 설정 읽어 오기
 $group=group_info($setup[group_no]);
@@ -103,7 +103,7 @@ for($i=0;$i<count($temp);$i++) {
 			$temp[$i+1]=str_replace("my_lt_ek","&amp;lt;",$temp[$i+1]); // &lt 사용!
 			$temp[$i+1]=str_replace("my_gt_ek","&amp;gt;",$temp[$i+1]); // &gt 사용!
 			$temp[$i+1]=str_replace("<","&lt;",$temp[$i+1]);
-			
+
 			$temp[$i+2]="</pre>";
 			$i+=2;
 		}
@@ -224,7 +224,7 @@ $memo=str_replace("<","&lt;",str_replace("&","&amp;",$memo));
 	function zb_img_check(){
 		var zb_main_table_width = document.zb_get_table_width.width*(100-4)/100;
 		var zb_target_resize_num = document.zb_target_resize.length;
-		for(i=0;i<zb_target_resize_num;i++){ 
+		for(i=0;i<zb_target_resize_num;i++){
 			if(document.zb_target_resize[i].width > zb_main_table_width) {
 				document.zb_target_resize[i].height = document.zb_target_resize[i].height * zb_main_table_width / document.zb_target_resize[i].width;
 				document.zb_target_resize[i].width = zb_main_table_width;

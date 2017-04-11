@@ -1,5 +1,5 @@
 <?php
-if (!empty($_SERVER['SERVER_SOFTWARE']) && strstr($_SERVER['SERVER_SOFTWARE'], 'Apache/2')) 
+if (!empty($_SERVER['SERVER_SOFTWARE']) && strstr($_SERVER['SERVER_SOFTWARE'], 'Apache/2'))
 {
 header ('Cache-Control: no-cache, pre-check=0, post-check=0, max-age=0');
 header ('Pragma: no-cache');
@@ -14,15 +14,15 @@ header ('Last-Modified: '.$lastBuildDate.'');
 header ('Content-Type: text/xml; charset=EUC-KR');
 $lastBuildDate = date('D, d M Y H:i:s').' +0900';
 if (preg_match("/:\/\//i",$_zb_path) || (preg_match("/\.\./i",$_zb_path))) $_zb_path="";
-/************************************* 
-* 만든이:토토루(http://www.rwapm.server.ne.kr) 
-* 아래 설정을 본인의 홈에 맞게 수정하세요. 
-* 통합추출은.. 
-* http://홈주소/zero_rss.php 
-* 
-* 개별추출은.. 
-* http://홈주소/zero_rss.php?id=게시판아이디 
-*************************************/ 
+/*************************************
+* 만든이:토토루(http://www.rwapm.server.ne.kr)
+* 아래 설정을 본인의 홈에 맞게 수정하세요.
+* 통합추출은..
+* http://홈주소/zero_rss.php
+*
+* 개별추출은..
+* http://홈주소/zero_rss.php?id=게시판아이디
+*************************************/
 //제로보드 주소 끝에 /을 붙이세요.
 //(예제:http://test.com/bbs/)
 include_once "../bbs/include/get_url.php";
@@ -36,13 +36,13 @@ $_zb_path = str_replace("/rss/","",$main_dir)."/bbs/";
 //홈 타이틀(예:우리집 등등,,,)
 $site_names = "네티즌 세상을 위하여...";
 
-//홈주제(예:나만의 블로그세상..등등) 
+//홈주제(예:나만의 블로그세상..등등)
 $site_names1 = "네티즌칼럼에 오신 것을 환영합니다! 우리 국민 모두가 주인인 세상, 우리 네티즌 모두가 참여하는 진정한 참여민주주의를 실현해 나갑시다. 이곳은 이런 모토에 관심있는 분들, 또 거기에 열성적으로 뜻을 같이할 분들을 위한 공간입니다.";
 
-//홈 주소(예:http://test.com/) 
+//홈 주소(예:http://test.com/)
 $home = substr(zbUrl(),0,strpos(zbUrl(),"/bbs/"))."/";
 
-// 이건수정하지 않아도됨. 
+// 이건수정하지 않아도됨.
 include $_zb_path."_head.php";
 
 // 추출개수를 적어주세요.
@@ -54,7 +54,7 @@ $nos = "100";
 $banner_images = str_replace("www.","",substr(zbUrl(),0,strpos(zbUrl(),"/bbs/")))."/rss/banner1.jpg";
 // 배너의 가로사이즈
 $width_w = "197";
-// 배너의 세로사이즈 
+// 배너의 세로사이즈
 $height_h = "141";
 $site_names2 = "안녕하세요 이윤찬입니다. 신뢰가 넘치는 네트워크 세상, 우리 네티즌들이 만들어나가야 합니다.";
 
@@ -95,13 +95,13 @@ $boardss = $boardzero;
 $bbss = explode("|", $boardss);}
 $li = 0;
 
-for ($i = 0; $i < sizeof($bbss); $i++) 
+for ($i = 0; $i < sizeof($bbss); $i++)
 {
 $boards = "zetyx_board_".$bbss[$i];
 $boards_category = "zetyx_board_category_".$bbss[$i];
 $query = "select $boards.no,$boards.name,$boards.subject,$boards.file_name1,$boards.file_name2,$boards.ismember,$boards.memo,$boards.use_html,$boards.total_comment,$boards.category,$boards.reg_date,$boards_category.name as category_name from $boards,$boards_category where $boards.category=$boards_category.no and $boards.is_secret=0 order by $boards.reg_date desc limit $nos";
 $result = mysql_query($query);
-while ($data_board = mysql_fetch_array($result)) 
+while ($data_board = mysql_fetch_array($result))
 {
 $bbs_tmp[] = $bbss[$i];
 $subject[] = str_replace("\"","&quot;",$data_board[subject]);
@@ -186,12 +186,12 @@ $sf2 = @filesize($file_name2[$i]);
 if(preg_match("#(jpg|jpeg)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"image/jpeg\" />";
 elseif(preg_match("#(gif)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"image/gif\" />";
 elseif(preg_match("#(png)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"image/png\" />";
-elseif(preg_match("#(bmp)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"image/bmp\" />"; 
-elseif(preg_match("#(zip|rar|alz)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"application/zip\" />"; 
-elseif(preg_match("#(exe|hwp|psd|fla)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"application/octet-stream\" />"; 
-elseif(preg_match("#(pdf)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"application/pdf\" />"; 
-elseif(preg_match("#(ppt)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"application/vnd.ms-powerpoint\" />"; 
-elseif(preg_match("#(txt)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"text/plain\" />"; 
+elseif(preg_match("#(bmp)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"image/bmp\" />";
+elseif(preg_match("#(zip|rar|alz)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"application/zip\" />";
+elseif(preg_match("#(exe|hwp|psd|fla)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"application/octet-stream\" />";
+elseif(preg_match("#(pdf)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"application/pdf\" />";
+elseif(preg_match("#(ppt)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"application/vnd.ms-powerpoint\" />";
+elseif(preg_match("#(txt)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"text/plain\" />";
 elseif(preg_match("#(xls)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"application/vnd.ms-excel\" />";
 elseif(preg_match("#(swf)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"application/x-shockwave-flash\" />";
 elseif(preg_match("#(asf|wma|wmv)$#i",$file1_s)) $enclosure ="<enclosure url=\"".$_zb_url.$file_name100."\" length=\"".$sf1."\" type=\"video/x-ms-asf\" />";
@@ -220,7 +220,7 @@ if($use_htmls[$i]==0) $memoss = "".$file_name11.$file_name22.$memos.""; else $me
 if($grant_view[$i]<$member[level]&&!$is_admin) {
 $memoss="내용보기 권한이 없습니다.로그인 해주세요.";}
 setlocale (LC_TIME,"ko");
-$name_sq = "<br /><br />작성자 : ".$name[$i]."<br />작성일자: ".strftime("%Y년 %m월 %d일 %A %p %I:%M:%S",$datetm[$i]).""; 
+$name_sq = "<br /><br />작성자 : ".$name[$i]."<br />작성일자: ".strftime("%Y년 %m월 %d일 %A %p %I:%M:%S",$datetm[$i])."";
 ?>
 <item>
 <title><?=$name[$i]?> - <?=del_html(str_replace("\"","&quot;",$subject[$i]))?><?=$comments?></title>

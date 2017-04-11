@@ -25,7 +25,7 @@ if($setup[group_no]) $group_no=$setup[group_no];
 if($password){
 	if($password) {
 		$temp=mysql_fetch_array(mysql_query("select password('$password')"));
-		$password=$temp[0];   
+		$password=$temp[0];
 	}
 }
 

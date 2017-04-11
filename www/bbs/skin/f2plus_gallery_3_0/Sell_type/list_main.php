@@ -11,12 +11,12 @@ elseif(time()-$last_comment_time<60*60*48) $comment_new = "&nbsp;<font color=blu
 else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$comment_num."</font>";
 
 $m_memo = explode("|||",$data[memo]);
-$_name1 = $m_memo[0];  
-$_name2 = $m_memo[1];  
-$_name3 = $m_memo[2]; 
-$_name4 = $m_memo[3]; 
+$_name1 = $m_memo[0];
+$_name2 = $m_memo[1];
+$_name3 = $m_memo[2];
+$_name4 = $m_memo[3];
 $_name5 = $m_memo[4];
-$_name6 = $m_memo[5]; 
+$_name6 = $m_memo[5];
 $_name7 = $m_memo[6];
 $_name8 = $m_memo[7];
 $_name9 = $m_memo[8];

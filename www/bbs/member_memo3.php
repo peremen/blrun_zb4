@@ -31,7 +31,7 @@ if($status) {
 		$_str = str_replace("<?php die('Access Denied');/*","",$_str);
 		$_str = str_replace("*/?>","",$_str);
 		$_connector = explode(":",$_str);
-		
+
 		$total = count($_connector);
 	}
 } else $total=$total_member;
@@ -65,7 +65,7 @@ if(!$status) {
 
 }
 
-// 페이지 계산  $print_page 라는 변수에 저장 
+// 페이지 계산  $print_page 라는 변수에 저장
 $print_page="";
 $show_page_num=10;
 $start_page=(int)(($page-1)/$show_page_num)*$show_page_num;
@@ -148,13 +148,13 @@ head("bgcolor=white");
 $loop_number=$total-($page-1)*$page_num;
 while($data=mysql_fetch_array($result)) {
 	$name=stripslashes($data[name]);
-	
+
 	$temp_name = get_private_icon($data[no], "2");
 	if($temp_name) $name="<img src='$temp_name' border=0 align=absmiddle>";
 	$temp_name = get_private_icon($data[no], "1");
 	if($temp_name) $name="<img src='$temp_name' border=0 align=absmiddle>&nbsp;".$name;
 
-	
+
 	$user_id=stripslashes($data[user_id]);
 	//$check=mysql_fetch_array(mysql_query("select count(*) from $now_table where user_id='$data[user_id]'"));
 	if($check[0]) $stat="<img src=images/memo_online.gif>";
@@ -194,7 +194,7 @@ while($data=mysql_fetch_array($result)) {
           <td><a href=<?=$PHP_SELF?>?page=<?=$page?>><img src=images/memo_cancel.gif border=0></a></td>
         </tr>
         </table>
-  
+
       </td>
     </tr>
     </form>

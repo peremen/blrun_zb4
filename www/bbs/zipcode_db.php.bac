@@ -33,7 +33,7 @@ while (!feof ($fd))
 		$tmp=explode("\n",$data);
 		mysql_query($tmp[0]) or die(mysql_error());
 		$i++;
-		
+
 		if(($i % 1000) == 0)
 		{
 			echo "<b>{$i}</b> 건을 입력하였습니다.<br />";

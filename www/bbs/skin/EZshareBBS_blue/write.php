@@ -29,7 +29,7 @@ function zb_formresize(obj) {
 <?=$hide_start?>
 
 <tr>
-  <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_name.gif></td></tr></table></td> 
+  <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_name.gif></td></tr></table></td>
   <td align=left><input type=text id=name name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()"></td>
 </tr>
 <tr>

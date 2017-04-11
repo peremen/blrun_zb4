@@ -20,6 +20,6 @@
 </table>
 <br>
 <center>
-<input type=image border=0 src=<?=$dir?>/btn_confirm.gif onfocus=blur()> 
+<input type=image border=0 src=<?=$dir?>/btn_confirm.gif onfocus=blur()>
 <a href=# onclick=history.go(-1) onfocus=blur()><img src=<?=$dir?>/btn_back.gif border=0></a>
 </center>

@@ -32,7 +32,7 @@
          <td class="topRecordItems" width="371">
 		<table width="371" border="0" cellpadding="0" cellspacing="2">
 	       <tr >
-		   <td width="120"> 
+		   <td width="120">
 				<table width="120" border="0" cellpadding="0" cellspacing="2">
 				   <tr >
 				 <td class="topRecordItems" width="30">Page  </td>
@@ -99,7 +99,7 @@
     <td width="12"><img src="images/spacer.gif" width="1" height="1" /></td>
     <td>AokioAnalyzer : <?php echo $this->_tpl_vars['common_page_view_info']['page_name']; ?>
 
-    
+
     <?php if ($this->_tpl_vars['mode_flag'] == 'month'): ?>>>
     <?php echo $this->_tpl_vars['this_year']; ?>
 

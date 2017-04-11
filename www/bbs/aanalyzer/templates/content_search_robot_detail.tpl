@@ -21,7 +21,7 @@
 <td class="allAnalysisItem" width="80">Nation</td>
 <td class="allAnalysisRecords" width="220">&nbsp;<img src="images/flags/{if $analysis_info[report_view].nation_code == null}aokio{else}{$analysis_info[report_view].nation_code}{/if}.gif" />&nbsp;<a href="http://en.wikipedia.org/wiki/{$analysis_info[report_view].nation}" target="_blank">{$analysis_info[report_view].nation_trans}</td>
 </tr>
-<tr class="osAnalysis" height="15">		
+<tr class="osAnalysis" height="15">
 <td class="allAnalysisItem" width="80">Access Time</td>
 <td class="allAnalysisRecords" width="220">&nbsp;{$analysis_info[report_view].regtime}</td>
 <td width="80"></td>
@@ -49,7 +49,7 @@
       <td background="images/detail_info_top_right.gif" width="6"><img src="images/spacer.gif" width="6" height="17" /></td>
     </tr>
 </table>
-    
+
 <table width="613" align="center" border="0" cellspacing="0" cellpadding="0">
     <tr >
 	<td class="analysisPagerPrev" width="13"></td>

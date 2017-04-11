@@ -9,7 +9,7 @@ require_once "Aokio.Message.class.php";
 
 //TODO config.php 가 있는지 없는지 확인
 // 없으면 없다는 메시지 출력, 인스톨 메시지 출력.
-// AokioCommonManager::checkDBConfigFile();  
+// AokioCommonManager::checkDBConfigFile();
 //이걸로 공통화 하자...^^
 
 
@@ -49,7 +49,7 @@ if($aokio_cookie->isExistAdminCookieInfo() && $aokio_cookie->checkAdminCookieInf
 		}
 	}
 }
-// 이미지 랜덤으로 돌리고 싶어..-,.- 
+// 이미지 랜덤으로 돌리고 싶어..-,.-
 // TODO 언어별로 이미지 다르게 지정
 // 사인인 , 로그인 등등 다름
 $logo_image = "login_top.gif";

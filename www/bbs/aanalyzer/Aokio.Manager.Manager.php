@@ -1,7 +1,7 @@
 <?php
 require_once 'Aokio.Manager.Dao.php';
 
-class AokioManagerManager{	
+class AokioManagerManager{
 
 	function dropTargetInfos($target){
 		$man_dao = new AokioManagerDao();
@@ -31,7 +31,7 @@ class AokioManagerManager{
 		$db = $man_dao -> getConnection();
 		//각 테이블에서 삭제..
 		$man_dao ->truncateTargetRobotTable($target,$db);
-		$man_dao ->truncateTargetAnalyzeTable($target,$db);		
+		$man_dao ->truncateTargetAnalyzeTable($target,$db);
 		$man_dao ->deleteTargetBrowserLogInfos($target,$db);
 //		$man_dao ->deleteTargetCityLogInfos($target,$db);
 		$man_dao ->initiateTargetCofigInfos($target,$db);
@@ -43,7 +43,7 @@ class AokioManagerManager{
 		$man_dao ->deleteTargetRobotLogInfos($target,$db);
 		$man_dao ->deleteTargetTimeLogInfos($target,$db);
 		$man_dao ->deleteTargetWeekLogInfos($target,$db);
-		$man_dao ->insertInitialWeekRecord($target,$db);		
+		$man_dao ->insertInitialWeekRecord($target,$db);
 		$man_dao ->deleteTargetScreensizeLogInfos($target,$db);
 		$man_dao ->deleteTargetResolutionLogInfos($target,$db);
 		$man_dao ->deleteTargetSearchKeywordsLogInfos($target,$db);

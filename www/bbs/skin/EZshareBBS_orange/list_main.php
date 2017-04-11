@@ -21,8 +21,8 @@ else $comment_new = "&nbsp;<font class=zv3_comment style='font-size:8pt;'>".$com
 <!--게시물번호-->
   <? if($browser=="1"){ ?><td class=zv3_small height=25><?=$number?></td><? } ?>
 
-<!--게시물아이콘, 카테고리,제목, 답변글수-->    
-  <td align=left nowrap='nowrap' <?=$td_bg?>><div style="overflow:hidden"><?=$insert?><?=$icon?><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?><?=$comment_new?><?=$new?></div></td> 
+<!--게시물아이콘, 카테고리,제목, 답변글수-->
+  <td align=left nowrap='nowrap' <?=$td_bg?>><div style="overflow:hidden"><?=$insert?><?=$icon?><?=$hide_category_start?>[<?=$category_name?>] <?=$hide_category_end?><?=$subject?><?=$comment_new?><?=$new?></div></td>
 <!--작성자-->
   <? if($browser=="1"){ ?><td nowrap='nowrap'><div style="overflow:hidden"><?=$face_image?>&nbsp;<?=$name?></div></td><? } ?>
 

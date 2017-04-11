@@ -16,7 +16,7 @@ class  AokioSmarty extends Smarty {
 	function setInitialEnvironments($config){
 		$appli_name = $config->application_name." ".$config->version."  Since  ".$config->since;
 		$my_nick = $config->my_nick[array_rand($config->my_nick)];
-		
+
 		$this->assign("html_title",					$config->code_name);
 		$this->assign("application_name_version",	$appli_name);
 		$this->assign("encoding",					$config->encoding);

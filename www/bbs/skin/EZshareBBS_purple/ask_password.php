@@ -25,7 +25,7 @@ if(!$member[no]) {
 ?>
 <tr height=40>
   <td align=center>
-    <img src=<?=$dir?>/w_password.gif border=0 valign=absmiddle><?=$input_password?> 
+    <img src=<?=$dir?>/w_password.gif border=0 valign=absmiddle><?=$input_password?>
   </td>
 </tr>
 <?

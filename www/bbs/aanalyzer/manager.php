@@ -61,7 +61,7 @@ if($aokio_cookie->isExistAdminCookieInfo() && $aokio_cookie->checkAdminCookieInf
 		}
 	}
 //	$manager_config_flag = $_REQUEST['language'];
-	
+
 	if(isset($_REQUEST['language']) && $_REQUEST['language'] != null){
 		$manager_config_flag = $_REQUEST['language'];
 		$language	= $_REQUEST['language'];
@@ -83,12 +83,12 @@ if($aokio_cookie->isExistAdminCookieInfo() && $aokio_cookie->checkAdminCookieInf
 
 
 //		}else{
-		
+
 			$manager_config_infos = array(	'language' => $language,
 											'menu_type' => $menu_type,
 									);
 			AokioManagerManager::updateAokioAnalyzerConfig($manager_config_infos);
-		
+
 //		}
 		$up_config = new Aokio_Config();
 		$smarty->setInitialEnvironments($up_config);
@@ -118,7 +118,7 @@ if($aokio_cookie->isExistAdminCookieInfo() && $aokio_cookie->checkAdminCookieInf
 	$smarty->assign("language", $conf_lang);
 	$smarty->assign("menu_type",$conf_menu_type);
 	$smarty->display('manager.tpl');
-	
+
 }else{
 	//로그인 화면으로
 	AokioCommonManager::redirectPage("login.php");

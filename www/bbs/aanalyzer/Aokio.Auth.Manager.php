@@ -9,7 +9,7 @@ class AokioAuthManager{
 	 *
 	 * @return array
 	 */
-	function checkAdmin($user_info){		
+	function checkAdmin($user_info){
 		$auth_dao = new AokioAuthDao();
 		$db = $auth_dao -> getConnection();
 
@@ -28,7 +28,7 @@ class AokioAuthManager{
 	 * @return array
 	 */
 
-	function getAdminInfo(){		
+	function getAdminInfo(){
 		$auth_dao = new AokioAuthDao();
 		$db = $auth_dao -> getConnection();
 		$admin_info = $auth_dao ->getAdminInfo($db);
@@ -42,10 +42,10 @@ class AokioAuthManager{
 	 *
 	 * @return array
 	 */
-	function insertAdmin($user_info){		
+	function insertAdmin($user_info){
 		$auth_dao = new AokioAuthDao();
 		$db = $auth_dao -> getConnection();
-		
+
 		$auth_dao ->insertAdmin($user_info,$db);
 		$auth_dao->closeConnection($db,true);
 	}
@@ -64,9 +64,9 @@ class AokioAuthManager{
 	}
 
 	function checkAccessPermission($target_conf_info,$mode){
-		// 먼저 접근권한 전체 확인후 전체에대해 불허 상태이면 
+		// 먼저 접근권한 전체 확인후 전체에대해 불허 상태이면
 		// 에러 보냄
-		// 전체 불허가 아니면 
+		// 전체 불허가 아니면
 		// 모드와 접근권한 을 확인 후 true나 false 를 보냄
 			if(array_search($mode,$target_conf_info)){
 				return true;

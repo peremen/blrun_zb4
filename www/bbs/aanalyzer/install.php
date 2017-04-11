@@ -95,11 +95,11 @@ if(!isset( $_REQUEST['install_step']) || $_REQUEST['install_step']== null  ){
 				$smarty->assign("install_messages", $install_messages);
 				$smarty->assign("req", $req_array);
 			} else {
-				
+
 				$path = dirname(realpath(__FILE__));
 				//컨넥트해봐서 컨넥트가 가능한가 어떤가...
 				//에러면...되돌리기...
-				
+
 				if(!AokioInstallManager::checkConnectTest($req_array)){
 
 					$install_step = 4;
@@ -144,7 +144,7 @@ if(!isset( $_REQUEST['install_step']) || $_REQUEST['install_step']== null  ){
 				$error_message = $install_messages['error_messages'];
 				$install_messages = $install_messages['administrator_config'];
 				$smarty->assign("install_messages", $install_messages);
-				
+
 				$smarty->assign("error_message", $error_message);
 				$admin_input_is_no_flag = true;
 				$smarty->assign("admin_input_is_no_flag", $admin_input_is_no_flag);
@@ -155,11 +155,11 @@ if(!isset( $_REQUEST['install_step']) || $_REQUEST['install_step']== null  ){
 				$error_message = $install_messages['error_messages'];
 				$install_messages = $install_messages['administrator_config'];
 				$smarty->assign("install_messages", $install_messages);
-				
+
 				$smarty->assign("error_message", $error_message);
 				$admin_input_is_wrong_flag = true;
 				$smarty->assign("admin_input_is_wrong_flag", $admin_input_is_wrong_flag);
-				
+
 			}else{
 				$install_step = 6;
 				$admin_info = array($_REQUEST['adminid'],$_REQUEST['adminpassword'],$sel_lang);
@@ -169,7 +169,7 @@ if(!isset( $_REQUEST['install_step']) || $_REQUEST['install_step']== null  ){
 				$is_initiated_flag = false;
 				// 초기 필요 테이블 생성
 				if(AokioInstallManager::isInitiatedApplication()){
-					
+
 					$smarty->assign("error_message", $error_message);
 					$is_initiated_flag = true;
 					$smarty->assign("is_initiated_flag", $is_initiated_flag);

@@ -81,7 +81,7 @@ if($keyword&&$s_que)
 		$result=mysql_query("select * from $t_board"."_$table_name $s_que", $connect) or error(mysql_error());
 
 		$cnt1 = 0; $cnt2 = 0; // 게시판에서 삭제할 레코드 갯수 카운트
-		
+
 		while($data=mysql_fetch_array($result))
 		{
 			if(!$data[child]) // 답글이 없을때;;

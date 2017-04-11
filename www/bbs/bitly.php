@@ -34,7 +34,7 @@ if($flag != ok) {
 ' Function    : fc_chk_byte(aro_name)
 ' Description : 입력한 글자수를 체크
 ' Argument    : Object Name(글자수를 제한할 컨트롤)
-' Return      : 
+' Return      :
 ' ------------------------------------------------------------------
 */
 function fc_chk_byte(aro_name,ari_max)
@@ -75,16 +75,16 @@ function fc_chk_byte(aro_name,ari_max)
 		 li_len = li_len + 1;
 	  }
    }
-   
+
    // 전체길이를 초과하면
    if(li_gap > li_max)
    {
 	  alert( li_max + " 글자를 초과 입력할수 없습니다. \n 초과된 내용은 자동으로 삭제 됩니다. ");
 	  ls_str2 = ls_str.substr(0, li_len);
 	  aro_name.value = ls_str2;
-	  
+
    }
-   aro_name.focus();   
+   aro_name.focus();
 }
 
 </script>

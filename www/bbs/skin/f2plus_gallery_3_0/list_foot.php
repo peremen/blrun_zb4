@@ -1,5 +1,5 @@
 <?
-include $dir."/".$type."/list_foot.php";	
+include $dir."/".$type."/list_foot.php";
 
 if(!preg_match("/Zeroboard/i",$a_cart)) $a_cart = str_replace(">","><font class=list_eng>",$a_cart)."";
 if(!preg_match("/Zeroboard/i",$delete_all)) $a_delete_all = str_replace(">","><font class=list_eng>",$a_delete_all)."";
@@ -55,7 +55,7 @@ $print_page = str_replace("이전 검색","<font class=list_han>계속 검색",$print_pa
 				<a href="javascript:OnOff('sm')" onfocus='blur()'><img src='<?=$dir?>/comment_<?=$sm?>.gif' border='0' name='sm'></a>
 			</td>
 			<td valign="middle"><input type=text name=keyword value="<?=$keyword?>" size=15 class='input' style='width:95; text-align:center;'></td>
-			<td><input type=image src=<?=$dir?>/images/bt_search.gif border=0></td>			
+			<td><input type=image src=<?=$dir?>/images/bt_search.gif border=0></td>
 		</tr>
 		</form>
 		</table>

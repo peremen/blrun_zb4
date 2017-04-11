@@ -1,4 +1,4 @@
-<?  
+<?
 // 카테고리 수정 //////////////////////////////////////////////////////////////////////
 $table_data=mysql_fetch_array(mysql_query("select name from $admin_table where no='$no'"));
 $category_data=mysql_fetch_array(mysql_query("select * from $t_category"."_$table_data[name] where no='$category_no'"));

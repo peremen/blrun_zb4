@@ -2,9 +2,9 @@
 require_once 'Aokio.Dao.class.php';
 
 class AokioAnalyzeParentDao extends AokioDao{
-	
+
 	//Constructor
-	function AokioAnalyzeParentDao(){	
+	function AokioAnalyzeParentDao(){
 		parent::AokioDao();
 	}
 
@@ -85,7 +85,7 @@ class AokioAnalyzeParentDao extends AokioDao{
 
 	function getAokioLastInsertID($db){
 		$last_post_id_sql = "select LAST_INSERT_ID()";
-		$result = $this ->getAokioInfo($last_post_id_sql ,false,$db);	
+		$result = $this ->getAokioInfo($last_post_id_sql ,false,$db);
 		return $result[0] ;
 	}
 

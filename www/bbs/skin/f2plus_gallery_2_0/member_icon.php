@@ -4,7 +4,7 @@ function member_icon($m_data){
 
 	if($m_data[no]){                              //회원일경우
 		if($Thumbnail_icon_use=="on"){                         //회원 사진을 썸네일을 사용할 경우
-			$str=str_replace("icon/","/icon/thumbnail/",$m_data[picture]);	
+			$str=str_replace("icon/","/icon/thumbnail/",$m_data[picture]);
 			if(preg_match("#\.jpg#i",$str)) $str=str_replace(".jpg","",$str);
 			elseif(preg_match("#\.gif#i",$str)) $str=str_replace(".gif","",$str);
 

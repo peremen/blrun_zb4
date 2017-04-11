@@ -43,14 +43,14 @@ head(" bgcolor=444444 ");
 ?>
 
 <table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#000000" height=100%>
-<tr bgcolor="#FFFFFF"> 
+<tr bgcolor="#FFFFFF">
   <td width="195" height="64"><a href="admin.php" target="_top"><img src="images/logo.gif" width="159" height="64" border="0"></a></td>
-  <td bgcolor="#6F080A" width=100%> 
+  <td bgcolor="#6F080A" width=100%>
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0" height="64">
-    <tr> 
+    <tr>
       <td valign="top" colspan="2" align=right>
-        <img src=images/t.gif border=0 height=5><br> 
+        <img src=images/t.gif border=0 height=5><br>
 
 <? if($member[is_admin]==1) {
 	$re=mysql_fetch_array(mysql_query("SELECT target from aokio_log_config order by no desc limit 1"));
@@ -77,12 +77,12 @@ head(" bgcolor=444444 ");
 
       </td>
     </tr>
-    <tr> 
+    <tr>
       <td valign="bottom" width="180"><img src="images/admintop.gif" width="180" height="20"></td>
-      <td valign="bottom" align="right"> 
+      <td valign="bottom" align="right">
 
         <table border="0" cellspacing="0" cellpadding="0">
-        <tr> 
+        <tr>
           <td><img src="images/adminid.gif" width="100" height="24"></td>
           <td nowrap='nowrap' style="font-family:Tahoma;font-size:9pt;"><font color="#FFFFFF"><b><?=$member[user_id]?></b></font></td>
           <td><img src="images/adminlevel.gif" width="49" height="24"></td>
@@ -90,11 +90,11 @@ head(" bgcolor=444444 ");
 
 <?
 // 최고관리자일때
-if($member[is_admin]==1) 
+if($member[is_admin]==1)
 	echo "<b><font color=#ffffff>Super Administrator</font></b> <a href=$PHP_SELF?exec=view_member&exec2=modify&no=$member[no]&sid=$sid><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
 
 // 그룹관리자일때
-elseif($member[is_admin]==2) 
+elseif($member[is_admin]==2)
 	echo "<b><font color=#ffffff>Group Administrator</font></b> <a href=$PHP_SELF?exec=view_member&group_no=$member[group_no]&exec2=modify&no=$member[no]&sid=$sid><font color=#ffffff style=font-family:Tahoma;font-size:9pt;>(Edit information)</font></a>";
 
 // 게시판 관리자일때
@@ -116,10 +116,10 @@ else
 
   </td>
 </tr>
-<tr bgcolor="#FFFFFF"> 
+<tr bgcolor="#FFFFFF">
 
 <!-- 그룹을 관리하는 부분 -->
-  <td bgcolor="#3F3F3F" valign="top">  
+  <td bgcolor="#3F3F3F" valign="top">
 
 <!-- 그룹관리 -->
 
@@ -133,7 +133,7 @@ if($member[is_admin]==1) {
 	$result=mysql_query("select * from $group_table order by no ");
 ?>
     <table width=100% border=0 cellspacing=0 cellpadding=0>
-    <tr> 
+    <tr>
       <td bgcolor=#595959><img src=images/l_group.gif></td>
     </tr>
     </table>
@@ -153,7 +153,7 @@ if($member[is_admin]==1) {
 		// 그룹이름 출력
 ?>
     <table width=100% border=0 cellspacing=0 cellpadding=0>
-    <tr> 
+    <tr>
       <td height=29 background=images/gnamebg.gif align=center><img src=images/t.gif width=10 height=3><br>&nbsp;<a href=<?=$PHP_SELF?>?exec=view_group&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><font color=white><?=$b.$group_data[name]?> (<?=$group_data[no]?>)</b></font></a></td>
     </tr>
 <?
@@ -161,37 +161,37 @@ if($member[is_admin]==1) {
 		// 현재 선택된 그룹과 루핑되는 그룹과 매치될때;;
 		if($group_no==$group_data[no]) {
 ?>
-    <tr> 
+    <tr>
       <td bgcolor=#868686 style=font-family:Tahoma;font-size:9pt;padding:3px><img src=images/g_top.gif width=38 height=14><br>
         <a href=<?=$PHP_SELF?>?group_no=<?=$group_data[no]?>&exec=modify_group&sid=<?=$sid?>><img src=images/g_properties.gif border=0 alt="그룹 설정"></a>
 <?
-			if($member[is_admin]==1) 
+			if($member[is_admin]==1)
 				echo "
         <a href=$PHP_SELF?group_no=$group_data[no]&exec=del_group&sid=$sid><img src=images/g_delete.gif border=0 alt=\"그룹 삭제\"></a>
-"; 
+";
 ?>
         <img src=images/t.gif width=10 height=5><br>
         <img src=images/m_top1.gif width=51 height=14 align=absmiddle><b><font color=#FFFFFF><?=$group_data[member_num]?></font></b><img src=images/m_top2.gif width=6 height=14 align=absmiddle><br>
         <a href=<?=$PHP_SELF?>?exec=view_member&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><img src=images/m_manage.gif border=0 alt="회원 관리"></a><a href=<?=$PHP_SELF?>?exec=modify_member_join&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><img src=images/m_joinform.gif border=0 alt="가입양식 설정"></a><br>
         <img src=images/t.gif width=10 height=5><br>
-        <img src=images/w_top1.gif width=58 height=14 align=absmiddle><b><font color=#FFFFFF><?=$group_data[board_num]?></font></b><img src=images/w_top2.gif width=4 height=14 align=absmiddle> 
+        <img src=images/w_top1.gif width=58 height=14 align=absmiddle><b><font color=#FFFFFF><?=$group_data[board_num]?></font></b><img src=images/w_top2.gif width=4 height=14 align=absmiddle>
         <br>
-        <a href=<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_data[no]?>&page=<?=$page?>&page_num=<?=$page_num?>&sid=<?=$sid?>><img src=images/w_manage.gif alt="게시판 관리" border=0></a><a href=<?=$PHP_SELF?>?exec=view_board&exec2=add&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><img src=images/w_add.gif alt="게시판 추가" border=0></a> 
+        <a href=<?=$PHP_SELF?>?exec=view_board&group_no=<?=$group_data[no]?>&page=<?=$page?>&page_num=<?=$page_num?>&sid=<?=$sid?>><img src=images/w_manage.gif alt="게시판 관리" border=0></a><a href=<?=$PHP_SELF?>?exec=view_board&exec2=add&group_no=<?=$group_data[no]?>&sid=<?=$sid?>><img src=images/w_add.gif alt="게시판 추가" border=0></a>
       </td>
     </tr>
 <?
-		} 
-   
+		}
+
 		echo "
     </table>
-"; 
-	} 
-} 
+";
+	}
+}
 
 
 // 최고관리자가아닐때;;
 
-else {  
+else {
 
 	$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no=$member[group_no]"));
 ?>
@@ -224,10 +224,10 @@ else {
       </td>
     </tr>
 <?
-	} 
+	}
 	echo "
-    </table>"; 
-} 
+    </table>";
+}
 ?>
 
 <!-- 카피라이트 -->
@@ -268,10 +268,10 @@ if($member[is_admin]==1) {
 	elseif($exec=="view_group") { include "admin/admin_view_group.php"; }
 	elseif($exec=="del_group") { include "admin/admin_del_group_bac.php"; }
 	elseif($exec=="modify_member_join") { include "admin/admin_modify_member_join_bac.php"; }
-	elseif($exec=="view_member") { 
+	elseif($exec=="view_member") {
 		if($exec2=="sendmail") {include "admin/admin_sendmail.php";}
 		elseif($exec2=="modify") {include "admin/admin_modify_member_bac.php";}
-		else {include "admin/admin_view_member.php";} 
+		else {include "admin/admin_view_member.php";}
 	} elseif($exec=="view_board") {
 		if($exec2=="add") {include "admin/admin_add_board_bac.php";}
 		elseif($exec2=="modify") {include "admin/admin_modify_board_bac.php";}
@@ -287,8 +287,8 @@ if($member[is_admin]==1) {
 	if($exec=="modify_group") { include "admin/admin_modify_group_bac.php";}
 	elseif($exec=="modify_group") { include "admin/admin_modify_group_bac.php";}
 	elseif($exec=="modify_member_join") { include "admin/admin_modify_member_join_bac.php"; }
-	elseif($exec=="view_member") { 
-		if($exec2=="sendmail") {include "admin/admin_sendmail.php";} 
+	elseif($exec=="view_member") {
+		if($exec2=="sendmail") {include "admin/admin_sendmail.php";}
 		elseif($exec2=="modify") {include "admin/admin_modify_member_bac.php";}
 		else {include "admin/admin_view_member.php";}
 	} elseif($exec=="view_board") {
@@ -301,12 +301,12 @@ if($member[is_admin]==1) {
 	} else {include "admin/admin_view_group.php"; }
 	} elseif($member[board_name]) {
 		if($exec=="view_board") {
-		if($exec2=="modify") {include "admin/admin_modify_board_bac.php";}                                                                                      
-		elseif($exec2=="category") {include "admin/admin_category_bac.php";}                                                                                        
-		elseif($exec2=="modify_category") {include "admin/admin_category_modify_bac.php";}                                                                          
-		elseif($exec2=="grant") {include "admin/admin_modify_grant_bac.php";}                                                                                       
+		if($exec2=="modify") {include "admin/admin_modify_board_bac.php";}
+		elseif($exec2=="category") {include "admin/admin_category_bac.php";}
+		elseif($exec2=="modify_category") {include "admin/admin_category_modify_bac.php";}
+		elseif($exec2=="grant") {include "admin/admin_modify_grant_bac.php";}
 		else {include "admin/admin_board_list.php";}
-	} 
+	}
 
 // 게시판 관리자일때
 } elseif($member[board_name]&&exec=="view_board") {

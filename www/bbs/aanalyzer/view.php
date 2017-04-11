@@ -33,7 +33,7 @@ $smarty->setInitialEnvironments($config);
 $id = $_REQUEST['id'];
 $config->setTargetConfigurationInfos($id);
 
-// 주소창에 직접 입력으로 들어왔을때 
+// 주소창에 직접 입력으로 들어왔을때
 // 해당 id가 없을때임
 if($config->target_exist_flag==null){
 	AokioCommonManager::redirectPage(MANAGER_FILENAME);
@@ -68,7 +68,7 @@ if(!AokioAuthManager::checkAccessPermission($access_permission,$page_param['mode
 		// 접근권한이 없다는 메시지 보낼까?
 		// 전체 메뉴에 대한 접근 권한이 없다는 판단을 먼저해서 전체가 권한이 제한되어있으면
 		// 로그인으로 보내고 , 일부만 제한되어 있으면 뷰 화면은 보여주고 ...내용은 제한시킬까?
-		// 임시로그인 화면으로 
+		// 임시로그인 화면으로
 		AokioCommonManager::redirectPage(LOGIN_FILENAME);
 	}
 }else{
@@ -110,7 +110,7 @@ if(($page_param['mode'] == 18 || $page_param['mode'] == 19) && $final_analysis_i
 	$smarty->assign("order_option", $analysis_view_object->order);
 	$smarty->assign("order_type", $analysis_view_object->order_type);
 
-//	$smarty->assign("os_param", $analysis_view_object->os_param);	
+//	$smarty->assign("os_param", $analysis_view_object->os_param);
 }
 
 $smarty->assign("analysis_page", $id);

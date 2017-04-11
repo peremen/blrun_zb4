@@ -1,28 +1,28 @@
 <?php
 /**
- * Project:     
+ * Project:
  *
 
  *
  * @link http://www.aokio.com/
- * @copyright 2006- 
+ * @copyright 2006-
  * @author aokio   <st.elmo@gmail.com>
  * @package AokioAnalyzer
  */
 
 
  /**
- * @package 
+ * @package
  */
  require_once 'Aokio.Install.Dao.php';
 require_once 'Aokio.Auth.Dao.php';
 
-class AokioInstallManager{	
-	
+class AokioInstallManager{
+
 	function initiateApplication(){
 		$install_dao = new AokioInstallDao();
 		$db = $install_dao -> getConnection();
-		
+
 		$install_dao ->createAdminTable($db);
 		$install_dao ->createBrowserTable($db);
 		$install_dao ->createConfigTable($db);
@@ -50,7 +50,7 @@ class AokioInstallManager{
 		$install_dao = new AokioInstallDao();
 		$db = $install_dao -> getConnection();
 //		echo "<pre>".nl2br(print_r($target,true))."</pre>";
-		
+
 		$install_dao ->createAnalyzeTargetTable($target,$db);
 		$install_dao ->createRobotTargetTable($target,$db);
 
@@ -80,7 +80,7 @@ class AokioInstallManager{
 
 
 	function checkConnectTest($req_array){
-		$check_arr = array(	
+		$check_arr = array(
 							$req_array['db_select'],
 							$req_array['userid'],
 							$req_array['password'],

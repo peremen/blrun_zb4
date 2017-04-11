@@ -29,7 +29,7 @@ $filename="s_file_name".$filenum;
 $filepath=$data["file_name".$filenum];
 $filename=$data[$filename];
 
-header("Content-Type: application/force-download"); 
-header("Content-Disposition: attachment; filename=\"$filename\""); 
+header("Content-Type: application/force-download");
+header("Content-Disposition: attachment; filename=\"$filename\"");
 readfile("$filepath");
 ?>

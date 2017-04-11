@@ -2,7 +2,7 @@
 // 라이브러리 함수 파일 인크루드
 require $_zb_path."lib.php";
 
-if(file_exists($id."_config.php")){ 
+if(file_exists($id."_config.php")){
 	include $id."_config.php";
 }
 
@@ -87,7 +87,7 @@ if(!$is_admin&&$member[level]>$setup[grant_delete])
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
-// 글삭제일때 
+// 글삭제일때
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 if(!$s_data[child]) // 답글이 없을때;;
@@ -95,12 +95,12 @@ if(!$s_data[child]) // 답글이 없을때;;
 	mysql_query("delete from $t_board"."_$id where no='$no'") or Error1(mysql_error()); // 글삭제
 
 	// 파일삭제
-	if(preg_match("#\.(jpg|jpeg|png)$#i",$s_data[file_name1])){ 
+	if(preg_match("#\.(jpg|jpeg|png)$#i",$s_data[file_name1])){
 		@z_unlink($_zb_path."data/".$id."/thumbnail/fs_".$s_data[reg_date].".jpg");
 		@z_unlink($_zb_path."data/".$id."/thumbnail/fl_".$s_data[reg_date].".jpg");
 		@z_unlink($_zb_path."data/".$id."/thumbnail/fXL_".$s_data[reg_date].".jpg");
 	}
-	if(preg_match("#\.(jpg|jpeg|png)$#i",$s_data[file_name2])){ 
+	if(preg_match("#\.(jpg|jpeg|png)$#i",$s_data[file_name2])){
 		@z_unlink($_zb_path."data/".$id."/thumbnail/ss_".$s_data[reg_date].".jpg");
 		@z_unlink($_zb_path."data/".$id."/thumbnail/sl_".$s_data[reg_date].".jpg");
 		@z_unlink($_zb_path."data/".$id."/thumbnail/sXL_".$s_data[reg_date].".jpg");
@@ -137,7 +137,7 @@ if(!$s_data[child]) // 답글이 없을때;;
 		if($s_data[next_no]) mysql_query("update $t_board"."_$id set prev_no='$s_data[prev_no]' where prev_no='$s_data[no]'"); // 다음글이 있으면 빈자리 메꿈;;;
 	}
 	else
-	{ 
+	{
 		$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where father='$s_data[father]'"));
 		if(!$temp[0]) mysql_query("update $t_board"."_$id set child='0' where no='$s_data[father]'"); // 원본글이 있으면 원본글의 자식글을 없앰;;;
 	}

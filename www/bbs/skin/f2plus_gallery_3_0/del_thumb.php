@@ -1,6 +1,6 @@
 <?
-@extract($_GET); 
-@extract($_POST); 
+@extract($_GET);
+@extract($_POST);
 
 function rmdirAll($dir) {
 	$dirs = dir($dir);

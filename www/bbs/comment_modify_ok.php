@@ -322,7 +322,7 @@ if($flag != ok) {
 				$temp[$i+1]=str_replace("my_lt_ek","&amp;lt;",$temp[$i+1]); // &lt 사용!
 				$temp[$i+1]=str_replace("my_gt_ek","&amp;gt;",$temp[$i+1]); // &gt 사용!
 				$temp[$i+1]=str_replace("<","&lt;",$temp[$i+1]);
-				
+
 				$temp[$i+2]="</pre>";
 				$i+=2;
 			}

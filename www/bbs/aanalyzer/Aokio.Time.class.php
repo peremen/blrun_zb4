@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
 // +----------------------------------------------------------------------+
 // +----------------------------------------------------------------------+
 // | Authors: Aokio <st.elmo@gmail.com>      여시,아오키오^^    |
@@ -9,10 +9,10 @@
 
 /**
  * Utility class that analyze time information from useragent strings.
- * 
+ *
  * @package  Aokio_Analyzer_Time
- * @category 
- * @author   Aokio <st.elmo@gmail.com>   
+ * @category
+ * @author   Aokio <st.elmo@gmail.com>
  * @access   public
  * @version  $Revision: 0.1 $
  */

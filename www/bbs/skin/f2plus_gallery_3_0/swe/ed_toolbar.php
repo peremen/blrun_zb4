@@ -44,7 +44,7 @@
 			<td><a onClick='javascript:command(this,event);' id='ed_createLink' title='링크걸기' class='a_style_0'><img src='<?=$dir?>/images/edbtn/ed_createLink.gif' border='0' width='18' height='18' id='ed_createLink_img' onmouseover='buttonover(this)' onmouseout='buttonout(this)'></a></td>
 			<td style='padding:0 5 0 5;'><img src='<?=$dir?>/images/spacer_0.gif' border='0' width='1' height='20'></td>
 			<td><a onClick='javascript:command(this,event);' id='ed_hr' title='선긋기' class='a_style_0'><img src='<?=$dir?>/images/edbtn/ed_hr.gif' border='0' width='18' height='18' id='ed_hr_img' onmouseover='buttonover(this)' onmouseout='buttonout(this)'></a></td>
-			<td style='padding:0 5 0 5;'><img src='<?=$dir?>/images/spacer_0.gif' border='0' width='1' height='20'></td>		
+			<td style='padding:0 5 0 5;'><img src='<?=$dir?>/images/spacer_0.gif' border='0' width='1' height='20'></td>
 			<td><a onClick='javascript:command(this,event);' id='ed_table' title='표만들기' class='a_style_0'><img src='<?=$dir?>/images/edbtn/ed_table.gif' border='0' width='18' height='18' id='ed_table_img' onmouseover='buttonover(this)' onmouseout='buttonout(this)'></a></td>
 			<td><a onClick='javascript:command(this,event);' id='ed_tablebgcolor' title='표배경색' class='a_style_0'><img src='<?=$dir?>/images/edbtn/ed_tablebgcolor.gif' border='0' width='18' height='18' id='ed_tablebgcolor_img' onmouseover='buttonover(this)' onmouseout='buttonout(this)'></a></td>
 			<td style='padding:0 5 0 5;'><img src='<?=$dir?>/images/spacer_0.gif' border='0' width='1' height='20'></td>

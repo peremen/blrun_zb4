@@ -23,7 +23,7 @@
 //2006.3.07 디자인 작업 0.20
 //2006.3.08 이미지 작업 0.25
 //2006.3.09 세션 ,쿠키 ...-,.- 도-스루...0.251
-//2006.3.04--->3.13 기본 골격 이런 저런 온갖 작업  0.40 
+//2006.3.04--->3.13 기본 골격 이런 저런 온갖 작업  0.40
 //2006.3.14 국가 통계 0.45
 //2006.3.15 인스톨 루틴 작성 로그인 화면 작성  0.46
 //2006.3.15 로봇 리스트 항목 추가 0.47
@@ -66,7 +66,7 @@
 //2006-04-01 시간별 통계 월초 부분 버그 수정 0.98
 //2006-04-03 pear 관계부분 수정 0.99
 //2006-04-03 날샌 기념 -,.- 1.00
-//2006-04-03 프록시 접속 여부 판단 추가 1.01 
+//2006-04-03 프록시 접속 여부 판단 추가 1.01
 //					( 정확하지는않음 최대한 뽑아낼수 있는 정보 뽑아내서 프록시접속여부 판단)
 //2006-04-05 컨넥션 클로징 부분 버그 수정 1.02 -,.- 이런 걸 틀리냐..문디...
 //2006-04-11 각페이지 에러리포트 all 에 맞추어서 수정. 1.021
@@ -88,9 +88,9 @@
 //2006-04-22 검색봇 상세정보에서 국가이름 설정언어로 표시하도록 수정(Aokio.Analysis.class.php , content_search_robot_detail.tpl) 1.059
 //2006-04-23 검색봇,크롤러 통계페이지 , 유저에이전트를 그냥 표시하지 않고 , 이름을 표시하도록...1.060 (Digext 제외)
 //2006-04-23 설정화면에서 타겟명 htmlentities 사용, 입력값에 클라이언트 단에서 입력치 검사 1.061
-//2006-04-24 리펙터링 analyzer 와 analysis 구분해서 매니져,dao 분리 
-//					AokioDao.php --> Aokio.Dao.class.php 로 변경. 
-//					AokioSmarty.php --> Aokio.Smarty.class.php 로 변경. 
+//2006-04-24 리펙터링 analyzer 와 analysis 구분해서 매니져,dao 분리
+//					AokioDao.php --> Aokio.Dao.class.php 로 변경.
+//					AokioSmarty.php --> Aokio.Smarty.class.php 로 변경.
 //					자잘한 리팩터	1.062
 
 
@@ -132,8 +132,8 @@ class Aokio_Config{
 //							'Yosi',
 //							'whitefox',
 							);
-	var $code_name								= "CODENAME:komorebi:木洩れ日";	
-	
+	var $code_name								= "CODENAME:komorebi:木洩れ日";
+
 	var $db_list = array(	'mysql' =>'MySQL',
 							);
 	var $lang_list = array(	'korean'	=>'Korean',
@@ -156,7 +156,7 @@ class Aokio_Config{
 	var $database_type;
 
 	function Aokio_Config($initial=false){
-		if(!$initial){			
+		if(!$initial){
 			$this->setDatabaseType();
 			$this->setApplicationConfigurationInfos();
 //			$this->setApplicationMenuType();
@@ -174,7 +174,7 @@ class Aokio_Config{
 		$this->language		= $conf_infos['language'];
 		$this->menu_type	= $conf_infos['menu_type'];
 	}
-	
+
 	function setTargetConfigurationInfos($id){
 		$temp_conf = AokioConfigManager::getTargetConfigInfos($id);
 		if($temp_conf !=null){

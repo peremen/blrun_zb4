@@ -1,5 +1,5 @@
 <?
-// 자동으로 www 붙여준다. 
+// 자동으로 www 붙여준다.
 if(!preg_match("#www#i",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
 include "../bbs/include/get_url.php";
 ?>

@@ -19,7 +19,7 @@ require_once "Aokio.Language.class.php";
 require_once "Aokio.Message.class.php";
 
 class AokioAnalysis{
-	
+
 	var $page_req_parameters;			// parameter of request
 	var $analysis_info_for_template;		//
 
@@ -74,7 +74,7 @@ class AokioAnalysis{
 						'ot'		=> (isset($_REQUEST['ot']))?$_REQUEST['ot']:"",		//order type
 						'bm'		=> (isset($_REQUEST['bm']))?$_REQUEST['bm']:"" ,		//bookmark flag
 						'no'		=> (isset($_REQUEST['no']))?$_REQUEST['no']:"" ,		//no
-						'option'	=> (isset($_REQUEST['option']))?$_REQUEST['option']:"",	
+						'option'	=> (isset($_REQUEST['option']))?$_REQUEST['option']:"",
 						'vo'		=>(isset($_REQUEST['vo']))?$_REQUEST['vo']:"",		// os 하고 브라우저에서의 표시 옵션
 																												// 카테고리별 표시 ,세부버젼별 표시...
 																												//fn 이면 세부버젼별, ca 이면 카테고리별
@@ -186,7 +186,7 @@ class AokioAnalysis{
 
 		$color_array = array('red','yellow','green','blue','orange','sky');
 		$common_page_param['graph_color'] = $color_array[array_rand($color_array)];
-		
+
 		$top_items_titles_of_pages = array();
 
 		$config = new Aokio_Config();
@@ -260,7 +260,7 @@ class AokioAnalysis{
 				return false;
 			$final_analysis_info = $this->getGraphicalPageInfo($analysis_info);
 
-			//icon 
+			//icon
 			foreach($final_analysis_info as $key => $value){
 				$final_analysis_info[$key]['br_icon'] = "no_browser_icon";
 				if(preg_match("#Opera#",$value['browser_full_name'])){
@@ -313,7 +313,7 @@ class AokioAnalysis{
 				}
 			}
 			$analysis_info['max_counts'] = $temp_counts_value;
-			
+
 			$final_analysis_info = $this->getGraphicalPageInfo($analysis_info);
 			unset($temp_counts_value);
 
@@ -340,7 +340,7 @@ class AokioAnalysis{
 					$temp_counts_value = $value['counts'];
 				}
 			}
-			
+
 			$analysis_info['max_counts'] = $temp_counts_value;
 			$final_analysis_info = $this->getGraphicalPageInfo($analysis_info);
 			unset($temp_counts_value);
@@ -372,7 +372,7 @@ class AokioAnalysis{
 			$common_page_param['info_mode'] ='units_counts_info';
 			$common_page_param['mode_flag'] ='day';
 			$common_page_param['page_name'] =$analysis_page_view_messages[$mode];
-			
+
 //			$common_page_param['before_next_link'] =AokioCommonManager::getBeforeAfterMonthForLink ( $page_req_param['y'],$page_req_param['m'] );
 			$top_items_titles_of_pages = $analysis_page_view_table_top_items_titles['day'];
 
@@ -448,8 +448,8 @@ class AokioAnalysis{
 				return false;
 			}
 			$final_analysis_info = $this->getGraphicalPageInfo($analysis_info);
-			
-			
+
+
 			$final_analysis_info = $this->setNationNameWithLanguageConfiguration($config,&$final_analysis_info);
 		}elseif($mode ==10){
 			$common_page_param['info_mode'] ='units_counts_info';
@@ -462,7 +462,7 @@ class AokioAnalysis{
 				return false;
 			}
 			$final_analysis_info = $this->getGraphicalPageInfo($analysis_info);
-			
+
 		}elseif($mode ==11){
 			$common_page_param['info_mode'] ='units_counts_info';
 			$common_page_param['mode_flag'] ='referer';
@@ -479,7 +479,7 @@ class AokioAnalysis{
 				return false;
 			}
 			$final_analysis_info = $this->getGraphicalPageInfo($analysis_info);
-			
+
 			foreach($final_analysis_info as $key => $value){
 				$final_analysis_info[$key]['short_referer'] = $value['referer'];
 				if($value['referer'] != 'NO_REFERER_INFO'){
@@ -600,7 +600,7 @@ class AokioAnalysis{
 				return false;
 			}
 			$final_analysis_info = $this->getGraphicalPageInfo($analysis_info);
-			
+
 			include_once 'robot_list.php';
 			//TODO 짧게 하지말고...봇 정보를 담고 있는 파일에서 봇정보가져와서 표시하도록 하기
 			foreach($final_analysis_info as $key => $value){
@@ -637,13 +637,13 @@ class AokioAnalysis{
 				return false;
 			}
 			unset($start);
-			
+
 			$final_analysis_info = $this->setNationNameWithLanguageConfiguration($config,&$final_analysis_info);
-			
+
 			$list_total_counts = AokioAnalysisManager::getRobotDetailInfoTotalCounts($id);
 
 			$page_counts = ( ($list_total_counts['total_counts']%$list_per_page)>0)?((int)( $list_total_counts['total_counts']/ $list_per_page)) +1 :(int)( $list_total_counts['total_counts'] / $list_per_page ) ;
-			
+
 			// 상수화해서 어딘가에서 지정...? -,.-
 			$pager_counts_per_page = 9;
 			$last_page = 0;
@@ -656,7 +656,7 @@ class AokioAnalysis{
 				$start_point = 1;
 				$end_point = ($page_counts <= $pager_counts_per_page)?$page_counts: $pager_counts_per_page;
 			}else{
-		
+
 				if($page_counts - $page >= (int)($pager_counts_per_page / 2) &&
 					$page <= ($page_counts - (int)($pager_counts_per_page / 2 ) )){
 					$start_point = $page - (int)($pager_counts_per_page / 2);
@@ -681,7 +681,7 @@ class AokioAnalysis{
 			$this->pager_next = $page+1;
 			$this->pager_prev = $page-1;
 			$this->pager_last = $last_page;
-			
+
 
 			unset($list_total_counts);
 			unset($list_per_page);
@@ -698,7 +698,7 @@ class AokioAnalysis{
 			$this->common_page_view_info = $common_page_param;
 
 			if($page_req_param['bm']!=null && $page_req_param['no']){
-			// 북마크 
+			// 북마크
 				$bookmark_info = $page_req_param['bm'];
 				$no = $page_req_param['no'];
 				if($bookmark_info == 'on'){
@@ -711,7 +711,7 @@ class AokioAnalysis{
 					// 북마크 완료 메시지 어사인
 			}else{
 				// 북마크 실패 메시지?
-		
+
 			}
 
 			$start = 0;
@@ -721,7 +721,7 @@ class AokioAnalysis{
 
 				$start =($page_req_param['p']-1)*$list_per_page;
 				$page = $page_req_param['p'];
-				
+
 			}
 
 //			if( $page_req_param['order'] == NULL){
@@ -763,7 +763,7 @@ class AokioAnalysis{
 				$order_type = 'DESC';
 				$ot_template = 'd';
 //			}
-			$analy_input_param = array( 
+			$analy_input_param = array(
 										'target'			=> $id,
 										'start'				=> $start,
 										'list_per_page'	=> $list_per_page,
@@ -798,14 +798,14 @@ class AokioAnalysis{
 
 //				$analysis_info = AokioAnalysisManager::getAnalyzeInfoBookmarkList($analy_input_param);
 				// TODO 토탈 값등 북마크일때 따로 구해야함....
-				
+
 //				$list_total_counts = AokioAnalysisManager::getAnalyzeInfoBookmarkTotalCounts($id);
 //			}else{
 				// TODO 각각의 파라미터 별로 토탈값 다시구해올것
 				$list_total_counts = AokioAnalysisManager::getAnalyzeInfoTotalCounts($id);
-			
+
 //			}
-			
+
 
 			$page_counts = ( ($list_total_counts['total_counts']%$list_per_page)>0)?
 						((int)( $list_total_counts['total_counts']/ $list_per_page)) +1 :
@@ -822,7 +822,7 @@ class AokioAnalysis{
 				$start_point = 1;
 				$end_point = ($page_counts <= $pager_counts_per_page)?$page_counts: $pager_counts_per_page;
 			}else{
-		
+
 				if($page_counts - $page >= (int)($pager_counts_per_page / 2) &&
 					$page <= ($page_counts - (int)($pager_counts_per_page / 2 ) )){
 					$start_point = $page - (int)($pager_counts_per_page / 2);
@@ -888,14 +888,14 @@ class AokioAnalysis{
 
 	function setNationNameWithLanguageConfiguration($config,$analysis_info){
 		$nation_name_ob = new Aokio_Nation_Manager($config);
-		
+
 		$nation_name = $nation_name_ob->nation_name_table;
 
 		foreach($analysis_info as $key => $value){
 			if(isset($nation_name[$value['nation_code']])){
 				$analysis_info[$key]['nation_trans'] = $nation_name[$value['nation_code']];
 			}
-			
+
 		}
 
 		return $analysis_info;

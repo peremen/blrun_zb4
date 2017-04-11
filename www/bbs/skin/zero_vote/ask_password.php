@@ -1,10 +1,10 @@
-<? 
+<?
 if(preg_match("#:\/\/#i",$dir)||preg_match("#\.\.#i",$dir)||preg_match("#^\/#i",$dir)||preg_match("#data:;#i",$dir)||preg_match("#:#i",$dir)) $dir="./";
-include "$dir/value.php3"; 
+include "$dir/value.php3";
 
   /*
   글을 삭제하거나 할때 비밀번호를 물어보는 부분입니다
- 
+
   <?=$target?> : 실행파일을 가리킵니다. 수정하지 마세요;;;
   <?=$title?> : 타이틀을 출력합니다
 
@@ -13,7 +13,7 @@ include "$dir/value.php3";
 
   <?=$invisible?> : 멤버나 관리자가 삭제시 삭제 버튼만 보입니다;;
 
-  <?=$input_password?> : 비밀번호를 물어보는 input=text 출력 
+  <?=$input_password?> : 비밀번호를 물어보는 input=text 출력
   */
 ?>
 

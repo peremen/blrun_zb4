@@ -8,7 +8,7 @@
 </tr>
 <tr>
   <td align=left colspan=2 style='word-break:break-all;' width=100%>
-    <?=$a_vote?><?=$subject?></b></a> ( <?=$vote?> ) <?=$a_modify?><img src=<?=$dir?>/v.gif border=0 align=absmiddle></a> <?=$a_delete?><img src=<?=$dir?>/x.gif border=0 align=absmiddle></a> 
+    <?=$a_vote?><?=$subject?></b></a> ( <?=$vote?> ) <?=$a_modify?><img src=<?=$dir?>/v.gif border=0 align=absmiddle></a> <?=$a_delete?><img src=<?=$dir?>/x.gif border=0 align=absmiddle></a>
   </td>
 </tr>
 <tr>

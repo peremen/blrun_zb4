@@ -1,4 +1,4 @@
-<?  
+<?
 function str_to_emoticon($tmp_memo,$emoticon_url){
 
 	$tmp_memo=str_replace("emtp_001","<img src=$emoticon_url/1.gif width=18 height=18 border=0>",$tmp_memo);

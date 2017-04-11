@@ -1,16 +1,16 @@
 <?
-@extract($_GET); 
-@extract($_POST); 
+@extract($_GET);
+@extract($_POST);
 
 include $zb_path."lib.php";
 if(!$connect) $connect=dbconn();
 $result=mysql_fetch_array(mysql_query("select is_admin from zetyx_member_table where user_id='$user_id' and password='$password'"));
-  
+
 if($result[0]==1){
-	if(file_exists($id."_config.php")){ 
+	if(file_exists($id."_config.php")){
 		include $id."_config.php";
-		$prev_type=$type;	
-	}else{ 
+		$prev_type=$type;
+	}else{
 		$type="A2_type";
 		$gd_use=2;
 		$zb_url=substr(zbUrl(),0,strlen(zbUrl())-1);
@@ -107,7 +107,7 @@ A:hover   {color:ffffff;text-decoration:underline}
 			<td>
 				<table border="0" cellpadding="1" cellspacing="0" width="95%" align=center>
 				<col width=140></col><col align=right width=></col>
-				<tr><td></td></tr>	
+				<tr><td></td></tr>
 				<tr valign=top><td class=han2>1. No(글순번) 삭제</td><?if($hide_no=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=no_use <?=$select?>></td></tr>
 				<tr><td height=1 bgcolor=333333 colspan=2></td></tr>
 				<tr valign=top><td class=han2>2. 이름 삭제 </td><?if($hide_name=="off") $select=""; else $select="checked";?><td><input type="checkbox" value=1 name=name_use <?=$select?>></td></tr>
@@ -158,7 +158,7 @@ if($gd_use==0) $select1="checked"; elseif($gd_use==1) $select2="checked"; else $
 			<td class=han2 align=left colspan=2>&nbsp;&nbsp;◎ 카테고리 선택 :
 				<INPUT TYPE="radio" NAME=category_use value=1 <?=$select1?>>사용&nbsp;&nbsp;<INPUT TYPE="radio" NAME=category_use value=2 <?=$select2?>>미사용</td>
 <?$select1=""; $select2="";	if($img_show=="on") $select1="checked"; else $select2="checked";?>
-			<td colspan=3 align=left class=han2>&nbsp;&nbsp;◎ 목록이미지클릭시(D_type 제외) : <INPUT TYPE="radio" NAME=img_show value=on <?=$select1?>>원래크기의 이미지로(새창)&nbsp;&nbsp;<INPUT TYPE="radio" NAME=img_show value=off <?=$select2?>>글내용으로 
+			<td colspan=3 align=left class=han2>&nbsp;&nbsp;◎ 목록이미지클릭시(D_type 제외) : <INPUT TYPE="radio" NAME=img_show value=on <?=$select1?>>원래크기의 이미지로(새창)&nbsp;&nbsp;<INPUT TYPE="radio" NAME=img_show value=off <?=$select2?>>글내용으로
 				<table border=0 cellspacing=0 cellpadding=0 width=100% align=100%>
 				<tr><td align=right style=padding-right=5px>※ <U><B>경로를 정확히 입력하시기 바랍니다.</B></U></td>
 				</tr>

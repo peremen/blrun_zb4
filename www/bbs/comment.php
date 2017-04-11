@@ -69,7 +69,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 			$_dbTime += getmicrotime()-$_dbTimeStart;
 			if(!$secret_check[0]) {
 				head();
-				$a_list="<a onfocus=blur() href='zboard.php?$href$sort'>";    
+				$a_list="<a onfocus=blur() href='zboard.php?$href$sort'>";
 				$a_view="<Zeroboard ";
 				$title="이 글은 비밀글입니다.<br>비밀번호를 입력하여 주십시요";
 				$input_password="<input type=password name=password size=20 maxlength=20 class=input>";
@@ -179,11 +179,11 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	// 자료실 기능을 사용하는지 않하는지 표시;;
 	if(!$setup[use_pds]) { $hide_pds_start="<!--";$hide_pds_end="-->";}
 
-	// HTML사용 체크버튼 
+	// HTML사용 체크버튼
 	if($setup[use_html]==0) {
-		if(!$is_admin&&$member[level]>$setup[grant_html]) { 
+		if(!$is_admin&&$member[level]>$setup[grant_html]) {
 			$hide_html_start="<!--";
-			$hide_html_end="-->"; 
+			$hide_html_end="-->";
 		}
 	}
 
@@ -197,7 +197,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 
 	// 회원로그인이 되어 있으면 코멘트 비밀번호를 안 나타나게;;
 	if($member[no]) {
-		$c_name=$member[name]; $hide_c_password_start="<!--"; $hide_c_password_end="-->"; 
+		$c_name=$member[name]; $hide_c_password_start="<!--"; $hide_c_password_end="-->";
 		$temp_name = get_private_icon($member[no], "2");
 		if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>";
 		$temp_name = get_private_icon($member[no], "1");
@@ -266,7 +266,7 @@ function sendit() {
 </tr>
 </table>
 </form>
-<? 
+<?
 }
 
 foot();

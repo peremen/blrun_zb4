@@ -1,12 +1,12 @@
 
 <!--========================[ 에디터 기능 사용유무 체크 ]=========================-->
-<!-- 
+<!--
 사용자변수 chk_edit_use 는 직접 만들어야 합니다.
 사용자변수(chk_edit_use)를 만들지 못한다면 아래처럼 바꾸세요.
 if($chk_edit_use=="on")	를 if(true) 로 바꿉니다.
 -->
 
-<?	
+<?
 if($emoticon_use=="on")			//<!-- 에디터 기능 사용유무 체크 -->
 {
 	$sw_edit_yn = "Y";			//<!-- HTML Editer 사용여부 -->
@@ -33,11 +33,11 @@ if($emoticon_use=="on")			//<!-- 에디터 기능 사용유무 체크 -->
 <input type='hidden' id='sw_edit_use' name='sw_edit_use' value='write'>
 <SCRIPT language="JavaScript" src="<?=$dir?>/swe/edit.js"></SCRIPT>
 
-<input type='hidden' id='sw_mode' name='sw_mode' value="<?=$mode?>">				
+<input type='hidden' id='sw_mode' name='sw_mode' value="<?=$mode?>">
 <? if($mode == "modify") { ?>
 <input type='hidden' id='sw_file_name1' name='sw_file_name1' value="<?=str_replace("%2F", "/", rawurlencode($data['file_name1']))?>">
 <input type='hidden' id='sw_file_name2' name='sw_file_name2' value="<?=str_replace("%2F", "/", rawurlencode($data['file_name2']))?>">
-<? } ?>		
+<? } ?>
 <SCRIPT language="JavaScript" src="<?=$dir?>/swe/img_preview.js"></SCRIPT>
 
 <? $zb_self_dir = dirname($_SERVER['PHP_SELF'])."/"; ?>
@@ -58,13 +58,13 @@ $a_imagebox = str_replace("showImageBox","sw_imagebox",$a_imagebox);
 $a_codebox = str_replace("showCodeBox","sw_codebox",$a_codebox);
 if($mode == "reply") {	$memo = preg_replace("/>(<P>)|>(<P align=[a-z]+>)/i","$1$2>",$memo); }
 
-include $dir."/swe/ed_seting_fileview.php";	
+include $dir."/swe/ed_seting_fileview.php";
 ?>
 
 <SCRIPT language="JavaScript">
   <!--
-  	DocReloadInterval = setInterval("DocReload()", 300);	
-	imgViewReloadInterval = setInterval("imgViewReload()", 300);	
+  	DocReloadInterval = setInterval("DocReload()", 300);
+	imgViewReloadInterval = setInterval("imgViewReload()", 300);
   //-->
 </SCRIPT>
 <!--====================[ sw_edit 파일명: ed_seting_head.php 끝]====================-->

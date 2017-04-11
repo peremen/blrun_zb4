@@ -3,7 +3,7 @@ require_once 'Aokio.Dao.class.php';
 
 class AokioAuthDao extends AokioDao{
 
-	function AokioAuthDao(){	
+	function AokioAuthDao(){
 		parent::AokioDao();
 	}
 	/**
@@ -18,7 +18,7 @@ class AokioAuthDao extends AokioDao{
 			$sql .= " WHERE id=? and password = ?";
 		}elseif($this->php_type_for_db_variation ==="pgsql"){
 			$sql  = "";
-		}		
+		}
 		return $this->getAokioCounts($sql,$user_info,$db);
 	}
 	/**
@@ -32,8 +32,8 @@ class AokioAuthDao extends AokioDao{
 			$sql .= " from aokio_admin ";
 		}elseif($this->php_type_for_db_variation ==="pgsql"){
 			$sql  = "";
-		}		
-		
+		}
+
 		return $this->getAokioInfo($sql,array(),$db);
 	}
 	/**

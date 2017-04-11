@@ -71,7 +71,7 @@ function smarty_function_mailto($params, &$smarty)
                 if (!empty($value))
                     $mail_parms[] = $var.'='.str_replace('%40','@',rawurlencode($value));
                 break;
-                
+
             case 'subject':
             case 'newsgroups':
                 $mail_parms[] = $var.'='.rawurlencode($value);
@@ -112,7 +112,7 @@ function smarty_function_mailto($params, &$smarty)
         $string = '<a href="mailto:'.$address.'" '.$extra.'>'.$text.'</a>';
 
         for($x = 0, $y = strlen($string); $x < $y; $x++ ) {
-            $ord[] = ord($string[$x]);   
+            $ord[] = ord($string[$x]);
         }
 
         $_ret = "<script type=\"text/javascript\" language=\"javascript\">\n";
@@ -123,10 +123,10 @@ function smarty_function_mailto($params, &$smarty)
         $_ret .= "}\n";
         $_ret .= "//-->\n";
         $_ret .= "</script>\n";
-        
+
         return $_ret;
-        
-        
+
+
     } elseif ($encode == 'hex') {
 
         preg_match('!^(.*)(\?.*)$!',$address,$match);

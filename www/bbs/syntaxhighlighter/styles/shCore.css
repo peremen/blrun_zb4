@@ -7,7 +7,7 @@
  *
  * @version
  * 3.0.83 (July 02 2010)
- * 
+ *
  * @copyright
  * Copyright (C) 2004-2010 Alex Gorbatchev.
  *
@@ -58,7 +58,7 @@
   position: relative !important;
   overflow: auto !important;
   font-size: 1em !important;
-  overflow-y: hidden !important; 
+  overflow-y: hidden !important;
   overflow-x: auto !important;
 }
 .syntaxhighlighter.source {

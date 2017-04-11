@@ -1,8 +1,8 @@
 <?php
 
 $install_messages = array(
-	'terms_of_service' => 
-		array( 
+	'terms_of_service' =>
+		array(
 			'terms_of_service_title'	=> '라이센스규약 ',
 			'terms_of_service_content'	=> ' ',
 			'terms_of_service_content_1' => 'Aokio Analyzer의 저작권은 제작자에게 있습니다.',
@@ -17,25 +17,25 @@ $install_messages = array(
 
 			'terms_of_service_content_last' => '위의 사항에 동의 하시면 OK를 누르시고 , 아니면 브라우저창을 닫아주세요.-,.-',
 			),
-	'database_select' => 
-		array( 
+	'database_select' =>
+		array(
 			'database_select_title'		=> '데이터베이스 선택',
 			'database_select_comment'	=> '현재 지원되는 DB는 MySQL 입니다.<br/> '
 			//'database_select_comment'	=> '사용하는 데이터베이스를 선택하세요. '
 			),
-	'database_config' => 
-		array( 
+	'database_config' =>
+		array(
 			'database_config_title'		=> '데이터베이스 설정',
 			'database_config_comment'	=> '데이터베이스 설정값을 입력해주세요.'
 			),
 
-	'administrator_config' => 
-		array( 
+	'administrator_config' =>
+		array(
 			'administrator_config_title'		=> '관리자 설정',
 			'administrator_config_comment'	=> '관리자설정값을 입력해주세요.'
 			),
-	'install_completed' => 
-		array( 
+	'install_completed' =>
+		array(
 			'install_completed_title'		=> '설치가 완료되었습니다.',
 			'install_completed_comment'		=> '안전을 위하여 install.php 파일을 삭제하시기 바랍니다.',
 			),
@@ -50,7 +50,7 @@ $install_messages = array(
 			)
 					);
 
-$login_page_messages = array(	
+$login_page_messages = array(
 		'english_title'						=> 'Administrator Login',
 		'selected_language_title'		=> '관리자 로그인',
 		'id'									=> 'I D',
@@ -68,7 +68,7 @@ $config_messages =array(
 		'target_name_commnet'			=> '닉네임으로 사용하실 이름을 입력하세요. 한글도 사용할 수 있습니다.',
 		'lists_per_page'						=> '상세정보 페이지당 표시건수',
 		'access_check_pattern'			=> '접속기록 설정',
-		'access_check_pattern_items'	=> 
+		'access_check_pattern_items'	=>
 					array(
 						'항상 접속체크',
 						'브라우저를 다시 시작할때만 체크',
@@ -76,13 +76,13 @@ $config_messages =array(
 						'지정시간에 한번 체크',
 						),
 		'check_admin_access'				=> '관리자 접속체크 설정',
-		'check_admin_access_items'	=> 
+		'check_admin_access_items'	=>
 					array(
 						'관리자 접속을 기록',
 						'관리자 접속을 기록하지않음',
 						),
 		'access_permission'			=> '외부접근권한설정',
-		'access_permission_items'	=> 
+		'access_permission_items'	=>
 					array(
 						'1'	 =>'OS별 통계 접근 가능',
 						'2'	 =>'브라우저별 통계 접근 가능',
@@ -96,7 +96,7 @@ $config_messages =array(
 //						'10'=>'도시별 통계 접근 가능',
 						'11'=>'링크페이지(레퍼러)통계 접근 가능',
 						'12'=>'링크(레퍼러)서버 통계 접근 가능',
-						
+
 						'13'=>'화면크기 통계 접근 가능',
 						'14'=>'해상도(색상수) 통계 접근 가능',
 						'15'=> '검색어 통계접근 가능',
@@ -106,7 +106,7 @@ $config_messages =array(
 						'19'=>'접속상세정보 접근 가능',
 						),
 		'portal_page'				=> '포탈 페이지',
-		'portal_page_items'	=> 
+		'portal_page_items'	=>
 					array(
 						'0'=>'사용안함',
 						'1'=>'OS별 통계 ',
@@ -179,7 +179,7 @@ $link_comments = array( 'logout' => '',
 						'language_menu' => '',
 						);
 
-$analysis_page_view_messages = 
+$analysis_page_view_messages =
 				array(	1			=> '운영체제통계',
 //						'os_comment'	=> '',
 						2		=> '브라우저통계',
@@ -203,8 +203,8 @@ $analysis_page_view_messages =
 						);
 
 
-$analysis_page_view_table_top_items_titles = 
-				array(	
+$analysis_page_view_table_top_items_titles =
+				array(
 						'os'=> array(	'subject'					=>	'OS',
 										'counts'						=>	'방문자',
 										'percentage'				=>	'%',
@@ -215,8 +215,8 @@ $analysis_page_view_table_top_items_titles =
 										'os_1'						=>'접속 OS 수',//
 //										'os_2'=>' 종류의 OS로 접속하였습니다.',
 								),
-						
-						'browser'=> array(	
+
+						'browser'=> array(
 										'subject'						=>	'Browser',
 										'counts'						=>	'방문자',
 										'percentage'				=>	'%',
@@ -340,12 +340,12 @@ $analysis_page_view_table_top_items_titles =
 //										'year_2'=>' 종류의 OS로 접속하였습니다.',
 								),
 					);
-$common_messages = array(	
+$common_messages = array(
 						'no_record'	=>	'방문기록이 없습니다.',
 						'no_referer' => '주소직접입력 또는 즐겨찾기 접속',
 									);
 
-$week_name = array(	
+$week_name = array(
 			0 => '일요일',
 			1 => '월요일',
 			2 => '화요일',
@@ -367,11 +367,11 @@ $create_page_messages = array(
 		'comment_title'	=> '사용예',
 		'comment'	=> '
 		사용하시는 AokioAnalyzer가 http://www.yourdomain.com/aanalyzer/ 에 설치되어있고,
-		접속정보를 얻으려는 페이지가 http://www.yourdomain.com/index.html  
-		인 경우 위의 코드를 복사하여 
+		접속정보를 얻으려는 페이지가 http://www.yourdomain.com/index.html
+		인 경우 위의 코드를 복사하여
 		index.html 파일의 맨위부분에 붙여넣기를 하시기 바랍니다.
 
-		주위하실 사항이 위 코드에서 여러분이 AokioAnalyzer 를 설치한 디렉토리에 맞추어 /aanalyzer/ 부분을 수정할것과 
+		주위하실 사항이 위 코드에서 여러분이 AokioAnalyzer 를 설치한 디렉토리에 맞추어 /aanalyzer/ 부분을 수정할것과
 		접속정보를 얻으려는 페이지에 맞추어 상대패스를 수정해주는것입니다.',
 		);
 

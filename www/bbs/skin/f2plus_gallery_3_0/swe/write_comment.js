@@ -130,7 +130,7 @@ function sw_preview()
 	}
 
 	var rPattern=/\|\|\|\d+\|\d+$/g;
-	
+
 	if(edit_tag_yn == "Y") {
 		var rStr=memoiW.document.body.innerHTML;
 		if(!rStr||rStr=="<P>&nbsp;</P>"||rStr=="<br>")
@@ -171,7 +171,7 @@ function preview_m()
 	} else {
 		rMemo.value = memoE.value;
 	}
-	
+
 	var rPattern=/\|\|\|\d+\|\d+$/g;
 
 	if(edit_tag_yn == "Y") {
@@ -214,18 +214,18 @@ function preview_m()
 function sw_imagebox(id)
 {
 	if (document.getElementById('htChk').checked) {
-		showImageBox(id);					
-	} else {		
-		alert('HTML 체크후 사용하세요.');	
+		showImageBox(id);
+	} else {
+		alert('HTML 체크후 사용하세요.');
 	}
 }
 
 function sw_codebox(id)
 {
 	if (document.getElementById('htChk').checked) {
-		showCodeBox(id);					
-	} else {		
-		alert('HTML 체크후 사용하세요.');	
+		showCodeBox(id);
+	} else {
+		alert('HTML 체크후 사용하세요.');
 	}
 }
 

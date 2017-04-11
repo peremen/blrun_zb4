@@ -26,7 +26,7 @@ require_once "./resources/".$config->language."_lang_resource.php";
 $aokio_cookie = new Aokio_Cookie();
 
 if(!($aokio_cookie->isExistAdminCookieInfo() && $aokio_cookie->checkAdminCookieInfo()))
-	// 로그인 화면으로 
+	// 로그인 화면으로
 	AokioCommonManager::redirectPage("login.php");
 
 // 설정 변경
@@ -37,9 +37,9 @@ if(isset($_REQUEST['config_page'])){
 	if($lists_per_page <=0){
 		$lists_per_page	=$config->access_list_per_page;
 		//TODO 0보다 작으면 안된다는 메시지 내보낼것..
-		//javascript 사용하지 않을때 
+		//javascript 사용하지 않을때
 	}
-	$access_check_pattern					= $_REQUEST['access_check_pattern'];	
+	$access_check_pattern					= $_REQUEST['access_check_pattern'];
 	$access_check_pattern_input_time	= $_REQUEST['access_check_pattern_input_time'];
 	$check_admin_access						= $_REQUEST['check_admin_access'];
 

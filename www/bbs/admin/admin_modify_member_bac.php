@@ -86,7 +86,7 @@ if($member[is_admin]==1)
 {
 	$select[$member_data[is_admin]]="selected";
 ?>
-<tr height=22 align=center>  
+<tr height=22 align=center>
   <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>관리자 레벨&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>
     <select name=is_admin <?=$locking?>>
@@ -114,9 +114,9 @@ for($i=$member[level];$i<=10;$i++) if($i==$member_data[level]) echo "<option val
   <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>이름&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=name size=20 maxlength=20 value="<?=$member_data[name]?>" class=input style=border-color:#b0b0b0></td>
 </tr>
-<?                                                                                                  
-if($member_data[is_admin]>2)                                                                          
-{                                                                                                 
+<?
+if($member_data[is_admin]>2)
+{
 
 	if(trim($member_data[board_name])) {
 		$manager_board_temp = preg_split("/,/",$member_data[board_name]);
@@ -131,10 +131,10 @@ if($member_data[is_admin]>2)
 		}
 	}
 
-	$select[$member_data[board_name]]="selected";                                                      
+	$select[$member_data[board_name]]="selected";
 	$board_list=mysql_query("select no,name from $admin_table where group_no='$group_data[no]'") or error(mysql_error());
-?>                                                                                                  
-<tr height=22 align=center>                                                                       
+?>
+<tr height=22 align=center>
   <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>게시판 관리자 지정&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>
     <?=$__manager_board_name?>
@@ -152,15 +152,15 @@ if($member_data[is_admin]>2)
     </select> <input type=button value="게시판 관리 권한 추가" onclick="add_board_manager()" style=border-color:#b0b0b0;background-color:#3d3d3d;color:#ffffff;font-size:9pt;font-family:Tahoma;height:20px;>
   </td>
 </tr>
-<?                                                                                                  
+<?
 }
-?> 
+?>
 <? if($group_data[use_birth]) { ?>
 <tr height=22 align=center>
   <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>생일&nbsp;&nbsp;</td>
-  <td align=left bgcolor=#e0e0e0><input type=text name=birth_1 size=4 maxlength=4 value="<?=date("Y",$member_data[birth])?>" class=input style=border-color:#b0b0b0> 년 
+  <td align=left bgcolor=#e0e0e0><input type=text name=birth_1 size=4 maxlength=4 value="<?=date("Y",$member_data[birth])?>" class=input style=border-color:#b0b0b0> 년
     <input type=text name=birth_2 size=2 maxlength=2 value="<?=date("m",$member_data[birth])?>" class=input style=border-color:#b0b0b0> 월
-    <input type=text name=birth_3 size=2 maxlength=2 value="<?=date("d",$member_data[birth])?>" class=input style=border-color:#b0b0b0> 일 
+    <input type=text name=birth_3 size=2 maxlength=2 value="<?=date("d",$member_data[birth])?>" class=input style=border-color:#b0b0b0> 일
 </tr>
 <? } ?>
 <tr height=22 align=center>
@@ -210,7 +210,7 @@ if($member_data[is_admin]>2)
   <td align=left bgcolor=#e0e0e0><input type=text name=job size=20 maxlength=20 value="<?=stripslashes($member_data[job])?>" class=input style=border-color:#b0b0b0></td>
 </tr>
 <? } ?>
-<? if($group_data[use_home_address]) { ?> 
+<? if($group_data[use_home_address]) { ?>
 <tr height=22 align=center>
   <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>집 주소&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0><input type=text name=home_address size=50 maxlength=255 value="<?=stripslashes($member_data[home_address])?>" class=input style=border-color:#b0b0b0></td>
@@ -290,7 +290,7 @@ if($maxDirSize) {
 <tr height=22 align=center>
   <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>마크 그림&nbsp;&nbsp;</td>
   <td align=left bgcolor=#e0e0e0>&nbsp;
-<? 
+<?
 $private_icon = get_private_icon($member_data[no],1);
 if($private_icon) {
 ?>

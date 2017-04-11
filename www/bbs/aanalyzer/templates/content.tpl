@@ -119,7 +119,7 @@
           <td width="50" class="analysisPercentage">{$analysis_info[report_view].percentage} %</td>
         </tr>
         {/section}
-      </table>	
+      </table>
     </td>
     <td width="8">&nbsp;</td>
   </tr>

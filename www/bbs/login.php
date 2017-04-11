@@ -1,5 +1,5 @@
 <?
-// 자동으로 www 붙여준다. 
+// 자동으로 www 붙여준다.
 if(!preg_match("/www/i",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
 
 include "lib.php";
@@ -53,13 +53,13 @@ function check_submit()
 	return true;
 }
 
-function check_SSL_Login() { 
+function check_SSL_Login() {
 	if (document.login.SSL_Login.checked==true) {
 		alert("SSL 암호화 보안접속을 설정합니다");
 	} else {
 		alert("SSL 암호화 보안접속을 해제합니다");
 	}
-} 
+}
 </script>
 
 <form method=post action=login_check.php onsubmit="return check_submit();" name=login>

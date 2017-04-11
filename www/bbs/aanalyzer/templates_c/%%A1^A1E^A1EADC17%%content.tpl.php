@@ -241,7 +241,7 @@ $this->_sections['report_view']['last']       = ($this->_sections['report_view']
  %</td>
         </tr>
         <?php endfor; endif; ?>
-      </table>	
+      </table>
     </td>
     <td width="8">&nbsp;</td>
   </tr>

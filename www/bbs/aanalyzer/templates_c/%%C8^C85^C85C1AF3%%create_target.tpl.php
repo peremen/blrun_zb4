@@ -63,13 +63,13 @@ unset($_smarty_tpl_vars);
 <?php echo $this->_tpl_vars['create_page_messages']['comment']; ?>
 
      </td>
-    </tr>    
+    </tr>
      <td style="BORDER-TOP: #d0d0d0 2px solid; ">
 <a href="./manager.php"><?php echo $this->_tpl_vars['application_name']; ?>
  Manager Page</a>
      </td>
-    </tr>    
-    
+    </tr>
+
     </table>
 </td>
     <td  width="8"><img src="images/spacer.gif" width="8" height="30" /></td>
@@ -93,4 +93,4 @@ unset($_smarty_tpl_vars);
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
- ?>
+ ?>

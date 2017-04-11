@@ -15,8 +15,8 @@ if($setup[use_category]) {
 		if($category==$category_num_c[$i]) $b="<b>"; else $b="";
 		$print_category_data="<a href='zboard.php?category=$category_num_c[$i]$c_href$c_sort'>$b$category_name_c[$i] ($category_n_c[$i])</a></b>";
 		include "$dir/category_main.php";
-	}  
-	
+	}
+
 	include "$dir/category_foot.php";
 }
 ?>

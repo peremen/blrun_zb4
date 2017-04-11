@@ -31,7 +31,7 @@ $start_num=($page-1)*$page_num;
 $total_page=(int)(($total-1)/$page_num)+1;
 
 // 게시물을 구해옴
-$result=@mysql_query("select * from $admin_table where $s_que order by no desc limit $start_num,$page_num",$connect) 
+$result=@mysql_query("select * from $admin_table where $s_que order by no desc limit $start_num,$page_num",$connect)
 or Error("게시판의 정보를 DB로 부터 가져오는 부분에서 에러가 발생했습니다");
 ?>
 <script>

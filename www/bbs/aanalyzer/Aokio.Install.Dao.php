@@ -24,10 +24,10 @@ class AokioInstallDao extends AokioDao{
 
 	}
 
-	function connectionCheck(){	
+	function connectionCheck(){
 		//Connect using an array for the DSN information
 		$db =& DB::connect($this -> dsn);
-	
+
 		if (PEAR::isError($db)) {
 //			die($db->getMessage());
 			return false;
@@ -75,9 +75,9 @@ class AokioInstallDao extends AokioDao{
 
 		$sql .= " screensize varchar(15) default NULL, ";
 		$sql .= " resolution varchar(20) default NULL, ";
-		
+
 		$sql .= " mobile_flag int(1) default 0, ";
-		
+
 		$sql .= " language varchar(5) default NULL, ";
 		$sql .= " nation varchar(30) default NULL, ";
 
@@ -266,7 +266,7 @@ class AokioInstallDao extends AokioDao{
 		$this->createAokioInfo($sql,$db);
 	}
 
-	function createWeekTable($db){		
+	function createWeekTable($db){
 		$sql = " CREATE TABLE aokio_log_week ( ";
 		$sql .= " no int(10) NOT NULL auto_increment, ";
 		$sql .= " target varchar(30) default NULL, ";
@@ -352,7 +352,7 @@ class AokioInstallDao extends AokioDao{
 		$this->createAokioInfo($sql,$db);
 	}
 
-	function createRefererServerTable($db){		
+	function createRefererServerTable($db){
 		$sql = " CREATE TABLE aokio_log_refererserver ( ";
 		$sql .= " no int(10) NOT NULL auto_increment, ";
 		$sql .= " refererserver varchar(250) default NULL, ";
@@ -363,7 +363,7 @@ class AokioInstallDao extends AokioDao{
 		$this->createAokioInfo($sql,$db);
 	}
 
-	function createRefererTable($db){		
+	function createRefererTable($db){
 		$sql = " CREATE TABLE aokio_log_referer ( ";
 		$sql .= " no int(10) NOT NULL auto_increment, ";
 		$sql .= " referer varchar(250) default NULL, ";
@@ -374,7 +374,7 @@ class AokioInstallDao extends AokioDao{
 		$this->createAokioInfo($sql,$db);
 	}
 
-	function createScreensizeTable($db){		
+	function createScreensizeTable($db){
 		$sql = " CREATE TABLE aokio_log_screensize ( ";
 		$sql .= " no int(10) NOT NULL auto_increment, ";
 		$sql .= " screensize varchar(50) default NULL, ";
@@ -386,7 +386,7 @@ class AokioInstallDao extends AokioDao{
 	}
 
 
-	function createResolutionTable($db){		
+	function createResolutionTable($db){
 		$sql = " CREATE TABLE aokio_log_resolution ( ";
 		$sql .= " no int(10) NOT NULL auto_increment, ";
 		$sql .= " resolution varchar(20) default NULL, ";
@@ -399,7 +399,7 @@ class AokioInstallDao extends AokioDao{
 	}
 
 
-	function createSearchKeywordsTable($db){		
+	function createSearchKeywordsTable($db){
 		$sql  = " CREATE TABLE aokio_log_search_keywords ( ";
 		$sql .= " no int(10) NOT NULL auto_increment, ";
 		$sql .= " keyword varchar(250) default NULL, ";
@@ -413,7 +413,7 @@ class AokioInstallDao extends AokioDao{
 		$this->createAokioInfo($sql,$db);
 	}
 
-	function createSearchSitesTable($db){		
+	function createSearchSitesTable($db){
 		$sql = " CREATE TABLE aokio_log_search_sites ( ";
 		$sql .= " no int(10) NOT NULL auto_increment, ";
 		$sql .= " searchsite varchar(250) default NULL, ";

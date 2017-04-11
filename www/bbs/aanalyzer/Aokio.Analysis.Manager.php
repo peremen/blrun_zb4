@@ -2,11 +2,11 @@
 require_once 'Aokio.Analysis.Dao.php';
 require_once 'Aokio.Config.Manager.php';
 /**
- * Project:     AokioAnalyzer 
+ * Project:     AokioAnalyzer
  *
  *
  * @link http://www.aokio.com/
- * @copyright 2006- 
+ * @copyright 2006-
  * @author aokio   <st.elmo@gmail.com>
  * @package AokioAnalyzer
  */
@@ -15,14 +15,14 @@ require_once 'Aokio.Config.Manager.php';
  /**
  * @package AokioAnalyzer
  */
-class AokioAnalysisManager{	
+class AokioAnalysisManager{
 
 	/**
 	 * Using Status: true ;
 	 *
 	 * @return array
 	 */
-	function getAnalyzeInfoList($analy_input_param){		
+	function getAnalyzeInfoList($analy_input_param){
 		$analysis_dao = new AokioAnalysisDao();
 
 		$db	= $analysis_dao -> getConnection();
@@ -33,14 +33,14 @@ class AokioAnalysisManager{
 		$order_type		= $analy_input_param['order_type'];
 //		$target = $analy_input_param[''];
 
-		$info_array = 
+		$info_array =
 			$analysis_dao ->getAnalyzeLimitListInfo($target,$start,$list_per_page,$order_option,$order_type,$db);
 		$analysis_dao->closeConnection($db);
 
 		return $info_array;
 	}
 
-	function setBookmarkAnalyzeInfo($no,$target){		
+	function setBookmarkAnalyzeInfo($no,$target){
 		$analysis_dao = new AokioAnalysisDao();
 
 		$db	= $analysis_dao -> getConnection();
@@ -53,11 +53,11 @@ class AokioAnalysisManager{
 	}
 
 
-	function clearBookmarkAnalyzeInfo($no,$target){		
+	function clearBookmarkAnalyzeInfo($no,$target){
 		$analysis_dao = new AokioAnalysisDao();
 
 		$db	= $analysis_dao -> getConnection();
-		
+
 //		$bookmark_info = array($no,$target);
 		$info_array = $analysis_dao ->clearBookmarkAnalyzeInfo($no,$target,$db);
 		$analysis_dao->closeConnection($db);
@@ -70,7 +70,7 @@ class AokioAnalysisManager{
 	 *
 	 * @return array
 	 */
-	function getAnalyzeInfoBookmarkList($analy_input_param){		
+	function getAnalyzeInfoBookmarkList($analy_input_param){
 		$analysis_dao = new AokioAnalysisDao();
 
 		$db	= $analysis_dao -> getConnection();
@@ -81,7 +81,7 @@ class AokioAnalysisManager{
 		$order_type		= $analy_input_param['order_type'];
 //		$target = $analy_input_param[''];
 
-		$info_array = 
+		$info_array =
 			$analysis_dao ->getAnalyzeLimitListBookmarkInfo($target,$start,$list_per_page,$order_option,$order_type,$db);
 		$analysis_dao->closeConnection($db);
 
@@ -90,42 +90,42 @@ class AokioAnalysisManager{
 
 
 
-	function getAnalyzeInfoListWithOS($id,$start,$list_per_page,$os_param){		
+	function getAnalyzeInfoListWithOS($id,$start,$list_per_page,$os_param){
 		$analysis_dao = new AokioAnalysisDao();
 
 		$db = $analysis_dao -> getConnection();
-		
+
 		$info_array = $analysis_dao ->getAnalyzeLimitListInfoWithOS($id,$start,$list_per_page,$os_param,$db);
 		$analysis_dao->closeConnection($db);
 
 		return $info_array;
 	}
 
-	function getAnalyzeInfoTotalCounts($id){		
+	function getAnalyzeInfoTotalCounts($id){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
-		
+
 		$info_array = $analysis_dao ->getAnalyzeInfoTotalCounts($id,$db);
 		$analysis_dao->closeConnection($db);
 
 		return $info_array;
 	}
-	
 
-	function getAnalyzeInfoBookmarkTotalCounts($id){		
+
+	function getAnalyzeInfoBookmarkTotalCounts($id){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
-		
+
 		$info_array = $analysis_dao ->getAnalyzeInfoBookmarkTotalCounts($id,$db);
 		$analysis_dao->closeConnection($db);
 
 		return $info_array;
 	}
-	
 
 
 
-	function getSevenDaysCounts($id){		
+
+	function getSevenDaysCounts($id){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 		$today_time = AokioCommonManager::thisDayInfo();
@@ -145,14 +145,14 @@ class AokioAnalysisManager{
 
 		return $info_array;
 	}
-	
+
 
 	/**
 	 * Using Status: true ;
 	 *
 	 * @return array
 	 */
-	function getOSInfo($target){		
+	function getOSInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 
@@ -172,26 +172,26 @@ class AokioAnalysisManager{
 							'info_list'		=> $info_temp_array);
 	}
 
-	function getOSCategoryInfo($target){		
+	function getOSCategoryInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 
 		$os_category_info = $analysis_dao ->getOSCategoryCountsMiscInfo($target,$db);
 //echo "<pre>".nl2br(print_r($os_category_info,true))."</pre>";
-		
+
 		if(!$os_category_info){
 			$analysis_dao->closeConnection($db);
 			return false;
 		}
-		
+
 		$total_os_category_counts = 0;
 		$max_os_category_counts = 0;
 		$min_os_category_counts = 0;
-		
+
 
 		foreach($os_category_info as $key=> $value){
 			$total_os_category_counts += $value['os_category_counts'];
-			
+
 			if($max_os_category_counts<$value['os_category_counts']){
 				$max_os_category_counts = $value['os_category_counts'];
 			}
@@ -221,12 +221,12 @@ class AokioAnalysisManager{
 	 *
 	 * @return array
 	 */
-	function getBrowserInfo($target){		
+	function getBrowserInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
-		
+
 		$browser_misc_counts = $analysis_dao ->getBrowserCountsMiscInfo($target,$db);
-		
+
 		if(!$browser_misc_counts['total_browser_counts']){
 			$analysis_dao->closeConnection($db);
 			return false;
@@ -243,26 +243,26 @@ class AokioAnalysisManager{
 
 	}
 
-	function getBrowserCategoryInfo($target){		
+	function getBrowserCategoryInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 
 		$browser_category_info = $analysis_dao ->getBrowserCategoryCountsMiscInfo($target,$db);
 //echo "<pre>".nl2br(print_r($os_category_info,true))."</pre>";
-		
+
 		if(!$browser_category_info){
 			$analysis_dao->closeConnection($db);
 			return false;
 		}
-		
+
 		$total_browser_category_counts = 0;
 		$max_browser_category_counts = 0;
 		$min_browser_category_counts = 0;
-		
+
 
 		foreach($browser_category_info as $key=> $value){
 			$total_browser_category_counts += $value['browser_category_counts'];
-			
+
 			if($max_browser_category_counts<$value['browser_category_counts']){
 				$max_browser_category_counts = $value['browser_category_counts'];
 			}
@@ -286,15 +286,15 @@ class AokioAnalysisManager{
 							'min_counts'	=> $min_browser_category_counts,
 							'avg_counts'	=> $avg_browser_category_counts,
 							'info_list'		=> $info_temp_array);
-	}	
-	
-	
+	}
+
+
 	/**
 	 * Using Status: true ;
 	 *
 	 * @return array
 	 */
-	function getYearInfo($target){	
+	function getYearInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 
@@ -350,10 +350,10 @@ class AokioAnalysisManager{
 						'info_list'		=> $info_temp_array);
 	}
 
-	function getWeekInfo($target){		
+	function getWeekInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
-		
+
 		$info_temp_array = $analysis_dao ->getWeekInfo($target,$db);
 //echo "<pre>".nl2br(print_r($info_temp_array,true))."</pre>";
 		$week_temp_info['total_counts'] = 0;
@@ -374,7 +374,7 @@ class AokioAnalysisManager{
 		}
 		$week_temp_info['total_counts'] = $total;
 
-		
+
 		$week_temp1_info[0]['week'] = 'SUN';
 		$week_temp1_info[1]['week'] = 'MON';
 		$week_temp1_info[2]['week'] = 'TUE';
@@ -390,7 +390,7 @@ class AokioAnalysisManager{
 		$week_temp1_info[4]['items'] = 'THU';
 		$week_temp1_info[5]['items'] = 'FRI';
 		$week_temp1_info[6]['items'] = 'SAT';
-		
+
 		foreach($week_temp1_info as $key => $value){
 //			echo "<pre>".nl2br(print_r($,true))."</pre>";
 			$week_temp1_info[$key]['percentage'] = round(100*$value['counts']/$week_temp_info['total_counts'],2);
@@ -428,7 +428,7 @@ class AokioAnalysisManager{
 		$last_day = AokioCommonManager::_DaysInMonth( $year, $month );
 
 		if(sizeof($info_temp_array)<$last_day){
-		
+
 			$temp_arr = array();
 			for($i=0;$i<$last_day;$i++){
 				array_push($temp_arr,array(	'year'=>$year,
@@ -522,7 +522,7 @@ class AokioAnalysisManager{
 		);
 	}
 	*/
-	
+
 	function getHourInfo($target,$year=false,$month=false,$day=false){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
@@ -534,7 +534,7 @@ class AokioAnalysisManager{
 		$total_counts = $info_temp_array[28];
 //		if(!$total_counts)
 //			return false;
-		
+
 		$tmp_y = $time_info['year'];
 		$tmp_m = $time_info['month'];
 		$tmp_d = $time_info['day']-1;
@@ -601,12 +601,12 @@ class AokioAnalysisManager{
 	 * @return array
 	 */
 
-	function getTimeInfo($analysis_dao,$target,$total_counts,$time_info,$option,$db){		
+	function getTimeInfo($analysis_dao,$target,$total_counts,$time_info,$option,$db){
 		$info_array = $analysis_dao ->getTimeInfo($target,$total_counts,$time_info,$option,$db);
 		return $info_array;
 	}
 
-	function getLanguageInfo($target){		
+	function getLanguageInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 		$total_counts = $analysis_dao ->getLanguageTotalCounts($target,$db);
@@ -615,11 +615,11 @@ class AokioAnalysisManager{
 			return false;
 		}
 		$max_counts = $analysis_dao ->getMaxLanguage($target,$db);
-		
+
 		$info_temp_array = $analysis_dao ->getLanguageInfo($target,$total_counts['total'],$db);
 		$analysis_dao->closeConnection($db);
 
-//echo "<pre>".nl2br(print_r($max_counts,true))."</pre>";	
+//echo "<pre>".nl2br(print_r($max_counts,true))."</pre>";
 
 		return array(	'total_counts'	=> $total_counts['total'],
 						'max_counts'	=> $max_counts['max_counts'],
@@ -627,7 +627,7 @@ class AokioAnalysisManager{
 	}
 
 
-	function getNationInfo($target){		
+	function getNationInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 		$total_counts = $analysis_dao ->getNationTotalCounts($target,$db);
@@ -636,7 +636,7 @@ class AokioAnalysisManager{
 			return false;
 		}
 		$max_counts = $analysis_dao ->getMaxNation($target,$db);
-		
+
 		$info_temp_array = $analysis_dao ->getNationInfo($target,$total_counts['total'],$db);
 
 		$analysis_dao->closeConnection($db);
@@ -647,7 +647,7 @@ class AokioAnalysisManager{
 	}
 
 
-	function getCityInfo($target){		
+	function getCityInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 		$total_counts = $analysis_dao ->getCityTotalCounts($target,$db);
@@ -657,7 +657,7 @@ class AokioAnalysisManager{
 
 		}
 		$max_counts = $analysis_dao ->getMaxCity($target,$db);
-		
+
 		$info_temp_array = $analysis_dao ->getCityInfo($target,$total_counts['total'],$db);
 
 		$analysis_dao->closeConnection($db);
@@ -668,7 +668,7 @@ class AokioAnalysisManager{
 	}
 
 
-	function getRefererInfo($target){		
+	function getRefererInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 		$total_counts = $analysis_dao ->getRefererTotalCounts($target,$db);
@@ -678,7 +678,7 @@ class AokioAnalysisManager{
 
 		}
 		$max_counts = $analysis_dao ->getMaxReferer($target,$db);
-		
+
 		$info_temp_array = $analysis_dao ->getRefererInfo($target,$total_counts['total'],$db);
 
 		$analysis_dao->closeConnection($db);
@@ -688,7 +688,7 @@ class AokioAnalysisManager{
 						'info_list'		=> $info_temp_array);
 	}
 
-	function getRefererServerInfo($target){		
+	function getRefererServerInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 		$total_counts = $analysis_dao ->getRefererServerTotalCounts($target,$db);
@@ -697,7 +697,7 @@ class AokioAnalysisManager{
 			return false;
 		}
 		$max_counts = $analysis_dao ->getMaxRefererServer($target,$db);
-		
+
 		$info_temp_array = $analysis_dao ->getRefererServerInfo($target,$total_counts['total'],$db);
 
 		$analysis_dao->closeConnection($db);
@@ -707,7 +707,7 @@ class AokioAnalysisManager{
 						'info_list'		=> $info_temp_array);
 	}
 
-	function getScreensizeInfo($target){		
+	function getScreensizeInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 		$total_counts = $analysis_dao ->getScreensizeTotalCounts($target,$db);
@@ -716,7 +716,7 @@ class AokioAnalysisManager{
 			return false;
 		}
 		$max_counts = $analysis_dao ->getMaxScreensize($target,$db);
-		
+
 		$info_temp_array = $analysis_dao ->getScreensizeInfo($target,$total_counts['total'],$db);
 
 		$analysis_dao->closeConnection($db);
@@ -725,7 +725,7 @@ class AokioAnalysisManager{
 						'max_counts'	=> $max_counts['max_counts'],
 						'info_list'		=> $info_temp_array);
 	}
-	function getResolutionInfo($target){		
+	function getResolutionInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 		$total_counts = $analysis_dao ->getResolutionTotalCounts($target,$db);
@@ -734,7 +734,7 @@ class AokioAnalysisManager{
 			return false;
 		}
 		$max_counts = $analysis_dao ->getMaxResolution($target,$db);
-		
+
 		$info_temp_array = $analysis_dao ->getResolutionInfo($target,$total_counts['total'],$db);
 
 		$analysis_dao->closeConnection($db);
@@ -745,12 +745,12 @@ class AokioAnalysisManager{
 	}
 
 
-	function getSearchKeywordInfo($target){		
+	function getSearchKeywordInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
-		
+
 		$searchkeyword_misc_counts = $analysis_dao ->getSearchKeywordCountsMiscInfo($target,$db);
-		
+
 		if(!$searchkeyword_misc_counts['total_keyword_counts']){
 			$analysis_dao->closeConnection($db);
 			return false;
@@ -767,12 +767,12 @@ class AokioAnalysisManager{
 	}
 
 
-	function getSearchsiteInfo($target){		
+	function getSearchsiteInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
-		
+
 		$searchsite_misc_counts = $analysis_dao ->getSearchsiteCountsMiscInfo($target,$db);
-		
+
 		if(!$searchsite_misc_counts['total_search_sites_counts']){
 			$analysis_dao->closeConnection($db);
 			return false;
@@ -790,7 +790,7 @@ class AokioAnalysisManager{
 
 
 
-	function getRobotAccessInfo($target){		
+	function getRobotAccessInfo($target){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 		$robot_total_counts = $analysis_dao ->getRobotTotalCounts($target,$db);
@@ -807,7 +807,7 @@ class AokioAnalysisManager{
 						'info_list'		=> $info_temp_array);
 	}
 
-	function getRobotDetailInfo($target,$start,$list_per_page){		
+	function getRobotDetailInfo($target,$start,$list_per_page){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
 
@@ -819,10 +819,10 @@ class AokioAnalysisManager{
 	}
 
 
-	function getRobotDetailInfoTotalCounts($id){		
+	function getRobotDetailInfoTotalCounts($id){
 		$analysis_dao = new AokioAnalysisDao();
 		$db = $analysis_dao -> getConnection();
-		
+
 		$info_array = $analysis_dao ->getRobotDetailInfoTotalCounts($id,$db);
 		$analysis_dao->closeConnection($db);
 

@@ -55,17 +55,17 @@ if($exec=="add_group_ok") {
 	// 회원가입, 로그인시 이동할 URL
 	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$join_return_url)) Error("회원가입, 로그인시 이동할 URL을 영문, 한글, 숫자, -, ., / 등으로 입력하여 주십시요");
 	$join_return_url=addslashes($join_return_url);
-	
+
 	// 헤더푸터
 	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$header_url)) Error("상단 파일명을 영문, 한글, 숫자, -, ., / 등으로 입력하여 주십시요");
 	$header_url=addslashes($header_url);
 
 	if(preg_match("/[@\\\#\$&\(\)\+\|\{\}\;\'\"]/i",$header)) Error("상단에 출력할 내용을 영문, 한글, 숫자, !, %, =, ^, -, _, ?, [], <>, ., / 등으로 입력하여 주십시요. 괄호나 그밖의 특수문자, 따옴표 등은 허용되지 않습니다!");
 	$header=addslashes($header);
-	
+
 	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$footer_url)) Error("하단 파일명을 영문, 한글, 숫자, -, ., / 등으로 입력하여 주십시요");
 	$footer_url=addslashes($footer_url);
-	
+
 	if(preg_match("/[@\\\#\$&\(\)\+\|\{\}\;\'\"]/i",$footer)) Error("하단에 출력할 내용을 영문, 한글, 숫자, !, %, =, ^, -, _, ?, [], <>, ., / 등으로 입력하여 주십시요. 괄호나 그밖의 특수문자, 홑따옴표 등은 허용되지 않습니다!");
 	$footer=addslashes($footer);
 
@@ -106,24 +106,24 @@ elseif($exec=="modify_group_ok") {
 	// 회원가입, 로그인시 이동할 URL
 	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$join_return_url)) Error("회원가입, 로그인시 이동할 URL을 영문, 한글, 숫자, -, ., / 등으로 입력하여 주십시요");
 	$join_return_url=addslashes($join_return_url);
-	
+
 	// 헤더푸터
 	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$header_url)) Error("상단 파일명을 영문, 한글, 숫자, -, ., / 등으로 입력하여 주십시요");
 	$header_url=addslashes($header_url);
 
 	if(preg_match("/[@\\\#\$&\(\)\+\|\{\}\;\'\"]/i",$header)) Error("상단에 출력할 내용을 영문, 한글, 숫자, !, %, =, ^, -, _, ?, [], <>, ., / 등으로 입력하여 주십시요. 괄호나 그밖의 특수문자, 따옴표 등은 허용되지 않습니다!");
 	$header=addslashes($header);
-	
+
 	if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>,\?\'\"]/i",$footer_url)) Error("하단 파일명을 영문, 한글, 숫자, -, ., / 등으로 입력하여 주십시요");
 	$footer_url=addslashes($footer_url);
-	
+
 	if(preg_match("/[@\\\#\$&\(\)\+\|\{\}\;\'\"]/i",$footer)) Error("하단에 출력할 내용을 영문, 한글, 숫자, !, %, =, ^, -, _, ?, [], <>, ., / 등으로 입력하여 주십시요. 괄호나 그밖의 특수문자, 홑따옴표 등은 허용되지 않습니다!");
 	$footer=addslashes($footer);
 
 	// DB에 입력
 	@mysql_query("update $group_table set
 					use_hobby='$use_hobby',name='$name',is_open='$is_open' $icon_sql ,use_join='$use_join',join_return_url='$join_return_url',use_icon='$use_icon',
-					header='$header',footer='$footer',footer_url='$footer_url',header_url='$header_url' 
+					header='$header',footer='$footer',footer_url='$footer_url',header_url='$header_url'
 					where no='$group_no'") or Error("그룹수정 에러가 났습니다");
 	movepage("$PHP_SELF?exec=view_group&group_no=$group_no&exec=modify_group&sid=$sid");
 }
@@ -169,19 +169,19 @@ elseif($exec=="del_group_ok") {
 		@mysql_query("delete from $admin_table where group_no='$group_no'");
 	}
 
-	// 그룹삭제                                                                                                
+	// 그룹삭제
 	@mysql_query("delete from $group_table where no='$group_no'") or Error("그룹삭제시 에러가 발생하였습니다");
-																										  
-	movepage("$PHP_SELF?sid=$sid");                                                                                     
-}                                                                                                           
-// 가입양식 변경                                                                                            
-elseif($exec=="modify_member_join_ok")                                                                      {                                                                                                           
-	mysql_query("update $group_table set join_level='$join_level',use_icq='$use_icq',use_aol='$use_aol',use_msn='$use_msn',   
-	use_jumin='$use_jumin',use_comment='$use_comment',use_job='$use_job',use_hobby='$use_hobby',          
+
+	movepage("$PHP_SELF?sid=$sid");
+}
+// 가입양식 변경
+elseif($exec=="modify_member_join_ok")                                                                      {
+	mysql_query("update $group_table set join_level='$join_level',use_icq='$use_icq',use_aol='$use_aol',use_msn='$use_msn',
+	use_jumin='$use_jumin',use_comment='$use_comment',use_job='$use_job',use_hobby='$use_hobby',
 	use_home_address='$use_home_address',use_home_tel='$use_home_tel',use_office_address='$use_office_address',
-	use_office_tel='$use_office_tel',use_handphone='$use_handphone',use_mailing='$use_mailing',          
-	use_birth='$use_birth',use_picture='$use_picture' where no='$group_no'") or error(mysql_error());              
-	movepage("$PHP_SELF?exec=modify_member_join&group_no=$group_no&sid=$sid");                                                  
-}    
+	use_office_tel='$use_office_tel',use_handphone='$use_handphone',use_mailing='$use_mailing',
+	use_birth='$use_birth',use_picture='$use_picture' where no='$group_no'") or error(mysql_error());
+	movepage("$PHP_SELF?exec=modify_member_join&group_no=$group_no&sid=$sid");
+}
 
 ?>

@@ -1,5 +1,5 @@
 <?
-@extract($_GET); 
+@extract($_GET);
 @extract($_POST);
 
 /***************************************************************************
@@ -30,11 +30,11 @@ function head1($body="",$scriptfile="") {
 		$zbLayerScript = fread($f, filesize($_zb_path."script/script_zbLayer.php"));
 		fclose($f);
 	}
-	
+
 	// html 시작부분 출력
 	if($setup[skinname]) {
 ?>
-<html> 
+<html>
 <head>
 <title>Delete</title>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
@@ -92,7 +92,7 @@ function foot1() {
 <tr>
 	<td align=right style=font-family:tahoma,굴림;font-size:8pt;line-height:150%;letter-spacing:0px>
 		<font style=font-size:7pt>Copyright 1999-<?=date("Y")?></font> <a href=http://www.zeroboard.com target=_blank onfocus=blur()><font style=font-family:tahoma,굴림;font-size:8pt;>Zeroboard</a> <?=$maker?>
-	</td>   
+	</td>
 </tr>
 </table>
 
@@ -105,7 +105,7 @@ function foot1() {
 	function zb_img_check(){
 		var zb_main_table_width = document.zb_get_table_width.width*(100-4)/100;
 		var zb_target_resize_num = document.zb_target_resize.length;
-		for(i=0;i<zb_target_resize_num;i++){ 
+		for(i=0;i<zb_target_resize_num;i++){
 			if(document.zb_target_resize[i].width > zb_main_table_width) {
 				document.zb_target_resize[i].height = document.zb_target_resize[i].height * zb_main_table_width / document.zb_target_resize[i].width;
 				document.zb_target_resize[i].width = zb_main_table_width;
@@ -127,7 +127,7 @@ function foot1() {
 </body>
 </html>
 <?
-		
+
 	} else {
 
 		if($group[footer]) echo stripslashes($group[footer]);
@@ -142,7 +142,7 @@ function foot1() {
 
 	$_phpExcutedTime = (getmicrotime()-$_startTime)-($_sessionEnd-$_sessionStart)-($_nowConnectEnd-$_nowConnectStart)-$_dbTime-$_skinTime;
 	// 실행시간 출력
-	echo "\n\n<!--"; 
+	echo "\n\n<!--";
 	if($_sessionStart&&$_sessionEnd)  		echo "\n Session Excuted  : ".sprintf("%0.4f",$_sessionEnd-$_sessionStart);
 	if($_nowConnectStart&&$_nowConnectEnd) 	echo "\n Connect Checked  : ".sprintf("%0.4f",$_nowConnectEnd-$_nowConnectStart);
 	if($_dbTime)  							echo "\n Query Excuted  : ".sprintf("%0.3f",$_dbTime);

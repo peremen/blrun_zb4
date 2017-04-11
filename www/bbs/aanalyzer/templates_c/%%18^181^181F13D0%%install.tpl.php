@@ -396,7 +396,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_option
                     </tr>
                     <tr>
                   </table>
-                <?php endif; ?>  
+                <?php endif; ?>
                 </td>
                 <td background="images/install_border.gif" width="1"><img src="images/spacer.gif" width="1" height="1" /></td>
               </tr>
@@ -424,4 +424,4 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_option
   </tr>
 </table>
 </body>
-</html>
+</html>
