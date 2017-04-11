@@ -17,7 +17,7 @@
 	<input type=hidden name=ss value="<?=$ss?>">
 	<input type=hidden name=sc value="<?=$sc?>">
 	<input type=hidden name=sm value="<?=$sm?>">
-	
+
 	<col width=5></col><?if($hide_no!="on"){?><? if($browser=="1"){ ?><col width=40></col><? } ?><?}?><? if($browser=="1"){ ?><col width=70></col><? } ?><col width=></col><?if($hide_name!="on"){?><? if($browser=="1"){ ?><col width=100></col><? } ?><?}?><?if($hide_date!="on"){?><? if($browser=="1"){ ?><col width=65></col><? } ?><?}?><?if($hide_vote!="on"){?><? if($browser=="1"){ ?><col width=35></col><? } ?><?}?><?if($hide_hit!="on"){?><? if($browser=="1"){ ?><col width=50></col><? } ?><?}?><col width=13></col>
 	<tr align=center valign="middle" height=35>
 		<td class=title1></td>

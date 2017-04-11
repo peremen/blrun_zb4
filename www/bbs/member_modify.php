@@ -54,7 +54,7 @@ if($password) {
   return true;
  }
 
- function check_SSL_Login() { 
+ function check_SSL_Login() {
   if (document.member_secret.SSL_Login.checked==true) {
    alert("SSL 암호화 보안접속을 설정합니다");
   } else {
@@ -150,7 +150,7 @@ head();
  function address_popup(num)
  {
   //window.open('zipcode/search_zipcode.php?num='+num,'searchaddress','width=440,height=230,scrollbars=yes');
-  var pop = window.open("zipcode/jusoPopup.php?num="+num,"pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+  var pop = window.open("zipcode/jusoPopup.php?num="+num,"pop","width=570,height=420, scrollbars=yes, resizable=yes");
  }
  function check_submit()
  {
@@ -193,7 +193,7 @@ head();
   return true;
  }
 
- function check_SSL_Login() { 
+ function check_SSL_Login() {
   if (document.write.SSL_Login.checked==true) {
    alert("SSL 암호화 보안접속을 설정합니다");
   } else {
@@ -333,7 +333,7 @@ head();
 </tr>
 <? } ?>
 
-<? if($group_data[use_home_address]) { ?> 
+<? if($group_data[use_home_address]) { ?>
 <tr height=28 align=right>
   <td style=font-family:Tahoma;font-size:9pt;>Home Address&nbsp;</td>
   <td align=left>&nbsp;<input type=text name=home_address size=40 maxlength=255 value="<?=$member[home_address]?>" style=border-color:#d8b3b3 class=input><input type=button value='검색' class=input style=border-color:#d8b3b3 onclick=address_popup(1)><input type=checkbox value=1 name=open_home_address <?=$check[$member[open_home_address]]?>> 공개</td>

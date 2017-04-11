@@ -43,7 +43,7 @@ $print_page = str_replace("이전 검색","<font class=list_han>계속 검색",$
 				<a href="javascript:OnOff('sn')" onfocus=blur()><img src=<?=$dir?>/name_<?=$sn?>.gif border=0 name=sn></a><a href="javascript:OnOff('ss')" onfocus=blur()><img src=<?=$dir?>/subject_<?=$ss?>.gif border=0 name=ss></a><a href="javascript:OnOff('sc')" onfocus=blur()><img src=<?=$dir?>/content_<?=$sc?>.gif border=0 name=sc></a><a href="javascript:OnOff('sm')" onfocus=blur()><img src=<?=$dir?>/comment_<?=$sm?>.gif border=0 name=sm></a>
 			</td>
 			<td valign="middle"><input type=text name=keyword value="<?=$keyword?>" class=input size=10></td>
-			<td><input type=image src=<?=$dir?>/bt_search.gif border=0></td>			
+			<td><input type=image src=<?=$dir?>/bt_search.gif border=0></td>
 		</tr>
 		</form>
 		</table>

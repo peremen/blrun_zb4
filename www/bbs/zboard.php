@@ -4,7 +4,7 @@
 **************************************************************************/
 include "_head.php";
 include("securimage/securimage.php");
-// HTML 출력 
+// HTML 출력
 print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
 
 /***************************************************************************
@@ -33,7 +33,7 @@ if($s_que) {
 // 검색 조건이 없을때 : 상황 -> 일반 정렬, 또는 정렬기준을 가지거나 Desc, Asc 일때.
 else {
 
-	// 검색조건이 없고 정렬이 headnum에 의한 것일때;; 즉 일반 정렬일때;; 
+	// 검색조건이 없고 정렬이 headnum에 의한 것일때;; 즉 일반 정렬일때;;
 	if ($select_arrange=="headnum"&&$desc=="asc") {
 		while($division_data=mysql_fetch_array($division_result)) {
 			$sum=$sum+$division_data[num];
@@ -50,7 +50,7 @@ else {
 
 				$returnNum = mysql_num_rows($result);
 
-				if($returnNum>=$page_num) { 
+				if($returnNum>=$page_num) {
 					break;
 				} else {
 					if($division>1) {
@@ -133,7 +133,7 @@ if($use_division) {
 }
 
 /***************************************************************************
-* 각종 링크를 미리 지정하는 부분 
+* 각종 링크를 미리 지정하는 부분
 **************************************************************************/
 
 // 글쓰기버튼
@@ -174,7 +174,7 @@ $a_download1="<a onfocus=blur() href='$PHP_SELF?$href&select_arrange=download1&d
 $a_download2="<a onfocus=blur() href='$PHP_SELF?$href&select_arrange=download2&desc=$t_desc'>";
 
 /***************************************************************************
-* 정리한 데이타를 출력하는 부분 
+* 정리한 데이타를 출력하는 부분
 **************************************************************************/
 
 // 현재 선택된 데이타가 있을때, 즉 $no 가 있을때 $_view_included 변수 True로 셋.
@@ -192,7 +192,7 @@ if($_view_included) {
 } elseif($setup[skinname] == "ruvin_cubic_gu")
 	include "script/script_write.php";
 
-// 상단 현황 부분 출력 
+// 상단 현황 부분 출력
 include "$dir/setup.php";
 $_skinTime += getmicrotime()-$_skinTimeStart;
 

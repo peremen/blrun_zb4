@@ -1,4 +1,4 @@
-<?	
+<?
 /* Check New Comment $comment_new */
 $last_comment = mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where parent='$data[no]' order by reg_date desc limit 1"));
 $last_comment_time = $last_comment['reg_date'];

@@ -75,4 +75,4 @@ _right.gif" height="14"><?php endif; ?></td>
       <td background="images/detail_info_top_center.gif" width="531"></td>
       <td background="images/detail_info_top_right.gif" width="6"><img src="images/spacer.gif" width="6" height="17" /></td>
     </tr>
-</table>
+</table>

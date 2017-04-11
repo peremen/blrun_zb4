@@ -1,3 +1,3 @@
 <?
-include $dir."/".$type."/view_write_comment.php";	
+include $dir."/".$type."/view_write_comment.php";
 ?>

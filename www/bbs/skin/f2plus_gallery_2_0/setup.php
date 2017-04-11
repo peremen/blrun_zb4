@@ -1,7 +1,7 @@
 <?
 $config_file=$dir."/".$id."_config.php";
-if(file_exists($config_file)) include $config_file; 
-else{ 
+if(file_exists($config_file)) include $config_file;
+else{
 	$type="A2_type";
 }
 

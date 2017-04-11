@@ -2,11 +2,11 @@
 require_once 'Aokio.Analyze.Dao.php';
 require_once 'Aokio.Config.Manager.php';
 /**
- * Project:     AokioAnalyzer 
+ * Project:     AokioAnalyzer
  *
  *
  * @link http://www.aokio.com/
- * @copyright 2006- 
+ * @copyright 2006-
  * @author aokio   <st.elmo@gmail.com>
  * @package AokioAnalyzer
  */
@@ -15,7 +15,7 @@ require_once 'Aokio.Config.Manager.php';
  /**
  * @package AokioAnalyzer
  */
-class AokioAnalyzeManager{	
+class AokioAnalyzeManager{
 
 	// 접속 정보 분석후 각종 정보 입력
 	function insertAnalyzeInfo($anal_info,$target){
@@ -62,7 +62,7 @@ class AokioAnalyzeManager{
 
 		$week_info = $analyze_info['week'];
 		$target_arr = array($target);
-		
+
 		// TODO  스타트 플래그가 0 이면 1로 바꾸고 전날 스타트 플래그 0으로
 		// 요일 누적카운트 추가 , 오늘 카운트 1로 요일 횟수 1 추가
 		// 스타트 플래그가 1이면 누적 카운트 추가 오늘 카운트 추가 , 요일 횟수 변함 없음
@@ -75,7 +75,7 @@ class AokioAnalyzeManager{
 			$start_flag = false;
 			$analyze_dao -> updateWeekInfo($week_info,$target_arr,$start_flag,$db);
 		}
-		
+
 
 		if($analyze_info['language'] && $analyze_info['language'] != null){
 			$language_info = array($analyze_info['language'],$target);
@@ -109,7 +109,7 @@ class AokioAnalyzeManager{
 			}
 		}
 */
-		
+
 		$refererserver_info = $anal_info['referer_server'];
 		if(isset($refererserver_info) && $refererserver_info != null){
 			$temp = array($refererserver_info,$target);
@@ -204,7 +204,7 @@ class AokioAnalyzeManager{
 	}
 
 
-	function setBookmarkAnalyzeInfo($no,$target){		
+	function setBookmarkAnalyzeInfo($no,$target){
 		$analyze_dao = new AokioAnalyzeDao();
 
 		$db	= $analyze_dao -> getConnection();
@@ -217,11 +217,11 @@ class AokioAnalyzeManager{
 	}
 
 
-	function clearBookmarkAnalyzeInfo($no,$target){		
+	function clearBookmarkAnalyzeInfo($no,$target){
 		$analyze_dao = new AokioAnalyzeDao();
 
 		$db	= $analyze_dao -> getConnection();
-		
+
 //		$bookmark_info = array($no,$target);
 		$info_array = $analyze_dao ->clearBookmarkAnalyzeInfo($no,$target,$db);
 		$analyze_dao->closeConnection($db);
@@ -232,10 +232,10 @@ class AokioAnalyzeManager{
 
 
 
-	function insertSearchRobotInfo($robot_info,$target){		
+	function insertSearchRobotInfo($robot_info,$target){
 		$analyze_dao = new AokioAnalyzeDao();
 		$db = $analyze_dao -> getConnection();
-		
+
 //		$robot_agent_arr = array($robot_info['useragent']);
 		$robot_log_info	= $robot_info['robot_log_info'];
 		$robot_target_table_info = $robot_info['robot_target_table_info'];
@@ -246,7 +246,7 @@ class AokioAnalyzeManager{
 			// TODO update
 			$analyze_dao -> updateSearchRobotInfoInTargetTable($target,$robot_log_info,$db);
 		}
-		
+
 		// TODO aokio_log_robot 에 추가
 		$analyze_dao -> insertSearchRobotInfoInRobotLogTable($target,$robot_target_table_info,$db);
 

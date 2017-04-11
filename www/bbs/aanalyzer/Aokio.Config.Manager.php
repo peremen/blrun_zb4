@@ -3,7 +3,7 @@ require_once 'Aokio.Config.Dao.php';
 require_once "Aokio.Common.Manager.php";
 require_once "Aokio.Analyze.Manager.php";
 
-class AokioConfigManager{	
+class AokioConfigManager{
 	/**
 	 * Using Status: true ;
 	 *
@@ -26,7 +26,7 @@ class AokioConfigManager{
 	function getTargetConfigList(){
 		$config_dao = new AokioConfigDao();
 		$db = $config_dao -> getConnection();
-		
+
 		$info_array = $config_dao ->getTargetConfigList($db);
 
 		$day_info = AokioCommonManager::thisDayInfo();
@@ -52,7 +52,7 @@ class AokioConfigManager{
 	function getTargetConfigInfos($target){
 		$config_dao = new AokioConfigDao();
 		$db = $config_dao -> getConnection();
-		
+
 		$day_info = AokioCommonManager::thisDayInfo();
 		$info_array = $config_dao ->getTargetConfigInfos($target,$db);
 

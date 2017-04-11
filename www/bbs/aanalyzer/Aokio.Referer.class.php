@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
 // +----------------------------------------------------------------------+
 // +----------------------------------------------------------------------+
 // | Authors: Aokio <st.elmo@gmail.com>                                   |
@@ -11,8 +11,8 @@
  * Utility class that analyze  information from useragent strings.
  *
  * @package  Aokio_Analyzer_
- * @category 
- * @author   Aokio <st.elmo@gmail.com>   
+ * @category
+ * @author   Aokio <st.elmo@gmail.com>
  * @access   public
  * @version  $Revision: 0.1 $
  */
@@ -49,7 +49,7 @@ class Aokio_Analyzer_Referer{
 	}
 
 	function setRefererInfos(){
-		
+
 		$this->setRefererParseUrlInfo();
 		$this->setRefererServer();
 
@@ -107,7 +107,7 @@ class Aokio_Analyzer_Referer{
 				}
 			}
 		}
-		
+
 	}
 }
 ?>

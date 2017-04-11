@@ -1,6 +1,6 @@
 <?
-@extract($_GET); 
-@extract($_POST); 
+@extract($_GET);
+@extract($_POST);
 
 include $zbpath."lib.php";
 
@@ -23,18 +23,18 @@ if($type!=$prev_type && is_dir($path)) @file_del($path);
 
 $cols=5;
 if($no_use==1) $hide_no="on"; else $hide_no="off";
-if($name_use==1){ $hide_name="on";  $cols--; } else $hide_name="off"; 
-			  
-if($date_use==1){ $hide_date="on";  $cols--; }else $hide_date="off"; 
-			  
-if($vote_use==1){ $hide_vote="on"; $cols--; } else $hide_vote="off"; 
-			  
-if($hit_use==1){ $hide_hit="on"; $cols--; } else $hide_hit="off"; 
-			  
+if($name_use==1){ $hide_name="on";  $cols--; } else $hide_name="off";
+
+if($date_use==1){ $hide_date="on";  $cols--; }else $hide_date="off";
+
+if($vote_use==1){ $hide_vote="on"; $cols--; } else $hide_vote="off";
+
+if($hit_use==1){ $hide_hit="on"; $cols--; } else $hide_hit="off";
+
 
 // gd 체크 입니다.
 if($gd_use>0){
-	if($thumb==1){ 
+	if($thumb==1){
 		$Thumbnail_use="on";
 	}
 	else{
@@ -159,12 +159,12 @@ A:hover   {color:cccccc;text-decoration:underline}
 		<tr valign=middle  height=20>
 			<td>
 <?
-if(!$file){ 
+if(!$file){
 	echo "config.php 파일 쓰기에 실패하였습니다.<br> 스킨폴더의 퍼미션을 <font color=FF2400><B>707</B></font>로 조정하고 다시 인스톨하세요<br>";
 }else{
 	fwrite($file,$str);
 
-	if(!is_dir($zbpath."data/$board_id/")) { 
+	if(!is_dir($zbpath."data/$board_id/")) {
 		if(!@mkdir($zbpath."data/$board_id/",0777)) echo "제로보드의 절대경로를 바르게 입력하세요<br>";
 		if(!@chmod($zbpath."data/$board_id/",0707)) echo "퍼미션 조정에 실패했습니다.<br>$zb_path/data/$board_id 의 퍼미션을 707 로 조정하세요<br><br>";
 	}
@@ -172,11 +172,11 @@ if(!$file){
 	$error_check2=0;
 
 	if($gd_use>=1){
-		if(!is_dir($zbpath."data/$board_id/thumbnail/")) { 
+		if(!is_dir($zbpath."data/$board_id/thumbnail/")) {
 			if(!@mkdir($zbpath."data/$board_id/thumbnail/",0777)) $error_check1+=1;
 			if(!@chmod($zbpath."data/$board_id/thumbnail/",0707)) $error_check1+=2;
 		}
-		if(!is_dir($zbpath."icon/thumbnail/")) { 
+		if(!is_dir($zbpath."icon/thumbnail/")) {
 			if(!@mkdir($zbpath."icon/thumbnail/",0777)) $error_check2+=1;
 			if(!@chmod($zbpath."icon/thumbnail/",0707)) $error_check2+=2;
 		}

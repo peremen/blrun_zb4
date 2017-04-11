@@ -73,14 +73,14 @@ class RSSWriter {
 
 	// date format YYYY-MM-DD HH:mm:ss 또는 YYYY-MM-DD (예 : 2000-11-01 00:00:00)
 	function setPubDate($pubDate){
-		$this->ChannelOptionalElements["pubDate"] 
+		$this->ChannelOptionalElements["pubDate"]
 			= sprintf("%s KST",date("Y-m-d H:i:s",$this->GetTimeStamp($pubDate)));
 	}
 
 
 	// date format YYYY-MM-DD HH:mm:ss 또는 YYYY-MM-DD (예 : 2000-11-01 00:00:00)
 	function setLastBuildDate($lastBuildDate){
-		$this->ChannelOptionalElements["lastBuildDate"] 
+		$this->ChannelOptionalElements["lastBuildDate"]
 			= sprintf("%s KST",date("Y-m-d H:i:s",$this->GetTimeStamp($lastBuildDate)));
 	}
 
@@ -164,7 +164,7 @@ class RSSWriter {
 		while (list($name,$value) = each ($this->ChannelOptionalElements)) {
 			printf("<%s>%s</%s>\n",$name,$value,$name);
 		}
-		
+
 
 		$this->printItems();
 
@@ -177,14 +177,14 @@ class RSSWriter {
 			while (list($name,$value) = each($item)) {
 				if(!empty($item[$name])){
 					$value = htmlspecialchars($value);
-					printf("<%s>%s</%s>\n",$name,$value,$name); 
+					printf("<%s>%s</%s>\n",$name,$value,$name);
 				}
 			}
 			print("</item>\n");
 		}
 	}
 
-	function GetTimeStamp($date) 
+	function GetTimeStamp($date)
 	{
 		/* 인자 형식처리
 		YYYY-MM-DD

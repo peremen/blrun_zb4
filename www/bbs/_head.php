@@ -6,7 +6,7 @@ if(defined("_head_php_excuted")) return;
 define("_head_php_excuted",true);
 
 /***************************************************************************
-* 기본 라이브러리 include 
+* 기본 라이브러리 include
 **************************************************************************/
 
 // 라이브러리 함수 파일 include
@@ -39,7 +39,7 @@ if(!$id&&$_zboardis) Error("게시판 이름을 지정해 주셔야 합니다.<b
 * DB 연결하여 기본 데이타 추출
 **************************************************************************/
 // DB 연결
-if(!$connect) $connect=dbConn();  
+if(!$connect) $connect=dbConn();
 
 // 멤버 정보 구해오기;;; 멤버가 있을때
 $_dbTimeStart = getmicrotime();
@@ -53,7 +53,7 @@ if($_zboardis) {
 
 	// 게시판 설정 읽어 오기
 	$_dbTimeStart = getmicrotime();
-	$setup = get_table_attrib($id); 
+	$setup = get_table_attrib($id);
 	if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성후 사용하십시요",""); // 설정되지 않은 게시판
 
 	// 현재 게시판의 그룹의 설정 읽어 오기
@@ -70,9 +70,9 @@ if($_zboardis) {
 	if(!$is_admin) check_blockip();
 
 	// 관리자일경우에는 무조건 바구니 기능 활성화 시킴 (게시물 정리를 위해서)
-	if($is_admin) $setup[use_cart]=1; 
+	if($is_admin) $setup[use_cart]=1;
 
-	// 스킨 디렉토리 : $dir 이라는 변수는 계속해서 스킨경로 파일로 
+	// 스킨 디렉토리 : $dir 이라는 변수는 계속해서 스킨경로 파일로
 	$dir="skin/".$setup[skinname];
 
 	// 게시판의 가로크기 설정
@@ -148,9 +148,9 @@ if($_zboardis) {
 			if($sm=="on") {
 				$t_s_que =" $t_comment"."_$id.memo like '%$keyword%' ";
 				if(!$sn1) {
-					if($sn=="on") $t_s_que.=" or $t_board"."_$id.name like '%$keyword%' or $t_comment"."_$id.name like '%$keyword%' "; 
+					if($sn=="on") $t_s_que.=" or $t_board"."_$id.name like '%$keyword%' or $t_comment"."_$id.name like '%$keyword%' ";
 				} else {
-					if($sn=="on") $t_s_que.=" or $t_board"."_$id.name = '$keyword' or $t_comment"."_$id.name = '$keyword' "; 
+					if($sn=="on") $t_s_que.=" or $t_board"."_$id.name = '$keyword' or $t_comment"."_$id.name = '$keyword' ";
 				}
 				if($ss=="on") $t_s_que.=" or subject like '%$keyword%' ";
 				if($sc=="on") $t_s_que.=" or $t_board"."_$id.memo like '%$keyword%' ";
@@ -158,10 +158,10 @@ if($_zboardis) {
 				else $s_que.= " ( ".$t_s_que." ) ";
 			} else {
 				if(!$sn1) {
-					if($sn=="on"&&$t_s_que) $t_s_que.=" or name like '%$keyword%' "; 
+					if($sn=="on"&&$t_s_que) $t_s_que.=" or name like '%$keyword%' ";
 					elseif($sn=="on") $t_s_que.=" name like '%$keyword%' ";
 				} else {
-					if($sn=="on"&&$t_s_que) $t_s_que.=" or name = '$keyword' "; 
+					if($sn=="on"&&$t_s_que) $t_s_que.=" or name = '$keyword' ";
 					elseif($sn=="on") $t_s_que.=" name = '$keyword' ";
 				}
 				if($ss=="on"&&$t_s_que) $t_s_que.=" or subject like '%$keyword%' "; elseif($ss=="on") $t_s_que.=" subject like '%$keyword%' ";
@@ -198,11 +198,11 @@ if($_zboardis) {
 						while($data=mysql_fetch_array($rs))
 						{
 							$cnt=$cnt+1;
-						} 
+						}
 						$total=$cnt;
 					} else {
 						$total=0;
-					} 
+					}
 
 				} else {
 					$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id $s_que ",$connect));
@@ -215,11 +215,11 @@ if($_zboardis) {
 		// 페이지 관련 변수값 정함
 		$page_num=$setup[memo_num];
 		if(!$page) $page=1; // 만약 $page라는 변수에 값이 없으면 임의로 1 페이지 입력
-	
+
 		$total_page=(int)(($total-1)/$page_num)+1; // 전체 페이지 구함
-	
+
 		if($page>$total_page) $page=$total_page; // 페이지가 전체 페이지보다 크면 페이지 번호 바꿈
-	
+
 		$start_num=($page-1)*$page_num; // 페이지 수에 따른 출력시 첫번째가 될 글의 번호 구함
 	}
 
@@ -237,7 +237,7 @@ if($_zboardis) {
 		$href2=$href;
 		$href.="&keyword=$keyword";
 	}
-	
+
 	unset($sort);
 	if($select_arrange) $sort.="&select_arrange=$select_arrange";
 	if($desc) $sort.="&desc=$desc";
@@ -254,7 +254,7 @@ if($_zboardis) {
 	} else {
 		$hide_cart_start="<!--";
 		$hide_cart_end="-->";
-		$a_cart=""; 
+		$a_cart="";
 	}
 
 	// 모두삭제 버튼

@@ -41,7 +41,7 @@
 <td align=center>
 <?=$hide_start?>
 
-	<font color=444444 >이름 : </b></font><input type=text id=name name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> &nbsp; 
+	<font color=444444 >이름 : </b></font><input type=text id=name name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> &nbsp;
 	<font color=444444 >비밀번호 : </b></font><input type=password id=password name=password <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨.
 <?=$hide_end?>
 

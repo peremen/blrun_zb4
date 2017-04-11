@@ -30,7 +30,7 @@ $filepath=$data["file_name".$filenum];
 $filename=$data[$filename];
 $filename=iconv("utf-8","euc-kr",$filename);
 
-header("Content-Type: application/force-download"); 
-header("Content-Disposition: attachment; filename=\"$filename\""); 
+header("Content-Type: application/force-download");
+header("Content-Disposition: attachment; filename=\"$filename\"");
 readfile("$filepath");
 ?>

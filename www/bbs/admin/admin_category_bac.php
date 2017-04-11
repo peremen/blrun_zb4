@@ -62,7 +62,7 @@ if(!$total_num&&$total_category>1)
   <table border=0 cellpadding=2 cellspacing=0>
     <tr>
       <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;> 선택된 카테고리의 게시물을 일괄 이동 : </td><td><img src=images/t.gif height=2><br>
-        <select name=movename class=input> 
+        <select name=movename class=input>
 <?
 $temp2=mysql_query("select * from $t_category"."_$table_data[name] order by no desc",$connect);
 while($data2=mysql_fetch_array($temp2))

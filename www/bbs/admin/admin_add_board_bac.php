@@ -55,7 +55,7 @@ if(!$data[memo_num]) $data[memo_num]=20;
 <!-- 스킨 설정 -->
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>스킨 설정&nbsp;</td>
-  <td>&nbsp;&nbsp; 
+  <td>&nbsp;&nbsp;
     <select name=skinname>
 <?
 // /skin 디렉토리에서 디렉토리를 구함
@@ -100,11 +100,11 @@ function check2()
 
 <tr height=70 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>스킨 형식 설정&nbsp;</td>
-  <td>&nbsp;&nbsp; 
+  <td>&nbsp;&nbsp;
 <? unset($check);$check[$data[only_board]]="checked";?>
     <input type=checkbox name=only_board value=1 checked> 게시판으로만 사용시 선택하여 주십시요. (스킨처리 속도가 향상됩니다.)<br>
     &nbsp;&nbsp; <input type=button class=input onclick=check1() style=border-color:#b0b0b0;height=18px value="게시판 형태"> 내용이 목록에 나오지 않는 게시판 형태의 스킨
-    <br> 
+    <br>
     <img src=images/t.gif border=0 height=4><br>&nbsp;&nbsp;
     <input type=button class=input onclick=check2() style=border-color:#b0b0b0;height=18px value="방명록 형태"> 내용이 목록에 나오는 방명록 형식의 스킨
   </td>
@@ -128,7 +128,7 @@ function check2()
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>게시판 가로 크기&nbsp;</td>
   <td>&nbsp;&nbsp;
     <input type=text name=table_width value='<?echo $data[table_width];?>' size=4 maxlength=4 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
-    게시판 가로크기 (100이하이면 %로 설정) 
+    게시판 가로크기 (100이하이면 %로 설정)
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
@@ -142,14 +142,14 @@ function check2()
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>페이지당 목록 수&nbsp;</td>
   <td>&nbsp;&nbsp;
     <input type=text name=memo_num value='<?echo $data[memo_num];?>' size=3 maxlength=3 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
-    한페이지당 출력될 목록의 수 (1~999) 
+    한페이지당 출력될 목록의 수 (1~999)
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>페이지 표시 수&nbsp;</td>
   <td>&nbsp;&nbsp;
     <input type=text name=page_num value='<?echo $data[page_num];?>' size=3 maxlength=3 class=input style=border-color:#b0b0b0> &nbsp;&nbsp;
-    목록의 아래부분에 표시될 페이지의 갯수 (1~999) 
+    목록의 아래부분에 표시될 페이지의 갯수 (1~999)
   </td>
 </tr>
 <!-- 헤더, 푸터  -->
@@ -192,7 +192,7 @@ function check2()
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>전체 목록 출력 (글내용 보기)&nbsp;</td>
   <td>&nbsp;&nbsp;
-    <input type=checkbox name=use_alllist value='1' <?echo $check[1];?>> 글내용볼때 아래에 전체 리스트 기능&nbsp; 
+    <input type=checkbox name=use_alllist value='1' <?echo $check[1];?>> 글내용볼때 아래에 전체 리스트 기능&nbsp;
   </td>
 </tr>
 <? unset($check);$check[$data[use_category]]="checked";?>
@@ -208,7 +208,7 @@ function check2()
   <td>&nbsp;&nbsp;
     <input type=radio name=use_html value='0' <?echo $check[0];?>> 모두막기 &nbsp;
     <input type=radio name=use_html value='1' <?echo $check[1];?>> 부분허용 &nbsp;
-    <input type=radio name=use_html value='2' <?echo $check[2];?>> 모두허용 &nbsp; 
+    <input type=radio name=use_html value='2' <?echo $check[2];?>> 모두허용 &nbsp;
   </td>
 </tr>
 <? unset($check);if($data[use_showreply]) $check="checked"; else $check=""; ?>
@@ -222,8 +222,8 @@ function check2()
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>불량단어 필터링 사용&nbsp;</td>
   <td>&nbsp;&nbsp;
-    <input type=checkbox name=use_filter value='1' <?echo $check;?>> 
-    욕/비방글등에 대한 필터기능 사용 
+    <input type=checkbox name=use_filter value='1' <?echo $check;?>>
+    욕/비방글등에 대한 필터기능 사용
   </td>
 </tr>
 <? if($data[use_status]) $check="checked"; else $check=""; ?>
@@ -261,7 +261,7 @@ function check2()
 <tr height=25 bgcolor=#e0e0e0>
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>첨부파일 #1의 허용 확장자&nbsp;</td>
   <td>&nbsp;&nbsp;
-    <input type=text name=pds_ext1 value='<?echo $data[pds_ext1];?>' size=50 maxlength=250 class=input style=border-color:#b0b0b0><br>&nbsp;&nbsp; 1번 업로드 가능 확장자 지정 (공백시 검사하지않음. 쉼표(,)로 구분) 
+    <input type=text name=pds_ext1 value='<?echo $data[pds_ext1];?>' size=50 maxlength=250 class=input style=border-color:#b0b0b0><br>&nbsp;&nbsp; 1번 업로드 가능 확장자 지정 (공백시 검사하지않음. 쉼표(,)로 구분)
   </td>
 </tr>
 <tr height=25 bgcolor=#e0e0e0>
@@ -281,7 +281,7 @@ function check2()
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>바구니 기능&nbsp;</td>
   <td>&nbsp;&nbsp;
     <input type=checkbox  name=use_cart value='1' <?echo $check;?>>
-    바구니 기능 사용 
+    바구니 기능 사용
   </td>
 </tr>
 <? if($data[use_autolink]) $check="checked"; else $check=""; ?>
@@ -313,7 +313,7 @@ function check2()
   <td align=right style=font-family:Tahoma;font-size:9pt;><b>글쓴이 서브메뉴 사용&nbsp;</td>
   <td>&nbsp;&nbsp;
     <input type=checkbox name=use_formmail value='1' <?echo $check;?>>
-	허용시 글쓴이의 이름 클릭시 서브 레이어 메뉴 표시 
+	허용시 글쓴이의 이름 클릭시 서브 레이어 메뉴 표시
   </td>
 </tr>
 <? if($data[use_secret]) $check="checked"; else $check=""; ?>

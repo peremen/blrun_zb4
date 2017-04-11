@@ -6,7 +6,7 @@
 */
 require_once "../_head.php";
 $dong = trim($_POST['dong']);
-	
+
 if(!get_magic_quotes_gpc())
 {
 	$dong = addslashes($dong);
@@ -22,14 +22,14 @@ else
 	$list_begin = '<!--';
 	$list_end = '-->';
 }
-	
+
 include("search_ziphead.php");
 
 if($dong)
 {
 	$dbqry="SELECT * FROM `zetyx_zipcode` WHERE dong like '%$dong%'";
 	$rs = mysql_query($dbqry) or die(mysql_error());
-	
+
 	while($R=mysql_fetch_array($rs))
 	{
 		$address1 = "{$R['sido']} {$R['gugun']} {$R['dong']} {$R['bunji']}";

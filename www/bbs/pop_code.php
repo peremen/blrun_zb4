@@ -95,7 +95,7 @@ function insertCode() {
 			<option value="applescript">AppleScript</option>
 			<option value="as3">ActionScript3</option>
 			<option value="bash">Bash/shell</option>
-			<option value="cf">ColdFusion</option>					
+			<option value="cf">ColdFusion</option>
 			<option value="csharp">C#</option>
 			<option value="cpp">C++/C</option>
 			<option value="css">CSS</option>
@@ -108,7 +108,7 @@ function insertCode() {
 			<option value="jfx">JavaFX</option>
 			<option value="perl">Perl</option>
 			<option value="php">PHP</option>
-			<option value="plain">Plain Text</option>					
+			<option value="plain">Plain Text</option>
 			<option value="ps">PowerShell</option>
 			<option value="py">Python</option>
 			<option value="ruby">Ruby</option>

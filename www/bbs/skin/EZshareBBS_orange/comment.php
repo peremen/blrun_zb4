@@ -21,7 +21,7 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
 <input type=hidden name=c_no value=<?=$c_no?>>
 <input type=hidden name=c_org value=<?=$c_org?>>
 <input type=hidden name=c_depth value=<?=$c_depth?>>
-<input type=hidden name=antispam value="<?=$num1num2?>"> 
+<input type=hidden name=antispam value="<?=$num1num2?>">
 
 <div align=center>
 <table border=0 cellspacing=1 cellpadding=0 width=<?=$width?> class=zv3_viewform>
@@ -35,7 +35,7 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
         <?=$hide_html_start?> <input type=checkbox id=use_html2 name=use_html2<?=$use_html2?>>HTML사용<?=$hide_html_end?><?=$hide_secret_start?> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?> <font id="state"></font></td>
       <td width=80>&nbsp;</td>
     </tr>
-    <tr align=center> 
+    <tr align=center>
 <!--코멘트 이름, 비번, 내용 시작-->
       <td height=20 style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br><b>이름</b></td>
       <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>코멘트</b> &nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+3"></td>

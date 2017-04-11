@@ -14,7 +14,7 @@ function insert_emo(str)
 	var objSelection = document.selection;
 	var objTextArea = document.getElementById('memo');
 	objTextArea.focus();
-	
+
 	if(typeof objSelection != 'undefined') //IE
 	{
 		var sRange = objSelection.createRange();

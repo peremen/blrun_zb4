@@ -30,7 +30,7 @@ if($member[no]) {
 // 패스워드를 암호화
 if(mb_strlen($password)) {
 	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
-	$password=$temp[0];   
+	$password=$temp[0];
 }
 
 if(!get_magic_quotes_gpc()) {
@@ -52,7 +52,7 @@ function board_imsi_info($id,$no,$ismember,$name,$password) {
 if($mode!="modify") {
 	if($name&&$password&&(($subject&&!preg_match("#Guest#",$subject))||$memo)) {
 		$re=mysql_fetch_array(mysql_query("select count(*) from $board_imsi_table where bname='$id' and bno='0' and ismember='$ismember' and name='$name' and password='$password'"));
-		
+
 		if($re[0]>0) {
 			// 글쓰기 임시포스트 업데이트
 			mysql_query("update $board_imsi_table set name='$name',subject='$subject',email='$email',homepage='$homepage',memo='$memo',sitelink1='$sitelink1',sitelink2='$sitelink2',use_html='$use_html',reply_mail='$reply_mail',notice='$notice',is_secret='$is_secret',category='$category',reg_date='$reg_date' where bname='$id' and bno='0' and ismember='$ismember' and name='$name' and password='$password'") or error(mysql_error());
@@ -71,7 +71,7 @@ if($mode!="modify") {
 **************************************************************************/
 } elseif($mode=="modify"&&$no) {
 	$re=mysql_fetch_array(mysql_query("select count(*) from $board_imsi_table where bname='$id' and bno='$no' and ismember='$ismember' and name='$name' and password='$password'"));
-	
+
 	if($re[0]>0) {
 		// 수정하기 업데이트
 		mysql_query("update $board_imsi_table set name='$name',subject='$subject',email='$email',homepage='$homepage',memo='$memo',sitelink1='$sitelink1',sitelink2='$sitelink2',use_html='$use_html',reply_mail='$reply_mail',notice='$notice',is_secret='$is_secret',category='$category',reg_date='$reg_date' where bname='$id' and bno='$no' and ismember='$ismember' and name='$name' and password='$password'") or error(mysql_error());

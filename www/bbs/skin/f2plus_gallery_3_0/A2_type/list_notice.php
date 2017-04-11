@@ -11,12 +11,12 @@ else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$commen
 
 include "list_image_info.php";
 
-unset($_m);	
-unset($line);	
-$_m = explode("\n",strip_tags($data['memo']));	
-for($i=0;$i<count($_m);$i++) 
+unset($_m);
+unset($line);
+$_m = explode("\n",strip_tags($data['memo']));
+for($i=0;$i<count($_m);$i++)
 if(trim($_m[$i])) $line[] = $_m[$i];
-$tmp_memo=$line[0]."".$line[1]."".$line[2]."".$line[3]."".$line[4]."".$line[5]."".$line[6]."".$line[7]."".$line[8]."".$line[9]."".$line[10];// 이부분이 미리나오는 내용 입니다. 라인 1,2,3 적용	if($line[11]) $tmp_memo.="..."; 
+$tmp_memo=$line[0]."".$line[1]."".$line[2]."".$line[3]."".$line[4]."".$line[5]."".$line[6]."".$line[7]."".$line[8]."".$line[9]."".$line[10];// 이부분이 미리나오는 내용 입니다. 라인 1,2,3 적용	if($line[11]) $tmp_memo.="...";
 $_name1=explode("|||",$tmp_memo);
 $_name1[0] = love_convert($_name1[0]);
 

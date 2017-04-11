@@ -27,7 +27,7 @@ if(!$member[no]) {
 ?>
 <tr height=60>
 	<td align=center>
-		<font class=list_eng><b>Password</b> :</font><?=$input_password?> 
+		<font class=list_eng><b>Password</b> :</font><?=$input_password?>
 	</td>
 </tr>
 <?

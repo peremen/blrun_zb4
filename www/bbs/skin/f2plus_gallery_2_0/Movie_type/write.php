@@ -4,10 +4,10 @@ elseif($mode=="modify") $title="글 수정하기";
 else $title="새로 글 쓰기";
 
 $m_memo = explode("|||",htmlspecialchars(str_replace("&amp;","&",str_replace("&lt;","<",$memo))));
-$_name1 = $m_memo[0];  
-$_name2 = $m_memo[1];  
-$_name3 = $m_memo[2]; 
-$_name4 = $m_memo[3]; 
+$_name1 = $m_memo[0];
+$_name2 = $m_memo[1];
+$_name3 = $m_memo[2];
+$_name4 = $m_memo[3];
 $_name5 = $m_memo[4];
 $_name6 = $m_memo[5];
 $_name7 = $m_memo[6];
@@ -53,7 +53,7 @@ function check_submit_y() {
 		return false;
 	}
 <? } ?>
-	
+
 	var rName2=document.getElementById('_name2');
 	var rName3=document.getElementById('_name3');
 	var rName4=document.getElementById('_name4');

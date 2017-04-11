@@ -17,7 +17,7 @@ require_once 'Aokio.Dao.class.php';
 
 class AokioConfigDao extends AokioDao{
 
-	function AokioConfigDao(){	
+	function AokioConfigDao(){
 		parent::AokioDao();
 	}
 
@@ -106,7 +106,7 @@ class AokioConfigDao extends AokioDao{
 			$sql  = "";
 		}
 
-		
+
 		$this->insertAokioInfo($sql,$conf_info,$db);
 	}
 }

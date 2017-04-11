@@ -3,7 +3,7 @@
 </table>
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?>>
 <tr>
-<!--페이징-->    
+<!--페이징-->
   <td height="40" align=left style="padding-left:10px;"><?=$a_prev_page?>[이전<?=$setup[page_num]?>개]</a> <?=$print_page?> <font class=zv3_normal><?=$a_next_page?>[다음<?=$setup[page_num]?>개]</font></a></td>
 <!--검색-->
   <td align=right>

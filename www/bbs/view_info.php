@@ -46,7 +46,7 @@ if($member_no>0&&$member[no]>0) {
 ?>
     <a href=view_info2.php?member_no=<?=$member_no?>><img src=images/vi_B_userinfo.gif border=0></a>
 <?
-	} else { 
+	} else {
 ?>
     <img src=images/vi_B_userinfo.gif border=0 onclick="alert('개인정보를 공개하지 않았습니다')">
 
@@ -111,7 +111,7 @@ if($member[no]&&$data[no]) {
 }
 ?>
     <tr>
-      <td width=50 align=right><img src=images/vi_subject.gif></td> 
+      <td width=50 align=right><img src=images/vi_subject.gif></td>
       <td>&nbsp;<input type=text style=width:80% id=subject name=subject class=input style=border-color:#d8b3b3> <input type=hidden name=html value=0></td>
     </tr>
     <tr>

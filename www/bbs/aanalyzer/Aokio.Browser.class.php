@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
 // +----------------------------------------------------------------------+
 // +----------------------------------------------------------------------+
 // | Authors: Aokio <st.elmo@gmail.com>                                   |
@@ -12,7 +12,7 @@
  *
  * @package  Aokio_Analyzer_Browser
  * @category Networking
- * @author    Aokio <st.elmo@gmail.com>   
+ * @author    Aokio <st.elmo@gmail.com>
  * @access    public
  * @version   $Revision: 0.1 $
  */
@@ -36,7 +36,7 @@ class Aokio_Analyzer_Browser{
 	var $mozilla_flag;
 	var $mozilla_version;
 /*
-	moz_types = new Array( 'Firebird', 'Phoenix', 'Firefox', 'Galeon', 'K-Meleon', 'Camino', 'Epiphany', 
+	moz_types = new Array( 'Firebird', 'Phoenix', 'Firefox', 'Galeon', 'K-Meleon', 'Camino', 'Epiphany',
 		'Netscape6', 'Netscape', 'MultiZilla', 'Gecko Debian', 'rv' );
 
 */
@@ -90,24 +90,24 @@ class Aokio_Analyzer_Browser{
 
 // 브라우저 크게 분류
 
-	
+
 	function _setBrowserCategory(){
 		$browser_category = "";
 		$agent = $this->useragent;
-		
+
 		$browser_type =-99;
 
-//TODO 스트링 안에 mathplayer 가 있으면 
+//TODO 스트링 안에 mathplayer 가 있으면
 //http://www.dessci.com/en/products/mathplayer/ 가 설치되어 있음.
 //TODO 스트링 안에 istb 가 있으면 인포시크 툴바가 설치되어있음
 //Mozilla/5.0 (compatible; MSIE 6.0;Windows; U; Windows NT 5.0; ja-JP; rv:1.7.5) Gecko/20041108 Firefox/1.0
 // 이거 머야...? -,.- 머 이런넘이 다 있어....
-		if( (preg_match("#msie#",$agent)||preg_match("#rv:11#",$agent)||preg_match("#edge#",$agent)) && 
-			!preg_match("#opr#",$agent) && 
-			!preg_match("#avant browser#",$agent) && 
-			!preg_match("#sleipnir#",$agent) && 
-			!preg_match("#lunascape#",$agent)&& 
-			!preg_match("#aol#",$agent)&& 
+		if( (preg_match("#msie#",$agent)||preg_match("#rv:11#",$agent)||preg_match("#edge#",$agent)) &&
+			!preg_match("#opr#",$agent) &&
+			!preg_match("#avant browser#",$agent) &&
+			!preg_match("#sleipnir#",$agent) &&
+			!preg_match("#lunascape#",$agent)&&
+			!preg_match("#aol#",$agent)&&
 			!preg_match("#america online browser #",$agent)){
 			$browser = "Internet Explorer";
 
@@ -166,7 +166,7 @@ class Aokio_Analyzer_Browser{
 			$browser = "Safari";
 			$browser_type = KHTML;
 
-		}elseif( 
+		}elseif(
 			preg_match("#mozilla#",$agent )   &&
 			!preg_match("#spoofer#",$agent)    &&
 			!preg_match("#compatible#",$agent) &&
@@ -215,7 +215,7 @@ class Aokio_Analyzer_Browser{
 		}else{
 			$browser = "Unknown Browser";
 		}
-		
+
 		$browser_version = $this->_setBrowserVersion($browser,$agent);
 		if($browser == "Netscape6up"){
 			$this->browser_name = "Netscape";

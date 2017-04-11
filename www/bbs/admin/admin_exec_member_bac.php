@@ -26,7 +26,7 @@ function del_member($no) {
 }
 
 
-// 회원전체 삭제하는 부분 
+// 회원전체 삭제하는 부분
 
 if($exec2=="deleteall"&&$member[is_admin]<3) {
 	for($i=0;$i<sizeof($cart);$i++) {
@@ -36,7 +36,7 @@ if($exec2=="deleteall"&&$member[is_admin]<3) {
 }
 
 
-// 회원 게시판 권한 취소시키는 부분 
+// 회원 게시판 권한 취소시키는 부분
 
 if($exec2=="modify_member_board_manager"&&$member[is_admin]<3) {
 
@@ -57,7 +57,7 @@ if($exec2=="modify_member_board_manager"&&$member[is_admin]<3) {
 }
 
 
-// 회원 게시판 권한 추가시키는 부분 
+// 회원 게시판 권한 추가시키는 부분
 
 if($exec2=="add_member_board_manager"&&$member[is_admin]<3) {
 
@@ -70,7 +70,7 @@ if($exec2=="add_member_board_manager"&&$member[is_admin]<3) {
 }
 
 
-// 회원 권한 변경하는 부분 
+// 회원 권한 변경하는 부분
 
 if($exec2=="moveall"&&$member[is_admin]==1) {
 	for($i=0;$i<sizeof($cart);$i++) {
@@ -80,7 +80,7 @@ if($exec2=="moveall"&&$member[is_admin]==1) {
 }
 
 
-// 회원 그룹 변경하는 부분 
+// 회원 그룹 변경하는 부분
 
 if($exec2=="move_group"&&$member[is_admin]==1) {
 	for($i=0;$i<sizeof($cart);$i++) {
@@ -92,7 +92,7 @@ if($exec2=="move_group"&&$member[is_admin]==1) {
 }
 
 
-// 회원삭제하는 부분 
+// 회원삭제하는 부분
 
 if($exec2=="del"&&$member[is_admin]<3) {
 	del_member($no);
@@ -100,7 +100,7 @@ if($exec2=="del"&&$member[is_admin]<3) {
 }
 
 
-// 회원정보 변경하는 부분 
+// 회원정보 변경하는 부분
 preg_match('/[0-9a-zA-Z.\@\_]+/',$email,$result); //특수문자가 들어갔는지 조사
 if($result[0]!=$email) Error("E-mail 문자를 확인하세요(영문자와 숫자, ., @, _만을 사용!)","");
 $email=addslashes($email);
@@ -134,7 +134,7 @@ if($exec2=="modify_member_ok") {
 	$birth=mktime(0,0,0,$birth_2,$birth_3,$birth_1);
 
 	if($member[no]==$member_no) {
-		$is_admin = $member[is_admin];	
+		$is_admin = $member[is_admin];
 		$level = $member[level];
 	}
 
@@ -168,7 +168,7 @@ if($exec2=="modify_member_ok") {
 
 	@mysql_query($que) or Error("회원정보 수정시에 에러가 발생하였습니다 ".mysql_error());
 
-	// 회원의 소개 사진 
+	// 회원의 소개 사진
 	if($_FILES[picture]) {
 		$picture = $_FILES[picture][tmp_name];
 		$picture_name = $_FILES[picture][name];

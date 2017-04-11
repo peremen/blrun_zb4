@@ -75,12 +75,12 @@ if($data[no]&&($data[openinfo]||$member[is_admin]==1)) {
     </tr>
     <tr>
       <td colspan="5" bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
-    </tr> 
+    </tr>
 <? } ?>
     <tr>
       <td width=25% align=right><img src=images/memo_id.gif align=absmiddle>&nbsp;&nbsp;</td>
       <td align=left><img src="images/t.gif" width="10" height="3"><br><b><?=del_html($data[user_id])?></b></td>
-    </tr>        
+    </tr>
     <tr>
       <td colspan="5" bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
     </tr>

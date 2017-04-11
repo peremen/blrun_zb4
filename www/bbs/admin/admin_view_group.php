@@ -54,7 +54,7 @@ $data=mysql_fetch_array($result);
 <?
 if($member[is_admin]==1||($member[is_admin]==2&&$member[group_no]==$group_no)) {
 	echo "
-    <tr height=33><td align=center bgcolor=#3d3d3d><a href=$PHP_SELF?group_no=$group_no&exec=modify_group&sid=$sid><img src=images/t_admin_editgroup.gif border=0></a></td></tr> 
+    <tr height=33><td align=center bgcolor=#3d3d3d><a href=$PHP_SELF?group_no=$group_no&exec=modify_group&sid=$sid><img src=images/t_admin_editgroup.gif border=0></a></td></tr>
     <tr height=33><td align=center bgcolor=#3d3d3d><a href=$PHP_SELF?exec=modify_member_join&group_no=$group_no&sid=$sid><img src=images/t_admin_memberjoin.gif border=0></a></td></tr>
     <tr height=33><td align=center bgcolor=#3d3d3d><a href=$PHP_SELF?exec=view_member&group_no=$group_no&sid=$sid><img src=images/t_admin_membermanage.gif border=0></a></td></tr>
     <tr height=33><td align=center bgcolor=#3d3d3d><a href=$PHP_SELF?exec=view_board&group_no=$group_no&sid=$sid><img src=images/t_admin_webboard.gif border=0></a></td></tr>";

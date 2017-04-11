@@ -32,7 +32,7 @@
   바구니와 카테고리의 경우 사용하지 않는 수가 있으므로 숨겨놓을때 쓰는 변수;;
   <?=$hide_cart_start?> 내용 <?=$hide_cart_end?> : start 와 end 사이에는 사라짐;; 바구니
   <?=$hide_category_start?> 내용 <?=$hide_category_end?> : Start와 end 사이에는 사라짐;; 바구니
-  */ 
+  */
 ?>
 
 <table border=0 cellspacing=0 cellpadding=0 width=<?=$width?> style=table-layout:fixed>

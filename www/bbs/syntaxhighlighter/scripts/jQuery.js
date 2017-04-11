@@ -8,7 +8,7 @@ jQuery(document).ready(function(){  // 문서가 모두 읽힌 후에 다음을 
             var temp = jQuery(this).html(); //  내용 복사
             temp = temp.replace(/\n/gi, "");
             temp = temp.replace(/<br \/>/gi, "\n");
-            /* 다음 세 줄은 환경 설정 > 기타 설정 > 글쓰기 환경 > 엔터키 설정 > 
+            /* 다음 세 줄은 환경 설정 > 기타 설정 > 글쓰기 환경 > 엔터키 설정 >
            <p>문단 바꿈 (Shift+Enter시 줄 바꿈) 을 선택했을 때 필요한 코드이다. */
             temp = temp.replace(/<BR>/gi, "\n");
             temp = temp.replace(/<P>/gi, "");
@@ -20,7 +20,7 @@ jQuery(document).ready(function(){  // 문서가 모두 읽힌 후에 다음을 
             jQuery(this).remove(); //  기존의 인용태그 삭제
         }
     });
-  
+
     jQuery("pre").each( function() {  //pre를 사용한 태그
         var class_attr = jQuery(this).attr('class');
         if (class_attr && class_attr.substr(0,5)=='brush')
@@ -31,7 +31,7 @@ jQuery(document).ready(function(){  // 문서가 모두 읽힌 후에 다음을 
             jQuery(this).html = temp;
         }
     });
-      
+
 /*  SyntaxHighlighter autoloader  */
 //<![CDATA[
 SyntaxHighlighter.autoloader(
@@ -60,8 +60,8 @@ SyntaxHighlighter.autoloader(
   'sql                    syntaxhighlighter/scripts/shBrushSql.js',
   'vb vbnet               syntaxhighlighter/scripts/shBrushVb.js',
   'xml xhtml xslt html    syntaxhighlighter/scripts/shBrushXml.js'
-  );      
-//]]> 
+  );
+//]]>
     /*  SyntaxHighlighter 사용부분  */
     SyntaxHighlighter.defaults['toolbar'] = false; // 툴바 안 보기
     SyntaxHighlighter.all();

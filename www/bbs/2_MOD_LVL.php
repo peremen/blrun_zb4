@@ -43,7 +43,7 @@ while($table_data=mysql_fetch_array($table_name_result))
 <br><img src=images/t.gif border=0 height=5><Br>
 <?
 	$cnt2=0;
-	
+
 	unset($temp); unset($data);
 	$temp=mysql_query("select no,level from $member_table order by no", $connect) or error(mysql_error());
 	while($data=mysql_fetch_array($temp)) {

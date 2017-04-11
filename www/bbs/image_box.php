@@ -49,13 +49,13 @@ while($entry = $d->read()) {
 				 $image_list, SORT_STRING, SORT_DESC);
 
 $dirSize = 0;
-for($i=0;$i<count($image_list);$i++) $dirSize += filesize($path."/".$image_list[$i]); 
+for($i=0;$i<count($image_list);$i++) $dirSize += filesize($path."/".$image_list[$i]);
 
 // 회원의 허용 용량 구하기
 $maxDirSize = zReadFile($path."_maxsize.php");
 if(!$maxDirSize) {
 	// 기본으로 20000kb 의 용량을 제공
-	$maxDirSize = 20000*1024; 
+	$maxDirSize = 20000*1024;
 } else {
 	// 파일의 주석처리 제거
 	$maxDirSize = str_replace("<?/*","",$maxDirSize);
@@ -74,18 +74,18 @@ if($exec=="upload") {
 		$upload_name[$i]  = $_FILES[upload][name][$i];
 		// 특수문자가 들어갔는지 조사
 		preg_match('/[0-9a-zA-Z.\(\)\[\] \+\-\_\xE0-\xFF\x80-\xFF\x80-\xFF]+/',$upload_name[$i],$result);
-		
+
 		$upload_size[$i]  = $_FILES[upload][size][$i];
 		$upload_type[$i]  = $_FILES[upload][type][$i];
 
 		if($upload_name[$i]) {
 			// 특수문자가 들어갔으면
-			if($result[0]!=$upload_name[$i]) Error("한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!"); 
+			if($result[0]!=$upload_name[$i]) Error("한글,영문자,숫자,괄호,공백,+,-,_ 만을 사용할 수 있습니다!");
 
 			$upload[$i]=preg_replace("#\\\\#i","\\",$upload[$i]);
 			$upload_name[$i]=str_replace(" ","_",$upload_name[$i]);
 			$upload_name[$i]=str_replace("-","_",$upload_name[$i]);
-			
+
 			if(file_exists($path."/".$upload_name[$i])) Error("같은 이름의 파일이 존재합니다.<br>다른 이름으로 입력하여 주시기 바랍니다");
 
 			$filesize = filesize($upload[$i]);
@@ -144,7 +144,7 @@ $total_page=(int)(($total-1)/$listnum)+1; // 전체 페이지 구함
 if(!$image_page) $image_page = 1;
 
 // 페이지가 전체 페이지보다 크면 페이지 번호 바꿈
-if($image_page>$total_page) $image_page=$total_page; 
+if($image_page>$total_page) $image_page=$total_page;
 
 // 이미지의 출력 크기 지정
 $x_size = 75;

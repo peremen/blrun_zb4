@@ -1,6 +1,6 @@
 <?
 /******************************************************************************
- * Zeroboard library 
+ * Zeroboard library
  *
  * 마지막 수정일자 : 2006. 3. 15
  * 이 파일내의 모든 함수는 원하시는대로 사용하셔도 됩니다.
@@ -20,8 +20,8 @@ $zb_version = "4.1 pl8";
  ******************************************************************************/
 @error_reporting(E_ALL ^ E_NOTICE);
 foreach($_GET as $key=>$val) $$key = del_html($val);
-@extract($_POST); 
-@extract($_SERVER); 
+@extract($_POST);
+@extract($_SERVER);
 @extract($_ENV);
 
 $page = (int)$page;
@@ -340,14 +340,14 @@ function get_face($data, $check=0) {
 
 	// 이름앞에 붙는 아이콘 정의;;
 	if($group[use_icon]==0) {
-		if($data[ismember]) { 
+		if($data[ismember]) {
 			if($data[islevel]==2) $face_image="<img src=images/admin2_face.gif border=0 align=absmiddle>";
 			elseif($data[islevel]==1) $face_image="<img src=images/admin1_face.gif border=0 align=absmiddle>";
 			else {
 				if($group[icon]) $face_image="<img src=icon/$group[icon] border=0 align=absmiddle>";
 				else $face_image="<img src=images/member_face.gif border=0 align=absmiddle>";
 			}
-		} 
+		}
 		else $face_image="<img src=images/blank_face.gif border=0 align=absmiddle> ";
 	}
 
@@ -390,11 +390,11 @@ function head($body="",$scriptfile="") {
 		$zbLayerScript = fread($f, filesize("script/script_zbLayer.php"));
 		fclose($f);
 	}
-	
+
 	// html 시작부분 출력
 	if($setup[skinname]) {
 	?>
-<html lang="ko"> 
+<html lang="ko">
 <head>
 <title><?=$setup[title]?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -499,7 +499,7 @@ function foot($max_depth="",$all_depth="") {
 <tr>
 	<td align=right style=font-family:tahoma,굴림;font-size:8pt;line-height:150%;letter-spacing:0px>
 		<font style=font-size:7pt>Copyright 1999-<?=date("Y")?></font> <font style=font-family:tahoma,굴림;font-size:8pt;><a href=http://www.xpressengine.com/zb4_main target=_blank onfocus=blur()>Zeroboard</a> <?=$maker?></font>
-	</td>   
+	</td>
 </tr>
 </table>
 
@@ -524,7 +524,7 @@ function addLoadEvent(func){
 function zb_img_check(){
 	var zb_main_table_width = document.zb_get_table_width.width*(100-5*<?=$all_depth?>-4)/100;
 	var zb_target_resize_num = document.zb_target_resize.length;
-	for(i=0;i<zb_target_resize_num;i++){ 
+	for(i=0;i<zb_target_resize_num;i++){
 		if(document.zb_target_resize[i].width > zb_main_table_width) {
 			document.zb_target_resize[i].height = document.zb_target_resize[i].height * zb_main_table_width / document.zb_target_resize[i].width;
 			document.zb_target_resize[i].width = zb_main_table_width;
@@ -557,7 +557,7 @@ $target=$re[0];
 </body>
 </html>
 <?
-		
+
 	} else {
 
 		if($group[footer]) echo stripslashes($group[footer]);
@@ -572,7 +572,7 @@ $target=$re[0];
 
 	$_phpExcutedTime = (getmicrotime()-$_startTime)-($_sessionEnd-$_sessionStart)-($_nowConnectEnd-$_nowConnectStart)-$_dbTime-$_skinTime;
 	// 실행시간 출력
-	echo "\n\n<!--"; 
+	echo "\n\n<!--";
 	if($_sessionStart&&$_sessionEnd)  		echo "\n Session Excuted  : ".sprintf("%0.4f",$_sessionEnd-$_sessionStart);
 	if($_nowConnectStart&&$_nowConnectEnd) 	echo "\n Connect Checked  : ".sprintf("%0.4f",$_nowConnectEnd-$_nowConnectStart);
 	if($_dbTime)  							echo "\n Query Excuted  : ".sprintf("%0.3f",$_dbTime);
@@ -616,7 +616,7 @@ function check_zbLayer($data) {
 		if($data[ismember]<1) $data[ismember]="";
 
 		$zbLayer = $zbLayer."\nprint_ZBlayer('zbLayer$_zbCheckNum', '".$data[homepage]."', '$data[email]', '$data[ismember]', '$id', '$data[name]', '$traceID', '$traceType', '$isAdmin', '$isMember');";
-	}   
+	}
 	return $_zbCount;
 }
 
@@ -661,7 +661,7 @@ function get_table_attrib($id) {
 	$id=mysql_real_escape_string($id);
 	$data=mysql_fetch_assoc(mysql_query("select * from $admin_table where `name`='$id' limit 1;",$connect));
 
-	if($data[table_width]<=100) $data[table_width]=$data[table_width]."%"; 
+	if($data[table_width]<=100) $data[table_width]=$data[table_width]."%";
 
 	// 원래는 IP를 보여주는 기능인데, DB 변경을 피하기 위해서 이미지 박스 사용 권한으로 변경하여 사용
 	if(!$data[use_showip]) $data[use_showip] = 0;
@@ -827,8 +827,8 @@ function destroyZBSessionID($no, $zbSessionID='', $reset_cookie=true) {
 function getDefaultSetup() {
 	global $_zb_path;
 	$data = zReadFile($_zb_path."setup.php");
-	$data = str_replace("<?php /*","",$data);	
-	$data = str_replace("*/ ?>","",$data);	
+	$data = str_replace("<?php /*","",$data);
+	$data = str_replace("*/ ?>","",$data);
 	$data = explode("\n",$data);
 	$_c = count($data);
 	unset($defaultSetup);
@@ -853,7 +853,7 @@ function getDefaultSetup() {
 	if(!$defaultSetup[check_email]) $defaultSetup[check_email] = "true";
 	if(!$defaultSetup[memo_limit_time]) $defaultSetup[memo_limit_time] = 7;
 	$defaultSetup[memo_limit_time] = 60 * 60 * 24 * $defaultSetup[memo_limit_time];
-	 
+
 	return $defaultSetup;
 }
 
@@ -891,33 +891,33 @@ function del_html( $str ) {
 }
 
 // 주민등록번호 검사
-function check_jumin($jumin) { 
-	$weight = '234567892345'; // 자리수 weight 지정 
-	$len = mb_strlen($jumin); 
-	$sum = 0; 
+function check_jumin($jumin) {
+	$weight = '234567892345'; // 자리수 weight 지정
+	$len = mb_strlen($jumin);
+	$sum = 0;
 
 	if ($len <> 13) return false;
 
-	for ($i = 0; $i < 12; $i++) { 
-		$sum = $sum + (mb_substr($jumin,$i,1)*mb_substr($weight,$i,1)); 
-	} 
+	for ($i = 0; $i < 12; $i++) {
+		$sum = $sum + (mb_substr($jumin,$i,1)*mb_substr($weight,$i,1));
+	}
 
-	$rst = $sum%11; 
-	$result = 11 - $rst; 
+	$rst = $sum%11;
+	$result = 11 - $rst;
 
 	if ($result == 10) $result = 0;
 	else if ($result == 11) $result = 1;
 
-	$ju13 = mb_substr($jumin,12,1); 
+	$ju13 = mb_substr($jumin,12,1);
 
 	if ($result <> $ju13) return false;
-	return true; 
-} 
+	return true;
+}
 
 // E-mail 주소가 올바른지 검사
 function ismail( $str ) {
 	if( preg_match("/([a-z0-9\_\-\.]+)@([a-z0-9\_\-\.]+)/i", $str) ) return $str;
-	else return ''; 
+	else return '';
 }
 
 // E-mail 의 MX를 검색하여 실제 존재하는 메일인지 검사
@@ -950,7 +950,7 @@ function autolink($str) {
 // 파일 사이즈를 kb, mb에 맞추어서 변환해서 리턴
 function getfilesize($size) {
 	if(!$size) return "0 Byte";
-	if($size<1024) { 
+	if($size<1024) {
 		return ($size." Byte");
 	} elseif($size >1024 && $size< 1024 *1024)  {
 		return sprintf("%0.1f KB",$size / 1024);
@@ -968,7 +968,7 @@ function cut_str($msg,$cut_size) {
 	for ($i=0;$i<mb_strlen($msg);$i++) {
 		if ($point>$cut_size) return $pointtmp."...";
 		$pointtmp.= mb_substr($msg,$i,1);
-		if ($point%$cut_size==0) return $pointtmp."..."; 
+		if ($point%$cut_size==0) return $pointtmp."...";
 		$point++;
 	}
 	return $pointtmp;
@@ -1102,19 +1102,19 @@ function check_fileislocked($filename) {
 }
 
 // 순환적으로 디렉토리를 삭제
-function zRmDir($path) { 
-	$directory = dir($path); 
-	while($entry = $directory->read()) { 
-		if ($entry != "." && $entry != "..") { 
-			if (Is_Dir($path."/".$entry)) { 
-				zRmDir($path."/".$entry); 
-			} else { 
-				@UnLink ($path."/".$entry); 
-			} 
-		} 
-	} 
-	$directory->close(); 
-	@RmDir($path); 
+function zRmDir($path) {
+	$directory = dir($path);
+	while($entry = $directory->read()) {
+		if ($entry != "." && $entry != "..") {
+			if (Is_Dir($path."/".$entry)) {
+				zRmDir($path."/".$entry);
+			} else {
+				@UnLink ($path."/".$entry);
+			}
+		}
+	}
+	$directory->close();
+	@RmDir($path);
 }
 
 /*********************************************************************************************
@@ -1137,11 +1137,11 @@ function thumbnail3($size,$source_file,$save_file){
 		$max_height=$img_info[1];
 	}
 
-	if($img_info[2]==1){ 
+	if($img_info[2]==1){
 		$dstimg=@ImageCreate($max_width,$max_height);
 		@ImageColorAllocate($dstimg,255,255,255);
 		@ImageCopyResized($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));
-	}else{ 
+	}else{
 		$dstimg=@ImageCreateTrueColor($max_width,$max_height);
 		@ImageColorAllocate($dstimg,255,255,255);
 		@ImageCopyResampled($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));

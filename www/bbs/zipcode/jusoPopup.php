@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>도로명 주소 입력창</title>
-<? 
+<?
 	$ADDR['inputYn'] = $_POST['inputYn'];
 	$ADDR['roadFullAddr'] = $_POST['roadFullAddr'];
 	//$ADDR['roadAddrPart1'] = $_POST['roadAddrPart1'];

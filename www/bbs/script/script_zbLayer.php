@@ -7,15 +7,15 @@ var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=
 function ZB_layerAction(name, status, myEvent) {
 	var obj = document.getElementById(name);
 	var _tmpx, _tmpy, marginx, marginy;
-	
+
 	_tmpx = myEvent.clientX + parseInt(obj.offsetWidth);
 	_tmpy = myEvent.clientY + parseInt(obj.offsetHeight);
 	_marginx = document.body.clientWidth - _tmpx;
 	_marginy = document.body.clientHeight - _tmpy;
- 
+
 	var scrollLeft = (document.documentElement && document.documentElement.scrollLeft) || document.body.scrollLeft;
 	var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
-	
+
 	if (_marginx < 0)
 		_tmpx = myEvent.clientX + scrollLeft + _marginx;
 	else
@@ -24,10 +24,10 @@ function ZB_layerAction(name, status, myEvent) {
 		_tmpy = myEvent.clientY + scrollTop + _marginy + 20;
 	else
 		_tmpy = myEvent.clientY + scrollTop;
- 
+
 	obj.style.left = (_tmpx - 13) + "px";
 	obj.style.top = (_tmpy - 12) + "px";
- 
+
 	if (status == 'visible') {
 		if (select_obj) {
 			select_obj.style.visibility = 'hidden';
@@ -135,7 +135,7 @@ function print_ZBlayer(name, homepage, mail, member_no, boardID, writer, traceID
 		}
 		printMain = printMain +	"<tr onMouseOver=this.style.backgroundColor='#bbbbbb' onMouseOut=this.style.backgroundColor='' onMousedown=window.open('open_window.php?mode="+traceType+"&str="+traceID+"','ZBremote','width=1024,height=768,left=1,top=1,toolbar=no,scrollbars=yes');><td align=left style=font-family:굴림;font-size:9pt height=18 nowrap='nowrap'>&nbsp;<img src=images/n_relationlist.gif border=0 align=absmiddle>&nbsp;&nbsp;<font color=darkred>관련글 추적</font>&nbsp;&nbsp;</td></tr>";
 		printHeight = printHeight + 16;
-	
+
 	}
 	var printHeader = "<div id='"+name+"' style='position:absolute; left:10px; top:25px; width:127px; height: "+printHeight+"px; z-index:1; visibility: hidden' onMousedown=ZB_layerAction('"+name+"','hidden',event)><table border=0><tr><td colspan=3 onMouseover=ZB_layerAction('"+name+"','hidden',event) height=3></td></tr><tr><td width=5 onMouseover=ZB_layerAction('"+name+"','hidden',event) rowspan=2>&nbsp;</td><td height=5></td></tr><tr><td><table style=cursor:pointer border='0' cellspacing='1' cellpadding='0' bgcolor='black' width=100% height=100%><tr><td valign=top bgcolor=white><table border=0 cellspacing=0 cellpadding=3 width=100% height=100%>";
 	var printFooter = "</table></td></tr></table></td><td width=5 rowspan=2 onMouseover=ZB_layerAction('"+name+"','hidden',event)>&nbsp;</td></tr><tr><td colspan=3 height=10 onMouseover=ZB_layerAction('"+name+"','hidden',event)></td></tr></table></div>";

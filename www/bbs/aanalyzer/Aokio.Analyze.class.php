@@ -20,7 +20,7 @@ class Aokio_Analyzer{
 	var $mobile_useragent;	//constructor 에서 값 구해짐
 
 	var $language_info;
-	var $time_info;	
+	var $time_info;
 	var $os_info;
 	var $browser_info;
 
@@ -33,7 +33,7 @@ class Aokio_Analyzer{
 
 	var $via_proxy_flag ;
 	var $visit_count;
-	
+
 	//constructor
 	function Aokio_Analyzer(){
 //		$this->analyze();
@@ -56,7 +56,7 @@ class Aokio_Analyzer{
 			$this -> ip = $GLOBALS['HTTP_SERVER_VARS']['REMOTE_ADDR'];
 		}
 	}
-	
+
 	function analyze($target){
 		$this->referer_info = new Aokio_Analyzer_Referer();
 
@@ -98,7 +98,7 @@ class Aokio_Analyzer{
 
 
 	function detectMobile(){
-		//TODO minimo  브라우저이면 모바일로 
+		//TODO minimo  브라우저이면 모바일로
 		//TODO windows CE 이면 모바일.
 		$detect_agent = &Net_UserAgent_Mobile::factory($this->userAgent);
 		$this->mobile_useragent = $detect_agent;
@@ -115,7 +115,7 @@ class Aokio_Analyzer{
 	}
 
 	function _setScreenSize(){
-		
+
 		if (isset($_COOKIE['screen_size'])){
 			$this->screensize =  $_COOKIE['screen_size'];
 		}else{
@@ -163,8 +163,8 @@ class Aokio_Analyzer{
 		// 4bit 16색
 		// 8bit 256색
 		// 16bit 16bits (TrueColor)
-		// 24bit24bits (HighColor 
-		// 32bit32bits (HighColor) 
+		// 24bit24bits (HighColor
+		// 32bit32bits (HighColor)
 		if (isset($_COOKIE['screen_resolution'])){
 			$this->bit = $_COOKIE['screen_resolution'];
 //			return $_COOKIE['screen_resolution'];
@@ -185,7 +185,7 @@ class Aokio_Analyzer{
 		}else{
 			$language = $temp_array[0];
 		}
-		
+
 		return $language;
 	}
 
@@ -233,7 +233,7 @@ class Aokio_Analyzer{
 			$this->visit_count =  $_COOKIE['AOKIO_VISIT_COUNTS_'.$target]+1;
 			setcookie("AOKIO_VISIT_COUNTS_".$target, $this->visit_count,time()+60*60*24*30*365);
 		}else{
-			
+
 			$this->visit_count = 1;
 //			setcookie('aokio_visit_counts',$this->visit_count);
 			setcookie("AOKIO_VISIT_COUNTS_".$target, $this->visit_count,time()+60*60*24*30*365);
@@ -261,7 +261,7 @@ class Aokio_Analyzer{
 		}
 //		$this->http_via_info = $_SERVER['HTTP_VIA'];
 
-		if(	$proxy_info != ""  || 
+		if(	$proxy_info != ""  ||
 			$temp_proxy_connection != "" ||
 			$temp_forwarded != ""||
 			$temp_x_forwarded != ""){
@@ -272,7 +272,7 @@ class Aokio_Analyzer{
 		return false;
 	}
 	function getHTTPViaInfo(){
-		
+
 		$proxy_info = "";
 		if(isset($_SERVER['HTTP_VIA']) &&$_SERVER['HTTP_VIA'] != null){
 			$proxy_info = $_SERVER['HTTP_VIA'];
@@ -295,7 +295,7 @@ class Aokio_Analyzer{
 	function getAnalyzeInfo(){
 		$ip			= $this->ip;
 		$referer		= $this->referer;
-		
+
 		$os_category							= $this->os_info->os_category;
 		$os_full_name						= $this->os_info->os_full_name;
 		$os_name								= $this->os_info->os_name;
@@ -351,9 +351,9 @@ class Aokio_Analyzer{
 
 		$via_proxy_flag		= $this->isProxyServer();
 		$http_via_info		= $this->getHTTPViaInfo();
-		
+
 		$visit_count	= $this->visit_count;
-		
+
 		$latitude		= $this->geo_info->latitude;
 		$longitude		= $this->geo_info->longitude;
 		$isp				= $this->geo_info->isp;
@@ -362,7 +362,7 @@ class Aokio_Analyzer{
 
 		$search_keyword = $this->referer_info->search_keyword;
 		$search_site = $this->referer_info->referer_searchsite;
-		
+
 
 		$search_key_info = array(	'search_keyword'	=>$search_keyword,
 												'search_site'			=>$search_site,
@@ -378,8 +378,8 @@ class Aokio_Analyzer{
 										'bit'=>$bit,
 		);
 
-		
-		// 주 테이블구조가 바뀌면 여기에 녛고 아니면 
+
+		// 주 테이블구조가 바뀌면 여기에 녛고 아니면
 		// 별도의 어레이 작성.
 		$total_info = array(
 							'ip'						=>$ip,
@@ -448,7 +448,7 @@ class Aokio_Analyzer{
 											'nation_code_3'	=>$this->geo_info->nation_code3);
 
 
-		$analyze_info = array(	
+		$analyze_info = array(
 								'total_info'					=>$total_info,		//주테이블용 정보
 								'os_total_info'				=>$os_total_info,
 								'browser_total_info'	=>$browser_total_info,
@@ -461,7 +461,7 @@ class Aokio_Analyzer{
 		return $analyze_info;
 	}
 
-	
+
 	function getRobotInfo(){
 		$ip					= $this->ip;
 		$useragent		= $this->userAgent;
@@ -470,7 +470,7 @@ class Aokio_Analyzer{
 		$nation_name	= $this->geo_info->nation_name;
 		$nation_code		= $this->geo_info->nation_code;
 		$nation_code3	= $this->geo_info->nation_code3;
-		
+
 		// TODO 테이블 변경
 		$robot_log_info = array('useragent'	=>$useragent,
 							);

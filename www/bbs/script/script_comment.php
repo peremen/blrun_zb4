@@ -102,7 +102,7 @@ function autoSave()
 function unlock()
 {
 	document.getElementById('check').value=0;
-	ajaxLoad(); 
+	ajaxLoad();
 }
 
 <? if($setup[skinname]!="f2plus_gallery_3_0") { ?>
@@ -246,7 +246,7 @@ function insert_tag(str)
 	var objSelection = document.selection;
 	var objTextArea = document.getElementById('memo');
 	objTextArea.focus();
-	
+
 	if(typeof objSelection != 'undefined') //IE
 	{
 		var sRange = objSelection.createRange();

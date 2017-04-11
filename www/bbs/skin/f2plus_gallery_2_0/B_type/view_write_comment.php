@@ -29,7 +29,7 @@
 	</table>
 	<table border=0 cellspacing=1 cellpadding=0 width=100% height=120>
 	<col width=5 align=center><col width=></col>
-	<tr> 
+	<tr>
 		<td onclick="document.write.memo.rows=document.write.memo.rows+4" style=cursor:pointer valign=top align=right>↓</td>
 		<td align=left>
 			<table border=0 cellspacing=2 cellpadding=0 width=100% height=100 style=table-layout:fixed>

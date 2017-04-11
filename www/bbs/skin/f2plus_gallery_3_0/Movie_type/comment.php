@@ -1,4 +1,4 @@
-<? 
+<?
 $m_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id"."_movie where parent='$s_data[parent]' and reg_date='$s_data[reg_date]'"));
 if($mode=="modify") {
 	$_point1=$m_data[point1];

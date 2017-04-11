@@ -25,7 +25,7 @@ class Aokio_Cookie{
 	 * @return array
 	 */
 	function setAdminCookieInfo($admin_info){
-		
+
 		$cookie_md5_value = md5($admin_info['adminid'].$admin_info['adminpassword']);
 
 		setcookie("AOKIOANALYZER_ADMIN", $cookie_md5_value,0,"/");
@@ -44,7 +44,7 @@ class Aokio_Cookie{
 	function checkAdminCookieInfo(){
 		$admin_info = AokioAuthManager::getAdminInfo();
 //		echo "<pre>".nl2br(print_r($admin_info,true))."</pre>";
-		
+
 		$value = md5($admin_info['id'].$admin_info['password']);
 		if(isset($_COOKIE['AOKIOANALYZER_ADMIN']) &&
 			$_COOKIE['AOKIOANALYZER_ADMIN'] == $value){
@@ -59,7 +59,7 @@ class Aokio_Cookie{
 	 * @return array
 	 */
 	function setAccessUserCookieInfo($conf_info,$target){
-		
+
 		//0;매번 접속 체크
 		//1;브라우저를 다시 시작할때만 체크
 		//2;하루에 한번

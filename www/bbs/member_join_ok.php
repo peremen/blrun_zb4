@@ -68,7 +68,7 @@ if($password!=$password1) Error("비밀번호와 비밀번호 확인이 일치�
 // 패스워드를 암호화
 if($password) {
 	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
-	$password=$temp[0];   
+	$password=$temp[0];
 }
 
 if(isBlank($name)) Error("이름을 입력하셔야 합니다","");

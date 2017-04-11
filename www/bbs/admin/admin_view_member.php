@@ -30,7 +30,7 @@ if($keyword&&$keykind) {
 	} else {
 		$s_que .= " $keykind = password('$keyword') ";
 	}
-		
+
 	$href.="&keyword=$keyword&keykind=$keykind&like=$like";
 }
 
@@ -69,7 +69,7 @@ $number=$total-($page-1)*$page_num;
     var i, chked=0;
 	var pCart=document.getElementsByName('cart[]');
     for(i=0;i<pCart.length;i++) {
-    if(pCart[i].type=='checkbox') { 
+    if(pCart[i].type=='checkbox') {
      if(pCart[i].checked) { pCart[i].checked=false; }
      else { pCart[i].checked=true; }
      }
@@ -81,9 +81,9 @@ $number=$total-($page-1)*$page_num;
   {
    var i, chked=0, cart="";
    var pCart=document.getElementsByName('cart[]');
-   for(i=0;i<pCart.length;i++) 
+   for(i=0;i<pCart.length;i++)
    {
-    if(pCart[i].type=='checkbox') 
+    if(pCart[i].type=='checkbox')
     {
      if(pCart[i].checked)
      { cart = cart + "||" + pCart[i].value; chked=1; }
@@ -314,7 +314,7 @@ for($i=1;$i<=10;$i++) echo "<option value=$i $check[$i]>$i Level</option>";
   </tr>
   <tr>
     <td style=font-family:Tahoma;font-size:9pt;font-weight:bold; align=right>
-      한 페이지당 표시될 회원수   
+      한 페이지당 표시될 회원수
       <input type=text name=page_num value='<?echo $page_num;?>' style=width:30px;>
     </td>
   </tr>

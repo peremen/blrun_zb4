@@ -4,7 +4,7 @@ function check_submit()
 {
  var rSub=document.getElementById('subject');
  var rStr=document.getElementById('memo');
- if(!rSub.value) 
+ if(!rSub.value)
  {
   alert('제목을 입력하여 주세요');
   rSub.focus();

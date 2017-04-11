@@ -202,7 +202,7 @@ class Net_UserAgent_Mobile_Vodafone extends Net_UserAgent_Mobile_Common
      *     object
      * @see Net_UserAgent_Mobile_Display
      */
-    function makeDisplay() 
+    function makeDisplay()
     {
         @list($width, $height) =
             explode('*', $this->getHeader('x-jphone-display'));

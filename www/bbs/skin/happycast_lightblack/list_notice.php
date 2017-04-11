@@ -11,7 +11,7 @@
  <?=$name?> : 메일이 링크되어 있는 이름 * 원래 그대로 <?=$data[name]?>
  <?=$email?> : 메일.. 거의 직접 쓸일은 없음;;
  <?=$subject?> : 링크가 되어 있는 제목  * 원래 그대로 <?=$data[suject]?>
- <?=$memo?> : 내용 부분 
+ <?=$memo?> : 내용 부분
  <?=$hit?> : 조회수
  <?=$vote?> : 추천수
  <?=$ip?> : 아피주소
@@ -28,7 +28,7 @@
  <?=$hide_cart_start?> 내용 <?=$hide_cart_end?> : start 와 end 사이에는 사라짐;; 바구니
  <?=$hide_category_start?> 내용 <?=$hide_category_end?> : Start와 end 사이에는 사라짐;; 바구니
 
-                
+
  참고: old_head.gif : 원본글이면서 12시간이 넘은 글의 아이콘
        new_head.gif : 12시간에 적히 모든 글. 원본/답글 상관없이
        reply_head.gif : 12시간이 지난 답글의 아이콘

@@ -35,11 +35,11 @@ function thumbnail($size,$source_file,$save_path,$small,$large,$ratio){
 			$dstimg=@ImageCreate($max_width,$max_height);
 			@ImageColorAllocate($dstimg,255,255,255);
 			@ImageCopyResized($dstimg, $srcimg,$srcx,$srcy,0,0,$new_width,$new_height,ImageSX($srcimg),ImageSY($srcimg));
-			
-			if($i==0){ 
+
+			if($i==0){
 				@ImageJPEG($dstimg,$save_path.$small,85);
 			}
-			else{ 
+			else{
 				@ImageJPEG($dstimg,$save_path.$large,85);
 			}
 			@ImageDestroy($dstimg);
@@ -69,9 +69,9 @@ function thumbnail2($size,$source_file,$save_file){
 	$dstimg=@ImageCreate($max_width,$max_height);
 	@ImageColorAllocate($dstimg,255,255,255);
 	@ImageCopyResized($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));
-	
+
 	@ImageJPEG($dstimg,$save_file,85);
-	
+
 	@ImageDestroy($dstimg);
 	@ImageDestroy($srcimg);
 }

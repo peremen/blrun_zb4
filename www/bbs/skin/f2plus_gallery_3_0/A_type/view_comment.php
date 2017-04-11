@@ -16,7 +16,7 @@ $a_del=str_replace("del_comment.php?","del_comment.php?_zb_url=$zb_url/&_zb_path
 </tr>
 <tr>
 <td background=<?=$dir?>/images/cc_middle_bg1.gif></td>
-<td align=left class=memo><font color=#F2955C class=com><?=++$count?>.</font>&nbsp;::: 
+<td align=left class=memo><font color=#F2955C class=com><?=++$count?>.</font>&nbsp;:::
 	<?
 	if($o_data[ismember]=="") $ismember0="0"; else $ismember0=$o_data[ismember];
 	if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$ismember0!=$member[no]&&$member[level]>$setup[grant_view_secret])

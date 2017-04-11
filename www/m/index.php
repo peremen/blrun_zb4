@@ -2,7 +2,7 @@
 // mb_substr()과 mb_strlen(), mb_strpos()과 mb_strrpos() 함수 인코딩 지정
 mb_internal_encoding("UTF-8");
 
-// 자동으로 www 붙여준다. 
+// 자동으로 www 붙여준다.
 //if(!preg_match("#www#i",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
 include "../bbs/include/get_url.php";
 ?>

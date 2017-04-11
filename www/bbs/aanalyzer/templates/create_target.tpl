@@ -44,12 +44,12 @@
 <strong>{$create_page_messages.comment_title}</strong><br/>
 {$create_page_messages.comment}
      </td>
-    </tr>    
+    </tr>
      <td style="BORDER-TOP: #d0d0d0 2px solid; ">
 <a href="./manager.php">{$application_name} Manager Page</a>
      </td>
-    </tr>    
-    
+    </tr>
+
     </table>
 </td>
     <td  width="8"><img src="images/spacer.gif" width="8" height="30" /></td>

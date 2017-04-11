@@ -31,13 +31,13 @@ header("Content-Type: text/html; charset=UTF-8");
 	 return iconv('UTF-16LE', 'UHC', chr(hexdec(substr($str[1], 2, 2))).chr(hexdec(substr($str[1],0,2))));
 	}
 
-	function getmicrotime(){ 
-		list($usec, $sec) = explode(" ",microtime()); 
-		return ((float)$usec + (float)$sec); 
+	function getmicrotime(){
+		list($usec, $sec) = explode(" ",microtime());
+		return ((float)$usec + (float)$sec);
 	}
 
 	$string = $_POST['str1'];
-	$time_start = getmicrotime();    
+	$time_start = getmicrotime();
 	echo "urldecode: ".JsUnescape($string);
 	$time = getmicrotime() - $time_start;
 	print(iconv("utf-8","euc-kr","<p>수행시간 ( $time 초)</p>"));

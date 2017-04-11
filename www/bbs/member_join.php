@@ -16,7 +16,7 @@ if(!empty($_POST['code'])) {
 	} else {
 		Error("스팸방지 코드를 잘못 입력하셨습니다.");
 	}
-	
+
 	if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
 
 	// 스팸방지 보안 세션변수 설정
@@ -95,7 +95,7 @@ function jusoCallBack(roadFullAddr,zipNo,num)
 	} else {
 		var home_address = document.forms['write'].office_address;
 	}
-	
+
 	home_address.value = zipNo+" " +roadFullAddr;
 	home_address.focus();
 }
@@ -103,7 +103,7 @@ function jusoCallBack(roadFullAddr,zipNo,num)
 function address_popup(num)
 {
 	//window.open('zipcode/search_zipcode.php?num='+num,'searchaddress','width=440,height=230,scrollbars=yes');
-	var pop = window.open("zipcode/jusoPopup.php?num="+num,"pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	var pop = window.open("zipcode/jusoPopup.php?num="+num,"pop","width=570,height=420, scrollbars=yes, resizable=yes");
 }
 
 function check_submit()
@@ -132,26 +132,26 @@ function check_submit()
     write.user_id.focus();
     return false;
   }
-  var valid = "abcdefghijklmnopqrstuvwxyz0123456789_"; 
-  var startChar = "abcdefghijklmnopqrstuvwxyz"; 
-  var temp; 
-  write.user_id.value = write.user_id.value.toLowerCase(); 
-  temp = write.user_id.value.substring(0,1); 
+  var valid = "abcdefghijklmnopqrstuvwxyz0123456789_";
+  var startChar = "abcdefghijklmnopqrstuvwxyz";
+  var temp;
+  write.user_id.value = write.user_id.value.toLowerCase();
+  temp = write.user_id.value.substring(0,1);
   if (startChar.indexOf(temp) == "-1") {
     alert("아이디의 첫 글자는 영문이어야 합니다.");
-    write.user_id.value = ""; 
-    write.user_id.focus(); 
+    write.user_id.value = "";
+    write.user_id.focus();
     return false;
   }
-  for (var i=0; i<write.user_id.value.length; i++) { 
-    temp = "" + write.user_id.value.substring(i, i+1); 
-    if (valid.indexOf(temp) == "-1") { 
+  for (var i=0; i<write.user_id.value.length; i++) {
+    temp = "" + write.user_id.value.substring(i, i+1);
+    if (valid.indexOf(temp) == "-1") {
       alert("아이디는 영문과 숫자, _ 로만 이루어질수 있습니다.");
       write.user_id.value = "";
-      write.user_id.focus(); 
+      write.user_id.focus();
       return false;
     }
-  } 
+  }
 <?
 	}
 ?>
@@ -215,7 +215,7 @@ function check_accept() {
   return confirm("위의 가입 약관을 모두 보았으며, 동의하십니까?");
 }
 
-function check_SSL_Login() { 
+function check_SSL_Login() {
   if (document.write.SSL_Login.checked==true) {
     alert("SSL 암호화 보안접속을 설정합니다");
   } else {
@@ -284,7 +284,7 @@ function check_SSL_Login() {
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;><b>Birthday&nbsp;</td>
   <td align=left>
-    &nbsp;<input type=text name=birth_1 size=4 maxlength=4 style=border-color:#d8b3b3 class=input> 년 
+    &nbsp;<input type=text name=birth_1 size=4 maxlength=4 style=border-color:#d8b3b3 class=input> 년
     &nbsp;<input type=text name=birth_2 size=2 maxlength=2 style=border-color:#d8b3b3 class=input> 월
     &nbsp;<input type=text name=birth_3 size=2 maxlength=2 style=border-color:#d8b3b3 class=input> 일
     <input type=checkbox value=1 checked name=open_birth> 공개
@@ -369,7 +369,7 @@ function check_SSL_Login() {
 </tr>
 <? } ?>
 
-<? if($group[use_home_address]) { ?> 
+<? if($group[use_home_address]) { ?>
 <tr align=right height=28>
   <td style=font-family:Tahoma;font-size:9pt;>Home Address&nbsp;</td>
   <td align=left>&nbsp;<input type=text name=home_address size=40 maxlength=255 style=border-color:#d8b3b3 class=input><input type=button value='검색' class=input style=border-color:#d8b3b3 onclick=address_popup(1)><input type=checkbox value=1 name=open_home_address checked> 공개</td>
@@ -525,7 +525,7 @@ function sendit() {
 </td></tr>
 </table>
 
-<? 
+<?
 }
 foot();
 ?>

@@ -21,7 +21,7 @@ function zb_login_check_submit() {
 	return true;
 }
 
-function check_SSL_Login() { 
+function check_SSL_Login() {
 	if (document.zb_login.SSL_Login.checked==true) {
 		alert("SSL 암호화 보안접속을 설정합니다");
 	} else {
@@ -29,11 +29,11 @@ function check_SSL_Login() {
 	}
 }
 
-function check_autologin() { 
+function check_autologin() {
 	if (document.zb_login.auto_login.checked==true) {
-		var check;  
+		var check;
 		check = confirm("자동 로그인 기능을 사용하시겠습니까?\n\n자동 로그인 사용시 다음 접속부터는 로그인을 하실필요가 없습니다.\n\n단, 게임방, 학교등 공공장소에서 이용시 개인정보가 유출될수 있으니 주의해주세요");
 		if(check==false) {document.zb_login.auto_login.checked=false;}
-	}                               
+	}
 }
 </script>

@@ -22,13 +22,13 @@ function formresize(mode) {
   아래 변수를 사용합니다.
 
   회원일때 나타나지 않는 부분을 처리하는 부분입니다. 감싸주면 회원일때는 나타나지 않습니다.
-  <?=$hide_start?> : 회원일때 글쓰기등을 나타나지 않게 하는 부분입니다;; 회원일때는 자동 주석(<!--)이 들어갑니다.  
+  <?=$hide_start?> : 회원일때 글쓰기등을 나타나지 않게 하는 부분입니다;; 회원일때는 자동 주석(<!--)이 들어갑니다.
   <?=$hide_end?>  : 회원일때 보이지 않게 합니다. <?=$hide_start?>로 시작하고 <?=$hide_end?> 로 감싸주면 됩니다.
 
   <?=$hide_sitelink1_start?>, <?=$hide_sitelink1_end?> : 싸이트링크 1번을 사용하는지 않하는지 표시
   <?=$hide_sitelink2_start?>, <?=$hide_sitelink2_end?> : 싸이트링크 2번을 사용하는지 않하는지 표시
   <?=$hide_pds_start?>, <?=$hide_pds_end?> : 자료실을 사용하는지 않하는지 표시
-  <?=$hide_html_start?>, <?=$hide_html_end?> : HTML 체크박스 표시 
+  <?=$hide_html_start?>, <?=$hide_html_end?> : HTML 체크박스 표시
 
 
   <?=$title?> : 신규, 수정, 답글일때의 제목 표시
@@ -104,13 +104,13 @@ function formresize(mode) {
 
 <tr>
   <td align=right class=listnum width=80><img src=images/t.gif border=0 width=80 height=1><br><b>Special&nbsp;</b></td>
-  <td align=left> 
+  <td align=left>
     <table border=0 cellpadding=0 cellspacing=0>
     <tr>
       <td><?=$category_kind?></td>
       <td><?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1></td><td class=listnum>공지사항<?=$hide_notice_end?></td>
       <td><?=$hide_html_start?> <input type=checkbox id=use_html name=use_html <?=$use_html?> value=1></td><td class=listnum>HTML<?=$hide_html_end?></td>
-      <td><input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1></td><td class=listnum>답변메일 받기</td>  
+      <td><input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1></td><td class=listnum>답변메일 받기</td>
       <td><?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1></td><td class=listnum>비밀글<?=$hide_secret_end?> <font id="state"></font></td>
     </tr>
     </table>

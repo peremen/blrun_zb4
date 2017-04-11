@@ -9,7 +9,7 @@ if($exec=="uninstall"&&$uninstall=="ok"&&$member[is_admin]==1) {
 
 	$connect = @mysql_connect($u_hostname,$u_userid,$u_password) or error(mysql_error());
 	@mysql_select_db($u_dbname) or Error(mysql_error());
-	
+
 	$result = mysql_query("show table status from $u_dbname like 'zetyx%'",$connect) or error(mysql_error());
 	while($data=mysql_fetch_array($result)) {
 		mysql_query("drop table $data[Name]");
@@ -19,7 +19,7 @@ if($exec=="uninstall"&&$uninstall=="ok"&&$member[is_admin]==1) {
 	zRmDir("./icon");
 	z_unlink("./myZrCnf2019.php");
 
-	error("제로보드가 서버에서 완전히 제거되었습니다","install.php"); 
+	error("제로보드가 서버에서 완전히 제거되었습니다","install.php");
 	exit();
 }
 ?>

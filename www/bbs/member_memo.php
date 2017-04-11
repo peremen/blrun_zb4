@@ -38,7 +38,7 @@ if($no) {
 	$now_data=mysql_fetch_array(mysql_query("select * from $get_memo_table where no='$no' and member_no='$member[no]'"));
 	if($now_data[readed]==1) {
 		mysql_query("update $get_memo_table set readed='0' where no='$no' and member_no='$member[no]'");
-		$check=mysql_fetch_array(mysql_query("select count(*) from $get_memo_table where readed='1' and member_no='$member[no]'")); 
+		$check=mysql_fetch_array(mysql_query("select count(*) from $get_memo_table where readed='1' and member_no='$member[no]'"));
 		mysql_query("update $send_memo_table set readed='0' where reg_date='$now_data[reg_date]' and member_to='$member[no]'");
 		if(!$check[0]) mysql_query("update $member_table set new_memo='0' where no='$member[no]'");
 	}
@@ -63,13 +63,13 @@ $total_page=(int)(($total-1)/$page_num)+1; // 전체 페이지 구함
 
 if($page>$total_page) $page=$total_page; // 페이지가 전체 페이지보다 크면 페이지 번호 바꿈
 
-// 데이타 뽑아오는 부분... 
+// 데이타 뽑아오는 부분...
 $que="select a.no as no, a.subject as subject, a.reg_date as reg_date, a.readed as readed, b.name as name, b.user_id as user_id, a.member_from as member_from from $get_memo_table a ,$member_table b where a.member_no='$member[no]' and a.member_from=b.no  order by a.no desc limit $start_num,$page_num";
 $result=mysql_query($que) or Error(mysql_error());
 
 $query_time=getmicrotime();
 
-// 페이지 계산  $print_page 라는 변수에 저장 
+// 페이지 계산  $print_page 라는 변수에 저장
 $print_page="";
 $show_page_num=10;
 $start_page=(int)(($page-1)/$show_page_num)*$show_page_num;
@@ -138,43 +138,43 @@ if($now_data[no]) {
 	if($temp_name) $now_data[name]="<img src='$temp_name' border=0 align=absmiddle>&nbsp;".$now_data[name];
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-<tr> 
+<tr>
   <td width="15"><img src="images/memo_listtopleft.gif" width="17" height="17"></td>
   <td background="images/memo_listtop.gif"><img src="images/t.gif" width="10" height="5"></td>
   <td width="15"><img src="images/memo_listtopright.gif" width="17" height="17"></td>
 </tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-<tr> 
+<tr>
   <td width="17" background="images/memo_listleftbg.gif"><img src="images/t.gif" width="17" height="10"></td>
-  <td> 
+  <td>
     <table width="100%" border="0" cellspacing="0" cellpadding="3">
-    <tr> 
+    <tr>
       <td width="50" align="right"><img src="images/memo_from.gif" width="24" height="15"></td>
       <td><img src="images/t.gif" width="10" height="3"><br>
         <a href="javascript:void(window.open('view_info.php?member_no=<?=$now_data[member_from]?>','view_info','width=400,height=500,toolbar=no,scrollbars=yes'))"><?=stripslashes($now_data[name])?></a> <font style=font-size:9pt;>(<b>ID</b> : <?=$now_data['member_from']?>)
       </td>
     </tr>
-    <tr> 
+    <tr>
       <td colspan="2" bgcolor="#EBD9D9" align="center" style=padding:0px;><img src="images/t.gif" width="10" height="1"></td>
     </tr>
-    <tr> 
+    <tr>
       <td width="50" align="right"><img src="images/memo_subject.gif" width="35" height="15"></td>
       <td><img src="images/t.gif" width="10" height="3"><br>
         <?=stripslashes(del_html($now_data[subject]))?>
       </td>
     </tr>
-    <tr> 
+    <tr>
       <td colspan="2" bgcolor="#EBD9D9" align="center" style=padding:0px;><img src="images/t.gif" width="10" height="1"></td>
     </tr>
-    <tr> 
+    <tr>
       <td width="50" align="right"><img src="images/memo_date.gif" width="23" height="15"></td>
       <td><img src="images/t.gif" width="10" height="3"><br><?=date("Y년 m월 d일 H시 i분",$now_data[reg_date])?></td>
     </tr>
-    <tr> 
+    <tr>
       <td colspan="2" bgcolor="#EBD9D9" align="center" style=padding:0px;><img src="images/t.gif" width="10" height="1"></td>
     </tr>
-    <tr> 
+    <tr>
       <td align="right" valign="top"><img src="images/memo_memo.gif" width="31" height="15"></td>
       <td style='word-break:break-all;'><img src="images/t.gif" width="10" height="3"><br>
         <?=autolink(nl2br(stripslashes(del_html($now_data[memo]))))?><br>
@@ -191,7 +191,7 @@ if($now_data[no]) {
 </tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-<tr> 
+<tr>
   <td width="15"><img src="images/memo_listbottomleft.gif" width="17" height="17"></td>
   <td background="images/memo_listbottom.gif"><img src="images/t.gif" width="10" height="5"></td>
   <td width="15"><img src="images/memo_listbottomright.gif" width="17" height="17"></td>
@@ -201,7 +201,7 @@ if($now_data[no]) {
 }
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-<tr> 
+<tr>
   <td width="15"><img src="images/memo_listtopleft.gif" width="17" height="17"></td>
   <td background="images/memo_listtop.gif"><img src="images/t.gif" width="10" height="5"></td>
   <td width="15"><img src="images/memo_listtopright.gif" width="17" height="17"></td>
@@ -218,7 +218,7 @@ if($now_data[no]) {
       <td width="17" background="images/memo_listleftbg.gif"><img src="images/t.gif" width="17" height="10"></td>
       <td>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr> 
+        <tr>
           <td width="20" align="center"><a href=javascript:reverse()><img src=images/memo_c.gif border=0></a></td>
           <td width="20" align="center">&nbsp;</td>
           <td><img src="images/memo_subject.gif" width="35" height="15"></td>
@@ -235,15 +235,15 @@ while($data=mysql_fetch_array($result)) {
 	if($temp_name) $data[name]="<img src='$temp_name' border=0 align=absmiddle>";
 	$temp_name = get_private_icon($data[member_from], "1");
 	if($temp_name) $data[name]="<img src='$temp_name' border=0 align=absmiddle>&nbsp;".$data[name];
-	
+
 	$data[subject]=stripslashes(del_html($data[subject]));
 	$reg_date=date("Y/m/d H:i",$data[reg_date]);
 	if($data[readed]==0) $readed="<img src=images/memo_readed.gif>"; else $readed="<img src=images/memo_unread.gif>"
 ?>
-        <tr> 
+        <tr>
           <td colspan="5" bgcolor="#EBD9D9" align="center"><img src="images/t.gif" width="10" height="1"></td>
         </tr>
-        <tr onMouseOver=this.style.backgroundColor="#FFF5F5" onMouseOut=this.style.backgroundColor=""> 
+        <tr onMouseOver=this.style.backgroundColor="#FFF5F5" onMouseOut=this.style.backgroundColor="">
           <td width="20" align="center" height="23"> <input type=checkbox name=del[] value=<?=$data[no]?>></td>
           <td width="20" align="center"><?=$readed?></td>
           <td style='word-break:break-all;' style=cursor:hand; onclick=location.href="<?="$PHP_SELF?exec=view&no=$data[no]&page=$page"?>"><img src="images/t.gif" width="10" height="3"><br>
@@ -264,7 +264,7 @@ while($data=mysql_fetch_array($result)) {
     </tr>
     </table>
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tr> 
+    <tr>
       <td width="15"><img src="images/memo_listbottomleft.gif" width="17" height="17"></td>
       <td background="images/memo_listbottom.gif"><img src="images/t.gif" width="10" height="5"></td>
       <td width="15"><img src="images/memo_listbottomright.gif" width="17" height="17"></td>
@@ -274,8 +274,8 @@ while($data=mysql_fetch_array($result)) {
     <tr>
       <td>&nbsp;&nbsp;&nbsp;<font style=font-family:Tahoma;font-size:8pt;color:#cc0000><?=$print_page?></font></td>
       <td align="right">
-        <input type=image src="images/memo_delete.gif" width="69" height="25" border="0"> 
-        <a href=JavaScript:window.close()><img src="images/memo_close.gif" width="69" height="25" border="0"></a> 
+        <input type=image src="images/memo_delete.gif" width="69" height="25" border="0">
+        <a href=JavaScript:window.close()><img src="images/memo_close.gif" width="69" height="25" border="0"></a>
       </td>
     </tr>
     </table>

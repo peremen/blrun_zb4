@@ -49,10 +49,10 @@ $this->_sections['report_view']['last']       = ($this->_sections['report_view']
 <?php echo $this->_tpl_vars['analysis_info'][$this->_sections['report_view']['index']]['os_full_name']; ?>
 
 <?php if ($this->_tpl_vars['analysis_info'][$this->_sections['report_view']['index']]['os_sp_info']):  echo $this->_tpl_vars['analysis_info'][$this->_sections['report_view']['index']]['os_sp_info']; ?>
-&nbsp;&nbsp; 
+&nbsp;&nbsp;
 <?php endif; ?>
 <?php if ($this->_tpl_vars['analysis_info'][$this->_sections['report_view']['index']]['os_net_frame']):  echo $this->_tpl_vars['analysis_info'][$this->_sections['report_view']['index']]['os_net_frame']; ?>
-&nbsp;&nbsp; 
+&nbsp;&nbsp;
 <?php endif; ?>
 </td>
 </tr>
@@ -63,10 +63,10 @@ $this->_sections['report_view']['last']       = ($this->_sections['report_view']
 <td class="allAnalysisRecords" colspan="3" >&nbsp; <?php echo $this->_tpl_vars['analysis_info'][$this->_sections['report_view']['index']]['browser_version']; ?>
 
 <?php if ($this->_tpl_vars['analysis_info'][$this->_sections['report_view']['index']]['browser_build_date']): ?>BuildDate:<?php echo $this->_tpl_vars['analysis_info'][$this->_sections['report_view']['index']]['browser_build_date']; ?>
-&nbsp;&nbsp; 
+&nbsp;&nbsp;
 <?php endif; ?>
 <?php if ($this->_tpl_vars['analysis_info'][$this->_sections['report_view']['index']]['browser_security']): ?>Security:<?php echo $this->_tpl_vars['analysis_info'][$this->_sections['report_view']['index']]['browser_security']; ?>
-&nbsp;&nbsp; 
+&nbsp;&nbsp;
 <?php endif; ?>
 </td>
 </tr>
@@ -112,7 +112,7 @@ $this->_sections['report_view']['last']       = ($this->_sections['report_view']
 </td>
 </tr>
 
-<tr class="osAnalysis" height="15">		
+<tr class="osAnalysis" height="15">
 <td class="allAnalysisItem" width="80">Access Time</td>
 <td class="allAnalysisRecords">&nbsp;<?php echo $this->_tpl_vars['analysis_info'][$this->_sections['report_view']['index']]['regtime']; ?>
 </td>

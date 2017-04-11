@@ -2,20 +2,20 @@
 function thumbnail($size,$source_file,$save_path,$small,$large,$ratio){
 
 	$img_info=@getimagesize($source_file);
-		
+
 	if($img_info[2]==1) $srcimg=ImageCreateFromGIF($source_file);
 	 elseif($img_info[2]==2) $srcimg=ImageCreateFromJPEG($source_file);
 	   else                     $srcimg=ImageCreateFromPNG($source_file);
-	
-	
+
+
 	 for($i=0; $i<=sizeof($size)-1;$i++){
 	   if($size[$i]!=0){
-		 	
+
 			if($i==sizeof($size)-1) $ratio=$img_info[1]/$img_info[0];
 
 			$max_width=$size[$i];
 			$max_height=intval($size[$i]*$ratio);
-			
+
 			if($img_info[0]<=$max_width || $img_info[1]<=$max_height){
 				$new_width=$img_info[0];
 				$new_height=$img_info[1];
@@ -33,37 +33,37 @@ function thumbnail($size,$source_file,$save_path,$small,$large,$ratio){
 		}
 	   }
 
-		
+
 		$srcx=(int)($max_width-$new_width)/2;
 		$srcy=(int)($max_height-$new_height)/2;
-		
-	if($img_info[2]==1){ 
+
+	if($img_info[2]==1){
 				$dstimg=ImageCreate($max_width,$max_height);
 				ImageColorAllocate($dstimg,255,255,255);
 				ImageCopyResized($dstimg, $srcimg,$srcx,$srcy,0,0,$new_width,$new_height,ImageSX($srcimg),ImageSY($srcimg));
-				}else{ 
+				}else{
 					$dstimg=ImageCreateTrueColor($max_width,$max_height);
 					ImageColorAllocate($dstimg,255,255,255);
 					ImageCopyResampled($dstimg, $srcimg,$srcx,$srcy,0,0,$new_width,$new_height,ImageSX($srcimg),ImageSY($srcimg));
 				}
-				
-	if($i==0){ 
+
+	if($i==0){
 	   	ImageJPEG($dstimg,$save_path.$small,85);
 		}
-		else{ 
+		else{
 		ImageJPEG($dstimg,$save_path.$large,85);
 		}
 		ImageDestroy($dstimg);
-			
+
 		}
 	}
 @ImageDestroy($srcimg);
 }
-   
+
 function thumbnail2($size,$source_file,$save_file){
 
 	$img_info=@getimagesize($source_file);
-	
+
 	if($img_info[2]==1) $srcimg=ImageCreateFromGIF($source_file);
 	 elseif($img_info[2]==2) $srcimg=ImageCreateFromJPEG($source_file);
 	   else                     $srcimg=ImageCreateFromPNG($source_file);
@@ -76,11 +76,11 @@ function thumbnail2($size,$source_file,$save_file){
 	  $max_height=$img_info[1];
   }
 
-  if($img_info[2]==1){ 
+  if($img_info[2]==1){
 	  $dstimg=ImageCreate($max_width,$max_height);
 	  ImageColorAllocate($dstimg,255,255,255);
 	  ImageCopyResized($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));
-	  }else{ 
+	  }else{
 	  $dstimg=ImageCreateTrueColor($max_width,$max_height);
 	  ImageColorAllocate($dstimg,255,255,255);
 	  ImageCopyResampled($dstimg, $srcimg,0,0,0,0,$max_width,$max_height,ImageSX($srcimg),ImageSY($srcimg));

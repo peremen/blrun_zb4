@@ -1,7 +1,7 @@
 <?php
 
-class Aokio_Message_Manager{	
-	
+class Aokio_Message_Manager{
+
 	var $log_page_messages;
 	var $analysis_page_view_messages;
 	var $analysis_page_view_table_top_items_titles;
@@ -13,7 +13,7 @@ class Aokio_Message_Manager{
 
 	function Aokio_Message_Manager($config){
 		require_once "./resources/".$config->language."_lang_resource.php";
-		
+
 		$this->log_page_messages		= $login_page_messages;
 
 		$this->analysis_page_view_messages						= $analysis_page_view_messages;

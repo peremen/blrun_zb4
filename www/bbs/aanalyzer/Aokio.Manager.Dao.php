@@ -3,7 +3,7 @@ require_once 'Aokio.Dao.class.php';
 
 class AokioManagerDao extends AokioDao{
 
-	function AokioManagerDao(){	
+	function AokioManagerDao(){
 		parent::AokioDao();
 	}
 
@@ -242,7 +242,7 @@ class AokioManagerDao extends AokioDao{
 	function deleteTargetSearchKeywordsLogInfos($target,$db){
 		if($this->php_type_for_db_variation ==="mysql"){
 			$sql  = " DELETE FROM aokio_log_search_keywords ";
-			$sql .= " WHERE target = '$target' "; 
+			$sql .= " WHERE target = '$target' ";
 		}elseif($this->php_type_for_db_variation ==="pgsql"){
 			$sql  = "";
 		}

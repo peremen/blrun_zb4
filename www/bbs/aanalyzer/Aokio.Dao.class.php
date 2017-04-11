@@ -7,7 +7,7 @@ class AokioDao {
 	var $db_fetch_mode;
 
 	var $php_type_for_db_variation;
-	
+
 	function AokioDao(){
 		$this -> getDBInfo();
 	}
@@ -38,7 +38,7 @@ class AokioDao {
 		$db->setFetchMode($this -> db_fetch_mode);
 		return $db;
 	}
-	
+
 	function closeConnection($db,$commit_flag = false){
 		if($commit_flag){
 			$db->commit();
@@ -100,7 +100,7 @@ class AokioDao {
 		return $result ;
 	}
 
-	
+
 	function getAokioLimitList($sql,$start,$limit,$db){
 		$result =& $db->limitQuery($sql, $start,$limit);
 
@@ -110,7 +110,7 @@ class AokioDao {
 		return $result ;
 	}
 
-	function getAokioInfo($sql,$arr=false,$db){	
+	function getAokioInfo($sql,$arr=false,$db){
 		$result =  & $db->getRow( $sql,$arr,DB_FETCHMODE_ASSOC);
 		if (PEAR::isError($result)) {
 			die($result->getMessage().$sql);

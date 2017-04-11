@@ -68,7 +68,7 @@ while($bbs=mysql_fetch_array($result)) {
 
 $totaldblist = count($dblist);
 ?>
-	
+
 	File list checking
 <?
 // 전체 파일 목록을 구함

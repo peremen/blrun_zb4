@@ -2,7 +2,7 @@
 unset ($_point);
 unset ($aver_point);
 $m_memo = explode("|||",$data[memo]);
-$_name1 = $m_memo[0]; 
+$_name1 = $m_memo[0];
 $_name1 = love_convert($_name1);
 // $_name1의 &를 &amp 로 치환 후 textarea 태그 안의 textarea 태그 깨짐 방지를 위해 < 를 &lt; 로 한번더 치환
 $_name1=str_replace("<","&lt;",str_replace("&","&amp;",$_name1));
@@ -56,7 +56,7 @@ if($total_comment[0]>0){
 	<tr><?if($hide_name=="off"){?><td align=left>
 	<?=$face_image?> <b><font class=title_han4><?=$name?></font></b>
 	<?if($data['homepage']){?><font class=title_han4><a href="<?=$data['homepage']?>" target=_blank>(Homepage)</a></font><?}?>
-	
+
 	<font class=com5>&nbsp;|&nbsp;</font><font class=com3>Point : <?=($m_data[point1]*10+$m_data[point2])?></font><font class=com5>&nbsp;|&nbsp;</font><?}?><?if($hide_date=="off"){?><font class=com3><?=$date?></font><font class=com5>&nbsp;|&nbsp;</font><?}?><?if($hide_hit=="off"){?><font class=com3>Read : <?=number_format($hit)?></font><font class=com5>&nbsp;|&nbsp;</font><?}?><?if($hide_vote=="off"){?><font class=com3>Vote : <?=$vote?></font><?}?></td></tr>
 	<tr><td height=1 colspan=2 background=<?=$dir?>/images/dot.gif></td></tr></table>
 	<table border=0 cellspacing=0 cellpadding=3 width=100% style=table-layout:fixed>
@@ -144,7 +144,7 @@ if($total_comment[0]>0){
 	</tr>
 	<tr><td height=2 background=<?=$dir?>/images/main_bar_line.gif></td></tr>
 	<tr valign=top>
-		<td align=left class=memo><BR>			
+		<td align=left class=memo><BR>
 		<?=$print_img2?><?=$view_img2?></A>
 		<B>&nbsp;· 상품설명</B> :<BR><BR><?=$_name1?><BR><BR>
 		<? include "script/sns.php"; ?>
@@ -161,7 +161,7 @@ if($total_comment[0]>0){
 			</table>
 		</td>
 	</tr>
-	<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>		
+	<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 	</table>
 </td>
 </tr>

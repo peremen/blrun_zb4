@@ -10,7 +10,7 @@ require_once "Aokio.Cookie.class.php";
 require_once "Aokio.Config.Manager.php";
 
 $config = new Aokio_Config();
-$useragent_analyze = new Aokio_Analyzer(); 
+$useragent_analyze = new Aokio_Analyzer();
 
 // 설정값 디비에서 가져오기
 // 카운터값을 표시하기 위해.

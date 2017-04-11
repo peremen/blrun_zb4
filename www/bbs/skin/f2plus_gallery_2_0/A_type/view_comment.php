@@ -15,7 +15,7 @@ if($emoticon_use=="on") $c_memo=str_to_emoticon($c_memo,$emoticon_url);
 </tr>
 <tr>
 	<td background=<?=$dir?>/cc_middle_bg1.gif></td>
-	<td align=left class=memo><font color=#F2955C class=com><?=++$count?>.</font>&nbsp;::: 
+	<td align=left class=memo><font color=#F2955C class=com><?=++$count?>.</font>&nbsp;:::
 		<?
 		if($o_data[ismember]=="") $ismember0="0"; else $ismember0=$o_data[ismember];
 		if($c_data[is_secret]&&!$is_admin&&$c_data[ismember]!=$member[no]&&$data[ismember]!=$member[no]&&$ismember0!=$member[no]&&$member[level]>$setup[grant_view_secret])

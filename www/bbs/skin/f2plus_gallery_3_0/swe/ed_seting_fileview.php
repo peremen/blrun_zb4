@@ -2,7 +2,7 @@
 /* ====================[ sw_edit 파일명: ed_seting_fileview.php ]==================== */
 
 function filebox_add($fnumber,$fname)
-{ 		
+{
 	$fname = str_replace("<br>","&nbsp;첨부파일:",$fname);
 	$fname = str_replace("이 등록되어 있습니다.","",$fname);
 

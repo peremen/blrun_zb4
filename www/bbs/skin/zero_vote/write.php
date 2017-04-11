@@ -76,7 +76,7 @@
 					<td align=left> <input type=password id=password name=password <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
 				</tr>
 				<tr>
-					<td width=60 align=right>설문 작성인</td> 
+					<td width=60 align=right>설문 작성인</td>
 					<td align=left> <input type=text id=name name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> </td>
 				</tr>
 				<?=$hide_end?>

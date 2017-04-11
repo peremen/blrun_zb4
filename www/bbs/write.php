@@ -93,7 +93,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 			$_dbTime += getmicrotime()-$_dbTimeStart;
 			if(!$secret_check[0]) {
 				head();
-				$a_list="<a onfocus=blur() href='zboard.php?$href$sort'>";    
+				$a_list="<a onfocus=blur() href='zboard.php?$href$sort'>";
 				$a_view="<Zeroboard ";
 				$title="이 글은 비밀글입니다.<br>비밀번호를 입력하여 주십시요";
 				$input_password="<input type=password name=password size=20 maxlength=20 class=input>";
@@ -128,10 +128,10 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 
 		$category_kind.="</select>";
 	}
-  
+
 	if($mode=="modify") $title = " 글 수정하기 ";
 	elseif($mode=="reply") $title = " 답글 달기 ";
-	else $title = " 신규 글쓰기 "; 
+	else $title = " 신규 글쓰기 ";
 
 // 쿠키값을 이용;;
 	$name=htmlspecialchars(stripslashes($_SESSION['zb_writer_name']));
@@ -187,7 +187,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 
 		$name=htmlspecialchars($data[name]); // 이름
 		$email=htmlspecialchars($data[email]); // 메일
-		$homepage=htmlspecialchars($data[homepage]); // 홈페이지 
+		$homepage=htmlspecialchars($data[homepage]); // 홈페이지
 		$subject=$data[subject]=htmlspecialchars($data[subject]); // 제목
 		$memo=str_replace("&nbsp;","&amp;nbsp;",$memo); // 내용
 		$sitelink1=$data[sitelink1]=htmlspecialchars($data[sitelink1]); // 사이트 링크
@@ -230,11 +230,11 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 // 자료실 기능을 사용하는지 않하는지 표시;;
 	if(!$setup[use_pds]) { $hide_pds_start="<!--";$hide_pds_end="-->";}
 
-// HTML사용 체크버튼 
+// HTML사용 체크버튼
 	if($setup[use_html]==0) {
-		if(!$is_admin&&$member[level]>$setup[grant_html]) { 
+		if(!$is_admin&&$member[level]>$setup[grant_html]) {
 			$hide_html_start="<!--";
-			$hide_html_end="-->"; 
+			$hide_html_end="-->";
 		}
 	}
 
@@ -318,7 +318,7 @@ function sendit() {
 </tr>
 </table>
 </form>
-<? 
+<?
 }
 
 foot();

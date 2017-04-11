@@ -38,8 +38,8 @@ $existsfilesnum = 0;
 $nexistsfilesnum = 0;
 
 while($bbs = mysql_fetch_array($result)) {
-	
-	$id = $bbs[name];		
+
+	$id = $bbs[name];
 
 	$files1 = mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where file_name1 != ''"));
 	$files2 = mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where file_name2 != ''"));

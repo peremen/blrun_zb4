@@ -11,7 +11,7 @@ if(!$setup[use_category]) {
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 	function zb_formresize(obj) {
-		obj.rows += 4; 
+		obj.rows += 4;
 	}
 // -->
 </SCRIPT>

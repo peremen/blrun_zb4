@@ -1,6 +1,6 @@
 <?
-@extract($_GET); 
-@extract($_POST); 
+@extract($_GET);
+@extract($_POST);
 /***************************************************************************
 * 공통파일 include
 **************************************************************************/
@@ -33,7 +33,7 @@ $t_c=mysql_fetch_array(mysql_query("select * from $table where no='$c_no'"));
 $vote_man=$t_c[who];
 $whois=explode("!*)",$vote_man);
 for($i=0;$i<=sizeof($whois)-1;$i++){
-	if($who==$whois[$i]){ 
+	if($who==$whois[$i]){
 		error1("이미 투표를 하셨네요");
 	}
 }

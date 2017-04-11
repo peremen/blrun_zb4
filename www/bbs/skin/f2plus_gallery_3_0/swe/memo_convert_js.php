@@ -15,7 +15,7 @@ function love_convert($memo)
 		{
 			$pattern1 = array("/\[SW_".$osexy."#\]/","/\[#SW_".$osexy."\]/");
 			$replace1 = array($ogirl,$ogood);
-			
+
 			$memo = preg_replace($pattern1,$replace1,$memo);
 		}
 		if($osexy == "B") { $osexy = "I"; } else { $osexy = "U"; }
@@ -33,7 +33,7 @@ function love_convert($memo)
 		{
 			$pattern2 = array("/\[".$golf[$i]."_".$girls."#\]/","/\[#".$girls."_".$golf[$i]."\]/");
 			$replace2 = array($obaby."#".$golf[$i]."'>","</font>");
-			
+
 			$memo = preg_replace($pattern2,$replace2,$memo);
 		}
 		if($i == 8 && $girls == "FC")
@@ -51,7 +51,7 @@ function love_convert($memo)
 			$memo = preg_replace("/\[SW_EMTC".$i."\]/","<img src='".$dir."/images/emoticon/emtc_1_$i.gif' border='0'>",$memo);
 		}
 	}
-	
+
 	return $memo;
 }
 ?>

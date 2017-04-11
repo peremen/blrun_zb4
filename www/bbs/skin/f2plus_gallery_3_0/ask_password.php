@@ -6,7 +6,7 @@ if($target=="del_comment_ok.php?delsec=$delsec"){
 	$target=$dir."/del_comment_ok.php?delsec=$delsec";
 }elseif($target=="delete_ok.php"){
 	$target=$dir."/delete_ok.php";
-}	
+}
 ?>
 <table width='<?=$setup['table_width']?>' border='0' cellpadding='0' cellspacing='0'>
 <form method=post name=delete action=<?=$target?>>

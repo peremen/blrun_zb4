@@ -20,9 +20,9 @@
 <td class="allAnalysisItem" width="80">OS</td>
 <td class="allAnalysisRecords" colspan="3">&nbsp;
 {$analysis_info[report_view].os_full_name}
-{if $analysis_info[report_view].os_sp_info}{$analysis_info[report_view].os_sp_info}&nbsp;&nbsp; 
+{if $analysis_info[report_view].os_sp_info}{$analysis_info[report_view].os_sp_info}&nbsp;&nbsp;
 {/if}
-{if $analysis_info[report_view].os_net_frame}{$analysis_info[report_view].os_net_frame}&nbsp;&nbsp; 
+{if $analysis_info[report_view].os_net_frame}{$analysis_info[report_view].os_net_frame}&nbsp;&nbsp;
 {/if}
 </td>
 </tr>
@@ -31,9 +31,9 @@
 <tr class="osAnalysis" height="15">
 <td class="allAnalysisItem" width="80">Browser</td>
 <td class="allAnalysisRecords" colspan="3" >&nbsp; {$analysis_info[report_view].browser_version}
-{if $analysis_info[report_view].browser_build_date}BuildDate:{$analysis_info[report_view].browser_build_date}&nbsp;&nbsp; 
+{if $analysis_info[report_view].browser_build_date}BuildDate:{$analysis_info[report_view].browser_build_date}&nbsp;&nbsp;
 {/if}
-{if $analysis_info[report_view].browser_security}Security:{$analysis_info[report_view].browser_security}&nbsp;&nbsp; 
+{if $analysis_info[report_view].browser_security}Security:{$analysis_info[report_view].browser_security}&nbsp;&nbsp;
 {/if}
 </td>
 </tr>
@@ -69,7 +69,7 @@
 <td class="allAnalysisRecords" width="220">&nbsp;{$analysis_info[report_view].resolution}</td>
 </tr>
 
-<tr class="osAnalysis" height="15">		
+<tr class="osAnalysis" height="15">
 <td class="allAnalysisItem" width="80">Access Time</td>
 <td class="allAnalysisRecords">&nbsp;{$analysis_info[report_view].regtime}</td>
 <td class="allAnalysisItem" width="80"></td>

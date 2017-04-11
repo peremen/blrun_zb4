@@ -11,12 +11,12 @@ elseif(time()-$last_comment_time<60*60*48) $comment_new = "&nbsp;<font color=blu
 else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$comment_num."</font>";
 
 $m_memo = explode("|||",$data[memo]);
-$_name1 = $m_memo[0];  
-$_name2 = $m_memo[1];  
-$_name3 = $m_memo[2]; 
-$_name4 = $m_memo[3]; 
+$_name1 = $m_memo[0];
+$_name2 = $m_memo[1];
+$_name3 = $m_memo[2];
+$_name4 = $m_memo[3];
 $_name5 = $m_memo[4];
-$_name6 = $m_memo[5]; 
+$_name6 = $m_memo[5];
 $_name7 = $m_memo[6];
 $_name8 = $m_memo[7];
 $_name9 = $m_memo[8];
@@ -97,7 +97,7 @@ if($counter%$num==1){?>
 		<tr>
 		<td align=left>
 			<table border=0 cellspacing=0 cellpadding=2 width=100%>
-			<tr><td><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>주연</B>(출연) 
+			<tr><td><img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>주연</B>(출연)
 			<BR>&nbsp;<?=$_name5?></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr>
