@@ -78,7 +78,7 @@ function zb_formresize(obj) {
   <td background=<?=$dir?>/dot.gif height=1 colspan=2></td>
 </tr>
 <tr>
-  <td align=right onclick=document.write.memo.rows=document.write.memo.rows+4 style=cursor:pointer><font class=com2><b>Memo</b></font> <font class=com2>¡å</font></td>
+  <td align=right onclick=document.getElementById('memo').rows=document.getElementById('memo').rows+4 style=cursor:pointer><font class=com2><b>Memo</b></font> <font class=com2>¡å</font></td>
   <td align=left style=padding-top:8px;padding-bottom:8px;><textarea id=memo name=memo <?=size2(90)?> rows=18 class=textarea style=width:99% onkeydown='return doTab(event);' onkeyup="addStroke()"><?=$memo?></textarea></td>
 </tr>
 <tr>
