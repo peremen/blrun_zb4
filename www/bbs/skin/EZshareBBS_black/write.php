@@ -48,7 +48,7 @@ function zb_formresize(obj) {
 
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_select.gif></td></tr></table></td>
-  <td align=left class=zv3_comment><?=$category_kind?><?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1>공지사항<?=$hide_notice_end?><?=$hide_html_start?> <input type=checkbox id=use_html name=use_html <?=$use_html?> value=1>HTML사용<?=$hide_html_end?><input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1>답변메일받기<?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?>&nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick=zb_formresize(document.write.memo)> <font id="state"></font></td>
+  <td align=left class=zv3_comment><?=$category_kind?><?=$hide_notice_start?> <input type=checkbox id=notice name=notice <?=$notice?> value=1>공지사항<?=$hide_notice_end?><?=$hide_html_start?> <input type=checkbox id=use_html name=use_html <?=$use_html?> value=1>HTML사용<?=$hide_html_end?><input type=checkbox id=reply_mail name=reply_mail <?=$reply_mail?> value=1>답변메일받기<?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1>비밀글<?=$hide_secret_end?>&nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick=zb_formresize(document.getElementById('memo'))> <font id="state"></font></td>
 </tr>
 <tr valign=top>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_subject.gif></td></tr></table></td>

@@ -38,7 +38,7 @@ $a_codebox = str_replace(">","><font class=view_title1>",$a_codebox)."&nbsp;&nbs
     <tr align=center>
 <!--코멘트 이름, 비번, 내용 시작-->
       <td height=20 style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><img src=images/t.gif border=0 width=80 height=1><br><b>이름</b></td>
-      <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>코멘트</b> &nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+3"></td>
+      <td style=font-family:Verdana;font-size:9pt;letter-spacing:-1px;><b>코멘트</b> &nbsp;&nbsp;&nbsp; <img src=<?=$dir?>/btn_down.gif border=0 valign=absmiddle style=cursor:pointer; onclick="document.getElementById('memo').rows=document.getElementById('memo').rows+4"></td>
       <td>&nbsp;</td>
     </tr>
     <tr align=center valign=top>
