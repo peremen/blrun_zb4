@@ -503,7 +503,10 @@ function command(obj,myEvent)
 				commandClick("SaveAs","noname.html");
 				break;
 			case ("ed_print") :
-				commandClick("Print");
+				if(uAgent.toLowerCase().indexOf("firefox")!=-1)
+					memoiW.print();              
+				else
+					commandClick("Print");
 				break;
 			case ("ed_height_out") :
 				edit_window_size('height_out');
@@ -650,7 +653,10 @@ function command_no_grant(obj,myEvent)
 			commandClick_no_grant("SaveAs","noname.html");
 			break;
 		case ("ed_print") :
-			commandClick_no_grant("Print");
+			if(uAgent.toLowerCase().indexOf("firefox")!=-1)
+				memoiW.print();              
+			else
+				commandClick_no_grant("Print");
 			break;
 		case ("ed_height_out") :
 			edit_window_size('height_out');
@@ -1147,26 +1153,37 @@ function SearchText()
 		return false;
 	}
 
-	txt = memoiW.document.body.createTextRange();
+	if(re.exec(uAgent) != null || re2.exec(uAgent) != null) { //IE6,7,8,9,10,11
+		txt = memoiW.document.body.createTextRange();
 
-	for(i = 0; i <= ser_n && (found = txt.findText(str)) != false; i++) {
-		txt.moveStart("character", 1);
-		txt.moveEnd("textedit");
-	}
-	if (found) {
-		txt.moveStart("character", -1);
-		txt.findText(str);
-		txt.select();
-		txt.scrollIntoView();
-		ser_n++;
-	} else {
-		if (ser_n > 0) {
-			ser_n = 0;
-			SearchText(str);
-		} else {
-			alert("일치하는 내용이 없습니다.");
+		for(i = 0; i <= ser_n && (found = txt.findText(str)) != false; i++) {
+			txt.moveStart("character", 1);
+			txt.moveEnd("textedit");
 		}
+		if (found) {
+			txt.moveStart("character", -1);
+			txt.findText(str);
+			txt.select();
+			txt.scrollIntoView();
+			ser_n++;
+		} else {
+			if (ser_n > 0) {
+				ser_n = 0;
+				SearchText(str);
+			} else {
+				alert("일치하는 내용이 없습니다.");
+			}
+		}
+	} else if(typeof window.getSelection != "undefined") { //Edge & Chrome & FF
+		txt = memoiW.document.body.textContent;
+		var re3 = new RegExp(str, "ig");
+		var resultArray = txt.match(re3);
+		if(resultArray == null)
+			alert("일치하는 문자열이 없습니다.");
+		else
+			alert(resultArray.length + "개 문자열을 찾았습니다!");
 	}
+
 	return false;
 }
 

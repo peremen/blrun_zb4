@@ -36,7 +36,12 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	// 사용권한 체크
 	if(!$is_admin&&$member[level]>$setup[grant_comment]) Error("사용권한이 없습니다.","login.php?id=$id&page=$page&page_num=$page_num&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&file=$view_file_link");
 
-	// 원본글을 가져옴
+	// 주 포스트 글 ismember를 가져옴
+	$_dbTimeStart = getmicrotime();
+	$data=mysql_fetch_array(mysql_query("select ismember from $t_board"."_$id where no='$no'"));
+	$_dbTime += getmicrotime()-$_dbTimeStart;
+
+	// 원본 덧글을 가져옴
 	unset($s_data);
 	if($c_no) {
 		$_dbTimeStart = getmicrotime();
@@ -193,7 +198,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	$use_html2 .= " value='$value_use_html2' onclick='check_use_html2(this)'><ZeroBoard";
 
 	// 비밀글 사용;;
-	if(!$setup[use_secret]||$mode!="modify"&&$s_data[ismember]=="0"||$mode=="modify"&&$o_data[ismember]=="0") { $hide_secret_start="<!--"; $hide_secret_end="-->"; }
+	if(!$setup[use_secret]||$mode!="modify"&&$s_data[ismember]=="0"||$mode=="modify"&&($o_data[ismember]=="0"||($o_data[ismember]==""&&$data[ismember]=="0"))) { $hide_secret_start="<!--"; $hide_secret_end="-->"; }
 
 	// 회원로그인이 되어 있으면 코멘트 비밀번호를 안 나타나게;;
 	if($member[no]) {
