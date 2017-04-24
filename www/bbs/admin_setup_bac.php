@@ -52,8 +52,15 @@ head(" bgcolor=444444 ");
       <td valign="top" colspan="2" align=right>
         <img src=images/t.gif border=0 height=5><br>
 
-<? if($member[is_admin]==1) {
-	$re=mysql_fetch_array(mysql_query("SELECT target from aokio_log_config order by no desc limit 1"));
+<?
+if($member[is_admin]==1) {
+	$sql ="show tables like 'aokio_log_config'";
+	$row = mysql_fetch_row(mysql_query($sql));
+	if($row[0]) {
+		$re=mysql_fetch_array(mysql_query("SELECT target from aokio_log_config order by no desc limit 1"));
+	} else {
+		echo "<script>window.open('aanalyzer/install.php', '_blank');</script>";
+	}
 ?>
         <a href=admin_setup_bac.php?exec=uninstall&sid=<?=$sid?>><font color=white style=font-size:9pt onclick="return confirm('제로보드를 제거하시겠습니까?')"><b>Uninstall</b></font></a> &nbsp;|&nbsp;
         <a href=admin_setup_bac.php?exec=db_dump&sid=<?=$sid?>><font color=white style=font-size:9pt onclick="return confirm('백업하시겠습니까?')"><b>DB 백업</b></font></a> &nbsp;|&nbsp;
@@ -72,8 +79,8 @@ head(" bgcolor=444444 ");
 		<a href=aanalyzer/install.php target=_blank><font color=white style=font-size:9pt><b>접속통계</b></font></a>&nbsp;&nbsp;
 <?
 	}
+}
 ?>
-<? } ?>
 
       </td>
     </tr>
