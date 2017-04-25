@@ -50,7 +50,7 @@ sw_layers_createLink += "<a onClick='javascript:layerClick(ed_createLinkdiv,\"di
 sw_layers_createLink += "</td></tr></table></div>";
 
 var sw_layers_emoticon = "<div id='ed_emoticondiv' style='position:absolute; visibility:hidden;'>";
-sw_layers_emoticon += "<table id='ed_emoticontable' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5' onmousemove='clear_timeout()' onmouseout='start_timeout(this)'><tr><td style='padding:3;'>";
+sw_layers_emoticon += "<table id='ed_emoticontable' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5' onmousemove='clear_timeout()' onmouseout='start_timeout(this)'><tr><td style='padding:3px;'>";
 sw_layers_emoticon += "<table width='110' height='130' border='0' cellpadding='2' cellspacing='0'>";
 
 var emoticon_dir = sw_skins_dir + "/images/emoticon/";
@@ -76,7 +76,7 @@ sw_layers_emoticon += ed_emoticonF();
 sw_layers_emoticon += "</table></td></tr></table></div>";
 
 var sw_layers_asword = "<div id='ed_asworddiv' style='position:absolute; visibility:hidden;'>";
-sw_layers_asword += "<table id='ed_aswordtable' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5' onmousemove='clear_timeout()' onmouseout='start_timeout(this)'><tr><td style='padding:3;'>";
+sw_layers_asword += "<table id='ed_aswordtable' border='0' cellpadding='0' cellspacing='0' class='sw_bd_style_5' onmousemove='clear_timeout()' onmouseout='start_timeout(this)'><tr><td style='padding:3px;'>";
 sw_layers_asword += "<table width='210' height='170' border='0' cellpadding='2' cellspacing='0'>";
 
 function ed_aswordF()
