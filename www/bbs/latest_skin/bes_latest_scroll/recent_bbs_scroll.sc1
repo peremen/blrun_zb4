@@ -1,33 +1,33 @@
 <?
 //////////////////////////////////////////////////
-// ÃÖ±Ù°Ô½Ã¹° ÇÔ¼ö ÁöÁ¤ 2008³â 11¿ù 14ÀÏ ½ºÅ©·Ñ ÃÖ±Ù°Ô½Ã¹°
+// ìµœê·¼ê²Œì‹œë¬¼ í•¨ìˆ˜ ì§€ì • 2008ë…„ 11ì›” 14ì¼ ìŠ¤í¬ë¡¤ ìµœê·¼ê²Œì‹œë¬¼
 ///////////////////////////////////////////////////
 
 function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d") {
 	global $_zb_path, $_zb_url, $t_board, $connect, $admin_table, $t_comment, $mb_id, $mb_conf, $mb_title;
 
 //////////////////////////////////////
-// ½ºÅ²ÀÇ Á¸Àç¿©ºÎ °Ë»ç
+// ìŠ¤í‚¨ì˜ ì¡´ì¬ì—¬ë¶€ ê²€ì‚¬
 
 	$str = zReadFile($_zb_path."latest_skin/".$skinname."/main.html");
 	if(!$str) {
-			  echo "ÁöÁ¤ÇÏ½Å $skinname ÀÌ¶ó´Â ÃÖ±Ù¸ñ·Ï ½ºÅ²ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù<br>";
+			  echo "ì§€ì •í•˜ì‹  $skinname ì´ë¼ëŠ” ìµœê·¼ëª©ë¡ ìŠ¤í‚¨ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤<br>";
 			  return;
 	}
 
 //////////////////////////////////////
-// ÇÊ¿äÇÑ º¯¼ö ¹Ş¾Æ³»±â
+// í•„ìš”í•œ ë³€ìˆ˜ ë°›ì•„ë‚´ê¸°
 
 	if(!$mb_conf[icon])
 		 $ico = "<img src=".$zb_url."images/dot_green.gif width=7 height=7>";
 	else
 		 $ico = $mb_conf[icon];
 
-	$id = $mb_id; // id ¹Ş±â
-	$idTitle = $mb_title; //°¢ °Ô½ÃÆÇÀÇ ÀÌ¸§ ¹Ş±â
-	$cutTimeMode = $mb_conf[timemode]; // ÃÖ±Ù °Ô½Ã¹° ½Ã°£ ¹üÀ§
-	$showCategory = 1 - $mb_conf[nocategory]; //Ä«Å×°í¸® º¸ÀÌ±â °ª
-	$showIdtitle  = $mb_conf[showidtitle]; // °Ô½ÃÆÇ ÀÌ¸§ º¸ÀÌ±â °ª
+	$id = $mb_id; // id ë°›ê¸°
+	$idTitle = $mb_title; //ê° ê²Œì‹œíŒì˜ ì´ë¦„ ë°›ê¸°
+	$cutTimeMode = $mb_conf[timemode]; // ìµœê·¼ ê²Œì‹œë¬¼ ì‹œê°„ ë²”ìœ„
+	$showCategory = 1 - $mb_conf[nocategory]; //ì¹´í…Œê³ ë¦¬ ë³´ì´ê¸° ê°’
+	$showIdtitle  = $mb_conf[showidtitle]; // ê²Œì‹œíŒ ì´ë¦„ ë³´ì´ê¸° ê°’
 	$myTitle = $mb_conf[mytitle];
 
 	for( $i = 0; $i < sizeof($id); $i++){
@@ -40,7 +40,7 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 		 $idTitle[$id[$i]] = $mb_title[$i];
 	}
 
-// ½ºÅ² °ü·Ã º¯¼ö
+// ìŠ¤í‚¨ ê´€ë ¨ ë³€ìˆ˜
 	$tmpStr = explode("[loop]",$str);
 	$header = $tmpStr[0];
 	$tmpStr2 = explode("[/loop]",$tmpStr[1]);
@@ -48,27 +48,27 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 	$footer = $tmpStr2[1];
 
 //////////////////////////////////////
-// Ã³¸® ½ÃÀÛ
+// ì²˜ë¦¬ ì‹œì‘
 
-	$tc = 0; //ÀüÃ¼ µ¥ÀÌÅ¸ Ä«¿îÅÍ
+	$tc = 0; //ì „ì²´ ë°ì´íƒ€ ì¹´ìš´í„°
 	$icon_new = "<img src='".$_zb_url."latest_skin/bes_latest_skin08/images/new.gif'>";
 	$time_new = time() - 3600 * 48;
 
-	/* »ÌÀ» °Ô½Ã¹° ½Ã°£¹üÀ§ °ü·Ã ¼³Á¤ ½ÃÀÛ */
-	// $cutTimeMode°¡ 1 ÀÌ¸é 24½Ã°£ ÀÌ³»ÀÇ °Ô½Ã¹° ÃßÃâ
-	// $cutTimeMode°¡ 2 ÀÌ¸é ¿À´Ã »õº® 0½Ã0ºĞºÎÅÍ ¿Ã¶ó¿Â °Ô½Ã¹° ÃßÃâ
-	// $cutTimeMode°¡ 0 È¤Àº ±âÅ¸ ¼öÀÏ ¶§ ±×³É ÃÖ±Ù¿Ã·ÁÁø ¼ø¼­·Î ÃßÃâ(½Ã°£Á¦ÇÑ ¾øÀ½)
+	/* ë½‘ì„ ê²Œì‹œë¬¼ ì‹œê°„ë²”ìœ„ ê´€ë ¨ ì„¤ì • ì‹œì‘ */
+	// $cutTimeModeê°€ 1 ì´ë©´ 24ì‹œê°„ ì´ë‚´ì˜ ê²Œì‹œë¬¼ ì¶”ì¶œ
+	// $cutTimeModeê°€ 2 ì´ë©´ ì˜¤ëŠ˜ ìƒˆë²½ 0ì‹œ0ë¶„ë¶€í„° ì˜¬ë¼ì˜¨ ê²Œì‹œë¬¼ ì¶”ì¶œ
+	// $cutTimeModeê°€ 0 í˜¹ì€ ê¸°íƒ€ ìˆ˜ì¼ ë•Œ ê·¸ëƒ¥ ìµœê·¼ì˜¬ë ¤ì§„ ìˆœì„œë¡œ ì¶”ì¶œ(ì‹œê°„ì œí•œ ì—†ìŒ)
 
 	if($cutTimeMode == 1){
-	  $cut_time = time() - 3600 * 24;   // 24½Ã°£ÀÌ³»
+	  $cut_time = time() - 3600 * 24;   // 24ì‹œê°„ì´ë‚´
 	}else if($cutTimeMode == 2){
-	  $cut_time = mktime(0,0,0,date("m"),date("d"),date("Y")); // ¿À´Ã ¾ÆÄ§ 0½ÃºÎÅÍ
+	  $cut_time = mktime(0,0,0,date("m"),date("d"),date("Y")); // ì˜¤ëŠ˜ ì•„ì¹¨ 0ì‹œë¶€í„°
 	}else{
 	  $cut_time = 0;
 	}
-	/* »ÌÀ» °Ô½Ã¹° ½Ã°£¹üÀ§ °ü·Ã ¼³Á¤ ³¡. */
+	/* ë½‘ì„ ê²Œì‹œë¬¼ ì‹œê°„ë²”ìœ„ ê´€ë ¨ ì„¤ì • ë. */
 
-// ÃÖ±Ù ±Û ¼øÀ¸·Î °Ô½Ã¹° »ÌÀ½
+// ìµœê·¼ ê¸€ ìˆœìœ¼ë¡œ ê²Œì‹œë¬¼ ë½‘ìŒ
 	for( $i = 0; $i < sizeof($id); $i++){
 		 $query = "select * from ".$t_board."_".$id[$i]." where is_secret=0 and reg_date > $cut_time order by no desc limit $num";
 		 $result = mysql_query($query, $connect) or die(mysql_error());
@@ -106,14 +106,14 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 ///////////////
 // output
 
-// ¸ğµç°Ô½Ã¹°À» ½Ã°£¼øÀ¸·Î Á¤·Ä
+// ëª¨ë“ ê²Œì‹œë¬¼ì„ ì‹œê°„ìˆœìœ¼ë¡œ ì •ë ¬
 	if($tc)
 	  sort($tm);
 
-// ½ºÅ²°ü·Ã ºÎºĞ
+// ìŠ¤í‚¨ê´€ë ¨ ë¶€ë¶„
 // $mbName, $mbDate, $mbSubject, $mbComment, $mbCategory;
 
-// ÃÖ±Ù °Ô½Ã¹° ¼øÀ¸·Î $num¸¸Å­À» 5°³¾¿ ³ª´©¾î Ãâ·Â
+// ìµœê·¼ ê²Œì‹œë¬¼ ìˆœìœ¼ë¡œ $numë§Œí¼ì„ 5ê°œì”© ë‚˜ëˆ„ì–´ ì¶œë ¥
 	$sc = 0; $cnt = 0;
 
 	for($i = sizeof($tm)-1; $i >= sizeof($tm)-$num && $i >= 0; $i--) {
@@ -124,7 +124,7 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 		//print "$ico ";
 		$mbCategory = "";
 
-		// °Ô½ÃÆÇ ÀÌ¸§ º¸ÀÌ±â
+		// ê²Œì‹œíŒ ì´ë¦„ ë³´ì´ê¸°
 		if($showIdtitle){
 		  $mbCategory = "[ <a href=".$_zb_url."zboard.php?id=".$ad[$n][id]." target=_self><font color=black>".$idTitle[$ad[$n][id]]."</font></a>";
 		  if($showCategory)
@@ -133,14 +133,14 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 			  $mbCategory .= " ]";
 		}
 
-		// Ä«Å×°í¸® Ç¥½ÃÇÏÁö ¾Ê±â¸¦ ¼±ÅÃÇß´Ù¸é Ä«Å×°í¸® °¨Ãß°í ÀÚ½ÅÀÌ Á¤ÀÇÇÑ Á¦¸ñÀ» ¾Õ¿¡ ´ŞÀ½
+		// ì¹´í…Œê³ ë¦¬ í‘œì‹œí•˜ì§€ ì•Šê¸°ë¥¼ ì„ íƒí–ˆë‹¤ë©´ ì¹´í…Œê³ ë¦¬ ê°ì¶”ê³  ìì‹ ì´ ì •ì˜í•œ ì œëª©ì„ ì•ì— ë‹¬ìŒ
 		if($showCategory){
 		  if(!$showIdtitle) print "[ ";
 				$mbCategory .= "<a href=".$ad[$n][catelink]." target=_self><font color=black>".$ad[$n][cate]."</font></a> ]";
 		}else{
 		  $mbCategory .= $myTitle; }
 
-		$mbSubject = "<a href=".$ad[$n][target]." title='ÀÛ¼ºÀÚ:".$ad[$n][name]." ÀÛ¼ºÀÏ:".$ad[$n][date]."' target=_self>";
+		$mbSubject = "<a href=".$ad[$n][target]." title='ì‘ì„±ì:".$ad[$n][name]." ì‘ì„±ì¼:".$ad[$n][date]."' target=_self>";
 		$mbSubject .= $ad[$n][subject];
 		$mbSubject .= "</a> ".$ad[$n][icon];
 		$mbComment = $ad[$n][comment];
@@ -160,7 +160,7 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 			continue;
 		} elseif($cnt % 5 == 0 || $cnt == $num){
 
-			// ÀüÃ¼ Ãâ·Â ¹®ÀÚ¿­À» ¸ğ¾Æ³õ±â
+			// ì „ì²´ ì¶œë ¥ ë¬¸ìì—´ì„ ëª¨ì•„ë†“ê¸°
 
 			//$list[$sc] = $header.$main_data.$footer;
 			$list[$sc] = "<table border=0 valign=top width=100% cellspacing=0 cellpadding=0>".$main_data.$footer;
@@ -187,7 +187,7 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 	}
 
 //echo $list[$sc];
-// Ãâ·Â
+// ì¶œë ¥
 	echo $header."<tr><td></td></tr></table>";
 	echo "<script>";
 	for($i=0; $i<$sc; $i++){
@@ -199,11 +199,11 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 ?>
 
 <SCRIPT language=JavaScript type=text/javascript>
-	var scrollerheight=110;                // ½ºÅ©·Ñ·¯ÀÇ ¼¼·Î
+	var scrollerheight=110;                // ìŠ¤í¬ë¡¤ëŸ¬ì˜ ì„¸ë¡œ
 	var html, total_area=0, wait_flag=true;
 
 	var bMouseOver = 1, bOnclick = 0;
-	var waitingtime = 7000;                // ¸ØÃß´Â ½Ã°£
+	var waitingtime = 7000;                // ë©ˆì¶”ëŠ” ì‹œê°„
 	var s_tmp = 0, s_amount = 22;
 	var scroll_content=new Array();
 
@@ -211,7 +211,7 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 	var curPage=0;
 
 	function startscroll()
-	{ // ½ºÅ©·Ñ ½ÃÀÛ
+	{ // ìŠ¤í¬ë¡¤ ì‹œì‘
 		i=0;
 		for (i in scroll_content)
 			n_panel++;
@@ -224,19 +224,19 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 
 		curPage = startPanel%total_area + 1;
 
-		document.getElementById('myroll').innerHTML = curPage + "/" + total_area + " " + "<span style='cursor:pointer;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1;bOnclick=0;' onClick='bOnclick=-1;left_click();'>¢¸</span> <span style='cursor:pointer;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1;bOnclick=0;' onClick='bOnclick=1;right_click();'>¢º</span>" //ÃÖ±Ù ÄÚ¸àÆ® Á¦¸ñ¿¡ ÇöÀç ÆäÀÌÁö Ç¥½Ã.
+		document.getElementById('myroll').innerHTML = curPage + "/" + total_area + " " + "<span style='cursor:pointer;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1;bOnclick=0;' onClick='bOnclick=-1;left_click();'>â—€</span> <span style='cursor:pointer;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1;bOnclick=0;' onClick='bOnclick=1;right_click();'>â–¶</span>" //ìµœê·¼ ì½”ë©˜íŠ¸ ì œëª©ì— í˜„ì¬ í˜ì´ì§€ í‘œì‹œ.
 
 		window.setTimeout("scrolling()",waitingtime);
 	}
 
-	function scrolling(){ // ½ÇÁ¦·Î ½ºÅ©·Ñ ÇÏ´Â ºÎºĞ
+	function scrolling(){ // ì‹¤ì œë¡œ ìŠ¤í¬ë¡¤ í•˜ëŠ” ë¶€ë¶„
 
 		if (bMouseOver && wait_flag && !bOnclick){
 			startPanel++;
 			curPage = startPanel%total_area + 1;
 
-			document.getElementById('scroll_area').innerHTML = scroll_content[curPage-1]+'\n'; // Area ³»¿ë º¯°æ
-			document.getElementById('myroll').innerHTML = curPage + "/" + total_area + " " + "<span style='cursor:pointer;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1;bOnclick=0;' onClick='bOnclick=-1;left_click();'>¢¸</span> <span style='cursor:pointer;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1;bOnclick=0;' onClick='bOnclick=1;right_click();'>¢º</span>" //ÃÖ±Ù ÄÚ¸àÆ® Á¦¸ñ¿¡ ÇöÀç ÆäÀÌÁö Ç¥½Ã.
+			document.getElementById('scroll_area').innerHTML = scroll_content[curPage-1]+'\n'; // Area ë‚´ìš© ë³€ê²½
+			document.getElementById('myroll').innerHTML = curPage + "/" + total_area + " " + "<span style='cursor:pointer;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1;bOnclick=0;' onClick='bOnclick=-1;left_click();'>â—€</span> <span style='cursor:pointer;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1;bOnclick=0;' onClick='bOnclick=1;right_click();'>â–¶</span>" //ìµœê·¼ ì½”ë©˜íŠ¸ ì œëª©ì— í˜„ì¬ í˜ì´ì§€ í‘œì‹œ.
 	        if (++s_tmp == 1){
               wait_flag=false;
     	      window.setTimeout("wait_flag=true;s_tmp=0;",waitingtime);
@@ -248,8 +248,8 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 			startPanel += bOnclick;
 			curPage = startPanel%total_area + 1;
 
-			document.getElementById('scroll_area').innerHTML = scroll_content[curPage-1]+'\n'; // Area ³»¿ë º¯°æ
-			document.getElementById('myroll').innerHTML = curPage + "/" + total_area + " " + "<span style='cursor:pointer;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1;bOnclick=0;' onClick='bOnclick=-1;left_click();'>¢¸</span> <span style='cursor:pointer;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1;bOnclick=0;' onClick='bOnclick=1;right_click();'>¢º</span>" //ÃÖ±Ù ÄÚ¸àÆ® Á¦¸ñ¿¡ ÇöÀç ÆäÀÌÁö Ç¥½Ã.
+			document.getElementById('scroll_area').innerHTML = scroll_content[curPage-1]+'\n'; // Area ë‚´ìš© ë³€ê²½
+			document.getElementById('myroll').innerHTML = curPage + "/" + total_area + " " + "<span style='cursor:pointer;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1;bOnclick=0;' onClick='bOnclick=-1;left_click();'>â—€</span> <span style='cursor:pointer;' onMouseover='bMouseOver=0' onMouseout='bMouseOver=1;bOnclick=0;' onClick='bOnclick=1;right_click();'>â–¶</span>" //ìµœê·¼ ì½”ë©˜íŠ¸ ì œëª©ì— í˜„ì¬ í˜ì´ì§€ í‘œì‹œ.
 			bOnclick = 0;
 	        if (++s_tmp == 1){
               wait_flag=false;
@@ -259,7 +259,7 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 		window.setTimeout("scrolling()",waitingtime);
 	}
 
-	function insert_area(idx){ // area »ğÀÔ
+	function insert_area(idx){ // area ì‚½ì…
 		html='<div style="left: 0px; width: 100%; position: absolute; top: 0px" id="scroll_area">\n';
 		html+=scroll_content[idx]+'\n';
 		html+='</div>\n';

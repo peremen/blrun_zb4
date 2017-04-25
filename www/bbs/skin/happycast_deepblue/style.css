@@ -1,7 +1,7 @@
 BODY,TD,SELECT,input,DIV,form,TEXTAREA,center,option,pre,blockquote {font-family:굴림;font-size:10pt;color:#160F25;}
 p {margin-top:0px; margin-bottom:0px;}
 
-IMG {border:0;}
+IMG {border:0px;}
 TD {line-height:140%}
 
 A:link    {color:black;text-decoration:none;}
@@ -11,10 +11,10 @@ A:hover  {color:gray;text-decoration:none;}
 
 .memo {word-wrap:break-word; word-break:break-word; word-break:keep-all;}
 
-.input {border:solid 1;background-color:white;border-color:#160F25;font-size:9pt}
-.submit {border:solid 1 white;font-family:굴림;font-size:9pt;color:white;background-color:#160F25; height=18px}
+.input {border:solid 1px;background-color:white;border-color:#160F25;font-size:9pt}
+.submit {border:solid 1px white;font-family:굴림;font-size:9pt;color:white;background-color:#160F25; height=18px}
 
-.comment_submit {font-family:Verdaba;font-size:9pt;border:solid 1;border-color:purple;background-color:white;width:100%;height:100%}
+.comment_submit {font-family:Verdaba;font-size:9pt;border:solid 1px;border-color:purple;background-color:white;width:100%;height:100%}
 
 .setup {font-family:Tahoma;font-size:8pt;font-weight:bold;color:#14092A;}
 .list_header {font-family:Matchworks,Tahoma;font-size:9pt;color:#C6B8E1}

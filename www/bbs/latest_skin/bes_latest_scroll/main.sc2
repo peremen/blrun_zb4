@@ -1,29 +1,29 @@
 
 <style type="text/css">
 <!--
-body,td {font-size:9pt;font-family:tahoma,Verdana,Arial,±¼¸²;}
+body,td {font-size:9pt;font-family:tahoma,Verdana,Arial,êµ´ë¦¼;}
 A:link    {color:blue;text-decoration:none;}
 A:visited {color:purple;text-decoration:none;}
-A:active  {color:666666;text-decoration:none;}
-A:hover  {color:ff6633;text-decoration:none;}
+A:active  {color:#666666;text-decoration:none;}
+A:hover  {color:#ff6633;text-decoration:none;}
 
 .table1_th {width:100%;}
 .table2_th {width:100%;height:32px;background-color:#f9f9f9;}
 
 .td1_th {border-width:1px;border-color:#e1e1e1;border-style:solid;background-color:#ffffff;}
 
-.span1_th {font-size:9pt;font-family:tahoma,Verdana,Arial,±¼¸²;font-weight:bold;color:#000000;}
+.span1_th {font-size:9pt;font-family:tahoma,Verdana,Arial,êµ´ë¦¼;font-weight:bold;color:#000000;}
 -->
 </style>
 
-<!-- »ó´ÜÀÇ Å¸ÀÌÆ² -->
+<!-- ìƒë‹¨ì˜ íƒ€ì´í‹€ -->
 <table cellspacing="3" cellpadding="5" class="table2_th">
 <tr> 
   <td align="left" class="td1_th"><img src=[dir]list_title_ico.gif border=0 width=11 height=12> [title] </td>
 </tr> 
 </table>
 
-<!-- ÃÖ±Ù±Û ¸ñ·ÏÀÌ ³ª¿À´Â ºÎºÐ -->
+<!-- ìµœê·¼ê¸€ ëª©ë¡ì´ ë‚˜ì˜¤ëŠ” ë¶€ë¶„ -->
 <table border=0 width=100% cellspacing=0 cellpadding=0>
 [loop]
 <tr>
