@@ -161,7 +161,7 @@ if($member[no]) {
 	} else {
 		$name=$member[name];
 	}
-	if(!get_magic_quotes_gpc()) $name=addslashes($name);
+	$name=addslashes($name);
 	$name = trim($name);
 } else {
 	if(!get_magic_quotes_gpc()) $name=addslashes($name);
