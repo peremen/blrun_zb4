@@ -54,8 +54,6 @@ if($exec=="view_all") {
 
 	head();
 
-	//global $max_depth;
-
 	// 상단 현황 부분 출력
 	include "$dir/setup.php";
 
@@ -289,6 +287,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 
 				// Comment 정리
 				$comment_result=mysql_query("select * from $t_comment"."_$id where parent='$data[no]' order by reg_date",$connect) or error(mysql_error());
+				$cno_arr=array(); // 덧글 넘버 쌍저장 배열 초기화
 				while($comment_data=mysql_fetch_array($comment_result)) {
 					// 업로드된 파일이 있을경우 처리 #1
 					if($comment_data[s_file_name1]) {
@@ -311,6 +310,24 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 					$comment_data[memo]=addslashes($comment_data[memo]);
 					$comment_data[name]=addslashes($comment_data[name]);
 					mysql_query("insert into $t_comment"."_$board_name (parent,ismember,islevel,name,password,memo,reg_date,ip,use_html2,is_secret,file_name1,file_name2,s_file_name1,s_file_name2,download1,download2) values ('$no','$comment_data[ismember]','$comment_data[islevel]','$comment_data[name]','$comment_data[password]','$comment_data[memo]','$comment_data[reg_date]','$comment_data[ip]','$comment_data[use_html2]','$comment_data[is_secret]','$comment_data[file_name1]','$comment_data[file_name2]','$comment_data[s_file_name1]','$comment_data[s_file_name2]','$comment_data[download1]','$comment_data[download2]')") or error(mysql_error());
+					// 인서트 후 원본 덧글 no key와 인서트 덧글 no value 형식(쌍)으로 배열 저장
+					$cno_arr[$comment_data[no]]=mysql_insert_id();
+				}
+				// 인서트된 덧글 내용에서 원덧글 no 조정
+				unset($comment_result);
+				$comment_result=mysql_query("select no,memo from $t_comment"."_$board_name where parent='$no'",$connect) or error(mysql_error());
+				while($c_data=mysql_fetch_array($comment_result)) {
+					// 계층 코멘트 표식 불러와 원덧글 번호로 수정 처리
+					$c_memo=$c_data[memo];
+					unset($c_match);
+					if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$c_memo,$c_match)) {
+						$c_memo = str_replace($c_match[0],"",$c_memo);
+						if($v=$cno_arr[$c_match[1]]) {
+							$c_memo.="|||".$v."|".$c_match[2];
+							$c_memo=addslashes($c_memo);
+							mysql_query("update $t_comment"."_$board_name set memo='$c_memo' where no='$c_data[no]'",$connect);
+						}
+					}
 				}
 
 				mysql_query("update $t_category"."_$board_name set num=num+1 where no='$category'",$connect);

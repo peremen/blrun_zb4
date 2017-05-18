@@ -311,6 +311,17 @@ $max_depth = 0;
 
 // 코멘트 출력;;
 if($setup[use_comment]) {
+	// 원덧글 번호 배열 초기화
+	$corg_arr = array();
+	while($c_data=mysql_fetch_array($view_comment_result)) {
+		// 계층 코멘트 표식 불러와 배열로 저장
+		unset($c_match);
+		if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$c_data[memo],$c_match))
+			$corg_arr[$c_match[1]] = $c_match[1];
+	}
+	// 레코드 맨 위로 이동
+	if(mysql_num_rows($view_comment_result)) mysql_data_seek($view_comment_result,0);
+	// 코멘트 처리
 	while($c_data=mysql_fetch_array($view_comment_result)) {
 		$comment_name=del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",$c_data[name])));
 		$temp_name = get_private_icon($c_data[ismember], "2");
@@ -453,7 +464,7 @@ if($setup[use_comment]) {
 			$img_info3=getimagesize($c_data[file_name1]); //폭과 높이 구하기
 			$img_info3[0]=$img_info3[0]+10;
 			$img_info3[1]=$img_info3[1]+55;
-			$c_upload_image1="<img src=$c_file_name1_ border=0 name=zb_target_resize style=\"cursor:pointer\"  onclick=\"javascript: window.open('img_view.php?img=$c_data[file_name1]&width=$img_info3[0]&height=$img_info3[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
+			$c_upload_image1="<img src=$c_file_name1_ border=0 name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$c_data[file_name1]&width=$img_info3[0]&height=$img_info3[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
 		}
 		elseif(preg_match("#\.(swf|asf|asx|wma|wmv|wav|mid|avi|mpeg|mpg)$#i",$c_file_name1)) $c_upload_image1="<embed width=640 height=480 type=application/x-mplayer2 pluginspage=http://www.microsoft.com/windows/mediaplayer/download/default.asp src='$c_file_name1_' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true'><br>";
 		elseif(preg_match("#\.(mp3|mp4|ogg|oga|mov|flv|m4v|f4v|webm|aac|m4a|f4a)$#i",$c_file_name1)) $c_upload_image1="<script src='./jwplayer/jwplayer.js'></script><div id='jwplayer2'>Loading the player ...</div><script>jwplayer('jwplayer2').setup({flashplayer: './jwplayer/player.swf', file: '$c_file_name1_', volume: 40, width: 640, height: 480});</script>";
@@ -462,17 +473,21 @@ if($setup[use_comment]) {
 			$img_info4=getimagesize($c_data[file_name2]); //폭과 높이 구하기
 			$img_info4[0]=$img_info4[0]+10;
 			$img_info4[1]=$img_info4[1]+55;
-			$c_upload_image2="<img src=$c_file_name2_ border=0 name=zb_target_resize style=\"cursor:pointer\"  onclick=\"javascript: window.open('img_view.php?img=$c_data[file_name2]&width=$img_info4[0]&height=$img_info4[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
+			$c_upload_image2="<img src=$c_file_name2_ border=0 name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$c_data[file_name2]&width=$img_info4[0]&height=$img_info4[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
 		}
 		elseif(preg_match("#\.(swf|asf|asx|wma|wmv|wav|mid|avi|mpeg|mpg)$#i",$c_file_name2)) $c_upload_image2="<embed width=640 height=480 type=application/x-mplayer2 pluginspage=http://www.microsoft.com/windows/mediaplayer/download/default.asp src='$c_file_name2_' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true'><br>";
 		elseif(preg_match("#\.(mp3|mp4|ogg|oga|mov|flv|m4v|f4v|webm|aac|m4a|f4a)$#i",$c_file_name2)) $c_upload_image2="<script src='./jwplayer/jwplayer.js'></script><div id='jwplayer3'>Loading the player ...</div><script>jwplayer('jwplayer3').setup({flashplayer: './jwplayer/player.swf', file: '$c_file_name2_', volume: 40, width: 640, height: 480});</script>";
 
 		$c_reg_date="<span title='".date("Y년 m월 d일 H시 i분 s초",$c_data[reg_date])."'>".date("Y/m/d",$c_data[reg_date])."</span>";
+
 		if($c_data[ismember]) {
 			if(($c_data[ismember]==$member[no]||$is_admin||$member[level]<=$setup[grant_delete])&&$member[user_id]!="sprdrg") {
 				$a_edit="<a onfocus=blur() href='comment.php?$href$sort&no=$no&c_no=$c_data[no]&mode=modify'>";
 				$a_edit2="<a onfocus=blur() href='comment_modify.php?$href$sort&no=$no&c_no=$c_data[no]'>";
-				$a_del="<a onfocus=blur() href='del_comment.php?$href$sort&no=$no&c_no=$c_data[no]&delsec=$cnum1num2' style='color:red'>";
+				if($corg_arr[$c_data[no]]) // 원덧글 배열에 존재하면
+					$a_del="&nbsp;<Zeroboard ";
+				else
+					$a_del="<a onfocus=blur() href='del_comment.php?$href$sort&no=$no&c_no=$c_data[no]&delsec=$cnum1num2' style='color:red'>";
 			}
 			else {
 				$a_edit="&nbsp;<Zeroboard ";
@@ -482,7 +497,10 @@ if($setup[use_comment]) {
 		} else {
 			$a_edit="<a onfocus=blur() href='comment.php?$href$sort&no=$no&c_no=$c_data[no]&mode=modify'>";
 			$a_edit2="<a onfocus=blur() href='comment_modify.php?$href$sort&no=$no&c_no=$c_data[no]'>";
-			$a_del="<a onfocus=blur() href='del_comment.php?$href$sort&no=$no&c_no=$c_data[no]&delsec=$cnum1num2' style='color:red'>";
+			if($corg_arr[$c_data[no]]) // 원덧글 배열에 존재하면
+				$a_del="&nbsp;<Zeroboard ";
+			else
+				$a_del="<a onfocus=blur() href='del_comment.php?$href$sort&no=$no&c_no=$c_data[no]&delsec=$cnum1num2' style='color:red'>";
 		}
 
 		// bit.ly 코멘트 버튼
