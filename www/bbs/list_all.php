@@ -20,6 +20,10 @@ if(!$is_admin&&$exec!="view_all") Error("사용권한이 없습니다","login.php?id=$id&
 $select_list=$selected;
 $selected=explode(";",$selected);
 
+$selected2=explode(";",$selected2);
+$no_arr=array(); // 게시글 넘버 쌍저장 배열 초기화
+for ($i=0;$i<count($selected2)-1;$i++) $no_arr[$selected2[$i]]=$selected2[$i];
+
 if($exec=="copy_all") $_kind = "복사";
 elseif($exec=="move_all") $_kind = "이동";
 elseif($exec=="delete_all") $_kind = "삭제";
@@ -103,8 +107,8 @@ elseif($exec=="delete_all") {
 
 		$temp=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$selected[$i]'"));
 
-		// 답글이 없을때
-		if(!$temp[child]) {
+		// 답글이 없고 삭제만이거나 게시글 답글의 이동후가 아닐 때
+		if(!$temp[child] && $selected[$i]!=$no_arr[$selected[$i]]) {
 
 			// 글삭제
 			mysql_query("delete from $t_board"."_$id where no='$selected[$i]'") or Error(mysql_error());
@@ -199,12 +203,11 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 	for($i=0;$i<count($selected)-1;$i++) {
 		$s_data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$selected[$i]'"));
 
-
 		// 답글이 없을때;;
 		if($s_data[arrangenum]==0) {
 
 			// 원본글을 모두 구함
-			$result=mysql_query("select * from $t_board"."_$id where headnum='$s_data[headnum]' order by arrangenum",$connect) or error(mysql_error());
+			$result=mysql_query("select * from $t_board"."_$id where headnum='$s_data[headnum]' order by no",$connect) or error(mysql_error());
 
 			$temp=mysql_fetch_array(mysql_query("select max(division) from $t_division"."_$board_name",$connect));
 			$max_division=$temp[0];
@@ -217,18 +220,18 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 			$headnum=$max_headnum[0]-1;
 
 			// 이동할 게시판의 이전, 이후글을 구함
-			$next_data=mysql_fetch_array(mysql_query("select division,headnum,arrangenum from $t_board"."_$board_name where (division='$max_division' or division='$second_division') and headnum>-2000000000 order by headnum limit 1"));
+			$next_data=mysql_fetch_array(mysql_query("select division,headnum,arrangenum from $t_board"."_$board_name where (division='$max_division' or division='$second_division') and headnum>-2000000000 order by headnum,arrangenum limit 1"));
 			if(!$next_data[0]) $next_data[0]="0";
 			else $next_data=mysql_fetch_array(mysql_query("select no,headnum,division from $t_board"."_$board_name where division='$next_data[division]' and headnum='$next_data[headnum]' and arrangenum='$next_data[arrangenum]'"));
+			$prev_data=mysql_fetch_array(mysql_query("select no from $t_board"."_$board_name where (division='$max_division' or division='$second_division') and headnum<=-2000000000 order by headnum desc limit 1"));
+			if($prev_data[0]) $prev_no=$prev_data[0]; else $prev_no="0";
 
 			$a_category=mysql_fetch_array(mysql_query("select min(no) from $t_category"."_$board_name",$connect));
 			$category=$a_category[0];
 
 			$next_no=$next_data[no];
 			$father=0;
-			$term_father=0;
-			$root_no=0;
-
+			$rno_arr=array(); // 답글 넘버 쌍저장 배열 초기화
 			// looping 하면서 데이타 입력
 			while($data=mysql_fetch_array($result)) {
 
@@ -258,18 +261,16 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 				$data[name]=addslashes($data[name]);
 				$data[subject]=addslashes($data[subject]);
 				$data[memo]=addslashes($data[memo]);
-				$sitelink1=addslashes($sitelink1);
-				$sitelink2=addslashes($sitelink2);
-				$email=addslashes($email);
-				$homepage=addslashes($homepage);
+				$data[sitelink1]=addslashes($data[sitelink1]);
+				$data[sitelink2]=addslashes($data[sitelink2]);
+				$data[email]=addslashes($data[email]);
+				$data[homepage]=addslashes($data[homepage]);
 				$division=add_division($board_name);
 				$data[headnum]=$headnum;
 				$data[division]=$division;
 				$data[next_no]=$next_no;
-				$data[prev_no]=0;
+				$data[prev_no]=$prev_no;
 				$data[category]=$category;
-				$data[father]=$data[father]+$term_father;
-				$data[child]=$data[child]+$term_child;
 
 				// 게시물 복사, 이동시 기록 남길 경우
 				if($notice_bbs) {
@@ -278,12 +279,18 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 
 				mysql_query("insert into $t_board"."_$board_name (division,headnum,arrangenum,depth,prev_no,next_no,father,child,ismember,memo,ip,password,name,homepage,email,subject,use_html,reply_mail,category,is_secret,sitelink1,sitelink2,file_name1,file_name2,s_file_name1,s_file_name2,x,y,reg_date,islevel,hit,vote,download1,download2,total_comment) values ('$data[division]','$data[headnum]','$data[arrangenum]','$data[depth]','$data[prev_no]','$data[next_no]','$data[father]','$data[child]','$data[ismember]','$data[memo]','$data[ip]','$data[password]','$data[name]','$data[homepage]','$data[email]','$data[subject]','$data[use_html]','$data[reply_mail]','$data[category]','$data[is_secret]','$data[sitelink1]','$data[sitelink2]','$data[file_name1]','$data[file_name2]','$data[s_file_name1]','$data[s_file_name2]','$data[x]','$data[y]','$data[reg_date]','$data[islevel]','$data[hit]','$data[vote]','$data[download1]','$data[download2]','$data[total_comment]')") or error(mysql_error());
 
-				$no=mysql_insert_id();
+				$ln=mysql_insert_id();
+				// 인서트 후 원본글 no key와 인서트 글 no value 형식(쌍)으로 배열 저장
+				$rno_arr[$data[no]]=$ln;
+
 				if(!$father) {
-					$root_no=$no;
-					$father=$no;
-					$term_father=$data[no]-$no;
+					if($prev_no) mysql_query("update $t_board"."_$board_name set next_no='$ln' where no='$prev_no'");
+					if($next_no) mysql_query("update $t_board"."_$board_name set prev_no='$ln' where headnum='$next_data[headnum]' and division='$next_data[division]'");
 				}
+
+				$prev_no=$data[prev_no];
+				$next_no=$data[next_no];
+				$father=$ln;
 
 				// Comment 정리
 				$comment_result=mysql_query("select * from $t_comment"."_$id where parent='$data[no]' order by reg_date",$connect) or error(mysql_error());
@@ -309,13 +316,13 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 					}
 					$comment_data[memo]=addslashes($comment_data[memo]);
 					$comment_data[name]=addslashes($comment_data[name]);
-					mysql_query("insert into $t_comment"."_$board_name (parent,ismember,islevel,name,password,memo,reg_date,ip,use_html2,is_secret,file_name1,file_name2,s_file_name1,s_file_name2,download1,download2) values ('$no','$comment_data[ismember]','$comment_data[islevel]','$comment_data[name]','$comment_data[password]','$comment_data[memo]','$comment_data[reg_date]','$comment_data[ip]','$comment_data[use_html2]','$comment_data[is_secret]','$comment_data[file_name1]','$comment_data[file_name2]','$comment_data[s_file_name1]','$comment_data[s_file_name2]','$comment_data[download1]','$comment_data[download2]')") or error(mysql_error());
+					mysql_query("insert into $t_comment"."_$board_name (parent,ismember,islevel,name,password,memo,reg_date,ip,use_html2,is_secret,file_name1,file_name2,s_file_name1,s_file_name2,download1,download2) values ('$ln','$comment_data[ismember]','$comment_data[islevel]','$comment_data[name]','$comment_data[password]','$comment_data[memo]','$comment_data[reg_date]','$comment_data[ip]','$comment_data[use_html2]','$comment_data[is_secret]','$comment_data[file_name1]','$comment_data[file_name2]','$comment_data[s_file_name1]','$comment_data[s_file_name2]','$comment_data[download1]','$comment_data[download2]')") or error(mysql_error());
 					// 인서트 후 원본 덧글 no key와 인서트 덧글 no value 형식(쌍)으로 배열 저장
 					$cno_arr[$comment_data[no]]=mysql_insert_id();
 				}
 				// 인서트된 덧글 내용에서 원덧글 no 조정
 				unset($comment_result);
-				$comment_result=mysql_query("select no,memo from $t_comment"."_$board_name where parent='$no'",$connect) or error(mysql_error());
+				$comment_result=mysql_query("select no,memo from $t_comment"."_$board_name where parent='$ln'",$connect) or error(mysql_error());
 				while($c_data=mysql_fetch_array($comment_result)) {
 					// 계층 코멘트 표식 불러와 원덧글 번호로 수정 처리
 					$c_memo=$c_data[memo];
@@ -332,9 +339,17 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 
 				mysql_query("update $t_category"."_$board_name set num=num+1 where no='$category'",$connect);
 			}
-			$prev_data=mysql_fetch_array(mysql_query("select headnum from $t_board"."_$board_name where headnum>'$headnum' order by headnum limit 1"));
-			mysql_query("update $t_board"."_$board_name set prev_no='$root_no' where headnum='$prev_data[0]'",$connect) or Error(mysql_error());
-
+			// 인서트된 답글 부모글,자식글 no를 이동 후의 답글 no로 모두 재조정
+			unset($result);
+			$result=mysql_query("select no,father,child from $t_board"."_$board_name where headnum='$headnum'",$connect) or error(mysql_error());
+			while($data=mysql_fetch_array($result)) {
+				if($v=$rno_arr[$data[father]]) {
+					mysql_query("update $t_board"."_$board_name set father='$v' where no='$data[no]'",$connect);
+				}
+				if($v=$rno_arr[$data[child]]) {
+					mysql_query("update $t_board"."_$board_name set child='$v' where no='$data[no]'",$connect);
+				}
+			}
 
 			// 메시지 보내는 부분
 			if($notice_user) {
@@ -343,10 +358,12 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 					$_from = $member[no];
 					$_subject = del_html($s_data[name])." 님의 게시물이 ".$_kind."되었습니다";
 					$_memo = del_html($s_data[name])." 님께서 쓰신 \"".del_html($s_data[subject])."\" 글이 $member[name]님에 의해서 ".$_kind." 되었습니다\n";
-					$_memo .= " 옮겨진 위치 : zboard.php?id=".$board_name."&no=".$no;
+					$_memo .= " 옮겨진 위치 : zboard.php?id=".$board_name."&no=".$ln;
 					_send_message($_to,$_from,$_subject,$_memo);
 				}
 			}
+		} elseif($s_data[arrangenum]>0) {
+			$selected_list2.=$s_data[no].";";
 		}
 	}
 	$total=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$board_name",$connect));
@@ -356,7 +373,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 	if($exec=="copy_all") {
 		echo "<script>opener.location.href='zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&category=$category'; window.close();</script>";
 	} elseif($exec=="move_all") {
-		echo "<script> location.href='list_all.php?id=$id&exec=delete_all&selected=$select_list'; </script>";
+		echo "<script> location.href='list_all.php?id=$id&exec=delete_all&selected=$select_list&selected2=$selected_list2'; </script>";
 		exit;
 	}
 }
