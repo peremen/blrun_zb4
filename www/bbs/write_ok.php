@@ -461,10 +461,11 @@ if($mode=="modify"&&$no) {
 
 		// 원래 다음글로 이글을 가지고 있었던 데이타의 prev_no을 바꿈;
 		$temp=mysql_fetch_array(mysql_query("select max(headnum) from $t_board"."_$id where headnum<='$s_data[headnum]'"));
-		$temp=mysql_fetch_array(mysql_query("select no from $t_board"."_$id where headnum='$temp[0]' and depth='0'"));
+		$temp=mysql_fetch_array(mysql_query("select no,headnum,arrangenum,depth from $t_board"."_$id where headnum='$temp[0]' order by depth,arrangenum limit 1"));
 		mysql_query("update $t_board"."_$id set prev_no='$temp[no]' where prev_no='$s_data[no]'");
 
-		mysql_query("update $t_board"."_$id set next_no='$s_data[next_no]' where next_no='$s_data[no]'");
+		if($temp[headnum]==$s_data[headnum]) mysql_query("update $t_board"."_$id set next_no='$temp[no]' where next_no='$s_data[no]'"); // headnum이 같으면 다음글이 현재글인 이전글의 다음글을 삭제 후 이전글로 대체
+		else mysql_query("update $t_board"."_$id set next_no='$s_data[next_no]' where next_no='$s_data[no]'"); // headnum이 다르면 다음글이 현재글인 이전글의 다음글을 현재글의 다음글로 대체
 
 		mysql_query("update $t_board"."_$id set prev_no='$no' where prev_no='0' and no!='$no'") or error(mysql_error()); // 다음글의 이전글을 설정
 		mysql_query("update $t_category"."_$id set num=num-1 where no='$s_data[category]'",$connect);
