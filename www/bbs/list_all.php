@@ -150,7 +150,7 @@ elseif($exec=="delete_all") {
 			minus_division($temp[division]);
 
 			// 이전, 다음글에 대한 정리
-			if($temp[depth]==0) {
+			if($temp[father]==0) {
 				// 이전글이 있으면 빈자리 메꿈;;;
 				if($temp[prev_no]) mysql_query("update $t_board"."_$id set next_no='$temp[next_no]' where next_no='$temp[no]'");
 				// 다음글이 있으면 빈자리 메꿈;;;
