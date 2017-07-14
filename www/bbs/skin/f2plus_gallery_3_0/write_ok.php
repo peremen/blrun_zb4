@@ -361,11 +361,12 @@ if($file1_size>0&&$setup[use_pds]&&$file1) {
 
 		// 중복파일이 있을때;;
 		if(file_exists($_zb_path."data/$id/".$s_file_name1)) {
-			@mkdir($_zb_path."data/$id/".$reg_date,0777);
-			if(!move_uploaded_file($file1,$_zb_path."data/$id/".$reg_date."/".$s_file_name1)) Error1("파일업로드가 제대로 되지 않았습니다");
-			$file_name1="data/$id/".$reg_date."/".$s_file_name1;
+			$regdate=getMicrosecond(); // 마이크로세컨드 시간구함;;
+			@mkdir($_zb_path."data/$id/".$regdate,0777);
+			if(!move_uploaded_file($file1,$_zb_path."data/$id/".$regdate."/".$s_file_name1)) Error1("파일업로드가 제대로 되지 않았습니다");
+			$file_name1="data/$id/".$regdate."/".$s_file_name1;
 			@chmod($_zb_path.$file_name1,0706);
-			@chmod($_zb_path."data/$id/".$reg_date,0707);
+			@chmod($_zb_path."data/$id/".$regdate,0707);
 		} else {
 			if(!move_uploaded_file($file1,$_zb_path."data/$id/".$s_file_name1)) Error1("파일업로드가 제대로 되지 않았습니다");
 			$file_name1="data/$id/".$s_file_name1;
@@ -413,11 +414,12 @@ if($file2_size>0&&$setup[use_pds]&&$file2) {
 
 		// 중복파일이 있을때;;
 		if(file_exists($_zb_path."data/$id/".$s_file_name2)) {
-			@mkdir($_zb_path."data/$id/".$reg_date,0777);
-			if(!move_uploaded_file($file2,$_zb_path."data/$id/".$reg_date."/".$s_file_name2)) Error1("파일업로드가 제대로 되지 않았습니다");
-			$file_name2="data/$id/".$reg_date."/".$s_file_name2;
+			$regdate=getMicrosecond(); // 마이크로세컨드 시간구함;;
+			@mkdir($_zb_path."data/$id/".$regdate,0777);
+			if(!move_uploaded_file($file2,$_zb_path."data/$id/".$regdate."/".$s_file_name2)) Error1("파일업로드가 제대로 되지 않았습니다");
+			$file_name2="data/$id/".$regdate."/".$s_file_name2;
 			@chmod($_zb_path.$file_name2,0706);
-			@chmod($_zb_path."data/$id/".$reg_date,0707);
+			@chmod($_zb_path."data/$id/".$regdate,0707);
 		} else {
 			if(!move_uploaded_file($file2,$_zb_path."data/$id/".$s_file_name2)) Error1("파일업로드가 제대로 되지 않았습니다");
 			$file_name2="data/$id/".$s_file_name2;
@@ -482,7 +484,7 @@ if($mode=="modify"&&$no) {
 		$max_headnum=mysql_fetch_array(mysql_query("select min(headnum) from $t_board"."_$id where (division='$max_division' or division='$second_division') and headnum>-2000000000")); // 공지가 아닌 최소 headnum 구함
 		$headnum=$max_headnum[0]-1;
 
-		$next_data=mysql_fetch_array(mysql_query("select no,headnum,division from $t_board"."_$id where (division='$max_division' or division='$second_division') and headnum='$max_headnum[0]' and arrangenum='0'")); // 다음글을 구함;;
+		$next_data=mysql_fetch_array(mysql_query("select no,headnum,division from $t_board"."_$id where (division='$max_division' or division='$second_division') and headnum='$max_headnum[0]' order by arrangenum limit 1")); // 다음글을 구함;;
 		if(!$next_data[0]) $next_data[0]="0";
 		$next_no=$next_data[0];
 
@@ -501,11 +503,12 @@ if($mode=="modify"&&$no) {
 
 		// 다음글의 이전글을 수정
 		if($next_no)mysql_query("update $t_board"."_$id set prev_no='$no' where division='$next_data[division]' and headnum='$next_data[headnum]'");
-
 		// 이전글의 다음글을 수정
 		if($prev_no)mysql_query("update $t_board"."_$id set next_no='$no' where no='$prev_no'");
 
-		mysql_query("update $t_board"."_$id set prev_no=0 where (division='$max_division' or division='$second_division') and prev_no='$s_data[no]' and headnum!='$next_data[headnum]'");
+		mysql_query("update $t_board"."_$id set prev_no='$s_data[prev_no]' where (division='$max_division' or division='$second_division') and prev_no='$s_data[no]' and headnum!='$next_data[headnum]'");
+		mysql_query("update $t_board"."_$id set next_no='$s_data[next_no]' where (division='$max_division' or division='$second_division') and next_no='$s_data[no]' and no!='$prev_no'");
+
 		mysql_query("update $t_category"."_$id set num=num-1 where no='$s_data[category]'",$connect);
 		mysql_query("update $t_category"."_$id set num=num+1 where no='$category'",$connect);
 	}
@@ -533,7 +536,8 @@ if($mode=="modify"&&$no) {
 		$division=add_division();
 		@mysql_query("update $t_board"."_$id set division='$division',headnum='$headnum',prev_no='$prev_no',next_no='$next_no',child='$child',depth='$depth',arrangenum='$arrangenum',father='$father',name='$name',email='$email',homepage='$homepage',subject='$subject',memo='$memo',sitelink1='$sitelink1',sitelink2='$sitelink2',use_html='$use_html',reply_mail='$reply_mail',is_secret='$is_secret',category='$category' $del_que1 $del_que2 where no='$no'") or error(mysql_error());
 
-		if($s_data[father]) mysql_query("update $t_board"."_$id set child='$s_data[child]' where no='$s_data[father]'"); // 답글이었으면 원본글의 답글을 현재글의 답글로 대체
+		$temp=mysql_fetch_array(mysql_query("select child from $t_board"."_$id where no='$s_data[father]'"));
+		if($temp[0]==$s_data[no]&&$s_data[father]) mysql_query("update $t_board"."_$id set child='$s_data[child]' where no='$s_data[father]'"); // 답글이었으면 원본글의 답글을 현재글의 답글로 대체
 		if($s_data[child]) mysql_query("update $t_board"."_$id set depth=depth-1,father='$s_data[father]' where no='$s_data[child]'"); // 답글이 있으면 현재글의 위치로;;
 
 		// 원래 다음글로 이글을 가지고 있었던 데이타의 prev_no을 바꿈;
