@@ -201,7 +201,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 		$print_img1="<a onclick=window.open('$dir/img_view.php?img=$data[file_name1]&width=".($img_info1[0]+10)."&height=".($img_info1[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
 	if($upload_image2){
-		$source_img=$data[file_name2]));
+		$source_img=$data[file_name2];
 		if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name2])){
 			$view_img2="<img src=$source_img name=zb_target_resize border=0 alt='$alt2'>";
 		}else{

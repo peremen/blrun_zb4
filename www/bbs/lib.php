@@ -211,6 +211,13 @@ function getmicrotime() {
 	return $microtimestmp[0]+$microtimestmp[1];
 }
 
+// 마이크로세컨드타임스탬프 구함
+function getMicrosecond()
+{
+	$microtimestmp = preg_split("/ /",microtime());
+	return $microtimestmp[1].substr($microtimestmp[0], 2, 6);
+}
+
 /******************************************************************************
 * Division 관련 함수
 *****************************************************************************/

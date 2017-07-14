@@ -241,7 +241,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 
 				// 업로드된 파일이 있을경우 처리 #1
 				if($data[s_file_name1]) {
-					$temp_ext=time();
+					$temp_ext=getMicrosecond();
 					@mkdir("./data/$board_name/".$temp_ext,0777);
 					@copy($data[file_name1] , "./data/$board_name/".$temp_ext."/".$data[s_file_name1]);
 					$data[file_name1]="data/$board_name/".$temp_ext."/".$data[s_file_name1];
@@ -250,7 +250,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 				}
 				// 업로드된 파일이 있을경우 처리 #2
 				if($data[s_file_name2]) {
-					$temp_ext=time();
+					$temp_ext=getMicrosecond();
 					@mkdir("./data/$board_name/".$temp_ext,0777);
 					@copy($data[file_name2] , "./data/$board_name/".$temp_ext."/".$data[s_file_name2]);
 					$data[file_name2]="data/$board_name/".$temp_ext."/".$data[s_file_name2];
@@ -298,7 +298,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 				while($comment_data=mysql_fetch_array($comment_result)) {
 					// 업로드된 파일이 있을경우 처리 #1
 					if($comment_data[s_file_name1]) {
-						$temp_ext=time();
+						$temp_ext=getMicrosecond();
 						@mkdir("./data/$board_name/".$temp_ext,0777);
 						@copy($comment_data[file_name1] , "./data/$board_name/".$temp_ext."/".$comment_data[s_file_name1]);
 						$comment_data[file_name1]="data/$board_name/".$temp_ext."/".$comment_data[s_file_name1];
@@ -307,7 +307,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 					}
 					// 업로드된 파일이 있을경우 처리 #2
 					if($comment_data[s_file_name2]) {
-						$temp_ext=time();
+						$temp_ext=getMicrosecond();
 						@mkdir("./data/$board_name/".$temp_ext,0777);
 						@copy($comment_data[file_name2] , "./data/$board_name/".$temp_ext."/".$comment_data[s_file_name2]);
 						$comment_data[file_name2]="data/$board_name/".$temp_ext."/".$comment_data[s_file_name2];

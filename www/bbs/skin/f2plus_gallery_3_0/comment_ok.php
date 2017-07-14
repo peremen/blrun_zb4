@@ -316,11 +316,12 @@ if($file1_size>0&&$setup[use_pds]&&$file1) {
 
 		// 중복파일이 있을때;;
 		if(file_exists($_zb_path."data/$id/".$s_file_name1)) {
-			@mkdir($_zb_path."data/$id/".$reg_date,0777);
-			if(!move_uploaded_file($file1,$_zb_path."data/$id/".$reg_date."/".$s_file_name1)) Error1("파일업로드가 제대로 되지 않았습니다");
-			$file_name1="data/$id/".$reg_date."/".$s_file_name1;
+			$regdate=getMicrosecond(); // 마이크로세컨드 시간구함;;
+			@mkdir($_zb_path."data/$id/".$regdate,0777);
+			if(!move_uploaded_file($file1,$_zb_path."data/$id/".$regdate."/".$s_file_name1)) Error1("파일업로드가 제대로 되지 않았습니다");
+			$file_name1="data/$id/".$regdate."/".$s_file_name1;
 			@chmod($_zb_path.$file_name1,0706);
-			@chmod($_zb_path."data/$id/".$reg_date,0707);
+			@chmod($_zb_path."data/$id/".$regdate,0707);
 		} else {
 			if(!move_uploaded_file($file1,$_zb_path."data/$id/".$s_file_name1)) Error1("파일업로드가 제대로 되지 않았습니다");
 			$file_name1="data/$id/".$s_file_name1;
@@ -360,11 +361,12 @@ if($file2_size>0&&$setup[use_pds]&&$file2) {
 
 		// 중복파일이 있을때;;
 		if(file_exists($_zb_path."data/$id/".$s_file_name2)) {
-			@mkdir($_zb_path."data/$id/".$reg_date,0777);
-			if(!move_uploaded_file($file2,$_zb_path."data/$id/".$reg_date."/".$s_file_name2)) Error1("파일업로드가 제대로 되지 않았습니다");
-			$file_name2="data/$id/".$reg_date."/".$s_file_name2;
+			$regdate=getMicrosecond(); // 마이크로세컨드 시간구함;;
+			@mkdir($_zb_path."data/$id/".$regdate,0777);
+			if(!move_uploaded_file($file2,$_zb_path."data/$id/".$regdate."/".$s_file_name2)) Error1("파일업로드가 제대로 되지 않았습니다");
+			$file_name2="data/$id/".$regdate."/".$s_file_name2;
 			@chmod($_zb_path.$file_name2,0706);
-			@chmod($_zb_path."data/$id/".$reg_date,0707);
+			@chmod($_zb_path."data/$id/".$regdate,0707);
 		} else {
 			if(!move_uploaded_file($file2,$_zb_path."data/$id/".$s_file_name2)) Error1("파일업로드가 제대로 되지 않았습니다");
 			$file_name2="data/$id/".$s_file_name2;
