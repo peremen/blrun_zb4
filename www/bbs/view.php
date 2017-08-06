@@ -5,8 +5,6 @@
 if(!$_view_included) {
 	include "_head.php";
 	include("securimage/securimage.php");
-	// HTML 출력
-	print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
 }
 
 /***************************************************************************
@@ -17,11 +15,13 @@ if(!$_view_included) {
 if($setup[grant_view]<$member[level]&&!$is_admin) Error("사용권한이 없습니다","login.php?id=$id&page=$page&page_num=$page_num&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&s_url=".urlencode($REQUEST_URI));
 
 // 현재 선택된 데이타가 있을때, 즉 $no 가 있을때 데이타 가져옴
-unset($data);
 $hide_prev_start=$hide_prev_end=$hide_next_start=$hide_next_end=$hide_sitelink1_start=$hide_sitelink1_end=$hide_sitelink2_start=$hide_sitelink2_end=$hide_download1_start=$hide_download1_end=$hide_download2_start=$hide_download2_end="";
-$_dbTimeStart = getmicrotime();
-$data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$no'"));
-$_dbTime += getmicrotime()-$_dbTimeStart;
+if(!$_view_included2) {
+	unset($data);
+	$_dbTimeStart = getmicrotime();
+	$data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$no'"));
+	$_dbTime += getmicrotime()-$_dbTimeStart;
+}
 
 $social_ref = urlencode($_zb_url."view.php?$href$sort&no=$no");
 if(!$data[no]) Error("선택하신 게시물이 존재하지 않습니다","zboard.php?$href$sort");
@@ -292,8 +292,23 @@ if($member[no]) {
 /****************************************************************************************
 * 실제 출력 부분
 ***************************************************************************************/
-// 헤더 출력
-if(!$_view_included) head("onload=unlock() onunload=hideImageBox()","script_comment.php");
+if(!$_view_included) {
+	if(!(empty($_POST['code']) || $member[no] || $data[is_secret] != 0)) {
+
+		// 스팸방지코드 체크 관련
+		$img = new Securimage();
+		$valid = $img->check($_POST['code']);
+
+		if($valid == true) {
+
+		} else {
+			Error("스팸방지 코드를 잘못 입력하셨습니다.");
+		}
+	}
+	// HTML 헤더 출력
+	print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
+	head("onload=unlock() onunload=hideImageBox()","script_comment.php");
+}
 
 // 상단 현황 부분 출력
 if(!$_view_included) {

@@ -53,7 +53,7 @@ function _send_message($to, $from, $subject, $memo) {
 if($exec=="view_all") {
 
 	$_view_included = true;
-	$_view_included2 = true;
+	$_view_included2 = false;
 	$href.="&selected=$select_list";
 
 	head();
@@ -87,7 +87,7 @@ if($exec=="view_all") {
 <!-- 브라우저 로딩시간 구하기 스크립트 출력 -->
 <script>
 function Result() {
-	var nEnd =  new Date().getTime();
+	var nEnd = new Date().getTime();
 	var nDiff = nEnd - <?=$nStart?>;
 	document.getElementById('print').innerHTML = '카트 목록 전체 페이지를 로딩하는데 ' + nDiff + 'ms(' + nDiff/1000 + '초) 시간이 걸렸습니다!';
 }

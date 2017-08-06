@@ -7,9 +7,6 @@ $del_que1 = $del_que2 = null;
 **************************************************************************/
 include "_head.php";
 
-// HTML 출력
-print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
-
 if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||!$_SESSION['ZBRD_SS_VRS']||$_SESSION['ZBRD_SS_VRS']!=$antispam) Error("정상적으로 글을 수정하여 주시기 바랍니다.");
 
 if($flag != ok) {
@@ -152,6 +149,8 @@ if($flag != ok) {
 	$a_list="<a href=zboard.php?$href$sort>";
 	$a_view="<a href=view.php?$href$sort&no=$no>";
 
+	// HTML 헤더 출력
+	print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
 	head("onload=unlock() onunload=hideImageBox()","script_comment_modify.php");
 ?>
 

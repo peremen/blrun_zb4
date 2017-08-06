@@ -4,9 +4,6 @@
  **************************************************************************/
 include "_head.php";
 include("securimage/securimage.php");
-// HTML 출력
-print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
-head("onload=unlock() onunload=hideImageBox()","script_write.php");
 
 if(!empty($_POST['code']) || $member[no] || $password) {
 
@@ -266,6 +263,10 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 // 미리보기 버튼
 	$a_preview="<a onfocus=blur() href='#' onclick='javascript:return view_preview();'>";
 
+// HTML 헤더 출력
+	print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
+	head("onload=unlock() onunload=hideImageBox()","script_write.php");
+
 // 각 스킨 디렉토리 write.php 인클루드
 	$_skinTimeStart = getmicrotime();
 	include $dir."/write.php";
@@ -273,6 +274,9 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 
 } else {
 
+	// HTML 헤더 출력
+	print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
+	head("onload=unlock() onunload=hideImageBox()","script_write.php");
 ?>
 <script language="javascript">
 <!--
@@ -299,7 +303,6 @@ function sendit() {
 			<param name="allowFullScreen" value="false" />
 			<param name="movie" value="securimage/securimage_play.swf?audio=securimage/securimage_play.php&bgColor1=#777&bgColor2=#fff&iconColor=#000&roundedCorner=5" />
 			<param name="quality" value="high" />
-
 			<param name="bgcolor" value="#ffffff" />
 			<embed src="securimage/securimage_play.swf?audio=securimage/securimage_play.php&bgColor1=#777&bgColor2=#fff&iconColor=#000&roundedCorner=5" quality="high" bgcolor="#ffffff" width="33" height="33" name="SecurImage_as3" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
 		</object>

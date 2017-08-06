@@ -4,8 +4,6 @@
 **************************************************************************/
 include "_head.php";
 include("securimage/securimage.php");
-// HTML 출력
-print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
 
 /***************************************************************************
 * 게시판 설정 체크
@@ -43,7 +41,6 @@ else {
 				$start_num=$start_num-($sum-$division_data[num]);
 				$_dbTimeStart = getmicrotime();
 				$que="select * from $t_board"."_$id where division='$division' and headnum<0 and headnum>-2000000000 order by headnum,arrangenum limit $start_num, $page_num";
-//					echo $que;
 				$result=mysql_query($que) or error(mysql_error());
 				$_dbTime += getmicrotime()-$_dbTimeStart;
 				$check1=1;
@@ -71,7 +68,6 @@ else {
 	// 검색조건은 없지만 정렬값이 생길때;;; //////////////////////////////
 	else {
 		$que="select * from $t_board"."_$id where headnum>-2000000000 order by $select_arrange $desc $add_on limit $start_num, $page_num";
-//			echo $que;
 		$_dbTimeStart = getmicrotime();
 		$result=mysql_query($que,$connect) or Error(mysql_error());
 		$_dbTime += getmicrotime()-$_dbTimeStart;
@@ -178,11 +174,35 @@ $a_download2="<a onfocus=blur() href='$PHP_SELF?$href&select_arrange=download2&d
 **************************************************************************/
 
 // 현재 선택된 데이타가 있을때, 즉 $no 가 있을때 $_view_included 변수 True로 셋.
-if($no&&$setup[use_alllist])
+if($no&&$setup[use_alllist]) {
 	$_view_included = true;
+	$_view_included2 = true;
+}
 
-// 헤더 출력
+// 현재 선택된 데이타가 있을때, 즉 $no 가 있을때 데이타 가져오고 캡차 체크
+if($_view_included) {
+	unset($data);
+	$_dbTimeStart = getmicrotime();
+	$data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$no'"));
+	$_dbTime += getmicrotime()-$_dbTimeStart;
+	if(!(empty($_POST['code']) || $member[no] || $data[is_secret] != 0)) {
+
+		// 스팸방지코드 체크 관련
+		$img = new Securimage();
+		$valid = $img->check($_POST['code']);
+
+		if($valid == true) {
+
+		} else {
+			Error("스팸방지 코드를 잘못 입력하셨습니다..");
+		}
+	}
+}
+
+// 스킨 출력 시간 측정
 $_skinTimeStart = getmicrotime();
+// HTML 헤더 출력
+print "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n";
 head("onload=unlock2() onunload=hideImageBox2()","script_list.php");
 
 // $_view_included 변수가 True 일 때 추가 스크립트 포함
