@@ -390,7 +390,7 @@ function check_board_master($member, $board_num) {
 //  초기 헤더를 뿌려주는 부분;;;;
 function head($body="",$scriptfile="") {
 
-	global $group, $setup, $dir, $member, $PHP_SELF, $id, $_head_executived, $_COOKIE, $width, $_view_included, $_zbDefaultSetup;
+	global $group, $setup, $dir, $member, $PHP_SELF, $id, $_head_executived, $_COOKIE, $width, $_view_included, $_zbDefaultSetup, $is_admin;
 
 	if($_head_executived) return;
 	$_head_executived = true;

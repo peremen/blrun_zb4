@@ -2,8 +2,6 @@
 // 라이브러리 함수 파일 인크루드
 include "lib.php";
 include("securimage/securimage.php");
-// HTML 출력
-head();
 
 if(!empty($_POST['code'])) {
 
@@ -84,6 +82,8 @@ if(!empty($_POST['code'])) {
 	$group[footer_url]="";
 	$setup[skinname]="";
 
+	// HTML 헤더 출력
+	head();
 ?>
 
 <script src="script/get_url.php" type="text/javascript"></script>
@@ -474,6 +474,9 @@ function check_SSL_Login() {
 	$_SESSION['WRT_SPM_PWD'] = $_POST['code'];
 
 } else {
+
+	// HTML 헤더 출력
+	head();
 ?>
 <script language="javascript">
 <!--
@@ -503,7 +506,6 @@ function sendit() {
 				<param name="allowFullScreen" value="false" />
 				<param name="movie" value="securimage/securimage_play.swf?audio=securimage/securimage_play.php&bgColor1=#777&bgColor2=#fff&iconColor=#000&roundedCorner=5" />
 				<param name="quality" value="high" />
-
 				<param name="bgcolor" value="#ffffff" />
 				<embed src="securimage/securimage_play.swf?audio=securimage/securimage_play.php&bgColor1=#777&bgColor2=#fff&iconColor=#000&roundedCorner=5" quality="high" bgcolor="#ffffff" width="33" height="33" name="SecurImage_as3" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
 			</object>
