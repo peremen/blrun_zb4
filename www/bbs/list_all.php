@@ -17,8 +17,12 @@ if($exec!="view_all") unset($setup);
 
 if(!$is_admin&&$exec!="view_all") Error("사용권한이 없습니다","login.php?id=$id&page=$page&page_num=$page_num&category=$category&keykind=$keykind&keyword=$keyword&no=$no&file=zboard.php");
 
-$select_list=$selected;
-$selected=explode(";",$selected);
+if($selected3) {
+	$selected=explode(";",$selected3);
+} else {
+	$select_list=$selected;
+	$selected=explode(";",$selected);
+}
 
 $selected2=explode(";",$selected2);
 $no_arr=array(); // 게시글 넘버 쌍저장 배열 초기화
@@ -107,8 +111,8 @@ elseif($exec=="delete_all") {
 
 		$temp=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$selected[$i]'"));
 
-		// 답글이 없고 삭제만이거나 게시글 답글의 이동후가 아닐 때
-		if(!$temp[child] && $selected[$i]!=$no_arr[$selected[$i]]) {
+		// 일괄이동이거나 (답글이 없고 삭제만이거나 게시글 답글의 이동후가 아닐 때)
+		if($selected3||(!$temp[child] && $selected[$i]!=$no_arr[$selected[$i]])) {
 
 			// 글삭제
 			mysql_query("delete from $t_board"."_$id where no='$selected[$i]'") or Error(mysql_error());
@@ -338,6 +342,9 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 				}
 
 				mysql_query("update $t_category"."_$board_name set num=num+1 where no='$category'",$connect);
+
+				// 원본글 포함 답글 까지 최근 no부터 모두 연결
+				$selected_list3=$data[no].";".$selected_list3;
 			}
 			// 인서트된 답글 부모글,자식글 no를 이동 후의 답글 no로 모두 재조정
 			unset($result);
@@ -373,7 +380,7 @@ elseif($exec=="copy_all"||$exec=="move_all") {
 	if($exec=="copy_all") {
 		echo "<script>opener.location.href='zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&category=$category'; window.close();</script>";
 	} elseif($exec=="move_all") {
-		echo "<script> location.href='list_all.php?id=$id&exec=delete_all&selected=$select_list&selected2=$selected_list2'; </script>";
+		echo "<script> location.href='list_all.php?id=$id&exec=delete_all&selected=$select_list&selected2=$selected_list2&selected3=$selected_list3'; </script>";
 		exit;
 	}
 }
