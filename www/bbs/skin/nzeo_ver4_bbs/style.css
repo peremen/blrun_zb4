@@ -21,7 +21,7 @@ A:visited {color:purple;text-decoration:none;}
 A:active  {color:red;text-decoration:none;}
 A:hover  {color:navy;}
 
-.memo {color:#000000;font-size:10pt;text-decoration:none;word-wrap:break-word;word-break:break-word;word-break:keep-all;}
+.memo {color:#000000;font-size:10pt;text-decoration:none;word-wrap:break-word;word-break:break-word;word-break:break-all;}
 
 textarea {border:solid 1px;border-color:#347088;font-size:10pt;color:#042330;background-color:white;}
 submit {border:solid 1px;border-color:#739BAB;font-size:9pt;color:#042330;background-color:white;height:19px}

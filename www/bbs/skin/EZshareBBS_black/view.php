@@ -48,7 +48,7 @@
 
 <tr>
 	<td height=22><table border=0 cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=center><img src=<?=$dir?>/w_link1.gif></td></tr></table></td>
-	<td align=left>&nbsp;<?=$sitelink1?></td>
+	<td align=left class=memo>&nbsp;<?=$sitelink1?></td>
 </tr>
 <tr><td colspan=2 bgcolor=white height=1><img src=<?=$dir?>/t.gif border=0 height=1></td>
 </tr>
@@ -58,7 +58,7 @@
 
 <tr>
 	<td height=22><table border=0 cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=center><img src=<?=$dir?>/w_link2.gif></td></tr></table></td>
-	<td align=left>&nbsp;<?=$sitelink2?></td>
+	<td align=left class=memo>&nbsp;<?=$sitelink2?></td>
 </tr>
 <tr><td colspan=2 bgcolor=white height=1><img src=<?=$dir?>/t.gif border=0 height=1></td>
 </tr>
@@ -74,7 +74,7 @@
 <img src=<?=$dir?>/t.gif border=0 height=2><br>
 <table cellspacing=0 cellpadding=3 width=<?=$width?> bgcolor=efefef height=100 style="table-layout:fixed;">
 <tr bgcolor=white>
-	<td align=left class=memo style='word-break:break-all;padding:10'>
+	<td align=left class=memo style='padding:10px'>
 		<span style=line-height:160%>
 		<?=$upload_image1?><br>
 		<?=$upload_image2?><br>
