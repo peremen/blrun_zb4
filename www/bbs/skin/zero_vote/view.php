@@ -14,7 +14,7 @@ $data2=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where headnu
 		<table border=0 cellspacing=0 cellpadding=0 width=100% height=25>
 		<tr>
 			<td align=left width=70>Subject</td>
-			<td align=left style='word-break:break-all;'><img src=images/t.gif border=0 height=1><br><?=stripslashes($data2[subject])?><font size=1 color=444444>(<?=$data2[vote]?> voted)</td>
+			<td align=left class=memo><img src=images/t.gif border=0 height=1><br><?=stripslashes($data2[subject])?><font size=1 color=444444>(<?=$data2[vote]?> voted)</td>
 		</tr>
 		</table>
 <?

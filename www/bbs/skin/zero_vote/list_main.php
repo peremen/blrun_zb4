@@ -40,14 +40,14 @@ else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$commen
 	</tr>
 	<tr>
 		<td background=<?=$dir?>/4.gif><img src=<?=$dir?>/4.gif border=0></td>
-		<td align=left style='word-break:break-all;'>
+		<td align=left class=memo>
 			<b><?=$loop_number?>. <?=$subject?><?=$comment_new?><?=$new?> (<?=$vote?>)</b>
 		</td>
 		<td background=<?=$dir?>/6.gif><img src=<?=$dir?>/6.gif border=0></td>
 	</tr>
 	<tr>
 		<td background=<?=$dir?>/4.gif><img src=<?=$dir?>/4.gif border=0></td>
-		<td style='word-break:break-all;'>
+		<td class=memo>
 	<?
 	//// 삭제하지 마세요;; 설문조사를 위한 프로그램 불러오는 부분입니다 //////
 	include "include/vote_check.php";

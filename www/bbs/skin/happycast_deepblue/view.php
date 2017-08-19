@@ -157,7 +157,7 @@
 </table>
 <table border=0 cellspacing=0 cellpadding=10 width=<?=$width?> style=table-layout:fixed>
 <tr>
-  <td class=memo style='word-break:break-all;' bgcolor=#ffffff align=left valign=top>
+  <td class=memo bgcolor=#ffffff align=left valign=top>
     <span style=line-height:160%>
     <?=$upload_image1?><br>
     <?=$upload_image2?><br>

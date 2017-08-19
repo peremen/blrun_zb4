@@ -22,7 +22,7 @@ A:hover   {color:#A4A28E;text-decoration:none}
 .line1  {background-color:#BEC0B1}
 .line2  {background-color:#FFFFFF}
 .width  {width:240px}
-.cu     {font-size:9pt;width:100%;font-family:verdana;filter:dropshadow(color=#FFFFFF,offX=1,offY=1,positive=1);line-height:170%;}
+.cu     {font-size:9pt;width:100%;font-family:verdana;filter:dropshadow(color=#FFFFFF,offX=1,offY=1,positive=1);line-height:170%;word-wrap:break-word;word-break:break-word;word-break:break-all;}
 .cub    {font-weight:bold;font-size:9pt;width:100%;font-family:verdana;filter:dropshadow(color=#FFFFFF,offX=1,offY=1,positive=1);line-height:170%}
 .t7     {font-family:tahoma;font-size:9pt;color:#696756}
 .v7     {font-family:verdana;font-size:9pt;color:#696756}
