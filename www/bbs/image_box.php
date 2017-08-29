@@ -366,7 +366,7 @@ for($i=$startNum;$i<$endNum;$i++) {
 		<tr>
 			<td bgcolor=eeeeee height=20 align=center>
 				<img src=images/t.gif border=0 height=2><br>
-				<a href="#" onclick="javascript: window.open('img_view.php?img=<?=$src_img?>&width='+<?=$size[0]+10?>+'&height='+<?=$size[1]+55?>,'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')"><font color=555555 style=font-size:7pt;font-family:verdana>[<b>view</b>]</font></a>
+				<a href="#" onclick="javascript: window.open('img_view.php?img=<?=str_replace("%2F", "/", urlencode($src_img))?>&width='+<?=$size[0]+10?>+'&height='+<?=$size[1]+55?>,'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')"><font color=555555 style=font-size:7pt;font-family:verdana>[<b>view</b>]</font></a>
 				<a href=<?=$PHP_SELF?>?id=<?=$id?>&exec=delete&no=<?=$i?>&image_page=<?=$image_page?> onclick="return confirm('삭제하시겠습니까?')"><font color=555555 style=font-size:7pt;font-family:verdana>[<b>del</b>]</font></a>
 				<img src=images/t.gif border=0 height=6><br>
 			</td>

@@ -11,6 +11,7 @@ if($Exif_use=="on"){
 
 if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 	if($upload_image1){
+		$source_img=str_replace("%2F", "/", urlencode($data[file_name1]));
 		if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name1])){
 			if(!file_exists($Thumbnail_path.$view_large1)){
 				thumbnail2($max_width_size,$data[file_name1],$Thumbnail_path.$view_large1);
@@ -23,9 +24,10 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 			$view_img1=preg_replace("#onclick=\"javascript\:[^>]+?(>)#i","alt='$alt1'\\1",$view_img1);
 		}
 		$img_info1=@getimagesize($data[file_name1]);
-		$print_img1="<a onclick=window.open('$dir/img_view.php?img=$data[file_name1]&width=".($img_info1[0]+10)."&height=".($img_info1[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
+		$print_img1="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=".($img_info1[0]+10)."&height=".($img_info1[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
 	if($upload_image2){
+		$source_img=str_replace("%2F", "/", urlencode($data[file_name2]));
 		if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name2])){
 			if(!file_exists($Thumbnail_path.$view_large2)){
 				thumbnail2($max_width_size,$data[file_name2],$Thumbnail_path.$view_large2);
@@ -38,7 +40,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 			$view_img2=preg_replace("#onclick=\"javascript\:[^>]+?(>)#i","alt='$alt2'\\1",$view_img2);
 		}
 		$img_info2=@getimagesize($data[file_name2]);
-		$print_img2="<a onclick=window.open('$dir/img_view.php?img=$data[file_name2]&width=".($img_info2[0]+10)."&height=".($img_info2[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
+		$print_img2="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=".($img_info2[0]+10)."&height=".($img_info2[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
 
 	//이전 및 다음 데이터의 썸네일 정보를 읽어옴
@@ -189,7 +191,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 
 }else{
 	if($upload_image1){
-		$source_img=$data[file_name1];
+		$source_img=str_replace("%2F", "/", urlencode($data[file_name1]));
 		if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name1])){
 			$view_img1="<img src=$source_img name=zb_target_resize border=0 alt='$alt1'>";
 		}else{
@@ -198,10 +200,10 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 			$view_img1=preg_replace("#onclick=\"javascript\:[^>]+?(>)#i","alt='$alt1'\\1",$view_img1);
 		}
 		$img_info1=@getimagesize($data[file_name1]);
-		$print_img1="<a onclick=window.open('$dir/img_view.php?img=$data[file_name1]&width=".($img_info1[0]+10)."&height=".($img_info1[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
+		$print_img1="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=".($img_info1[0]+10)."&height=".($img_info1[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
 	if($upload_image2){
-		$source_img=$data[file_name2];
+		$source_img=str_replace("%2F", "/", urlencode($data[file_name2]));
 		if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name2])){
 			$view_img2="<img src=$source_img name=zb_target_resize border=0 alt='$alt2'>";
 		}else{
@@ -210,7 +212,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 			$view_img2=preg_replace("#onclick=\"javascript\:[^>]+?(>)#i","alt='$alt2'\\1",$view_img2);
 		}
 		$img_info2=@getimagesize($data[file_name2]);
-		$print_img2="<a onclick=window.open('$dir/img_view.php?img=$data[file_name2]&width=".($img_info2[0]+10)."&height=".($img_info2[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
+		$print_img2="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=".($img_info2[0]+10)."&height=".($img_info2[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no','status=no') style='cursor:pointer'>";
 	}
 
 	//썸네일 사용하지 않을때 이전파일및 다음파일 정보를 저장

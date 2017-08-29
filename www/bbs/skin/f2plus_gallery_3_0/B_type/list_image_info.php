@@ -168,7 +168,7 @@ if($Thumbnail_use=="on"){
 	}
 
 	$ran_img1=array($thumb_img1,$thumb_img2);
-	$ran_img2=array($src_img1,$src_img2,$dir."/images/no_image.gif");
+	$ran_img2=array(str_replace("%2F", "/", urlencode($src_img1)),str_replace("%2F", "/", urlencode($src_img2)),$dir."/images/no_image.gif");
 	$ran_xy=array($xy1,$xy2);
 
 	if($thumb_img1&&$thumb_img2){
@@ -202,20 +202,25 @@ if($Thumbnail_use=="on"){
 	if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name1])){
 		$file1_check=1;
 		$thumb_img1=$data[file_name1];
+		$thumb_img1=str_replace("%2F", "/", urlencode($thumb_img1));
 	}elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$out[0][1].".".$out[0][2])){
 		$thumb_img1="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
 		if(!file_exists($thumb_img1)) $thumb_img1="";
+		else $thumb_img1=str_replace("%2F", "/", urlencode($thumb_img1));
 	}elseif($src_img1=$img[0][1])
 		$thumb_img1=$src_img1;
 
 	if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name2])){
 		$thumb_img2=$data[file_name2];
+		$thumb_img2=str_replace("%2F", "/", urlencode($thumb_img2));
 	}elseif($file1_check==1&&preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$out[0][1].".".$out[0][2])){
 		$thumb_img2="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
 		if(!file_exists($thumb_img2)) $thumb_img2="";
+		else $thumb_img2=str_replace("%2F", "/", urlencode($thumb_img2));
 	}elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$out[1][1].".".$out[1][2])){
 		$thumb_img2="icon/member_image_box/".$data[ismember]."/".$out[1][1].".".$out[1][2];
 		if(!file_exists($thumb_img2)) $thumb_img2="";
+		else $thumb_img2=str_replace("%2F", "/", urlencode($thumb_img2));
 	}elseif($file1_check==1 && $src_img2=$img[0][1])
 		$thumb_img2=$src_img2;
 	elseif($src_img2=$img[1][1])
@@ -240,7 +245,7 @@ if($Thumbnail_use=="on"){
 		$thumb_img=$ran_img2[2];
 	}
 
-	$xy=@getimagesize($thumb_img);
+	$xy=@getimagesize(urldecode($thumb_img));
 
 	if($img_show=="on"){
 		$view_img="<a onclick=window.open('$dir/img_view.php?img=$thumb_img&width=".($xy[0]+10)."&height=".($xy[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') class=shadow style='cursor:pointer'>";

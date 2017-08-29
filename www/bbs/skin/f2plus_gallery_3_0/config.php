@@ -12,8 +12,8 @@ if($_view_included==true){
 	else preg_match_all($imagePattern2,$data[memo],$out,PREG_SET_ORDER);
 
 	//넘겨주는 out 변수 통일
-	$out[0][1]=$out[0][2];
-	$out[1][1]=$out[1][2];
+	$out[0][1]=urldecode($out[0][2]);
+	$out[1][1]=urldecode($out[1][2]);
 	$out[0][2]=$out[0][3];
 	$out[1][2]=$out[1][3];
 
