@@ -724,6 +724,7 @@ function check_blockip() {
 	$avoid_ip=explode(",",$setup[avoid_ip]);
 	$count = count($avoid_ip);
 	for($i=0;$i<$count;$i++) {
+		$avoid_ip[$i]=trim($avoid_ip[$i]);
 		if(!isblank($avoid_ip[$i])&&preg_match("#".$avoid_ip[$i]."#i",$_SERVER['REMOTE_ADDR'])) Error("차단당한 IP 주소입니다.");
 	}
 }

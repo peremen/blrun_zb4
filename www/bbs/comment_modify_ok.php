@@ -254,9 +254,13 @@ if($flag != ok) {
 	if(!$is_admin&&$setup[use_filter]) {
 		$filter=explode(",",$setup[filter]);
 		$f_memo=preg_replace("#([\_\-\./~@?=%&! ]+)#i","",strip_tags($memo));
-		for($i=0;$i<count($filter);$i++)
-		if(!isblank($filter[$i])) {
-			if(preg_match("#".$filter[$i]."#i",$f_memo)) Error("'$filter[$i]' 은(는) 등록하기에 적합한 단어가 아닙니다");
+		$f_name=preg_replace("#([\_\-\./~@?=%&! ]+)#i","",strip_tags($name));
+		for($i=0;$i<count($filter);$i++) {
+			$filter[$i]=trim($filter[$i]);
+			if(!isblank($filter[$i])) {
+				if(preg_match("#".$filter[$i]."#i",$f_memo)) Error("'$filter[$i]' 은(는) 등록하기에 적합한 단어가 아닙니다");
+				if(preg_match("#".$filter[$i]."#i",$f_name)) Error("'$filter[$i]' 은(는) 등록하기에 적합한 단어가 아닙니다");
+			}
 		}
 	}
 
@@ -288,6 +292,7 @@ if($flag != ok) {
 			$memo=str_replace("<","&lt;",$memo);
 			$tag=explode(",",$setup[avoid_tag]);
 			for($i=0;$i<count($tag);$i++) {
+				$tag[$i]=trim($tag[$i]);
 				if(!isblank($tag[$i])) {
 					$memo=preg_replace("#&lt;".$tag[$i]." #i","<".$tag[$i]." ",$memo);
 					$memo=preg_replace("#&lt;".$tag[$i].">#i","<".$tag[$i].">",$memo);
@@ -450,6 +455,7 @@ if($flag != ok) {
 				$temp=explode(".",$s_file_name1);
 				$s_point=count($temp)-1;
 				$upload_check=$temp[$s_point];
+				$setup[pds_ext1]=trim($setup[pds_ext1]);
 				if(!preg_match("/".$upload_check."/i",$setup[pds_ext1])||!$upload_check) Error("첫번째 업로드는 $setup[pds_ext1] 확장자만 가능합니다");
 			}
 
@@ -495,6 +501,7 @@ if($flag != ok) {
 				$temp=explode(".",$s_file_name2);
 				$s_point=count($temp)-1;
 				$upload_check=$temp[$s_point];
+				$setup[pds_ext2]=trim($setup[pds_ext2]);
 				if(!preg_match("/".$upload_check."/i",$setup[pds_ext2])||!$upload_check) Error("업로드는 $setup[pds_ext2] 확장자만 가능합니다");
 			}
 
