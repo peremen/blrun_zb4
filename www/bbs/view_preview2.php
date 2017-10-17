@@ -124,6 +124,7 @@ $memo=trim($memo);
 if($use_html2<2) {
 	$memo=str_replace("  ","&nbsp;&nbsp;",$memo);
 	$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
+	$memo=preg_replace("#(?m)^ (.+)$#i","&nbsp;\\1",$memo);
 }
 
 // HTML 사용일 경우 현재 회원의 level이 익명사용자/게스트 레벨이라면 style 속성을 제거

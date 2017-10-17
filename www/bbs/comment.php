@@ -96,6 +96,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	if($mode=="modify"&&$s_data[use_html2]<2) {
 		$s_data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;","\t",$s_data[memo]);
 		$s_data[memo]=str_replace("&nbsp;&nbsp;","  ",$s_data[memo]);
+		$s_data[memo]=preg_replace("#(?m)^&nbsp;(.+)$#i"," \\1",$s_data[memo]);
 	}
 
 	if($mode=="modify"){

@@ -941,11 +941,13 @@ function isHomepage( $str ) {
 // URL, Mail을 자동으로 체크하여 링크만듬
 function autolink($str) {
 	// URL 치환
+	$str=str_replace("&nbsp;"," &nbsp;",$str);
 	$homepage_pattern = "/([^\"\'\=\>\|])(mms|http|HTTP|https|HTTPS|ftp|FTP|telnet|TELNET)\:\/\/(.[^ \n\<\"\'\|]+)/";
 	$str = preg_replace($homepage_pattern,"\\1<a href=\\2://\\3 target=_blank>\\2://\\3</a>", " ".$str);
+	$str=str_replace(" &nbsp;","&nbsp;",$str);
 
 	// 메일 치환
-	$email_pattern = "/([ \n]+)([a-z0-9\_\-\.]+)@([a-z0-9\_\-\.]+)/";
+	$email_pattern = "/([; \n]+)([a-z0-9\_\-\.]+)@([a-z0-9\_\-\.]+)/";
 	$str = preg_replace($email_pattern,"\\1<a href=mailto:\\2@\\3>\\2@\\3</a>", " ".$str);
 
 	return $str;

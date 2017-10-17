@@ -239,6 +239,7 @@ $memo=trim($memo);
 if($use_html<2) {
 	$memo=str_replace("  ","&nbsp;&nbsp;",$memo);
 	$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
+	$memo=preg_replace("#(?m)^ (.+)$#i","&nbsp;\\1",$memo);
 }
 $sitelink1=trim($sitelink1);
 $sitelink2=trim($sitelink2);
