@@ -48,6 +48,7 @@ if($flag != ok) {
 	if($s_data[use_html2]<2) {
 		$s_data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;","\t",$s_data[memo]);
 		$s_data[memo]=str_replace("&nbsp;&nbsp;","  ",$s_data[memo]);
+		$s_data[memo]=preg_replace("#(?m)^&nbsp;(.+)$#i"," \\1",$s_data[memo]);
 	}
 
 	// 신택스하이라이트 헤더 처리 시작
@@ -397,6 +398,7 @@ if($flag != ok) {
 	if($use_html2<2) {
 		$memo=str_replace("  ","&nbsp;&nbsp;",$memo);
 		$memo=str_replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$memo);
+		$memo=preg_replace("#(?m)^ (.+)$#i","&nbsp;\\1",$memo);
 	}
 
 	$reg_date=time(); // 현재의 시간구함

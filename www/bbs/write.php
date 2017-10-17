@@ -141,6 +141,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	if($data[use_html]<2) {
 		$data[memo]=str_replace("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;","\t",$data[memo]);
 		$data[memo]=str_replace("&nbsp;&nbsp;","  ",$data[memo]);
+		$data[memo]=preg_replace("#(?m)^&nbsp;(.+)$#i"," \\1",$data[memo]);
 	}
 
 	if($mode=="modify") {
