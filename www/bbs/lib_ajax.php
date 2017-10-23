@@ -852,7 +852,7 @@ function getDefaultSetup() {
 	if(!$defaultSetup[login_time]) $defaultSetup[login_time] = 60*30;
 	if(!$defaultSetup[nowconnect_enable]) $defaultSetup[nowconnect_enable] = "true";
 	if(!$defaultSetup[nowconnect_refresh_time]) $defaultSetup[nowconnect_refresh_time] = 60*3;
-	if(!$defaultSetup[nowconnect_time]) $defaultSetup[nowconnect_tim] = 60*5;
+	if(!$defaultSetup[nowconnect_time]) $defaultSetup[nowconnect_time] = 60*5;
 	if(!$defaultSetup[enable_hangul_id]) $defaultSetup[enable_hangul_id] = "false";
 	if(!$defaultSetup[check_email]) $defaultSetup[check_email] = "true";
 	if(!$defaultSetup[memo_limit_time]) $defaultSetup[memo_limit_time] = 7;
