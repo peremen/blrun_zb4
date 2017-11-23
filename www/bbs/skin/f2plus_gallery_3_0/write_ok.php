@@ -342,7 +342,7 @@ if($file1_size>0&&$setup[use_pds]&&$file1) {
 	// 업로드 금지
 	if($file1_size>0) {
 		$s_file_name1=$file1_name;
-		if(substr($s_file_name1,0,1)=='.'||preg_match("#\.(inc|phtm|htm|shtm|phtml|html|shtml|ztx|php|dot|asp|cgi|pl)$#i",$s_file_name1)) Error1("Html, PHP 관련파일은 업로드할수 없습니다");
+		if(substr($s_file_name1,0,1)=='.'||preg_match("#\.(inc|phtm|htm|shtm|phtml|html|shtml|ztx|php\d{0,}|dot|asp|cgi|pl)$#i",$s_file_name1)) Error1("Html, PHP 관련파일은 업로드할수 없습니다");
 
 		// 확장자 검사
 		if($setup[pds_ext1]) {
@@ -396,7 +396,7 @@ if($file2_size>0&&$setup[use_pds]&&$file2) {
 	// 업로드 금지
 	if($file2_size>0) {
 		$s_file_name2=$file2_name;
-		if(substr($s_file_name2,0,1)=='.'||preg_match("#\.(inc|phtm|htm|shtm|phtml|html|shtml|ztx|php|dot|asp|cgi|pl)$#i",$s_file_name2)) Error1("Html, PHP 관련파일은 업로드할수 없습니다");
+		if(substr($s_file_name2,0,1)=='.'||preg_match("#\.(inc|phtm|htm|shtm|phtml|html|shtml|ztx|php\d{0,}|dot|asp|cgi|pl)$#i",$s_file_name2)) Error1("Html, PHP 관련파일은 업로드할수 없습니다");
 
 		// 확장자 검사
 		if($setup[pds_ext2]) {
