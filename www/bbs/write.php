@@ -75,7 +75,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	$target="write.php";
 
 // 비밀글이고 패스워드가 틀리고 관리자가 아니면 에러 표시
-	if($mode!="write"&&$data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]) {
+	if(($mode!="write"&&$data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no])||($mode=="write"&&!$is_admin&&$password)) {
 		if($member[no]) {
 			$_dbTimeStart = getmicrotime();
 			$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where no='$data[no]' and ismember='$member[no]'"));
