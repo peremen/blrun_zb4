@@ -56,7 +56,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	$target="comment.php";
 
 	// 비밀글이고 패스워드가 틀리고 관리자가 아니면 에러 표시
-	if($mode=="modify"&&$s_data[is_secret]&&!$is_admin&&$s_data[ismember]!=$member[no]) {
+	if(($mode=="modify"&&$s_data[is_secret]&&!$is_admin&&$s_data[ismember]!=$member[no])||($mode!="modify"&&!$is_admin&&$password)) {
 		if($member[no]) {
 			$_dbTimeStart = getmicrotime();
 			$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where no='$s_data[no]' and ismember='$member[no]'"));

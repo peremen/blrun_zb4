@@ -194,7 +194,7 @@ unset($s_data);
 $s_data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$no'"));
 
 // 원본글을 이용한 비교
-if($mode=="modify"||$mode=="reply") {
+if($mode!="write") {
 	if(!$s_data[no]) Error1("원본글이 존재하지 않습니다");
 }
 

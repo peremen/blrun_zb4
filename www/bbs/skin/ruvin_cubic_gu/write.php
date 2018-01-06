@@ -98,8 +98,8 @@ function sendit() {
 		<td align=left><input type=text id=name name=name value="<?=$name?>" <?=size(16)?> maxlength=20 class=input2 onkeyup="ajaxLoad2()"></td>
 	</tr>
 	<tr>
-	<td width=70 align=right><span class=cu><span class=v7><b>P</b>assword&nbsp;</span></span></td>
-	<td align=left><input type=password id=password name=password <?=size(16)?> maxlength=20 class=input2 onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
+		<td width=70 align=right><span class=cu><span class=v7><b>P</b>assword&nbsp;</span></span></td>
+		<td align=left><input type=password id=password name=password <?=size(16)?> maxlength=20 class=input2 onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
 	</tr>
 	<tr>
 		<td width=70 align=right><span class=cu><span class=v7><b>E</b>-mail&nbsp;</span></span></td>
