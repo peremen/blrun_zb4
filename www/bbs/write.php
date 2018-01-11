@@ -24,7 +24,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
  * 게시판 설정 체크
  **************************************************************************/
 
- 	if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
+	if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
 
 	if(preg_match("/:\/\//i",$dir)) $dir=".";
 
