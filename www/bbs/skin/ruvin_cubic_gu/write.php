@@ -47,6 +47,22 @@ function sendit() {
 <?
 } else {
 
+	// zboard.php 에서 캡차 체크가 생략되기 때문에 한번더 기술
+	if(!($member[no] || $mode=="modify" || $mode=="reply")) {
+
+		// 스팸방지코드 체크 관련
+		$img = new Securimage();
+		$valid = $img->check($_POST['code']);
+
+		if($valid == true) {
+
+		} else {
+			Error("스팸방지 코드를 잘못 입력하셨습니다.");
+		}
+	}
+
+	if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을 작성하여 주시기 바랍니다.");
+
 //스팸방지 보안 세션변수 설정과 Mode변수 로그인 유형별 넘겨받기 셋팅
 	if($member[no]) {
 		$mode = $_GET[mode];
