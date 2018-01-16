@@ -27,6 +27,7 @@ if($target=="del_comment_ok.php?delsec=$delsec"){
 <input type=hidden name=mode value="<?=$mode?>">
 <input type=hidden name=c_no value=<?=$c_no?>>
 <input type=hidden name=zb_check value="<?=$zb_check?>">
+<input type=hidden name=code value="<?=$_POST['code']?>">
 <tr>
 	<td align='center' style='padding:50 0 50 0;'>
 		<table width='250' border='0' cellpadding='0' cellspacing='0' background='<?=$dir?>/images/sw_window_bgi.gif' style='word-break:break-all; background-repeat:repeat-y;'>

@@ -7,7 +7,7 @@ include("securimage/securimage.php");
 
 if(!empty($_POST['code']) || $member[no] || $password) {
 
-	if(!($member[no] || $password)) {
+	if(!$member[no] && (empty($_POST['code']) || !$password)) {
 
 		// 스팸방지코드 체크 관련
 		$img = new Securimage();

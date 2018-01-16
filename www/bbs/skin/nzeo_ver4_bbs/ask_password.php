@@ -17,6 +17,7 @@
 <input type=hidden name=mode value="<?=$mode?>">
 <input type=hidden name=c_no value=<?=$c_no?>>
 <input type=hidden name=zb_check value="<?=$zb_check?>">
+<input type=hidden name=code value="<?=$_POST['code']?>">
 <table border=0 width=250 cellspacing=1 cellpadding=0>
 <tr class=title>
 	<td align=center class=title_han><b><?=$title?></b></td>
