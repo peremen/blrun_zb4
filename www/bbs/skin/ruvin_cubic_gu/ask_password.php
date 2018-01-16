@@ -18,6 +18,7 @@
 <input type=hidden name=mode value="<?=$mode?>">
 <input type=hidden name=c_no value=<?=$c_no?>>
 <input type=hidden name=zb_check value="<?=$zb_check?>">
+<input type=hidden name=code value="<?=$_POST['code']?>">
 <tr><td height=15></td></tr>
 <tr><td align=center class=cu><?=$title?></td></tr>
 <tr><td align=center><?=$input_password?></td></tr>

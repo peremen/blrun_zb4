@@ -35,6 +35,7 @@
 <input type=hidden name=mode value="<?=$mode?>">
 <input type=hidden name=c_no value=<?=$c_no?>>
 <input type=hidden name=zb_check value="<?=$zb_check?>">
+<input type=hidden name=code value="<?=$_POST['code']?>">
 <tr>
   <td colspan=2 height=30>&nbsp;&nbsp;<font class=view_title1>Enter</font> <font class=view_title2>Password</font></td>
 </tr>
