@@ -73,17 +73,17 @@
 
 				<tr>
 					<td align=right>비밀번호 입력</td>
-					<td align=left> <input type=password id=password name=password <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
+					<td align=left> <input type=password id=password name=password <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
 				</tr>
 				<tr>
 					<td width=60 align=right>설문 작성인</td>
-					<td align=left> <input type=text id=name name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> </td>
+					<td align=left> <input type=text id=name name=name value="<?=$name?>" <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"> </td>
 				</tr>
 				<?=$hide_end?>
 
 				<tr align=center>
 					<td colspan=2 height=100% valign=bottom>
-						<img src=<?=$dir?>/bt_imsi_ok.gif border=0 accesskey="a" onclick=autoSave() style="cursor:pointer"> &nbsp; &nbsp;<input type=image src=<?=$dir?>/write.gif border=0> &nbsp; &nbsp;
+						<img src=<?=$dir?>/bt_imsi_ok.gif border=0 accesskey="a" onclick=autoSave() style="cursor:pointer" title="1주일간 글을 임시보관 합니다"> &nbsp; &nbsp;<input type=image src=<?=$dir?>/write.gif border=0> &nbsp; &nbsp;
 						<a href=# onclick=history.back()><img src=<?=$dir?>/list.gif border=0></a>
 					</td>
 				</tr>

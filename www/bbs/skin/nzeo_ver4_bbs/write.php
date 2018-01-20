@@ -30,7 +30,7 @@ function zb_formresize(obj) {
 </tr>
 <tr>
 	<td align=right><font class=list_eng><b>Password</b></font></td>
-	<td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
+	<td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 onkeyup="ajaxLoad2()"></td>
 </tr>
 <tr>
 	<td align=right><font class=list_eng>E-mail</font></td>
@@ -95,7 +95,7 @@ function zb_formresize(obj) {
 		<?=$a_codebox?>코드삽입</a>
 	</td>
 	<td align=right>
-		<input type=button value="임시저장" accesskey="a" onclick=autoSave()>
+		<input type=button value="임시저장" accesskey="a" onclick=autoSave() title="1주일간 글을 임시보관 합니다">
 		<input type=submit value="작성완료" accesskey="s">
 		<input type=button value="취소하기" onclick=history.back()>
 	</td>

@@ -30,11 +30,11 @@ function zb_formresize(obj) {
 
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_name.gif></td></tr></table></td>
-  <td align=left><input type=text id=name name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()"></td>
+  <td align=left><input type=text id=name name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
 </tr>
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_password.gif></td></tr></table></td>
-  <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
+  <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=zv3_input onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
 </tr>
 <tr>
   <td><img src=<?=$dir?>/t.gif border=0 height=1><br><table cellspacing=0 cellpadding=0 width=100% height=100%><tr><td align=right><img src=<?=$dir?>/w_email.gif></td></tr></table></td>
@@ -96,7 +96,7 @@ function zb_formresize(obj) {
     <tr>
       <td align=left><?=$a_preview?><img src=<?=$dir?>/btn_preview.gif border=0></a> <?=$a_imagebox?><img src=<?=$dir?>/btn_imagebox.gif border=0></a> <?=$a_codebox?>코드삽입</a>&nbsp;</td>
       <td align=right>
-        <img src=<?=$dir?>/btn_save.gif border=0 accesskey="a" onclick=autoSave() style=cursor:pointer>
+        <img src=<?=$dir?>/btn_save.gif border=0 accesskey="a" onclick=autoSave() style=cursor:pointer title="1주일간 글을 임시보관 합니다">
         <input type=image src=<?=$dir?>/btn_writeok.gif border=0 onfocus=blur() accesskey="s">
         <a href=javascript:void(history.back()) onfocus=blur()><img src=<?=$dir?>/btn_writecancel.gif border=0></a>
       </td>

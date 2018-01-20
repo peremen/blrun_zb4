@@ -89,10 +89,10 @@ function preview_m() {
 <?=$hide_c_password_start?>
 
 <td align=center><font class=list_eng><b>Password</b></font></td>
-<td><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input onkeyup="ajaxLoad2()"></td>
+<td><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
 <?=$hide_c_password_end?>
 
-<td width="100%" align=left><div align=<?=$align?>>비번을 재입력하면 임시저장이 복원됨 <?if ($emoticon_use=="on"){?>
+<td width="100%" align=left><div align=<?=$align?>><?if ($emoticon_use=="on"){?>
 <input onclick='showEmoticon()' type=checkbox name=Emoticons value='yes'><img src=<?=$dir?>/use_emo.gif>
 </div><?}?>
 </td>
@@ -135,7 +135,7 @@ function preview_m() {
 		<col width=></col><col width=90></col>
 		<tr>
 			<td width=100% valign=top><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);' onkeyup="addStroke()"></textarea></td>
-			<td width=90><input type=button class=submit value=' 임시 저장 ' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit class=submit value='영화평쓰기' accesskey="s" style=height:50%></td>
+			<td width=90><input type=button class=submit value=' 임시 저장 ' onclick=autoSave() accesskey="a" style="height:50%" title="1주일간 글을 임시보관 합니다"><br><input type=submit class=submit value='영화평쓰기' accesskey="s" style=height:50%></td>
 		</tr>
 		</table>
 		<table border=0 cellspacing=2 cellpadding=0 width=100% height=20>

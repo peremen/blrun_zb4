@@ -287,7 +287,7 @@ if($member[no]) {
 	if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>";
 	$temp_name = get_private_icon($member[no], "1");
 	if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>".$c_name;
-} else $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input value=\"".htmlspecialchars(stripslashes($_SESSION['zb_writer_name']))."\" onkeyup='ajaxLoad2()'>";
+} else $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input value=\"".htmlspecialchars(stripslashes($_SESSION['zb_writer_name']))."\" onkeyup='ajaxLoad2()' title='이름과 비번을 재입력하면 임시저장이 복원됨'>";
 
 /****************************************************************************************
 * 실제 출력 부분

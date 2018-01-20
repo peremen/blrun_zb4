@@ -81,9 +81,9 @@ function formresize(mode) {
     <col width=80></col><col width=></col><col width=80></col><col width=></col>
     <tr>
       <td width=80 align=right class=listnum><b>Name&nbsp;</b></td>
-      <td align=left><img src=images/t.gif width=1 align=absmiddle><input type=text id=name name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>;border-style:solid;" onkeyup="ajaxLoad2()"></td>
+      <td align=left><img src=images/t.gif width=1 align=absmiddle><input type=text id=name name=name value="<?=$name?>" <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>;border-style:solid;" onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
       <td width=80 align=right class=listnum><b>Password&nbsp;</b></td>
-      <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;" onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
+      <td align=left><input type=password id=password name=password <?=size(20)?> maxlength=20 class=input style="border-width:1px; border-color:<?=$list_header_dark0?>; border-style:solid;" onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
     </tr>
     </table>
   </td>
@@ -176,7 +176,7 @@ function formresize(mode) {
 		<?=$a_codebox?>코드삽입</a>
 	</td>
 	<td align=right>
-		<img src=<?=$dir?>/btn_save.gif border=0 accesskey="a" onclick=autoSave() style=cursor:pointer>
+		<img src=<?=$dir?>/btn_save.gif border=0 accesskey="a" onclick=autoSave() style=cursor:pointer title="1주일간 글을 임시보관 합니다">
 		<input type=image border=0 src="<?=$dir?>/i_write.gif" accesskey="s" onfocus=blur()> &nbsp;&nbsp;
 		<img src=<?=$dir?>/btn_back.gif border=0 onclick=history.back() style=cursor:pointer>
 	</td>

@@ -42,12 +42,10 @@
 				<label for='is_secret'> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1><font class='sw_ft_style_1'> 비밀글</font></label>
 <?=$hide_secret_end?>
 
+				<font id="state"></font>
 			</td>
 			<td align='right' width='100%'>
 			<table border='0' cellpadding='0' cellspacing='0'>
-			<tr height='21'>
-				<td colspan='3' align='right'><font id="state"></font><font color=orange> 비번을 재입력하면 임시저장이 복원됨! </font></td>
-			</tr>
 			<tr height='21' >
 <? if(!$member['no']) { ?>
 				<td valign=top style='padding:0 10 0 0;' nowrap>
@@ -57,12 +55,12 @@
 <?=$hide_c_password_start?>
 
 				<td valign=top style='padding:0 13 0 0;' nowrap>
-					<font class='sw_ft_style_1'>암호</font><input type='password' id='password' name='password' maxlength='20' style='width:60px;' class='input' onkeyup="ajaxLoad2()">
+					<font class='sw_ft_style_1'>암호</font><input type='password' id='password' name='password' maxlength='20' style='width:60px;' class='input' onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨">
 				</td>
 <?=$hide_c_password_end?>
 
 <? if($member['no']) { ?>
-				<td valign=top >
+				<td valign=middle>
 				<select name="_point1">
 					<option value=0 style=background-color:#ffffff;color:#555555 selected>포인트</option>
 					<option value=1 style=background-color:#ffffff;color:#888888>★</option>
@@ -71,13 +69,13 @@
 					<option value=4 style=background-color:#ffffff;color:#222222>★★★★</option>
 					<option value=5 style=background-color:#ffffff;color:#000000>★★★★★</option>
 				</select></td>
-				<td valign=top>
+				<td valign=middle>
 				<select name="_point2">
 					<option value=0 style=background-color:#ffffff;color:#555555 selected>절반</option>
 					<option value=1 style=background-color:#ffffff;color:black>☆</option>
 				</select></td>
 <? } ?>
-				<td valign=top>&nbsp;<img src=<?=$dir?>/images/bt_imsi_ok.gif border=0 accesskey="a" onclick=autoSave_n() style="cursor:pointer">&nbsp;<input type='image' name='c_confirm' src='<?=$dir?>/images/sw_a_confirm.gif' style='cursor:pointer;' accesskey='s'></td>
+				<td valign=top>&nbsp;<img src=<?=$dir?>/images/bt_imsi_ok.gif border=0 accesskey="a" onclick=autoSave_n() style="cursor:pointer" title="1주일간 글을 임시보관 합니다">&nbsp;<input type='image' name='c_confirm' src='<?=$dir?>/images/sw_a_confirm.gif' style='cursor:pointer;' accesskey='s'></td>
 			</tr>
 			</table>
 			</td>

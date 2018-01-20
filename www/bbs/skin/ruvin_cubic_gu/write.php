@@ -111,11 +111,11 @@ function sendit() {
 
 	<tr>
 		<td width=70 align=right><span class=cu><span class=v7><b>N</b>ame&nbsp;</span></span></td>
-		<td align=left><input type=text id=name name=name value="<?=$name?>" <?=size(16)?> maxlength=20 class=input2 onkeyup="ajaxLoad2()"></td>
+		<td align=left><input type=text id=name name=name value="<?=$name?>" <?=size(16)?> maxlength=20 class=input2 onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
 	</tr>
 	<tr>
 		<td width=70 align=right><span class=cu><span class=v7><b>P</b>assword&nbsp;</span></span></td>
-		<td align=left><input type=password id=password name=password <?=size(16)?> maxlength=20 class=input2 onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
+		<td align=left><input type=password id=password name=password <?=size(16)?> maxlength=20 class=input2 onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
 	</tr>
 	<tr>
 		<td width=70 align=right><span class=cu><span class=v7><b>E</b>-mail&nbsp;</span></span></td>
@@ -137,7 +137,7 @@ function sendit() {
 		<td height=5 colspan=2></td>
 	</tr>
 	<tr>
-		<td align=center valign=bottom colspan=2><input type=button value="AutoSave" onclick=autoSave() class=submit onfocus='this.blur()' style=cursor:hand>&nbsp;&nbsp;<input type=submit value="Confirm" class=submit onfocus='this.blur()' style=cursor:hand>&nbsp;&nbsp;<input type=button value="Back" onclick=history.go(-1) class=submit onfocus='this.blur()' style=cursor:hand></td>
+		<td align=center valign=bottom colspan=2><input type=button value="AutoSave" onclick=autoSave() class=submit onfocus='this.blur()' style=cursor:hand title="1주일간 글을 임시보관 합니다">&nbsp;&nbsp;<input type=submit value="Confirm" class=submit onfocus='this.blur()' style=cursor:hand>&nbsp;&nbsp;<input type=button value="Back" onclick=history.go(-1) class=submit onfocus='this.blur()' style=cursor:hand></td>
 	</tr>
 	</table>
 </td>
