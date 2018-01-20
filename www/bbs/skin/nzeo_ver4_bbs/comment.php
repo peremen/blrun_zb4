@@ -18,7 +18,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 		</tr>
 		<tr>
 			<td align=right class=list0><font class=list_eng><b>Password</b></font></td>
-			<td align=left class=list1><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
+			<td align=left class=list1><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
 		</tr>
 		<?=$hide_end?>
 
@@ -35,7 +35,7 @@ $a_codebox = str_replace(">","><font class=list_eng>",$a_codebox)."&nbsp;&nbsp;"
 				<col width=></col><col width=70></col>
 				<tr>
 					<td width=100%><textarea id=memo name=memo cols=20 rows=8 class=textarea style=width:100% onkeydown='return doTab(event);' onkeyup="addStroke()"><?=$memo?></textarea></td>
-					<td width=70><input type=button value='임시저장' onclick=autoSave() accesskey="a" style="height:50%"><br><input type=submit class=submit value='작성완료' accesskey="s" style="height:50%"></td>
+					<td width=70><input type=button value='임시저장' onclick=autoSave() accesskey="a" style="height:50%" title="1주일간 글을 임시보관 합니다"><br><input type=submit class=submit value='작성완료' accesskey="s" style="height:50%"></td>
 				</tr>
 				</table>
 			</td>

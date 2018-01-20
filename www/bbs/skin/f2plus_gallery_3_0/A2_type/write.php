@@ -36,7 +36,7 @@ function zb_formresize(obj) {
 </tr>
 <tr>
 	<td align=right><font class=com2><b>이름</b></font></td>
-	<td align=left><input type=text id=name name=name value="<?=$name?>" <?=size(18)?> maxlength=20 class=input onkeyup="ajaxLoad2()"><font class=com2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>암호</b></font><input type=password id=password name=password <?=size(11)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨</td>
+	<td align=left><input type=text id=name name=name value="<?=$name?>" <?=size(18)?> maxlength=20 class=input onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"><font class=com2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>암호</b></font><input type=password id=password name=password <?=size(11)?> maxlength=20 class=input onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
 </tr>
 <tr>
 	<td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
@@ -142,7 +142,7 @@ function zb_formresize(obj) {
 	</td>
 	<td width=60 valign=middle><?=$a_codebox?>코드삽입</a></td>
 	<td align=right>
-		<img src=<?=$dir?>/images/bt_imsi_ok.gif border=0 accesskey="a" onclick=autoSave_n() style="cursor:pointer">&nbsp;
+		<img src=<?=$dir?>/images/bt_imsi_ok.gif border=0 accesskey="a" onclick=autoSave_n() style="cursor:pointer" title="1주일간 글을 임시보관 합니다">&nbsp;
 		<input type=image src=<?=$dir?>/images/bt_write_ok.gif border=0 accesskey="s" onfocus=blur()>&nbsp;<a href=# onclick=history.back() onfocus=blur()><img src=<?=$dir?>/images/bt_cancel.gif border=0></a>
 	</td>
 </tr>

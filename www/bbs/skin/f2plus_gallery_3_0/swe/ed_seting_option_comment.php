@@ -18,14 +18,11 @@
 		<label for='htChk'> <input type='checkbox' id='htChk' name='htChk' style='cursor:pointer;' value=1 checked disabled><font class='sw_ft_style_1'>HTML</font></label>
 <? } ?>
 		<label for='use_html2'> <input type='checkbox' id='use_html2' name='use_html2' <?=$use_html2?>><font class='sw_ft_style_1'>HTML적용</font></label>
-		<?=$hide_secret_start?><label for='is_secret'> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1><font class='sw_ft_style_1'>비밀글</font></label><?=$hide_secret_end?>
+		<?=$hide_secret_start?><label for='is_secret'> <input type=checkbox name=is_secret id=is_secret <?=$secret?> value=1><font class='sw_ft_style_1'>비밀글</font></label><?=$hide_secret_end?> <font id="state"></font>
 
 	</td>
 	<td align='right'>
 	<table border='0' cellpadding='0' cellspacing='0'>
-	<tr height='21'>
-		<td colspan='3' align='right'><font id="state"></font><font color=orange> 비번을 재입력하면 임시저장이 복원됨! </font></td>
-	</tr>
 	<tr height='21'>
 <? if(!$member['no']) { ?>
 		<td style='padding:0 10 0 0;'>
@@ -37,11 +34,11 @@
 
 		<td style='padding:0 13 0 0;'>
 			<font class='sw_ft_style_1'>암호</font>
-			<input type='password' id='password' name='password' size='8' maxlength='20' class='input' onkeyup="ajaxLoad2()">
+			<input type='password' id='password' name='password' size='8' maxlength='20' class='input' onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨">
 		</td>
 <?=$hide_c_password_end?>
 
-		<td>&nbsp;<img src=<?=$dir?>/images/bt_imsi_ok.gif border=0 accesskey="a" onclick=autoSave_n() style="cursor:pointer">&nbsp;<input type='image' name='c_confirm' src='<?=$dir?>/images/sw_a_confirm.gif' style='cursor:pointer;' accesskey='s'></td>
+		<td>&nbsp;<img src=<?=$dir?>/images/bt_imsi_ok.gif border=0 accesskey="a" onclick=autoSave_n() style="cursor:pointer" title="1주일간 글을 임시보관 합니다">&nbsp;<input type='image' name='c_confirm' src='<?=$dir?>/images/sw_a_confirm.gif' style='cursor:pointer;' accesskey='s'></td>
 	</tr>
 	</table>
 	</td>

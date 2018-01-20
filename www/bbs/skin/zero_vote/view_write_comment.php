@@ -40,8 +40,8 @@
 		<font color=444444 >이름 : </b></font><b><?=$c_name?> &nbsp;</b>
 		<font color=444444 >의견 : </b></font><input type=text id=memo name=memo <?=size(40)?> maxlength=3000 class=input onkeyup="addStroke()">
 		<?=$hide_c_password_start?> &nbsp;
-		<font color=444444 >비밀번호 : </b></font><input type=password id=password name=password <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()"> 비번을 재입력하면 임시저장이 복원됨.
-		<?=$hide_c_password_end?><?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1> 비밀글 <?=$hide_secret_end?> <input type=button value='임시저장' class=submit onclick=autoSave()> <input type=submit value="입력" class=submit> <font id="state"></font>
+		<font color=444444 >비밀번호 : </b></font><input type=password id=password name=password <?=size(10)?> maxlength=20 class=input onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨">
+		<?=$hide_c_password_end?><?=$hide_secret_start?> <input type=checkbox id=is_secret name=is_secret <?=$secret?> value=1> 비밀글 <?=$hide_secret_end?> <input type=button value='임시저장' class=submit onclick=autoSave() title="1주일간 글을 임시보관 합니다"> <input type=submit value="입력" class=submit> <font id="state"></font>
 	</td>
 	</tr>
 	</table>
