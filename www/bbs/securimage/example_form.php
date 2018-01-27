@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Project:     Securimage: A PHP class for creating and managing form CAPTCHA images<br />
- * File:        securimage.php<br />
+ * 프로젝트:    Securimage: Form CAPTCHA 이미지를 만들고 관리하기위한 PHP 클래스
+ * 파일:        example_form.php
  * URL:         www.phpcaptcha.org
 */
 
-session_start();  // Start the session where the code will be stored.
+session_start();  // 코드가 저장 될 세션을 시작합니다.
 ?>
 <html>
 <head>
-  <title>Securimage Test Form</title>
+  <title>Securimage 테스트 양식</title>
 </head>
 
 <body>
@@ -18,9 +18,9 @@ session_start();  // Start the session where the code will be stored.
 if (empty($_POST)) {
 ?>
 <form method="POST">
-Username:<br />
+이름:<br />
 <input type="text" name="username" /><br />
-Password:<br />
+패스워드:<br />
 <input type="text" name="password" /><br /><br />
 
 <div style="width: 430px; float: left; height: 90px">
@@ -34,13 +34,13 @@ Password:<br />
   <embed src="securimage_play.swf?audio=securimage_play.php&bgColor1=#777&bgColor2=#fff&iconColor=#000&roundedCorner=5" quality="high" bgcolor="#ffffff" width="19" height="19" name="SecurImage_as3" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
   </object>
   <br />
-  <!-- pass a session id to the query string of the script to prevent ie caching -->
+  <!-- ie 캐싱을 방지하기 위해 스크립트의 쿼리 문자열에 세션 ID를 전달합니다. -->
   <a tabindex="-1" style="border-style: none" href="#" title="Refresh Image" onclick="document.getElementById('siimage').src = 'securimage_show.php?sid=' + Math.random(); return false"><img src="images/refresh.gif" alt="Reload Image" border="0" onclick="this.blur()" align="bottom" /></a>
 </div>
 <div style="clear: both"></div>
 
 Code:<br />
-<!-- NOTE: the "name" attribute is "code" so that $img->check($_POST['code']) will check the submitted form field -->
+<!-- 참고: "name" 속성은 "code" 이므로 $img->check($_POST['code'])는 제출된 Form 필드를 검사합니다 -->
 <input type="text" name="code" size="12" /><br /><br />
 <input type="submit" value="Submit Form" />
 </form>
@@ -48,16 +48,16 @@ Code:<br />
 <?php
 }
 else {
-	//form is posted
+	//양식이 넘어왔을 때
 	include("securimage.php");
 	$img = new Securimage();
 	$valid = $img->check($_POST['code']);
 
 	if($valid == true) {
-		echo "<center>Thanks, you entered the correct code.<br />Click <a href=\"{$_SERVER['PHP_SELF']}\">here</a> to go back.</center>";
+		echo "<center>감사합니다. 올바른 코드를 입력했습니다.<br />되돌아가기 위해 <a href=\"{$_SERVER['PHP_SELF']}\">여기를</a> 클릭하세요.</center>";
 	}
 	else {
-		echo "<center>Sorry, the code you entered was invalid.  <a href=\"javascript:history.go(-1)\">Go back</a> to try again.</center>";
+		echo "<center>죄송합니다. 입력하신 코드가 유효하지 않습니다. 다시 시도하기 위해 <a href=\"javascript:history.go(-1)\">되돌아가기</a></center>";
 	}
 }
 ?>

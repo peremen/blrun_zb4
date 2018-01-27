@@ -1,513 +1,512 @@
 <?php
 
 /**
- * Project:     Securimage: A PHP class for creating and managing form CAPTCHA images<br />
- * File:        securimage.php<br />
+ * 프로젝트:    Securimage: 양식 CAPTCHA 이미지를 만들고 관리하기위한 PHP 클래스
+ * 파일:        securimage.php
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or any later version.<br /><br />
+ * 이 라이브러리는 무료 소프트웨어입니다. 당신은 그것을 재배포할 수 있습니다.
+ * GNU 약소 일반 범용의 조건에 따라 수정하십시오.
+ * 자유 소프트웨어 재단이 발행 한 라이센스. 어느 한 쪽
+ * 라이센스 버전 2.1 또는 이후 버전.
  *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.<br /><br />
+ * 이 라이브러리는 유용할 것이라는 희망으로 배포되었습니다.
+ * 하지만 어떠한 보증도하지 않습니다. 묵시적 보증없이
+ * 상품성 또는 특정 목적에의 적합성. GNU보기
+ * 더 자세한 내용은 Lesser General Public License를 참조하십시오.
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA<br /><br />
+ * GNU 약소 일반 범용의 사본을 받아야합니다.
+ * 이 라이브러리와 함께 라이센스; 그렇지 않다면 자유 소프트웨어에 글을 씁니다.
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- * Any modifications to the library should be indicated clearly in the source code
- * to inform users that the changes are not a part of the original software.<br /><br />
+ * 라이브러리에 대한 수정 사항은 소스 코드에 명확하게 표시되어야합니다.
+ * 변경 사항이 원래 소프트웨어의 일부가 아니라는 사실을 사용자에게 알립니다.
  *
- * If you found this script useful, please take a quick moment to rate it.<br />
- * http://www.hotscripts.com/rate/49400.html  Thanks.
+ * 이 스크립트가 유용하다고 판단되면 잠시 시간을내어 평가하십시오.
+ * http://www.hotscripts.com/rate/49400.html 감사합니다.
  *
  * @link http://www.phpcaptcha.org Securimage PHP CAPTCHA
- * @link http://www.phpcaptcha.org/latest.zip Download Latest Version
- * @link http://www.phpcaptcha.org/Securimage_Docs/ Online Documentation
- * @copyright 2009 Drew Phillips
- * @author Drew Phillips <drew@drew-phillips.com>
- * @version 2.0.1 BETA (December 6th, 2009)
- * @package Securimage
+ * @link http://www.phpcaptcha.org/latest.zip 최신 버전 다운로드
+ * @link http://www.phpcaptcha.org/Securimage_Docs/ 온라인 문서
+ * @저작권 2009 Drew Phillips
+ * @저자 Drew 필립스 <drew@drew-phillips.com>
+ * @version 2.0.1 베타 (2009 년 12 월 6 일)
+ * @Securimage 패키지
  *
 */
 
 /**
- ChangeLog
+ 변경 로그
 
  2.0.2
- - Fix pathing to make integration into libraries easier (Nathan Phillip Brink ohnobinki@ohnopublishing.net)
+ 라이브러리로 쉽게 통합할 수 있도록 경로 지정을 수정했습니다 (Nathan Phillip Brink ohnobinki@ohnopublishing.net).
 
  2.0.1
- - Add support for browsers with cookies disabled (requires php5, sqlite) maps users to md5 hashed ip addresses and md5 hashed codes for security
- - Add fallback to gd fonts if ttf support is not enabled or font file not found (Mike Challis http://www.642weather.com/weather/scripts.php)
- - Check for previous definition of image type constants (Mike Challis)
- - Fix mime type settings for audio output
- - Fixed color allocation issues with multiple colors and background images, consolidate allocation to one function
- - Ability to let codes expire after a given length of time
- - Allow HTML color codes to be passed to Securimage_Color (suggested by Mike Challis)
+ - 쿠키가 비활성화 된 브라우저에 대한 지원 추가 (php5, sqlite 필요)는 사용자를 md5 해시 IP 주소 및 md5 해시 코드로 매핑하여 보안을 강화합니다.
+ - ttf 지원이 사용 가능하지 않거나 글꼴 파일을 찾을 수 없는 경우 gd 글꼴에 폴백을 추가합니다 (Mike Challis http://www.642weather.com/weather/scripts.php).
+ - 이미지 타입 상수의 이전 정의 확인 (Mike Challis)
+ - 오디오 출력에 대한 MIME 타입 설정 수정
+ - 여러 색상 및 배경 이미지를 가진 색상 할당 문제가 수정되고 할당을 하나의 기능으로 통합
+ - 주어진 시간이 지나면 코드가 만료되도록하는 기능
+ - HTML 색상 코드가 Securimage_Color에 전달되도록 허용합니다 (Mike Challis가 제안).
 
  2.0.0
- - Add mathematical distortion to characters (using code from HKCaptcha)
- - Improved session support
- - Added Securimage_Color class for easier color definitions
- - Add distortion to audio output to prevent binary comparison attack (proposed by Sven "SavageTiger" Hagemann [insecurity.nl])
- - Flash button to stream mp3 audio (Douglas Walsh www.douglaswalsh.net)
- - Audio output is mp3 format by default
- - Change font to AlteHaasGrotesk by yann le coroller
- - Some code cleanup
+ - 문자에 수학적 왜곡 추가 (HKCaptcha의 코드 사용)
+ - 개선 된 세션 지원
+ - 쉬운 색상 정의를위한 Securimage_Color 클래스 추가
+ - 바이너리 비교 공격을 막기 위해 오디오 출력에 왜곡 추가 (Sven "SavageTiger"Hagemann [insecurity.nl]이 제안)
+ - mp3 오디오를 스트리밍하는 플래시 버튼 (더글라스 월시 www.douglaswalsh.net)
+ - 오디오 출력은 기본적으로 mp3 형식입니다.
+ - yann le coroller에 의해 AlteHaasGrotesk로 글꼴 변경
+ - 일부 코드 정리
 
- 1.0.4 (unreleased)
- - Ability to output audible codes in mp3 format to stream from flash
+ 1.0.4 (출시되지 않음)
+ - 플래시에서 스트림으로 mp3 형식의 가청 코드를 출력하는 기능
 
  1.0.3.1
- - Error reading from wordlist in some cases caused words to be cut off 1 letter short
+ - 어떤 경우 단어 목록에서 읽는 중 오류가 발생하여 단어가 한 글자 짧아짐
 
  1.0.3
- - Removed shadow_text from code which could cause an undefined property error due to removal from previous version
+ - 이전 버전에서 제거하여 정의되지 않은 속성 오류가 발생할 수 있는 코드에서 shadow_text를 제거했습니다.
 
  1.0.2
- - Audible CAPTCHA Code wav files
- - Create codes from a word list instead of random strings
+ - Audible CAPTCHA 코드 wav 파일
+ - 임의의 문자열 대신 단어 목록에서 코드 생성
 
  1.0
- - Added the ability to use a selected character set, rather than a-z0-9 only.
- - Added the multi-color text option to use different colors for each letter.
- - Switched to automatic session handling instead of using files for code storage
- - Added GD Font support if ttf support is not available.  Can use internal GD fonts or load new ones.
- - Added the ability to set line thickness
- - Added option for drawing arced lines over letters
- - Added ability to choose image type for output
+ - a0-z0-9가 아닌 선택한 문자 세트를 사용할 수 있는 기능이 추가되었습니다.
+ - 각 문자에 다른 색상을 사용하는 다중 색상 텍스트 옵션을 추가했습니다.
+ - 코드 저장을 위해 파일을 사용하는 대신 자동 세션 처리로 전환
+ - ttf 지원을 사용할 수 없는 경우 GD 글꼴 지원이 추가되었습니다. 내부 GD 글꼴을 사용하거나 새로운 글꼴을 로드할 수 있습니다.
+ - 선 두께 설정 기능 추가
+ - 문자 위에 원호 선 그리기 옵션 추가
+ - 출력을 위해 이미지 타입을 선택할 수있는 기능 추가
 
 */
 
 /**
- * Output images in JPEG format
+ * JPEG 형식의 이미지 출력
 */
 if (!defined('SI_IMAGE_JPEG'))
 	define('SI_IMAGE_JPEG', 1);
 /**
- * Output images in PNG format
+ * PNG 형식의 이미지 출력
 */
 if (!defined('SI_IMAGE_PNG'))
 	define('SI_IMAGE_PNG',  2);
 /**
- * Output images in GIF format (not recommended)
- * Must have GD >= 2.0.28!
+ * 이미지를 GIF 형식으로 출력합니다 (권장하지 않음).
+ * GD >= 2.0.28 이어야합니다!
 */
 if (!defined('SI_IMAGE_GIF'))
 	define('SI_IMAGE_GIF',  3);
 
 /**
- * Securimage CAPTCHA Class.
+ * Securimage CAPTCHA 클래스.
  *
- * @package    Securimage
- * @subpackage classes
+ * @Securimage 패키지
+ * @subpackage 클래스들
  *
 */
 class Securimage {
 
     /**
-     * The path which contains securimage.php.
+     * securimage.php가 포함된 경로입니다.
      *
-     * @var string    The path to the securimage installation.
+     * @var string    securimage 설치 경로.
 	*/
 	var $basepath;
 
     /**
-     * The desired width of the CAPTCHA image.
+     * 원하는 CAPTCHA 이미지의 너비입니다.
      *
      * @var int
 	*/
 	var $image_width;
 
     /**
-     * The desired width of the CAPTCHA image.
+     * 원하는 CAPTCHA 이미지의 높이입니다.
      *
      * @var int
 	*/
 	var $image_height;
 
     /**
-     * The image format for output.<br />
-     * Valid options: SI_IMAGE_PNG, SI_IMAGE_JPG, SI_IMAGE_GIF
+     * 출력용의 이미지 형식.
+     * 유효한 옵션: SI_IMAGE_PNG, SI_IMAGE_JPG, SI_IMAGE_GIF
      *
      * @var int
 	*/
 	var $image_type;
 
     /**
-     * The length of the code to generate.
+     * 생성할 code의 길이.
      *
      * @var int
 	*/
 	var $code_length;
 
     /**
-     * The character set for individual characters in the image.<br />
-     * Letters are converted to uppercase.<br />
-     * The font must support the letters or there may be problematic substitutions.
+     * 이미지의 개별 문자에 대한 문자 집합입니다.
+     * 문자는 대문자로 변환됩니다.
+     * 글꼴이 문자를 지원해야하거나 문제가있는 대체 문자가 있을 수 있습니다.
      *
      * @var string
 	*/
 	var $charset;
 
     /**
-     * Create codes using this word list
+     * 이 단어 목록을 사용하여 code를 만듭니다.
      *
-     * @var string  The path to the word list to use for creating CAPTCHA codes
+     * @var string  CAPCHA 코드를 만드는 데 사용할 단어 목록의 경로
 	*/
 	var $wordlist_file;
 
     /**
-     * Use wordlist of not
+     * 단어 목록 사용 안함
      *
-     * @var bool true to use wordlist file, false to use random code
+     * @var bool 단어 목록 파일을 사용하려면 true로, 임의 코드를 사용하려면 false 로 설정.
 	*/
 	var $use_wordlist = false;
 
     /**
-     * Note: Use of GD fonts is not recommended as many distortion features are not available<br />
-     * The GD font to use.<br />
-     * Internal gd fonts can be loaded by their number.<br />
-     * Alternatively, a file path can be given and the font will be loaded from file.
+     * 참고 : 많은 왜곡 기능을 사용할 수 없으므로 GD 글꼴을 사용하지 않는 것이 좋습니다.
+     * 사용할 GD 글꼴.
+     * 내부 gd 글꼴은 번호로 로드할 수 있습니다.
+     * 또는 파일 경로를 지정하고 글꼴을 파일에서로드 할 수 있습니다.
      *
      * @var mixed
 	*/
 	var $gd_font_file;
 
     /**
-     * The approximate size of the font in pixels.<br />
-     * This does not control the size of the font because that is determined by the GD font itself.<br />
-     * This is used to aid the calculations of positioning used by this class.<br />
+     * 글꼴의 대략적인 크기(픽셀)입니다.
+     * 글꼴 크기는 GD 글꼴 자체에 의해 결정되므로 글꼴 크기를 제어하지 않습니다.
+     * 이것은,이 클래스가 사용하는 위치 결정의 계산을 돕기 위해서 사용됩니다.
      *
      * @var int
 	*/
 	var $gd_font_size;
 
     /**
-     * Use a gd font instead of TTF
+     * TTF 대신 gd 글꼴 사용
      *
-     * @var bool true for gd font, false for TTF
+     * @var bool gd 폰트의 경우 true, TTF의 경우 false
 	*/
 	var $use_gd_font;
 
-	// Note: These font options below do not apply if you set $use_gd_font to true with the exception of $text_color
+	// 참고: $text_color를 제외하고 $use_gd_font를 true로 설정하면 아래의 글꼴 옵션이 적용되지 않습니다.
 
     /**
-     * The path to the TTF font file to load.
+     * 로드할 TTF 글꼴 파일의 경로입니다.
      *
      * @var string
 	*/
 	var $ttf_file;
 
     /**
-     * How much to distort image, higher = more distortion.<br />
-     * Distortion is only available when using TTF fonts.<br />
+     * 얼마만큼의 이미지 왜곡을 할 것인지, 높은 수치 = 더 많은 왜곡.
+     * 왜곡은 TTF 글꼴을 사용할 때만 사용할 수 있습니다.
      *
      * @var float
 	*/
 	var $perturbation;
 
     /**
-     * The minimum angle in degrees, with 0 degrees being left-to-right reading text.<br />
-     * Higher values represent a counter-clockwise rotation.<br />
-     * For example, a value of 90 would result in bottom-to-top reading text.<br />
-     * This value along with maximum angle distance do not need to be very high with perturbation
+     * 각도는 0부터 시작하여 왼쪽에서 오른쪽으로 읽는 텍스트의 최소 각도입니다.
+     * 높은 값은 반 시계 방향 회전을 나타냅니다.
+     * 예를 들어, 90의 값은 맨 아래에서 맨 위로 읽는 텍스트가 됩니다.
+     * 최대 각도 거리와 함께 이 값은 섭동으로 매우 높을 필요는 없습니다.
      *
      * @var int
 	*/
 	var $text_angle_minimum;
 
     /**
-     * The minimum angle in degrees, with 0 degrees being left-to-right reading text.<br />
-     * Higher values represent a counter-clockwise rotation.<br />
-     * For example, a value of 90 would result in bottom-to-top reading text.
+     * 각도는 0부터 시작하여 왼쪽에서 오른쪽으로 읽는 텍스트의 최대 각도입니다.
+     * 높은 값은 반 시계 방향 회전을 나타냅니다.
+     * 예를 들어, 90의 값은 맨 아래에서 맨 위로 읽는 텍스트가 됩니다.
      *
      * @var int
 	*/
 	var $text_angle_maximum;
 
     /**
-     * The X-Position on the image where letter drawing will begin.<br />
-     * This value is in pixels from the left side of the image.
+     * 문자 그리기가 시작될 이미지의 X 위치.
+     * 이 값은 이미지의 왼쪽부터 픽셀 단위입니다.
      *
      * @var int
-     * @deprecated 2.0
+     * @2.0 사용 안함
 	*/
 	var $text_x_start;
 
     /**
-     * The background color for the image as a Securimage_Color.<br />
+     * Securimage_Color로 이미지의 배경색.
      *
      * @var Securimage_Color
 	*/
 	var $image_bg_color;
 
     /**
-     * Scan this directory for gif, jpg, and png files to use as background images.<br />
-     * A random image file will be picked each time.<br />
-     * Change from null to the full path to your directory.<br />
-     * i.e. var $background_directory = $_SERVER['DOCUMENT_ROOT'] . '/securimage/backgrounds';
-     * Make sure not to pass a background image to the show function, otherwise this directive is ignored.
+     * gif, jpg 및 png 파일이 백그라운드 이미지로 사용되도록 이 디렉토리를 스캔합니다.
+     * 무작위 이미지 파일이 매번 선택됩니다.
+     * null에서 디렉토리의 전체 경로로 변경한다.
+     * 즉 var $background_directory = $_SERVER['DOCUMENT_ROOT'].'/securimage/backgrounds'; 입니다.
+     * show 함수에 배경 이미지를 전달하지 않도록 한다. 그렇지 않으면 이 지시문이 무시됩니다.
      *
      * @var string
 	*/
 	var $background_directory = null; //'./backgrounds';
 
     /**
-     * The text color to use for drawing characters as a Securimage_Color.<br />
-     * This value is ignored if $use_multi_text is set to true.<br />
-     * Make sure this contrasts well with the background color or image.<br />
+     * 문자를 Securimage_Color로 그리는 데 사용할 텍스트 색상입니다.
+     * $use_multi_text가 true로 설정되면이 값은 무시됩니다.
+     * 배경색이나 이미지와 잘 대조되는지 확인한다.
      *
-     * @see Securimage::$use_multi_text
+     * @Securimage::$use_multi_text 를 봅니다
      * @var Securimage_Color
 	*/
 	var $text_color;
 
     /**
-     * Set to true to use multiple colors for each character.
+     * 각 문자에 여러 색상을 사용하려면 true로 설정하십시오.
      *
-     * @see Securimage::$multi_text_color
+     * @Securimage::$multi_text_color 를 봅니다
      * @var boolean
 	*/
 	var $use_multi_text;
 
     /**
-     * Array of Securimage_Colors which will be randomly selected for each letter.<br />
+     * 각 문자에 대해 임의로 선택되는 Securimage_Colors의 배열입니다.
      *
      * @var array
 	*/
 	var $multi_text_color;
 
     /**
-     * Set to true to make the characters appear transparent.
+     * 문자를 투명하게 보이게 하려면 true로 설정하십시오.
      *
-     * @see Securimage::$text_transparency_percentage
+     * @Securimage::$text_transparency_percentage 를 봅니다
      * @var boolean
 	*/
 	var $use_transparent_text;
 
     /**
-     * The percentage of transparency, 0 to 100.<br />
-     * A value of 0 is completely opaque, 100 is completely transparent (invisble)
+     * 투명도 백분율 (0 ~ 100)입니다.
+     * 값 0은 완전히 불투명, 100은 완전히 투명 (보이지 않음)
      *
-     * @see Securimage::$use_transparent_text
+     * @Securimage::$use_transparent_text 를 봅니다
      * @var int
 	*/
 	var $text_transparency_percentage;
 
 
-	// Line options
+	// 라인 옵션
     /**
-    * Draw vertical and horizontal lines on the image.
+    * 이미지에 수직선과 수평선을 그립니다.
     *
-    * @see Securimage::$line_color
-    * @see Securimage::$draw_lines_over_text
+    * @Securimage::$line_color 를 봅니다
+    * @Securimage::$draw_lines_over_text 를 봅니다
     * @var boolean
 	*/
 	var $num_lines;
 
     /**
-     * Color of lines drawn over text
+     * 텍스트 위에 그린 선의 색상
      *
      * @var string
 	*/
 	var $line_color;
 
     /**
-     * Draw the lines over the text.<br />
-     * If fales lines will be drawn before putting the text on the image.
+     * 텍스트 위에 선을 그립니다.
+     * 이미지에 텍스트를 넣기 전에 fales 라인이 그려지는 경우.
      *
      * @var boolean
 	*/
 	var $draw_lines_over_text;
 
     /**
-     * Text to write at the bottom corner of captcha image
+     * 보안 문자 이미지의 하단 모서리에 쓸 텍스트
      *
-     * @since 2.0
-     * @var string Signature text
+     * @2.0 부터
+     * @var string 서명 텍스트
 	*/
 	var $image_signature;
 
     /**
-     * Color to use for writing signature text
+     * 서명 텍스트를 쓰는 데 사용할 색상
      *
-     * @since 2.0
+     * @2.0 부터
      * @var Securimage_Color
 	*/
 	var $signature_color;
 
     /**
-     * Full path to the WAV files to use to make the audio files, include trailing /.<br />
-     * Name Files  [A-Z0-9].wav
+     * 오디오 파일을 만드는 데 사용할 WAV 파일의 전체 경로이며 뒤쪽에 /를 포함합니다.
+     * 이름 파일 [A-Z0-9].wav
      *
-     * @since 1.0.1
+     * @1.0.1 부터
      * @var string
 	*/
 	var $audio_path;
 
     /**
-     * Type of audio file to generate (mp3 or wav)
+     * 생성 할 오디오 파일 유형 (mp3 또는 wav)
      *
      * @var string
 	*/
 	var $audio_format;
 
     /**
-     * The session name to use if not the default.  Blank for none
+     * 기본값이 아닌 경우 사용할 세션 이름입니다. 빈칸 없음
      *
-     * @see http://php.net/session_name
-     * @since 2.0
+     * @http://php.net/session_name 를 봅니다
+     * @2.0 부터
      * @var string
 	*/
 	var $session_name = '';
 
     /**
-     * The amount of time in seconds that a code remains valid.<br />
-     * Any code older than this number will be considered invalid even if entered correctly.<br />
-     * Any non-numeric or value less than 1 disables this functionality.
+     * 코드가 유효하게 유지되는 시간(초).
+     * 이 숫자보다 오래된 코드는 올바르게 입력해도 유효하지 않은 것으로 간주됩니다.
+     * 숫자가 아닌 값 또는 1보다 작은 값은 이 기능을 사용하지 않습니다.
      *
      * @var int
 	*/
 	var $expiry_time;
 
     /**
-     * Path to the file to use for storing codes for users.<br />
-     * THIS FILE MUST ABSOLUTELY NOT BE ACCESSIBLE FROM A WEB BROWSER!!<br />
-     * Put this file in a directory below the web root or one that is restricted (i.e. an apache .htaccess file with deny from all)<br />
-     * If you cannot meet those requirements your forms may not be completely protected.<br />
-     * You could obscure the database file name but this is also not recommended.
+     * 사용자 코드를 저장하는 데 사용할 파일의 경로입니다.
+     * [이 파일은 절대적으로 웹브라우저에서 접근할 수 없어야 합니다!!]
+     * 이 파일을 웹 루트 아래의 디렉토리 또는 제한된 디렉토리에 두십시오 (예: deny from all 속성을 가진 아파치 .htaccess 파일).
+     * 이러한 요구 사항을 충족시키지 못하면 양식이 완전히 보호되지 않을 수 있습니다.
+     * 데이터베이스 파일 이름을 모호하게 만들수도 있지만 권장하지는 않습니다.
      *
      * @var string
 	*/
 	var $sqlite_database;
 
     /**
-     * Use an SQLite database for storing codes as a backup to sessions.<br />
-     * Note: Sessions will still be used
+     * 코드를 세션의 백업으로 저장하기 위해 SQLite 데이터베이스를 사용합니다.
+     * 참고: 세션은 계속 사용됩니다.
 	*/
 	var $use_sqlite_db;
 
 
-	//END USER CONFIGURATION
-	//There should be no need to edit below unless you really know what you are doing.
+	//[최종 사용자 설정]
+	//무엇을 할지 모르겠다면 아래를 편집 할 필요가 없습니다.
 
     /**
-     * The gd image resource.
+     * gd 이미지 리소스.
      *
-     * @access private
+     * @private 으로 접근
      * @var resource
 	*/
 	var $im;
 
     /**
-     * Temporary image for rendering
+     * 렌더링을 위한 임시 이미지
      *
-     * @access private
+     * @private 으로 접근
      * @var resource
 	*/
 	var $tmpimg;
 
     /**
-     * Internal scale factor for anti-alias @hkcaptcha
+     * 안티 앨리어스 @hkcaptcha의 내부 배율 인수
      *
-     * @access private
-     * @since 2.0
+     * @private 으로 접근
+     * @2.0 부터
      * @var int
 	*/
-	var $iscale; // internal scale factor for anti-alias @hkcaptcha
+	var $iscale; // 안티 앨리어스 @hkcaptcha의 내부 배율 인수
 
     /**
-     * The background image resource
+     * 배경 이미지 리소스
      *
-     * @access private
+     * @2.0 부터
      * @var resource
 	*/
 	var $bgimg;
 
     /**
-     * The code generated by the script
+     * 스크립트에 의해 생성된 코드
      *
-     * @access private
+     * @private 으로 접근
      * @var string
 	*/
 	var $code;
 
     /**
-     * The code that was entered by the user
+     * 사용자가 입력한 코드
      *
-     * @access private
+     * @private 으로 접근
      * @var string
 	*/
 	var $code_entered;
 
     /**
-     * Whether or not the correct code was entered
+     * 올바른 코드 입력 여부
      *
-     * @access private
+     * @private 으로 접근
      * @var boolean
 	*/
 	var $correct_code;
 
     /**
-     * Handle to SQLite database
+     * SQLite 데이터베이스 핸들
      *
-     * @access private
+     * @private 으로 접근
      * @var resource
 	*/
 	var $sqlite_handle;
 
     /**
-     * Color resource for image line color
+     * 이미지 선 색상을 위한 색상 리소스
      *
-     * @access private
+     * @private 으로 접근
      * @var int
 	*/
 	var $gdlinecolor;
 
     /**
-     * Array of colors for multi colored codes
+     * 멀티 컬러 코드 용 색상 배열
      *
-     * @access private
+     * @private 으로 접근
      * @var array
 	*/
 	var $gdmulticolor;
 
     /**
-     * Color resource for image font color
+     * 이미지 글꼴 색상을 위한 색상 리소스
      *
-     * @access private
+     * @private 으로 접근
      * @var int
 	*/
 	var $gdtextcolor;
 
     /**
-     * Color resource for image signature color
+     * 이미지 서명 컬러의 색상 리소스
      *
-     * @access private
+     * @private 으로 접근
      * @var int
 	*/
 	var $gdsignaturecolor;
 
     /**
-     * Color resource for image background color
+     * 이미지 배경색을 위한 색상 리소스
      *
-     * @access private
+     * @private 으로 접근
      * @var int
 	*/
 	var $gdbgcolor;
 
 
     /**
-     * Class constructor.<br />
-     * Because the class uses sessions, this will attempt to start a session if there is no previous one.<br />
-     * If you do not start a session before calling the class, the constructor must be called before any
-     * output is sent to the browser.
-     *
+     * 클래스 생성자.
+     * 클래스는 세션을 사용하기 때문에 이전 세션이 없으면 세션 시작을 시도합니다.
+     * 클래스를 호출하기 전에 세션을 시작하지 않으면 모든 출력이 브라우저로 보내지기
+     * 전에 생성자를 호출해야합니다.
      * <code>
      *   $securimage = new Securimage();
      * </code>
@@ -515,19 +514,19 @@ class Securimage {
 	*/
 	function Securimage()
 	{
-		// Initialize session or attach to existing
+		// 세션 초기화 또는 기존 연결
 		if ( session_id() == '' ) {
-			// no session has been started yet, which is needed for validation
+			// 유효성 검사를 위해 필요한 세션이 아직 시작되지 않았습니다.
 			if (trim($this->session_name) != '') {
-				session_name($this->session_name); // set session name if provided
+				session_name($this->session_name); // 세션 이름이 있으면 설정합니다.
 			}
 			session_start();
 		}
 
-		// Calculated value
+		// 계산된 값
 		$this->basepath = dirname(__FILE__);
 
-		// Set Default Values
+		// 기본값 설정
 		$this->image_width   = 230;
 		$this->image_height  = 80;
 		$this->image_type    = SI_IMAGE_PNG;
@@ -581,17 +580,15 @@ class Securimage {
 	}
 
     /**
-     * Generate a code and output the image to the browser.
+     * 코드를 생성하고 이미지를 브라우저에 출력합니다.
      *
      * <code>
-     *   <?php
      *   include 'securimage.php';
      *   $securimage = new Securimage();
      *   $securimage->show('bg.jpg');
-     *   ?>
      * </code>
      *
-     * @param string $background_image  The path to an image to use as the background for the CAPTCHA
+     * @파라미터 $background_image는 문자열, CAPTCHA의 배경으로 사용할 이미지의 경로
 	*/
 	function show($background_image = "")
 	{
@@ -603,7 +600,7 @@ class Securimage {
 	}
 
     /**
-     * Validate the code entered by the user.
+     * 사용자가 입력한 코드의 유효성을 검사합니다.
      *
      * <code>
      *   $code = $_POST['code'];
@@ -613,8 +610,8 @@ class Securimage {
      *     $valid = true;
      *   }
      * </code>
-     * @param string $code  The code the user entered
-     * @return boolean  true if the code was correct, false if not
+     * @파라미터 $code는 문자열, 사용자가 입력 한 코드
+     * @boolean 반환, 코드가 정확하면 true, 그렇지 않으면 false
 	*/
 	function check($code)
 	{
@@ -624,7 +621,7 @@ class Securimage {
 	}
 
     /**
-     * Output audio file with HTTP headers to browser
+     * 브라우저에 HTTP 헤더가있는 오디오 파일 출력
      *
      * <code>
      *   $sound = new Securimage();
@@ -632,7 +629,7 @@ class Securimage {
      *   $sound->outputAudioFile();
      * </code>
      *
-     * @since 2.0
+     * @2.0 부터
 	*/
 	function outputAudioFile()
 	{
@@ -641,7 +638,7 @@ class Securimage {
 			$ext = 'wav';
 		}
 		else {
-			header('Content-type: audio/mpeg'); // default to mp3
+			header('Content-type: audio/mpeg'); // mp3로 기본 설정
 			$ext = 'mp3';
 		}
 
@@ -659,9 +656,9 @@ class Securimage {
 	}
 
     /**
-     * Generate and output the image
+     * 이미지 생성 및 출력
      *
-     * @access private
+     * @private 으로 접근
      *
 	*/
 	function doImage()
@@ -675,7 +672,7 @@ class Securimage {
 
 		}
 		else {
-			//no transparency
+			//투명성 없음
 			$this->im     = imagecreate($this->image_width, $this->image_height);
 			$this->tmpimg = imagecreate($this->image_width * $this->iscale, $this->image_height * $this->iscale);
 		}
@@ -701,14 +698,14 @@ class Securimage {
 	}
 
     /**
-     * Allocate all colors that will be used in the CAPTCHA image
+     * CAPTCHA 이미지에 사용될 모든 색상 할당
      *
-     * @since 2.0.1
-     * @access private
+     * @2.0.1 부터
+     * @private 으로 접근
 	*/
 	function allocateColors()
 	{
-		// allocate bg color first for imagecreate
+		// 이미지 생성을 위해 먼저 배경 색상 할당
 		$this->gdbgcolor = imagecolorallocate($this->im, $this->image_bg_color->r, $this->image_bg_color->g, $this->image_bg_color->b);
 
 		$alpha = intval($this->text_transparency_percentage / 100 * 127);
@@ -739,9 +736,9 @@ class Securimage {
 	}
 
     /**
-     * Set the background of the CAPTCHA image
+     * CAPCHA 이미지의 배경 설정
      *
-     * @access private
+     * @private 으로 접근
      *
 	*/
 	function setBackground()
@@ -783,11 +780,11 @@ class Securimage {
 	}
 
     /**
-     * Return the full path to a random gif, jpg, or png from the background directory.
+     * $background_directory 에서 임의의 gif, jpg 또는 png의 전체 경로를 반환합니다.
      *
-     * @access private
-     * @see Securimage::$background_directory
-     * @return mixed  false if none found, string $path if found
+     * @private 으로 접근
+     * @Securimage::$background_directory 를 봅니다
+     * @아무것도 찾지 못하면 false를 반환하고, 발견되면 string $path를 복합적으로 반환
 	*/
 	function getBackgroundFromDirectory()
 	{
@@ -809,11 +806,11 @@ class Securimage {
 	}
 
     /**
-     * Draw random curvy lines over the image<br />
-     * Modified code from HKCaptcha
+     * 이미지 위에 임의의 curvy 선을 그립니다.
+     * HKCaptcha의 수정된 코드
      *
-     * @since 2.0
-     * @access private
+     * @2.0 부터
+     * @private 으로 접근
      *
 	*/
 	function drawLines()
@@ -851,9 +848,9 @@ class Securimage {
 	}
 
     /**
-     * Draw the CAPTCHA code over the image
+     * 이미지 위에 CAPCHA 코드를 그립니다.
      *
-     * @access private
+     * @private 으로 접근
      *
 	*/
 	function drawWord()
@@ -863,7 +860,7 @@ class Securimage {
 
 		if ($this->use_gd_font == true || !is_readable($this->ttf_file)) {
 			if (!is_int($this->gd_font_file)) {
-				//is a file name
+				//파일 이름입니다.
 				$font = @imageloadfont($this->gd_font_file);
 				if ($font == false) {
 					trigger_error("Failed to load GD Font file {$this->gd_font_file} ", E_USER_WARNING);
@@ -871,14 +868,14 @@ class Securimage {
 				}
 			}
 			else {
-				//gd font identifier
+				//gd 글꼴 식별자
 				$font = $this->gd_font_file;
 			}
 
 			imagestring($this->im, $font, $this->text_x_start, ($this->image_height / 2) - ($this->gd_font_size / 2), $this->code, $this->gdtextcolor);
 		}
 		else {
-			//ttf font
+			//ttf 글꼴
 			$font_size = $height2 * .35;
 			$bb = imagettfbbox($font_size, 0, $this->ttf_file, $this->code);
 			$tx = $bb[4] - $bb[0];
@@ -891,7 +888,7 @@ class Securimage {
 
 
 			if ($this->use_multi_text == false && $this->text_angle_minimum == 0 && $this->text_angle_maximum == 0) {
-				// no angled or multi-color characters
+				// 각이나 여러 색상의 문자가 없음
 				imagettftext($this->tmpimg, $font_size, 0, $x, $y, $this->gdtextcolor, $this->ttf_file, $this->code);
 			}
 			else {
@@ -905,14 +902,13 @@ class Securimage {
 						$font_color = $this->gdtextcolor;
 					}
 
-					$ch = $this->code{
-						$i};
+					$ch = $this->code{$i};
 
 					imagettftext($this->tmpimg, $font_size, $angle, $x, $y, $font_color, $this->ttf_file, $ch);
 
-					// estimate character widths to increment $x without creating spaces that are too large or too small
-					// these are best estimates to align text but may vary between fonts
-					// for optimal character widths, do not use multiple text colors or character angles and the complete string will be written by imagettftext
+					// 너무 크거나 너무 작은 공백을 만들지 않고 문자 폭을 추정하여 $x를 증가시킵니다.
+					// 이 값은 텍스트를 정렬하는데 가장 좋지만 글꼴마다 다를 수 있습니다.
+					// 최적의 문자 너비를 위해서는 여러 텍스트 색상이나 문자 각도를 사용하지 말고 전체 문자열은 imagettftext에 의해 작성됩니다.
 					if (strpos('abcdeghknopqsuvxyz', $ch) !== false) {
 						$min_x = $font_size - ($this->iscale * 6);
 						$max_x = $font_size - ($this->iscale * 6);
@@ -937,31 +933,31 @@ class Securimage {
 
 					$x += rand($min_x, $max_x);
 				}
-				//for loop
+				//for 루프
 			}
-			// angled or multi-color
+			// 각진 또는 멀티 컬러
 		}
-		//else ttf font
+		//else ttf 글꼴
 		//$this->im = $this->tmpimg;
 		//$this->output();
 	}
-	//function
+	//함수
 
     /**
-     * Warp text from temporary image onto final image.<br />
-     * Modified for securimage
+     * 텍스트를 임시 이미지에서 최종 이미지로 변형합니다.
+     * securimage에 맞게 수정됨
      *
-     * @access private
-     * @since 2.0
-     * @author Han-Kwang Nienhuys modified
-     * @copyright Han-Kwang Neinhuys
+     * @private 으로 접근
+     * @2.0 부터
+     * @저자 Han-Kwang Nienhuys 의해 수정됨
+     * @저작권 Han-Kwang Neinhuys
      *
 	*/
 	function distortedCopy()
 	{
-		$numpoles = 3; // distortion factor
+		$numpoles = 3; // 왜곡 계수
 
-		// make array of poles AKA attractor points
+		// 막대기의 배열을 일명 어트랙터 포인트로 만든다.
 		for ($i = 0; $i < $numpoles; ++$i) {
 			$px[$i]  = rand($this->image_width * 0.3, $this->image_width * 0.7);
 			$py[$i]  = rand($this->image_height * 0.3, $this->image_height * 0.7);
@@ -974,9 +970,9 @@ class Securimage {
 		$width2  = $this->iscale * $this->image_width;
 		$height2 = $this->iscale * $this->image_height;
 
-		imagepalettecopy($this->im, $this->tmpimg); // copy palette to final image so text colors come across
+		imagepalettecopy($this->im, $this->tmpimg); // 텍스트 색상이 나타나도록 팔레트를 최종 이미지로 복사한다.
 
-		// loop over $img pixels, take pixels from $tmpimg with distortion field
+		// $img 픽셀 이상의 루프, 왜곡 필드가있는 $tmpimg의 픽셀 가져 오기
 		for ($ix = 0; $ix < $this->image_width; ++$ix) {
 			for ($iy = 0; $iy < $this->image_height; ++$iy) {
 				$x = $ix;
@@ -1004,7 +1000,7 @@ class Securimage {
 				}
 
 				if ($c != $bgCol) {
-					// only copy pixels of letters to preserve any background image
+					// 배경 이미지를 보존하기 위해 문자의 픽셀만 복사한다.
 					imagesetpixel($this->im, $ix, $iy, $c);
 				}
 			}
@@ -1012,10 +1008,10 @@ class Securimage {
 	}
 
     /**
-     * Create a code and save to the session
+     * 코드를 생성하고 세션에 저장한다.
      *
-     * @access private
-     * @since 1.0.1
+     * @private 으로 접근
+     * @1.0.1 부터
      *
 	*/
 	function createCode()
@@ -1034,11 +1030,11 @@ class Securimage {
 	}
 
     /**
-     * Generate a code
+     * 하나의 코드를 생성한다
      *
-     * @access private
-     * @param int $len  The code length
-     * @return string
+     * @private 으로 접근
+     * @파라미터 int $len  코드 길이
+     * @문자열 반환
 	*/
 	function generateCode($len)
 	{
@@ -1051,11 +1047,11 @@ class Securimage {
 	}
 
     /**
-     * Reads a word list file to get a code
+     * 단어 목록 파일을 읽어 코드를 얻습니다.
      *
-     * @access private
-     * @since 1.0.2
-     * @return mixed  false on failure, a word on success
+     * @private 으로 접근
+     * @1.0.2 부터
+     * @실패시 거짓, 성공시 단어를 복합적으로 반환
 	*/
 	function readCodeFromFile()
 	{
@@ -1063,30 +1059,30 @@ class Securimage {
 		if (!$fp) return false;
 
 		$fsize = filesize($this->wordlist_file);
-		if ($fsize < 32) return false; // too small of a list to be effective
+		if ($fsize < 32) return false; // 너무 작아서 효과적이지는 않다.
 
 		if ($fsize < 128) {
-			$max = $fsize; // still pretty small but changes the range of seeking
+			$max = $fsize; // 여전히 작지만 찾기의 범위를 변경합니다.
 		}
 		else {
 			$max = 128;
 		}
 
 		fseek($fp, rand(0, $fsize - $max), SEEK_SET);
-		$data = fread($fp, 128); // read a random 128 bytes from file
+		$data = fread($fp, 128); // 파일에서 무작위로 128 바이트를 읽는다.
 		fclose($fp);
 		$data = preg_replace("/\r?\n/", "\n", $data);
 
 		$start = strpos($data, "\n", rand(0, 100)) + 1; // random start position
-		$end   = strpos($data, "\n", $start);           // find end of word
+		$end   = strpos($data, "\n", $start);           // 단어의 끝 찾기
 
-		return strtolower(substr($data, $start, $end - $start)); // return substring in 128 bytes
+		return strtolower(substr($data, $start, $end - $start)); // 128 바이트의 부분 문자열 반환
 	}
 
     /**
-     * Output image to the browser
+     * 이미지를 브라우저로 출력
      *
-     * @access private
+     * @private 으로 접근
      *
 	*/
 	function output()
@@ -1120,11 +1116,11 @@ class Securimage {
 	}
 
     /**
-     * Get WAV or MP3 file data of the spoken code.<br />
-     * This is appropriate for output to the browser as audio/x-wav or audio/mpeg
+     * 음성 코드의 WAV 또는 MP3 파일 데이터를 가져옵니다.
+     * 이것은 audio/x-wav 또는 audio/mpeg 으로 브라우저에 출력하는 데 적합합니다.
      *
-     * @since 1.0.1
-     * @return string  WAV or MP3 data
+     * @1.0.1 부터
+     * @WAV 또는 MP3 데이터 문자열을 반환
      *
 	*/
 	function getAudibleCode($format = 'wav')
@@ -1150,10 +1146,10 @@ class Securimage {
 	}
 
     /**
-     * Set the path to the audio directory.<br />
+     * 오디오 디렉토리 경로를 설정한다.
      *
-     * @since 1.0.4
-     * @return bool true if the directory exists and is readble, false if not
+     * @1.0.4 부터
+     * @bool 반환, 디렉토리가 존재해, 읽을 수있는 경우는 true, 그렇지 않은 경우는 false 반환
 	*/
 	function setAudioPath($audio_directory)
 	{
@@ -1167,9 +1163,9 @@ class Securimage {
 	}
 
     /**
-     * Save the code in the session
+     * 세션에 코드 저장
      *
-     * @access private
+     * @private 으로 접근
      *
 	*/
 	function saveData()
@@ -1181,14 +1177,14 @@ class Securimage {
 	}
 
     /**
-     * Validate the code to the user code
+     * 사용자 코드에 대해 유효성 검사를 합니다.
      *
-     * @access private
+     * @private 으로 접근
      *
 	*/
 	function validate()
 	{
-		// retrieve code from session, if no code exists check sqlite database if supported.
+		// 코드가 없는 경우 세션에서 코드를 검색합니다. 지원되는 경우 sqlite 데이터베이스를 확인한다.
 		$code = '';
 
 		if (isset($_SESSION['securimage_code_value']) && trim($_SESSION['securimage_code_value']) != '') {
@@ -1197,12 +1193,13 @@ class Securimage {
 			}
 		}
 		else if ($this->use_sqlite_db == true && function_exists('sqlite_open')) {
-			// no code in session - may mean user has cookies turned off
+			// 세션에 코드 없음 - 사용자가 쿠키를 사용 중지했다는 것을 의미할 수 있음
 			$this->openDatabase();
 			$code = $this->getCodeFromDatabase();
 		}
 		else {
-			/* session code invalid or non-existant and code not found in sqlite db or sqlite is not available */ }
+			/* 세션 코드가 유효하지 않거나 존재하지 않으며 sqlite db 또는 sqlite에서 코드를 찾을 수 없습니다. */
+		}
 
 		$code               = trim(strtolower($code));
 		$code_entered       = trim(strtolower($this->code_entered));
@@ -1219,10 +1216,10 @@ class Securimage {
 	}
 
     /**
-     * Get the captcha code
+     * captcha 코드를 얻는다
      *
-     * @since 1.0.1
-     * @return string
+     * @1.0.1 부터
+     * @문자열 반환
 	*/
 	function getCode()
 	{
@@ -1232,15 +1229,15 @@ class Securimage {
 		else {
 			if ($this->sqlite_handle == false) $this->openDatabase();
 
-			return $this->getCodeFromDatabase(); // attempt to get from database, returns empty string if sqlite is not available or disabled
+			return $this->getCodeFromDatabase(); // 데이터베이스에서 가져오기를 시도하고 sqlite를 사용할 수 없거나 비활성화 된 경우 빈 문자열을 반환합니다.
 		}
 	}
 
     /**
-     * Check if the user entered code was correct
+     * 사용자가 입력한 코드가 올바른지 확인한다.
      *
-     * @access private
-     * @return boolean
+     * @private 으로 접근
+     * @boolean 반환
 	*/
 	function checkCode()
 	{
@@ -1248,11 +1245,11 @@ class Securimage {
 	}
 
     /**
-     * Generate a wav file by concatenating individual files
+     * 개별 파일을 연결하여 wav 파일 생성
      *
-     * @since 1.0.1
-     * @access private
-     * @param array $letters  Array of letters to build a file from
+     * @1.0.1 부터
+     * @private 으로 접근
+     * @$letters 파라미터는 배열, 파일을 만들 문자들의 배열.
      * @return string  WAV file data
 	*/
 	function generateWAV($letters)
@@ -1268,7 +1265,7 @@ class Securimage {
 
 			$file = array();
 
-			$data = fread($fp, filesize($filename)); // read file in
+			$data = fread($fp, filesize($filename)); // 에서 파일을 읽다
 
 			$header = substr($data, 0, 36);
 			$body   = substr($data, 44);
@@ -1285,7 +1282,7 @@ class Securimage {
 			$file['data']            = $body;
 
 			if ( ($p = strpos($file['data'], 'LIST')) !== false) {
-				// If the LIST data is not at the end of the file, this will probably break your sound file
+				// LIST 데이터가 파일의 끝 부분에 없다면, 이것은 아마 당신의 사운드 파일을 깨뜨릴 것입니다
 				$info         = substr($file['data'], $p + 4, 8);
 				$data         = unpack('Vlength/Vjunk', $info);
 				$file['data'] = substr($file['data'], 0, $p);
@@ -1305,7 +1302,7 @@ class Securimage {
 		$out_data = '';
 		for($i = 0; $i < sizeof($files); ++$i) {
 			if ($i == 0) {
-				// output header
+				// 출력 헤더
 				$out_data .= pack('C4VC8', ord('R'), ord('I'), ord('F'), ord('F'), $data_len + 36, ord('W'), ord('A'), ord('V'), ord('E'), ord('f'), ord('m'), ord('t'), ord(' '));
 
 				$out_data .= pack('VvvVVvv',
@@ -1330,26 +1327,26 @@ class Securimage {
 	}
 
     /**
-     * Randomly modify the audio data to scramble sound and prevent binary recognition.<br />
-     * Take care not to "break" the audio file by leaving the header data intact.
+     * 무작위로 오디오 데이터를 수정하여 사운드를 스크램블하고 이진 인식을 방지합니다.
+     * 헤더 데이터를 그대로 남겨 두어 오디오 파일을 "손상" 시키지 않도록 주의합니다.
      *
-     * @since 2.0
-     * @access private
-     * @param $data Sound data in mp3 of wav format
+     * @2.0 부터
+     * @private 으로 접근
+     * @파라미터 $data는 mp3 형식의 사운드 데이터
 	*/
 	function scrambleAudioData(&$data, $format)
 	{
 		if ($format == 'wav') {
-			$start = strpos($data, 'data') + 4; // look for "data" indicator
-			if ($start === false) $start = 44;  // if not found assume 44 byte header
+			$start = strpos($data, 'data') + 4; // "데이터" 표시 위치를 찾습니다.
+			if ($start === false) $start = 44;  // 44 바이트 헤더를 가정하지 않을 경우
 		}
 		else {
 			// mp3
-			$start = 4; // 4 byte (32 bit) frame header
+			$start = 4; // 4 바이트 (32 비트) 프레임 헤더
 		}
 
-		$start  += rand(1, 64); // randomize starting offset
-		$datalen = strlen($data) - $start - 256; // leave last 256 bytes unchanged
+		$start  += rand(1, 64); // 랜덤한 시작 오프셋
+		$datalen = strlen($data) - $start - 256; // 마지막 256 바이트를 변경하지 않고 남겨 둡니다.
 
 		for ($i = $start; $i < $datalen; $i += 64) {
 			$ch = ord($data{$i});
@@ -1360,11 +1357,11 @@ class Securimage {
 	}
 
     /**
-     * Generate an mp3 file by concatenating individual files
-     * @since 1.0.4
-     * @access private
-     * @param array $letters  Array of letters to build a file from
-     * @return string  MP3 file data
+     * 개별 파일을 연결하여 mp3 파일 생성
+     * @1.0.4 부터
+     * @private 으로 접근
+     * @파라미터 $letters는 배열, 파일을 만들 문자 배열
+     * @MP3 파일 데이타 문자열 반환
 	*/
 	function generateMP3($letters)
 	{
@@ -1376,7 +1373,7 @@ class Securimage {
 			$filename = $this->audio_path . strtoupper($letter) . '.mp3';
 
 			$fp   = fopen($filename, 'rb');
-			$data = fread($fp, filesize($filename)); // read file in
+			$data = fread($fp, filesize($filename)); // 에서 파일을 읽는다
 
 			$this->scrambleAudioData($data, 'mp3');
 			$out_data .= $data;
@@ -1389,10 +1386,10 @@ class Securimage {
 	}
 
     /**
-     * Generate random number less than 1
-     * @since 2.0
-     * @access private
-     * @return float
+     * 1보다 작은 난수 생성
+     * @2.0 부터
+     * @private 으로 접근
+     * @실수 반환
 	*/
 	function frand()
 	{
@@ -1400,10 +1397,10 @@ class Securimage {
 	}
 
     /**
-     * Print signature text on image
+     * 이미지에 서명 텍스트 인쇄
      *
-     * @since 2.0
-     * @access private
+     * @2.0 부터
+     * @private 으로 접근
      *
 	*/
 	function addSignature()
@@ -1423,11 +1420,11 @@ class Securimage {
 	}
 
     /**
-     * Get hashed IP address of remote user
+     * 원격 사용자의 해쉬된 IP 주소 얻기
      *
-     * @access private
-     * @since 2.0.1
-     * @return string
+     * @private 으로 접근
+     * @2.0.1 부터
+     * @문자열 반환
 	*/
 	function getIPHash()
 	{
@@ -1435,11 +1432,11 @@ class Securimage {
 	}
 
     /**
-     * Open SQLite database
+     * SQLite 데이터베이스 열기
      *
-     * @access private
-     * @since 2.0.1
-     * @return bool true if database was opened successfully
+     * @private 으로 접근
+     * @2.0.1 부터
+     * @bool 반환, 데이타베이스가 정상적으로 오픈됐을 경우는 true
 	*/
 	function openDatabase()
 	{
@@ -1462,11 +1459,11 @@ class Securimage {
 	}
 
     /**
-     * Save captcha code to sqlite database
+     * CAPCHA 코드를 sqlite 데이터베이스에 저장
      *
-     * @access private
-     * @since 2.0.1
-     * @return bool true if code was saved, false if not
+     * @private 으로 접근
+     * @2.0.1 부터
+     * @bool 반환, 코드가 save된 경우는 true, 그렇지 않은 경우는 false
 	*/
 	function saveCodeToDatabase()
 	{
@@ -1477,7 +1474,7 @@ class Securimage {
 		if ($this->use_sqlite_db && $this->sqlite_handle !== false) {
 			$ip = $this->getIPHash();
 			$time = time();
-			$code = $_SESSION['securimage_code_value']; // hash code for security - if cookies are disabled the session still exists at this point
+			$code = $_SESSION['securimage_code_value']; // 보안 해시 코드 - 쿠키가 비활성화된 경우 세션은 이 시점에서 계속 존재합니다.
 			$success = sqlite_query($this->sqlite_handle, "INSERT OR REPLACE INTO codes(iphash, code, created) VALUES('$ip', '$code', $time)");
 		}
 
@@ -1485,11 +1482,11 @@ class Securimage {
 	}
 
     /**
-     * Get stored captcha code from sqlite database based on ip address hash
+     * IP 주소 해시를 기반으로 sqlite 데이터베이스에서 저장된 captcha 코드 가져 오기
      *
-     * @access private
-     * @since 2.0.1
-     * @return string captcha code
+     * @private 으로 접근
+     * @2.0.1 부터
+     * @captcha 코드 문자열 반환
 	*/
 	function getCodeFromDatabase()
 	{
@@ -1512,10 +1509,10 @@ class Securimage {
 	}
 
     /**
-     * Delete a code from the database by ip address hash
+     * IP 주소 해시로 데이터베이스에서 code 삭제
      *
-     * @access private
-     * @since 2.0.1
+     * @private 으로 접근
+     * @2.0.1 부터
 	*/
 	function clearCodeFromDatabase()
 	{
@@ -1527,10 +1524,10 @@ class Securimage {
 	}
 
     /**
-     * Purge codes over a day old from database
+     * 데이터베이스에서 하루 전의 코드 제거
      *
-     * @access private
-     * @since 2.0.1
+     * @private 으로 접근
+     * @2.0.1 부터
 	*/
 	function purgeOldCodesFromDatabase()
 	{
@@ -1543,12 +1540,12 @@ class Securimage {
 	}
 
     /**
-     * Check a code to see if it is expired based on creation time
+     * 생성 시간에 따라 코드가 만료되었는지 확인한다.
      *
-     * @access private
-     * @since 2.0.1
-     * @param $creation_time unix timestamp of code creation time
-     * @return bool true if code has expired, false if not
+     * @private 으로 접근
+     * @2.0.1 부터
+     * @파라미터 $creation_time 는 코드 생성 시간의 유닉스 타임 스탬프
+     * @bool 반환, 코드가 만료된 경우 true, 그렇지 않은 경우 false
 	*/
 	function isCodeExpired($creation_time)
 	{
@@ -1565,46 +1562,46 @@ class Securimage {
 	}
 
 }
-/* class Securimage */
+/* Securimage 클래스 */
 
 
 /**
- * Color object for Securimage CAPTCHA
+ * Securimage CAPTCHA의 색상 객체
  *
- * @since 2.0
+ * @2.0 부터
  * @package Securimage
- * @subpackage classes
+ * @subpackage 클래스들
  *
 */
 class Securimage_Color {
     /**
-     * Red component: 0-255
+     * 빨간색 구성 요소 : 0-255
      *
      * @var int
 	*/
 	var $r;
     /**
-     * Green component: 0-255
+     * 초록색 구성 요소 : 0-255
      *
      * @var int
 	*/
 	var $g;
     /**
-     * Blue component: 0-255
+     * 파란색 구성 요소 : 0-255
      *
      * @var int
 	*/
 	var $b;
 
     /**
-     * Create a new Securimage_Color object.<br />
-     * Specify the red, green, and blue components using their HTML hex code equivalent.<br />
-     * Example: The code for the HTML color #4A203C is:<br />
+     * 새 Securimage_Color 개체를 만듭니다.
+     * HTML 16진수 코드를 사용하여 빨강, 녹색 및 파랑 구성 요소를 지정합니다.
+     * 예 : HTML #4A203C의 코드는 다음과 같습니다.
      * $color = new Securimage_Color(0x4A, 0x20, 0x3C);
      *
-     * @param $red Red component 0-255
-     * @param $green Green component 0-255
-     * @param $blue Blue component 0-255
+     * @파라미터 $red는 빨간색 구성 요소 0-255
+     * @파라미터 $green는 초록색 구성 요소 0-255
+     * @파라미터 $blue는 파란색 구성 요소 0-255
 	*/
 	function Securimage_Color($red, $green = null, $blue = null)
 	{
