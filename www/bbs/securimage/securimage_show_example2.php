@@ -1,36 +1,36 @@
 <?php
 
 /**
- * Project:     Securimage: A PHP class for creating and managing form CAPTCHA images<br />
- * File:        securimage_show_example2.php<br />
+ * 프로젝트:    Securimage: Form CAPTCHA 이미지를 만들고 관리하기위한 PHP 클래스
+ * 파일:        securimage_show_example.php
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or any later version.<br /><br />
+ * 이 라이브러리는 무료 소프트웨어입니다. 당신은 그것을 재배포 할 수 있습니다.
+ * GNU 약소 일반 범용의 조건에 따라 수정하십시오.
+ * 자유 소프트웨어 재단이 발행 한 라이센스. 어느 한 쪽
+ * 라이센스 버전 2.1 또는 이후 버전.
  *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.<br /><br />
+ * 이 라이브러리는 유용 할 것이라는 희망으로 배포되었습니다.
+ * 하지만 어떠한 보증도하지 않습니다. 묵시적 보증없이
+ * 상품성 또는 특정 목적에의 적합성. GNU보기
+ * 더 자세한 내용은 Lesser General Public License를 참조하십시오.
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA<br /><br />
+ * GNU 약소 일반 범용의 사본을 받아야합니다.
+ * 이 라이브러리와 함께 라이센스; 그렇지 않다면 자유 소프트웨어에 글을 씁니다.
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- * Any modifications to the library should be indicated clearly in the source code
- * to inform users that the changes are not a part of the original software.<br /><br />
+ * 라이브러리에 대한 수정 사항은 소스 코드에 명확하게 표시되어야합니다.
+ * 변경 사항이 원래 소프트웨어의 일부가 아니라는 사실을 사용자에게 알립니다.
  *
- * If you found this script useful, please take a quick moment to rate it.<br />
- * http://www.hotscripts.com/rate/49400.html  Thanks.
+ * 이 스크립트가 유용하다고 판단되면 잠시 시간을내어 평가하십시오.
+ * http://www.hotscripts.com/rate/49400.html 감사합니다.
  *
  * @link http://www.phpcaptcha.org Securimage PHP CAPTCHA
- * @link http://www.phpcaptcha.org/latest.zip Download Latest Version
- * @link http://www.phpcaptcha.org/Securimage_Docs/ Online Documentation
- * @copyright 2009 Drew Phillips
- * @author Drew Phillips <drew@drew-phillips.com>
+ * @link http://www.phpcaptcha.org/latest.zip 최신 버전 다운로드
+ * @link http://www.phpcaptcha.org/Securimage_Docs/ 온라인 문서
+ * @저작권 2009 Drew Phillips
+ * @저자 Drew Phillips <drew@drew-phillips.com>
  * @version 2.0.1 BETA (December 6th, 2009)
- * @package Securimage
+ * @Securimage 패키지
  *
  */
 
@@ -38,18 +38,18 @@ include 'securimage.php';
 
 $img = new securimage();
 
-//Change some settings
+//일부 설정 변경
 $img->image_width = 280;
 $img->image_height = 100;
 $img->perturbation = 0.9;
 $img->code_length = rand(5,6);
 $img->image_bg_color = new Securimage_Color("#ffffff");
 $img->use_transparent_text = true;
-$img->text_transparency_percentage = 75; // 100 = completely transparent
+$img->text_transparency_percentage = 75; // 100 = 완전 투명
 $img->num_lines = 15;
 $img->image_signature = '';
 $img->text_color = new Securimage_Color("#000000");
 $img->line_color = new Securimage_Color("#cccccc");
 
-$img->show(''); // alternate use:  $img->show('/path/to/background_image.jpg');
+$img->show(''); // 대체 용법: $img->show('/path/to/background_image.jpg');
 
