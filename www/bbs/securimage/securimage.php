@@ -92,13 +92,13 @@ if (!defined('SI_IMAGE_JPEG'))
  * PNG 형식의 이미지 출력
 */
 if (!defined('SI_IMAGE_PNG'))
-	define('SI_IMAGE_PNG',  2);
+	define('SI_IMAGE_PNG', 2);
 /**
  * 이미지를 GIF 형식으로 출력합니다 (권장하지 않음).
  * GD >= 2.0.28 이어야합니다!
 */
 if (!defined('SI_IMAGE_GIF'))
-	define('SI_IMAGE_GIF',  3);
+	define('SI_IMAGE_GIF', 3);
 
 /**
  * Securimage CAPTCHA 클래스.
