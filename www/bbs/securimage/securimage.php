@@ -112,21 +112,21 @@ class Securimage {
     /**
      * securimage.php가 포함된 경로입니다.
      *
-     * @var string    securimage 설치 경로.
+     * @문자열 변수    securimage 설치 경로.
 	*/
 	var $basepath;
 
     /**
      * 원하는 CAPTCHA 이미지의 너비입니다.
      *
-     * @var int
+     * @숫자 변수
 	*/
 	var $image_width;
 
     /**
      * 원하는 CAPTCHA 이미지의 높이입니다.
      *
-     * @var int
+     * @숫자 변수
 	*/
 	var $image_height;
 
@@ -134,14 +134,14 @@ class Securimage {
      * 출력용의 이미지 형식.
      * 유효한 옵션: SI_IMAGE_PNG, SI_IMAGE_JPG, SI_IMAGE_GIF
      *
-     * @var int
+     * @숫자 변수
 	*/
 	var $image_type;
 
     /**
      * 생성할 code의 길이.
      *
-     * @var int
+     * @숫자 변수
 	*/
 	var $code_length;
 
@@ -150,21 +150,21 @@ class Securimage {
      * 문자는 대문자로 변환됩니다.
      * 글꼴이 문자를 지원해야하거나 문제가있는 대체 문자가 있을 수 있습니다.
      *
-     * @var string
+     * @문자열 변수
 	*/
 	var $charset;
 
     /**
      * 이 단어 목록을 사용하여 code를 만듭니다.
      *
-     * @var string  CAPCHA 코드를 만드는 데 사용할 단어 목록의 경로
+     * @문자열 변수  CAPCHA 코드를 만드는 데 사용할 단어 목록의 경로
 	*/
 	var $wordlist_file;
 
     /**
      * 단어 목록 사용 안함
      *
-     * @var bool 단어 목록 파일을 사용하려면 true로, 임의 코드를 사용하려면 false 로 설정.
+     * @bool 변수, 단어 목록 파일을 사용하려면 true로, 임의 코드를 사용하려면 false 로 설정.
 	*/
 	var $use_wordlist = false;
 
@@ -172,9 +172,9 @@ class Securimage {
      * 참고 : 많은 왜곡 기능을 사용할 수 없으므로 GD 글꼴을 사용하지 않는 것이 좋습니다.
      * 사용할 GD 글꼴.
      * 내부 gd 글꼴은 번호로 로드할 수 있습니다.
-     * 또는 파일 경로를 지정하고 글꼴을 파일에서로드 할 수 있습니다.
+     * 또는 파일 경로를 지정하고 글꼴을 파일에서 로드 할 수 있습니다.
      *
-     * @var mixed
+     * @복합 변수
 	*/
 	var $gd_font_file;
 
@@ -183,14 +183,14 @@ class Securimage {
      * 글꼴 크기는 GD 글꼴 자체에 의해 결정되므로 글꼴 크기를 제어하지 않습니다.
      * 이것은,이 클래스가 사용하는 위치 결정의 계산을 돕기 위해서 사용됩니다.
      *
-     * @var int
+     * @숫자 변수
 	*/
 	var $gd_font_size;
 
     /**
      * TTF 대신 gd 글꼴 사용
      *
-     * @var bool gd 폰트의 경우 true, TTF의 경우 false
+     * @bool 변수, gd 폰트의 경우 true, TTF의 경우 false
 	*/
 	var $use_gd_font;
 
@@ -199,7 +199,7 @@ class Securimage {
     /**
      * 로드할 TTF 글꼴 파일의 경로입니다.
      *
-     * @var string
+     * @문자열 변수
 	*/
 	var $ttf_file;
 
@@ -207,7 +207,7 @@ class Securimage {
      * 얼마만큼의 이미지 왜곡을 할 것인지, 높은 수치 = 더 많은 왜곡.
      * 왜곡은 TTF 글꼴을 사용할 때만 사용할 수 있습니다.
      *
-     * @var float
+     * @실수형 변수
 	*/
 	var $perturbation;
 
@@ -217,7 +217,7 @@ class Securimage {
      * 예를 들어, 90의 값은 맨 아래에서 맨 위로 읽는 텍스트가 됩니다.
      * 최대 각도 거리와 함께 이 값은 섭동으로 매우 높을 필요는 없습니다.
      *
-     * @var int
+     * @숫자 변수
 	*/
 	var $text_angle_minimum;
 
@@ -226,7 +226,7 @@ class Securimage {
      * 높은 값은 반 시계 방향 회전을 나타냅니다.
      * 예를 들어, 90의 값은 맨 아래에서 맨 위로 읽는 텍스트가 됩니다.
      *
-     * @var int
+     * @숫자 변수
 	*/
 	var $text_angle_maximum;
 
@@ -234,7 +234,7 @@ class Securimage {
      * 문자 그리기가 시작될 이미지의 X 위치.
      * 이 값은 이미지의 왼쪽부터 픽셀 단위입니다.
      *
-     * @var int
+     * @숫자 변수
      * @2.0 사용 안함
 	*/
 	var $text_x_start;
@@ -242,7 +242,7 @@ class Securimage {
     /**
      * Securimage_Color로 이미지의 배경색.
      *
-     * @var Securimage_Color
+     * @Securimage_Color 변수
 	*/
 	var $image_bg_color;
 
@@ -253,7 +253,7 @@ class Securimage {
      * 즉 var $background_directory = $_SERVER['DOCUMENT_ROOT'].'/securimage/backgrounds'; 입니다.
      * show 함수에 배경 이미지를 전달하지 않도록 한다. 그렇지 않으면 이 지시문이 무시됩니다.
      *
-     * @var string
+     * @문자열 변수
 	*/
 	var $background_directory = null; //'./backgrounds';
 
@@ -263,7 +263,7 @@ class Securimage {
      * 배경색이나 이미지와 잘 대조되는지 확인한다.
      *
      * @Securimage::$use_multi_text 를 봅니다
-     * @var Securimage_Color
+     * @Securimage_Color 변수
 	*/
 	var $text_color;
 
@@ -271,14 +271,14 @@ class Securimage {
      * 각 문자에 여러 색상을 사용하려면 true로 설정하십시오.
      *
      * @Securimage::$multi_text_color 를 봅니다
-     * @var boolean
+     * @bool 변수
 	*/
 	var $use_multi_text;
 
     /**
      * 각 문자에 대해 임의로 선택되는 Securimage_Colors의 배열입니다.
      *
-     * @var array
+     * @배열 변수
 	*/
 	var $multi_text_color;
 
@@ -286,7 +286,7 @@ class Securimage {
      * 문자를 투명하게 보이게 하려면 true로 설정하십시오.
      *
      * @Securimage::$text_transparency_percentage 를 봅니다
-     * @var boolean
+     * @bool 변수
 	*/
 	var $use_transparent_text;
 
@@ -295,7 +295,7 @@ class Securimage {
      * 값 0은 완전히 불투명, 100은 완전히 투명 (보이지 않음)
      *
      * @Securimage::$use_transparent_text 를 봅니다
-     * @var int
+     * @숫자 변수
 	*/
 	var $text_transparency_percentage;
 
@@ -306,14 +306,14 @@ class Securimage {
     *
     * @Securimage::$line_color 를 봅니다
     * @Securimage::$draw_lines_over_text 를 봅니다
-    * @var boolean
+    * @bool 변수
 	*/
 	var $num_lines;
 
     /**
      * 텍스트 위에 그린 선의 색상
      *
-     * @var string
+     * @문자열 변수
 	*/
 	var $line_color;
 
@@ -321,7 +321,7 @@ class Securimage {
      * 텍스트 위에 선을 그립니다.
      * 이미지에 텍스트를 넣기 전에 라인이 그려지는 경우 false.
      *
-     * @var boolean
+     * @bool 변수
 	*/
 	var $draw_lines_over_text;
 
@@ -329,7 +329,7 @@ class Securimage {
      * 보안 문자 이미지의 하단 모서리에 쓸 텍스트
      *
      * @2.0 부터
-     * @var string 서명 텍스트
+     * @문자열 변수 서명 텍스트
 	*/
 	var $image_signature;
 
@@ -346,14 +346,14 @@ class Securimage {
      * 이름 파일 [A-Z0-9].wav
      *
      * @1.0.1 부터
-     * @var string
+     * @문자열 변수
 	*/
 	var $audio_path;
 
     /**
      * 생성 할 오디오 파일 유형 (mp3 또는 wav)
      *
-     * @var string
+     * @문자열 변수
 	*/
 	var $audio_format;
 
@@ -362,7 +362,7 @@ class Securimage {
      *
      * @http://php.net/session_name 를 봅니다
      * @2.0 부터
-     * @var string
+     * @문자열 변수
 	*/
 	var $session_name = '';
 
@@ -371,7 +371,7 @@ class Securimage {
      * 이 숫자보다 오래된 코드는 올바르게 입력해도 유효하지 않은 것으로 간주됩니다.
      * 숫자가 아닌 값 또는 1보다 작은 값은 이 기능을 사용하지 않습니다.
      *
-     * @var int
+     * @숫자 변수
 	*/
 	var $expiry_time;
 
@@ -382,7 +382,7 @@ class Securimage {
      * 이러한 요구 사항을 충족시키지 못하면 양식이 완전히 보호되지 않을 수 있습니다.
      * 데이터베이스 파일 이름을 모호하게 만들수도 있지만 권장하지는 않습니다.
      *
-     * @var string
+     * @문자열 변수
 	*/
 	var $sqlite_database;
 
@@ -400,7 +400,7 @@ class Securimage {
      * gd 이미지 리소스.
      *
      * @private 으로 접근
-     * @var resource
+     * @리소스 변수
 	*/
 	var $im;
 
@@ -408,7 +408,7 @@ class Securimage {
      * 렌더링을 위한 임시 이미지
      *
      * @private 으로 접근
-     * @var resource
+     * @리소스 변수
 	*/
 	var $tmpimg;
 
@@ -417,7 +417,7 @@ class Securimage {
      *
      * @private 으로 접근
      * @2.0 부터
-     * @var int
+     * @숫자 변수
 	*/
 	var $iscale; // 안티 앨리어스 @hkcaptcha의 내부 배율 인수
 
@@ -425,7 +425,7 @@ class Securimage {
      * 배경 이미지 리소스
      *
      * @2.0 부터
-     * @var resource
+     * @리소스 변수
 	*/
 	var $bgimg;
 
@@ -433,7 +433,7 @@ class Securimage {
      * 스크립트에 의해 생성된 코드
      *
      * @private 으로 접근
-     * @var string
+     * @문자열 변수
 	*/
 	var $code;
 
@@ -441,7 +441,7 @@ class Securimage {
      * 사용자가 입력한 코드
      *
      * @private 으로 접근
-     * @var string
+     * @문자열 변수
 	*/
 	var $code_entered;
 
@@ -449,7 +449,7 @@ class Securimage {
      * 올바른 코드 입력 여부
      *
      * @private 으로 접근
-     * @var boolean
+     * @bool 변수
 	*/
 	var $correct_code;
 
@@ -457,7 +457,7 @@ class Securimage {
      * SQLite 데이터베이스 핸들
      *
      * @private 으로 접근
-     * @var resource
+     * @리소스 변수
 	*/
 	var $sqlite_handle;
 
@@ -465,7 +465,7 @@ class Securimage {
      * 이미지 선 색상을 위한 색상 리소스
      *
      * @private 으로 접근
-     * @var int
+     * @숫자 변수
 	*/
 	var $gdlinecolor;
 
@@ -473,7 +473,7 @@ class Securimage {
      * 멀티 컬러 코드 용 색상 배열
      *
      * @private 으로 접근
-     * @var array
+     * @배열 변수
 	*/
 	var $gdmulticolor;
 
@@ -481,7 +481,7 @@ class Securimage {
      * 이미지 글꼴 색상을 위한 색상 리소스
      *
      * @private 으로 접근
-     * @var int
+     * @숫자 변수
 	*/
 	var $gdtextcolor;
 
@@ -489,7 +489,7 @@ class Securimage {
      * 이미지 서명 컬러의 색상 리소스
      *
      * @private 으로 접근
-     * @var int
+     * @숫자 변수
 	*/
 	var $gdsignaturecolor;
 
@@ -497,7 +497,7 @@ class Securimage {
      * 이미지 배경색을 위한 색상 리소스
      *
      * @private 으로 접근
-     * @var int
+     * @숫자 변수
 	*/
 	var $gdbgcolor;
 
@@ -611,7 +611,7 @@ class Securimage {
      *   }
      * </code>
      * @파라미터 $code는 문자열, 사용자가 입력 한 코드
-     * @boolean 반환, 코드가 정확하면 true, 그렇지 않으면 false
+     * @bool 반환, 코드가 정확하면 true, 그렇지 않으면 false
 	*/
 	function check($code)
 	{
@@ -1237,7 +1237,7 @@ class Securimage {
      * 사용자가 입력한 코드가 올바른지 확인한다.
      *
      * @private 으로 접근
-     * @boolean 반환
+     * @bool 반환
 	*/
 	function checkCode()
 	{
@@ -1250,7 +1250,7 @@ class Securimage {
      * @1.0.1 부터
      * @private 으로 접근
      * @$letters 파라미터는 배열, 파일을 만들 문자들의 배열.
-     * @return string  WAV file data
+     * @WAV 파일 데이타 문자열 반환, 
 	*/
 	function generateWAV($letters)
 	{
@@ -1569,7 +1569,7 @@ class Securimage {
  * Securimage CAPTCHA의 색상 객체
  *
  * @2.0 부터
- * @package Securimage
+ * @Securimage 패키지
  * @subpackage 클래스들
  *
 */
@@ -1577,19 +1577,19 @@ class Securimage_Color {
     /**
      * 빨간색 구성 요소 : 0-255
      *
-     * @var int
+     * @숫자 변수
 	*/
 	var $r;
     /**
      * 초록색 구성 요소 : 0-255
      *
-     * @var int
+     * @숫자 변수
 	*/
 	var $g;
     /**
      * 파란색 구성 요소 : 0-255
      *
-     * @var int
+     * @숫자 변수
 	*/
 	var $b;
 
