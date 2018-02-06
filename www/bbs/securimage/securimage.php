@@ -1,5 +1,4 @@
 <?php
-
 /**
  * 프로젝트:    Securimage: 양식 CAPTCHA 이미지를 만들고 관리하기위한 PHP 클래스
  * 파일:        securimage.php
@@ -80,7 +79,6 @@
  - 선 두께 설정 기능 추가
  - 문자 위에 원호 선 그리기 옵션 추가
  - 출력을 위해 이미지 타입을 선택할 수있는 기능 추가
-
 */
 
 /**
@@ -255,7 +253,8 @@ class Securimage {
      *
      * @문자열 변수
 	*/
-	var $background_directory = null; //'./backgrounds';
+	//var $background_directory = null;
+	var $background_directory = './backgrounds';
 
     /**
      * 문자를 Securimage_Color로 그리는 데 사용할 텍스트 색상입니다.
@@ -557,8 +556,8 @@ class Securimage {
 		new Securimage_Color(0x0, 0x60, 0xCC));
 		$this->use_multi_text   = false;
 
-		$this->use_transparent_text         = false;
-		$this->text_transparency_percentage = 30;
+		$this->use_transparent_text         = true;
+		$this->text_transparency_percentage = rand(0,8)*10;
 
 		$this->num_lines            = 10;
 		$this->line_color           = new Securimage_Color(0x3d, 0x3d, 0x3d);
@@ -691,7 +690,7 @@ class Securimage {
 
 		if ($this->draw_lines_over_text && $this->num_lines > 0) $this->drawLines();
 
-		if (trim($this->image_signature) != '')    $this->addSignature();
+		if (trim($this->image_signature) != '') $this->addSignature();
 
 		$this->output();
 
