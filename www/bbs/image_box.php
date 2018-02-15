@@ -45,8 +45,8 @@ while($entry = $d->read()) {
 	}
 }
 
-@array_multisort ($image_list_time, SORT_DESC, SORT_NUMERIC,
-				 $image_list, SORT_STRING, SORT_DESC);
+if($mode=="" || $mode=="ds") @array_multisort($image_list_time, SORT_DESC, SORT_NUMERIC, $image_list, SORT_STRING, SORT_DESC);
+else @array_multisort($image_list, SORT_STRING, SORT_ASC);
 
 $dirSize = 0;
 for($i=0;$i<count($image_list);$i++) $dirSize += filesize($path."/".$image_list[$i]);
@@ -105,7 +105,7 @@ if($exec=="upload") {
 
 	}
 
-	movepage("$PHP_SELF?id=$id&image_page=$image_page");
+	movepage("$PHP_SELF?id=$id&image_page=$image_page&mode=$mode");
 	exit();
 }
 
@@ -129,7 +129,7 @@ if($exec=="delete"&&mb_strlen($no)&&$id) {
 		}
 	}
 
-	movepage("$PHP_SELF?id=$id&image_page=$image_page");
+	movepage("$PHP_SELF?id=$id&image_page=$image_page&mode=$mode");
 	exit();
 }
 
@@ -203,7 +203,7 @@ function alignset(str) {
 
 <form method=post action="<?=$PHP_SELF?>" ENCTYPE="multipart/form-data" name=imageList>
 <input type=hidden name=exec value="upload">
-<input type=hidden name=page value="<?=$image_page?>">
+<input type=hidden name=image_page value="<?=$image_page?>">
 <input type=hidden name=id value="<?=$id?>">
 <input type=hidden name=i_align value="">
 <img src=images/t.gif border=0 height=10><Br>
@@ -367,7 +367,7 @@ for($i=$startNum;$i<$endNum;$i++) {
 			<td bgcolor=eeeeee height=20 align=center>
 				<img src=images/t.gif border=0 height=2><br>
 				<a href="#" onclick="javascript: window.open('img_view.php?img=<?=str_replace("%2F", "/", urlencode($src_img))?>&width='+<?=$size[0]+10?>+'&height='+<?=$size[1]+55?>,'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')"><font color=555555 style=font-size:7pt;font-family:verdana>[<b>view</b>]</font></a>
-				<a href=<?=$PHP_SELF?>?id=<?=$id?>&exec=delete&no=<?=$i?>&image_page=<?=$image_page?> onclick="return confirm('삭제하시겠습니까?')"><font color=555555 style=font-size:7pt;font-family:verdana>[<b>del</b>]</font></a>
+				<a href=<?=$PHP_SELF?>?id=<?=$id?>&exec=delete&no=<?=$i?>&image_page=<?=$image_page?>&mode=<?=$mode?> onclick="return confirm('삭제하시겠습니까?')"><font color=555555 style=font-size:7pt;font-family:verdana>[<b>del</b>]</font></a>
 				<img src=images/t.gif border=0 height=6><br>
 			</td>
 		</tr>
@@ -392,6 +392,8 @@ if($_x < $h_num) {
 ?>
 
 </table>
+<input type=radio name=mode value="ds" <? if($mode=="" || $mode=="ds") echo "checked"; ?> onclick="form.submit()">날짜역순
+<input type=radio name=mode value="ns" <? if($mode=="ns") echo "checked"; ?> onclick="form.submit()">이름순
 <br><br>
 <table border=0 width=98% cellspacing=1 cellpadding=2>
 <tr>
@@ -414,7 +416,7 @@ if($_x < $h_num) {
 </tr>
 <tr>
 	<td align=center height=40>
-		<a href=<?=$PHP_SELF?>?id=<?=$id?>&image_page=1>[First]</a>
+		<a href=<?=$PHP_SELF?>?id=<?=$id?>&image_page=1&mode=<?=$mode?>>[First]</a>
 <?
 $startPageNum = $image_page - 5;
 if($startPageNum<0) $startPageNum=1;
@@ -424,11 +426,11 @@ for($i=$startPageNum;$i<=$endPageNum;$i++) {
 	if($i==$image_page) echo "
 	&nbsp;<b>$i</b>&nbsp;";
 	else echo "
-	<a href=$PHP_SELF?id=$id&image_page=$i>[$i]</a>";
+	<a href=$PHP_SELF?id=$id&image_page=$i&mode=$mode>[$i]</a>";
 }
 ?>
 
-		<a href=<?=$PHP_SELF?>?id=<?=$id?>&image_page=<?=$total_page?>>[Last]</a>
+		<a href=<?=$PHP_SELF?>?id=<?=$id?>&image_page=<?=$total_page?>&mode=<?=$mode?>>[Last]</a>
 	</td>
 </tr>
 </table>
