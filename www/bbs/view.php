@@ -350,9 +350,9 @@ if($setup[use_comment]) {
 		}
 
 		// html 이미지 리사이즈
-		$imagePattern = "#<img(.+?)src=([^>]*?)>#i";
+		$imagePattern = "#<img[^>]*src=([\"']?[^>\"' ]+[\"']?)[^>]*>#i";
 		$imagePattern2 = "#<div align=left><img name=zb_target_resize src=\"skin\/f2plus_gallery_3_0\/images\/emoticon\/([^>]*?)><\/div>#i";
-		$c_data[memo]=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize\\1src=\\2></div>",$c_data[memo]);
+		$c_data[memo]=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize src=\\1></div>",$c_data[memo]);
 		$c_data[memo]=preg_replace($imagePattern2,"<img src=\"skin/f2plus_gallery_3_0/images/emoticon/\\1>",$c_data[memo]);
 
 		// 이미지 박스 해석 및 리사이징, 확대보기를 위해서 정규표현식 사용
@@ -378,7 +378,7 @@ if($setup[use_comment]) {
 			}
 
 			$imageBoxPattern=array("/\[img\:(.+?)\.(jpg|jpeg|png)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i","/\[img\:(.+?)\.(gif|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i");
-			$imageBoxReplace=array("<img src='data/$id/thumbnail/$c_data[ismember]/vXL_\\1.\\2.jpg' name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$c_data[ismember]/".urldecode('\\1.\\2')."&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' vspace='\\6' hspace='\\7' border='\\8'>","<img src='icon/member_image_box/$c_data[ismember]/\\1.\\2' name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$c_data[ismember]/".urldecode('\\1.\\2')."&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>");
+			$imageBoxReplace=array("<img src='data/$id/thumbnail/$c_data[ismember]/vXL_\\1.\\2.jpg' id=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$c_data[ismember]/".urldecode('\\1.\\2')."&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' vspace='\\6' hspace='\\7' border='\\8'>","<img src='icon/member_image_box/$c_data[ismember]/\\1.\\2' id=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$c_data[ismember]/".urldecode('\\1.\\2')."&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>");
 			$imageBoxPattern2="/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/ie";
 			$c_data[memo]=preg_replace($imageBoxPattern2,"'[img:'.str_replace('%2F', '/', urlencode('\\1.\\2')).','",$c_data[memo]);
 			$c_data[memo]=preg_replace($imageBoxPattern,$imageBoxReplace,$c_data[memo]);
@@ -481,7 +481,7 @@ if($setup[use_comment]) {
 			$img_info3=getimagesize($c_data[file_name1]); //폭과 높이 구하기
 			$img_info3[0]=$img_info3[0]+10;
 			$img_info3[1]=$img_info3[1]+55;
-			$c_upload_image1="<img src=$c_file_name1_ border=0 name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$c_file_name1_&width=$img_info3[0]&height=$img_info3[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
+			$c_upload_image1="<img src=$c_file_name1_ border=0 id=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$c_file_name1_&width=$img_info3[0]&height=$img_info3[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
 		}
 		elseif(preg_match("#\.(swf|asf|asx|wma|wmv|wav|mid|avi|mpeg|mpg)$#i",$c_file_name1)) $c_upload_image1="<embed width=640 height=480 type=application/x-mplayer2 pluginspage=http://www.microsoft.com/windows/mediaplayer/download/default.asp src='$c_file_name1_' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true'><br>";
 		elseif(preg_match("#\.(mp3|mp4|ogg|oga|mov|flv|m4v|f4v|webm|aac|m4a|f4a)$#i",$c_file_name1)) $c_upload_image1="<script src='./jwplayer/jwplayer.js'></script><div id='jwplayer2'>Loading the player ...</div><script>jwplayer('jwplayer2').setup({flashplayer: './jwplayer/player.swf',	file: '$c_file_name1_', volume: 40,	width: 640,	height: 480, modes: [{type: 'flash', src: './jwplayer/player.swf'}, {type: 'html5', config: {'file': '$c_file_name1_', 'provider': 'video'}}]});</script>";
@@ -490,7 +490,7 @@ if($setup[use_comment]) {
 			$img_info4=getimagesize($c_data[file_name2]); //폭과 높이 구하기
 			$img_info4[0]=$img_info4[0]+10;
 			$img_info4[1]=$img_info4[1]+55;
-			$c_upload_image2="<img src=$c_file_name2_ border=0 name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$c_file_name2_&width=$img_info4[0]&height=$img_info4[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
+			$c_upload_image2="<img src=$c_file_name2_ border=0 id=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$c_file_name2_&width=$img_info4[0]&height=$img_info4[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
 		}
 		elseif(preg_match("#\.(swf|asf|asx|wma|wmv|wav|mid|avi|mpeg|mpg)$#i",$c_file_name2)) $c_upload_image2="<embed width=640 height=480 type=application/x-mplayer2 pluginspage=http://www.microsoft.com/windows/mediaplayer/download/default.asp src='$c_file_name2_' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true'><br>";
 		elseif(preg_match("#\.(mp3|mp4|ogg|oga|mov|flv|m4v|f4v|webm|aac|m4a|f4a)$#i",$c_file_name2)) $c_upload_image2="<script src='./jwplayer/jwplayer.js'></script><div id='jwplayer3'>Loading the player ...</div><script>jwplayer('jwplayer3').setup({flashplayer: './jwplayer/player.swf',	file: '$c_file_name2_', volume: 40,	width: 640,	height: 480, modes: [{type: 'flash', src: './jwplayer/player.swf'}, {type: 'html5', config: {'file': '$c_file_name2_', 'provider': 'video'}}]});</script>";

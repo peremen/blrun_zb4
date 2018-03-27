@@ -1,6 +1,7 @@
 BODY,TD,DIV,form,center,pre,blockquote {font-size:10pt;font-family:굴림;color:#000000}
 p {margin-top:0px; margin-bottom:0px;}
 IMG {border:0px;}
+#zb_target_resize {max-width:100%;}
 
 select,option {font-size:9pt;font-family:tahoma;color:#13485D;background-color:#B4D2DE}
 

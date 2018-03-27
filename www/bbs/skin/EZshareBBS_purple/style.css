@@ -2,6 +2,7 @@ BODY,TD,input,DIV,form,TEXTAREA,center,option,pre,blockquote {font-size:10pt;col
 p {margin-top:0px; margin-bottom:0px;}
 
 IMG {border:0px;}
+#zb_target_resize {max-width:100%;}
 TD {line-height:140%}
 
 SELECT {font-size:10pt;color:#000000;}
