@@ -93,9 +93,9 @@ function list_check(&$data,$view_check=0) {
 		if($homepage) $homepage="<a href='$homepage' target=_blank>$homepage</a>";
 
 		// html 이미지 리사이즈
-		$imagePattern = "#<img(.+?)src=([^>]*?)>#i";
+		$imagePattern = "#<img[^>]*src=([\"']?[^>\"' ]+[\"']?)[^>]*>#i";
 		$imagePattern2 = "#<div align=left><img name=zb_target_resize src=\"skin\/f2plus_gallery_3_0\/images\/emoticon\/([^>]*?)><\/div>#i";
-		$data[memo]=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize\\1src=\\2></div>",$data[memo]);
+		$data[memo]=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize src=\\1></div>",$data[memo]);
 		$data[memo]=preg_replace($imagePattern2,"<img src=\"skin/f2plus_gallery_3_0/images/emoticon/\\1>",$data[memo]);
 
 		// 이미지 박스 해석 및 리사이징, 확대보기를 위해서 정규표현식 사용
@@ -121,7 +121,7 @@ function list_check(&$data,$view_check=0) {
 			}
 
 			$imageBoxPattern=array("/\[img\:(.+?)\.(jpg|jpeg|png)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i","/\[img\:(.+?)\.(gif|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i");
-			$imageBoxReplace=array("<img src='data/$id/thumbnail/$data[ismember]/vXL_\\1.\\2.jpg' name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$data[ismember]/".urldecode('\\1.\\2')."&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' vspace='\\6' hspace='\\7' border='\\8'>","<img src='icon/member_image_box/$data[ismember]/\\1.\\2' name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$data[ismember]/".urldecode('\\1.\\2')."&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>");
+			$imageBoxReplace=array("<img src='data/$id/thumbnail/$data[ismember]/vXL_\\1.\\2.jpg' id=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$data[ismember]/".urldecode('\\1.\\2')."&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' vspace='\\6' hspace='\\7' border='\\8'>","<img src='icon/member_image_box/$data[ismember]/\\1.\\2' id=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$data[ismember]/".urldecode('\\1.\\2')."&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>");
 			$imageBoxPattern2="/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/ie";
 			$data[memo]=preg_replace($imageBoxPattern2,"'[img:'.str_replace('%2F', '/', urlencode('\\1.\\2')).','",$data[memo]);
 			$data[memo]=preg_replace($imageBoxPattern,$imageBoxReplace,$data[memo]);
@@ -206,7 +206,7 @@ function list_check(&$data,$view_check=0) {
 			$img_info1=getimagesize($data[file_name1]); //폭과 높이 구하기
 			$img_info1[0]=$img_info1[0]+10;
 			$img_info1[1]=$img_info1[1]+55;
-			$upload_image1="<img src=$file_name1_ border=0 name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$file_name1_&width=$img_info1[0]&height=$img_info1[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
+			$upload_image1="<img src=$file_name1_ border=0 id=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$file_name1_&width=$img_info1[0]&height=$img_info1[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
 		}
 		elseif(preg_match("#\.(swf|asf|asx|wma|wmv|wav|mid|avi|mpeg|mpg)$#i",$file_name1)) $upload_image1="<embed width=640 height=480 type=application/x-mplayer2 pluginspage=http://www.microsoft.com/windows/mediaplayer/download/default.asp src='$file_name1_' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true'><br>";
 		elseif(preg_match("#\.(mp3|mp4|ogg|oga|mov|flv|m4v|f4v|webm|aac|m4a|f4a)$#i",$file_name1)) $upload_image1="<script src='./jwplayer/jwplayer.js'></script><div id='jwplayer0'>Loading the player ...</div><script>jwplayer('jwplayer0').setup({flashplayer: './jwplayer/player.swf',	file: '$file_name1_', volume: 40,	width: 640,	height: 480, modes: [{type: 'flash', src: './jwplayer/player.swf'}, {type: 'html5', config: {'file': '$file_name1_', 'provider': 'video'}}]});</script>";
@@ -215,7 +215,7 @@ function list_check(&$data,$view_check=0) {
 			$img_info2=getimagesize($data[file_name2]); //폭과 높이 구하기
 			$img_info2[0]=$img_info2[0]+10;
 			$img_info2[1]=$img_info2[1]+55;
-			$upload_image2="<img src=$file_name2_ border=0 name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$file_name2_&width=$img_info2[0]&height=$img_info2[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
+			$upload_image2="<img src=$file_name2_ border=0 id=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=$file_name2_&width=$img_info2[0]&height=$img_info2[1]','imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\"><br>";
 		}
 		elseif(preg_match("#\.(swf|asf|asx|wma|wmv|wav|mid|avi|mpeg|mpg)$#i",$file_name2)) $upload_image2="<embed width=640 height=480 type=application/x-mplayer2 pluginspage=http://www.microsoft.com/windows/mediaplayer/download/default.asp src='$file_name2_' showtracker='true' showpositioncontrols='true' EnableContextMenu='false' loop='false' autostart='false' volume='-900' showcontrols='true' showstatusbar='true'><br>";
 		elseif(preg_match("#\.(mp3|mp4|ogg|oga|mov|flv|m4v|f4v|webm|aac|m4a|f4a)$#i",$file_name2)) $upload_image2="<script src='./jwplayer/jwplayer.js'></script><div id='jwplayer1'>Loading the player ...</div><script>jwplayer('jwplayer1').setup({flashplayer: './jwplayer/player.swf',	file: '$file_name2_', volume: 40,	width: 640,	height: 480, modes: [{type: 'flash', src: './jwplayer/player.swf'}, {type: 'html5', config: {'file': '$file_name2_', 'provider': 'video'}}]});</script>";

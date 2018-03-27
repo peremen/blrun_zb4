@@ -636,8 +636,8 @@ function error($message, $url="") {
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
 <script>
-	alert("<?=$message?>");
-	window.close();
+alert("<?=$message?>");
+window.close();
 </script>
 <?
 	} else {

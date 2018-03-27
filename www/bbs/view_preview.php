@@ -138,9 +138,9 @@ if($use_html&&$member[level]>8) {
 }
 
 // html 이미지 리사이즈
-$imagePattern = "#<img(.+?)src=([^>]*?)>#i";
+$imagePattern = "#<img[^>]*src=([\"']?[^>\"' ]+[\"']?)[^>]*>#i";
 $imagePattern2 = "#<div align=left><img name=zb_target_resize src=\"skin\/f2plus_gallery_3_0\/images\/emoticon\/([^>]*?)><\/div>#i";
-$memo=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize\\1src=\\2></div>",$memo);
+$memo=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize src=\\1></div>",$memo);
 $memo=preg_replace($imagePattern2,"<img src=\"skin/f2plus_gallery_3_0/images/emoticon/\\1>",$memo);
 
 // 이미지 박스 해석 및 리사이징, 확대보기를 위해서 정규표현식 사용
@@ -166,7 +166,7 @@ if($ismember) {
 	}
 
 	$imageBoxPattern=array("/\[img\:(.+?)\.(jpg|jpeg|png)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i","/\[img\:(.+?)\.(gif|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i");
-	$imageBoxReplace=array("<img src='data/$id/thumbnail/$ismember/vXL_\\1.\\2.jpg' name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$ismember/\\1.\\2&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' vspace='\\6' hspace='\\7' border='\\8'>","<img src='icon/member_image_box/$ismember/\\1.\\2' name=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$ismember/\\1.\\2&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>");
+	$imageBoxReplace=array("<img src='data/$id/thumbnail/$ismember/vXL_\\1.\\2.jpg' id=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$ismember/\\1.\\2&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' vspace='\\6' hspace='\\7' border='\\8'>","<img src='icon/member_image_box/$ismember/\\1.\\2' id=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$ismember/\\1.\\2&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>");
 	$imageBoxPattern2="/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/ie";
 	$memo=preg_replace($imageBoxPattern2,"'[img:'.str_replace('%2F', '/', urlencode('\\1.\\2')).','",$memo);
 	$memo=preg_replace($imageBoxPattern,$imageBoxReplace,$memo);
@@ -211,31 +211,27 @@ $memo=str_replace("<","&lt;",str_replace("&","&amp;",$memo));
 <meta http-equiv=Content-Type content=text/html; charset=EUC-KR>
 <meta name="viewport" content="width=device-width">
 <link rel=StyleSheet HREF=skin/<?=$setup[skinname]?>/style.css type=text/css title=style>
-
 <!-- SyntaxHighlighter 관련 헤더 -->
 <link rel="stylesheet" type="text/css" href="syntaxhighlighter/styles/shThemeDefault.css" />
 <link rel="stylesheet" type="text/css" href="syntaxhighlighter/styles/shCore.css" />
-
 <SCRIPT type="text/javascript" src="syntaxhighlighter/scripts/jquery-1.7.1.min.js"></SCRIPT>
 <script type="text/javascript" src="syntaxhighlighter/scripts/shCore.js"></script>
 <script type="text/javascript" src="syntaxhighlighter/scripts/shAutoloader.js"></script>
 <SCRIPT type="text/javascript" src="syntaxhighlighter/scripts/jQuery.js"></SCRIPT>
-
 <!-- 이미지 리사이즈를 위해서 처리하는 부분 -->
 <script>
-	function zb_img_check(){
-		var zb_main_table_width = document.zb_get_table_width.width*(100-4)/100;
-		var zb_target_resize_num = document.zb_target_resize.length;
-		for(i=0;i<zb_target_resize_num;i++){
-			if(document.zb_target_resize[i].width > zb_main_table_width) {
-				document.zb_target_resize[i].height = document.zb_target_resize[i].height * zb_main_table_width / document.zb_target_resize[i].width;
-				document.zb_target_resize[i].width = zb_main_table_width;
-			}
+function zb_img_check(){
+	var zb_main_table_width = document.zb_get_table_width.width*(100-4)/100;
+	var zb_target_resize_num = document.zb_target_resize.length;
+	for(i=0;i<zb_target_resize_num;i++){
+		if(document.zb_target_resize[i].width > zb_main_table_width) {
+			document.zb_target_resize[i].height = document.zb_target_resize[i].height * zb_main_table_width / document.zb_target_resize[i].width;
+			document.zb_target_resize[i].width = zb_main_table_width;
 		}
 	}
-	window.onload = zb_img_check;
+}
+window.onload = zb_img_check;
 </script>
-
 </head>
 <body topmargin='10'  leftmargin='10' marginwidth='10' marginheight='10' <?
 	if($setup[bg_color]) echo " bgcolor=".$setup[bg_color];

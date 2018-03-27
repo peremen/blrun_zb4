@@ -8,6 +8,7 @@ body,td,div {
 p {margin-top:0px; margin-bottom:0px;}
 
 img {border:0px;}
+#zb_target_resize {max-width:100%;}
 select,option {font-size:9pt;font-family:tahoma;color:#F7F7F7;background-color:#4b4b4b}
 
 body {
