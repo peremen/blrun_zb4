@@ -5,17 +5,21 @@
 <meta name="viewport" content="width=device-width">
 <title>XML - 네티즌 세상을 위하여...</title>
 <style type="text/css">
-	p {margin-top:0px; margin-bottom:0px;}
-	.title {background-color:#9ECFCF; ;margin:10px; padding:5px;}
-	.memo {background-color:white; margin:10px; padding:5px; word-wrap:break-word; word-break:break-word; word-break:keep-all;}
-	.memo2 {background-color:white; margin:10px; padding:10px; word-wrap:break-word; word-break:break-word; word-break:keep-all;}
-	.item-name {font-weight:bold;}
-	.item-foot {background-color:white; color:#993300; font-size:10pt;}
+p {margin-top:0px; margin-bottom:0px;}
+.title {background-color:#9ECFCF; ;margin:10px; padding:5px;}
+.memo {background-color:white; margin:10px; padding:5px; word-wrap:break-word; word-break:break-word; word-break:keep-all;}
+.memo2 {background-color:white; margin:10px; padding:10px; word-wrap:break-word; word-break:break-word; word-break:keep-all;}
+.item-name {font-weight:bold;}
+.item-foot {background-color:white; color:#993300; font-size:10pt;}
+#zb_target_resize {max-width:100%;}
 </style>
 </head>
 
 <body>
-<table border=0 cellspacing=0 cellpadding=0 width=100% height=1 style="table-layout:fixed;"><col width=100%></col><tr><td><img src=/t.gif border=0 width=98% height=1 name=zb_get_table_width><br><img src=/t.gif border=0 name=zb_target_resize width=1 height=1></td></tr></table>
+<table border=0 cellspacing=0 cellpadding=0 width=100% height=1 style="table-layout:fixed;">
+<col width=100%></col>
+<tr><td><img src=/t.gif border=0 width=98% height=1 name=zb_get_table_width><br><img src=/t.gif border=0 name=zb_target_resize width=1 height=1></td></tr>
+</table>
 <?
 // DomXML Function include
 if(PHP_VERSION>='5')
@@ -41,7 +45,8 @@ if (!$doc = domxml_open_mem($xml)) {
 	foreach ($items as $item) {
 ?>
 <table border=0 cellspacing=0 cellpadding=0 width=100% align=center>
-	<tr><td bgcolor=white>
+<tr>
+	<td bgcolor=white>
 		<table border=0 cellspacing=2 cellpadding=4 width=100% align=center bgcolor=gray style=table-layout:fixed>
 		<?
 		$children = $item->child_nodes();
@@ -76,7 +81,8 @@ if (!$doc = domxml_open_mem($xml)) {
 		echo "<tr><td colspan=2 class='item-foot'><b>{$new6} <font color='gray'>|</font> {$new5} <font color='gray'>|</font> {$new4}</b></td></tr><br />";
 ?>
 		</table>
-	</td></tr>
+	</td>
+</tr>
 </table>
 <?
 	}
@@ -84,17 +90,17 @@ if (!$doc = domxml_open_mem($xml)) {
 ?>
 <!-- 이미지 리사이즈를 위해서 처리하는 부분 -->
 <script language="javascript">
-	function zb_img_check(){
-		var zb_main_table_width = document.zb_get_table_width.width - 50;
-		var zb_target_resize_num = document.zb_target_resize.length;
-		for(i=0;i<zb_target_resize_num;i++){
-			if(document.zb_target_resize[i].width > zb_main_table_width) {
-				document.zb_target_resize[i].height = document.zb_target_resize[i].height * zb_main_table_width / document.zb_target_resize[i].width;
-				document.zb_target_resize[i].width = zb_main_table_width;
-			}
+function zb_img_check(){
+	var zb_main_table_width = document.zb_get_table_width.width - 50;
+	var zb_target_resize_num = document.zb_target_resize.length;
+	for(i=0;i<zb_target_resize_num;i++){
+		if(document.zb_target_resize[i].width > zb_main_table_width) {
+			document.zb_target_resize[i].height = document.zb_target_resize[i].height * zb_main_table_width / document.zb_target_resize[i].width;
+			document.zb_target_resize[i].width = zb_main_table_width;
 		}
 	}
-	window.onload = zb_img_check;
+}
+window.onload = zb_img_check;
 </script>
 </body>
 </html>

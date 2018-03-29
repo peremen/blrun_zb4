@@ -117,7 +117,7 @@ $date2[] = date('D, d M Y H:i:s',$data_board[reg_date]).' +0900';
 $imageBoxPattern = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i";
 $imageBoxPattern2 = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/ie";
 $data_board[memo]=preg_replace($imageBoxPattern2,"'[img:'.str_replace('%2F', '/', urlencode('\\1.\\2')).','",$data_board[memo]);
-$data_board[memo]=preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data_board[ismember]/\\1.\\2' id=zb_target_resize align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$data_board[memo]);
+$data_board[memo]=preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data_board[ismember]/\\1.\\2' align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$data_board[memo]);
 if($data_board[use_html]<2) $data_board[memo]=str_replace("\n","<br />",$data_board[memo]);
 $memo[] = $data_board[memo];
 $file_name1[] = $data_board[file_name1];
@@ -178,8 +178,8 @@ $file_name100 = str_replace("%2F","/",htmlspecialchars(urlencode($file_name1[$i]
 $file_name200 = str_replace("%2F","/",htmlspecialchars(urlencode($file_name2[$i])));
 $file1_s = substr(strrchr($file_name1[$i], '.'), 1);
 $file2_s = substr(strrchr($file_name2[$i], '.'), 1);
-if(preg_match("#(jpg|png|gif|jpeg|bmp)$#i",$file1_s)) $file_name11="<img src=\"".$_zb_url.$file_name100."\" id=zb_target_resize border=\"0\"><br /><br />"; elseif(preg_match("#(zip|exe|rar|alz|hwp|pdf|psd|ppt|txt|xls|fla|swf|ttf|asf|wma|avi|mp3|wmv)$#i",$file1_s)) $file_name11="다운로드1:<a href=\"".$_zb_url.$file_name100."\">".urldecode(basename($file_name100))."</a><br /><br />"; else $file_name11 = "";
-if(preg_match("#(jpg|png|gif|jpeg|bmp)$#i",$file2_s)) $file_name22="<img src=\"".$_zb_url.$file_name200."\" id=zb_target_resize border=\"0\"><br /><br />"; elseif(preg_match("#(zip|exe|rar|alz|hwp|pdf|psd|ppt|txt|xls|fla|swf|ttf|asf|wma|avi|mp3|wmv)$#i",$file2_s)) $file_name22="다운로드2:<a href=\"".$_zb_url.$file_name200."\">".urldecode(basename($file_name200))."</a><br /><br />"; else $file_name22 = "";
+if(preg_match("#(jpg|png|gif|jpeg|bmp)$#i",$file1_s)) $file_name11="<img src=\"".$_zb_url.$file_name100."\" border=\"0\"><br /><br />"; elseif(preg_match("#(zip|exe|rar|alz|hwp|pdf|psd|ppt|txt|xls|fla|swf|ttf|asf|wma|avi|mp3|wmv)$#i",$file1_s)) $file_name11="다운로드1:<a href=\"".$_zb_url.$file_name100."\">".urldecode(basename($file_name100))."</a><br /><br />"; else $file_name11 = "";
+if(preg_match("#(jpg|png|gif|jpeg|bmp)$#i",$file2_s)) $file_name22="<img src=\"".$_zb_url.$file_name200."\" border=\"0\"><br /><br />"; elseif(preg_match("#(zip|exe|rar|alz|hwp|pdf|psd|ppt|txt|xls|fla|swf|ttf|asf|wma|avi|mp3|wmv)$#i",$file2_s)) $file_name22="다운로드2:<a href=\"".$_zb_url.$file_name200."\">".urldecode(basename($file_name200))."</a><br /><br />"; else $file_name22 = "";
 
 $sf1 = @filesize($file_name1[$i]);
 $sf2 = @filesize($file_name2[$i]);
