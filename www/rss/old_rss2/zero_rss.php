@@ -114,8 +114,10 @@ $date1[] = $data_board[reg_date];
 $datetm[] = $data_board[reg_date];
 $date2[] = date('D, d M Y H:i:s',$data_board[reg_date]).' +0900';
 // html 이미지 리사이즈 시작
-$imagePattern = "#<img(.+?)src=([^>]*?)>#i";
-$data_board[memo]=preg_replace($imagePattern,"<div align=left><img id=zb_target_resize\\1src=\\2></div>",$data_board[memo]);
+$imagePattern = "#<img[^>]*src=([\"']?[^>\"' ]+[\"']?)[^>]*>#i";
+$imagePattern2 = "#<div align=left><img name=zb_target_resize src=\"skin\/f2plus_gallery_3_0\/images\/emoticon\/([^>]*?)><\/div>#i";
+$data_board[memo]=preg_replace($imagePattern,"<div align=left><img name=zb_target_resize src=\\1></div>",$data_board[memo]);
+$data_board[memo]=preg_replace($imagePattern2,"<img src=\"skin/f2plus_gallery_3_0/images/emoticon/\\1>",$data_board[memo]);
 // html 이미지 리사이즈 끝
 $imageBoxPattern = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i";
 $data_board[memo]=preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data_board[ismember]/\\1.\\2' id=zb_target_resize align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$data_board[memo]);
