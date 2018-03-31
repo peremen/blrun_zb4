@@ -125,7 +125,12 @@ $file=@fopen("myZrCnf2019.php","w") or Error("myZrCnf2019.php 파일 생성 실�
 @chmod("myZrCnf2019.php",0707);
 
 // 보안 서버 정보 저장
-$zburl="http://".mb_substr($sslurl,8,mb_strrpos($sslurl,':')-8).mb_substr($sslurl,mb_strpos($sslurl,'/',mb_strrpos($sslurl,':')));
+if(preg_match("#https\:\/\/#i",$sslurl) && substr_count($sslurl,':')==2)
+	$zburl="http://".mb_substr($sslurl,8,mb_strrpos($sslurl,':')-8).mb_substr($sslurl,mb_strpos($sslurl,'/',mb_strrpos($sslurl,':')));
+elseif(preg_match("#https\:\/\/#i",$sslurl) && substr_count($sslurl,':')==1)
+	$zburl="http://".substr($sslurl,8);
+else
+	$zburl=$sslurl;
 
 $file=@fopen("include/get_url.php","w") or Error("get_url.php 파일 생성 실패<br><br>bbs/include디렉토리의 퍼미션을 707로 주십시요","");
 $str1='<?
