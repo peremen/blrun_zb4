@@ -254,7 +254,7 @@ $reg_date=time(); // 현재의 시간구함;;
 // 도배인지 아닌지 검사;; 우선 같은 아이피대에 30초이내의 글은 도배로 간주;;
 if(!$is_admin&&$mode!="modify") {
 	$max_no=mysql_fetch_array(mysql_query("select max(no) from $t_board"."_$id"));
-	$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where ip='$ip' and $reg_date - reg_date <5 and no='$max_no[0]'"));
+	$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where ip='$ip' and $reg_date - reg_date <30 and no='$max_no[0]'"));
 	if($temp[0]>0) Error1("글등록은 30초이상이 지나야 가능합니다");
 }
 
