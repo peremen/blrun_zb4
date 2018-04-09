@@ -530,7 +530,7 @@ class Securimage {
 		$this->image_height  = 80;
 		$this->image_type    = SI_IMAGE_PNG;
 
-		$this->code_length   = 6;
+		$this->code_length   = 5;
 		$this->charset       = 'ABCDEFGHKLMNPRSTUVWYZabcdefghklmnprstuvwyz23456789';
 		$this->wordlist_file = $this->basepath . '/words/words.txt';
 		$this->use_wordlist  = false;
@@ -563,7 +563,7 @@ class Securimage {
 		$this->line_color           = new Securimage_Color(0x3d, 0x3d, 0x3d);
 		$this->draw_lines_over_text = true;
 
-		$this->image_signature = '';
+		$this->image_signature = 'blrun.net';
 		$this->signature_color = new Securimage_Color(0x20, 0x50, 0xCC);
 		$this->signature_font  = $this->basepath . '/AHGBold.ttf';
 
@@ -954,7 +954,7 @@ class Securimage {
 	*/
 	function distortedCopy()
 	{
-		$numpoles = 3; // 왜곡 계수
+		$numpoles = 3.5; // 왜곡 계수
 
 		// 막대기의 배열을 일명 어트랙터 포인트로 만든다.
 		for ($i = 0; $i < $numpoles; ++$i) {
