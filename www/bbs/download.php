@@ -25,12 +25,27 @@ if($filenum==1) {
 $data=mysql_fetch_array(mysql_query("select * from `$t_board"."_$id` where no='$no'"));
 
 // 다운로드;;
-$filename="s_file_name".$filenum;
-$filepath=$data["file_name".$filenum];
-$filename=$data[$filename];
-$filename=iconv("utf-8","euc-kr",$filename);
+function mb_basename($path) { return end(explode('/',$path)); }
+function utf2euc($str) { return iconv("UTF-8","cp949//IGNORE",$str); }
+function is_ie() {
+	if(!isset($_SERVER['HTTP_USER_AGENT'])) return false;
+	if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE')!==false) return true; // IE10 이하
+	if(strpos($_SERVER['HTTP_USER_AGENT'],'rv:11')!==false) return true; // IE11
+	if(strpos($_SERVER['HTTP_USER_AGENT'],'Edge')!==false) return true; // Edge
+	return false;
+}
 
-header("Content-Type: application/force-download");
+$filepath = $data["file_name".$filenum];
+$filesize = filesize($filepath);
+$filename = mb_basename($filepath);
+if(is_ie()) $filename = utf2euc($filename);
+
+header("Pragma: public");
+header("Expires: 0");
+header("Content-Type: application/octet-stream");
 header("Content-Disposition: attachment; filename=\"$filename\"");
-readfile("$filepath");
+header("Content-Transfer-Encoding: binary");
+header("Content-Length: $filesize");
+
+readfile($filepath);
 ?>
