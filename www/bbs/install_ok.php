@@ -27,7 +27,7 @@ function istable($str, $dbname='') {
 		$dbname=$f[4];
 	}
 
-	$result = mysql_list_tables($dbname) or error(mysql_error(),"");
+	$result = mysql_query("show tables from $dbname") or error(mysql_error(),"");
 
 	$i=0;
 

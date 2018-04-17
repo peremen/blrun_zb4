@@ -20,7 +20,7 @@ if(uAgent.match(/iPhone|iPod|IEMobile|Mobile|lgtelecom|PPC/i))
 {
 // 모바일 주소 표시줄 숨기기
   window.addEventListener('load', function(){ setTimeout(scrollTo, 0, 0, 1); }, false);
-  window.location.href="/m/"; // 저중 하나라도 조건이 만족하면 /m/index.html 로 이동한다.
+  window.location.href="./m/"; // 저중 하나라도 조건이 만족하면 ./m/index.html 로 이동한다.
 }
 </script>
 </head>
