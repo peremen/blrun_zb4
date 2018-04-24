@@ -316,7 +316,7 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 		$main = str_replace("[name]",$name,$main);
 		$main = str_replace("[date]",$date,$main);
 		$main = str_replace("[memo]",$memo,$main);
-		if((mktime()-$data[reg_date])/3600<48) $main = str_replace("[subject]","<a href='".$_zb_url.$target."&no=$data[no]'>".$subject."</a>&nbsp;<img src=".$_zb_url."latest_skin/$skinname/images/new_head.gif align=absmiddle>",$main);
+		if((time()-$data[reg_date])/3600<48) $main = str_replace("[subject]","<a href='".$_zb_url.$target."&no=$data[no]'>".$subject."</a>&nbsp;<img src=".$_zb_url."latest_skin/$skinname/images/new_head.gif align=absmiddle>",$main);
 		else $main = str_replace("[subject]","<a href='".$_zb_url.$target."&no=$data[no]'>".$subject."</a>",$main);
 		$main = str_replace("[comment]",$comment,$main);
 		$main = str_replace("[img]",$imgList,$main);

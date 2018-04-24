@@ -1,5 +1,5 @@
 <?
-$user_id = htmlspecialchars(trim($user_id));
+$user_id = htmlspecialchars(trim($user_id),ENT_COMPAT,'ISO-8859-1',true);
 
 include "lib.php";
 $user_id = trim($user_id);

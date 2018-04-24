@@ -131,9 +131,9 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	else $title = " 신규 글쓰기 ";
 
 // 쿠키값을 이용;;
-	$name=htmlspecialchars(stripslashes($_SESSION['zb_writer_name']));
-	$email=htmlspecialchars(stripslashes($_SESSION['zb_writer_email']));
-	$homepage=htmlspecialchars(stripslashes($_SESSION['zb_writer_homepage']));
+	$name=htmlspecialchars(stripslashes($_SESSION['zb_writer_name']),ENT_COMPAT,'ISO-8859-1',true);
+	$email=htmlspecialchars(stripslashes($_SESSION['zb_writer_email']),ENT_COMPAT,'ISO-8859-1',true);
+	$homepage=htmlspecialchars(stripslashes($_SESSION['zb_writer_homepage']),ENT_COMPAT,'ISO-8859-1',true);
 
 /******************************************************************************************
  * 글쓰기 모드에 따른 내용 체크
@@ -183,13 +183,13 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 		// 비밀글이고 관리자가 아니고 멤버가 일치하지 않고 세션값이 틀리면 리턴
 		if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$_SESSION['zb_s_check']!=$zb_check) error("정상적인 방법으로 수정하세요");
 
-		$name=htmlspecialchars($data[name]); // 이름
-		$email=htmlspecialchars($data[email]); // 메일
-		$homepage=htmlspecialchars($data[homepage]); // 홈페이지
-		$subject=$data[subject]=htmlspecialchars($data[subject]); // 제목
+		$name=htmlspecialchars($data[name],ENT_COMPAT,'ISO-8859-1',true); // 이름
+		$email=htmlspecialchars($data[email],ENT_COMPAT,'ISO-8859-1',true); // 메일
+		$homepage=htmlspecialchars($data[homepage],ENT_COMPAT,'ISO-8859-1',true); // 홈페이지
+		$subject=$data[subject]=htmlspecialchars($data[subject],ENT_COMPAT,'ISO-8859-1',true); // 제목
 		$memo=str_replace("&nbsp;","&amp;nbsp;",$memo); // 내용
-		$sitelink1=$data[sitelink1]=htmlspecialchars($data[sitelink1]); // 사이트 링크
-		$sitelink2=$data[sitelink2]=htmlspecialchars($data[sitelink2]);
+		$sitelink1=$data[sitelink1]=htmlspecialchars($data[sitelink1],ENT_COMPAT,'ISO-8859-1',true); // 사이트 링크
+		$sitelink2=$data[sitelink2]=htmlspecialchars($data[sitelink2],ENT_COMPAT,'ISO-8859-1',true);
 		if($data[file_name1])$file_name1="<br>&nbsp;".$data[s_file_name1]."이 등록되어 있습니다. <input type=checkbox name=del_file1 value=1> 삭제";
 		if($data[file_name2])$file_name2="<br>&nbsp;".$data[s_file_name2]."이 등록되어 있습니다. <input type=checkbox name=del_file2 value=1> 삭제";
 
@@ -207,7 +207,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 
 		if($data[is_secret]) $secret=" checked ";
 
-		$subject=$data[subject]=htmlspecialchars($data[subject]); // 제목
+		$subject=$data[subject]=htmlspecialchars($data[subject],ENT_COMPAT,'ISO-8859-1',true); // 제목
 		$memo=str_replace("&nbsp;","&amp;nbsp;",$data[memo]); // 내용
 		if(!preg_match("/\[re\]/i",$subject)) $subject="[re] ".$subject; // 답글일때는 앞에 [re] 붙임;;
 		$memo=str_replace("\n","\n>",$memo);

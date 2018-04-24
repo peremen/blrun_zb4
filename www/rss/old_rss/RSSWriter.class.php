@@ -48,7 +48,7 @@ class RSSWriter {
 	}
 
 	function setLink($link){
-		$this->link = htmlspecialchars($link);
+		$this->link = htmlspecialchars($link,ENT_COMPAT,'ISO-8859-1',true);
 	}
 
 	function setDescription($description){
@@ -176,7 +176,7 @@ class RSSWriter {
 			print("<item>\n");
 			while (list($name,$value) = each($item)) {
 				if(!empty($item[$name])){
-					$value = htmlspecialchars($value);
+					$value = htmlspecialchars($value,ENT_COMPAT,'ISO-8859-1',true);
 					printf("<%s>%s</%s>\n",$name,$value,$name);
 				}
 			}

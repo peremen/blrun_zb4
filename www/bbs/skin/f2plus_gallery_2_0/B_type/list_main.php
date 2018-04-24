@@ -12,7 +12,7 @@ else $comment_new = "&nbsp;<font class=list_eng style='font-size:8pt;'>".$commen
 include "list_image_info.php";
 
 $memo=explode("|||",$data[memo]);
-$str=htmlspecialchars(cut_str(strip_tags($memo[0]),200));
+$str=htmlspecialchars(cut_str(strip_tags($memo[0]),200),ENT_COMPAT,'ISO-8859-1',true);
 $str2=cut_str(str_replace("\"","&quot;",$data[subject]),10);
 $str3=str_replace(str_replace("\"","&quot;",$data[subject]),"$str2",$subject);
 $str3=str_replace("title=\"$str2 ","title=\"".cut_str($subject_all,$setup[cut_length])." ",$str3);

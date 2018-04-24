@@ -3,7 +3,7 @@ if($mode=="reply") $title="답글 쓰기";
 elseif($mode=="modify") $title="글 수정하기";
 else $title="새로 글 쓰기";
 
-$m_memo = explode("|||",htmlspecialchars(str_replace("&amp;","&",str_replace("&lt;","<",$memo))));
+$m_memo = explode("|||",htmlspecialchars(str_replace("&amp;","&",str_replace("&lt;","<",$memo)),ENT_COMPAT,'ISO-8859-1',true));
 $_name1 = $m_memo[0];
 $_name2 = $m_memo[1];
 $_name3 = $m_memo[2];

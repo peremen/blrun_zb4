@@ -1,7 +1,5 @@
-PHP_FLAG register_globals ON
-PHP_FLAG register_long_arrays OFF
 PHP_FLAG allow_url_fopen ON
-#PHP_FLAG magic_quotes_gpc OFF
 PHP_VALUE memory_limit -1
 PHP_VALUE post_max_size 250M
 PHP_VALUE upload_max_filesize 200M
+PHP_FLAG session.cookie_httponly ON

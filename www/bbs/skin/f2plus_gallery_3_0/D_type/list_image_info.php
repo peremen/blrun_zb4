@@ -95,7 +95,6 @@ if($Thumbnail_use=="on"){
 		$xy1=@getimagesize($src_img1);
 	}
 
-
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$data[file_name2])){
 
 		$src_img2=$data[file_name2];

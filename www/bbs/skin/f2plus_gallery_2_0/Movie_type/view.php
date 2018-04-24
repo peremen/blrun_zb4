@@ -14,8 +14,8 @@ $_name5 = del_html($m_memo[4]);
 $_name6 = del_html($m_memo[5]);
 $_name7 = del_html($m_memo[6]);
 $_name8 = del_html($m_memo[7]);
-$_name9 = addslashes(htmlspecialchars($m_memo[8]));
-$_name10 = addslashes(htmlspecialchars($m_memo[9]));
+$_name9 = addslashes(htmlspecialchars($m_memo[8],ENT_COMPAT,'ISO-8859-1',true));
+$_name10 = addslashes(htmlspecialchars($m_memo[9],ENT_COMPAT,'ISO-8859-1',true));
 
 for($i=1;$i<=$_name6;$i++){
 	$_point.="¡Ú";

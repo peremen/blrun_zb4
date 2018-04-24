@@ -2,6 +2,9 @@
 /***************************************************************************
 * 공통 파일 include
 **************************************************************************/
+// "내용에 리스트 보기" 변수 초기화
+if(empty($_view_included)) $_view_included = '';
+
 if(!$_view_included) {
 	include "_head.php";
 	include("securimage/securimage.php");
@@ -287,7 +290,7 @@ if($member[no]) {
 	if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>";
 	$temp_name = get_private_icon($member[no], "1");
 	if($temp_name) $c_name="<img src='$temp_name' border=0 align=absmiddle>".$c_name;
-} else $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input value=\"".htmlspecialchars(stripslashes($_SESSION['zb_writer_name']))."\" onkeyup='ajaxLoad2()' title='이름과 비번을 재입력하면 임시저장이 복원됨'>";
+} else $c_name="<input type=text id=name name=name size=8 maxlength=10 class=input value=\"".htmlspecialchars(stripslashes($_SESSION['zb_writer_name']),ENT_COMPAT,'ISO-8859-1',true)."\" onkeyup='ajaxLoad2()' title='이름과 비번을 재입력하면 임시저장이 복원됨'>";
 
 /****************************************************************************************
 * 실제 출력 부분
@@ -379,8 +382,8 @@ if($setup[use_comment]) {
 
 			$imageBoxPattern=array("/\[img\:(.+?)\.(jpg|jpeg|png)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i","/\[img\:(.+?)\.(gif|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i");
 			$imageBoxReplace=array("<img src='data/$id/thumbnail/$c_data[ismember]/vXL_\\1.\\2.jpg' id=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$c_data[ismember]/".urldecode('\\1.\\2')."&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' vspace='\\6' hspace='\\7' border='\\8'>","<img src='icon/member_image_box/$c_data[ismember]/\\1.\\2' id=zb_target_resize style=\"cursor:pointer\" onclick=\"javascript: window.open('img_view.php?img=icon/member_image_box/$c_data[ismember]/".urldecode('\\1.\\2')."&width='+(\\4+10)+'&height='+(\\5+55),'imgViewer','width=0,height=0,toolbar=no,scrollbars=no','status=no')\" align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>");
-			$imageBoxPattern2="/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/ie";
-			$c_data[memo]=preg_replace($imageBoxPattern2,"'[img:'.str_replace('%2F', '/', urlencode('\\1.\\2')).','",$c_data[memo]);
+			$imageBoxPattern2="/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/i";
+			$c_data[memo]=preg_replace_callback($imageBoxPattern2,create_function('$match','return "[img:".str_replace("%2F", "/", urlencode("$match[1].$match[2]")).",";'),$c_data[memo]);
 			$c_data[memo]=preg_replace($imageBoxPattern,$imageBoxReplace,$c_data[memo]);
 		}
 

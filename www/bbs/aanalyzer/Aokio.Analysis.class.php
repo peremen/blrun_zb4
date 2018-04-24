@@ -429,7 +429,7 @@ class AokioAnalysis{
 				return false;
 			}
 			$final_analysis_info = $this->getGraphicalPageInfo($analysis_info);
-			$final_analysis_info = $this->setLanguageNameWithLanguageConfiguration($config,&$final_analysis_info);
+			$final_analysis_info = $this->setLanguageNameWithLanguageConfiguration($config,$final_analysis_info);
 		}elseif($mode ==9){
 			$common_page_param['info_mode'] ='units_counts_info';
 			$common_page_param['mode_flag'] ='nation';
@@ -450,7 +450,7 @@ class AokioAnalysis{
 			$final_analysis_info = $this->getGraphicalPageInfo($analysis_info);
 
 
-			$final_analysis_info = $this->setNationNameWithLanguageConfiguration($config,&$final_analysis_info);
+			$final_analysis_info = $this->setNationNameWithLanguageConfiguration($config,$final_analysis_info);
 		}elseif($mode ==10){
 			$common_page_param['info_mode'] ='units_counts_info';
 			$common_page_param['mode_flag'] ='city';
@@ -638,7 +638,7 @@ class AokioAnalysis{
 			}
 			unset($start);
 
-			$final_analysis_info = $this->setNationNameWithLanguageConfiguration($config,&$final_analysis_info);
+			$final_analysis_info = $this->setNationNameWithLanguageConfiguration($config,$final_analysis_info);
 
 			$list_total_counts = AokioAnalysisManager::getRobotDetailInfoTotalCounts($id);
 
@@ -790,8 +790,8 @@ class AokioAnalysis{
 			unset($start);
 /////			$config = new Aokio_Config();
 
-			$final_analysis_info = $this->setNationNameWithLanguageConfiguration($config,&$final_analysis_info);
-			$final_analysis_info = $this->setLanguageNameWithLanguageConfiguration($config,&$final_analysis_info);
+			$final_analysis_info = $this->setNationNameWithLanguageConfiguration($config,$final_analysis_info);
+			$final_analysis_info = $this->setLanguageNameWithLanguageConfiguration($config,$final_analysis_info);
 
 			//TODO 따로???
 //			if(isset($page_req_param['option']) && $page_req_param['option'] != NULL ){

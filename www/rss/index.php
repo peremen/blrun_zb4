@@ -9,6 +9,11 @@ else
 header ('Cache-Control: private, pre-check=0, post-check=0, max-age=0');
 header ('Pragma: no-cache');
 }
+
+// PHP 5.5 널변수 초기화
+if(empty($lastBuildDate)) $lastBuildDate = '';
+if(empty($_zb_path)) $_zb_path = '';
+
 header ('Expires: '.$lastBuildDate.'');
 header ('Last-Modified: '.$lastBuildDate.'');
 header ('Content-Type: text/xml; charset=EUC-KR');
@@ -105,9 +110,9 @@ while ($data_board = mysql_fetch_array($result))
 {
 $bbs_tmp[] = $bbss[$i];
 $subject[] = str_replace("\"","&quot;",$data_board[subject]);
-$name[] = htmlspecialchars($data_board[name]);
+$name[] = htmlspecialchars($data_board[name],ENT_COMPAT,'ISO-8859-1',true);
 
-$category_name[] = htmlspecialchars($data_board[category_name]);
+$category_name[] = htmlspecialchars($data_board[category_name],ENT_COMPAT,'ISO-8859-1',true);
 $comment[] = $data_board[total_comment];
 $num[] = $data_board[no];
 $use_htmls[] = $data_board[use_html];
@@ -115,9 +120,9 @@ $date1[] = $data_board[reg_date];
 $datetm[] = $data_board[reg_date];
 $date2[] = date('D, d M Y H:i:s',$data_board[reg_date]).' +0900';
 $imageBoxPattern = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i";
-$imageBoxPattern2 = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/ie";
-$data_board[memo]=preg_replace($imageBoxPattern2,"'[img:'.str_replace('%2F', '/', urlencode('\\1.\\2')).','",$data_board[memo]);
-$data_board[memo]=preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data_board[ismember]/\\1.\\2' align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$data_board[memo]);
+$imageBoxPattern2 = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,/i";
+$data_board[memo] = preg_replace_callback($imageBoxPattern2,create_function('$match','return "[img:".str_replace("%2F", "/", urlencode("$match[1].$match[2]")).",";'),$data_board[memo]);
+$data_board[memo] = preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data_board[ismember]/\\1.\\2' align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$data_board[memo]);
 if($data_board[use_html]<2) $data_board[memo]=str_replace("\n","<br />",$data_board[memo]);
 $memo[] = $data_board[memo];
 $file_name1[] = $data_board[file_name1];
@@ -138,16 +143,16 @@ $li++;
 <?if($copyright_s !=''){?><copyright><?=$copyright_s?></copyright><?}?>
 <pubDate><?=$lastBuildDate?></pubDate>
 <lastBuildDate><?=$lastBuildDate?></lastBuildDate>
-<description><?=htmlspecialchars($site_names1)?></description>
-<link><?=htmlspecialchars($home)?></link>
-<title><?=htmlspecialchars($site_names)?></title>
+<description><?=htmlspecialchars($site_names1,ENT_COMPAT,'ISO-8859-1',true)?></description>
+<link><?=htmlspecialchars($home,ENT_COMPAT,'ISO-8859-1',true)?></link>
+<title><?=htmlspecialchars($site_names,ENT_COMPAT,'ISO-8859-1',true)?></title>
 <?if($banner_images !=''){?><image>
 <url><?=$banner_images?></url>
-<title><?=htmlspecialchars($site_names)?></title>
+<title><?=htmlspecialchars($site_names,ENT_COMPAT,'ISO-8859-1',true)?></title>
 <link><?=$home?></link>
 <height><?=$height_h?></height>
 <width><?=$width_w?></width>
-<description><?=htmlspecialchars($site_names2)?></description>
+<description><?=htmlspecialchars($site_names2,ENT_COMPAT,'ISO-8859-1',true)?></description>
 </image><?}?>
 <?if($webMaster_q !=''){?><managingEditor><?=$webMaster_q?></managingEditor>
 <webMaster><?=$webMaster_q?></webMaster><?}?>
@@ -168,14 +173,14 @@ $comments = "";}
 
 if($use_alllist[$i]) $target = "".$_zb_url."zboard.php"; else $target = "".$_zb_url."view.php";
 
-$title[$i] = htmlspecialchars(stripslashes($title[$i]));
+$title[$i] = htmlspecialchars(stripslashes($title[$i]),ENT_COMPAT,'ISO-8859-1',true);
 if($title[$i]) $title_bbs = "".$title[$i].""; else $title_bbs = "".$bbs_tmp[$i]."";
 
 if($category[$i]) $use_category = "<category>".$title_bbs." > ".$category_name[$i]."</category>"; else $use_category = "";
 $memos = str_replace("\n", "<br />", $memo[$i]);
 $h_memos = $memo[$i];
-$file_name100 = str_replace("%2F","/",htmlspecialchars(urlencode($file_name1[$i])));
-$file_name200 = str_replace("%2F","/",htmlspecialchars(urlencode($file_name2[$i])));
+$file_name100 = str_replace("%2F","/",htmlspecialchars(urlencode($file_name1[$i]),ENT_COMPAT,'ISO-8859-1',true));
+$file_name200 = str_replace("%2F","/",htmlspecialchars(urlencode($file_name2[$i]),ENT_COMPAT,'ISO-8859-1',true));
 $file1_s = substr(strrchr($file_name1[$i], '.'), 1);
 $file2_s = substr(strrchr($file_name2[$i], '.'), 1);
 if(preg_match("#(jpg|png|gif|jpeg|bmp)$#i",$file1_s)) $file_name11="<img src=\"".$_zb_url.$file_name100."\" border=\"0\"><br /><br />"; elseif(preg_match("#(zip|exe|rar|alz|hwp|pdf|psd|ppt|txt|xls|fla|swf|ttf|asf|wma|avi|mp3|wmv)$#i",$file1_s)) $file_name11="다운로드1:<a href=\"".$_zb_url.$file_name100."\">".urldecode(basename($file_name100))."</a><br /><br />"; else $file_name11 = "";
@@ -225,7 +230,7 @@ $name_sq = "<br /><br />작성자 : ".$name[$i]."<br />작성일자: ".strftime("%Y년 %
 <item>
 <title><?=$name[$i]?> - <?=del_html(str_replace("\"","&quot;",$subject[$i]))?><?=$comments?></title>
 <link><?=$target?>?id=<?=$bbs_tmp[$i]?>&amp;no=<?=$num[$i]?></link>
-<description><?=htmlspecialchars($memoss.$name_sq)?></description>
+<description><?=htmlspecialchars($memoss.$name_sq,ENT_COMPAT,'ISO-8859-1',true)?></description>
 <author><?=$name[$i]?></author>
 <pubDate><?=$date2[$i]?></pubDate>
 <slash:comments><?=$comment[$i]?></slash:comments>

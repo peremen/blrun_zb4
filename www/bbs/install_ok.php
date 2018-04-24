@@ -1,4 +1,17 @@
 <?
+// 한글 인코딩 및 W3C P3P 규약설정
+@header("Content-Type: text/html; charset=euc-kr");
+@header("P3P : CP=\"ALL CURa ADMa DEVa TAIa OUR BUS IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC OTC\"");
+
+/*******************************************************************************
+ * 에러 리포팅 설정과 register_globals_on일때 변수 재 정의
+ ******************************************************************************/
+@error_reporting(E_ALL ^ E_NOTICE);
+foreach($_GET as $key=>$val) $$key = del_html($val);
+@extract($_POST);
+@extract($_SERVER);
+@extract($_ENV);
+
 // 에러 메세지 출력
 function error($message, $url="") {
 ?>

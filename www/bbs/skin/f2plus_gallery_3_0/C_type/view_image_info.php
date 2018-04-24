@@ -99,7 +99,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$prev_data[file_name2])){
 
 		if(!file_exists($Thumbnail_path.$Prev_thumb_large2)||!file_exists($Thumbnail_path.$Prev_thumb_small2)){
-		    $size=array($min_width_size,200);
+			$size=array($min_width_size,200);
 			thumbnail($size,$prev_data[file_name2],$Thumbnail_path,$Prev_thumb_small2,$Prev_thumb_large2,3/4);
 		}
 		$prev_thumb=$Thumbnail_url.$Prev_thumb_large2;
@@ -120,7 +120,7 @@ if($Thumbnail_use=="on" && $Thumbnail_view=="on"){       //썸네일 사용시
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$next_data[file_name1])){
 
 		if(!file_exists($Thumbnail_path.$Next_thumb_large1)||!file_exists($Thumbnail_path.$Next_thumb_small1)){
-		    $size=array($min_width_size,200);
+			$size=array($min_width_size,200);
 			thumbnail($size,$next_data[file_name1],$Thumbnail_path,$Next_thumb_small1,$Next_thumb_large1,3/4);
 		}
 		$next_thumb=$Thumbnail_url.$Next_thumb_large1;

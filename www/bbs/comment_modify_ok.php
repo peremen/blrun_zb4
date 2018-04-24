@@ -182,11 +182,11 @@ if($flag != ok) {
 		<col width=70 align=right style=padding-right:10px></col><col width=></col>
 		<tr>
 			<td align=right class=list0><font class=list_eng><b>Name</b></font></td>
-			<td align=left class=list1><input type=text id=name name=name <?=size(8)?> maxlength=20 class=input value="<?=trim(htmlspecialchars($s_data[name]))?>" onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
+			<td align=left class=list1><input type=text id=name name=name <?=size(8)?> maxlength=20 class=input value="<?=trim(htmlspecialchars($s_data[name],ENT_COMPAT,'ISO-8859-1',true))?>" onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
 		</tr>
 		<tr>
 			<td align=right class=list0><font class=list_eng><b>Password</b></font></td>
-			<td align=left class=list1><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input value="<?=htmlspecialchars(stripslashes($pass))?>" onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
+			<td align=left class=list1><input type=password id=password name=password <?=size(8)?> maxlength=20 class=input value="<?=htmlspecialchars(stripslashes($pass),ENT_COMPAT,'ISO-8859-1',true)?>" onkeyup="ajaxLoad2()" title="이름과 비번을 재입력하면 임시저장이 복원됨"></td>
 		</tr>
 <?}?>
 		<tr>
