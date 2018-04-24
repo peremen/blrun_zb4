@@ -231,14 +231,14 @@ if($setup[use_alllist]&&!$prev_no) $prev_no=$no;
 
 // 뽑혀진 데이타만큼 출력함
 while($data = @mysql_fetch_array($notice_result)) {
-	list_check(&$data);
+	list_check($data);
 	$_skinTimeStart = getmicrotime();
 	include $dir."/list_notice.php";
 	$_skinTime += getmicrotime()-$_skinTimeStart;
 }
 
 while($data=@mysql_fetch_array($result)) {
-	list_check(&$data);
+	list_check($data);
 	$_skinTimeStart = getmicrotime();
 	include $dir."/list_main.php";
 	$_skinTime += getmicrotime()-$_skinTimeStart;
@@ -247,7 +247,7 @@ while($data=@mysql_fetch_array($result)) {
 
 if($check2) {
 	while($data=@mysql_fetch_array($result2)) {
-		list_check(&$data);
+		list_check($data);
 		$_skinTimeStart = getmicrotime();
 		include $dir."/list_main.php";
 		$_skinTime += getmicrotime()-$_skinTimeStart;

@@ -13,7 +13,7 @@ $file1_check=0;
 
 if($Thumbnail_use=="on"){
 	//썸네일 디렉토리 내 각 회원별 디렉토리 생성
-	if(!is_dir($zb_path."data/$id/thumbnail/".$data[ismember]."/")) {
+	if(!is_dir($zb_path."data/$id/thumbnail/".$data[ismember]."/")){
 		if(!@mkdir($zb_path."data/$id/thumbnail/".$data[ismember]."/",0777,true)) $error_check+=1;
 		if(!@chmod($zb_path."data/$id/thumbnail/".$data[ismember]."/",0707)) $error_check+=2;
 	}
@@ -31,7 +31,7 @@ if($Thumbnail_use=="on"){
 		$thumb_img1=$Thumbnail_url.$Thumbnail_large1;
 		$thumb_img12=$Thumbnail_url.$Thumbnail_small1;
 
-	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$out[0][1].".".$out[0][2])) {
+	}elseif(preg_match("#\.(jpg|jpeg|png)$#i",$out[0][1].".".$out[0][2])){
 		$src_img1="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
 		if(file_exists($src_img1) && (!file_exists($Thumbnail_path.$data[ismember]."/".$iThumbnail_small1) || !file_exists($Thumbnail_path.$data[ismember]."/".$iThumbnail_large1))){
 			$size=array($min_width_size,300);
@@ -100,7 +100,7 @@ if($Thumbnail_use=="on"){
 		$thumb_img2=$Thumbnail_url.$Thumbnail_large2;
 		$thumb_img22=$Thumbnail_url.$Thumbnail_small2;
 
-	}elseif($file1_check==1 && preg_match("#\.(jpg|jpeg|png)$#i",$out[0][1].".".$out[0][2])) {
+	}elseif($file1_check==1 && preg_match("#\.(jpg|jpeg|png)$#i",$out[0][1].".".$out[0][2])){
 
 		$src_img2="icon/member_image_box/".$data[ismember]."/".$out[0][1].".".$out[0][2];
 		if(file_exists($src_img2) && (!file_exists($Thumbnail_path.$data[ismember]."/".$iThumbnail_small1) || !file_exists($Thumbnail_path.$data[ismember]."/".$iThumbnail_large1))){
@@ -232,8 +232,6 @@ if($Thumbnail_use=="on"){
 		$source_img=$ran_img2[2];
 		$xy[0]=300; $xy[1]=200;
 	}
-
-	$img_info=@getimagesize($source_img);
 
 	$full_img="<a onclick=window.open('$dir/img_view.php?img=$source_img&width=".($xy[0]+10)."&height=".($xy[1]+55)."','view_info','width=0,height=0,toolbar=no,scrollbars=no') onfocus=this.blur(); class=shadow style=cursor:pointer>";
 	if($img_show=="on"){

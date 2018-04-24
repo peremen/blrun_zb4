@@ -1,6 +1,10 @@
 <meta name="viewport" content="width=device-width">
 <?
-if($flag != ok) {
+// 폼을 전송했는지 검사하는 변수
+$flag = $_GET['flag'];
+if(empty($flag)) $flag = '';
+
+if($flag != "ok") {
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html lang="ko">

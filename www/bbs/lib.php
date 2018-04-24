@@ -10,7 +10,7 @@
  ******************************************************************************/
 // 한글 인코딩 및 W3C P3P 규약설정
 @header("Content-Type: text/html; charset=utf-8");
-@header ("P3P : CP=\"ALL CURa ADMa DEVa TAIa OUR BUS IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC OTC\"");
+@header("P3P : CP=\"ALL CURa ADMa DEVa TAIa OUR BUS IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC OTC\"");
 
 // 현재 버젼
 $zb_version = "4.1 pl8";
@@ -710,7 +710,7 @@ function istable($str, $dbname='') {
 		$dbname=$f[4];
 	}
 
-	$result = mysql_list_tables($dbname) or error(mysql_error(),"");
+	$result = mysql_query("show tables from $dbname") or error(mysql_error(),"");
 
 	$i=0;
 

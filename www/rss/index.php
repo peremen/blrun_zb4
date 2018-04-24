@@ -9,6 +9,11 @@ else
 header ('Cache-Control: private, pre-check=0, post-check=0, max-age=0');
 header ('Pragma: no-cache');
 }
+
+// PHP 5.5 널변수 초기화
+if(empty($lastBuildDate)) $lastBuildDate = '';
+if(empty($_zb_path)) $_zb_path = '';
+
 header ('Expires: '.$lastBuildDate.'');
 header ('Last-Modified: '.$lastBuildDate.'');
 header ('Content-Type: text/xml; charset=utf-8');
@@ -115,7 +120,7 @@ $date1[] = $data_board[reg_date];
 $datetm[] = $data_board[reg_date];
 $date2[] = date('D, d M Y H:i:s',$data_board[reg_date]).' +0900';
 $imageBoxPattern = "/\[img\:(.+?)\.(jpg|jpeg|gif|png|bmp)\,align\=([a-z]+){0,}\,width\=([0-9]+)\,height\=([0-9]+)\,vspace\=([0-9]+)\,hspace\=([0-9]+)\,border\=([0-9]+)\]/i";
-$data_board[memo]=preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data_board[ismember]/\\1.\\2' align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$data_board[memo]);
+$data_board[memo] = preg_replace($imageBoxPattern,"<img src='".$_zb_url."icon/member_image_box/$data_board[ismember]/\\1.\\2' align='\\3' width='\\4' height='\\5' vspace='\\6' hspace='\\7' border='\\8'>",$data_board[memo]);
 if($data_board[use_html]<2) $data_board[memo]=str_replace("\n","<br />",$data_board[memo]);
 $memo[] = $data_board[memo];
 $file_name1[] = $data_board[file_name1];
