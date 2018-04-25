@@ -25,7 +25,7 @@ if($filenum==1) {
 $data=mysql_fetch_array(mysql_query("select * from `$t_comment"."_$id` where no='$no'"));
 
 // 다운로드;;
-function mb_basename($path) { return end(explode('/',$path)); }
+function mb_basename($path) { $arr=explode('/',$path); return end($arr); }
 function utf2euc($str) { return iconv("UTF-8","cp949//IGNORE",$str); }
 function is_ie() {
 	if(!isset($_SERVER['HTTP_USER_AGENT'])) return false;

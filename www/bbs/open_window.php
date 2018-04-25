@@ -1,4 +1,8 @@
 <?
+// GET으로 넘어오는 변수 초기화
+if(empty($_GET['mode'])) $mode=''; else $mode=$_GET['mode'];
+if(empty($_GET['str'])) $str=''; else $str=$_GET['str'];
+
 if(!$mode||!$str) die("<script>window.close()</script>");
 if($mode!="m"&&$mode!="i"&&$mode!="t"&&$mode!="tn") die("<script>window.close()</script>");
 
@@ -29,5 +33,5 @@ if($mode=="m") {
 ?>
 
 <script>
-	location.href="<?=$href?>";
+location.href="<?=$href?>";
 </script>

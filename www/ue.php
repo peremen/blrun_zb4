@@ -1,7 +1,7 @@
 <?
-// 폼을 전송했는지 검사하는 변수
-$flag = $_GET['flag'];
-if(empty($flag)) $flag = '';
+// 폼을 전송할 때 변수 초기화
+if(empty($_GET['flag'])) $flag = '';
+else $flag = $_GET['flag'];
 
 if($flag != "ok") {
 header("Content-Type: text/html; charset=UTF-8");
