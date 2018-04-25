@@ -62,6 +62,13 @@ function isblank($str) {
 	return 1;
 }
 
+// HTML Tag를 제거하는 함수
+function del_html( $str ) {
+	$str = str_replace( ">", "&gt;",$str );
+	$str = str_replace( "<", "&lt;",$str );
+	return $str;
+}
+
 // 페이지 이동 스크립트
 function movepage($url) {
 	global $connect;
