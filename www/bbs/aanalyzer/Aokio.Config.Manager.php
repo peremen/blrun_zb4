@@ -9,7 +9,7 @@ class AokioConfigManager{
 	 *
 	 * @return array
 	 */
-	function getApplicationConfigurationInfos(){
+	public static function getApplicationConfigurationInfos(){
 		$config_dao = new AokioConfigDao();
 		$db = $config_dao -> getConnection();
 

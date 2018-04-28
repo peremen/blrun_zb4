@@ -112,6 +112,7 @@ class AokioInstallDao extends AokioDao{
 		$sql .= " (target,total,max,lists_per_page,access_check_pattern, ";
 		$sql .= " access_check_pattern_input_time,check_admin_access,access_permission,target_name) ";
 		$sql .= " values('$target',0,0,10,0,0,0,NULL,'$target')";
+		if(empty($target_arr)) $target_arr = array();
 		$this->insertAokioInfo($sql,$target_arr,$db);
 	}
 
