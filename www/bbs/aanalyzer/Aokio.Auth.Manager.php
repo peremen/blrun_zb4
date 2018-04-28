@@ -9,7 +9,7 @@ class AokioAuthManager{
 	 *
 	 * @return array
 	 */
-	function checkAdmin($user_info){
+	public static function checkAdmin($user_info){
 		$auth_dao = new AokioAuthDao();
 		$db = $auth_dao -> getConnection();
 
@@ -28,7 +28,7 @@ class AokioAuthManager{
 	 * @return array
 	 */
 
-	function getAdminInfo(){
+	public static function getAdminInfo(){
 		$auth_dao = new AokioAuthDao();
 		$db = $auth_dao -> getConnection();
 		$admin_info = $auth_dao ->getAdminInfo($db);

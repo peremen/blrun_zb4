@@ -6,6 +6,7 @@ class  AokioSmarty extends Smarty {
 
 	function AokioSmarty(){
 		parent::Smarty();
+		if(empty($smarty)) $smarty = new Smarty();
 		$smarty->template_dir	= './templates/';
 		$smarty->compile_dir	= './templates_c/';
 		$smarty->compile_check = true;

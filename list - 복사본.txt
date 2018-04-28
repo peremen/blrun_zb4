@@ -1,4 +1,7 @@
-2018-04-25 "www/bbs/download.php" - 1줄 다시변경
-2018-04-25 "www/bbs/download_c.php" - 1줄 다시변경
-2018-04-26 "www/bbs/install_ok.php" - 7줄 다시변경
-2018-04-26 "www/bbs/open_window.php" - 5줄 추가변경
+2018-04-28 "www/bbs/aanalyzer/Aokio.Auth.Manager.php" - 2줄 추가변경
+2018-04-28 "www/bbs/aanalyzer/Aokio.Config.Manager.php" - 1줄 추가변경
+2018-04-28 "www/bbs/aanalyzer/Aokio.Install.Dao.php" - 1줄 추가변경
+2018-04-28 "www/bbs/aanalyzer/Aokio.Smarty.class.php" - 1줄 추가변경
+2018-04-28 "www/bbs/aanalyzer/lib/DB.php" - 3줄 추가변경
+2018-04-28 "www/bbs/aanalyzer/lib/DB/common.php" - 3줄 추가변경
+2018-04-28 "www/bbs/aanalyzer/lib/DB/mysql.php" - 1줄 추가변경
