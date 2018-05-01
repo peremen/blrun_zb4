@@ -103,20 +103,20 @@ function sub_val_ins()
 		sub_style_EE = "";
 	}
 
-	if(document.getElementById("sub_fwet").checked == true)
+	if(document.getElementById("sub_fmarq").checked == true)
 	{
-		sub_style_SE = sub_style_SE + "<b>";
-		sub_style_EE = "</b>" + sub_style_EE;
+		sub_style_SE = sub_style_SE + "<marquee>";
+		sub_style_EE = "</marquee>" + sub_style_EE;
 	}
 	if(document.getElementById("sub_funderl").checked == true)
 	{
 		sub_style_SE = sub_style_SE + "<u>";
 		sub_style_EE = "</u>" + sub_style_EE;
 	}
-	if(document.getElementById("sub_fmarq").checked == true)
+	if(document.getElementById("sub_fwet").checked == true)
 	{
-		sub_style_SE = sub_style_SE + "<marquee>";
-		sub_style_EE = "</marquee>" + sub_style_EE;
+		sub_style_SE = sub_style_SE + "<b>";
+		sub_style_EE = "</b>" + sub_style_EE;
 	}
 
 	document.getElementById("subject").value = sub_style_SE + subjectE + sub_style_EE;
