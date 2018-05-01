@@ -79,6 +79,7 @@
 2018-04-21 "www/bbs/skin/f2plus_gallery_3_0/Sell_type/view.php" - 2
 2018-03-27 "www/bbs/skin/f2plus_gallery_3_0/Sell_type/view_image_info.php" - 4
 2018-04-21 "www/bbs/skin/f2plus_gallery_3_0/Sell_type/write.php" - 1
+2018-05-01 "www/bbs/skin/f2plus_gallery_3_0/swe/write.js" - 6
 2018-03-27 "www/bbs/skin/happycast_brown/style.css" - 1
 2018-03-27 "www/bbs/skin/happycast_crimson/style.css" - 1
 2018-03-27 "www/bbs/skin/happycast_deepblue/style.css" - 1
