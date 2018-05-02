@@ -52,5 +52,6 @@ if($mode=="write"||($mode=="reply"&&$c_no)) {
 		$jsontable=comment_imsi_info($id,$c_no,$no,$ismember,$name,$password);
 }
 
+if(empty($jsontable)) $jsontable=array(); // 변수 Null일 경우
 print json_encode($jsontable);
 ?>

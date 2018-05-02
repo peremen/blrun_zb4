@@ -52,5 +52,6 @@ if($mode!="modify") {
 		$jsontable=board_imsi_info($id,$no,$ismember,$name,$password);
 }
 
+if(empty($jsontable)) $jsontable=array(); // 변수 Null일 경우
 print json_encode($jsontable);
 ?>

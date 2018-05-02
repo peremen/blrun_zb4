@@ -78,5 +78,6 @@ if($mode=="write"||($mode=="reply"&&$c_no)) {
 	}
 }
 
+if(empty($jsontable)) $jsontable=array(); // 변수 Null일 경우
 print json_encode($jsontable);
 ?>
