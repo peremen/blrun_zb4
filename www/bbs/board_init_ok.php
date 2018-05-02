@@ -53,6 +53,8 @@ if($mode!="modify") {
 		$jsontable=board_imsi_info($id,$no,$ismember,$name,$password);
 }
 
+if(empty($jsontable)) $jsontable=array(); // 변수 Null일 경우
+
 foreach($jsontable as $key=>$value)
 	$jsontable[$key]=iconv("euc-kr","utf-8",$value);
 

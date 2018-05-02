@@ -9,8 +9,61 @@ function ajaxLoad()
 		dataType: "json",
 		data: $("#write").serialize(),
 		success: function(data) {
-			var yn = confirm("임시저장된 글을 불러오시겠습니까?");
-			if(yn) {
+			if(data=='') {
+				// 동작 안함
+			} else {
+				var yn = confirm("임시저장된 글을 불러오시겠습니까?");
+				if(yn) {
+<? if($setup[use_category]) { ?>
+					$("#category option[value='"+data.category+"']").prop("selected", true);
+<? } ?>
+
+<? if(!((!$is_admin&&$member[level]>$setup[grant_notice])||$mode=="reply")) { ?>
+					if(data.notice)	$("#notice").prop("checked", true);
+					else $("#notice").prop("checked", false);
+<? } ?>
+
+<? if($setup[use_html]>0||$is_admin||$member[level]<=$setup[grant_html]) { ?>
+					if(data.use_html) {
+						$("#use_html").prop("checked", true);
+						$("#use_html").val(data.use_html);
+					} else $("#use_html").prop("checked", false);
+<? } ?>
+
+					if(data.reply_mail) $("#reply_mail").prop("checked", true);
+					else $("#reply_mail").prop("checked", false);
+
+<? if($setup[use_secret]) { ?>
+					if(data.is_secret) $("#is_secret").prop("checked", true);
+					else $("#is_secret").prop("checked", false);
+<? } ?>
+
+<? if(!$member[no]) { ?>
+					$("#name").val(data.name);
+					$("#email").val(data.email);
+					$("#homepage").val(data.homepage);
+<? } ?>
+					$("#subject").val(data.subject);
+					$("#memo").val(data.memo);
+					$("#sitelink1").val(data.sitelink1);
+					$("#sitelink2").val(data.sitelink2);
+				}
+			}
+		}
+	});
+}
+
+function loadAjax2()
+{
+	$.ajax({
+		type: "POST",
+		url: "board_init_ok.php",
+		dataType: "json",
+		data: $("#write").serialize(),
+		success: function(data) {
+			if(data=='') {
+				// 동작 안함
+			} else {
 <? if($setup[use_category]) { ?>
 				$("#category option[value='"+data.category+"']").prop("selected", true);
 <? } ?>
@@ -49,51 +102,6 @@ function ajaxLoad()
 	});
 }
 
-function loadAjax2()
-{
-	$.ajax({
-		type: "POST",
-		url: "board_init_ok.php",
-		dataType: "json",
-		data: $("#write").serialize(),
-		success: function(data) {
-<? if($setup[use_category]) { ?>
-			$("#category option[value='"+data.category+"']").prop("selected", true);
-<? } ?>
-
-<? if(!((!$is_admin&&$member[level]>$setup[grant_notice])||$mode=="reply")) { ?>
-			if(data.notice)	$("#notice").prop("checked", true);
-			else $("#notice").prop("checked", false);
-<? } ?>
-
-<? if($setup[use_html]>0||$is_admin||$member[level]<=$setup[grant_html]) { ?>
-			if(data.use_html) {
-				$("#use_html").prop("checked", true);
-				$("#use_html").val(data.use_html);
-			} else $("#use_html").prop("checked", false);
-<? } ?>
-
-			if(data.reply_mail) $("#reply_mail").prop("checked", true);
-			else $("#reply_mail").prop("checked", false);
-
-<? if($setup[use_secret]) { ?>
-			if(data.is_secret) $("#is_secret").prop("checked", true);
-			else $("#is_secret").prop("checked", false);
-<? } ?>
-
-<? if(!$member[no]) { ?>
-			$("#name").val(data.name);
-			$("#email").val(data.email);
-			$("#homepage").val(data.homepage);
-<? } ?>
-			$("#subject").val(data.subject);
-			$("#memo").val(data.memo);
-			$("#sitelink1").val(data.sitelink1);
-			$("#sitelink2").val(data.sitelink2);
-		}
-	});
-}
-
 var cntLoad = 0;
 var pSet;
 
@@ -118,8 +126,13 @@ function autoSave()
 		dataType: "json",
 		data: $("#write").serialize(),
 		success: function(data) {
-			$('#state').css('color','blue');
-			$('#state').html('임시저장 완료!');
+			if(data=='') {
+				$('#state').css('color','red');
+				$('#state').html('임시저장 실패!');
+			} else {
+				$('#state').css('color','blue');
+				$('#state').html('임시저장 완료!');
+			}
 		},
 		error: function() {
 			$('#state').css('color','red');

@@ -84,6 +84,8 @@ if($mode=="write"||($mode=="reply"&&$c_no)) {
 	}
 }
 
+if(empty($jsontable)) $jsontable=array(); // 변수 Null일 경우
+
 foreach($jsontable as $key=>$value)
 	$jsontable[$key]=iconv("euc-kr","utf-8",$value);
 
