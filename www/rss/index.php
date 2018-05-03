@@ -109,7 +109,7 @@ $result = mysql_query($query);
 while ($data_board = mysql_fetch_array($result))
 {
 $bbs_tmp[] = $bbss[$i];
-$subject[] = str_replace("\"","&quot;",$data_board[subject]);
+$subject[] = htmlspecialchars($data_board[subject],ENT_COMPAT,'ISO-8859-1',true);
 $name[] = htmlspecialchars($data_board[name],ENT_COMPAT,'ISO-8859-1',true);
 
 $category_name[] = htmlspecialchars($data_board[category_name],ENT_COMPAT,'ISO-8859-1',true);
@@ -228,7 +228,7 @@ setlocale (LC_TIME,"ko");
 $name_sq = "<br /><br />작성자 : ".$name[$i]."<br />작성일자: ".strftime("%Y년 %m월 %d일 %A %p %I:%M:%S",$datetm[$i])."";
 ?>
 <item>
-<title><?=$name[$i]?> - <?=del_html(str_replace("\"","&quot;",$subject[$i]))?><?=$comments?></title>
+<title><?=$name[$i]?> - <?=$subject[$i]?><?=$comments?></title>
 <link><?=$target?>?id=<?=$bbs_tmp[$i]?>&amp;no=<?=$num[$i]?></link>
 <description><?=htmlspecialchars($memoss.$name_sq,ENT_COMPAT,'ISO-8859-1',true)?></description>
 <author><?=$name[$i]?></author>
