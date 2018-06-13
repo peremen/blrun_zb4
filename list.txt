@@ -1,2 +1,3 @@
 2018-05-03 "www/rss/index.php" - 2
 2018-05-03 "www/rss/old_rss2/zero_rss.php" - 2
+2018-06-13 "www/bbs/zipcode/jusoPopup.php" - 12
