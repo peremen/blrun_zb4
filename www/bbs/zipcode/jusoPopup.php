@@ -4,18 +4,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>도로명 주소 입력창</title>
 <?
-	$ADDR['inputYn'] = $_POST['inputYn'];
-	$ADDR['roadFullAddr'] = $_POST['roadFullAddr'];
+	if(empty($_POST['inputYn'])) $ADDR['inputYn'] = '';
+	else $ADDR['inputYn'] = $_POST['inputYn'];
+	
+	if(empty($_POST['roadFullAddr'])) $ADDR['roadFullAddr'] = '';
+	else $ADDR['roadFullAddr'] = $_POST['roadFullAddr'];
 	//$ADDR['roadAddrPart1'] = $_POST['roadAddrPart1'];
 	//$ADDR['roadAddrPart2'] = $_POST['roadAddrPart2'];
 	//$ADDR['engAddr'] = $_POST['engAddr'];
 	//$ADDR['jibunAddr'] = $_POST['jibunAddr'];
-	$ADDR['zipNo'] = $_POST['zipNo'];
+	
+	if(empty($_POST['zipNo'])) $ADDR['zipNo'] = '';
+	else $ADDR['zipNo'] = $_POST['zipNo'];
 	//$ADDR['addrDetail'] = $_POST['addrDetail'];
 	//$ADDR['admCd'] = $_POST['admCd'];
 	//$ADDR['rnMgtSn'] = $_POST['rnMgtSn'];
 	//$ADDR['bdMgtSn'] = $_POST['bdMgtSn'];
-	$ADDR['num'] = $_GET['num'];
+	
+	if(empty($_GET['num'])) $ADDR['num'] = '';
+	else $ADDR['num'] = $_GET['num'];
 ?>
 </head>
 <script language="javascript">
@@ -33,7 +40,7 @@ function init(){
 		document.form.action="http://www.juso.go.kr/addrlink/addrLinkUrl.do"; //인터넷망
 		document.form.submit();
 	}else{
-		opener.jusoCallBack("<?=$ADDR[roadFullAddr]?>","<?=$ADDR[zipNo]?>",num);
+		opener.jusoCallBack("<?=$ADDR['roadFullAddr']?>","<?=$ADDR['zipNo']?>",num);
 		window.close();
 	}
 }
