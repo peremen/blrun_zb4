@@ -66,6 +66,7 @@ if($exec=="view_all") {
 	include "$dir/setup.php";
 
 	$all_depth = 0;
+	$jwcnt = 0; // jwplayer 미디어 순번
 	for($idx=count($selected)-2;$idx>=0;$idx--) {
 		$no = $selected[$idx];
 		unset($data);
@@ -74,7 +75,7 @@ if($exec=="view_all") {
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 		// 비밀글은 제외하고 view.php 파일을 연결함
 		if(!$data[is_secret]||$is_admin||$data[ismember]==$member[no]||$member[level]<=$setup[grant_view_secret]) {
-			$count=0;
+			$count = 0; // f2plus_gallery 스킨 덧글 순번
 			include "view.php";
 			if($all_depth<$max_depth) $all_depth=$max_depth;
 		}

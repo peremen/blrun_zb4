@@ -1,3 +1,6 @@
+2018-06-27 "www/bbs/list_all.php" - 2
+2018-06-27 "www/bbs/view.php" - 2
+2018-06-27 "www/bbs/include/list_check.php" - 3
+2018-06-13 "www/bbs/zipcode/jusoPopup.php" - 13
 2018-05-03 "www/rss/index.php" - 2
 2018-05-03 "www/rss/old_rss2/zero_rss.php" - 2
-2018-06-13 "www/bbs/zipcode/jusoPopup.php" - 13
