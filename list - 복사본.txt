@@ -1,1 +1,3 @@
-2018-06-13 "www/bbs/zipcode/jusoPopup.php" - 12줄 추가변경
+2018-06-27 "www/bbs/list_all.php" - 2줄 추가변경
+2018-06-27 "www/bbs/view.php" - 2줄 추가변경
+2018-06-27 "www/bbs/include/list_check.php" - 3줄 추가변경
