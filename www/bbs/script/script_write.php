@@ -1,7 +1,7 @@
 
 <!-- 글쓰기 관련 스크립트 헤더 -->
 <script language="javascript">
-function ajaxLoad()
+function loadAjax()
 {
 	$.ajax({
 		type: "POST",
@@ -104,6 +104,11 @@ function loadAjax2()
 
 var cntLoad = 0;
 var pSet;
+
+function ajaxLoad()
+{
+	pSet = setTimeout("loadAjax()",1500);
+}
 
 function ajaxLoad2()
 {
