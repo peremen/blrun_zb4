@@ -81,7 +81,7 @@ if($counter%$num==1){?>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
 			<tr><td height=4></td></tr></table>
-			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>판매가</B> :&nbsp;<?=$_name8?>원<BR>
+			<img src=<?=$dir?>/images/bolddot.gif border=0 align=absmiddle>&nbsp;<B>판매가</B> :&nbsp;<?=number_format($_name8)?>원<BR>
 			<table width=100% border=0 cellspacing=0 cellpadding=0>
 			<tr><td height=4></td></tr>
 			<tr><td height=1 background=<?=$dir?>/images/dot.gif></td></tr>
