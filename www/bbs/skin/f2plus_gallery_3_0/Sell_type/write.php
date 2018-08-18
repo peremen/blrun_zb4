@@ -236,7 +236,7 @@ function check_submit_y()
 </tr>
 <tr>
   <td align=right><font class=com2>판매가격</font></td>
-  <td align=left><input type=text id=_name8 name=_name8 value="<?=$_name8?>" <?=size(10)?> maxlength=200 class=input>원</td>
+  <td align=left><input type=text id=_name8 name=_name8 value="<?=$_name8?>" <?=size(10)?> maxlength=200 class=input>원 (콤마 없이 입력)</td>
 </tr>
 <tr>
   <td background=<?=$dir?>/images/dot.gif height=1 colspan=2></td>
