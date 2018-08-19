@@ -5,7 +5,7 @@ include "../lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
 
-if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
+if(!($member[no]&&$member[is_admin]==1)) Error("최고 관리자만이 사용할수 있습니다");
 // 세션 삭제
 if($exec=="delete") {
 

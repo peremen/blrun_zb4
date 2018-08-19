@@ -5,7 +5,7 @@ if(!$connect) $connect=dbConn();
 $member=member_info();
 $s_keyword = $keyword;
 if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)||!$_SESSION['DEL_COMM_SEC']||$_SESSION['DEL_COMM_SEC']!=$delsec) Error("보안코드가 일치하지 않습니다.");
-if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
+if(!($member[no]&&$member[is_admin]==1&&$member[level]==1)) Error("레벨1의 최고 관리자만이 사용할수 있습니다");
 // 실제 검색부분
 if($keyword) {
 	$comment_search=1;
