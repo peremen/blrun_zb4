@@ -3,7 +3,7 @@ $_zb_path="./";
 include "lib.php";
 if(!$connect) $connect=dbConn();
 $member=member_info();
-if(!$member[no]||$member[is_admin]>1||$member[level]>1) Error("최고 관리자만이 사용할수 있습니다");
+if(!($member[no]&&$member[is_admin]==1&&$member[level]==1)) Error("레벨1의 최고 관리자만이 사용할수 있습니다");
 // 실제 검색부분
 $table_name_result=mysql_query("select name from $admin_table order by name",$connect) or error(mysql_error());
 
