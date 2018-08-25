@@ -1,6 +1,6 @@
 <?
 // 자동으로 www 붙여준다.
-if(!preg_match("/www/i",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
+//if(!preg_match("/www/i",$HTTP_HOST)) header("location: http://www.".$HTTP_HOST.$REQUEST_URI);
 
 include "lib.php";
 

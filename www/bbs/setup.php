@@ -9,7 +9,7 @@
 email = blrun@daum.net
 
 ; 사이트 주소 (비밀번호 분실시 필요합니다)
-url = http://www.blrun.net/
+url = http://blrun.cafe24.com/
 
 ; 사이트 이름 (비밀번호 분실시 필요합니다)
 sitename = 네티즌 세상을 위하여...
