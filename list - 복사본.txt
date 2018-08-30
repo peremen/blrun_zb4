@@ -1,1 +1,2 @@
-2018-08-26 "www/bbs/bitly.php" - 15줄 추가변경
+2018-08-30 "www/bbs/lib.php" - 1줄 추가변경
+2018-08-30 "www/bbs/lib_ajax.php" - 1줄 추가변경
