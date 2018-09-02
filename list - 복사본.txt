@@ -1,2 +1,6 @@
-2018-08-30 "www/bbs/lib.php" - 1줄 추가변경
-2018-08-30 "www/bbs/lib_ajax.php" - 1줄 추가변경
+2018-09-02 "www/bbs/lib.php" - 2줄 다시변경
+2018-09-02 "www/bbs/lib_ajax.php" - 2줄 다시변경
+2018-09-02 "www/bbs/spam_ip.php" - 1줄 다시변경
+2018-09-02 "www/bbs/trace2.php" - 1줄 추가변경
+2018-09-02 "www/bbs/trace_ip.php" - 1줄 추가변경
+2018-09-02 "www/bbs/admin/trace.php" - 1줄 추가변경

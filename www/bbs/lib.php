@@ -898,8 +898,8 @@ function isblank($str) {
 	$temp=str_replace("\n","",$temp);
 	$temp=strip_tags($temp);
 	$temp=str_replace("&nbsp;","",$temp);
-	$temp=str_replace(" ","",$temp);
-	if(preg_match("/[^[:space:]]/i",$temp)) return 0;
+	$temp=trim(str_replace(" ","",$temp));
+	if(preg_match("/[^[:space:]]/i",$temp) || !empty($temp)) return 0;
 	return 1;
 }
 
