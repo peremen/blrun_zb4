@@ -1,4 +1,12 @@
-2018-09-02 "www/bbs/spam_ip.php" - 1줄 다시변경
-2018-09-02 "www/bbs/trace2.php" - 1줄 추가변경
-2018-09-02 "www/bbs/trace_ip.php" - 1줄 추가변경
-2018-09-02 "www/bbs/admin/trace.php" - 1줄 추가변경
+2018-09-04 "www/bbs/board_imsi_ok.php" - 1줄 추가변경
+2018-09-04 "www/bbs/board_init_ok.php" - 1줄 추가변경
+2018-09-04 "www/bbs/comment_imsi_ok.php" - 1줄 추가변경
+2018-09-04 "www/bbs/comment_init_ok.php" - 1줄 추가변경
+2018-09-04 "www/bbs/comment_ok.php" - 1줄 추가변경
+2018-09-05 "www/bbs/lib.php" - 1줄 다시변경
+2018-09-05 "www/bbs/lib_ajax.php" - 1줄 다시변경
+2018-09-04 "www/bbs/login_check.php" - 5줄 추가변경
+2018-09-04 "www/bbs/login_check2.php" - 5줄 추가변경
+2018-09-04 "www/bbs/write_ok.php" - 1줄 추가변경
+2018-09-04 "www/bbs/skin/f2plus_gallery_2_0/comment_ok.php" - 1줄 추가변경
+2018-09-04 "www/bbs/skin/f2plus_gallery_3_0/comment_ok.php" - 1줄 추가변경

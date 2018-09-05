@@ -871,7 +871,7 @@ function isblank($str) {
 	$temp=strip_tags($temp);
 	$temp=str_replace("&nbsp;","",$temp);
 	$temp=str_replace(" ","",$temp);
-	if(preg_match("/[^[:space:]]/i",$temp)) return 0;
+	if(preg_match("/[^[:space:]&#160;&#12288;]/i",$temp)) return 0;
 	return 1;
 }
 

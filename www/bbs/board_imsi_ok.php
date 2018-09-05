@@ -31,7 +31,7 @@ if($member[no]) {
 }
 
 // 패스워드를 암호화
-if(strlen($password)) {
+if($password) {
 	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
 	$password=$temp[0];
 }
