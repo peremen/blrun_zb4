@@ -67,7 +67,7 @@ if(!$is_admin&&$setup[use_filter]) {
 }
 
 // 패스워드를 암호화
-if(mb_strlen($password)) {
+if($password) {
 	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
 	$password=$temp[0];
 }

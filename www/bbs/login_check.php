@@ -22,11 +22,9 @@ if($id) {
 if($setup[group_no]) $group_no=$setup[group_no];
 
 // 패스워드를 암호화
-if($password){
-	if($password) {
-		$temp=mysql_fetch_array(mysql_query("select password('$password')"));
-		$password=$temp[0];
-	}
+if($password) {
+	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
+	$password=$temp[0];
 }
 
 // 회원 로그인 체크

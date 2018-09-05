@@ -874,8 +874,8 @@ function isblank($str) {
 	$temp=str_replace("\n","",$temp);
 	$temp=strip_tags($temp);
 	$temp=str_replace("&nbsp;","",$temp);
-	$temp=trim(str_replace(" ","",$temp));
-	if(preg_match("/[^[:space:]]/i",$temp) || !empty($temp)) return 0;
+	$temp=str_replace(" ","",$temp);
+	if(preg_match("/[^[:space:]\x{00A0}&#160;\x{3000}&#12288;]/u",$temp)) return 0;
 	return 1;
 }
 
