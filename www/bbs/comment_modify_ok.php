@@ -258,7 +258,7 @@ if($flag != ok) {
 		$f_name=preg_replace("#([\_\-\./~@?=%&! ]+)#i","",strip_tags($name));
 		for($i=0;$i<count($filter);$i++) {
 			$filter[$i]=trim($filter[$i]);
-			if(!isblank($filter[$i])) {
+			if(!isspace($filter[$i])) {
 				if(preg_match("#".$filter[$i]."#i",$f_memo)) Error("'$filter[$i]' 은(는) 등록하기에 적합한 단어가 아닙니다");
 				if(preg_match("#".$filter[$i]."#i",$f_name)) Error("'$filter[$i]' 은(는) 등록하기에 적합한 단어가 아닙니다");
 			}
@@ -294,7 +294,7 @@ if($flag != ok) {
 			$tag=explode(",",$setup[avoid_tag]);
 			for($i=0;$i<count($tag);$i++) {
 				$tag[$i]=trim($tag[$i]);
-				if(!isblank($tag[$i])) {
+				if(!isspace($tag[$i])) {
 					$memo=preg_replace("#&lt;".$tag[$i]." #i","<".$tag[$i]." ",$memo);
 					$memo=preg_replace("#&lt;".$tag[$i].">#i","<".$tag[$i].">",$memo);
 					$memo=preg_replace("#&lt;/".$tag[$i]."#i","</".$tag[$i],$memo);

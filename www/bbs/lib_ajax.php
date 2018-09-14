@@ -875,6 +875,17 @@ function isblank($str) {
 	return 1;
 }
 
+// 스페이스일 경우 1을 리턴
+function isspace($str) {
+	$temp=str_replace("　","",$str);
+	$temp=str_replace("\n","",$temp);
+	$temp=strip_tags($temp);
+	$temp=str_replace("&nbsp;","",$temp);
+	$temp=str_replace(" ","",$temp);
+	if(preg_match("/[^[:space:]]/i",$temp)) return 0;
+	return 1;
+}
+
 // 숫자일 경우 1을 리턴
 function isnum($str) {
 	if(preg_match("/[^0-9]/i",$str)) return 0;
