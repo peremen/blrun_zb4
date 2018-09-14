@@ -17,10 +17,10 @@ if($member[is_admin]>3||$member[is_admin]<1) thisError("관리자페이지를 �
 if($s_comment) $comment = $s_comment;
 else $s_comment = $comment;
 
-if(isblank($from)) thisError("보내는 이의 mail을 적어주십시요");
-if(isblank($name)) thisError("보내시는 분의 이름을 적어주십시요");
-if(isblank($subject)) thisError("제목을 적어주십시요");
-if(isblank($comment)) thisError("내용을 적어주십시요");
+if(isspace($from)) thisError("보내는 이의 mail을 적어주십시요");
+if(isspace($name)) thisError("보내시는 분의 이름을 적어주십시요");
+if(isspace($subject)) thisError("제목을 적어주십시요");
+if(isspace($comment)) thisError("내용을 적어주십시요");
 
 // 페이지 이동 할때 페이지를 구함
 if(!$page) $page = 1; else $page++;

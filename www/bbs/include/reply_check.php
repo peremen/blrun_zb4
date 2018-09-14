@@ -58,7 +58,7 @@ $temp_name = get_private_icon($reply_data[ismember], "2");
 if($temp_name) $name="<img src='$temp_name' border=0 align=absmiddle>";
 
 // 메일주소가 있으면 이름에 메일 링크시킴
-if(!isBlank($email)||$reply_data[ismember]) {
+if(!isspace($email)||$reply_data[ismember]) {
 	if(!$setup[use_formmail]) $name="<a href=mailto:$email>$name</a>";
 	else $name="<a href=javascript:void(window.open('view_info.php?to=$email&id=$id&member_no=$reply_data[ismember]','mailform','width=400,height=500,statusbar=no,scrollbars=yes,toolbar=no'))>$name</a>";
 }

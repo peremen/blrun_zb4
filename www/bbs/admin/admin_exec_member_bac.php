@@ -127,7 +127,7 @@ if($exec2=="modify_member_ok") {
 	if($_SERVER['REQUEST_METHOD']!='POST') die("비정상적인 접근이라 차단됩니다");
 
 	if($member[is_admin]>1) Error("회원정보변경 권한이 없습니다");
-	if(isblank($name)) Error("이름을 입력하셔야 합니다");
+	if(isspace($name)) Error("이름을 입력하셔야 합니다");
 
 	if($password&&$password1&&$password!=$password1) Error("비밀번호가 일치하지 않습니다");
 
