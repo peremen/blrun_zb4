@@ -127,7 +127,7 @@ if($data[prev_no]&&!$setup[use_alllist]) {
 	$prev_vote=del_html($prev_data[vote]);
 	$prev_reg_date="<span title='".date("Y/m/d H:i:d",$prev_data[reg_date])."'>".date("Y/m/d",$prev_data[reg_date])."</span>";
 
-	if(!isspace($prev_email)||$prev_data[ismember]) {
+	if(!isblank($prev_email)||$prev_data[ismember]) {
 		if(!$setup[use_formmail]) $a_prev_email="<a onfocus=blur() href='mailto:$prev_email'>";
 		else $a_prev_email="<a onfocus=blur() href=\"javascript:void(window.open('view_info.php?to=$prev_email&id=$id&member_no=$prev_data[ismember]','mailform','width=400,height=500,statusbar=no,scrollbars=yes,toolbar=no'))\">";
 		$prev_name=$a_prev_email.$prev_name."</a>";
@@ -175,7 +175,7 @@ if($data[next_no]&&!$setup[use_alllist]) {
 	$next_hit=del_html($next_data[hit]);
 	$next_vote=del_html($next_data[vote]);
 	$next_reg_date="<span title='".date("Y/m/d H:i:d",$next_data[reg_date])."'>".date("Y/m/d",$next_data[reg_date])."</span>";
-	if(!isspace($next_email)||$next_data[ismember]) {
+	if(!isblank($next_email)||$next_data[ismember]) {
 		if(!$setup[use_formmail]) $a_next_email="<a onfocus=blur() href='mailto:$next_email'>";
 		else $a_next_email="<a onfocus=blur() href=\"javascript:void(window.open('view_info.php?to=$next_email&id=$id&member_no=$next_data[ismember]','mailform','width=400,height=500,statusbar=noscrollbars=yes,toolbar=no'))\">";
 		$next_name=$a_next_email.$next_name."</a>";
@@ -213,7 +213,7 @@ if($data[homepage]) $a_homepage="<a onfocus=blur() href='$data[homepage]' target
 ***************************************************************************************/
 
 // 메일주소가 있으면 이름에 메일 링크
-if(!isspace($email)||$data[ismember]) {
+if(!isblank($email)||$data[ismember]) {
 	if(!$setup[use_formmail]) $a_email="<a onfocus=blur() href='mailto:$email'>";
 	else $a_email="<a onfocus=blur() href=\"javascript:void(window.open('view_info.php?to=$email&id=$id&member_no=$data[ismember]','mailform','width=400,height=500,statusbar=no,scrollbars=yes,toolbar=no'))\">";
 } else $a_email="<Zeroboard ";

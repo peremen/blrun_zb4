@@ -67,7 +67,7 @@ if($keyword&&$s_que)
 		$count = count($avoid_ip);
 		for($i=0;$i<$count;$i++){
 			$TrimedAvoidIp = trim($avoid_ip[$i]);
-			if(!isspace($TrimedAvoidIp)&&preg_match("/".$keyword."/i", $TrimedAvoidIp)) {
+			if(!isblank($TrimedAvoidIp)&&preg_match("/".$keyword."/i", $TrimedAvoidIp)) {
 				$Blocked=1;
 				break;
 			}
