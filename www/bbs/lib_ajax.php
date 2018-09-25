@@ -871,7 +871,6 @@ function isblank($str) {
 	$temp=strip_tags($temp);
 	$temp=str_replace("&nbsp;","",$temp);
 	$temp=str_replace(" ","",$temp);
-	$temp=preg_replace("/\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F][\x80-\xBF]{2}/","",$temp);
 	if(preg_match("/[^[:space:]&#xA0;&#160;&#x180E;&#6158;&#x2000;&#8192;&#x2001;&#8193;&#x2002;&#8194;	&ensp;&#x2003;&#8195;&emsp;&#x2004;&#8196;&#x2005;&#8197;&#x2006;&#8198;&#x2007;&#8199;&#x2008;&#8200;&#x2009;&#8201;&thinsp;&#x200A;&#8202;&#x200B;&#8203;&#x202F;&#8239;&#x205F;&#8287;&#x3000;&#12288;&#xFEFF;&#65279;&#x20;&#32;&#x9;&#9;&#xD;&#13;&nbsp&#8207;&rlm;]/i",$temp)) return 0;
 	return 1;
 }
@@ -883,7 +882,6 @@ function isspace($str) {
 	$temp=strip_tags($temp);
 	$temp=str_replace("&nbsp;","",$temp);
 	$temp=str_replace(" ","",$temp);
-	$temp=preg_replace("/\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F][\x80-\xBF]{2}/","",$temp);
 	if(preg_match("/[^[:space:]]/i",$temp)) return 0;
 	return 1;
 }
