@@ -25,7 +25,7 @@ function del_member($no) {
 // 그룹추가
 if($exec=="add_group_ok") {
 	if($member[is_admin]>1) Error("그룹생성 권한이 없습니다");
-	if(isspace($name)) Error("그룹이름은 필수로 지정하셔야 합니다");
+	if(isblank($name)) Error("그룹이름은 필수로 지정하셔야 합니다");
 	// 중복 이름 검사
 	$check=mysql_fetch_array(mysql_query("select count(*) from $group_table where name='$name'"));
 	if($check[0]) Error("$name 이라는 이름의 그룹이 이미 있습니다");
@@ -79,7 +79,7 @@ if($exec=="add_group_ok") {
 elseif($exec=="modify_group_ok") {
 	if($member[is_admin]>2) Error("그룹수정 권한이 없습니다");
 	if($member[is_admin]==2&&$member[group_no]!=$group_no) Error("그룹수정 권한이 없습니다");
-	if(isspace($name)) Error("그룹이름은 필수로 지정하셔야 합니다");
+	if(isblank($name)) Error("그룹이름은 필수로 지정하셔야 합니다");
 	if($del_icon) $icon_sql=",icon=''";
 	// 아이콘 파일 업로드시
 	if($_FILES[icon]) {

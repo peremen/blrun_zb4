@@ -12,9 +12,9 @@ $_sitename = $_zbDefaultSetup[sitename];
 
 if(!$connect) $connect=dbConn();
 
-if(isspace($email)) Error("E-Mail을 입력하여 주세요");
-if(isspace($jumin1)||!isnum($jumin1)) Error("주민등록번호를 제대로 입력하여 주세요");
-if(isspace($jumin2)||!isnum($jumin2)) Error("주민등록번호를 제대로 입력하여 주세요");
+if(isblank($email)) Error("E-Mail을 입력하여 주세요");
+if(isblank($jumin1)||!isnum($jumin1)) Error("주민등록번호를 제대로 입력하여 주세요");
+if(isblank($jumin2)||!isnum($jumin2)) Error("주민등록번호를 제대로 입력하여 주세요");
 
 $result=mysql_query("select * from zetyx_member_table where email like concat('$email','|||%') and jumin=password('$jumin1"."$jumin2')",$connect) or Error(mysql_error());
 

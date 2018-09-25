@@ -725,7 +725,7 @@ function check_blockip() {
 	$count = count($avoid_ip);
 	for($i=0;$i<$count;$i++) {
 		$avoid_ip[$i]=trim($avoid_ip[$i]);
-		if(!isspace($avoid_ip[$i])&&preg_match("#".$avoid_ip[$i]."#i",$_SERVER['REMOTE_ADDR'])) Error("차단당한 IP 주소입니다.");
+		if(!isblank($avoid_ip[$i])&&preg_match("#".$avoid_ip[$i]."#i",$_SERVER['REMOTE_ADDR'])) Error("차단당한 IP 주소입니다.");
 	}
 }
 
@@ -895,17 +895,7 @@ function isblank($str) {
 	$temp=strip_tags($temp);
 	$temp=str_replace("&nbsp;","",$temp);
 	$temp=str_replace(" ","",$temp);
-	if(preg_match("/[^[:space:]&#xA0;&#160;&#x180E;&#6158;&#x2000;&#8192;&#x2001;&#8193;&#x2002;&#8194;	&ensp;&#x2003;&#8195;&emsp;&#x2004;&#8196;&#x2005;&#8197;&#x2006;&#8198;&#x2007;&#8199;&#x2008;&#8200;&#x2009;&#8201;&thinsp;&#x200A;&#8202;&#x200B;&#8203;&#x202F;&#8239;&#x205F;&#8287;&#x3000;&#12288;&#xFEFF;&#65279;&#x20;&#32;&#x9;&#9;&#xD;&#13;&nbsp&#8207;&rlm;]/i",$temp)) return 0;
-	return 1;
-}
-
-// 스페이스일 경우 1을 리턴
-function isspace($str) {
-	$temp=str_replace("　","",$str);
-	$temp=str_replace("\n","",$temp);
-	$temp=strip_tags($temp);
-	$temp=str_replace("&nbsp;","",$temp);
-	$temp=str_replace(" ","",$temp);
+	$temp=preg_replace("/&#x0*A0;?|&#0*160;?|&#x0*180E;?|&#0*6158;?|&#x0*2000;?|&#0*8192;?|&#x0*2001;?|&#0*8193;?|&#x0*2002;?|&#0*8194;?|&ensp;|&#x0*2003;?|&#0*8195;?|&emsp;|&#x0*2004;?|&#0*8196;?|&#x0*2005;?|&#0*8197;?|&#x0*2006;?|&#0*8198;?|&#x0*2007;?|&#0*8199;?|&#x0*2008;?|&#0*8200;?|&#x0*2009;?|&#0*8201;?|&thinsp;|&#x0*200A;?|&#0*8202;?|&#x0*200B;?|&#0*8203;?|&#x0*202F;?|&#0*8239;?|&#x0*205F;?|&#0*8287;?|&#x0*3000;?|&#0*12288;?|&#x0*FEFF;?|&#0*65279;?|&#x0*20;?|&#0*32;?|&#x0*9;?|&#0*9;?|&#x0*D;?|&#0*13;?|&nbsp|&#x0*200F;?|&#0*8207;?|&rlm;/i","",$temp);
 	if(preg_match("/[^[:space:]]/i",$temp)) return 0;
 	return 1;
 }

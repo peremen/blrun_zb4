@@ -53,7 +53,7 @@ if($member[is_admin]==1||$member[is_admin]==2&&$member[group_no]==$setup[group_n
 $avoid_ip=explode(",",$setup[avoid_ip]);
 for($i=0;$i<count($avoid_ip);$i++)
 {
-	if(!isspace($avoid_ip[$i])&&preg_match("#".$avoid_ip[$i]."#i",$REMOTE_ADDR)&&!$is_admin)
+	if(!isblank($avoid_ip[$i])&&preg_match("#".$avoid_ip[$i]."#i",$REMOTE_ADDR)&&!$is_admin)
 	Error1(" Access Denied ");
 }
 

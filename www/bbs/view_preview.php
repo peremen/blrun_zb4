@@ -50,7 +50,7 @@ if(!$is_admin&&$setup[grant_html]<$member[level]) {
 		$tag=explode(",",$setup[avoid_tag]);
 		for($i=0;$i<count($tag);$i++) {
 			$tag[$i]=trim($tag[$i]);
-			if(!isspace($tag[$i])) {
+			if(!isblank($tag[$i])) {
 				$memo=preg_replace("#&lt;".$tag[$i]." #i","<".$tag[$i]." ",$memo);
 				$memo=preg_replace("#&lt;".$tag[$i].">#i","<".$tag[$i].">",$memo);
 				$memo=preg_replace("#&lt;/".$tag[$i]."#i","</".$tag[$i],$memo);
