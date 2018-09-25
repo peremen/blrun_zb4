@@ -135,6 +135,6 @@ function all_Backup($host,$user,$password,$dbname,$filename) {
 		if($rowArray[0]=="basedir")
 			$bindir=$rowArray[1]."bin/";
 	}
-	passthru($bindir."mysqldump --user=$myid --password=$mypw $dbname --default-character-set=utf8 > ../$filename");
+	passthru($bindir."mysqldump --user=$myid --password=$mypw $dbname --default-character-set=utf8mb4 > ../$filename");
 }
 ?>

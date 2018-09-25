@@ -302,7 +302,7 @@ function dbconn() {
 
 	if(!$connect){
 		$connect = @mysql_connect($f[1],$f[2],$f[3]);
-		@mysql_query("set names utf8",$connect);
+		@mysql_query("set names utf8mb4",$connect);
 	}
 	if(!$connect) Error("DB 접속시 에러가 발생했습니다!");
 
@@ -875,7 +875,6 @@ function isblank($str) {
 	$temp=strip_tags($temp);
 	$temp=str_replace("&nbsp;","",$temp);
 	$temp=str_replace(" ","",$temp);
-	$temp=preg_replace("/\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F][\x80-\xBF]{2}/","",$temp);
 	if(preg_match("/[^[:space:]\x{00A0}&#xA0;&#160;\x{180E}&#x180E;&#6158;\x{2000}&#x2000;&#8192;\x{2001}&#x2001;&#8193;\x{2002}&#x2002;&#8194;	&ensp;\x{2003}&#x2003;&#8195;&emsp;\x{2004}&#x2004;&#8196;\x{2005}&#x2005;&#8197;\x{2006}&#x2006;&#8198;\x{2007}&#x2007;&#8199;\x{2008}&#x2008;&#8200;\x{2009}&#x2009;&#8201;&thinsp;\x{200A}&#x200A;&#8202;\x{200B}&#x200B;&#8203;\x{202F}&#x202F;&#8239;\x{205F}&#x205F;&#8287;\x{3000}&#x3000;&#12288;\x{FEFF}&#xFEFF;&#65279;\x{0020}&#x20;&#32;\x{0009}&#x9;&#9;\x{000D}&#xD;&#13;&nbsp&#8207;&rlm;]/u",$temp)) return 0;
 	return 1;
 }
@@ -887,7 +886,6 @@ function isspace($str) {
 	$temp=strip_tags($temp);
 	$temp=str_replace("&nbsp;","",$temp);
 	$temp=str_replace(" ","",$temp);
-	$temp=preg_replace("/\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F][\x80-\xBF]{2}/","",$temp);
 	if(preg_match("/[^[:space:]]/i",$temp)) return 0;
 	return 1;
 }
@@ -1022,6 +1020,12 @@ function zb_sendmail($type, $to, $to_name, $from, $from_name, $subject, $comment
 	// email IP 표식 불러와 처리
 	if(preg_match("#\|\|\|([0-9.]{1,})$#",$to,$c_match))
 		$to = str_replace($c_match[0],"",$to);
+
+	// 보내는이, 받는이, 제목 한글 깨지지 않게
+	$to_name = iconv('UTF-8','CP949',$to_name);
+	$from_name = iconv('UTF-8','CP949',$from_name);
+	$subject = iconv('UTF-8','CP949',$subject);
+
 	$recipient = "$to_name <$to>";
 
 	if($type==1) $comment = nl2br($comment);

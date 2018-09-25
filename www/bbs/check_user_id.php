@@ -1,8 +1,6 @@
 <?
-$user_id = htmlspecialchars(trim($user_id));
-
 include "lib.php";
-$user_id = trim($user_id);
+$user_id = htmlspecialchars(trim($user_id));
 if(!$connect) $connect=dbConn();
 $check=mysql_fetch_array(mysql_query("select count(*) from $member_table where user_id='$user_id'",$connect));
 head();
