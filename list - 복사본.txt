@@ -1,4 +1,2 @@
-2018-09-26 "www/bbs/check_user_id.php" - 3줄 추가변경
-2018-09-26 "www/bbs/lib.php" - 6줄 다시변경
-2018-09-26 "www/bbs/lib_ajax.php" - 6줄 다시변경
-2018-09-26 "www/bbs/admin/dbDump.php" - 1줄 추가변경
+2018-09-29 "www/bbs/lib.php" - 1줄 다시변경
+2018-09-29 "www/bbs/lib_ajax.php" - 1줄 다시변경

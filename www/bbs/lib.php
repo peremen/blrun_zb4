@@ -10,7 +10,7 @@
  ******************************************************************************/
 // 한글 인코딩 및 W3C P3P 규약설정
 @header("Content-Type: text/html; charset=utf-8");
-@header("P3P : CP=\"ALL CURa ADMa DEVa TAIa OUR BUS IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC OTC\"");
+@header('P3P: CP="NOI CURa ADMa DEVa TAIa OUR DELa BUS IND PHY ONL UNI COM NAV INT DEM PRE"');
 
 // 현재 버젼
 $zb_version = "4.1 pl8";
@@ -728,7 +728,7 @@ function check_blockip() {
 	$count = count($avoid_ip);
 	for($i=0;$i<$count;$i++) {
 		$avoid_ip[$i]=trim($avoid_ip[$i]);
-		if(!isblank($avoid_ip[$i])&&preg_match("#".$avoid_ip[$i]."#i",$_SERVER['REMOTE_ADDR'])) Error("차단당한 IP 주소입니다.");
+		if(!isspace($avoid_ip[$i])&&preg_match("#".$avoid_ip[$i]."#i",$_SERVER['REMOTE_ADDR'])) Error("차단당한 IP 주소입니다.");
 	}
 }
 
@@ -899,7 +899,17 @@ function isblank($str) {
 	$temp=strip_tags($temp);
 	$temp=str_replace("&nbsp;","",$temp);
 	$temp=str_replace(" ","",$temp);
-	$temp=preg_replace("/\x{00A0}|&#x0*A0;?|&#0*160;?|\x{180E}|&#x0*180E;?|&#0*6158;?|\x{2000}|&#x0*2000;?|&#0*8192;?|\x{2001}|&#x0*2001;?|&#0*8193;?|\x{2002}|&#x0*2002;?|&#0*8194;?|&ensp;|\x{2003}|&#x0*2003;?|&#0*8195;?|&emsp;|\x{2004}|&#x0*2004;?|&#0*8196;?|\x{2005}|&#x0*2005;?|&#0*8197;?|\x{2006}|&#x0*2006;?|&#0*8198;?|\x{2007}|&#x0*2007;?|&#0*8199;?|\x{2008}|&#x0*2008;?|&#0*8200;?|\x{2009}|&#x0*2009;?|&#0*8201;?|&thinsp;|\x{200A}|&#x0*200A;?|&#0*8202;?|\x{200B}|&#x0*200B;?|&#0*8203;?|\x{202F}|&#x0*202F;?|&#0*8239;?|\x{205F}|&#x0*205F;?|&#0*8287;?|\x{3000}|&#x0*3000;?|&#0*12288;?|\x{FEFF}|&#x0*FEFF;?|&#0*65279;?|\x{0020}|&#x0*20;?|&#0*32;?|\x{0009}|&#x0*9;?|&#0*9;?|\x{000D}|&#x0*D;?|&#0*13;?|&nbsp|\x{200F}|&#x0*200F;?|&#0*8207;?|&rlm;/iu","",$temp);
+	if(preg_match("/[^[:space:]\x{00A0}&#xA0;&#160;\x{180E}&#x180E;&#6158;\x{2000}&#x2000;&#8192;\x{2001}&#x2001;&#8193;\x{2002}&#x2002;&#8194;	&ensp;\x{2003}&#x2003;&#8195;&emsp;\x{2004}&#x2004;&#8196;\x{2005}&#x2005;&#8197;\x{2006}&#x2006;&#8198;\x{2007}&#x2007;&#8199;\x{2008}&#x2008;&#8200;\x{2009}&#x2009;&#8201;&thinsp;\x{200A}&#x200A;&#8202;\x{200B}&#x200B;&#8203;\x{202F}&#x202F;&#8239;\x{205F}&#x205F;&#8287;\x{3000}&#x3000;&#12288;\x{FEFF}&#xFEFF;&#65279;\x{0020}&#x20;&#32;\x{0009}&#x9;&#9;\x{000D}&#xD;&#13;&nbsp&#8207;&rlm;]/u",$temp)) return 0;
+	return 1;
+}
+
+// 스페이스일 경우 1을 리턴
+function isspace($str) {
+	$temp=str_replace("　","",$str);
+	$temp=str_replace("\n","",$temp);
+	$temp=strip_tags($temp);
+	$temp=str_replace("&nbsp;","",$temp);
+	$temp=str_replace(" ","",$temp);
 	if(preg_match("/[^[:space:]]/i",$temp)) return 0;
 	return 1;
 }
