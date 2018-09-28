@@ -6,7 +6,7 @@ if($member[is_admin]>2) Error("게시판관리 권한이 없습니다");
 // 게시판 수정
 if($exec2=="modify_ok") {
 	// 입력된 테이블 값이 빈값인지, 한글이 들어갔는지를 검사
-	if(isspace($name)) Error("게시판 이름을 입력하셔야 합니다","");
+	if(isblank($name)) Error("게시판 이름을 입력하셔야 합니다","");
 	if(!isAlNum($name)) Error("게시판 이름은 영문과 숫자로만 하셔야 합니다","");
 	$name=addslashes($name);
 	$bg_color=addslashes($bg_color);
@@ -39,7 +39,7 @@ if($exec2=="modify_ok") {
 // 게시판 추가
 elseif($exec2=="add_ok") {
 	// 입력된 테이블 값이 빈값인지, 한글이 들어갔는지를 검사
-	if(isspace($name)) Error("게시판 이름을 입력하셔야 합니다","");
+	if(isblank($name)) Error("게시판 이름을 입력하셔야 합니다","");
 	if(!isAlNum($name)) Error("게시판 이름은 영문과 숫자로만 하셔야 합니다","");
 
 	// 같은 이름의 게시판이 이미 생성되었는지를 검사

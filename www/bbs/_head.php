@@ -143,7 +143,7 @@ if($_zboardis) {
 			$ss="on";
 			$sm="on";
 		}
-		if(!isspace($keyword)) {
+		if(!isblank($keyword)) {
 			$keyword=addslashes($keyword);
 			if($sm=="on") {
 				$t_s_que =" $t_comment"."_$id.memo like '%$keyword%' ";
