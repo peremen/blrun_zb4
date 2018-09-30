@@ -1,7 +1,7 @@
 <?
 // 한글 인코딩 및 W3C P3P 규약설정
 @header("Content-Type: text/html; charset=utf-8");
-@header("P3P : CP=\"ALL CURa ADMa DEVa TAIa OUR BUS IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC OTC\"");
+@header('P3P: CP="NOI CURa ADMa DEVa TAIa OUR DELa BUS IND PHY ONL UNI COM NAV INT DEM PRE"');
 
 /*******************************************************************************
  * 에러 리포팅 설정과 register_globals_on일때 변수 재 정의
@@ -55,7 +55,7 @@ function istable($str, $dbname='') {
 }
 
 // 빈문자열 경우 1을 리턴
-function isblank($str) {
+function isspace($str) {
 	$temp=str_replace("　","",$str);
 	$temp=str_replace("\n","",$temp);
 	$temp=strip_tags($temp);
@@ -93,9 +93,9 @@ include "schema.sql";
 if(file_exists("myZrCnf2019.php")) error("이미 myZrCnf2019.php가 생성되어 있습니다.<br><br>재설치하려면 해당 파일을 지우세요");
 
 // 호스트네임, 아이디, DB네임, 비밀번호의 공백여부 검사
-if(isblank($hostname)) Error("HostName을 입력하세요","");
-if(isblank($user_id)) Error("User ID 를 입력하세요","");
-if(isblank($dbname)) Error("DB NAME을 입력하세요","");
+if(isspace($hostname)) Error("HostName을 입력하세요","");
+if(isspace($user_id)) Error("User ID 를 입력하세요","");
+if(isspace($dbname)) Error("DB NAME을 입력하세요","");
 
 // DB에 커넥트 하고 DB NAME으로 select DB
 $connect = @mysql_connect($hostname,$user_id,$password) or Error("MySQL-DB Connect<br>Error!!!","");
