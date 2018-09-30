@@ -24,19 +24,19 @@ if($member[no]) {
 
 // 패스워드를 암호화
 if($password) {
-	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select password('$password')"));
 	$password=$temp[0];
 }
 
 function comment_imsi_info($id,$c_no,$parent,$ismember,$name,$password) {
-	global $comment_imsi_table;
-	$temp=mysql_fetch_array(mysql_query("select * from $comment_imsi_table where bname='$id' and cno='$c_no' and parent='$parent' and ismember='$ismember' and name='$name' and password='$password'"));
+	global $comment_imsi_table, $connect;
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select * from $comment_imsi_table where bname='$id' and cno='$c_no' and parent='$parent' and ismember='$ismember' and name='$name' and password='$password'"));
 	return $temp;
 }
 
 if($mode=="write"||($mode=="reply"&&$c_no)) {
 	if($name&&$password) {
-		$re=mysql_fetch_array(mysql_query("select count(*) from $comment_imsi_table where bname='$id' and cno='0' and parent='$no' and ismember='$ismember' and name='$name' and password='$password'"));
+		$re=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $comment_imsi_table where bname='$id' and cno='0' and parent='$no' and ismember='$ismember' and name='$name' and password='$password'"));
 
 		if($re[0]>0)
 			$jsontable=comment_imsi_info($id,0,$no,$ismember,$name,$password);
@@ -46,7 +46,7 @@ if($mode=="write"||($mode=="reply"&&$c_no)) {
 * 수정글일때
 **************************************************************************/
 } elseif($mode=="modify"&&$c_no) {
-	$re=mysql_fetch_array(mysql_query("select count(*) from $comment_imsi_table where bname='$id' and cno='$c_no' and parent='$no' and ismember='$ismember' and name='$name' and password='$password'"));
+	$re=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $comment_imsi_table where bname='$id' and cno='$c_no' and parent='$no' and ismember='$ismember' and name='$name' and password='$password'"));
 
 	if($re[0]>0)
 		$jsontable=comment_imsi_info($id,$c_no,$no,$ismember,$name,$password);

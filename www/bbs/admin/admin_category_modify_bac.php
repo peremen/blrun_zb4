@@ -1,7 +1,7 @@
 <?
 // 카테고리 수정 //////////////////////////////////////////////////////////////////////
-$table_data=mysql_fetch_array(mysql_query("select name from $admin_table where no='$no'"));
-$category_data=mysql_fetch_array(mysql_query("select * from $t_category"."_$table_data[name] where no='$category_no'"));
+$table_data=mysqli_fetch_array(mysqli_query($connect,"select name from $admin_table where no='$no'"));
+$category_data=mysqli_fetch_array(mysqli_query($connect,"select * from $t_category"."_$table_data[name] where no='$category_no'"));
 ?>
 <table border=0 cellspacing=1 cellpadding=0 width=100% bgcolor=#b0b0b0>
 <form method=post action=<?=$PHP_SELF?>>

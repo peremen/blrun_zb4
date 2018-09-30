@@ -11,37 +11,37 @@ $member=member_info();
 if(!$member[no]) Error("로그인된 회원만이 사용할수 있습니다","window.close");
 
 // 그룹데이타 읽어오기;;
-$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$member[group_no]'"));
+$group_data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$member[group_no]'"));
 
 // 지정 시간이 넘은 글 삭제;;
-mysql_query("delete from $send_memo_table where member_no='$member[no]' and (".time()." - reg_date) >= ".$_zbDefaultSetup[memo_limit_time]) or error(mysql_error());
+mysqli_query($connect,"delete from $send_memo_table where member_no='$member[no]' and (".time()." - reg_date) >= ".$_zbDefaultSetup[memo_limit_time]) or error(mysqli_error($connect));
 
 // 선택된 메모 삭제;;;
 if($exec=="del_all") {
 	for($i=0;$i<count($del);$i++) {
-		mysql_query("delete from $send_memo_table where no='$del[$i]' and member_no='$member[no]'");
+		mysqli_query($connect,"delete from $send_memo_table where no='$del[$i]' and member_no='$member[no]'");
 	}
 	movepage("$PHP_SELF?page=$page");
 }
 
 // 메모삭제
 if($exec=="del") {
-	mysql_query("delete from $send_memo_table where no='$no' and member_no='$member[no]'");
+	mysqli_query($connect,"delete from $send_memo_table where no='$no' and member_no='$member[no]'");
 	movepage("$PHP_SELF?page=$page");
 }
 
 // 선택된 메모가 있을시 데이타 뽑아오기;;
 if($no) {
-	$now_data=mysql_fetch_array(mysql_query("select * from $send_memo_table where no='$no' and member_no = '$member[no]'"));
+	$now_data=mysqli_fetch_array(mysqli_query($connect,"select * from $send_memo_table where no='$no' and member_no = '$member[no]'"));
 }
 
 
 // 읽지 않은 쪽지의 갯수 구하기
-$temp1=mysql_fetch_array(mysql_query("select count(*) from $send_memo_table where readed='1' and member_no='$member[no]'"));
+$temp1=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $send_memo_table where readed='1' and member_no='$member[no]'"));
 $new_total=$temp1[0];
 
 // 전체 쪽지의 갯수
-$temp2=mysql_fetch_array(mysql_query("select count(*) from $send_memo_table  where member_no='$member[no]'"));
+$temp2=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $send_memo_table  where member_no='$member[no]'"));
 
 $total=$temp2[0];
 
@@ -56,7 +56,7 @@ if($page>$total_page) $page=$total_page; // 페이지가 전체 페이지보다 
 
 // 데이타 뽑아오는 부분...
 $que="select a.no as no, a.subject as subject, a.reg_date as reg_date, a.readed as readed, b.name as name, b.user_id as user_id, a.member_to as member_to from $send_memo_table a ,$member_table b where a.member_no='$member[no]' and a.member_to=b.no  order by a.no desc limit $start_num,$page_num";
-$result=mysql_query($que) or Error(mysql_error());
+$result=mysqli_query($connect,$que) or Error(mysqli_error($connect));
 
 // 페이지 계산  $print_page 라는 변수에 저장
 $print_page="";
@@ -215,7 +215,7 @@ if($now_data[no]) {
 <?
 // 출력
 $loop_number=$total-($page-1)*$page_num;
-while($data=mysql_fetch_array($result)) {
+while($data=mysqli_fetch_array($result)) {
 	$data[name]=stripslashes($data[name]);
 
 	$temp_name = get_private_icon($data[member_to], "2");

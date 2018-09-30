@@ -2,7 +2,7 @@
 unset($_point);
 $c_memo = love_convert($c_memo);
 $a_del=str_replace("del_comment.php?","del_comment.php?_zb_url=$zb_url&_zb_path=$config_dir&",$a_del);
-$t_c=mysql_fetch_array(mysql_query("select * from $table where reg_date='$c_data[reg_date]'"));
+$t_c=mysqli_fetch_array(mysqli_query($connect,"select * from $table where reg_date='$c_data[reg_date]'"));
 //$t_memo=str_replace("<","&lt",$t_c[memo]);
 $a_c_vote="$dir/vote.php?id=$id&no=$data[no]&c_no=$t_c[no]&who=$member[no]";
 $c_vote=$t_c[vote];

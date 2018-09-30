@@ -30,36 +30,36 @@ head(" bgcolor=white");
 <?flush()?>
 <pre>
 <?
-$result = mysql_query("select * from $admin_table order by name") or die(mysql_error());
+$result = mysqli_query($connect,"select * from $admin_table order by name") or die(mysqli_error($connect));
 
 $totalfilesnum = 0;
 $ntotalfilesnum = 0;
 $existsfilesnum = 0;
 $nexistsfilesnum = 0;
 
-while($bbs = mysql_fetch_array($result)) {
+while($bbs = mysqli_fetch_array($result)) {
 
 	$id = $bbs[name];
 
-	$files1 = mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where file_name1 != ''"));
-	$files2 = mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where file_name2 != ''"));
-	$files3 = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where file_name1 != ''"));
-	$files4 = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where file_name2 != ''"));
+	$files1 = mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$id where file_name1 != ''"));
+	$files2 = mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$id where file_name2 != ''"));
+	$files3 = mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_comment"."_$id where file_name1 != ''"));
+	$files4 = mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_comment"."_$id where file_name2 != ''"));
 
 	$filesnum1 = $files1[0];
 	$filesnum2 = $files2[0];
 	$filesnum3 = $files3[0];
 	$filesnum4 = $files4[0];
 
-	$nfiles1 = mysql_query("select no, file_name1 , s_file_name1 from $t_board"."_$id where file_name1 !='' and file_name1 not like 'data/$id/%'");
-	$nfiles2 = mysql_query("select no, file_name2 , s_file_name2 from $t_board"."_$id where file_name2 !='' and file_name2 not like 'data/$id/%'");
-	$nfiles3 = mysql_query("select no, file_name1 , s_file_name1 from $t_comment"."_$id where file_name1 !='' and file_name1 not like 'data/$id/%'");
-	$nfiles4 = mysql_query("select no, file_name2 , s_file_name2 from $t_comment"."_$id where file_name2 !='' and file_name2 not like 'data/$id/%'");
+	$nfiles1 = mysqli_query($connect,"select no, file_name1 , s_file_name1 from $t_board"."_$id where file_name1 !='' and file_name1 not like 'data/$id/%'");
+	$nfiles2 = mysqli_query($connect,"select no, file_name2 , s_file_name2 from $t_board"."_$id where file_name2 !='' and file_name2 not like 'data/$id/%'");
+	$nfiles3 = mysqli_query($connect,"select no, file_name1 , s_file_name1 from $t_comment"."_$id where file_name1 !='' and file_name1 not like 'data/$id/%'");
+	$nfiles4 = mysqli_query($connect,"select no, file_name2 , s_file_name2 from $t_comment"."_$id where file_name2 !='' and file_name2 not like 'data/$id/%'");
 
-	$nfilesnum1 = mysql_num_rows($nfiles1);
-	$nfilesnum2 = mysql_num_rows($nfiles2);
-	$nfilesnum3 = mysql_num_rows($nfiles3);
-	$nfilesnum4 = mysql_num_rows($nfiles4);
+	$nfilesnum1 = mysqli_num_rows($nfiles1);
+	$nfilesnum2 = mysqli_num_rows($nfiles2);
+	$nfilesnum3 = mysqli_num_rows($nfiles3);
+	$nfilesnum4 = mysqli_num_rows($nfiles4);
 
 	$totalfilesnum += $filesnum1 + $filesnum2 + $filesnum3 + $filesnum4;
 	$ntotalfilesnum += $nfilesnum1 + $nfilesnum2 + $nfilesnum3 + $nfilesnum4;
@@ -78,7 +78,7 @@ while($bbs = mysql_fetch_array($result)) {
 	 - 경로가 잘못된 첨부파일 필드수 : <?=number_format($nfilesnum1+$nfilesnum2+$nfilesnum3+$nfilesnum4)?> 개
 
 <?
-	while($data=mysql_fetch_array($nfiles1)) {
+	while($data=mysqli_fetch_array($nfiles1)) {
 
 		// 소스 파일의 정보를 체크
 		$filename = stripslashes($data[s_file_name1]);
@@ -107,7 +107,7 @@ while($bbs = mysql_fetch_array($result)) {
 			z_unlink($source);
 			@rmdir($path);
 
-			mysql_query($sql) or die(mysql_error());
+			mysqli_query($connect,$sql) or die(mysqli_error($connect));
 
 		} else {
 
@@ -116,7 +116,7 @@ while($bbs = mysql_fetch_array($result)) {
 		}
 	}
 
-	while($data=mysql_fetch_array($nfiles2)) {
+	while($data=mysqli_fetch_array($nfiles2)) {
 
 		// 소스 파일의 정보를 체크
 		$filename = stripslashes($data[s_file_name2]);
@@ -145,7 +145,7 @@ while($bbs = mysql_fetch_array($result)) {
 			z_unlink($source);
 			@rmdir($path);
 
-			mysql_query($sql) or die(mysql_error());
+			mysqli_query($connect,$sql) or die(mysqli_error($connect));
 
 		} else {
 
@@ -154,7 +154,7 @@ while($bbs = mysql_fetch_array($result)) {
 		}
 	}
 
-	while($data=mysql_fetch_array($nfiles3)) {
+	while($data=mysqli_fetch_array($nfiles3)) {
 
 		// 소스 파일의 정보를 체크
 		$filename = stripslashes($data[s_file_name1]);
@@ -183,7 +183,7 @@ while($bbs = mysql_fetch_array($result)) {
 			z_unlink($source);
 			@rmdir($path);
 
-			mysql_query($sql) or die(mysql_error());
+			mysqli_query($connect,$sql) or die(mysqli_error($connect));
 
 		} else {
 
@@ -192,7 +192,7 @@ while($bbs = mysql_fetch_array($result)) {
 		}
 	}
 
-	while($data=mysql_fetch_array($nfiles4)) {
+	while($data=mysqli_fetch_array($nfiles4)) {
 
 		// 소스 파일의 정보를 체크
 		$filename = stripslashes($data[s_file_name2]);
@@ -221,7 +221,7 @@ while($bbs = mysql_fetch_array($result)) {
 			z_unlink($source);
 			@rmdir($path);
 
-			mysql_query($sql) or die(mysql_error());
+			mysqli_query($connect,$sql) or die(mysqli_error($connect));
 
 		} else {
 

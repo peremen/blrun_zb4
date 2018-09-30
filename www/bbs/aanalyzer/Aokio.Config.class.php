@@ -135,6 +135,7 @@ class Aokio_Config{
 	var $code_name								= "CODENAME:komorebi:木洩れ日";
 
 	var $db_list = array(	'mysql' =>'MySQL',
+							'mysqli' =>'mariaDB'
 							);
 	var $lang_list = array(	'korean'	=>'Korean',
 //							'english'	=>'English',
@@ -155,7 +156,7 @@ class Aokio_Config{
 
 	var $database_type;
 
-	function Aokio_Config($initial=false){
+	function __construct($initial=false){
 		if(!$initial){
 			$this->setDatabaseType();
 			$this->setApplicationConfigurationInfos();

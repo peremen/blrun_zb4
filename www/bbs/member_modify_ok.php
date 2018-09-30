@@ -27,14 +27,14 @@ if(preg_match("/[\!@\\\#\$%\^&\(\)\+\|=\{\}\[\]\;<>\.,\?\/\'\"]/i",$name)) Error
 if($password){
 	//stripslashes($password);
 	if($password) {
-		$temp=mysql_fetch_array(mysql_query("select password('$password')"));
+		$temp=mysqli_fetch_array(mysqli_query($connect,"select password('$password')"));
 		$password=$temp[0];
 	}
 }
 if($password1){
 	//stripslashes($password1);
 	if($password1) {
-		$temp=mysql_fetch_array(mysql_query("select password('$password1')"));
+		$temp=mysqli_fetch_array(mysqli_query($connect,"select password('$password1')"));
 		$password1=$temp[0];
 	}
 }
@@ -42,7 +42,7 @@ if($password!=$password1) Error("비밀번호와 비밀번호 확인이 일치�
 
 $birth=mktime(0,0,0,$birth_2,$birth_3,$birth_1);
 
-$check=mysql_fetch_array(mysql_query("select count(*) from $member_table where email='$email' and no <> ".$member[no],$connect));
+$check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table where email='$email' and no <> ".$member[no]));
 if($check[0]>0) Error("이미 등록되어 있는 E-Mail입니다");
 
 $name = addslashes(del_html($name));
@@ -122,11 +122,11 @@ if($group[use_comment]) $que.=",comment='$comment'";
 $que.=",openinfo='$openinfo',open_email='$open_email',open_homepage='$open_homepage',open_icq='$open_icq',open_msn='$open_msn',open_comment='$open_comment',open_job='$open_job',open_hobby='$open_hobby',open_home_address='$open_home_address',open_home_tel='$open_home_tel',open_office_address='$open_office_address',open_office_tel='$open_office_tel',open_handphone='$open_handphone',open_birth='$open_birth',open_picture='$open_picture',open_aol='$open_aol' ";
 $que.=" where no='$member[no]'";
 
-@mysql_query($que) or Error("회원정보 수정시에 에러가 발생하였습니다 ".mysql_error());
+@mysqli_query($connect,$que) or Error("회원정보 수정시에 에러가 발생하였습니다 ".mysqli_error($connect));
 
 if($del_picture) {
 	@z_unlink($member[picture]);
-	@mysql_query("update $member_table set picture='' where no='$member[no]'") or Error("사진 자료 업로드시 에러가 발생하였습니다");
+	@mysqli_query($connect,"update $member_table set picture='' where no='$member[no]'") or Error("사진 자료 업로드시 에러가 발생하였습니다");
 }
 
 if($_FILES[picture]) {
@@ -149,7 +149,7 @@ if($picture_name) {
 	$n=$size[2];
 	$path="icon/member_".time().".".$kind[$n];
 	if(!move_uploaded_file($picture,$path)) Error("사진 업로드가 제대로 되지 않았습니다");
-	@mysql_query("update $member_table set picture='$path' where no='$member[no]'") or Error("사진 자료 업로드시 에러가 발생하였습니다");
+	@mysqli_query($connect,"update $member_table set picture='$path' where no='$member[no]'") or Error("사진 자료 업로드시 에러가 발생하였습니다");
 }
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">

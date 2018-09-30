@@ -31,7 +31,7 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 	$myTitle = $mb_conf[mytitle];
 
 	for( $i = 0; $i < sizeof($id); $i++){
-		 $setup = mysql_fetch_array(mysql_query("select use_alllist, use_category from $admin_table where name='".$id[$i]."'"));
+		 $setup = mysqli_fetch_array(mysqli_query($connect,"select use_alllist, use_category from $admin_table where name='".$id[$i]."'"));
 		 if($setup[use_alllist])
 			  $target[$id[$i]] = "zboard.php?id=";
 		 else
@@ -71,14 +71,14 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 // 최근 글 순으로 게시물 뽑음
 	for( $i = 0; $i < sizeof($id); $i++){
 		 $query = "select * from ".$t_board."_".$id[$i]." where is_secret=0 and reg_date > $cut_time order by no desc limit $num";
-		 $result = mysql_query($query, $connect) or die(mysql_error());
-		while($data=mysql_fetch_array($result)){
+		 $result = mysqli_query($connect,$query) or die(mysqli_error($connect));
+		while($data=mysqli_fetch_array($result)){
 			$ad[$tc][name] = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",str_replace("\"","&quot;",addslashes($data[name])))));
 			$ad[$tc][subject] = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",str_replace("\"","&quot;",cut_str(strip_tags(addslashes($data[subject])), $textlen)))))."</font></b>";
 			$ad[$tc][date] = date($datetype, $data[reg_date]);
 			$ad[$tc][reg_date] = $data[reg_date];
 
-			$last_comment = mysql_fetch_array(mysql_query("select * from $t_comment"."_$id[$i] where parent='$data[no]' order by reg_date desc limit 1"));
+			$last_comment = mysqli_fetch_array(mysqli_query($connect,"select * from $t_comment"."_$id[$i] where parent='$data[no]' order by reg_date desc limit 1"));
 			$last_comment_time = $last_comment['reg_date'];
 			if(time()-$last_comment_time<3600*24)
 				$comment_num = "[<font color=red>".$data[total_comment]."</font>]";
@@ -94,8 +94,8 @@ function recent_scroll($skinname, $title, $num=10, $textlen=30, $datetype="Y/m/d
 			$ad[$tc][id] = $id[$i];
 			$ad[$tc][no] = $data[no];
 			$category = $data[category];
-			$result_category = mysql_query("select * from zetyx_board_category_".$id[$i]." where no='$category'") or die(mysql_error());
-			$category = mysql_fetch_array($result_category);
+			$result_category = mysqli_query($connect,"select * from zetyx_board_category_".$id[$i]." where no='$category'") or die(mysqli_error($connect));
+			$category = mysqli_fetch_array($result_category);
 			$ad[$tc][cate] = $category[name];
 			$tm[$tc] = $data[reg_date];
 			$map[$data[reg_date]] = $tc;

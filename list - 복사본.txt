@@ -1,4 +1,0 @@
-2018-10-04 ".htaccess" - 1줄 추가변경
-2018-10-02 "www/bbs/install_ok.php" - 1줄 다시변경
-2018-09-30 "www/bbs/lib.php" - 1줄 다시변경
-2018-09-30 "www/bbs/lib_ajax.php" - 1줄 다시변경

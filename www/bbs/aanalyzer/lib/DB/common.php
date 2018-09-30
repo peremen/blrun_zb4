@@ -130,9 +130,9 @@ class DB_common extends PEAR
      *
      * @return void
      */
-    function DB_common()
+    function DB_common_Fn()
     {
-        $this->PEAR('DB_Error');
+        $this->PEAR_Fn('DB_Error');
     }
 
     // }}}

@@ -68,7 +68,7 @@ who text,
 KEY parent (parent)
 )";
 
-	mysql_query("$movie_type_schema",$connect);
+	mysqli_query($connect,"$movie_type_schema");
 }
 
 if(substr($emoticon_url,strlen($emoticon_url)-1,1)=="/") $emoticon_url=substr($emoticon_url,0,strlen($emoticon_url)-1);

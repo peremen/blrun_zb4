@@ -1,11 +1,11 @@
 <?
-$data=mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
+$data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$group_no'"));
 $check_open[$data[is_open]]="checked";
 $check_join[$data[use_join]]="checked";
 
 // 현재 그룹데이타 뽑아옴;;;
-$temp=mysql_query("select no,name from $group_table where no!='$group_no'");
-while($temp2=mysql_fetch_array($temp))
+$temp=mysqli_query($connect,"select no,name from $group_table where no!='$group_no'");
+while($temp2=mysqli_fetch_array($temp))
 {
 	$group_option.="<option value='$temp2[no]'>$temp2[name]</option>";
 }

@@ -188,11 +188,11 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 		}
 	}
 
-	$setup = mysql_fetch_array(mysql_query("select use_alllist from zetyx_admin_table where name='$id'"));
+	$setup = mysqli_fetch_array(mysqli_query($connect,"select use_alllist from zetyx_admin_table where name='$id'"));
 	if($setup[use_alllist]) $target = "zboard.php?id=".$id;
 	else $target = "view.php?id=".$id;
 
-	$result = mysql_query("select * from zetyx_board"."_$id order by no desc limit $num", $connect) or die(mysql_error());
+	$result = mysqli_query($connect,"select * from zetyx_board"."_$id order by no desc limit $num") or die(mysqli_error($connect));
 
 	$tmpStr = explode("[loop]",$str);
 	$header = $tmpStr[0];
@@ -201,7 +201,7 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 	$footer = $tmpStr2[1];
 
 	$main_data = "";
-	while($data=mysql_fetch_array($result)) {
+	while($data=mysqli_fetch_array($result)) {
 		$name = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",$data[name])));
 		$subject = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",cut_str(strip_tags($data[subject]),$textlen))))."</font></b>";
 		$date = date($datetype, $data[reg_date]);
@@ -256,9 +256,9 @@ function latest_gal($skinname,$id,$title,$num=5, $textlen=30, $textlen2=80, $dat
 					$size=array(52,200);
 					if($use_thumb==2) $zx=thumbnail_make1($size,$src_img1,$_zb_path,$img1,$img2,3/4);
 					else $zx=thumbnail_make2($size,$src_img1,$_zb_path,$img1,$img2,3/4);
-					@mysql_query("update zetyx_board"."_$id set x=concat('$zx[0]','|||','$zx[1]') where no='$data[no]'") or error(mysql_error());
+					@mysqli_query($connect,"update zetyx_board"."_$id set x=concat('$zx[0]','|||','$zx[1]') where no='$data[no]'") or error(mysqli_error($connect));
 				}
-				$re=mysql_fetch_array(mysql_query("select x from zetyx_board"."_$id where no='$data[no]'"));
+				$re=mysqli_fetch_array(mysqli_query($connect,"select x from zetyx_board"."_$id where no='$data[no]'"));
 				$xy1=explode("|||",$re[x]);
 				if(!$xy1[0]){
 					$filename1=$_zb_url."latest_skin/".$skinname."/images/no_image.gif";

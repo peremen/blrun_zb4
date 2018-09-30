@@ -55,9 +55,9 @@ head(" bgcolor=444444 ");
 <?
 if($member[is_admin]==1) {
 	$sql ="show tables like 'aokio_log_config'";
-	$row = mysql_fetch_row(mysql_query($sql));
+	$row = mysqli_fetch_row(mysqli_query($connect,$sql));
 	if($row[0]) {
-		$re=mysql_fetch_array(mysql_query("SELECT target from aokio_log_config order by no desc limit 1"));
+		$re=mysqli_fetch_array(mysqli_query($connect,"SELECT target from aokio_log_config order by no desc limit 1"));
 	} else {
 		echo "<script>window.open('aanalyzer/install.php', '_blank');</script>";
 	}
@@ -137,7 +137,7 @@ else
 if($member[is_admin]==1) {
 
 	// 모든그룹의 데이타 갖고옴;;
-	$result=mysql_query("select * from $group_table order by no ");
+	$result=mysqli_query($connect,"select * from $group_table order by no ");
 ?>
     <table width=100% border=0 cellspacing=0 cellpadding=0>
     <tr>
@@ -145,12 +145,12 @@ if($member[is_admin]==1) {
     </tr>
     </table>
 <?
-	while($group_data=mysql_fetch_array($result)) {
+	while($group_data=mysqli_fetch_array($result)) {
 
-		//$t_member_num=mysql_fetch_array(mysql_query("select count(*) from $member_table where group_no='$group_data[no]'"));
-		//$t_board_num=mysql_fetch_array(mysql_query("select count(*) from $admin_table where group_no='$group_data[no]'"));
+		//$t_member_num=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table where group_no='$group_data[no]'"));
+		//$t_board_num=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $admin_table where group_no='$group_data[no]'"));
 
-		//mysql_query("update $group_table set member_num='$t_member_num[0]',board_num='$t_board_num[0]' where no='$group_data[no]'") or Error(mysql_error());
+		//mysqli_query($connect,"update $group_table set member_num='$t_member_num[0]',board_num='$t_board_num[0]' where no='$group_data[no]'") or Error(mysqli_error($connect));
 
 		//$group_data[member_num]=$t_member_num[0];
 		//$group_data[board_num]=$t_board_num[0];
@@ -200,7 +200,7 @@ if($member[is_admin]==1) {
 
 else {
 
-	$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no=$member[group_no]"));
+	$group_data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no=$member[group_no]"));
 ?>
 
     <table width=100% border=0 cellspacing=0 cellpadding=0>

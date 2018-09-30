@@ -14,12 +14,12 @@ if(!get_magic_quotes_gpc()) {
 }
 
 // 조회수 해킹 검증
-$result=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$sub_no'",$connect));
+$result=mysqli_fetch_array(mysqli_query($connect,"select * from $t_board"."_$id where no='$sub_no'"));
 $prev_no1=$result[prev_no]; //현재항목의 상단 투표 넘버
 $next_no1=$result[next_no]; //현재 항목의 하단 투표 넘버
-$result=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$next_no1'",$connect));
+$result=mysqli_fetch_array(mysqli_query($connect,"select * from $t_board"."_$id where no='$next_no1'"));
 $prev_no2=$result[prev_no]; //하단 투표 넘버의 상단 투표 넘버
-$result=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$prev_no1'",$connect));
+$result=mysqli_fetch_array(mysqli_query($connect,"select * from $t_board"."_$id where no='$prev_no1'"));
 $next_no2=$result[next_no]; //상단 투표 넘버의 하단 투표 넘버
 
 // 가장 최근 투표와 맨 아래 투표는 아래와 같이 다음행 if에 사용될 $next_no2,$prev_no2 치환
@@ -27,7 +27,7 @@ if($prev_no1==0) $next_no2=$prev_no2;
 else if($next_no1==0) $prev_no2=$next_no2;
 
 // 기존 아이피가 있는지 검사
-$data = mysql_fetch_array(mysql_query("select memo from $t_board"."_$id where no='$no'",$connect));
+$data = mysqli_fetch_array(mysqli_query($connect,"select memo from $t_board"."_$id where no='$no'"));
 $ip_array = explode("|||",$data[memo]);
 $rows = 1;
 for($i=1;$i<count($ip_array);$i++)
@@ -38,12 +38,12 @@ if($rows) {
 	if(!preg_match("/".$setup[no]."_".$no."/i",$_SESSION['zb_vote'])&&$no==$prev_no2&&$no==$next_no2) {
 		// 아이피 테이블 만듦
 		unset($data);
-		$data = mysql_fetch_array(mysql_query("select memo from $t_board"."_$id where no='$no'",$connect));
+		$data = mysqli_fetch_array(mysqli_query($connect,"select memo from $t_board"."_$id where no='$no'"));
 		$memo = $data[memo]."|||".$REMOTE_ADDR;
 		if($member[user_id]) $memo .= "|||".$member[user_id];
 
-		mysql_query("update $t_board"."_$id set vote=vote+1 where no='$sub_no'",$connect);
-		mysql_query("update $t_board"."_$id set memo='$memo',vote=vote+1 where no='$no'",$connect);
+		mysqli_query($connect,"update $t_board"."_$id set vote=vote+1 where no='$sub_no'");
+		mysqli_query($connect,"update $t_board"."_$id set memo='$memo',vote=vote+1 where no='$no'");
 
 		// 5.3 이상용 세션 처리
 		$_SESSION['zb_vote'] = $_SESSION['zb_vote'].",".$setup[no]."_".$no;

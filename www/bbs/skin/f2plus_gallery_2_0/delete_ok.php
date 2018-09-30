@@ -68,12 +68,12 @@ if(!get_magic_quotes_gpc()) {
 //패스워드를 암호화
 if($password)
 {
-	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select password('$password')"));
 	$password=$temp[0];
 }
 
 // 원본글을 가져옴
-$s_data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$no'"));
+$s_data=mysqli_fetch_array(mysqli_query($connect,"select * from $t_board"."_$id where no='$no'"));
 
 // 회원일때를 확인;;
 if(!$is_admin&&$member[level]>$setup[grant_delete])
@@ -94,7 +94,7 @@ if(!$is_admin&&$member[level]>$setup[grant_delete])
 
 if(!$s_data[child]) // 답글이 없을때;;
 {
-	mysql_query("delete from $t_board"."_$id where no='$no'") or Error(mysql_error()); // 글삭제
+	mysqli_query($connect,"delete from $t_board"."_$id where no='$no'") or Error(mysqli_error($connect)); // 글삭제
 
 	// 파일삭제
 	if(preg_match("#\.(jpg|jpeg|png)$#i",$s_data[file_name1])){
@@ -136,19 +136,19 @@ if(!$s_data[child]) // 답글이 없을때;;
 
 	if($s_data[depth]==0)
 	{
-		if($s_data[prev_no]) mysql_query("update $t_board"."_$id set next_no='$s_data[next_no]' where next_no='$s_data[no]'"); // 이전글이 있으면 빈자리 메꿈;;;
-		if($s_data[next_no]) mysql_query("update $t_board"."_$id set prev_no='$s_data[prev_no]' where prev_no='$s_data[no]'"); // 다음글이 있으면 빈자리 메꿈;;;
+		if($s_data[prev_no]) mysqli_query($connect,"update $t_board"."_$id set next_no='$s_data[next_no]' where next_no='$s_data[no]'"); // 이전글이 있으면 빈자리 메꿈;;;
+		if($s_data[next_no]) mysqli_query($connect,"update $t_board"."_$id set prev_no='$s_data[prev_no]' where prev_no='$s_data[no]'"); // 다음글이 있으면 빈자리 메꿈;;;
 	}
 	else
 	{
-		$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where father='$s_data[father]'"));
-		if(!$temp[0]) mysql_query("update $t_board"."_$id set child='0' where no='$s_data[father]'"); // 원본글이 있으면 원본글의 자식글을 없앰;;;
+		$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$id where father='$s_data[father]'"));
+		if(!$temp[0]) mysqli_query($connect,"update $t_board"."_$id set child='0' where no='$s_data[father]'"); // 원본글이 있으면 원본글의 자식글을 없앰;;;
 	}
 
 	// 간단한 답글(코멘트) 삭제
-	$del_comment_result=mysql_query("select * from $t_comment"."_$id where parent='$s_data[no]'");
-	mysql_query("delete from $t_comment"."_$id where parent='$s_data[no]'") or Error(mysql_error());
-	while($c_data=mysql_fetch_array($del_comment_result)) {
+	$del_comment_result=mysqli_query($connect,"select * from $t_comment"."_$id where parent='$s_data[no]'");
+	mysqli_query($connect,"delete from $t_comment"."_$id where parent='$s_data[no]'") or Error(mysqli_error($connect));
+	while($c_data=mysqli_fetch_array($del_comment_result)) {
 	   // 파일삭제
 	   @z_unlink($_zb_path."/".$c_data[file_name1]);
 	   @z_unlink($_zb_path."/".$c_data[file_name2]);
@@ -158,16 +158,16 @@ if(!$s_data[child]) // 답글이 없을때;;
 	   if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$c_data[file_name2],$out))
 			if(is_dir($_zb_path."/data/".$out[1]."/".$out[2])) @rmdir($_zb_path."/data/".$out[1]."/".$out[2]);
 	}
-	@mysql_query("delete from $t_comment"."_$id"."_movie where parent='$s_data[no]'");
+	@mysqli_query($connect,"delete from $t_comment"."_$id"."_movie where parent='$s_data[no]'");
 
-	$total=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id "));
-	mysql_query("update $admin_table set total_article='$total[0]' where name='$id'");
+	$total=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$id "));
+	mysqli_query($connect,"update $admin_table set total_article='$total[0]' where name='$id'");
 
 	// 카테고리 필드 조절
-	mysql_query("update $t_category"."_$id set num=num-1 where no='$s_data[category]'",$connect);
+	mysqli_query($connect,"update $t_category"."_$id set num=num-1 where no='$s_data[category]'");
 
 	// 회원일 경우 해당 회원의 점수 주기
-	if($member[no]==$s_data[ismember]) @mysql_query("update $member_table set point1=point1-1 where no='$member[no]'",$connect) or error(mysql_error());
+	if($member[no]==$s_data[ismember]) @mysqli_query($connect,"update $member_table set point1=point1-1 where no='$member[no]'") or error(mysqli_error($connect));
 }
 
 movepage($zb_url."/zboard.php?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$desc&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&category=$category&sn1=$sn1&divpage=$divpage");

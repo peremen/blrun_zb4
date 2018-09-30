@@ -10,7 +10,7 @@ $member=member_info();
 
 if(!$member[no]) Error("로그인을 한 회원만 쪽지 보내기가 가능합니다","window.close");
 
-$data=mysql_fetch_array(mysql_query("select * from $member_table where no='$member_no'"));
+$data=mysqli_fetch_array(mysqli_query($connect,"select * from $member_table where no='$member_no'"));
 
 $data[name]=del_html($data[name]);
 
@@ -21,7 +21,7 @@ if($temp_name) $data[name]="<img src='$temp_name' border=0 align=absmiddle>&nbsp
 $data[name]="&nbsp;".$data[name]."&nbsp;";
 
 // 그룹데이타 읽어오기;;
-$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$data[group_no]'"));
+$group_data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$data[group_no]'"));
 
 $query_time=getmicrotime();
 

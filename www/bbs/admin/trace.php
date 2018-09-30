@@ -6,7 +6,7 @@ $member=member_info();
 $s_keyword = $keyword;
 if(!$member[no]||$member[is_admin]>1||$member[level]>2) Error("레벨2 이상의 최고 관리자만이 사용할수 있습니다");
 if($keykind[5]) {
-	$userno = mysql_Fetch_array(mysql_query("select no from zetyx_member_table where user_id='$keyword'", $connect));
+	$userno = mysqli_fetch_array(mysqli_query($connect,"select no from zetyx_member_table where user_id='$keyword'"));
 	$userno = $userno[0];
 }
 // 실제 검색부분
@@ -31,7 +31,7 @@ if($keyword)
 			if($keykind[$i]=="email"||$keykind[$i]=="subject") $comment_search=0;
 		}
 
-		$table_name_result=mysql_query("select name, use_alllist from $admin_table order by name",$connect) or error(mysql_error());
+		$table_name_result=mysqli_query($connect,"select name, use_alllist from $admin_table order by name") or error(mysqli_error($connect));
 	}
 
 }
@@ -77,20 +77,20 @@ head(" bgcolor=white");
 <?
 if($keyword&&$s_que)
 {
-	while($table_data=mysql_fetch_array($table_name_result))
+	while($table_data=mysqli_fetch_array($table_name_result))
 	{
 
 		$table_name=$table_data[name];
 		if($table_data[use_alllist]) $file="zboard.php"; else $file="view.php";
 
 		// 본문
-		$result=mysql_query("select * from $t_board"."_$table_name $s_que order by no desc", $connect) or error(mysql_error());
+		$result=mysqli_query($connect,"select * from $t_board"."_$table_name $s_que order by no desc") or error(mysqli_error($connect));
 ?>
 
 <br><br><br>
 &nbsp;&nbsp;<a href=../zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>게시판</b></font></a><br>
 <?
-		while($data=mysql_fetch_array($result))
+		while($data=mysqli_fetch_array($result))
 		{
 			flush();
 			$data[subject] = preg_replace("#".$keyword."#i","<font color=red>$keyword</font>",del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",$data[subject]))));
@@ -104,19 +104,19 @@ if($keyword&&$s_que)
 <?
 		}
 
-		mysql_free_result($result);
+		mysqli_free_result($result);
 
 		/// 코멘트
 		if($comment_search)
 		{
-			$result=mysql_query("select * from $t_comment"."_$table_name $s_que order by no desc", $connect) or error(mysql_error());
+			$result=mysqli_query($connect,"select * from $t_comment"."_$table_name $s_que order by no desc") or error(mysqli_error($connect));
 ?>
 
 <br><br><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href=../zboard.php?id=<?=$table_name?> target=_blank><font size=3 style=font-family:tahoma;><?=$table_name?><b>게시판</b> 의 간단한 답글</font></a>
 <br>
 <?
-			while($data=mysql_fetch_array($result))
+			while($data=mysqli_fetch_array($result))
 			{
 				flush();
 				$data[memo] = preg_replace("#".$keyword."#i","<font color=red>$keyword</font>",del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",$data[memo]))));

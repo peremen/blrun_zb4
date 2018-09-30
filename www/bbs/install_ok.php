@@ -37,19 +37,19 @@ function error($message, $url="") {
 
 // 게시판의 생성유무 검사
 function istable($str, $dbname='') {
+	global $connect;
 	if(!$dbname) {
 		$f=@file("myZrCnf2019.php") or error("myZrCnf2019.php파일이 없습니다.<br>DB설정을 먼저 하십시요","install.php");
 		for($i=1;$i<=4;$i++) $f[$i]=str_replace("\n","",$f[$i]);
 		$dbname=$f[4];
 	}
 
-	$result = mysql_query("show tables from $dbname") or error(mysql_error(),"");
+	$result = mysqli_query($connect,"show tables from $dbname") or error(mysqli_error($connect),"");
 
 	$i=0;
 
-	while ($i < mysql_num_rows($result)) {
-		if($str==mysql_tablename ($result, $i)) return 1;
-		$i++;
+	while ($row = mysqli_fetch_row($result)) {
+		if($str==$row[0]) return 1;
 	}
 	return 0;
 }
@@ -98,34 +98,34 @@ if(isblank($user_id)) Error("User ID 를 입력하세요","");
 if(isblank($dbname)) Error("DB NAME을 입력하세요","");
 
 // DB에 커넥트 하고 DB NAME으로 select DB
-$connect = @mysql_connect($hostname,$user_id,$password) or Error("MySQL-DB Connect<br>Error!!!","");
-if(mysql_error()) Error(mysql_error(),"");
-mysql_select_db($dbname, $connect ) or Error("MySQL-DB Select<br>Error!!!","");
+$connect = @mysqli_connect($hostname,$user_id,$password) or Error("MySQL-DB Connect<br>Error!!!","");
+if(mysqli_error($connect)) Error(mysqli_error($connect),"");
+mysqli_select_db($connect,$dbname) or Error("MySQL-DB Select<br>Error!!!","");
 
 // 관리자 테이블 생성
-if(!isTable($admin_table,$dbname)) @mysql_query($admin_table_schema, $connect) or Error("관리자 테이블 생성 실패","");
+if(!isTable($admin_table,$dbname)) @mysqli_query($connect,$admin_table_schema) or Error("관리자 테이블 생성 실패","");
 else $admin_table_exist=1;
 
 // 그룹테이블 생성
-if(!isTable($group_table,$dbname)) @mysql_query($group_table_schema, $connect) or Error("그룹 테이블 생성 실패","");
+if(!isTable($group_table,$dbname)) @mysqli_query($connect,$group_table_schema) or Error("그룹 테이블 생성 실패","");
 else $group_table_exist=1;
 
 // 회원관리 테이블 생성
-if(!istable($member_table,$dbname)) @mysql_query($member_table_schema, $connect) or Error("회원관리 테이블 생성 실패","");
+if(!istable($member_table,$dbname)) @mysqli_query($connect,$member_table_schema) or Error("회원관리 테이블 생성 실패","");
 else $member_table_exist=1;
 
 // 게시판 임시저장 테이블 생성
-if(!istable($board_imsi_table,$dbname)) @mysql_query($board_table_imsi_schema, $connect) or Error("게시판 임시저장 테이블 생성 실패","");
+if(!istable($board_imsi_table,$dbname)) @mysqli_query($connect,$board_table_imsi_schema) or Error("게시판 임시저장 테이블 생성 실패","");
 else $board_imsi_table_exist=1;
 
 // 코멘트 임시저장 테이블 생성
-if(!istable($comment_imsi_table,$dbname)) @mysql_query($board_comment_imsi_schema, $connect) or Error("코멘트 임시저장 테이블 생성 실패","");
+if(!istable($comment_imsi_table,$dbname)) @mysqli_query($connect,$board_comment_imsi_schema) or Error("코멘트 임시저장 테이블 생성 실패","");
 else $comment_imsi_table_exist=1;
 
 // 쪽지테이블
-if(!istable($get_memo_table,$dbname)) @mysql_query($get_memo_table_schema, $connect) or Error("받은 쪽지 테이블 생성 실패");
+if(!istable($get_memo_table,$dbname)) @mysqli_query($connect,$get_memo_table_schema) or Error("받은 쪽지 테이블 생성 실패");
 else $get_memo_table_exists=1;
-if(!istable($send_memo_table,$dbname)) @mysql_query($send_memo_table_schema, $connect) or Error("보낸 쪽지 테이블 생성 실패");
+if(!istable($send_memo_table,$dbname)) @mysqli_query($connect,$send_memo_table_schema) or Error("보낸 쪽지 테이블 생성 실패");
 else $send_memo_table_exist=1;
 
 // 파일로 DB 정보 저장
@@ -176,7 +176,7 @@ function zbUrl() {
 @fclose($file);
 @chmod("script/get_url.php",0707);
 
-$temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where is_admin = '1'",$connect));
+$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table where is_admin = '1'"));
 
 if($temp[0]) {movepage("admin.php");}
 else {movepage("install2.php");} // 관리자 정보가 없을때 관리자 정보 입력

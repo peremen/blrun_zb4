@@ -221,9 +221,9 @@ class DB_mysqli extends DB_common
      *
      * @return void
      */
-    function DB_mysqli()
+    function __construct()
     {
-        $this->DB_common();
+        $this->DB_common_Fn();
     }
 
     // }}}
@@ -959,7 +959,7 @@ class DB_mysqli extends DB_common
              * Create a result resource identifier.
              */
             $id = @mysqli_query($this->connection,
-                                "SELECT * FROM $result LIMIT 0");
+                                "SHOW COLUMNS FROM $result");
             $got_string = true;
         } elseif (isset($result->result)) {
             /*

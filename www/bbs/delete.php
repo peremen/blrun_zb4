@@ -11,7 +11,7 @@ if(!preg_match("#".$HTTP_HOST."#i",$HTTP_REFERER)) Error("정상적으로 글을
 **************************************************************************/
 
 // 원본글을 가져옴
-$s_data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$no'"));
+$s_data=mysqli_fetch_array(mysqli_query($connect,"select * from $t_board"."_$id where no='$no'"));
 
 if($s_data[ismember]||$is_admin||$member[level]<=$setup[grant_delete]) {
 	if($s_data[ismember]!=$member[no]&&!$is_admin&&$member[level]>$setup[grant_delete]) Error("삭제할 권한이 없습니다");

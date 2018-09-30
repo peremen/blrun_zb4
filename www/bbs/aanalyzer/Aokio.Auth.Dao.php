@@ -3,8 +3,8 @@ require_once 'Aokio.Dao.class.php';
 
 class AokioAuthDao extends AokioDao{
 
-	function AokioAuthDao(){
-		parent::AokioDao();
+	function __construct(){
+		parent::__construct();
 	}
 	/**
 	 * Using Status: true ;
@@ -12,7 +12,7 @@ class AokioAuthDao extends AokioDao{
 	 * @return array
 	 */
 	function isExistAdminInfo($user_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_admin ";
 			$sql .= " WHERE id=? and password = ?";
@@ -27,7 +27,7 @@ class AokioAuthDao extends AokioDao{
 	 * @return array
 	 */
 	function getAdminInfo($db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_admin ";
 		}elseif($this->php_type_for_db_variation ==="pgsql"){
@@ -42,7 +42,7 @@ class AokioAuthDao extends AokioDao{
 	 * @return array
 	 */
 	function insertAdmin($user_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_admin ";
 			$sql .= " (id,password,language ) ";
 			$sql .= " values(?,?,?)";

@@ -6,18 +6,18 @@
 function del_member($no) {
 	global $group_no, $member_table, $get_memo_table,  $send_memo_table,$admin_table, $t_board, $t_comment, $connect, $group_table, $member;
 
-	$member_data = mysql_fetch_array(mysql_query("select * from $member_table where no = '$no'"));
+	$member_data = mysqli_fetch_array(mysqli_query($connect,"select * from $member_table where no = '$no'"));
 	if($member[is_admin]>1&&$member[no]!=$member_data[no]&&$member_data[level]<=$member[level]&&$member_data[is_admin]<=$member[is_admin]) error("선택하신 회원의 정보를 변경할 권한이 없습니다");
 
 	// 멤버 정보 삭제
-	@mysql_query("delete from $member_table where no='$no'") or error(mysql_error());
+	@mysqli_query($connect,"delete from $member_table where no='$no'") or error(mysqli_error($connect));
 
 	// 쪽지 테이블에서 멤버 정보 삭제
-	@mysql_query("delete from $get_memo_table where member_no='$no'") or error(mysql_error());
-	@mysql_query("delete from $send_memo_table where member_no='$no'") or error(mysql_error());
+	@mysqli_query($connect,"delete from $get_memo_table where member_no='$no'") or error(mysqli_error($connect));
+	@mysqli_query($connect,"delete from $send_memo_table where member_no='$no'") or error(mysqli_error($connect));
 
 	// 그룹테이블에서 회원수 -1
-	@mysql_query("update $group_table set member_num=member_num-1 where no = '$group_no'") or error(mysql_error());
+	@mysqli_query($connect,"update $group_table set member_num=member_num-1 where no = '$group_no'") or error(mysqli_error($connect));
 
 	// 이름 그림, 아이콘, 이미지 박스 사용용량 파일 삭제
 	@z_unlink("icon/private_name/".$no.".gif");
@@ -40,7 +40,7 @@ if($exec2=="deleteall"&&$member[is_admin]<3) {
 
 if($exec2=="modify_member_board_manager"&&$member[is_admin]<3) {
 
-	$_temp=mysql_fetch_array(mysql_query("select * from $member_table where no = '$member_no'",$connect));
+	$_temp=mysqli_fetch_array(mysqli_query($connect,"select * from $member_table where no = '$member_no'"));
 
 	$__temp = preg_split("/,/",$_temp[board_name]);
 
@@ -51,7 +51,7 @@ if($exec2=="modify_member_board_manager"&&$member[is_admin]<3) {
 		if($kk&&$kk!=$board_num&&isnum($kk)) $_st.=$kk.",";
 	}
 
-	mysql_query("update $member_table set board_name = '$_st' where no='$member_no'",$connect) or error(mysql_Error());
+	mysqli_query($connect,"update $member_table set board_name = '$_st' where no='$member_no'") or error(mysqli_error($connect));
 
 	movepage("$PHP_SELF?exec=view_member&exec2=modify&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&no=$member_no&keykind=$keykind&like=$like&sid=$sid");
 }
@@ -61,10 +61,10 @@ if($exec2=="modify_member_board_manager"&&$member[is_admin]<3) {
 
 if($exec2=="add_member_board_manager"&&$member[is_admin]<3) {
 
-	$_temp=mysql_fetch_array(mysql_query("select * from $member_table where no = '$member_no'",$connect));
+	$_temp=mysqli_fetch_array(mysqli_query($connect,"select * from $member_table where no = '$member_no'"));
 	$_board_name = $_temp[board_name].$board_num.",";
 
-	mysql_query("update $member_table set board_name = '$_board_name' where no='$member_no'",$connect) or error(mysql_Error());
+	mysqli_query($connect,"update $member_table set board_name = '$_board_name' where no='$member_no'") or error(mysqli_error($connect));
 
 	movepage("$PHP_SELF?exec=view_member&exec2=modify&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&no=$member_no&keykind=$keykind&like=$like&sid=$sid");
 }
@@ -74,7 +74,7 @@ if($exec2=="add_member_board_manager"&&$member[is_admin]<3) {
 
 if($exec2=="moveall"&&$member[is_admin]==1) {
 	for($i=0;$i<sizeof($cart);$i++) {
-		mysql_query("update $member_table set level='$movelevel' where no='$cart[$i]'",$connect);
+		mysqli_query($connect,"update $member_table set level='$movelevel' where no='$cart[$i]'");
 	}
 	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like&sid=$sid");
 }
@@ -84,9 +84,9 @@ if($exec2=="moveall"&&$member[is_admin]==1) {
 
 if($exec2=="move_group"&&$member[is_admin]==1) {
 	for($i=0;$i<sizeof($cart);$i++) {
-		mysql_query("update $member_table set group_no='$movegroup' where no='$cart[$i]'",$connect);
-		mysql_query("update $group_table set member_num=member_num-1 where no='$group_no'");
-		mysql_query("update $group_table set member_num=member_num+1 where no='$movegroup'");
+		mysqli_query($connect,"update $member_table set group_no='$movegroup' where no='$cart[$i]'");
+		mysqli_query($connect,"update $group_table set member_num=member_num-1 where no='$group_no'");
+		mysqli_query($connect,"update $group_table set member_num=member_num+1 where no='$movegroup'");
 	}
 	movepage("$PHP_SELF?exec=view_member&group_no=$group_no&page=$page&keyword=$keyword&level_search=$level_search&page_num=$page_num&keykind=$keykind&like=$like&sid=$sid");
 }
@@ -104,7 +104,7 @@ if($exec2=="del"&&$member[is_admin]<3) {
 preg_match('/[0-9a-zA-Z.\@\_]+/',$email,$result); //특수문자가 들어갔는지 조사
 if($result[0]!=$email) Error("E-mail 문자를 확인하세요(영문자와 숫자, ., @, _만을 사용!)","");
 $email=addslashes($email);
-$member_data = mysql_fetch_array(mysql_query("select email from $member_table where no = '$member_no'"));
+$member_data = mysqli_fetch_array(mysqli_query($connect,"select email from $member_table where no = '$member_no'"));
 // email IP 표식 불러와 처리
 unset($c_match);
 if(preg_match("#(\|\|\|)([0-9.]{1,})$#",$member_data[email],$c_match))
@@ -166,7 +166,7 @@ if($exec2=="modify_member_ok") {
 	$que.=",comment='$comment'";
 	$que.=" where no='$member_no'";
 
-	@mysql_query($que) or Error("회원정보 수정시에 에러가 발생하였습니다 ".mysql_error());
+	@mysqli_query($connect,$que) or Error("회원정보 수정시에 에러가 발생하였습니다 ".mysqli_error($connect));
 
 	// 회원의 소개 사진
 	if($_FILES[picture]) {
@@ -189,7 +189,7 @@ if($exec2=="modify_member_ok") {
 		$path="icon/member_".time().".".$kind[$n];
 		@move_uploaded_file($picture,$path);
 		@chmod($path,0707);
-		@mysql_query("update $member_table set picture='$path' where no='$member_no'") or Error("사진 자료 업로드시 에러가 발생하였습니다");
+		@mysqli_query($connect,"update $member_table set picture='$path' where no='$member_no'") or Error("사진 자료 업로드시 에러가 발생하였습니다");
 	}
 
 	// 이미지 박스 용량을 저장
@@ -266,7 +266,7 @@ if($exec2=="modify_member_ok") {
 	}
 	// 관리자 자신의 비밀번호 변경시 새로이 쿠키를 설정하여 줌
 	//if($member_no==$member[no]&&$password&&$password1&&$password==$password1) {
-		//$password=mysql_fetch_array(mysql_query("select password('$password')"));
+		//$password=mysqli_fetch_array(mysqli_query($connect,"select password('$password')"));
 		//setcookie("zetyxboard_userid",$member[user_id],'',"/");
 		//setcookie("zetyxboard_password",$password[0],'',"/");
 	//}

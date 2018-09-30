@@ -54,10 +54,10 @@ class Net_UserAgent_Mobile_Request
     function &factory($stuff = null)
     {
         if ($stuff === null) {
-            $request = &new Net_UserAgent_Mobile_Request_Env($_SERVER);
+            $request = new Net_UserAgent_Mobile_Request_Env($_SERVER);
         } else {
             $request =
-                &new Net_UserAgent_Mobile_Request_Env(array(
+                new Net_UserAgent_Mobile_Request_Env(array(
                                                             'HTTP_USER_AGENT' => $stuff)
                                                       );
         }

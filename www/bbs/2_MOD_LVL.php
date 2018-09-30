@@ -5,7 +5,7 @@ if(!$connect) $connect=dbConn();
 $member=member_info();
 if(!($member[no]&&$member[is_admin]==1&&$member[level]==1)) Error("레벨1의 최고 관리자만이 사용할수 있습니다");
 // 실제 검색부분
-$table_name_result=mysql_query("select name from $admin_table order by name",$connect) or error(mysql_error());
+$table_name_result=mysqli_query($connect,"select name from $admin_table order by name") or error(mysqli_error($connect));
 
 head(" bgcolor=white");
 ?>
@@ -22,20 +22,20 @@ head(" bgcolor=white");
 
 <?
 $hop=0;
-while($table_data=mysql_fetch_array($table_name_result))
+while($table_data=mysqli_fetch_array($table_name_result))
 {
 	$table_name=$table_data[name];
 	$cnt1=0;
 
 	unset($temp); unset($data);
-	$temp=mysql_query("select no,level from $member_table order by no", $connect) or error(mysql_error());
-	while($data=mysql_fetch_array($temp)) {
+	$temp=mysqli_query($connect,"select no,level from $member_table order by no") or error(mysqli_error($connect));
+	while($data=mysqli_fetch_array($temp)) {
 		// 게시판 테이블 islevel 일괄 변경
-		mysql_query("update $t_board"."_$table_name set islevel='$data[level]' where ismember='$data[no]'", $connect) or error(mysql_error());
-		$cnt1 += mysql_affected_rows();
+		mysqli_query($connect,"update $t_board"."_$table_name set islevel='$data[level]' where ismember='$data[no]'") or error(mysqli_error($connect));
+		$cnt1 += mysqli_affected_rows($connect);
 	}
-	mysql_query("update $t_board"."_$table_name set islevel='10' where ismember='0'", $connect) or error(mysql_error());
-	$cnt1 += mysql_affected_rows();
+	mysqli_query($connect,"update $t_board"."_$table_name set islevel='10' where ismember='0'") or error(mysqli_error($connect));
+	$cnt1 += mysqli_affected_rows($connect);
 ?>
 
 <br><br><br>
@@ -45,14 +45,14 @@ while($table_data=mysql_fetch_array($table_name_result))
 	$cnt2=0;
 
 	unset($temp); unset($data);
-	$temp=mysql_query("select no,level from $member_table order by no", $connect) or error(mysql_error());
-	while($data=mysql_fetch_array($temp)) {
+	$temp=mysqli_query($connect,"select no,level from $member_table order by no") or error(mysqli_error($connect));
+	while($data=mysqli_fetch_array($temp)) {
 		// 덧글 테이블 islevel 일괄 변경
-		mysql_query("update $t_comment"."_$table_name set islevel='$data[level]' where ismember='$data[no]'", $connect) or error(mysql_error());
-		$cnt2 += mysql_affected_rows();
+		mysqli_query($connect,"update $t_comment"."_$table_name set islevel='$data[level]' where ismember='$data[no]'") or error(mysqli_error($connect));
+		$cnt2 += mysqli_affected_rows($connect);
 	}
-	mysql_query("update $t_comment"."_$table_name set islevel='10' where ismember='0'", $connect) or error(mysql_error());
-	$cnt2 += mysql_affected_rows();
+	mysqli_query($connect,"update $t_comment"."_$table_name set islevel='10' where ismember='0'") or error(mysqli_error($connect));
+	$cnt2 += mysqli_affected_rows($connect);
 ?>
 
 <br><br><br>

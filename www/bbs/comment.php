@@ -35,15 +35,15 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 
 	// 주 포스트 글 ismember를 가져옴
 	$_dbTimeStart = getmicrotime();
-	$data=mysql_fetch_array(mysql_query("select ismember from $t_board"."_$id where no='$no'"));
+	$data=mysqli_fetch_array(mysqli_query($connect,"select ismember from $t_board"."_$id where no='$no'"));
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 
 	// 원본 덧글을 가져옴
 	unset($s_data);
 	if($c_no) {
 		$_dbTimeStart = getmicrotime();
-		$result=@mysql_query("select * from $t_comment"."_$id where no='$c_no'") or error(mysql_error());
-		$s_data=mysql_fetch_array($result);
+		$result=@mysqli_query($connect,"select * from $t_comment"."_$id where no='$c_no'") or error(mysqli_error($connect));
+		$s_data=mysqli_fetch_array($result);
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 		if(!$s_data[no]) Error("해당 덧글이 존재하지 않습니다");
 	}
@@ -59,7 +59,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	if(($mode=="modify"&&$s_data[is_secret]&&!$is_admin&&$s_data[ismember]!=$member[no])||($mode!="modify"&&!$is_admin&&$password)) {
 		if($member[no]) {
 			$_dbTimeStart = getmicrotime();
-			$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where no='$s_data[no]' and ismember='$member[no]'"));
+			$secret_check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_comment"."_$id where no='$s_data[no]' and ismember='$member[no]'"));
 			$_dbTime += getmicrotime()-$_dbTimeStart;
 			if(!$secret_check[0]) error("비밀글을 열람할 권한이 없습니다");
 		} else {
@@ -67,7 +67,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 				$password = addslashes($password);
 			}
 			$_dbTimeStart = getmicrotime();
-			$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where no='$s_data[no]' and password=password('$password')"));
+			$secret_check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_comment"."_$id where no='$s_data[no]' and password=password('$password')"));
 			$_dbTime += getmicrotime()-$_dbTimeStart;
 			if(!$secret_check[0]) {
 				head();
@@ -147,8 +147,8 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 		unset($o_data);
 		if($c_org) {
 			$_dbTimeStart = getmicrotime();
-			$result2=@mysql_query("select * from $t_comment"."_$id where no='$c_org'") or error(mysql_error());
-			$o_data=mysql_fetch_array($result2);
+			$result2=@mysqli_query($connect,"select * from $t_comment"."_$id where no='$c_org'") or error(mysqli_error($connect));
+			$o_data=mysqli_fetch_array($result2);
 			$_dbTime += getmicrotime()-$_dbTimeStart;
 			if(!$o_data[no]) Error("원본 덧글이 존재하지 않습니다");
 		}

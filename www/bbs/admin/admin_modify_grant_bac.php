@@ -1,9 +1,9 @@
 <?
-$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
+$group_data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$group_no'"));
 
 if($member[is_admin]>2&&!preg_match("/".$no.",/i",$member[board_name])) error("사용 권한이 없습니다");
 
-$board_data=mysql_fetch_array(mysql_query("select * from $admin_table where no='$no'"));
+$board_data=mysqli_fetch_array(mysqli_query($connect,"select * from $admin_table where no='$no'"));
 ?>
 <table border=0 cellspacing=1 cellpadding=0 width=100% bgcolor=#b0b0b0>
 <tr height=30><td bgcolor=#3d3d3d colspan=10><img src=images/admin_webboard.gif></td>

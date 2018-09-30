@@ -511,7 +511,7 @@ class Securimage {
      * </code>
      *
 	*/
-	function Securimage()
+	function __construct()
 	{
 		// 세션 초기화 또는 기존 연결
 		if ( session_id() == '' ) {
@@ -1602,7 +1602,7 @@ class Securimage_Color {
      * @파라미터 $green는 초록색 구성 요소 0-255
      * @파라미터 $blue는 파란색 구성 요소 0-255
 	*/
-	function Securimage_Color($red, $green = null, $blue = null)
+	function __construct($red, $green = null, $blue = null)
 	{
 		if ($green == null && $blue == null && preg_match('/^#[a-f0-9]{3,6}$/i', $red)) {
 			$col = substr($red, 1);

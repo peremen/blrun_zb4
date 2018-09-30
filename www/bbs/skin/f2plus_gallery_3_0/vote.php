@@ -29,7 +29,7 @@ function error1($message, $url="") {
  **************************************************************************/
 // 현재글의 Vote수 올림;;
 $table="zetyx_board_comment_".$id."_movie";
-$t_c=mysql_fetch_array(mysql_query("select * from $table where no='$c_no'"));
+$t_c=mysqli_fetch_array(mysqli_query($connect,"select * from $table where no='$c_no'"));
 $vote_man=$t_c[who];
 $whois=explode("!*)",$vote_man);
 for($i=0;$i<=sizeof($whois)-1;$i++){
@@ -39,7 +39,7 @@ for($i=0;$i<=sizeof($whois)-1;$i++){
 }
 if(!$vote_man) $vote_man=$who;
 else $vote_man=$vote_man."!*)".$who;
-mysql_query("update $table set vote=vote+1, who='$vote_man' where no='$c_no'");
+mysqli_query($connect,"update $table set vote=vote+1, who='$vote_man' where no='$c_no'");
 
 // 페이지 이동
 //if($setup[use_alllist]) $temp_href="zboard.php"; else $temp_href="view.php";

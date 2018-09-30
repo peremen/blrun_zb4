@@ -28,10 +28,10 @@
 $dbData = file("myZrCnf2019.php");
 $dbname = $dbData[4];
 
-$result = mysql_query("show table status from $dbname like 'zetyx%'",$connect);
+$result = mysqli_query($connect,"show table status from $dbname like 'zetyx%'");
 $size = 0;
 $num = 1;
-while($dbData=mysql_fetch_array($result)) {
+while($dbData=mysqli_fetch_array($result)) {
 	$size += $dbData[Data_length]+$dbData[Index_length];
 ?>
 		<tr bgcolor=white align=center>

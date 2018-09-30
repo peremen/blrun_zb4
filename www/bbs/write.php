@@ -57,8 +57,8 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	if($mode!="write"&&$no) {
 		unset($data);
 		$_dbTimeStart = getmicrotime();
-		$result=@mysql_query("select * from $t_board"."_$id where no='$no'") or error(mysql_error());
-		$data=mysql_fetch_array($result);
+		$result=@mysqli_query($connect,"select * from $t_board"."_$id where no='$no'") or error(mysqli_error($connect));
+		$data=mysqli_fetch_array($result);
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 		$ip_array = explode("|||",$data[memo]);
 		if($setup[skinname]!="zero_vote" && mb_substr($ip_array[0],0,5)=="설문조사|")
@@ -78,7 +78,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 	if(($mode!="write"&&$data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no])||($mode=="write"&&!$is_admin&&$password)) {
 		if($member[no]) {
 			$_dbTimeStart = getmicrotime();
-			$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where no='$data[no]' and ismember='$member[no]'"));
+			$secret_check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$id where no='$data[no]' and ismember='$member[no]'"));
 			$_dbTime += getmicrotime()-$_dbTimeStart;
 			if(!$secret_check[0]) error("비밀글을 열람할 권한이 없습니다");
 		} else {
@@ -86,7 +86,7 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 				$password = addslashes($password);
 			}
 			$_dbTimeStart = getmicrotime();
-			$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where no='$data[no]' and password=password('$password')"));
+			$secret_check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$id where no='$data[no]' and password=password('$password')"));
 			$_dbTime += getmicrotime()-$_dbTimeStart;
 			if(!$secret_check[0]) {
 				head();
@@ -111,14 +111,14 @@ if(!empty($_POST['code']) || $member[no] || $password) {
 
 // 카테고리 데이타 가져옴;;
 	$_dbTimeStart = getmicrotime();
-	$category_result=mysql_query("select * from $t_category"."_$id order by no");
+	$category_result=mysqli_query($connect,"select * from $t_category"."_$id order by no");
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 
 // 카테고리 데이타 갖고 오기;;
 	if($setup[use_category]) {
 		$category_kind="<select id=category name=category><option value=0>Category</option>";
 
-		while($category_data=mysql_fetch_array($category_result)) {
+		while($category_data=mysqli_fetch_array($category_result)) {
 			if($data[category]==$category_data[no]) $category_kind.="<option value=$category_data[no] selected>$category_data[name]</option>";
 			else $category_kind.="<option value=$category_data[no]>$category_data[name]</option>";
 		}

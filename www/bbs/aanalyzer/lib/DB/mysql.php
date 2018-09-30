@@ -165,7 +165,7 @@ class DB_mysql extends DB_common
      */
     function DB_mysql()
     {
-        $this->DB_common();
+        $this->DB_common_Fn();
     }
 
     // }}}
@@ -932,8 +932,7 @@ class DB_mysql extends DB_common
              * Probably received a table name.
              * Create a result resource identifier.
              */
-            $id = @mysql_list_fields($this->dsn['database'],
-                                     $result, $this->connection);
+            $id = @mysql_query("SHOW COLUMNS FROM $result", $this->connection);
             $got_string = true;
         } elseif (isset($result->result)) {
             /*

@@ -11,7 +11,7 @@ if(!$connect) $connect=dbConn();
 $member=member_info();
 if(!($member[no]&&$member[is_admin]==1&&$member[level]==1)) Error("레벨1의 최고 관리자만이 사용할수 있습니다");
 // 실제 검색부분
-$table_name_result=mysql_query("select name from $admin_table order by name",$connect) or error(mysql_error());
+$table_name_result=mysqli_query($connect,"select name from $admin_table order by name") or error(mysqli_error($connect));
 
 head(" bgcolor=white");
 ?>
@@ -28,28 +28,28 @@ head(" bgcolor=white");
 
 <?
 $hop=0;
-while($table_data=mysql_fetch_array($table_name_result))
+while($table_data=mysqli_fetch_array($table_name_result))
 {
 	$table_name=$table_data[name];
 	$cnt1=0;
 
 	#\' 를 ' 로 치환
-	mysql_query("UPDATE $t_board"."_$table_name SET subject=REPLACE(subject,\"\\\\'\",\"\\'\") where subject like \"%\\\\'%\"", $connect) or error(mysql_error());
-	$cnt1 += mysql_affected_rows();
-	mysql_query("UPDATE $t_board"."_$table_name SET memo=REPLACE(memo,\"\\\\'\",\"\\'\") where memo like \"%\\\\'%\"", $connect) or error(mysql_error());
-	$cnt1 += mysql_affected_rows();
+	mysqli_query($connect,"UPDATE $t_board"."_$table_name SET subject=REPLACE(subject,\"\\\\'\",\"\\'\") where subject like \"%\\\\'%\"") or error(mysqli_error($connect));
+	$cnt1 += mysqli_affected_rows($connect);
+	mysqli_query($connect,"UPDATE $t_board"."_$table_name SET memo=REPLACE(memo,\"\\\\'\",\"\\'\") where memo like \"%\\\\'%\"") or error(mysqli_error($connect));
+	$cnt1 += mysqli_affected_rows($connect);
 
 	#\" 를 " 로 치환
-	mysql_query("UPDATE $t_board"."_$table_name SET subject=REPLACE(subject,'\\\\\"','\\\"') where subject like '%\\\\\"%'", $connect) or error(mysql_error());
-	$cnt1 += mysql_affected_rows();
-	mysql_query("UPDATE $t_board"."_$table_name SET memo=REPLACE(memo,'\\\\\"','\\\"') where memo like '%\\\\\"%'", $connect) or error(mysql_error());
-	$cnt1 += mysql_affected_rows();
+	mysqli_query($connect,"UPDATE $t_board"."_$table_name SET subject=REPLACE(subject,'\\\\\"','\\\"') where subject like '%\\\\\"%'") or error(mysqli_error($connect));
+	$cnt1 += mysqli_affected_rows($connect);
+	mysqli_query($connect,"UPDATE $t_board"."_$table_name SET memo=REPLACE(memo,'\\\\\"','\\\"') where memo like '%\\\\\"%'") or error(mysqli_error($connect));
+	$cnt1 += mysqli_affected_rows($connect);
 
 	#\\ 를 \ 로 치환
-	mysql_query("UPDATE $t_board"."_$table_name SET subject=REPLACE(subject,'\\\\\\\\','\\\\') where subject like '%\\\\\\\\%'", $connect) or error(mysql_error());
-	$cnt1 += mysql_affected_rows();
-	mysql_query("UPDATE $t_board"."_$table_name SET memo=REPLACE(memo,'\\\\\\\\','\\\\') where memo like '%\\\\\\\\%'", $connect) or error(mysql_error());
-	$cnt1 += mysql_affected_rows();
+	mysqli_query($connect,"UPDATE $t_board"."_$table_name SET subject=REPLACE(subject,'\\\\\\\\','\\\\') where subject like '%\\\\\\\\%'") or error(mysqli_error($connect));
+	$cnt1 += mysqli_affected_rows($connect);
+	mysqli_query($connect,"UPDATE $t_board"."_$table_name SET memo=REPLACE(memo,'\\\\\\\\','\\\\') where memo like '%\\\\\\\\%'") or error(mysqli_error($connect));
+	$cnt1 += mysqli_affected_rows($connect);
 ?>
 
 <br><br><br>
@@ -59,16 +59,16 @@ while($table_data=mysql_fetch_array($table_name_result))
 	$cnt2=0;
 
 	#\' 를 ' 로 치환
-	mysql_query("UPDATE $t_comment"."_$table_name SET memo=REPLACE(memo,\"\\\\'\",\"\\'\") where memo like \"%\\\\'%\"", $connect) or error(mysql_error());
-	$cnt2 += mysql_affected_rows();
+	mysqli_query($connect,"UPDATE $t_comment"."_$table_name SET memo=REPLACE(memo,\"\\\\'\",\"\\'\") where memo like \"%\\\\'%\"") or error(mysqli_error($connect));
+	$cnt2 += mysqli_affected_rows($connect);
 
 	#\" 를 " 로 치환
-	mysql_query("UPDATE $t_comment"."_$table_name SET memo=REPLACE(memo,'\\\\\"','\\\"') where memo like '%\\\\\"%'", $connect) or error(mysql_error());
-	$cnt2 += mysql_affected_rows();
+	mysqli_query($connect,"UPDATE $t_comment"."_$table_name SET memo=REPLACE(memo,'\\\\\"','\\\"') where memo like '%\\\\\"%'") or error(mysqli_error($connect));
+	$cnt2 += mysqli_affected_rows($connect);
 
 	#\\ 를 \ 로 치환
-	mysql_query("UPDATE $t_comment"."_$table_name SET memo=REPLACE(memo,'\\\\\\\\','\\\\') where memo like '%\\\\\\\\%'", $connect) or error(mysql_error());
-	$cnt2 += mysql_affected_rows();
+	mysqli_query($connect,"UPDATE $t_comment"."_$table_name SET memo=REPLACE(memo,'\\\\\\\\','\\\\') where memo like '%\\\\\\\\%'") or error(mysqli_error($connect));
+	$cnt2 += mysqli_affected_rows($connect);
 ?>
 
 <br><br><br>

@@ -7,7 +7,7 @@ class AokioInstallDao extends AokioDao{
 	//Constructor
 	function AokioInstallDao($info =false){
 		if(!$info){
-			parent::AokioDao();
+			parent::__construct();
 		}else{
 			$this->getDBInfoCheck($info);
 		}

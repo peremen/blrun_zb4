@@ -5,7 +5,7 @@ if(!$connect) $connect=dbConn();
 $member=member_info();
 if(!($member[no]&&$member[is_admin]==1&&$member[level]==1)) Error("레벨1의 최고 관리자만이 사용할수 있습니다");
 // 실제 검색부분
-$table_name_result=mysql_query("select name from $admin_table order by name",$connect) or error(mysql_error());
+$table_name_result=mysqli_query($connect,"select name from $admin_table order by name") or error(mysqli_error($connect));
 
 head(" bgcolor=white");
 ?>
@@ -22,7 +22,7 @@ head(" bgcolor=white");
 
 <?
 $hop=0;
-while($table_data=mysql_fetch_array($table_name_result))
+while($table_data=mysqli_fetch_array($table_name_result))
 {
 	$cnt1=0;
 	$table_name=$table_data[name];
@@ -37,73 +37,73 @@ while($table_data=mysql_fetch_array($table_name_result))
 <?
 	$cnt2=0;
 	// 코멘트 islevel 필드 일괄 추가
-	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'islevel'", $connect));
+	$result = mysqli_fetch_array(mysqli_query($connect,"SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'islevel'"));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `islevel` int(2) not null default '10' AFTER `ismember`", $connect) or error(mysql_error());
+		mysqli_query($connect,"ALTER TABLE $t_comment"."_$table_name ADD `islevel` int(2) not null default '10' AFTER `ismember`") or error(mysqli_error($connect));
 		$cnt2++;
 	}
 
 	unset($result);
 	// 코멘트 use_html2 필드 일괄 추가
-	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'use_html2'", $connect));
+	$result = mysqli_fetch_array(mysqli_query($connect,"SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'use_html2'"));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `use_html2` char(1) default '0' CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `reg_date`", $connect) or error(mysql_error());
+		mysqli_query($connect,"ALTER TABLE $t_comment"."_$table_name ADD `use_html2` char(1) default '0' CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `reg_date`") or error(mysqli_error($connect));
 		$cnt2++;
 	}
 
 	unset($result);
 	// 코멘트 is_secret 필드 일괄 추가
-	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'is_secret'", $connect));
+	$result = mysqli_fetch_array(mysqli_query($connect,"SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'is_secret'"));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `is_secret` char(1) not null default '0' CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `use_html2`", $connect) or error(mysql_error());
+		mysqli_query($connect,"ALTER TABLE $t_comment"."_$table_name ADD `is_secret` char(1) not null default '0' CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `use_html2`") or error(mysqli_error($connect));
 		$cnt2++;
 	}
 
 	unset($result);
 	// 코멘트 file_name1 필드 일괄 추가
-	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'file_name1'", $connect));
+	$result = mysqli_fetch_array(mysqli_query($connect,"SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'file_name1'"));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `file_name1` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `is_secret`", $connect) or error(mysql_error());
+		mysqli_query($connect,"ALTER TABLE $t_comment"."_$table_name ADD `file_name1` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `is_secret`") or error(mysqli_error($connect));
 		$cnt2++;
 	}
 
 	unset($result);
 	// 코멘트 file_name2 필드 일괄 추가
-	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'file_name2'", $connect));
+	$result = mysqli_fetch_array(mysqli_query($connect,"SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'file_name2'"));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `file_name2` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `file_name1`", $connect) or error(mysql_error());
+		mysqli_query($connect,"ALTER TABLE $t_comment"."_$table_name ADD `file_name2` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `file_name1`") or error(mysqli_error($connect));
 		$cnt2++;
 	}
 
 	unset($result);
 	// 코멘트 s_file_name1 필드 일괄 추가
-	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 's_file_name1'", $connect));
+	$result = mysqli_fetch_array(mysqli_query($connect,"SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 's_file_name1'"));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `s_file_name1` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `file_name2`", $connect) or error(mysql_error());
+		mysqli_query($connect,"ALTER TABLE $t_comment"."_$table_name ADD `s_file_name1` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `file_name2`") or error(mysqli_error($connect));
 		$cnt2++;
 	}
 
 	unset($result);
 	// 코멘트 s_file_name2 필드 일괄 추가
-	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 's_file_name2'", $connect));
+	$result = mysqli_fetch_array(mysqli_query($connect,"SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 's_file_name2'"));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `s_file_name2` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `s_file_name1`", $connect) or error(mysql_error());
+		mysqli_query($connect,"ALTER TABLE $t_comment"."_$table_name ADD `s_file_name2` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci AFTER `s_file_name1`") or error(mysqli_error($connect));
 		$cnt2++;
 	}
 
 	unset($result);
 	// 코멘트 download1 필드 일괄 추가
-	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'download1'", $connect));
+	$result = mysqli_fetch_array(mysqli_query($connect,"SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'download1'"));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `download1` int(11) not null default '0' AFTER `s_file_name2`", $connect) or error(mysql_error());
+		mysqli_query($connect,"ALTER TABLE $t_comment"."_$table_name ADD `download1` int(11) not null default '0' AFTER `s_file_name2`") or error(mysqli_error($connect));
 		$cnt2++;
 	}
 
 	unset($result);
 	// 코멘트 download2 필드 일괄 추가
-	$result = mysql_fetch_array(mysql_query("SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'download2'", $connect));
+	$result = mysqli_fetch_array(mysqli_query($connect,"SHOW COLUMNS FROM $t_comment"."_$table_name LIKE 'download2'"));
 	if(!$result['Field']) {
-		mysql_query("ALTER TABLE $t_comment"."_$table_name ADD `download2` int(11) not null default '0' AFTER `download1`", $connect) or error(mysql_error());
+		mysqli_query($connect,"ALTER TABLE $t_comment"."_$table_name ADD `download2` int(11) not null default '0' AFTER `download1`") or error(mysqli_error($connect));
 		$cnt2++;
 	}
 ?>

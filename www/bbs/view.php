@@ -22,7 +22,7 @@ $hide_prev_start=$hide_prev_end=$hide_next_start=$hide_next_end=$hide_sitelink1_
 if(!$_view_included2) {
 	unset($data);
 	$_dbTimeStart = getmicrotime();
-	$data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$no'"));
+	$data=mysqli_fetch_array(mysqli_query($connect,"select * from $t_board"."_$id where no='$no'"));
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 }
 
@@ -32,22 +32,22 @@ if(!$data[no]) Error("선택하신 게시물이 존재하지 않습니다","zboa
 // 이전글과 이후글의 데이타를 구함;
 if(!$setup[use_alllist]) {
 	$_dbTimeStart = getmicrotime();
-	if($data[prev_no]) $prev_data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$data[prev_no]'"));
-	if($data[next_no]) $next_data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$data[next_no]'"));
+	if($data[prev_no]) $prev_data=mysqli_fetch_array(mysqli_query($connect,"select * from $t_board"."_$id where no='$data[prev_no]'"));
+	if($data[next_no]) $next_data=mysqli_fetch_array(mysqli_query($connect,"select * from $t_board"."_$id where no='$data[next_no]'"));
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 }
 
 // 모든 목록 보기가 아닐때 관련글을 모두 읽어옴;;
 if(!$setup[use_alllist]) {
 	$_dbTimeStart = getmicrotime();
-	$check_ref=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where division='$data[division]' and headnum='$data[headnum]'"));
-	if($check_ref[0]>1) $view_result=mysql_query("select * from $t_board"."_$id where division='$data[division]' and headnum='$data[headnum]' order by headnum desc,arrangenum");
+	$check_ref=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$id where division='$data[division]' and headnum='$data[headnum]'"));
+	if($check_ref[0]>1) $view_result=mysqli_query($connect,"select * from $t_board"."_$id where division='$data[division]' and headnum='$data[headnum]' order by headnum desc,arrangenum");
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 }
 
 // 간단한 답글의 데이타를 가지고옴;;
 $_dbTimeStart = getmicrotime();
-$view_comment_result=mysql_query("select * from $t_comment"."_$id where parent='$no' order by no asc");
+$view_comment_result=mysqli_query($connect,"select * from $t_comment"."_$id where parent='$no' order by no asc");
 $_dbTime += getmicrotime()-$_dbTimeStart;
 
 // zboard.php에서 인크루드시 대상 위치를 zboard.php로 설정
@@ -58,7 +58,7 @@ else $target="zboard.php";
 if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$setup[grant_view_secret]) {
 	if($member[no]) {
 		$_dbTimeStart = getmicrotime();
-		$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where headnum='$data[headnum]' and ismember='$member[no]'"));
+		$secret_check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$id where headnum='$data[headnum]' and ismember='$member[no]'"));
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 		if(!$secret_check[0]) error("비밀글을 열람할 권한이 없습니다");
 	} else {
@@ -66,7 +66,7 @@ if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$s
 			$password = addslashes($password);
 		}
 		$_dbTimeStart = getmicrotime();
-		$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where headnum='$data[headnum]' and password=password('$password')"));
+		$secret_check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$id where headnum='$data[headnum]' and password=password('$password')"));
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 		if(!$secret_check[0]) {
 			head();
@@ -87,9 +87,9 @@ if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$s
 // 현재글의 HIT수를 올림;;
 if(!preg_match("/".$setup[no]."_".$no."/i",$_SESSION['zb_hit'])) {
 	$_dbTimeStart = getmicrotime();
-//  mysql_query("update $t_board"."_$id set hit=hit+1 where no='$no'"); //아래 3행으로
+//  mysqli_query($connect,"update $t_board"."_$id set hit=hit+1 where no='$no'"); //아래 3행으로
 	if ($data[ismember]!=$member[no]) {
-		mysql_query("update $t_board"."_$id set hit=hit+1 where no='$no'");
+		mysqli_query($connect,"update $t_board"."_$id set hit=hit+1 where no='$no'");
 	}
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 	$hitStr=",".$setup[no]."_".$no;
@@ -331,16 +331,16 @@ $max_depth = 0;
 if($setup[use_comment]) {
 	// 원덧글 번호 배열 초기화
 	$corg_arr = array();
-	while($c_data=mysql_fetch_array($view_comment_result)) {
+	while($c_data=mysqli_fetch_array($view_comment_result)) {
 		// 계층 코멘트 표식 불러와 배열로 저장
 		unset($c_match);
 		if(preg_match("#\|\|\|([0-9]{1,})\|([0-9]{1,10})$#",$c_data[memo],$c_match))
 			$corg_arr[$c_match[1]] = $c_match[1];
 	}
 	// 레코드 맨 위로 이동
-	if(mysql_num_rows($view_comment_result)) mysql_data_seek($view_comment_result,0);
+	if(mysqli_num_rows($view_comment_result)) mysqli_data_seek($view_comment_result,0);
 	// 코멘트 처리
-	while($c_data=mysql_fetch_array($view_comment_result)) {
+	while($c_data=mysqli_fetch_array($view_comment_result)) {
 		$comment_name=del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",$c_data[name])));
 		$temp_name = get_private_icon($c_data[ismember], "2");
 		if($temp_name) $comment_name="<img src='$temp_name' border=0 align=absmiddle>";
@@ -428,8 +428,8 @@ if($setup[use_comment]) {
 		unset($o_data);
 		if($c_org) {
 			$_dbTimeStart = getmicrotime();
-			$result2=@mysql_query("select * from $t_comment"."_$id where no='$c_org'") or error(mysql_error());
-			$o_data=mysql_fetch_array($result2);
+			$result2=@mysqli_query($connect,"select * from $t_comment"."_$id where no='$c_org'") or error(mysqli_error($connect));
+			$o_data=mysqli_fetch_array($result2);
 			$_dbTime += getmicrotime()-$_dbTimeStart;
 			$o_data[name]=del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",$o_data[name])));
 		}
@@ -615,7 +615,7 @@ if($check_ref[0]>1) {
 	include "$dir/view_list_head.php";
 	$_skinTime += getmicrotime()-$_skinTimeStart;
 
-	while($data=mysql_fetch_array($view_result)) {
+	while($data=mysqli_fetch_array($view_result)) {
 		// 데이타 정렬
 		list_check($data);
 

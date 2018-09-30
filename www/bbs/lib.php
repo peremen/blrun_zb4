@@ -117,7 +117,7 @@ if(!preg_match("/install/i",$PHP_SELF)&&file_exists($_zb_path."myZrCnf2019.php")
 		if(!$connect) $connect=dbConn();
 		// 멤버 정보 구해오기
 		$_dbTimeStart = getmicrotime();
-		$m=mysql_fetch_array(mysql_query("select email from $member_table where no ='".$autoLoginData[no]."'"));
+		$m=mysqli_fetch_array(mysqli_query($connect,"select email from $member_table where no ='".$autoLoginData[no]."'"));
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 		// email IP 표식 불러와 처리
 		if(preg_match("#\|\|\|([0-9.]{1,})$#",$m[email],$c_match)) {
@@ -141,7 +141,7 @@ if(!preg_match("/install/i",$PHP_SELF)&&file_exists($_zb_path."myZrCnf2019.php")
 		if(!$connect) $connect=dbConn();
 		// 멤버 정보 구해오기
 		$_dbTimeStart = getmicrotime();
-		$m=mysql_fetch_array(mysql_query("select email from $member_table where no ='".$_SESSION['zb_logged_no']."'"));
+		$m=mysqli_fetch_array(mysqli_query($connect,"select email from $member_table where no ='".$_SESSION['zb_logged_no']."'"));
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 		// email IP 표식 불러와 처리
 		if(preg_match("#\|\|\|([0-9.]{1,})$#",$m[email],$c_match)) {
@@ -224,20 +224,20 @@ function getMicrosecond()
 // 전체 division 구함
 function total_division() {
 	global $connect, $t_division, $id;
-	$temp=mysql_fetch_array(mysql_query("select max(division) from $t_division"."_$id"));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select max(division) from $t_division"."_$id"));
 	return $temp[0];
 }
 
 // 답글일때 해당 division의 num 값 증가
 function plus_division($division) {
 	global $connect, $t_division, $id;
-	mysql_query("update $t_division"."_$id set num=num+1 where division='$division'") or error(mysql_error());
+	mysqli_query($connect,"update $t_division"."_$id set num=num+1 where division='$division'") or error(mysqli_error($connect));
 }
 
 // 삭제하거나 공지글을 일반글로 옮기는 등의 division num값 변화시 해당 division의 num값 감소시킴
 function minus_division($division) {
 	global $connect, $t_division, $id;
-	mysql_query("update $t_division"."_$id set num=num-1 where division='$division'") or error(mysql_error());
+	mysqli_query($connect,"update $t_division"."_$id set num=num-1 where division='$division'") or error(mysqli_error($connect));
 }
 
 // 신규글쓰기일때 최근 division의 num 값 증가
@@ -245,27 +245,27 @@ function add_division($board_name="") {
 	global $connect, $t_division, $id, $t_board;
 	if($board_name) $board_id=$board_name;
 	else $board_id=$id;
-	$temp=mysql_fetch_array(mysql_query("select num from $t_division"."_$board_id order by division desc limit 1"));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select num from $t_division"."_$board_id order by division desc limit 1"));
 
 	// 현재 division의 num값이 기준값일때는 division +1 해줌;
 	if($temp[0]>=5000) {
-		$temp=mysql_fetch_array(mysql_query("select max(division) from $t_division"."_$board_id"));
+		$temp=mysqli_fetch_array(mysqli_query($connect,"select max(division) from $t_division"."_$board_id"));
 		$max_division=$temp[0]+1;
-		$temp=mysql_fetch_array(mysql_query("select max(division) from $t_division"."_$board_id where num>0 and division!='$max_division'"));
+		$temp=mysqli_fetch_array(mysqli_query($connect,"select max(division) from $t_division"."_$board_id where num>0 and division!='$max_division'"));
 		if(!$temp[0]) $second_division=0; else $second_division=$temp[0];
-		$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$board_id where (division='$max_division' or division='$second_division') and headnum<=-2000000000"));
+		$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$board_id where (division='$max_division' or division='$second_division') and headnum<=-2000000000"));
 		if($temp[0]>0) {
-			mysql_query("update $t_board"."_$board_id set division='$max_division' where (division='$max_division' or division='$second_division') and  headnum<='-2000000000'") or error(mysql_error());
-			mysql_query("update $t_division"."_$board_id set num=num-$temp[0] where division=$max_division-1") or error(mysql_error());
+			mysqli_query($connect,"update $t_board"."_$board_id set division='$max_division' where (division='$max_division' or division='$second_division') and  headnum<='-2000000000'") or error(mysqli_error($connect));
+			mysqli_query($connect,"update $t_division"."_$board_id set num=num-$temp[0] where division=$max_division-1") or error(mysqli_error($connect));
 		}
 		$num=$temp[0]+1;
-		mysql_query("insert into $t_division"."_$board_id (division,num) values ('$max_division','$num')");
+		mysqli_query($connect,"insert into $t_division"."_$board_id (division,num) values ('$max_division','$num')");
 		return $max_division;
 	} else {
 	// 현재 division이 기준값개보다 작을때~
-		$temp=mysql_fetch_array(mysql_query("select max(division) from $t_division"."_$board_id"));
+		$temp=mysqli_fetch_array(mysqli_query($connect,"select max(division) from $t_division"."_$board_id"));
 		$division=$temp[0];
-		mysql_query("update $t_division"."_$board_id set num=num+1 where division='$division'");
+		mysqli_query($connect,"update $t_division"."_$board_id set num=num+1 where division='$division'");
 		return $division;
 	}
 }
@@ -283,7 +283,7 @@ function member_info() {
 	if($member[no]) return $member;
 
 	if($_SESSION['zb_logged_no']) {
-		$member=mysql_fetch_array(mysql_query("select * from $member_table where no ='".$_SESSION['zb_logged_no']."'"));
+		$member=mysqli_fetch_array(mysqli_query($connect,"select * from $member_table where no ='".$_SESSION['zb_logged_no']."'"));
 		if(!$member[no]) {
 			unset($member);
 			$member[level] = 10;
@@ -294,8 +294,8 @@ function member_info() {
 }
 
 function group_info($no) {
-	global $group_table;
-	$temp=mysql_fetch_array(mysql_query("select * from $group_table where no='$no'"));
+	global $group_table, $connect;
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$no'"));
 	return $temp;
 }
 
@@ -315,12 +315,12 @@ function dbconn() {
 	for($i=1;$i<=4;$i++) $f[$i]=trim(str_replace("\n","",$f[$i]));
 
 	if(!$connect){
-		$connect = @mysql_connect($f[1],$f[2],$f[3]);
-		@mysql_query("set names utf8mb4",$connect);
+		$connect = @mysqli_connect($f[1],$f[2],$f[3]);
+		@mysqli_query($connect,"set names utf8mb4");
 	}
 	if(!$connect) Error("DB 접속시 에러가 발생했습니다!");
 
-	@mysql_select_db($f[4], $connect) or Error("DB Select 에러가 발생했습니다","");
+	@mysqli_select_db($connect,$f[4]) or Error("DB Select 에러가 발생했습니다","");
 
 	return $connect;
 }
@@ -512,7 +512,7 @@ var imageBoxHandler;
 // 푸터 부분 출력
 function foot($max_depth="",$all_depth="") {
 
-	global $width, $group, $setup, $_startTime , $_queryTime , $_foot_executived, $_skinTime, $_sessionStart, $_sessionEnd, $_nowConnectStart, $_nowConnectEnd, $_dbTime, $_listCheckTime, $_zbResizeCheck, $max_depth, $all_depth;
+	global $width, $group, $setup, $_startTime , $_queryTime , $_foot_executived, $_skinTime, $_sessionStart, $_sessionEnd, $_nowConnectStart, $_nowConnectEnd, $_dbTime, $_listCheckTime, $_zbResizeCheck, $max_depth, $all_depth, $connect;
 
 	if(!$all_depth) $all_depth=$max_depth;
 
@@ -578,7 +578,7 @@ addLoadEvent(zb_img_check);
 <!-- 접속통계 관련 헤더 -->
 <?
 $_dbTimeStart = getmicrotime();
-$re=mysql_fetch_array(mysql_query("SELECT target from `aokio_log_config` order by no desc limit 1"));
+$re=mysqli_fetch_array(mysqli_query($connect,"SELECT target from `aokio_log_config` order by no desc limit 1"));
 $_dbTime += getmicrotime()-$_dbTimeStart;
 $target=$re[0];
 @include "aanalyzer/aokio_analyzer.php";
@@ -689,8 +689,8 @@ function get_table_attrib($id) {
 
 	global $connect, $admin_table;
 	if(!is_string($id)) return false;
-	$id=mysql_real_escape_string($id);
-	$data=mysql_fetch_assoc(mysql_query("select * from $admin_table where `name`='$id' limit 1;",$connect));
+	$id=mysqli_real_escape_string($connect,$id);
+	$data=mysqli_fetch_assoc(mysqli_query($connect,"select * from $admin_table where `name`='$id' limit 1;"));
 
 	if($data[table_width]<=100) $data[table_width]=$data[table_width]."%";
 
@@ -703,19 +703,19 @@ function get_table_attrib($id) {
 
 // 게시판의 생성유무 검사
 function istable($str, $dbname='') {
-	global $config_dir;
+	global $config_dir, $connect;
 	if(!$dbname) {
 		$f=@file($config_dir."myZrCnf2019.php") or Error("myZrCnf2019.php파일이 없습니다.<br>DB설정을 먼저 하십시요","install.php");
 		for($i=1;$i<=4;$i++) $f[$i]=str_replace("\n","",$f[$i]);
 		$dbname=$f[4];
 	}
 
-	$result = mysql_query("show tables from $dbname") or error(mysql_error(),"");
+	$result = mysqli_query($connect,"show tables from $dbname") or error(mysqli_error($connect),"");
 
 	$i=0;
 
-	while ($i < mysql_num_rows($result)) {
-		if($str==mysql_tablename ($result, $i)) return 1;
+	while ($i < mysqli_num_rows($result)) {
+		if($str==mysqli_tablename($result, $i)) return 1;
 		$i++;
 	}
 	return 0;

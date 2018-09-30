@@ -1,12 +1,12 @@
 <?
-$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
+$group_data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$group_no'"));
 
 if($member[is_admin]>2&&!preg_match("/".$no.",/i",$member[board_name])) error("사용 권한이 없습니다");
 
-$table_data=mysql_fetch_array(mysql_query("select name from $admin_table where no='$no'"));
+$table_data=mysqli_fetch_array(mysqli_query($connect,"select name from $admin_table where no='$no'"));
 
-$result=mysql_query("select * from $t_category"."_$table_data[name] order by no",$connect);
-$total_category=mysql_num_rows($result);
+$result=mysqli_query($connect,"select * from $t_category"."_$table_data[name] order by no");
+$total_category=mysqli_num_rows($result);
 ?>
 <table border=0 cellspacing=1 cellpadding=3 width=100% bgcolor=#b0b0b0>
 <tr height=30><td bgcolor=#3d3d3d colspan=5><img src=images/admin_webboard.gif></td>
@@ -37,9 +37,9 @@ $total_category=mysql_num_rows($result);
   <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;>삭제</td>
 </tr>
 <?
-while($data=mysql_fetch_array($result))
+while($data=mysqli_fetch_array($result))
 {
-	$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$table_data[name] where category='$data[no]'",$connect));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$table_data[name] where category='$data[no]'"));
 	$total_num=$temp[0];
 ?>
 <tr height=23 align=center bgcolor=#e0e0e0>
@@ -64,8 +64,8 @@ if(!$total_num&&$total_category>1)
       <td style=font-family:Tahoma;font-size:9pt;font-weight:bold;> 선택된 카테고리의 게시물을 일괄 이동 : </td><td><img src=images/t.gif height=2><br>
         <select name=movename class=input>
 <?
-$temp2=mysql_query("select * from $t_category"."_$table_data[name] order by no desc",$connect);
-while($data2=mysql_fetch_array($temp2))
+$temp2=mysqli_query($connect,"select * from $t_category"."_$table_data[name] order by no desc");
+while($data2=mysqli_fetch_array($temp2))
 {
 	echo "
           <option value=$data2[no]>$data2[name]</option>";

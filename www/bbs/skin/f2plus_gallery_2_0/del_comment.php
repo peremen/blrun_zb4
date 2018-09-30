@@ -158,7 +158,7 @@ function foot1() {
  **************************************************************************/
 
 // 원본글을 가져옴
-$s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
+$s_data=mysqli_fetch_array(mysqli_query($connect,"select * from $t_comment"."_$id where no='$c_no'"));
 
 if($s_data[ismember]||$is_admin||$member[level]<=$setup[grant_delete]) {
 	if(!$is_admin&&$s_data[ismember]!=$member[no]) Error("삭제할 권한이 없습니다");

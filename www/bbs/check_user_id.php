@@ -2,7 +2,7 @@
 include "lib.php";
 $user_id = htmlspecialchars(trim($user_id));
 if(!$connect) $connect=dbConn();
-$check=mysql_fetch_array(mysql_query("select count(*) from $member_table where user_id='$user_id'",$connect));
+$check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table where user_id='$user_id'"));
 head();
 ?>
 <table border=0 width=100% height=100%>

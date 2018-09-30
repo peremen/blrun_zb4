@@ -113,8 +113,8 @@ if($exec=="upload") {
 if($exec=="delete"&&mb_strlen($no)&&$id) {
 	if(!z_unlink($path."/".$image_list[$no])) die("에러");
 	// 각 게시판 자료실에서 멤버 썸네일 삭제
-	$table_name_result=mysql_query("select name from $admin_table order by name") or error(mysql_error());
-	while($table_data=mysql_fetch_array($table_name_result)){
+	$table_name_result=mysqli_query($connect,"select name from $admin_table order by name") or error(mysqli_error($connect));
+	while($table_data=mysqli_fetch_array($table_name_result)){
 		$table_name=$table_data[name];
 		// 썸네일삭제
 		if(preg_match("#(.+?)\.(jpg|jpeg|png)$#i",$image_list[$no],$out)){

@@ -13,7 +13,7 @@ if($keyword) {
 	if($keykind) {
 		if(!$s_que) $s_que .= " where islevel > 8 and $keykind like '%$keyword%' order by no desc ";
 	}
-	$table_name_result=mysql_query("select name, use_alllist from $admin_table order by name",$connect) or error(mysql_error());
+	$table_name_result=mysqli_query($connect,"select name, use_alllist from $admin_table order by name") or error(mysqli_error($connect));
 }
 
 head(" bgcolor=white");
@@ -54,7 +54,7 @@ head(" bgcolor=white");
 if($keyword&&$s_que)
 {
 	$hop = 0; // 삭제할 총 레코드 갯수 카운트
-	while($table_data=mysql_fetch_array($table_name_result))
+	while($table_data=mysqli_fetch_array($table_name_result))
 	{
 
 		$table_name=$table_data[name];
@@ -74,20 +74,20 @@ if($keyword&&$s_que)
 		}
 		if(!$Blocked) {
 			$avoid_ip = $keyword.", ".$setup[avoid_ip];
-			mysql_query("update $admin_table set avoid_ip='$avoid_ip' where name='$table_name'",$connect) or error(mysql_error());
+			mysqli_query($connect,"update $admin_table set avoid_ip='$avoid_ip' where name='$table_name'") or error(mysqli_error($connect));
 		}
 		// 스팸 아이피 글 일괄 삭제
 		unset($result);unset($data);
-		$result=mysql_query("select * from $t_board"."_$table_name $s_que", $connect) or error(mysql_error());
+		$result=mysqli_query($connect,"select * from $t_board"."_$table_name $s_que") or error(mysqli_error($connect));
 
 		$cnt1 = 0; $cnt2 = 0; // 게시판에서 삭제할 레코드 갯수 카운트
 
-		while($data=mysql_fetch_array($result))
+		while($data=mysqli_fetch_array($result))
 		{
 			if(!$data[child]) // 답글이 없을때;;
 			{
-				mysql_query("delete from $t_board"."_$table_name where no='$data[no]'", $connect) or error(mysql_error());
-				$cnt1 += mysql_affected_rows();
+				mysqli_query($connect,"delete from $t_board"."_$table_name where no='$data[no]'") or error(mysqli_error($connect));
+				$cnt1 += mysqli_affected_rows($connect);
 				// 파일삭제
 				@z_unlink("./".$data[file_name1]);
 				@z_unlink("./".$data[file_name2]);
@@ -97,27 +97,27 @@ if($keyword&&$s_que)
 				if(preg_match("#^data\/([^/]+?)\/([0-9]*?)\/(.+?)\.(.+?)#i",$data[file_name2],$out))
 					if(is_dir("./data/".$out[1]."/".$out[2])) @rmdir("./data/".$out[1]."/".$out[2]);
 
-				mysql_query("update $t_division"."_$table_name set num=num-1 where division='$data[division]'",$connect) or error(mysql_error());
+				mysqli_query($connect,"update $t_division"."_$table_name set num=num-1 where division='$data[division]'") or error(mysqli_error($connect));
 
 				if($data[depth]==0)
 				{
-					if($data[prev_no]) mysql_query("update $t_board"."_$table_name set next_no='$data[next_no]' where next_no='$data[no]'",$connect) or error(mysql_error()); // 이전글이 있으면 빈자리 메꿈;;;
-					if($data[next_no]) mysql_query("update $t_board"."_$table_name set prev_no='$data[prev_no]' where prev_no='$data[no]'",$connect) or error(mysql_error()); // 다음글이 있으면 빈자리 메꿈;;;
+					if($data[prev_no]) mysqli_query($connect,"update $t_board"."_$table_name set next_no='$data[next_no]' where next_no='$data[no]'") or error(mysqli_error($connect)); // 이전글이 있으면 빈자리 메꿈;;;
+					if($data[next_no]) mysqli_query($connect,"update $t_board"."_$table_name set prev_no='$data[prev_no]' where prev_no='$data[no]'") or error(mysqli_error($connect)); // 다음글이 있으면 빈자리 메꿈;;;
 				}
 				else
 				{
-					$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$table_name where father='$data[father]'"));
-					if(!$temp[0]) mysql_query("update $t_board"."_$table_name set child='0' where no='$data[father]'",$connect) or error(mysql_error()); // 원본글이 있으면 원본글의 자식글을 없앰;;;
+					$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$table_name where father='$data[father]'"));
+					if(!$temp[0]) mysqli_query($connect,"update $t_board"."_$table_name set child='0' where no='$data[father]'") or error(mysqli_error($connect)); // 원본글이 있으면 원본글의 자식글을 없앰;;;
 				}
 
 				// 간단한 답글(코멘트) 삭제
 				unset($del_comment_result);unset($c_data);
-				$del_comment_result=mysql_query("select * from $t_comment"."_$table_name where parent='$data[no]'",$connect) or error(mysql_error());
-				mysql_query("delete from $t_comment"."_$table_name where parent='$data[no]'",$connect) or error(mysql_error());
-				$cnt2 += mysql_affected_rows();
-				while($c_data=mysql_fetch_array($del_comment_result)) {
+				$del_comment_result=mysqli_query($connect,"select * from $t_comment"."_$table_name where parent='$data[no]'") or error(mysqli_error($connect));
+				mysqli_query($connect,"delete from $t_comment"."_$table_name where parent='$data[no]'") or error(mysqli_error($connect));
+				$cnt2 += mysqli_affected_rows($connect);
+				while($c_data=mysqli_fetch_array($del_comment_result)) {
 					// Movie, Sell 덧글 포인트 테이블 삭제
-					@mysql_query("delete from $t_comment"."_$table_name"."_movie where parent='$data[no]' and reg_date='$c_data[reg_date]'");
+					@mysqli_query($connect,"delete from $t_comment"."_$table_name"."_movie where parent='$data[no]' and reg_date='$c_data[reg_date]'");
 					// 파일삭제
 					@z_unlink("./".$c_data[file_name1]);
 					@z_unlink("./".$c_data[file_name2]);
@@ -129,24 +129,24 @@ if($keyword&&$s_que)
 				}
 
 				// 카테고리 필드 조절
-				mysql_query("update $t_category"."_$table_name set num=num-1 where no='$data[category]'",$connect) or error(mysql_error());
+				mysqli_query($connect,"update $t_category"."_$table_name set num=num-1 where no='$data[category]'") or error(mysqli_error($connect));
 			}
 		}
 
 		// 전체글수 조정
-		$total=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$table_name "));
-		mysql_query("update $admin_table set total_article='$total[0]' where name='$table_name'",$connect) or error(mysql_error());
+		$total=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$table_name "));
+		mysqli_query($connect,"update $admin_table set total_article='$total[0]' where name='$table_name'") or error(mysqli_error($connect));
 
 		unset($result);unset($data);
 		// 본문
-		$result=mysql_query("select * from $t_board"."_$table_name $s_que", $connect) or error(mysql_error());
+		$result=mysqli_query($connect,"select * from $t_board"."_$table_name $s_que") or error(mysqli_error($connect));
 ?>
 
 <br><br><br>
 
 &nbsp;&nbsp;<a href=zboard.php?id=<?=$table_name?> target=_blank><font size=4 style=font-family:tahoma; color=black><?=$table_name?>&nbsp;<b>게시판</b>에서 총<?=$cnt1?>개의 레코드가 삭제되었습니다</font></a><br>
 <?
-		while($data=mysql_fetch_array($result))
+		while($data=mysqli_fetch_array($result))
 		{
 			flush();
 			$data[subject] = del_html($data[subject]);
@@ -162,23 +162,23 @@ if($keyword&&$s_que)
 <?
 		}
 
-		mysql_free_result($result);
+		mysqli_free_result($result);
 
 		/// 코멘트
 		if($comment_search)
 		{
 			unset($result);unset($c_data);
 			// 스팸 아이피 덧글 일괄 삭제
-			$result=mysql_query("select * from $t_comment"."_$table_name $s_que", $connect) or error(mysql_error());
-			while($c_data=mysql_fetch_array($result)) {
+			$result=mysqli_query($connect,"select * from $t_comment"."_$table_name $s_que") or error(mysqli_error($connect));
+			while($c_data=mysqli_fetch_array($result)) {
 				// 코멘트 갯수 정리를 위해 배열 저장
 				$table_name_array[] = $table_name;
 				$parent_no_array[] = $c_data[parent];
 				// 코멘트 삭제
-				mysql_query("delete from $t_comment"."_$table_name where no='$c_data[no]'",$connect) or error(mysql_error());
-				$cnt2 += mysql_affected_rows();
+				mysqli_query($connect,"delete from $t_comment"."_$table_name where no='$c_data[no]'") or error(mysqli_error($connect));
+				$cnt2 += mysqli_affected_rows($connect);
 				// Movie, Sell 덧글 포인트 테이블 삭제
-				@mysql_query("delete from $t_comment"."_$table_name"."_movie where reg_date='$c_data[reg_date]'");
+				@mysqli_query($connect,"delete from $t_comment"."_$table_name"."_movie where reg_date='$c_data[reg_date]'");
 
 				// 파일삭제
 				@z_unlink("./".$c_data[file_name1]);
@@ -197,8 +197,8 @@ if($keyword&&$s_que)
 <?
 			unset($result);unset($data);
 			// 스팸 아이피 덧글 일괄 삭제 후 덧글 항목 표시
-			$result=mysql_query("select * from $t_comment"."_$table_name $s_que", $connect) or error(mysql_error());
-			while($data=mysql_fetch_array($result))
+			$result=mysqli_query($connect,"select * from $t_comment"."_$table_name $s_que") or error(mysqli_error($connect));
+			while($data=mysqli_fetch_array($result))
 			{
 				flush();
 				$data[memo] = del_html(strip_tags($data[memo]));
@@ -230,8 +230,8 @@ if($keyword&&$s_que)
 
 		$table_name=$table_name_array[$i];
 		// 코멘트 갯수를 구해서 정리
-		$total=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$table_name where parent='$parent_no_array[$i]'"));
-		mysql_query("update $t_board"."_$table_name set total_comment='$total[0]' where no='$parent_no_array[$i]'",$connect) or error(mysql_error());
+		$total=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_comment"."_$table_name where parent='$parent_no_array[$i]'"));
+		mysqli_query($connect,"update $t_board"."_$table_name set total_comment='$total[0]' where no='$parent_no_array[$i]'") or error(mysqli_error($connect));
 	}
 }
 

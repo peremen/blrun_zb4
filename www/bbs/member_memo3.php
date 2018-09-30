@@ -13,16 +13,16 @@ if(!$member[no]) Error("로그인된 회원만이 사용할수 있습니다","wi
 if(!$page&&!$status) $status=1;
 
 // 그룹데이타 읽어오기;;
-$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$member[group_no]'"));
+$group_data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$member[group_no]'"));
 
 // 검색어 처리;;
 if($keyword) {
-	$keyword=mysql_real_escape_string($keyword);
+	$keyword=mysqli_real_escape_string($keyword);
 	if(!$status) $s_que=" where user_id like '%$keyword%' or name like '%$keyword%' ";
 }
 
 // 전체 회원의 수
-$temp2=mysql_fetch_array(mysql_query("select count(*) from $member_table  $s_que"));
+$temp2=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table  $s_que"));
 $total_member=$temp2[0];
 
 if($status) {
@@ -50,7 +50,7 @@ $start_num=($page-1)*$page_num; // 페이지 수에 따른 출력시 첫번째�
 // 오프라인 멤버
 if(!$status) {
 	$que="select * from $member_table $s_que order by no desc limit $start_num,$page_num";
-	$result=mysql_query($que) or Error(mysql_error());
+	$result=mysqli_query($connect,$que) or Error(mysqli_error($connect));
 // 온라인 멤버
 } else {
 	$endnum = $start_num + $page_num;
@@ -61,7 +61,7 @@ if(!$status) {
 		if($s_que) $s_que .= " or no = '$member_no' "; else $s_que = " where no = '$member_no' ";
 	}
 	$que = "select * from $member_table $s_que";
-	$result=mysql_query($que) or Error(mysql_error());
+	$result=mysqli_query($connect,$que) or Error(mysqli_error($connect));
 
 }
 
@@ -146,7 +146,7 @@ head("bgcolor=white");
 <?
 // 출력
 $loop_number=$total-($page-1)*$page_num;
-while($data=mysql_fetch_array($result)) {
+while($data=mysqli_fetch_array($result)) {
 	$name=stripslashes($data[name]);
 
 	$temp_name = get_private_icon($data[no], "2");
@@ -156,7 +156,7 @@ while($data=mysql_fetch_array($result)) {
 
 
 	$user_id=stripslashes($data[user_id]);
-	//$check=mysql_fetch_array(mysql_query("select count(*) from $now_table where user_id='$data[user_id]'"));
+	//$check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $now_table where user_id='$data[user_id]'"));
 	if($check[0]) $stat="<img src=images/memo_online.gif>";
 	else $stat="<img src=images/memo_offline.gif>";
 	if($data[is_admin]==1) $kind="<font color=#aa0000 style=font-family:Tahoma;font-size:9pt;><b>Super Administrator</b>($data[level])</font>";

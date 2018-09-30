@@ -26,7 +26,7 @@ if($password) {
 	if(!get_magic_quotes_gpc()) {
 		$password = addslashes($password);
 	}
-	$secret_check=mysql_fetch_array(mysql_query("select count(*) from $member_table where user_id='$member[user_id]' and password=password('$password')"));
+	$secret_check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table where user_id='$member[user_id]' and password=password('$password')"));
 	if(!$secret_check[0]) error("비밀번호 오류! 회원정보를 수정할 권한이 없습니다");
 	$target2=$ssl_url."member_modify_ok.php";
 } else {
@@ -113,7 +113,7 @@ $member[handphone] = stripslashes($member[handphone]);
 $member[comment] = stripslashes($member[comment]);
 
 // 그룹데이타 읽어오기;;
-$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$member[group_no]'"));
+$group_data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$member[group_no]'"));
 $group=$group_data;
 $group_no=$group[no];
 

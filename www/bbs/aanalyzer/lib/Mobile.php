@@ -136,7 +136,7 @@ class Net_UserAgent_Mobile
                                     );
         }
 
-        @$instance = &new $className($request);
+        @$instance = new $className($request);
         $error = &$instance->isError();
         if (Net_UserAgent_Mobile::isError($error)) {
             $instance = &$error;

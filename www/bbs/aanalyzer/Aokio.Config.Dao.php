@@ -17,8 +17,8 @@ require_once 'Aokio.Dao.class.php';
 
 class AokioConfigDao extends AokioDao{
 
-	function AokioConfigDao(){
-		parent::AokioDao();
+	function __construct(){
+		parent::__construct();
 	}
 
 	/**
@@ -27,7 +27,7 @@ class AokioConfigDao extends AokioDao{
 	 * @return array
 	 */
 	function getApplicationConfigurationInfos($db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_admin ";
 			$sql .= " WHERE 1 ";
@@ -43,7 +43,7 @@ class AokioConfigDao extends AokioDao{
 	 * @return array
 	 */
 	function getTargetConfigList($db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT * ";
 			$sql .= " from aokio_log_config ";
 			$sql .= " ORDER BY no ";
@@ -60,7 +60,7 @@ class AokioConfigDao extends AokioDao{
 	 * @return array
 	 */
 	function getTargetConfigInfos($target,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_config ";
 			$sql .= " WHERE target='$target'";
@@ -78,7 +78,7 @@ class AokioConfigDao extends AokioDao{
 	 */
 
 	function getTargetTodayCounts($target,$day_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT today  ";
 			$sql .= " from aokio_log_time ";
 			$sql .= " WHERE year=? and month=? and day=? ";
@@ -96,7 +96,7 @@ class AokioConfigDao extends AokioDao{
 	 * @return array
 	 */
 	function updateTargetConfigInfos($conf_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_config ";
 			$sql .= " SET lists_per_page = ?,access_check_pattern = ?, check_admin_access =?";
 			$sql .= " ,access_permission = ?,access_check_pattern_input_time=?,target_name = ?";

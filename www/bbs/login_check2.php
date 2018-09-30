@@ -23,13 +23,13 @@ if($setup[group_no]) $group_no=$setup[group_no];
 
 // 패스워드를 암호화
 if($password) {
-	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select password('$password')"));
 	$password=$temp[0];
 }
 
 // 회원 로그인 체크
-$result = mysql_query("select * from $member_table where user_id='$user_id' and password='$password'") or error(mysql_error());
-$member_data = mysql_fetch_array($result);
+$result = mysqli_query($connect,"select * from $member_table where user_id='$user_id' and password='$password'") or error(mysqli_error($connect));
+$member_data = mysqli_fetch_array($result);
 
 // 회원로그인이 성공하였을 경우 세션을 생성하고 페이지를 이동함
 if($member_data[no]) {
@@ -59,7 +59,7 @@ if($member_data[no]) {
 		$member_data[email] = str_replace($c_match[0],"",$member_data[email]);
 	}
 	$member_data[email].="|||".$REMOTE_ADDR;
-	mysql_query("update $member_table set email='$member_data[email]' where user_id='$user_id'");
+	mysqli_query($connect,"update $member_table set email='$member_data[email]' where user_id='$user_id'");
 	// IP 업데이트 후 토큰 세션 변수 생성
 	$_SESSION['_token'] = "$num123";
 	$_SESSION['_token2'] = "$num456";

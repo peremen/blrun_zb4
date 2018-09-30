@@ -20,7 +20,7 @@ bunji varchar(20) not null default '',
 primary key (seq),
 key dong (dong));";
 
-$query = mysql_query($schema) or die(mysql_error());
+$query = mysqli_query($connect,$schema) or die(mysqli_error($connect));
 
 $fd = fopen("zipcode.sql", "r");
 $i = 0;
@@ -31,7 +31,7 @@ while (!feof ($fd))
 	if($data)
 	{
 		$tmp=explode("\n",$data);
-		mysql_query($tmp[0]) or die(mysql_error());
+		mysqli_query($connect,$tmp[0]) or die(mysqli_error($connect));
 		$i++;
 
 		if(($i % 1000) == 0)
@@ -42,7 +42,7 @@ while (!feof ($fd))
 	}
 }
 fclose ($fd);
-@mysql_query("repair table zetyx_zipcode");
+@mysqli_query($connect,"repair table zetyx_zipcode");
 ?>
 <br />우편번호테이블 생성완료<br />
 <b><?=$i?></b>건을 입력 완료 하였습니다.<br />

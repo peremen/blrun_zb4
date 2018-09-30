@@ -31,7 +31,7 @@ if(!$sendnum) $sendnum = 100;
 $group_no = (int)$group_no;
 $s_que = '';
 if(!$total_member_num) {
-	$temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where group_no='$group_no'",$connect));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table where group_no='$group_no'"));
 	$total_member_num=$temp[0];
 }
 
@@ -47,7 +47,7 @@ if($cart) {
 $startnum = ($page-1)*$sendnum;
 
 if(!$total_member) {
-	$temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where group_no='$group_no' $s_que",$connect));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table where group_no='$group_no' $s_que"));
 	$total_member=$temp[0];
 }
 
@@ -55,7 +55,7 @@ if(!$totalpage) $totalpage = (int)(($total_member-1)/$sendnum)+1;
 
 if($total_member==0) thisError("메일을 보낼 회원이 없습니다");
 
-$result=mysql_query("select name, email, mailing from $member_table where group_no='$group_no' $s_que order by no limit $startnum, $sendnum",$connect) or thisError(addslashes(mysql_error()));
+$result=mysqli_query($connect,"select name, email, mailing from $member_table where group_no='$group_no' $s_que order by no limit $startnum, $sendnum") or thisError(addslashes(mysqli_error($connect)));
 
 head( "onload=window.resizeTo(550,420); bgcolor=white");
 ?>
@@ -78,7 +78,7 @@ head( "onload=window.resizeTo(550,420); bgcolor=white");
 <?
 $fault=0;
 $i=1;
-while($data=mysql_fetch_array($result)) {
+while($data=mysqli_fetch_array($result)) {
 	if($data[mailing]) {
 
 		$temp=zb_sendmail($html, $data[email], $data[name], $from, $name, $subject, $comment);

@@ -12,7 +12,7 @@ else {
 	$s_que = str_replace("where","and", $s_que);
 }
 
-$temp=@mysql_fetch_array(@mysql_query("select count(*) from $member_table where group_no='$group_no' $s_que",$connect));
+$temp=@mysqli_fetch_array(@mysqli_query($connect,"select count(*) from $member_table where group_no='$group_no' $s_que"));
 $total_member=$temp[0];
 
 if($total_member==0) Error("선택된 회원이 없습니다");

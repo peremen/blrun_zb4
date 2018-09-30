@@ -1,5 +1,5 @@
 <?
-$data=mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
+$data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$group_no'"));
 $check[1]="checked";
 ?>
 <table border=0 cellspacing=1 cellpadding=3 width=100% bgcolor=#b0b0b0>

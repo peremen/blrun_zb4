@@ -3,7 +3,7 @@ include "view_image_info.php";
 $_name1=explode("|||",$data[memo]);
 $memo=str_replace($data[memo],$_name1[0],$memo);
 if (!$connect) $connect=dbconn();
-$m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no=$data[ismember]"));
+$m_data=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM zetyx_member_table where no=$data[ismember]"));
 ?>
 
 <table border=0 cellspacing=0 cellpadding=2 width=<?=$width?> align=center style=table-layout:fixed;border-width:1pt;border-style:solid;border-color:#cccccc>

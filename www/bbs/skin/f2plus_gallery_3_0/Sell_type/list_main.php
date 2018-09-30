@@ -4,7 +4,7 @@ unset($tmp_memo);
 unset($aver_point);
 
 /* Check New Comment $comment_new */
-$last_comment = mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where parent='$data[no]' order by reg_date desc limit 1"));
+$last_comment = mysqli_fetch_array(mysqli_query($connect,"select * from $t_comment"."_$id where parent='$data[no]' order by reg_date desc limit 1"));
 $last_comment_time = $last_comment['reg_date'];
 if(time()-$last_comment_time<60*60*24) $comment_new = "&nbsp;<font color=red style='font-size:8pt;'>".$comment_num."</font>";
 elseif(time()-$last_comment_time<60*60*48) $comment_new = "&nbsp;<font color=blue style='font-size:8pt;'>".$comment_num."</font>";
@@ -29,11 +29,11 @@ for($i=0;$i<=count($list_memo)-1;$i++)
 
 $tmp_memo = love_convert($tmp_memo);
 
-$total_comment=mysql_fetch_array(mysql_query("select count(*) from $table where parent='$data[no]' and point1+point2 > 0"));
+$total_comment=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $table where parent='$data[no]' and point1+point2 > 0"));
 if($total_comment[0]>0){
 	$total_point=0;
-	$query1=mysql_query("select * from $table where parent='$data[no]' and point1+point2 > 0");
-	while($result1=mysql_fetch_array($query1)){
+	$query1=mysqli_query($connect,"select * from $table where parent='$data[no]' and point1+point2 > 0");
+	while($result1=mysqli_fetch_array($query1)){
 		$total_point=$total_point+$result1[point1]*2+$result1[point2];
 	}
 	$aver=$total_point/$total_comment[0];

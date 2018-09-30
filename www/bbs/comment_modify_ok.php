@@ -23,17 +23,17 @@ if($flag != ok) {
 	// 패스워드를 암호화
 	if($password) {
 		$_dbTimeStart = getmicrotime();
-		$temp=mysql_fetch_array(mysql_query("select password('$password')"));
+		$temp=mysqli_fetch_array(mysqli_query($connect,"select password('$password')"));
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 		$password=$temp[0];
 	}
 
 	// 주 포스트 글 ismember를 가져옴
 	$_dbTimeStart = getmicrotime();
-	$data=mysql_fetch_array(mysql_query("select ismember from $t_board"."_$id where no='$no'"));
+	$data=mysqli_fetch_array(mysqli_query($connect,"select ismember from $t_board"."_$id where no='$no'"));
 
 	// 원본 덧글을 가져옴
-	$s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
+	$s_data=mysqli_fetch_array(mysqli_query($connect,"select * from $t_comment"."_$id where no='$c_no'"));
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 
 	// 회원일때를 확인;;
@@ -98,8 +98,8 @@ if($flag != ok) {
 	unset($o_data);
 	if($c_org) {
 		$_dbTimeStart = getmicrotime();
-		$result2=@mysql_query("select * from $t_comment"."_$id where no='$c_org'") or error(mysql_error());
-		$o_data=mysql_fetch_array($result2);
+		$result2=@mysqli_query($connect,"select * from $t_comment"."_$id where no='$c_org'") or error(mysqli_error($connect));
+		$o_data=mysqli_fetch_array($result2);
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 		if(!$o_data[no]) Error("원본 덧글이 존재하지 않습니다");
 	}
@@ -273,7 +273,7 @@ if($flag != ok) {
 	// 패스워드를 암호화
 	if($password) {
 		$_dbTimeStart = getmicrotime();
-		$temp=mysql_fetch_array(mysql_query("select password('$password')"));
+		$temp=mysqli_fetch_array(mysqli_query($connect,"select password('$password')"));
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 		$password=$temp[0];
 	}
@@ -368,7 +368,7 @@ if($flag != ok) {
 	// 원본글을 가져옴
 	unset($s_data);
 	$_dbTimeStart = getmicrotime();
-	$s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
+	$s_data=mysqli_fetch_array(mysqli_query($connect,"select * from $t_comment"."_$id where no='$c_no'"));
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 
 	// 원본글을 이용한 비교
@@ -552,13 +552,13 @@ if($flag != ok) {
 
 	$query = "update $t_comment"."_$id set ".$ps_str."name='$name',memo='$memo',use_html2='$use_html2',is_secret='$is_secret' $del_que1 $del_que2 where no = '$c_no'";
 	$_dbTimeStart = getmicrotime();
-	$result = mysql_query($query,$connect);
+	$result = mysqli_query($connect,$query);
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 
 	// 임시 저장 정보 삭제
 	if($mode=="modify") {
 		$_dbTimeStart = getmicrotime();
-		mysql_query("delete from $comment_imsi_table where bname='$id' and cno='$c_no' and parent='$no' and ismember='$ismember' and name='$member[name]'");
+		mysqli_query($connect,"delete from $comment_imsi_table where bname='$id' and cno='$c_no' and parent='$no' and ismember='$ismember' and name='$member[name]'");
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 	}
 

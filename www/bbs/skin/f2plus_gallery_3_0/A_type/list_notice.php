@@ -3,7 +3,7 @@ $subject = str_replace(">","><font class=list_han>",$subject);
 $name= str_replace(">","><font class=list_han>",$name);
 
 /* Check New Comment $comment_new */
-$last_comment = mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where parent='$data[no]' order by reg_date desc limit 1"));
+$last_comment = mysqli_fetch_array(mysqli_query($connect,"select * from $t_comment"."_$id where parent='$data[no]' order by reg_date desc limit 1"));
 $last_comment_time = $last_comment['reg_date'];
 if(time()-$last_comment_time<60*60*24) $comment_new = "&nbsp;<font color=red style='font-size:8pt;'>".$comment_num."</font>";
 elseif(time()-$last_comment_time<60*60*48) $comment_new = "&nbsp;<font color=blue style='font-size:8pt;'>".$comment_num."</font>";
@@ -20,7 +20,7 @@ $tmp_memo=$line[0]."".$line[1]."".$line[2]."".$line[3]."".$line[4]."".$line[5]."
 $_name1=explode("|||",$tmp_memo);
 $_name1[0] = love_convert($_name1[0]);
 
-$m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no=$data[ismember]",$connect));
+$m_data=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM zetyx_member_table where no=$data[ismember]"));
 ?>
 
 	<tr align=center height=45 style=padding-bottom:0px class=list<?=$coloring%2?>>

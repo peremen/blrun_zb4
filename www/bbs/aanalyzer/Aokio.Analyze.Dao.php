@@ -4,15 +4,15 @@ require_once 'Aokio.Analyze.Parent.Dao.php';
 class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 	//Constructor
-	function AokioAnalyzeDao(){
-		parent::AokioDao();
+	function __construct(){
+		parent::__construct();
 	}
 
 	//======================================
 	// 초기 접속시
 	// 접속 정보 분석후 주 테이블에 기록
 	function insertAnalyzeInfo($analyze_info,$target,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_analyze_$target ";
 			$sql .= " (ip,referer,browser_name,browser_version,browser_build_date, ";
 			$sql .= " browser_security,browser_type,browser_dom_info,browser_cookie_info,browser_javascript_info,";
@@ -31,7 +31,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 	//======================================
 	function isExistOS($os_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_os ";
 			$sql .= " WHERE os_category=? and os_full_name=? and target = ?";
@@ -44,7 +44,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function insertOS($os_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_os ";
 			$sql .= " (os_category,os_full_name,counts,target ) ";
 			$sql .= " values(?,?,1,?)";
@@ -56,7 +56,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateOS($os_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_os ";
 			$sql .= " SET counts =counts +1 ";
 			$sql .= " WHERE os_category = ? and os_full_name=? and target = ?";
@@ -71,7 +71,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	//======================================
 
 	function isExistBrowser($browser_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_browser ";
 			$sql .= " WHERE browser_category=? and browser_full_name=? and target = ?";
@@ -84,7 +84,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function insertBrowser($browser_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_browser ";
 			$sql .= " (browser_category,browser_full_name,target,counts ) ";
 			$sql .= " values(?,?,?,1)";
@@ -97,7 +97,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateBrowser($browser_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_browser ";
 			$sql .= " SET counts =counts +1 ";
 			$sql .= " WHERE browser_category=? and browser_full_name=? and target = ?";
@@ -111,7 +111,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 	//======================================
 	function isExistTimeInfo($day_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_time ";
 			$sql .= " WHERE year=? and month=? and day=? and target = ?";
@@ -124,7 +124,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function insertTimeInfo($time_info,$hour,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_time ";
 			$sql .= " (year,month,day,h$hour ,target,today) ";
 			$sql .= " values(?,?,?,1,?,1)";
@@ -137,7 +137,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateTimeInfo($time_info,$hour,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_time ";
 			$sql .= " SET h$hour = h$hour +1 ,today = today +1";
 			$sql .= " WHERE year=? and month = ? and day= ? and target =?";
@@ -152,7 +152,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 
 	function insertWeekInfo($target_arr,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_week ";
 			$sql .= " (w0,w1,w2,w3 ,w4,w5,w6,target) ";
 			$sql .= " values(0,0,0,0,0,0,0,?)";
@@ -165,7 +165,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateWeekInfo($week,$target_arr,$start_flag,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_week ";
 
 			if($start_flag){
@@ -224,7 +224,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 	//======================================
 	function isExistLanguage($language_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_language ";
 			$sql .= " WHERE language=? and target =?";
@@ -237,7 +237,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 
 	function insertLanguage($language_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_language ";
 			$sql .= " (language,counts,target ) ";
 			$sql .= " values(?,1,?)";
@@ -249,7 +249,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateLanguage($language_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_language ";
 			$sql .= " SET counts =counts +1 ";
 			$sql .= " WHERE language=? and target =?";
@@ -265,7 +265,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	//======================================
 
 	function isExistNation($nation_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_nation ";
 			$sql .= " WHERE nation=? and target =?";
@@ -277,7 +277,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function insertNation($nation_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_nation ";
 			$sql .= " (nation,nation_code,nation_code_3,counts,target ) ";
 			$sql .= " values(?,?,?,1,?)";
@@ -289,7 +289,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateNation($nation_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_nation ";
 			$sql .= " SET counts =counts +1 ";
 			$sql .= " WHERE nation=? and target =?";
@@ -304,7 +304,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	//======================================
 
 	function isExistCity($city_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_city ";
 			$sql .= " WHERE city=? and target =?";
@@ -316,7 +316,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function insertCity($city_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_city ";
 			$sql .= " (city,counts,target ) ";
 			$sql .= " values(?,1,?)";
@@ -328,7 +328,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateCity($city_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_city ";
 			$sql .= " SET counts =counts +1 ";
 			$sql .= " WHERE city=? and target =?";
@@ -343,7 +343,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	//======================================
 
 	function isExistRefererServer($refererserver_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_refererserver ";
 			$sql .= " WHERE refererserver=? and target =?";
@@ -355,7 +355,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function insertRefererServer($refererserver_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_refererserver ";
 			$sql .= " (refererserver,counts,target ) ";
 			$sql .= " values(?,1,?)";
@@ -367,7 +367,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateRefererServer($refererserver_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_refererserver ";
 			$sql .= " SET counts =counts +1 ";
 			$sql .= " WHERE refererserver=? and target =?";
@@ -381,7 +381,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 
 	function isExistReferer($refererserver_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_referer ";
 			$sql .= " WHERE referer=? and target =?";
@@ -393,7 +393,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function insertReferer($refererserver_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_referer ";
 			$sql .= " (referer,counts,target ) ";
 			$sql .= " values(?,1,?)";
@@ -405,7 +405,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateReferer($refererserver_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_referer ";
 			$sql .= " SET counts =counts +1 ";
 			$sql .= " WHERE referer=? and target =?";
@@ -422,7 +422,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 
 	function isExistScreensize($screen_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_screensize ";
 			$sql .= " WHERE screensize=? and target =?";
@@ -434,7 +434,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function insertScreensize($screen_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_screensize ";
 			$sql .= " (screensize,counts,target ) ";
 			$sql .= " values(?,1,?)";
@@ -446,7 +446,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateScreensize($screen_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_screensize ";
 			$sql .= " SET counts =counts +1 ";
 			$sql .= " WHERE screensize=? and target =?";
@@ -460,7 +460,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 
 	function isExistResolution($resolution_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_resolution ";
 			$sql .= " WHERE resolution=? and bit=? and target =?";
@@ -472,7 +472,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function insertResolution($resolution_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_resolution ";
 			$sql .= " (resolution,bit,counts,target ) ";
 			$sql .= " values(?,?,1,?)";
@@ -484,7 +484,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateResolution($resolution_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_resolution ";
 			$sql .= " SET counts =counts +1 ";
 			$sql .= " WHERE resolution=? and bit=? and target =?";
@@ -499,7 +499,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	//======================================
 
 	function isExistSearchKeyword($search_keyword_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_search_keywords ";
 			$sql .= " WHERE keyword=? and search_year=? and search_month=? and target = ?";
@@ -512,7 +512,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function insertSearchKeyword($search_keyword_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_search_keywords ";
 			$sql .= " (keyword,search_year,search_month,target,counts ) ";
 			$sql .= " values(?,?,?,?,1)";
@@ -525,7 +525,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateSearchKeyword($search_keyword_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_search_keywords ";
 			$sql .= " SET counts =counts +1 ";
 			$sql .= " WHERE keyword=? and search_year=? and search_month=? and target = ?";
@@ -538,7 +538,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function isExistSearchSite($search_keyword_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_search_sites ";
 			$sql .= " WHERE searchsite=? and target = ?";
@@ -551,7 +551,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function insertSearchSite($search_keyword_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into aokio_log_search_sites ";
 			$sql .= " (searchsite,target,counts ) ";
 			$sql .= " values(?,?,1)";
@@ -564,7 +564,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateSearchSite($search_keyword_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_search_sites ";
 			$sql .= " SET counts =counts +1 ";
 			$sql .= " WHERE searchsite=? and target = ?";
@@ -580,7 +580,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 
 	function isExistSearchRobotInTargetTable($target,$robot_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_robot ";
 			$sql .= " WHERE useragent=? and target='$target'";
@@ -593,7 +593,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 	function insertSearchRobotInfoInTargetTable($target,$robot_info,$db){
 
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into  aokio_log_robot ";
 			$sql .= " (useragent,counts,target) ";
 			$sql .= " values(?,1,'$target')";
@@ -606,7 +606,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 	function updateSearchRobotInfoInTargetTable($target,$robot_info,$db){
 //		echo "<pre>".nl2br(print_r($robot_info,true))."</pre>";
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_robot ";
 			$sql .= " SET counts = counts+1 ";
 			$sql .= " WHERE target ='$target' and useragent=?";
@@ -618,7 +618,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function insertSearchRobotInfoInRobotLogTable($target,$robot_info,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " INSERT into  aokio_robot_$target ";
 			$sql .= " (ip,useragent,referer,nation,nation_code,nation_code_3,regtime) ";
 			$sql .= " values(?,?,?,?,?,?,?)";
@@ -633,7 +633,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	//======================================
 
 	function updateTotal($target_arr,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_config ";
 			$sql .= " SET total = total+1";
 			$sql .= " WHERE target =?";
@@ -646,7 +646,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function updateMax($target_arr,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_log_config ";
 			$sql .= " SET max = max+1";
 			$sql .= " WHERE target =?";
@@ -660,7 +660,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 
 	function setBookmarkAnalyzeInfo($no,$target,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_analyze_$target ";
 			$sql .= " SET bookmark = 1 ";
 			$sql .= " WHERE no=$no ";
@@ -674,7 +674,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 
 
 	function clearBookmarkAnalyzeInfo($no,$target,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " UPDATE aokio_analyze_$target ";
 			$sql .= " SET bookmark = 0 ";
 			$sql .= " WHERE no=$no ";
@@ -687,7 +687,7 @@ class AokioAnalyzeDao extends AokioAnalyzeParentDao{
 	}
 
 	function getAnalyzeInfoBookmarkTotalCounts($target,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT count(*) total_counts  ";
 			$sql .= " from aokio_analyze_$target ";
 			$sql .= " WHERE bookmark = 1";

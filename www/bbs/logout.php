@@ -15,8 +15,6 @@ if($id) $setup=get_table_attrib($id);
 
 if($setup[group_no]&&!$group_no) $group_no=$setup[group_no];
 
-mysql_close($connect);
-
 destroyZBSessionID($member[no]);
 // 토큰 초기화
 $_SESSION['_token']='';

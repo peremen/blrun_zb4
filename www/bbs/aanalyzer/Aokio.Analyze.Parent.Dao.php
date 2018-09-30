@@ -4,13 +4,13 @@ require_once 'Aokio.Dao.class.php';
 class AokioAnalyzeParentDao extends AokioDao{
 
 	//Constructor
-	function AokioAnalyzeParentDao(){
-		parent::AokioDao();
+	function __construct(){
+		parent::__construct();
 	}
 
 
 	function getWeekInfo($target,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT *  ";
 			$sql .= " from aokio_log_week ";
 			$sql .= " WHERE target='$target'";
@@ -29,7 +29,7 @@ class AokioAnalyzeParentDao extends AokioDao{
 	 */
 	function getTimeInfo($target,$total_counts,$time_info,$option,$db){
 
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			if($option ==="YEAR"){
 				$sql  = " SELECT year ,year as items,sum(today) counts,round(100*sum(today)/$total_counts,2) percentage  ";
 				$sql .= " from aokio_log_time ";
@@ -72,7 +72,7 @@ class AokioAnalyzeParentDao extends AokioDao{
 
 	//======================================
 	function getMaxCounts($target,$db){
-		if($this->php_type_for_db_variation ==="mysql"){
+		if($this->php_type_for_db_variation ==="mysql" || $this->php_type_for_db_variation ==="mysqli"){
 			$sql  = " SELECT max  ";
 			$sql .= " from aokio_log_config ";
 			$sql .= " WHERE target='$target' ";

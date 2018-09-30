@@ -31,35 +31,35 @@ head(" bgcolor=white");
 	DB Checking
 <?
 // DB 내의 파일 목록을 구함
-$result = mysql_query("select name from $admin_table order by name desc") or die(mysql_error());
+$result = mysqli_query($connect,"select name from $admin_table order by name desc") or die(mysqli_error($connect));
 unset($dblist);
 
-while($bbs=mysql_fetch_array($result)) {
+while($bbs=mysqli_fetch_array($result)) {
 	$id = $bbs[name];
 
 	echo ".";
 	flush();
-	$nfiles1 = mysql_query("select file_name1 from $t_board"."_$id where file_name1 !=''") or die(mysql_error());
-	$nfiles2 = mysql_query("select file_name2 from $t_board"."_$id where file_name2 !=''") or die(mysql_error());
-	$nfiles3 = mysql_query("select file_name1 from $t_comment"."_$id where file_name1 !=''") or die(mysql_error());
-	$nfiles4 = mysql_query("select file_name2 from $t_comment"."_$id where file_name2 !=''") or die(mysql_error());
+	$nfiles1 = mysqli_query($connect,"select file_name1 from $t_board"."_$id where file_name1 !=''") or die(mysqli_error($connect));
+	$nfiles2 = mysqli_query($connect,"select file_name2 from $t_board"."_$id where file_name2 !=''") or die(mysqli_error($connect));
+	$nfiles3 = mysqli_query($connect,"select file_name1 from $t_comment"."_$id where file_name1 !=''") or die(mysqli_error($connect));
+	$nfiles4 = mysqli_query($connect,"select file_name2 from $t_comment"."_$id where file_name2 !=''") or die(mysqli_error($connect));
 
-	while($data=mysql_fetch_array($nfiles1)) {
+	while($data=mysqli_fetch_array($nfiles1)) {
 		$filename = $data['file_name1'];
 		if(file_exists("../".$filename)) $dblist[] = $filename;
 	}
 
-	while($data=mysql_fetch_array($nfiles2)) {
+	while($data=mysqli_fetch_array($nfiles2)) {
 		$filename = $data['file_name2'];
 		if(file_exists("../".$filename)) $dblist[] = $filename;
 	}
 
-	while($data=mysql_fetch_array($nfiles3)) {
+	while($data=mysqli_fetch_array($nfiles3)) {
 		$filename = $data['file_name1'];
 		if(file_exists("../".$filename)) $dblist[] = $filename;
 	}
 
-	while($data=mysql_fetch_array($nfiles4)) {
+	while($data=mysqli_fetch_array($nfiles4)) {
 		$filename = $data['file_name2'];
 		if(file_exists("../".$filename)) $dblist[] = $filename;
 	}

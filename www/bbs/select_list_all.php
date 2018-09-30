@@ -1,7 +1,7 @@
 <?
 include "lib.php";
 if(!$connect) $connect=dbconn();
-$result=mysql_query("select name from $admin_table order by name");
+$result=mysqli_query($connect,"select name from $admin_table order by name");
 
 // 멤버 정보 구해오기;;; 멤버가 있을때
 $member=member_info();
@@ -84,7 +84,7 @@ function board_move()
 <?
 $select="selected";
 $s_name = "";
-while($data=mysql_fetch_array($result)) {
+while($data=mysqli_fetch_array($result)) {
 	if(!$s_name) $s_name = $data[name];
 ?>
 			<option value="<?=$data[name]?>" <?=$select?>><?=$data[name]?></option>

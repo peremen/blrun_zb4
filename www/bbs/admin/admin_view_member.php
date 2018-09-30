@@ -4,11 +4,11 @@
 *************************************************************************/
 
 // 전체 그룹수와 현재 그룹의 정보를 추출
-$tmpResult = mysql_fetch_array(mysql_query("select count(*) from $group_table"));
+$tmpResult = mysqli_fetch_array(mysqli_query($connect,"select count(*) from $group_table"));
 $total_group_num = $tmpResult[0];
-$group_data = mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
+$group_data = mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$group_no'"));
 
-$temp=mysql_fetch_array(mysql_query("select count(*) from $member_table where group_no='$group_no'"));
+$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table where group_no='$group_no'"));
 $total_member=$temp[0];
 
 // 검색어에 대해서 처리
@@ -34,7 +34,7 @@ if($keyword&&$keykind) {
 	$href.="&keyword=$keyword&keykind=$keykind&like=$like";
 }
 
-$temp=mysql_fetch_array(mysql_query("select count(*) from $member_table $s_que"));
+$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table $s_que"));
 $total=$temp[0];
 
 // 페이지 구하는 부분
@@ -46,7 +46,7 @@ $total_page=(int)(($total-1)/$page_num)+1;
 
 
 // 멤버정보를 구해옴
-$result=@mysql_query("select * from $member_table $s_que order by no desc limit $start_num,$page_num",$connect) or Error(mysql_error(),"");
+$result=@mysqli_query($connect,"select * from $member_table $s_que order by no desc limit $start_num,$page_num") or Error(mysqli_error($connect),"");
 
 // 앞에 붙는 가상번호
 $number=$total-($page-1)*$page_num;
@@ -196,7 +196,7 @@ $number=$total-($page-1)*$page_num;
 <input type=hidden name=exec2 value="">
 <input type=hidden name=sid value=<?=$sid?>>
 <?
-while($data=mysql_fetch_array($result))
+while($data=mysqli_fetch_array($result))
 {
 	if($data[level]==1) $grant_color="<font color=red><b>";
 	elseif($data[level]==2) $grant_color="<font color=blue><b>";
@@ -249,10 +249,10 @@ if($member[is_admin]==1)
       <td><img src=images/t.gif height=1><br>
         <select name=movegroup>
 <?
-	$temp_group=mysql_query("select * from $group_table where no!='$group_no'");
+	$temp_group=mysqli_query($connect,"select * from $group_table where no!='$group_no'");
 	$i=0;
 	$select[0]=" selected ";
-	while($temp_data=mysql_fetch_array($temp_group))
+	while($temp_data=mysqli_fetch_array($temp_group))
 	{
 		echo "
         <option value=$temp_data[no] $select[$i]>$temp_data[name]</option>";

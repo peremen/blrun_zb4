@@ -54,7 +54,7 @@ if(!get_magic_quotes_gpc()) {
 
 // 패스워드를 암호화
 if($password) {
-	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select password('$password')"));
 	$password=$temp[0];
 }
 
@@ -147,7 +147,7 @@ $memo=str_replace("my_gt_ek","&gt;",$memo);
 
 // 원본글을 가져옴
 unset($s_data);
-$s_data=mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where no='$c_no'"));
+$s_data=mysqli_fetch_array(mysqli_query($connect,"select * from $t_comment"."_$id where no='$c_no'"));
 
 // 원본글을 이용한 비교
 if($mode!="write") {
@@ -188,17 +188,17 @@ $reg_date=time(); // 현재의 시간구함;;
 
 // 도배인지 아닌지 검사;; 우선 같은 아이피대에 30초이내의 덧글은 도배로 간주;;
 if(!$is_admin&&$mode!="modify") {
-	$max_no=mysql_fetch_array(mysql_query("select max(no) from $t_comment"."_$id"));
-	$temp=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where ip='$ip' and $reg_date - reg_date <30 and no='$max_no[0]'"));
+	$max_no=mysqli_fetch_array(mysqli_query($connect,"select max(no) from $t_comment"."_$id"));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_comment"."_$id where ip='$ip' and $reg_date - reg_date <30 and no='$max_no[0]'"));
 	if($temp[0]>0) Error("덧글 등록은 30초이상이 지나야 가능합니다");
 }
 
 // 코멘트의 최고 Number 값을 구함 (중복 체크를 위해서)
-$max_no=mysql_fetch_array(mysql_query("select max(no) from $t_comment"."_$id where parent='$no'"));
+$max_no=mysqli_fetch_array(mysqli_query($connect,"select max(no) from $t_comment"."_$id where parent='$no'"));
 
 // 같은 내용이 있는지 검사;;
 if(!$is_admin&&$mode!="modify") {
-	$temp=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where memo='$memo' and no='$max_no[0]'"));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_comment"."_$id where memo='$memo' and no='$max_no[0]'"));
 	if($temp[0]>0) Error("같은 내용의 글은 등록할수가 없습니다");
 }
 
@@ -209,7 +209,7 @@ if($c_name) {
 }
 
 // 해당글이 있는 지를 검사
-$check = mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where no = '$no'", $connect));
+$check = mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$id where no = '$no'"));
 if(!$check[0]) Error("원본글(부모글)이 존재하지 않습니다.");
 
 // 수정글일 때 비빌번호 먼저 체크
@@ -363,22 +363,22 @@ if($mode=="modify"&&$c_no) {
 	if($file_name1) {$del_que1=",file_name1='$file_name1',s_file_name1='$s_file_name1'";}
 	if($file_name2) {$del_que2=",file_name2='$file_name2',s_file_name2='$s_file_name2'";}
 
-	@mysql_query("update $t_comment"."_$id set name='$name',memo='$memo',use_html2='$use_html2',is_secret='$is_secret' $del_que1 $del_que2 where no='$c_no'") or error(mysql_error());
+	@mysqli_query($connect,"update $t_comment"."_$id set name='$name',memo='$memo',use_html2='$use_html2',is_secret='$is_secret' $del_que1 $del_que2 where no='$c_no'") or error(mysqli_error($connect));
 
 } elseif($mode=="write"||($mode=="reply"&&$c_no)) {
 	// 코멘트 입력
-	mysql_query("insert into $t_comment"."_$id (parent,ismember,islevel,name,password,memo,reg_date,ip,use_html2,is_secret,file_name1,file_name2,s_file_name1,s_file_name2) values ('$no','$member[no]','$member[level]','$name','$password','$memo','$reg_date','$ip','$use_html2','$is_secret','$file_name1','$file_name2','$s_file_name1','$s_file_name2')") or error(mysql_error());
+	mysqli_query($connect,"insert into $t_comment"."_$id (parent,ismember,islevel,name,password,memo,reg_date,ip,use_html2,is_secret,file_name1,file_name2,s_file_name1,s_file_name2) values ('$no','$member[no]','$member[level]','$name','$password','$memo','$reg_date','$ip','$use_html2','$is_secret','$file_name1','$file_name2','$s_file_name1','$s_file_name2')") or error(mysqli_error($connect));
 	// 회원일 경우 해당 해원의 점수 주기
-	@mysql_query("update $member_table set point2=point2+1 where no='$member[no]'",$connect) or error(mysql_error());
+	@mysqli_query($connect,"update $member_table set point2=point2+1 where no='$member[no]'") or error(mysqli_error($connect));
 }
 
 // 임시 저장 정보 삭제
-if($mode=="write"||$mode=="reply") mysql_query("delete from $comment_imsi_table where bname='$id' and cno='0' and parent='$no' and ismember='$ismember' and name='$member[name]' and password='$password'");
-elseif($mode=="modify") mysql_query("delete from $comment_imsi_table where bname='$id' and cno='$c_no' and parent='$no' and ismember='$ismember' and name='$member[name]'");
+if($mode=="write"||$mode=="reply") mysqli_query($connect,"delete from $comment_imsi_table where bname='$id' and cno='0' and parent='$no' and ismember='$ismember' and name='$member[name]' and password='$password'");
+elseif($mode=="modify") mysqli_query($connect,"delete from $comment_imsi_table where bname='$id' and cno='$c_no' and parent='$no' and ismember='$ismember' and name='$member[name]'");
 
 // 코멘트 갯수를 구해서 정리
-$total=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where parent='$no'"));
-mysql_query("update $t_board"."_$id set total_comment='$total[0]' where no='$no'") or error(mysql_error());
+$total=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_comment"."_$id where parent='$no'"));
+mysqli_query($connect,"update $t_board"."_$id set total_comment='$total[0]' where no='$no'") or error(mysqli_error($connect));
 
 // 보안을 위해 세션변수 삭제
 unset($_SESSION['ZBRD_SS_VRS']);

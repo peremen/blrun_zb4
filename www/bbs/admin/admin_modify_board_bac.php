@@ -3,12 +3,12 @@
  * 게시판 기본 기능 수정 페이지
  **************************************************************************/
 
-$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
+$group_data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$group_no'"));
 
-if($exec2=="add") $data=mysql_fetch_array(mysql_query("select * from $admin_table where no='$no'"));
+if($exec2=="add") $data=mysqli_fetch_array(mysqli_query($connect,"select * from $admin_table where no='$no'"));
 if($member[is_admin]>=3 && !preg_match("/".$no.",/i",$member[board_name])) error("게시판 설정을 변경할 권한이 없습니다");
 
-$data = mysql_fetch_array(mysql_query("select * from $admin_table where no='$no'"));
+$data = mysqli_fetch_array(mysqli_query($connect,"select * from $admin_table where no='$no'"));
 
 if(!$data[bg_color]) $data[bg_color]="white";
 if(!$data[table_width]) $data[table_width]="95";

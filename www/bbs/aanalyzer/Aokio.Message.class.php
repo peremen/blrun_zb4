@@ -11,7 +11,7 @@ class Aokio_Message_Manager{
 
 	var $licenses_messages;
 
-	function Aokio_Message_Manager($config){
+	function __construct($config){
 		require_once "./resources/".$config->language."_lang_resource.php";
 
 		$this->log_page_messages		= $login_page_messages;

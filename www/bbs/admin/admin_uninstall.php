@@ -5,14 +5,12 @@ if($exec=="uninstall"&&$uninstall=="ok"&&$member[is_admin]==1) {
 	if(!$u_password) Error("Password를 입력하세요");
 	if(!$u_dbname) Error("DB Name을 입력하세요");
 
-	mysql_close($connect);
+	$connect = @mysqli_connect($u_hostname,$u_userid,$u_password) or error(mysqli_error($connect));
+	@mysqli_select_db($u_dbname) or Error(mysqli_error($connect));
 
-	$connect = @mysql_connect($u_hostname,$u_userid,$u_password) or error(mysql_error());
-	@mysql_select_db($u_dbname) or Error(mysql_error());
-
-	$result = mysql_query("show table status from $u_dbname like 'zetyx%'",$connect) or error(mysql_error());
-	while($data=mysql_fetch_array($result)) {
-		mysql_query("drop table $data[Name]");
+	$result = mysqli_query($connect,"show table status from $u_dbname like 'zetyx%'") or error(mysqli_error($connect));
+	while($data=mysqli_fetch_array($result)) {
+		mysqli_query($connect,"drop table $data[Name]");
 	}
 
 	zRmDir("./data");

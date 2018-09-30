@@ -13,7 +13,7 @@ include("securimage/securimage.php");
 if($setup[grant_list]<$member[level] && !$is_admin) Error("사용권한이 없습니다","login.php?id=$id&page=$page&category=$category&sn=$sn&ss=$ss&sc=$sc&sm=$sm&keyword=$keyword&no=$no&s_url=".urlencode($REQUEST_URI));
 
 $notice_que = "select * from $t_board"."_$id where headnum <= -2000000000 order by $select_arrange $desc limit 0, $page_num";
-$notice_result = mysql_query($notice_que, $connect) or error(mysql_error());
+$notice_result = mysqli_query($connect,$notice_que) or error(mysqli_error($connect));
 
 
 // 검색조건이 있을때 : 상황 -> 카테고리 선택, Use_Showreply 사용, 또는 검색어로 검색을 할때
@@ -24,7 +24,7 @@ if($s_que) {
 	} else {
 		$que="select * from $t_board"."_$id $s_que order by $select_arrange $desc limit $start_num, $page_num";
 	}
-	$result=mysql_query($que,$connect) or Error(mysql_error());
+	$result=mysqli_query($connect,$que) or Error(mysqli_error($connect));
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 }
 
@@ -33,7 +33,7 @@ else {
 
 	// 검색조건이 없고 정렬이 headnum에 의한 것일때;; 즉 일반 정렬일때;;
 	if ($select_arrange=="headnum"&&$desc=="asc") {
-		while($division_data=mysql_fetch_array($division_result)) {
+		while($division_data=mysqli_fetch_array($division_result)) {
 			$sum=$sum+$division_data[num];
 			$division=$division_data[division];
 
@@ -41,11 +41,11 @@ else {
 				$start_num=$start_num-($sum-$division_data[num]);
 				$_dbTimeStart = getmicrotime();
 				$que="select * from $t_board"."_$id where division='$division' and headnum<0 and headnum>-2000000000 order by headnum,arrangenum limit $start_num, $page_num";
-				$result=mysql_query($que) or error(mysql_error());
+				$result=mysqli_query($connect,$que) or error(mysqli_error($connect));
 				$_dbTime += getmicrotime()-$_dbTimeStart;
 				$check1=1;
 
-				$returnNum = mysql_num_rows($result);
+				$returnNum = mysqli_num_rows($result);
 
 				if($returnNum>=$page_num) {
 					break;
@@ -55,7 +55,7 @@ else {
 						$minus=$page_num-$returnNum;
 						$_dbTimeStart = getmicrotime();
 						$que2="select * from $t_board"."_$id where division=$division and headnum!=0 and headnum>-2000000000 order by headnum,arrangenum limit $minus";
-						$result2=mysql_query($que2) or error(mysql_error());
+						$result2=mysqli_query($connect,$que2) or error(mysqli_error($connect));
 						$_dbTime += getmicrotime()-$_dbTimeStart;
 						$check2=1;
 						break;
@@ -69,7 +69,7 @@ else {
 	else {
 		$que="select * from $t_board"."_$id where headnum>-2000000000 order by $select_arrange $desc $add_on limit $start_num, $page_num";
 		$_dbTimeStart = getmicrotime();
-		$result=mysql_query($que,$connect) or Error(mysql_error());
+		$result=mysqli_query($connect,$que) or Error(mysqli_error($connect));
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 	}
 }
@@ -77,7 +77,7 @@ else {
 // 관리자일때는 게시판 글 옮기기때문에 게시판 리스트를 뽑아옴;;
 if($is_admin) {
 	$_dbTimeStart = getmicrotime();
-	$board_result=mysql_query("select no,name from $admin_table where no!='$setup[no]'");
+	$board_result=mysqli_query($connect,"select no,name from $admin_table where no!='$setup[no]'");
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 }
 
@@ -183,7 +183,7 @@ if($no&&$setup[use_alllist]) {
 if($_view_included) {
 	unset($data);
 	$_dbTimeStart = getmicrotime();
-	$data=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where no='$no'"));
+	$data=mysqli_fetch_array(mysqli_query($connect,"select * from $t_board"."_$id where no='$no'"));
 	$_dbTime += getmicrotime()-$_dbTimeStart;
 	if(!(empty($_POST['code']) || $member[no] || $data[is_secret] != 0)) {
 
@@ -230,14 +230,14 @@ $loop_number=$total-($page-1)*$page_num;
 if($setup[use_alllist]&&!$prev_no) $prev_no=$no;
 
 // 뽑혀진 데이타만큼 출력함
-while($data = @mysql_fetch_array($notice_result)) {
+while($data = @mysqli_fetch_array($notice_result)) {
 	list_check($data);
 	$_skinTimeStart = getmicrotime();
 	include $dir."/list_notice.php";
 	$_skinTime += getmicrotime()-$_skinTimeStart;
 }
 
-while($data=@mysql_fetch_array($result)) {
+while($data=@mysqli_fetch_array($result)) {
 	list_check($data);
 	$_skinTimeStart = getmicrotime();
 	include $dir."/list_main.php";
@@ -246,7 +246,7 @@ while($data=@mysql_fetch_array($result)) {
 }
 
 if($check2) {
-	while($data=@mysql_fetch_array($result2)) {
+	while($data=@mysqli_fetch_array($result2)) {
 		list_check($data);
 		$_skinTimeStart = getmicrotime();
 		include $dir."/list_main.php";

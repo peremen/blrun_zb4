@@ -1,5 +1,5 @@
 <?
-$data2=mysql_fetch_array(mysql_query("select * from $t_board"."_$id where headnum='$data[headnum]' and depth=0"));
+$data2=mysqli_fetch_array(mysqli_query($connect,"select * from $t_board"."_$id where headnum='$data[headnum]' and depth=0"));
 ?>
 <table border=0 width=<?=$width?> cellspacing=0 cellpadding=0>
 <col width=13></col> <col width=></col> <col width=13></col>

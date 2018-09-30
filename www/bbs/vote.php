@@ -16,15 +16,15 @@ if(!get_magic_quotes_gpc()) {
 	$no = addslashes($no);
 }
 
-$result=@mysql_query("select * from $t_board"."_$id where no='$no'") or error(mysql_error());
-$data=mysql_fetch_array($result);
+$result=@mysqli_query($connect,"select * from $t_board"."_$id where no='$no'") or error(mysqli_error($connect));
+$data=mysqli_fetch_array($result);
 $ip_array = explode("|||",$data[memo]);
 
 // 현재글의 Vote수 올림;;
 if($setup[skinname]!="zero_vote") {
 	if(mb_substr($ip_array[0],0,5)=="설문조사|") Error("정상적인 투표를 하지 않으셨습니다.");
 	if(!preg_match("/".$setup[no]."_".$no."/",$_SESSION['zb_vote'])) {
-		mysql_query("update $t_board"."_$id set vote=vote+1 where no='$no'");
+		mysqli_query($connect,"update $t_board"."_$id set vote=vote+1 where no='$no'");
 		$vote_str =  ",".$setup[no]."_".$no;
 
 		// 5.3 이상용 세션 처리

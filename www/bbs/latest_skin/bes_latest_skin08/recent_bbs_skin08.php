@@ -22,9 +22,9 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 
 	// 날짜를 배열로 만들어 내림순으로 정열
 	for($i=0;$i<count($id);$i++){
-		$result = mysql_query("select * from $t_comment"."_$id[$i]  order by no desc limit $num", $connect) or die(mysql_error());
+		$result = mysqli_query($connect,"select * from $t_comment"."_$id[$i]  order by no desc limit $num") or die(mysqli_error($connect));
 
-		while($data=mysql_fetch_array($result)){
+		while($data=mysqli_fetch_array($result)){
 			$r_date.=$data[reg_date].";".$id[$i]."|";
 		}
 	}
@@ -38,10 +38,10 @@ function print_comment_total($skinname, $title, $id_array, $num=2, $textlen=30, 
 		$_date=explode(";", $re_date[$j]);
 		// get memo data
 
-		$result = mysql_query("select * from $t_comment"."_$_date[1] where reg_date='$_date[0]'", $connect) or die(mysql_error());
-		if($data=mysql_fetch_array($result)){
+		$result = mysqli_query($connect,"select * from $t_comment"."_$_date[1] where reg_date='$_date[0]'") or die(mysqli_error($connect));
+		if($data=mysqli_fetch_array($result)){
 			// 게시판타이틀 없으면 게시판아이디 출력
-			$set=mysql_fetch_array(mysql_query("select * from zetyx_admin_table where name='$_date[1]'", $connect));
+			$set=mysqli_fetch_array(mysqli_query($connect,"select * from zetyx_admin_table where name='$_date[1]'"));
 			if(!$set[title])$subject=$_date[1];
 			else $subject = $set[title];
 			if($set[use_alllist]) $target = "zboard.php?id=".$_date[1];

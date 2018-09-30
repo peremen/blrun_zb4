@@ -33,7 +33,7 @@ if(!empty($_POST['code'])) {
 	// 그룹 번호 체크
 	$group_no=(int)$group_no;
 	if(!$group_no) {
-		list($group_no) = mysql_fetch_row(mysql_query("select `no` from `$group_table` order by `no` limit 1;"));
+		list($group_no) = mysqli_fetch_row(mysqli_query($connect,"select `no` from `$group_table` order by `no` limit 1;"));
 	}
 
 	// 멤버 정보 구해오기;;; 멤버가 있을때
@@ -60,9 +60,9 @@ if(!empty($_POST['code'])) {
 	} else {
 
 		if($group_name){
-			$group_name=mysql_real_escape_string($group_name);
-			$group=mysql_fetch_assoc(mysql_query("select * from $group_table where name='$group_name' limit 1;"));
-		}elseif($group_no) $group=mysql_fetch_assoc(mysql_query("select * from $group_table where no='$group_no' limit 1;"));
+			$group_name=mysqli_real_escape_string($group_name);
+			$group=mysqli_fetch_assoc(mysqli_query($connect,"select * from $group_table where name='$group_name' limit 1;"));
+		}elseif($group_no) $group=mysqli_fetch_assoc(mysqli_query($connect,"select * from $group_table where no='$group_no' limit 1;"));
 		if(!$group[no]) Error("지정된 그룹이 존재하지 않습니다");
 		if(!$group[use_join]&&!$mode) Error("현재 지정된 그룹은 추가 회원을 모집하지 않습니다");
 

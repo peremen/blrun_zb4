@@ -1,9 +1,9 @@
 <?
 function zbDB_getFields($tableName) {
 	global $connect;
-	$result = mysql_query("show fields from $tableName",$connect) or die(mysql_error());
+	$result = mysqli_query($connect,"show fields from $tableName") or die(mysqli_error($connect));
 	unset($query);
-	while($data=mysql_fetch_array($result)) {
+	while($data=mysqli_fetch_array($result)) {
 		$field = $data["Field"];
 		$type = " ".$data["Type"];
 		if($data["Null"]=="YES") $null = " null"; else $null = " not null";
@@ -17,11 +17,11 @@ function zbDB_getFields($tableName) {
 
 function zbDB_getKeys($tableName) {
 	global $connect;
-	$result = mysql_query("show keys from $tableName",$connect) or die(mysql_error());
+	$result = mysqli_query($connect,"show keys from $tableName") or die(mysqli_error($connect));
 	unset($query);
 	$i=0;
 	$toggle_name = "";
-	while($data=mysql_fetch_array($result)) {
+	while($data=mysqli_fetch_array($result)) {
 		if($data["Key_name"]!="PRIMARY") {
 			$key_name = $data["Key_name"];
 			$column_name = $data["Column_name"];
@@ -52,8 +52,8 @@ function zbDB_getSchema($tableName) {
 
 function zbDB_getDataList($tableName) {
 	global $connect;
-	$result = mysql_query("show fields from $tableName", $connect) or die(mysql_error());
-	while($data=mysql_fetch_array($result)) {
+	$result = mysqli_query($connect,"show fields from $tableName") or die(mysqli_error($connect));
+	while($data=mysqli_fetch_array($result)) {
 		$field .= $data["Field"].",";
 	}
 	$field = mb_substr($field,0,mb_strlen($field)-1);
@@ -61,8 +61,8 @@ function zbDB_getDataList($tableName) {
 	$field_count = count($field_array);
 
 	$query = "\n";
-	$result = mysql_query("select $field from $tableName") or die(mysql_error());
-	while($data=mysql_fetch_array($result)) {
+	$result = mysqli_query($connect,"select $field from $tableName") or die(mysqli_error($connect));
+	while($data=mysqli_fetch_array($result)) {
 		unset($str);
 		for($i=0;$i<$field_count;$i++) {
 			$str .= " '".addslashes($data[$field_array[$i]])."',";
@@ -85,9 +85,9 @@ function zbDB_down($tableName) {
 
 function zbDB_All_down($dbname) {
 	global $connect;
-	$result = mysql_query("show table status from $dbname like 'zetyx%'",$connect) or die(mysql_error());
+	$result = mysqli_query($connect,"show table status from $dbname like 'zetyx%'") or die(mysqli_error($connect));
 	$i=0;
-	while($dbData=mysql_fetch_array($result)) {
+	while($dbData=mysqli_fetch_array($result)) {
 		$tableName = $dbData[Name];
 		echo "\n\n";
 		zbDB_down($tableName);
@@ -111,8 +111,8 @@ function zbDB_Header($filename) {
 }
 
 function all_Backup($host,$user,$password,$dbname,$filename) {
-	$db = mysql_connect($host,$user,$password) or die(mysql_error());
-	$connect = mysql_select_db($dbname,$db) or die(mysql_error());
+	$db = mysqli_connect($host,$user,$password) or die(mysqli_error($connect));
+	$connect = mysqli_select_db($db,$dbname) or die(mysqli_error($connect));
 
 	session_start();
 	$_SESSION['HOST']=$host;
@@ -125,16 +125,17 @@ function all_Backup($host,$user,$password,$dbname,$filename) {
 	$myid=$_SESSION['ID'];
 	$mypw=$_SESSION['PW'];
 
-	$connect=mysql_connect($myhost,$myid,$mypw) or die("sql erroe");
-	mysql_select_db($mydb,$connect);
+	$connect=mysqli_connect($myhost,$myid,$mypw) or die("sql erroe");
+	mysqli_select_db($connect,$mydb);
 
-	$pResult=mysql_query("show variables");
+	$pResult=mysqli_query($connect,"show variables");
 
-	while($rowArray=mysql_fetch_row($pResult))
+	while($rowArray=mysqli_fetch_row($pResult))
 	{
 		if($rowArray[0]=="basedir")
-			$bindir=$rowArray[1]."bin/";
+			// 카페24 mariaDB에선 bindir 경로변수 없이 mysqldump 실행가능
+			$bindir=$rowArray[1]."/bin/";
 	}
-	passthru($bindir."mysqldump --user=$myid --password=$mypw $dbname --default-character-set=utf8mb4 > ../$filename");
+	passthru("mysqldump --user=$myid --password=$mypw $dbname --default-character-set=utf8mb4 > ../$filename");
 }
 ?>

@@ -34,7 +34,7 @@ if($id) {
 } else {
 	preg_match('/[0-9a-zA-Z\_]+/',$group_no,$result); //특수문자가 들어갔는지 조사
 	if(!$group_no || $result[0]!=$group_no) Error("회원그룹을 정해주셔야 합니다");
-	$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
+	$group_data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$group_no'"));
 	preg_match('/[0-9a-zA-Z\_]+/',$group_data[no],$result); //특수문자가 들어갔는지 조사
 	if(!$group_data[no] || $result[0]!=$group_data[no]) Error("지정된 그룹이 존재하지 않습니다");
 	preg_match('/[0-9a-zA-Z\_]+/',$group_data[use_join],$result); //특수문자가 들어갔는지 조사
@@ -56,18 +56,18 @@ $user_id=trim($user_id);
 preg_match('/[0-9a-zA-Z\_]+/',$user_id,$result); //특수문자가 들어갔는지 조사
 if(isBlank($user_id) || $result[0]!=$user_id) Error("ID를 입력하셔야 합니다(영문자와 숫자, _만을 사용!)","");
 
-$check=mysql_fetch_array(mysql_query("select count(*) from $member_table where user_id='$user_id'",$connect));
+$check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table where user_id='$user_id'"));
 if($check[0]>0) Error("이미 등록되어 있는 ID입니다","");
 
 unset($check);
-$check=mysql_fetch_array(mysql_query("select count(*) from $member_table where email='$email'",$connect));
+$check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table where email='$email'"));
 if($check[0]>0) Error("이미 등록되어 있는 E-Mail입니다","");
 
 if(isBlank($password)||isBlank($password1)) Error("비밀번호를 입력하셔야 합니다!","");
 if($password!=$password1) Error("비밀번호와 비밀번호 확인이 일치하지 않습니다","");
 // 패스워드를 암호화
 if($password) {
-	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select password('$password')"));
 	$password=$temp[0];
 }
 
@@ -81,7 +81,7 @@ if($group_data[use_jumin]&&!$mode) {
 
 	if(!check_jumin($jumin1.$jumin2)) Error("잘못된 주민등록번호입니다","");
 
-	$check=mysql_fetch_array(mysql_query("select count(*) from $member_table where jumin=password('".$jumin1.$jumin2."')",$connect));
+	$check=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $member_table where jumin=password('".$jumin1.$jumin2."')"));
 	if($check[0]>0) Error("이미 등록되어 있는 주민등록번호입니다","");
 	$jumin=$jumin1.$jumin2;
 }
@@ -162,11 +162,11 @@ if($picture_name) {
 	$picture_name=$path;
 }
 
-mysql_query("insert into $member_table (level,group_no,user_id,password,name,email,homepage,icq,aol,msn,jumin,comment,job,hobby,home_address,home_tel,office_address,office_tel,handphone,mailing,birth,reg_date,openinfo,open_email,open_homepage,open_icq,open_msn,open_comment,open_job,open_hobby,open_home_address,open_home_tel,open_office_address,open_office_tel,open_handphone,open_birth,open_picture,picture,open_aol) values ('$group_data[join_level]','$group_data[no]','$user_id','$password','$name','$email','$homepage','$icq','$aol','$msn',password('$jumin'),'$comment','$job','$hobby','$home_address','$home_tel','$office_address','$office_tel','$handphone','$mailing','$birth','$reg_date','$openinfo','$open_email','$open_homepage','$open_icq','$open_msn','$open_comment','$open_job','$open_hobby','$open_home_address','$open_home_tel','$open_office_address','$open_office_tel','$open_handphone','$open_birth','$open_picture','$picture_name','$open_aol')") or error("회원 데이타 입력시 에러가 발생했습니다<br>".mysql_error());
-mysql_query("update $group_table set member_num=member_num+1 where no='$group_data[no]'");
+mysqli_query($connect,"insert into $member_table (level,group_no,user_id,password,name,email,homepage,icq,aol,msn,jumin,comment,job,hobby,home_address,home_tel,office_address,office_tel,handphone,mailing,birth,reg_date,openinfo,open_email,open_homepage,open_icq,open_msn,open_comment,open_job,open_hobby,open_home_address,open_home_tel,open_office_address,open_office_tel,open_handphone,open_birth,open_picture,picture,open_aol) values ('$group_data[join_level]','$group_data[no]','$user_id','$password','$name','$email','$homepage','$icq','$aol','$msn',password('$jumin'),'$comment','$job','$hobby','$home_address','$home_tel','$office_address','$office_tel','$handphone','$mailing','$birth','$reg_date','$openinfo','$open_email','$open_homepage','$open_icq','$open_msn','$open_comment','$open_job','$open_hobby','$open_home_address','$open_home_tel','$open_office_address','$open_office_tel','$open_handphone','$open_birth','$open_picture','$picture_name','$open_aol')") or error("회원 데이타 입력시 에러가 발생했습니다<br>".mysqli_error($connect));
+mysqli_query($connect,"update $group_table set member_num=member_num+1 where no='$group_data[no]'");
 
 if(!$mode) {
-	$member_data=mysql_fetch_array(mysql_query("select * from $member_table where user_id='$user_id' and password=password('$password')"));
+	$member_data=mysqli_fetch_array(mysqli_query($connect,"select * from $member_table where user_id='$user_id' and password=password('$password')"));
 
 	// 5.3 이상용 세션 처리
 	$_SESSION['zb_logged_no'] = $member_data[no];

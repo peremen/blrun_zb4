@@ -3,7 +3,7 @@ require_once 'Aokio.Auth.Manager.php';
 class Aokio_Cookie{
 
 	//constructor
-	function Aokio_Cookie(){
+	function __construct(){
 //ini_set("error_reporting",2039);
 	}
 	/**

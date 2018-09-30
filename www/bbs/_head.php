@@ -81,10 +81,10 @@ if($_zboardis) {
 	// 카테고리 읽어오기
 	if($setup[use_category]) {
 		$_dbTimeStart = getmicrotime();
-		$result=mysql_query("select * from $t_category"."_$id order by no");
+		$result=mysqli_query($connect,"select * from $t_category"."_$id order by no");
 		$_dbTime += getmicrotime()-$_dbTimeStart;
 		$a_category="<select name=category onchange=category_change(this)><option value=''>Category</option>";
-		while($data=mysql_fetch_array($result)) {
+		while($data=mysqli_fetch_array($result)) {
 				$category_num_c[]=$data[no];
 				$category_name_c[]=$data[name];
 				$category_n_c[]=$data[num];
@@ -105,9 +105,9 @@ if($_zboardis) {
 
 		// Division의 현황을 체크
 		$_dbTimeStart = getmicrotime();
-		$division_result=mysql_query("select * from $t_division"."_$id where num>0 order by division desc");
+		$division_result=mysqli_query($connect,"select * from $t_division"."_$id where num>0 order by division desc");
 		$_dbTime += getmicrotime()-$_dbTimeStart;
-		$total_division=mysql_num_rows($division_result);
+		$total_division=mysqli_num_rows($division_result);
 		$sum=0;
 		$division=0;
 
@@ -191,11 +191,11 @@ if($_zboardis) {
 					$sql="select $t_board"."_$id.no from $t_board"."_$id left join $t_comment"."_$id on parent=$t_board"."_$id.no $s_que group by $t_board"."_$id.no having count($t_board"."_$id.no)>=1";
 					//댓글에 검색어가 들어있는 중복되지 않은 본문갯수를 구한다.
 					$cnt=0;
-					$rs=mysql_query($sql);
+					$rs=mysqli_query($connect,$sql);
 
 					if($rs) //검색인 경우 레코드수 구함
 					{
-						while($data=mysql_fetch_array($rs))
+						while($data=mysqli_fetch_array($rs))
 						{
 							$cnt=$cnt+1;
 						}
@@ -205,7 +205,7 @@ if($_zboardis) {
 					}
 
 				} else {
-					$temp=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id $s_que ",$connect));
+					$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $t_board"."_$id $s_que "));
 					$total=$temp[0];
 				}
 				$_dbTime += getmicrotime()-$_dbTimeStart;

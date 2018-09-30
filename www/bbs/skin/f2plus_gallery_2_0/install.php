@@ -4,7 +4,7 @@
 
 include $zb_path."lib.php";
 if(!$connect) $connect=dbconn();
-$result=mysql_fetch_array(mysql_query("select is_admin from zetyx_member_table where user_id='$user_id' and password='$password'"));
+$result=mysqli_fetch_array(mysqli_query($connect,"select is_admin from zetyx_member_table where user_id='$user_id' and password='$password'"));
 
 if($result[0]==1){
 	if(file_exists($id."_config.php")){

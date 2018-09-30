@@ -8,7 +8,7 @@ class AokioDao {
 
 	var $php_type_for_db_variation;
 
-	function AokioDao(){
+	function __construct(){
 		$this -> getDBInfo();
 	}
 

@@ -20,7 +20,7 @@ $install_messages = array(
 	'database_select' =>
 		array(
 			'database_select_title'		=> '데이터베이스 선택',
-			'database_select_comment'	=> '현재 지원되는 DB는 MySQL 입니다.<br/> '
+			'database_select_comment'	=> '현재 지원되는 DB는 MySQL과 mariaDB 입니다.<br/> '
 			//'database_select_comment'	=> '사용하는 데이터베이스를 선택하세요. '
 			),
 	'database_config' =>
@@ -190,7 +190,7 @@ $analysis_page_view_messages =
 						7		=> '시간별통계',
 						8		=> '언어별통계',
 						9		=> '국가별통계',
-
+//						10		=> '도시별통계',
 						11		=> '레퍼러통계',
 						12		=> '레퍼러서버통계',
 						13		=> '화면크기통계',

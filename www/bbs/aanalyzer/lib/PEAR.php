@@ -167,7 +167,7 @@ class PEAR
      * @access public
      * @return void
      */
-    function PEAR($error_class = null)
+    function PEAR_Fn($error_class = null)
     {
         $classname = strtolower(get_class($this));
         if ($this->_debug) {
@@ -842,7 +842,7 @@ class PEAR_Error
      * @access public
      *
      */
-    function PEAR_Error($message = 'unknown error', $code = null,
+    function PEAR_Error_MSG($message = 'unknown error', $code = null,
                         $mode = null, $options = null, $userinfo = null)
     {
         if ($mode === null) {

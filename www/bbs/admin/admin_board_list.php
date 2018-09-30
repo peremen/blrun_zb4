@@ -1,6 +1,6 @@
 <?
 // 현재 그룹의 데이타를 구함
-$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
+$group_data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$group_no'"));
 
 // 오늘날짜 구함
 $today_date=mktime(0,0,0,date("m"),date("d"),date("Y"));
@@ -21,7 +21,7 @@ if($member[is_admin]>=3 && $member[board_name]) {
 }
 
 // 전체 갯수를 구해옴
-$temp=mysql_fetch_array(mysql_query("select count(*) from $admin_table where $s_que"));
+$temp=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $admin_table where $s_que"));
 $total=$temp[0];
 
 // 페이지 구하는 부분
@@ -31,7 +31,7 @@ $start_num=($page-1)*$page_num;
 $total_page=(int)(($total-1)/$page_num)+1;
 
 // 게시물을 구해옴
-$result=@mysql_query("select * from $admin_table where $s_que order by no desc limit $start_num,$page_num",$connect)
+$result=@mysqli_query($connect,"select * from $admin_table where $s_que order by no desc limit $start_num,$page_num")
 or Error("게시판의 정보를 DB로 부터 가져오는 부분에서 에러가 발생했습니다");
 ?>
 <script>
@@ -67,7 +67,7 @@ echo "
 </tr>";
 
 // 뽑아온 게시물 데이타를 화면에 출력
-while($data=mysql_fetch_array($result))
+while($data=mysqli_fetch_array($result))
 {
 	echo "
 <tr align=center height=23 bgcolor=#e0e0e0>

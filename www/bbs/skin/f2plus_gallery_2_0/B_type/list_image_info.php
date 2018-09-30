@@ -45,9 +45,9 @@ if($Thumbnail_use=="on"){
 	}elseif(($src_img1=$img[0][1]) && !preg_match("#\.(gif|bmp)$#i",$src_img1)){
 		if(!file_exists($Thumbnail_path.$data[ismember]."/".$Thumbnail_small1)){
 			$zx=thumbnail($min_width_size,$src_img1,$Thumbnail_path.$data[ismember]."/".$Thumbnail_small1);
-			@mysql_query("update $t_board"."_$id set x=concat('$zx[0]','|||','$zx[1]') where no='$data[no]'") or error(mysql_error());
+			@mysqli_query($connect,"update $t_board"."_$id set x=concat('$zx[0]','|||','$zx[1]') where no='$data[no]'") or error(mysqli_error($connect));
 		}
-		$re=mysql_fetch_array(mysql_query("select x from $t_board"."_$id where no='$data[no]'"));
+		$re=mysqli_fetch_array(mysqli_query($connect,"select x from $t_board"."_$id where no='$data[no]'"));
 		$xy1=explode("|||",$re[x]);
 		if($xy1[0]){
 			$thumb_img1=$Thumbnail_url.$data[ismember]."/".$Thumbnail_small1;
@@ -113,9 +113,9 @@ if($Thumbnail_use=="on"){
 	}elseif($file1_check==1 && ($src_img2=$img[0][1]) && !preg_match("#\.(gif|bmp)$#i",$src_img2)){
 		if(!file_exists($Thumbnail_path.$data[ismember]."/".$Thumbnail_small2)){
 			$zx=thumbnail($min_width_size,$src_img2,$Thumbnail_path.$data[ismember]."/".$Thumbnail_small2);
-			@mysql_query("update $t_board"."_$id set x=concat('$zx[0]','|||','$zx[1]') where no='$data[no]'") or error(mysql_error());
+			@mysqli_query($connect,"update $t_board"."_$id set x=concat('$zx[0]','|||','$zx[1]') where no='$data[no]'") or error(mysqli_error($connect));
 		}
-		$re=mysql_fetch_array(mysql_query("select x from $t_board"."_$id where no='$data[no]'"));
+		$re=mysqli_fetch_array(mysqli_query($connect,"select x from $t_board"."_$id where no='$data[no]'"));
 		$xy2=explode("|||",$re[x]);
 		if($xy2[0]){
 			$thumb_img2=$Thumbnail_url.$data[ismember]."/".$Thumbnail_small2;
@@ -127,9 +127,9 @@ if($Thumbnail_use=="on"){
 	}elseif(($src_img2=$img[1][1]) && !preg_match("#\.(gif|bmp)$#i",$src_img2)){
 		if(!file_exists($Thumbnail_path.$data[ismember]."/".$Thumbnail_small2)){
 			$zy=thumbnail($min_width_size,$src_img2,$Thumbnail_path.$data[ismember]."/".$Thumbnail_small2);
-			@mysql_query("update $t_board"."_$id set y=concat('$zy[0]','|||','$zy[1]') where no='$data[no]'") or error(mysql_error());
+			@mysqli_query($connect,"update $t_board"."_$id set y=concat('$zy[0]','|||','$zy[1]') where no='$data[no]'") or error(mysqli_error($connect));
 		}
-		$re=mysql_fetch_array(mysql_query("select y from $t_board"."_$id where no='$data[no]'"));
+		$re=mysqli_fetch_array(mysqli_query($connect,"select y from $t_board"."_$id where no='$data[no]'"));
 		$xy2=explode("|||",$re[y]);
 		if($xy2[0]){
 			$thumb_img2=$Thumbnail_url.$data[ismember]."/".$Thumbnail_small2;

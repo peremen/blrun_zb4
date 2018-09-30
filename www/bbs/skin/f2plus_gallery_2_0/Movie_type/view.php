@@ -27,13 +27,13 @@ include "view_image_info.php";
 if($emoticon_use=="on") $_name1=str_to_emoticon($_name1,$emoticon_url);
 
 if (!$connect) $connect=dbconn();
-$m_data=mysql_fetch_array(mysql_query("SELECT * FROM zetyx_member_table where no=$data[ismember]"));
+$m_data=mysqli_fetch_array(mysqli_query($connect,"SELECT * FROM zetyx_member_table where no=$data[ismember]"));
 
-$total_comment=mysql_fetch_array(mysql_query("select count(*) from $table where parent='$data[no]' and point1+point2 > 0"));
+$total_comment=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $table where parent='$data[no]' and point1+point2 > 0"));
 if($total_comment[0]>0){
 	$total_point=0;
-	$query1=mysql_query("select * from $table where parent='$data[no]' and point1+point2 > 0");
-	while($result1=mysql_fetch_array($query1)){
+	$query1=mysqli_query($connect,"select * from $table where parent='$data[no]' and point1+point2 > 0");
+	while($result1=mysqli_fetch_array($query1)){
 		$total_point=$total_point+$result1[point1]*2+$result1[point2];
 	}
 	$aver=$total_point/$total_comment[0];

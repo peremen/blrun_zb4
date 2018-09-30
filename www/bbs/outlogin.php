@@ -195,11 +195,11 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 		return;
 	}
 
-	$setup = mysql_fetch_array(mysql_query("select use_alllist from $admin_table where name='$id'"));
+	$setup = mysqli_fetch_array(mysqli_query($connect,"select use_alllist from $admin_table where name='$id'"));
 	if($setup[use_alllist]) $target = "zboard.php?id=".$id;
 	else $target = "view.php?id=".$id;
 
-	$result = mysql_query("select * from $t_board"."_$id where is_secret=0 order by no desc limit $num", $connect) or die(mysql_error());
+	$result = mysqli_query($connect,"select * from $t_board"."_$id where is_secret=0 order by no desc limit $num") or die(mysqli_error($connect));
 
 	$tmpStr = explode("[loop]",$str);
 	$header = $tmpStr[0];
@@ -209,7 +209,7 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 
 	// 공지사항 형식을 만들때 사용
 	if(preg_match("/\[notice\_/i",$header)) {
-		$data=mysql_fetch_array($result);
+		$data=mysqli_fetch_array($result);
 		$memo = strip_tags($data[memo]);
 		$filename1 = $data[file_name1];
 		$filename2 = $data[file_name2];
@@ -228,7 +228,7 @@ function print_bbs($skinname, $title, $id, $num=5, $textlen=30, $datetype="Y/m/d
 	}
 
 	$main_data = "";
-	while($data=mysql_fetch_array($result)) {
+	while($data=mysqli_fetch_array($result)) {
 		$name = str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",$data[name]));
 		$sbj_all = $data[subject]=strip_tags($data[subject]);
 		$sbj_all = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",str_replace("\"","&quot;",$sbj_all))));
@@ -262,19 +262,19 @@ function print_survey($skinname, $title, $id, $textlen=30) {
 		return;
 	}
 
-	$tmpResult = mysql_query("select use_alllist from $admin_table where name='$id'") or die(mysql_error());
-	$setup = mysql_fetch_array($tmpResult);
+	$tmpResult = mysqli_query($connect,"select use_alllist from $admin_table where name='$id'") or die(mysqli_error($connect));
+	$setup = mysqli_fetch_array($tmpResult);
 	if($setup[use_alllist]) $target = "zboard.php?id=".$id;
 	else $target = "view.php?id=".$id;
 
-	$result = mysql_query("select * from $t_board"."_$id order by headnum,arrangenum limit 1", $connect) or die(mysql_error());
-	$tmpData = mysql_fetch_array($result);
+	$result = mysqli_query($connect,"select * from $t_board"."_$id order by headnum,arrangenum limit 1") or die(mysqli_error($connect));
+	$tmpData = mysqli_fetch_array($result);
 	$no = $tmpData[no];
 	$headnum = $tmpData[headnum];
 	$main_subject="<a href='".$_zb_url.$target."&no=$no'>".del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",strip_tags($tmpData[subject]))))."</a>";
 	if($tmpData[vote]) $main_vote = "[총 ".$tmpData[vote]."표]"; else $main_vote="";
 
-	$result = mysql_query("select * from $t_board"."_$id where headnum='$headnum' and arrangenum > 0 order by arrangenum", $connect) or die(mysql_error());
+	$result = mysqli_query($connect,"select * from $t_board"."_$id where headnum='$headnum' and arrangenum > 0 order by arrangenum") or die(mysqli_error($connect));
 
 	$tmpStr = explode("[loop]",$str);
 	$header = $tmpStr[0];
@@ -283,7 +283,7 @@ function print_survey($skinname, $title, $id, $textlen=30) {
 	$footer = $tmpStr2[1];
 
 	$main_data = "";
-	while($data=mysql_fetch_array($result)) {
+	while($data=mysqli_fetch_array($result)) {
 		$subject = del_html(str_replace("&rlo;","&amp;rlo;",str_replace("&rlm;","&amp;rlm;",cut_str(strip_tags($data[subject]),$textlen))))."</font></b>";
 		if($data[vote]) $vote = "[".$data[vote]."표]"; else $vote="";
 		$main = $loop;
@@ -312,15 +312,15 @@ function print_gallery($skinname, $title, $id, $num=10, $xsize=80, $ysize=80, $x
 		return;
 	}
 
-	$tmpResult = mysql_query("select use_alllist from $admin_table where name='$id'") or die(mysql_error());
-	$setup = mysql_fetch_array($tmpResult);
+	$tmpResult = mysqli_query($connect,"select use_alllist from $admin_table where name='$id'") or die(mysqli_error($connect));
+	$setup = mysqli_fetch_array($tmpResult);
 	if($setup[use_alllist]) $target = "zboard.php?id=".$id;
 	else $target = "view.php?id=".$id;
 
-	$result = mysql_query("select * from $t_board"."_$id order by no desc limit $num", $connect) or die(mysql_error());
+	$result = mysqli_query($connect,"select * from $t_board"."_$id order by no desc limit $num") or die(mysqli_error($connect));
 
 	$i = 0;
-	while($data=mysql_fetch_array($result)) {
+	while($data=mysqli_fetch_array($result)) {
 
 		if(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name1])) $filename = $_zb_url.$data[file_name1];
 		elseif(preg_match("#\.(jpg|jpeg|png|gif|bmp)$#i",$data[file_name2])) $filename = $_zb_url.$data[file_name2];

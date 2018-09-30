@@ -17,12 +17,12 @@ if($setup[grant_view]<$member[level]&&!$is_admin) Error("사용권한이 없습�
 
 // 현재글의 Download 수를 올림;;
 if($filenum==1) {
-	mysql_query("update `$t_comment"."_$id` set download1=download1+1 where no='$no'");
+	mysqli_query($connect,"update `$t_comment"."_$id` set download1=download1+1 where no='$no'");
 } else {
-	mysql_query("update `$t_comment"."_$id` set download2=download2+1 where no='$no'");
+	mysqli_query($connect,"update `$t_comment"."_$id` set download2=download2+1 where no='$no'");
 }
 
-$data=mysql_fetch_array(mysql_query("select * from `$t_comment"."_$id` where no='$no'"));
+$data=mysqli_fetch_array(mysqli_query($connect,"select * from `$t_comment"."_$id` where no='$no'"));
 
 // 다운로드;;
 function mb_basename($path) { $arr=explode('/',$path); return end($arr); }

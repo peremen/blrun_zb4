@@ -1,7 +1,7 @@
 <?
-$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
+$group_data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$group_no'"));
 
-$member_data=mysql_fetch_array(mysql_query("select * from $member_table where no='$no'"));
+$member_data=mysqli_fetch_array(mysqli_query($connect,"select * from $member_table where no='$no'"));
 
 if($member[is_admin]>1&&$member[no]!=$member_data[no]&&$member_data[level]<=$member[level]&&$member_data[is_admin]<=$member[is_admin]) error("선택하신 회원의 정보를 변경할 권한이 없습니다");
 
@@ -124,15 +124,15 @@ if($member_data[is_admin]>2)
 		for($__k=1;$__k<count($manager_board_temp);$__k++){
 			if(trim($manager_board_temp[$__k])) $get_string .= " or (no = '$manager_board_temp[$__k]') ";
 		}
-		$manager_board_list = mysql_query("select * from $admin_table where $get_string",$connect) or die(mysql_error());
-		while($__manager_data = mysql_fetch_array($manager_board_list)) {
+		$manager_board_list = mysqli_query($connect,"select * from $admin_table where $get_string") or die(mysqli_error($connect));
+		while($__manager_data = mysqli_fetch_array($manager_board_list)) {
 			$__manager_board_name .= "&nbsp;".stripslashes($__manager_data[name])." &nbsp; <a href='$PHP_SELF?exec=view_member&exec2=modify_member_board_manager&group_no=$group_no&member_no=$no&page=$page&keyword=$keyword&board_num=$__manager_data[no]&sid=$sid' onclick=\"return confirm('권한을 취소시키시겠습니까?')\">[권한취소]</a><br><img src=images/t.gif border=0 height=4><br>";
 
 		}
 	}
 
 	$select[$member_data[board_name]]="selected";
-	$board_list=mysql_query("select no,name from $admin_table where group_no='$group_data[no]'") or error(mysql_error());
+	$board_list=mysqli_query($connect,"select no,name from $admin_table where group_no='$group_data[no]'") or error(mysqli_error($connect));
 ?>
 <tr height=22 align=center>
   <td bgcolor=#a0a0a0 align=right style=font-family:Tahoma;font-size:9pt;font-weight:bold;>게시판 관리자 지정&nbsp;&nbsp;</td>
@@ -142,7 +142,7 @@ if($member_data[is_admin]>2)
     <select id=board_name name=board_name>
     <option value="">게시판관리자 지정</option>
 <?
-	while($board_data_list=mysql_fetch_array($board_list))
+	while($board_data_list=mysqli_fetch_array($board_list))
 	{
 		if(!preg_match("/".$board_data_list[no].",/i",$member_data[board_name]))echo "
 		<option value='$board_data_list[no]'>$board_data_list[name]</option>";

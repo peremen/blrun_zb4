@@ -24,7 +24,7 @@ $group=group_info($setup[group_no]);
 $member = member_info();
 
 // 원 게시글 정보 읽어오기
-if($no&&$mode=="modify") $data=mysql_fetch_array(mysql_query("select * from  $t_board"."_$id  where no='$no'"));
+if($no&&$mode=="modify") $data=mysqli_fetch_array(mysqli_query($connect,"select * from  $t_board"."_$id  where no='$no'"));
 
 // 현재 로그인되어 있는 멤버가 전체, 또는 그룹관리자인지 검사
 if($member[is_admin]==1||($member[is_admin]==2&&$member[group_no]==$setup[group_no])||check_board_master($member, $setup[no])) $is_admin=1; else $is_admin="";

@@ -28,9 +28,9 @@ include("search_ziphead.php");
 if($dong)
 {
 	$dbqry="SELECT * FROM `zetyx_zipcode` WHERE dong like '%$dong%'";
-	$rs = mysql_query($dbqry) or die(mysql_error());
+	$rs = mysqli_query($connect,$dbqry) or die(mysqli_error($connect));
 
-	while($R=mysql_fetch_array($rs))
+	while($R=mysqli_fetch_array($rs))
 	{
 		$address1 = "{$R['sido']} {$R['gugun']} {$R['dong']} {$R['bunji']}";
 		$address2 = "{$R['sido']} {$R['gugun']} {$R['dong']}";

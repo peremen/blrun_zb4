@@ -1,6 +1,6 @@
 <?
 /* Check New Comment $comment_new */
-$last_comment = mysql_fetch_array(mysql_query("select * from $t_comment"."_$id where parent='$data[no]' order by reg_date desc limit 1"));
+$last_comment = mysqli_fetch_array(mysqli_query($connect,"select * from $t_comment"."_$id where parent='$data[no]' order by reg_date desc limit 1"));
 $last_comment_time = $last_comment['reg_date'];
 if(time()-$last_comment_time<60*60*24) $comment_new = "&nbsp;<font color=red style='font-size:8pt;'>".$comment_num."</font>";
 elseif(time()-$last_comment_time<60*60*48) $comment_new = "&nbsp;<font color=blue style='font-size:8pt;'>".$comment_num."</font>";

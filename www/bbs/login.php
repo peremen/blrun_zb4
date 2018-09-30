@@ -22,7 +22,7 @@ if($id) {
 
 } else {
 
-	if($group_no) $group=mysql_fetch_array(mysql_query("select * from $group_table where no='$group_no'"));
+	if($group_no) $group=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$group_no'"));
 	if(!$group[no]) Error("지정된 그룹이 존재하지 않습니다");
 }
 

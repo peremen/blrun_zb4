@@ -24,19 +24,19 @@ if($member[no]) {
 
 // 패스워드를 암호화
 if($password) {
-	$temp=mysql_fetch_array(mysql_query("select password('$password')"));
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select password('$password')"));
 	$password=$temp[0];
 }
 
 function board_imsi_info($id,$no,$ismember,$name,$password) {
-	global $board_imsi_table;
-	$temp=mysql_fetch_array(mysql_query("select * from $board_imsi_table where bname='$id' and bno='$no' and ismember='$ismember' and name='$name' and password='$password'"));
+	global $board_imsi_table, $connect;
+	$temp=mysqli_fetch_array(mysqli_query($connect,"select * from $board_imsi_table where bname='$id' and bno='$no' and ismember='$ismember' and name='$name' and password='$password'"));
 	return $temp;
 }
 
 if($mode!="modify") {
 	if($name&&$password) {
-		$re=mysql_fetch_array(mysql_query("select count(*) from $board_imsi_table where bname='$id' and bno='0' and ismember='$ismember' and name='$name' and password='$password'"));
+		$re=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $board_imsi_table where bname='$id' and bno='0' and ismember='$ismember' and name='$name' and password='$password'"));
 
 		if($re[0]>0)
 			$jsontable=board_imsi_info($id,0,$ismember,$name,$password);
@@ -46,7 +46,7 @@ if($mode!="modify") {
 * 수정글일때
 **************************************************************************/
 } elseif($mode=="modify"&&$no) {
-	$re=mysql_fetch_array(mysql_query("select count(*) from $board_imsi_table where bname='$id' and bno='$no' and ismember='$ismember' and name='$name' and password='$password'"));
+	$re=mysqli_fetch_array(mysqli_query($connect,"select count(*) from $board_imsi_table where bname='$id' and bno='$no' and ismember='$ismember' and name='$name' and password='$password'"));
 
 	if($re[0]>0)
 		$jsontable=board_imsi_info($id,$no,$ismember,$name,$password);

@@ -4,8 +4,8 @@
 /////////////////////////////////////////////////////
 
 // 그룹의 정보를 뽑아옴
-$result=@mysql_query("select * from $group_table where no='$group_no'") or Error("그룹선택시 에러가 발생하였습니다");
-$data=mysql_fetch_array($result);
+$result=@mysqli_query($connect,"select * from $group_table where no='$group_no'") or Error("그룹선택시 에러가 발생하였습니다");
+$data=mysqli_fetch_array($result);
 ?>
 
 <table border=0 cellspacing=1 cellpadding=0 width=100% bgcolor=#b0b0b0>

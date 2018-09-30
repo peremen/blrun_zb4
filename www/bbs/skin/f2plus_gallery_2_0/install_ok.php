@@ -69,7 +69,7 @@ who text,
 KEY parent (parent)
 )";
 
-	mysql_query("$movie_type_schema",$connect);
+	mysqli_query($connect,"$movie_type_schema");
 }
 
 $str='<?

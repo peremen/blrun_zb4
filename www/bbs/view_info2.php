@@ -6,7 +6,7 @@ include "lib.php";
 if(!$connect) $connect=dbConn();
 
 // 글쓴이의 정보를 갖고옴;;
-$data=mysql_fetch_array(mysql_query("select * from $member_table where no='$member_no'"));
+$data=mysqli_fetch_array(mysqli_query($connect,"select * from $member_table where no='$member_no'"));
 $data[name] = stripslashes($data[name]);
 $data[job] = stripslashes($data[job]);
 $data[email] = stripslashes($data[email]);
@@ -35,7 +35,7 @@ if(!$data[no]) Error("탈퇴한 회원입니다", "window.close");
 $member=member_info();
 
 // 그룹데이타 읽어오기;;
-$group_data=mysql_fetch_array(mysql_query("select * from $group_table where no='$data[group_no]'"));
+$group_data=mysqli_fetch_array(mysqli_query($connect,"select * from $group_table where no='$data[group_no]'"));
 
 head("bgcolor=white","script_memo.php");
 ?>

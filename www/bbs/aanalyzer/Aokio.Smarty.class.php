@@ -4,8 +4,8 @@ ini_set("include_path",dirname(realpath(__FILE__)).DIRECTORY_SEPARATOR.'lib'.PAT
 require_once dirname(realpath(__FILE__)).DIRECTORY_SEPARATOR.'lib/Smarty/Smarty.class.php';
 class  AokioSmarty extends Smarty {
 
-	function AokioSmarty(){
-		parent::Smarty();
+	function __construct(){
+		parent::__construct();
 		if(empty($smarty)) $smarty = new Smarty();
 		$smarty->template_dir	= './templates/';
 		$smarty->compile_dir	= './templates_c/';
