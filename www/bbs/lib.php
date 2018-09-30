@@ -624,7 +624,7 @@ function check_zbLayer($data) {
 
 		if($data[homepage]){
 			$data[homepage]=str_replace("http://","",$data[homepage]);
-			$data[homepage]="http://".$data[homepage];
+			$data[homepage]="http://".str_replace("%2F", "/", urlencode($data[homepage]));
 		}
 
 		$data[email]=base64_encode($data[email]);
