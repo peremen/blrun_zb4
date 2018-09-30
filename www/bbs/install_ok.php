@@ -55,7 +55,7 @@ function istable($str, $dbname='') {
 }
 
 // 빈문자열 경우 1을 리턴
-function isspace($str) {
+function isblank($str) {
 	$temp=str_replace("　","",$str);
 	$temp=str_replace("\n","",$temp);
 	$temp=strip_tags($temp);
@@ -93,9 +93,9 @@ include "schema.sql";
 if(file_exists("myZrCnf2019.php")) error("이미 myZrCnf2019.php가 생성되어 있습니다.<br><br>재설치하려면 해당 파일을 지우세요");
 
 // 호스트네임, 아이디, DB네임, 비밀번호의 공백여부 검사
-if(isspace($hostname)) Error("HostName을 입력하세요","");
-if(isspace($user_id)) Error("User ID 를 입력하세요","");
-if(isspace($dbname)) Error("DB NAME을 입력하세요","");
+if(isblank($hostname)) Error("HostName을 입력하세요","");
+if(isblank($user_id)) Error("User ID 를 입력하세요","");
+if(isblank($dbname)) Error("DB NAME을 입력하세요","");
 
 // DB에 커넥트 하고 DB NAME으로 select DB
 $connect = @mysql_connect($hostname,$user_id,$password) or Error("MySQL-DB Connect<br>Error!!!","");
