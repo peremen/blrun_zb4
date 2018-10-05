@@ -6,7 +6,7 @@
 0.4 /main.php 파일, /m/main.php 파일 20행 쯤 이미지와 경로를 확인한다.
 (나중에 버전업을 위해 파일명은 그대로 사용하고 이미지 파일만 교체해 사용해도 된다)
 
-0.5 lib.php 파일의 319행 쯤의 @mysql_query("set names utf8",$connect); 에서 DB 캐릭터셋을 확인한다.
+0.5 lib.php 파일의 319행 쯤의 @mysql_query("set names utf8mb4",$connect); 에서 DB 캐릭터셋을 확인한다.
 0.7 lib.php 파일의 433행, 434행, 497행, 498행 쯤의 이미지와 경로를 확인한다.
 (나중에 버전업을 위해 파일명은 그대로 사용하고 이미지 파일만 교체해 사용해도 된다)
 0.9 lib.php 파일의 583행 $target 변수는 aanalyzer 를 설치해 새로 통계를 작성해야 사용이 가능하다.
@@ -17,7 +17,7 @@
 3.5 https 보안서버인증서를 설치하지 않은 사용자는 잘못 저장된 www/bbs/script/get_url.php 파일의 url 정보를 일반 url로 모두 수정해 사용한다.
 (ssl url 정보도 모두 일반 url로 설정한다. 단 보안서버인증서 이용자는 설치시 입력했던 포트 번호를 그대로 사용한다)
 
-4.5 www/bbs/admin/dbDump.php 파일 136행 쯤 "bin/" 를 우분투에서는 "/bin/" 으로 고쳐줘야 DB가 제대로 루트 폴더에 생성이 된다. 리눅스 서버에선 수정없이 그대로 사용한다!
+4.5 www/bbs/admin/dbDump.php 파일 137행 쯤 "/bin/" 를 PHP 5.6 이하 리눅스에서는 "bin/" 으로 고쳐줘야 DB가 제대로 루트 폴더에 생성이 된다. 리눅스 서버에선 수정없이 그대로 사용한다!
 
 5. www/rss/old_rss2/ 폴더 안의 zero_rss.php, www/rss/old_rss3/ 폴더 안의 index.php 파일 54행의 이미지와 경로를 확인한다.
 (나중에 버전업을 위해 파일명은 그대로 사용하고 이미지 파일만 교체해 사용해도 된다. rss 사용법은 old_rss 폴더안의 파일들을 www/rss 루트 폴더로 이동시켜 한가지만 사용하면 된다)
@@ -27,7 +27,7 @@
 
 6. www/fr_right.htm www/m/favorite.htm의 채팅방 소스는 chatroom=blrun2 부분을 자신의 고유 아이디로 바꾸어 사용합니다.
 
-7. lib_ajax.php 파일의 305행 쯤의 @mysql_query("set names utf8",$connect); 에서 DB 캐릭터셋을 확인한다.
+7. lib_ajax.php 파일의 305행 쯤의 @mysql_query("set names utf8mb4",$connect); 에서 DB 캐릭터셋을 확인한다.
 9. lib_ajax.php 파일의 409행, 410행, 473행, 474행 쯤의 이미지와 경로를 확인한다.
 (나중에 버전업을 위해 파일명은 그대로 사용하고 이미지 파일만 교체해 사용해도 된다)
 10. lib_ajax.php 파일의 559행 $target 변수를 aanalyzer 를 설치해 새로 통계를 작성해야 사용이 가능하다.
