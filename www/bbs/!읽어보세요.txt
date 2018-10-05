@@ -25,7 +25,7 @@
 5.5 www/bbs/setup.php 파일 12행 쯤 url 정보를 수정해 준다.
 (이건 수정하지 않아도 수정증보판을 사용하는 데 지장이 없다)
 
-6. www/fr_right.htm www/m/favorite.htm의 채팅방 소스는 chatroom=blrun 부분을 자신의 고유 아이디로 바꾸어 사용합니다.
+6. www/fr_right.htm www/m/favorite.htm의 채팅방 소스는 chatroom=blrun3 부분을 자신의 고유 아이디로 바꾸어 사용합니다.
 
 7. lib_ajax.php 파일의 302행 쯤의 @mysql_query("set names euckr",$connect); 에서 DB 캐릭터셋을 확인한다.
 9. lib_ajax.php 파일의 406행, 407행, 470행, 471행 쯤의 이미지와 경로를 확인한다.

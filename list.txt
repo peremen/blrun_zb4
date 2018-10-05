@@ -2,6 +2,7 @@
 2018-08-23 "www/fr_top.htm" - 1
 2018-08-23 "www/index.php" - 1
 2018-08-23 "www/main.php" - 1
+2018-10-05 "www/bbs/!읽어보세요.txt" - 1
 2018-08-19 "www/bbs/0_DEL_BKSL.php" - 1
 2018-08-19 "www/bbs/1_ADD_COL.php" - 1
 2018-08-19 "www/bbs/2_MOD_LVL.php" - 1
