@@ -10,7 +10,7 @@
  ******************************************************************************/
 // 한글 인코딩 및 W3C P3P 규약설정
 @header("Content-Type: text/html; charset=utf-8");
-@header("P3P : CP=\"ALL CURa ADMa DEVa TAIa OUR BUS IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC OTC\"");
+@header('P3P: CP="NOI CURa ADMa DEVa TAIa OUR DELa BUS IND PHY ONL UNI COM NAV INT DEM PRE"');
 
 // 현재 버젼
 $zb_version = "4.1 pl8";
@@ -600,7 +600,7 @@ function check_zbLayer($data) {
 
 		if($data[homepage]){
 			$data[homepage]=str_replace("http://","",$data[homepage]);
-			$data[homepage]="http://".$data[homepage];
+			$data[homepage]="http://".str_replace("%2F", "/", urlencode($data[homepage]));
 		}
 
 		$data[email]=base64_encode($data[email]);

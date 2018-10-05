@@ -1,4 +1,4 @@
-PHP_VALUE mysql.default_charset UTF8
+PHP_VALUE mysql.default_charset utf8mb4
 PHP_FLAG allow_url_fopen ON
 PHP_VALUE memory_limit -1
 PHP_VALUE post_max_size 250M
